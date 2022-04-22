@@ -15,6 +15,9 @@ class SheetNames:
     SHAPES = "Shapes"
     COMPLEX_OBJECTS = "ComplexObjects"
     CONTAINERS = "Containers"
+    DICE = "Dice"
+    TOKENS = "Tokens"
+    PLACEMENT = "Placement"
 
 
 DEFAULT_XLS = {
@@ -56,16 +59,16 @@ DEFAULT_XLS = {
     SheetNames.CONTAINERS: [
         ["NAME", "TYPE", "COLOR", "SIZE", "CONTENTS", ]
     ],
-    "Tokens": [
+    SheetNames.TOKENS: [
         ["NAME", "ENTITY", "COLOR", "SIZE", "TEXT-COLOR-FRONT", "CONTENT-FRONT", ],
         ["Team1Pawn", "Pawn", "Red", "1"],
         ["Team2Pawn", "Pawn", "Blue", "1"]
     ],
-    "Dice": [
+    SheetNames.DICE: [
         ["NAME", "COLOR", "SIZE", "SIDES", "CONTENT?"],
         ["HealthDie", "white", "1", "6"]
     ],
-    "PLACEMENT": [
+    SheetNames.PLACEMENT: [
         ["", "", "", "", "Characters"]
     ],
 }
