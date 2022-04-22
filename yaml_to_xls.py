@@ -1,4 +1,5 @@
 import dataclasses
+from copy import deepcopy
 from pathlib import Path
 import pyexcel
 
@@ -16,6 +17,7 @@ class SheetNames:
     COMPLEX_OBJECTS = "ComplexObjects"
     CONTAINERS = "Containers"
     DICE = "Dice"
+    DECKS = "Decks"
     TOKENS = "Tokens"
     PLACEMENT = "Placement"
 
@@ -55,7 +57,7 @@ DEFAULT_XLS = {
         ["NAME", "TYPE", "CONTENT?"],
         ["GameBoard", "Board"],
     ],
-    "Decks": [["Deck"]],
+    SheetNames.DECKS: [["Deck"]],
     SheetNames.CONTAINERS: [
         ["NAME", "TYPE", "COLOR", "SIZE", "CONTENTS", ]
     ],
@@ -74,7 +76,11 @@ DEFAULT_XLS = {
 }
 
 
-def structure_to_xls(yaml: dict):
-    data = DEFAULT_XLS
+def structure_to_xls(structure: dict):
+    sheets = deepcopy(DEFAULT_XLS)
 
-    return data
+    for character_name in structure:
+        deck_rows = ["Deck", f"{character_name} deck"]
+        sheets[SheetNames.DECKS].append(deck_rows)
+
+    return sheets

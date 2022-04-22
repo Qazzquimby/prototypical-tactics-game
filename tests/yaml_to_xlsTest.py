@@ -28,6 +28,10 @@ def test_single_character__irrelevant_sheets_unchanged(sheet_name):
     assert result == DEFAULT_XLS[SheetNames.COMPLEX_TYPES]
 
 
-def test_single_character__shapes_types_unchanged():
-    result = structure_to_xls(MY_TEST_CHAR_STRUCTURE)[SheetNames.COMPLEX_TYPES]
-    assert result == DEFAULT_XLS[SheetNames.COMPLEX_TYPES]
+def test_single_empty_character__empty_deck_added():
+    result = structure_to_xls({MY_TEST_CHAR_NAME: {}})[SheetNames.DECKS]
+    expected = DEFAULT_XLS[SheetNames.DECKS] + [[
+        "Deck", f"{MY_TEST_CHAR_NAME} deck"
+    ]]
+
+    assert result == expected
