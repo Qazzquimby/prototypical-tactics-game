@@ -1,33 +1,16 @@
-from yaml_to_xls import yaml_to_xls
+from yaml_to_xls import structure_to_xls, DEFAULT_XLS, SheetNames
 
+MY_TEST_CHAR_NAME = "My Test Char"
 
 def test_empty_file():
-    yaml = ""
-    result = yaml_to_xls(yaml)
-    assert result == {
-        "ComplexTypes": [
-            "NAME", "SIZE", "SHAPE - TOPLEFT", "SHAPE - BOTTOMRIGHT", "BG - COLOR", "BACKSIDE", "TYPE",
-        ],
-        "Shapes": [
+    yaml = {}
+    result = structure_to_xls(yaml)
+    assert result == DEFAULT_XLS
 
-        ],
-        "ComplexObjects": [
-            "NAME", "TYPE", "CONTENT?"
-        ],
-        "Decks": ["Deck"],
-        "Containers":[
-            "NAME", "TYPE", "COLOR", "SIZE", "CONTENTS",
-        ],
-        "Tokens": [
-            "NAME", "ENTITY", "COLOR", "SIZE", "TEXT-COLOR-FRONT", "CONTENT-FRONT",
-        ],
-        "Dice": [
-            "NAME", "COLOR", "SIZE", "SIDES", "CONTENT?"
-        ],
-        "PLACEMENT": [],
-
-
-
+def test_single_empty_character__complex_types_unchanged():
+    structure = {
+        MY_TEST_CHAR_NAME: []
 
     }
-
+    result = structure_to_xls(structure)[SheetNames.COMPLEX_TYPES]
+    assert result == DEFAULT_XLS[SheetNames.COMPLEX_TYPES]
