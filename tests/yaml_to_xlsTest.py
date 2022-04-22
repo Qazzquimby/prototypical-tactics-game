@@ -1,6 +1,6 @@
 import pytest
 
-from yaml_to_xls import structure_to_xls, DEFAULT_XLS, SheetNames
+from yaml_to_xls import structure_to_xls, DEFAULT_XLS, SheetNames, make_deck_name
 
 MY_TEST_CHAR_NAME = "My Test Char"
 
@@ -31,7 +31,14 @@ def test_single_character__irrelevant_sheets_unchanged(sheet_name):
 def test_single_empty_character__empty_deck_added():
     result = structure_to_xls({MY_TEST_CHAR_NAME: {}})[SheetNames.DECKS]
     expected = DEFAULT_XLS[SheetNames.DECKS] + [[
-        "Deck", f"{MY_TEST_CHAR_NAME} deck"
+        "Deck", make_deck_name(MY_TEST_CHAR_NAME)
     ]]
 
+    assert result == expected
+
+
+def test_single_empty_character__deck_added_to_bag():
+    result = structure_to_xls({MY_TEST_CHAR_NAME: {}})[SheetNames.CONTAINERS]
+    expected = DEFAULT_XLS[SheetNames.CONTAINERS]
+    expected[1].append(make_deck_name(MY_TEST_CHAR_NAME))
     assert result == expected

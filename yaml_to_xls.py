@@ -59,7 +59,8 @@ DEFAULT_XLS = {
     ],
     SheetNames.DECKS: [["Deck"]],
     SheetNames.CONTAINERS: [
-        ["NAME", "TYPE", "COLOR", "SIZE", "CONTENTS", ]
+        ["NAME", "TYPE", "COLOR", "SIZE", "CONTENTS"],
+        ["Characters", "bag", "black", "1"]
     ],
     SheetNames.TOKENS: [
         ["NAME", "ENTITY", "COLOR", "SIZE", "TEXT-COLOR-FRONT", "CONTENT-FRONT", ],
@@ -75,12 +76,19 @@ DEFAULT_XLS = {
     ],
 }
 
+def make_deck_name(character_name: str):
+    return f"{character_name} deck"
 
 def structure_to_xls(structure: dict):
     sheets = deepcopy(DEFAULT_XLS)
 
     for character_name in structure:
-        deck_rows = ["Deck", f"{character_name} deck"]
+        deck_name = make_deck_name(character_name)
+
+        deck_rows = ["Deck", deck_name]
         sheets[SheetNames.DECKS].append(deck_rows)
+
+        sheets[SheetNames.CONTAINERS][1].append(deck_name)
+
 
     return sheets
