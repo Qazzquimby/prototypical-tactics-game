@@ -1,4 +1,3 @@
-
 from copy import deepcopy
 from pathlib import Path
 from typing import Literal
@@ -78,7 +77,7 @@ DEFAULT_XLS = {
         ["NAME", "TYPE", "CONTENT?"],
         ["GameBoard", "Board"],
     ],
-    SheetNames.DECKS: [["Deck"]],
+    SheetNames.DECKS: [],
     SheetNames.CONTAINERS: [
         ["NAME", "TYPE", "COLOR", "SIZE", "CONTENTS"],
         ["Characters", "bag", "black", "1"]
@@ -108,9 +107,14 @@ def decks_to_xls(decks: list[Deck]):
     for deck in decks:
         deck_name = make_deck_name(deck.hero.name)
 
-        deck_rows = ["Deck", deck_name]
-        sheets[SheetNames.DECKS].append(deck_rows)
+        # Setup decks
+        deck_rows = [
+            ["Deck", deck_name],
+            [deck.hero.name, "1"]
+        ]
+        sheets[SheetNames.DECKS] += deck_rows
 
+        # Setup containers
         sheets[SheetNames.CONTAINERS][1].append(deck_name)
 
     return sheets

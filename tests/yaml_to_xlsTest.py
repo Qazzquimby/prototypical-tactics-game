@@ -27,10 +27,12 @@ def test_single_character__irrelevant_sheets_unchanged(sheet_name):
     assert result == DEFAULT_XLS[SheetNames.COMPLEX_TYPES]
 
 
-def test_single_empty_character__empty_deck_added():
+def test_single_empty_character__just_hero_added():
     result = decks_to_xls([MY_TEST_CHAR])[SheetNames.DECKS]
     expected = DEFAULT_XLS[SheetNames.DECKS] + [[
         "Deck", make_deck_name(MY_TEST_CHAR_NAME)
+    ]] + [[
+        MY_TEST_CHAR.hero.name, "1"
     ]]
 
     assert result == expected
@@ -68,7 +70,8 @@ def test_parse_dict_to_models():
             hero=Unit(name="a", speed=1, health=2, size=3),
             cards=[
                 Ability(name="a's ability", type="Basic", text="ability text")
-            ])
+            ]
+        )
     ]
 
     assert result == expected
