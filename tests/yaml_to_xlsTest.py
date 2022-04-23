@@ -47,22 +47,13 @@ def test_single_character__irrelevant_sheets_unchanged(sheet_name):
     assert result == DEFAULT_XLS[SheetNames.COMPLEX_TYPES]
 
 
-def test_single_empty_character__deck__just_hero_added():
-    result = decks_to_xls([MY_TEST_CHAR__NO_ABILITIES])[SheetNames.DECKS]
-    expected = DEFAULT_XLS[SheetNames.DECKS] + [[
-        "Deck", make_deck_name(MY_TEST_CHAR_NAME)
-    ]] + [[
-        MY_TEST_CHAR__NO_ABILITIES.hero.name, "1"
-    ]]
-
-    assert result == expected
-
 HERO_COMPLEX_OBJECT_ROW = [
-        HERO_CARD_LABEL, MY_TEST_CHAR__NO_ABILITIES.hero.name,
-        SPEED_LABEL, str(MY_TEST_CHAR_SPEED),
-        HEALTH_LABEL, str(MY_TEST_CHAR_HEALTH),
-        MY_TEST_CHAR__NO_ABILITIES.hero.name
-    ]
+    HERO_CARD_LABEL, MY_TEST_CHAR__NO_ABILITIES.hero.name,
+    SPEED_LABEL, str(MY_TEST_CHAR_SPEED),
+    HEALTH_LABEL, str(MY_TEST_CHAR_HEALTH),
+    MY_TEST_CHAR__NO_ABILITIES.hero.name
+]
+
 
 def test_single_empty_character__complex_objects__just_hero_added():
     result = decks_to_xls([MY_TEST_CHAR__NO_ABILITIES])[SheetNames.COMPLEX_OBJECTS]
@@ -78,12 +69,35 @@ def test_single_empty_character__deck_added_to_bag():
     assert result == expected
 
 
-
 def test_character_abilities_created():
     result = decks_to_xls([MY_TEST_CHAR__WITH_ABILITY])[SheetNames.COMPLEX_OBJECTS]
     expected = DEFAULT_XLS[SheetNames.COMPLEX_OBJECTS]
 
-    expected += [HERO_COMPLEX_OBJECT_ROW, ["Ability", MY_ABILITY_NAME, BASIC, MY_ABILITY_COST, MY_ABILITY_TEXT, MY_TEST_CHAR_NAME]]
+    expected += [HERO_COMPLEX_OBJECT_ROW,
+                 ["Ability", MY_ABILITY_NAME, BASIC, MY_ABILITY_COST, MY_ABILITY_TEXT, MY_TEST_CHAR_NAME]]
+    assert result == expected
+
+
+def test_single_empty_character__deck__just_hero_added():
+    result = decks_to_xls([MY_TEST_CHAR__NO_ABILITIES])[SheetNames.DECKS]
+    expected = DEFAULT_XLS[SheetNames.DECKS] + [[
+        "Deck", make_deck_name(MY_TEST_CHAR_NAME)
+    ]] + [[
+        MY_TEST_CHAR__NO_ABILITIES.hero.name, "1"
+    ]]
+
+    assert result == expected
+
+
+def test_single_character__deck__all_added():
+    result = decks_to_xls([MY_TEST_CHAR__WITH_ABILITY])[SheetNames.DECKS]
+    expected = DEFAULT_XLS[SheetNames.DECKS] + [[
+        "Deck", make_deck_name(MY_TEST_CHAR_NAME)
+    ]] + [[
+        MY_TEST_CHAR__NO_ABILITIES.hero.name, "1"
+    ]] + [[
+        MY_ABILITY_NAME, "1",
+    ]]
     assert result == expected
 
 

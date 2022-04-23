@@ -149,11 +149,17 @@ def decks_to_xls(decks: list[Deck]):
     for deck in decks:
         deck_name = make_deck_name(deck.hero.name)
 
+        # # Add cards
+        # for card in [deck.hero] + deck.cards:
+        #
+
         # Setup decks
         deck_rows = [
             ["Deck", deck_name],
             [deck.hero.name, "1"]
         ]
+        for card in deck.cards:
+            deck_rows.append([card.name, "1"])
         sheets[SheetNames.DECKS] += deck_rows
 
         # Setup Complex Objects
