@@ -76,13 +76,13 @@ def test_single_empty_character__deck_added_to_bag():
     assert result == expected
 
 
-#
-# def test_character_abilities_created():
-#     result = decks_to_xls([MY_TEST_CHAR__WITH_ABILITY])[SheetNames.COMPLEX_OBJECTS]
-#     expected = DEFAULT_XLS[SheetNames.COMPLEX_OBJECTS]
-#
-#     expected += [["Ability", MY_ABILITY_NAME, BASIC, MY_ABILITY_TEXT, MY_TEST_CHAR_NAME]]
-#     assert result == expected
+
+def test_character_abilities_created():
+    result = decks_to_xls([MY_TEST_CHAR__WITH_ABILITY])[SheetNames.COMPLEX_OBJECTS]
+    expected = DEFAULT_XLS[SheetNames.COMPLEX_OBJECTS]
+
+    expected += [["Ability", MY_ABILITY_NAME, BASIC, MY_ABILITY_TEXT, MY_TEST_CHAR_NAME]]
+    assert result == expected
 
 
 def test_parse_dict_to_models():
