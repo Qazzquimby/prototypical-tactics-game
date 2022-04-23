@@ -4,14 +4,13 @@ from yaml_to_xls import decks_to_xls, DEFAULT_XLS, SheetNames, make_deck_name, D
 
 MY_TEST_CHAR_NAME = "My Test Char"
 
-MY_TEST_CHAR = {"My Card": ["jeez idk"]}
-
-MY_TEST_CHAR_STRUCTURE = {MY_TEST_CHAR_NAME: MY_TEST_CHAR}
+MY_TEST_CHAR = Deck(
+    hero=Unit(name=MY_TEST_CHAR_NAME, speed=1, health=1, size=1), cards=[])  # {"My Card": ["jeez idk"]}
 
 
 def test_empty_file():
-    yaml = {}
-    result = decks_to_xls(yaml)
+    decks = []
+    result = decks_to_xls(decks)
     assert result == DEFAULT_XLS
 
 
@@ -24,12 +23,12 @@ def test_empty_file():
     SheetNames.PLACEMENT,
 ])
 def test_single_character__irrelevant_sheets_unchanged(sheet_name):
-    result = decks_to_xls(MY_TEST_CHAR_STRUCTURE)[SheetNames.COMPLEX_TYPES]
+    result = decks_to_xls([MY_TEST_CHAR])[SheetNames.COMPLEX_TYPES]
     assert result == DEFAULT_XLS[SheetNames.COMPLEX_TYPES]
 
 
 def test_single_empty_character__empty_deck_added():
-    result = decks_to_xls({MY_TEST_CHAR_NAME: {}})[SheetNames.DECKS]
+    result = decks_to_xls([MY_TEST_CHAR])[SheetNames.DECKS]
     expected = DEFAULT_XLS[SheetNames.DECKS] + [[
         "Deck", make_deck_name(MY_TEST_CHAR_NAME)
     ]]
@@ -38,7 +37,7 @@ def test_single_empty_character__empty_deck_added():
 
 
 def test_single_empty_character__deck_added_to_bag():
-    result = decks_to_xls({MY_TEST_CHAR_NAME: {}})[SheetNames.CONTAINERS]
+    result = decks_to_xls([MY_TEST_CHAR])[SheetNames.CONTAINERS]
     expected = DEFAULT_XLS[SheetNames.CONTAINERS]
     expected[1].append(make_deck_name(MY_TEST_CHAR_NAME))
     assert result == expected
@@ -64,7 +63,12 @@ def test_parse_dict_to_models():
 
     result = parse_decks(decks)
 
-    expected = [Deck(hero=Unit(name="a", speed=1, health=2, size=3),
-                     cards=[Ability(name="a's ability", type="Basic", text="ability text")])]
+    expected = [
+        Deck(
+            hero=Unit(name="a", speed=1, health=2, size=3),
+            cards=[
+                Ability(name="a's ability", type="Basic", text="ability text")
+            ])
+    ]
 
     assert result == expected

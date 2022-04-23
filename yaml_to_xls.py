@@ -1,4 +1,4 @@
-import dataclasses
+
 from copy import deepcopy
 from pathlib import Path
 from typing import Literal
@@ -15,7 +15,7 @@ class Card(BaseModel):
 class Unit(Card):
     speed: int
     health: int
-    size: int = 2
+    size: int = 1
 
 
 class Ability(Card):
@@ -102,11 +102,11 @@ def make_deck_name(character_name: str):
     return f"{character_name} deck"
 
 
-def decks_to_xls(structure: dict):
+def decks_to_xls(decks: list[Deck]):
     sheets = deepcopy(DEFAULT_XLS)
 
-    for character_name in structure:
-        deck_name = make_deck_name(character_name)
+    for deck in decks:
+        deck_name = make_deck_name(deck.hero.name)
 
         deck_rows = ["Deck", deck_name]
         sheets[SheetNames.DECKS].append(deck_rows)
