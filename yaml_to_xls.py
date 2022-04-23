@@ -28,6 +28,9 @@ class Deck(BaseModel):
     cards: list[Unit | Ability]
 
 
+def parse_decks(decks: list[dict]):
+    return [Deck.parse_obj(deck) for deck in decks]
+
 
 class SheetNames:
     COMPLEX_TYPES = "ComplexTypes"
@@ -99,7 +102,7 @@ def make_deck_name(character_name: str):
     return f"{character_name} deck"
 
 
-def structure_to_xls(structure: dict):
+def decks_to_xls(structure: dict):
     sheets = deepcopy(DEFAULT_XLS)
 
     for character_name in structure:
