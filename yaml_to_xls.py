@@ -57,6 +57,7 @@ class Ability(Card):
     def make_card_row(self, hero_name: str):
         return [
             ABILITY_CARD_LABEL, self.name,
+            self.type,
             self.cost,
             self.text,
             hero_name
