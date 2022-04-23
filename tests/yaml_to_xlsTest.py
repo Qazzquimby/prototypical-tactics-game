@@ -1,6 +1,6 @@
 import pytest
 
-from yaml_to_xls import structure_to_xls, DEFAULT_XLS, SheetNames, make_deck_name
+from yaml_to_xls import structure_to_xls, DEFAULT_XLS, SheetNames, make_deck_name, Deck, Unit, Ability
 
 MY_TEST_CHAR_NAME = "My Test Char"
 
@@ -41,4 +41,30 @@ def test_single_empty_character__deck_added_to_bag():
     result = structure_to_xls({MY_TEST_CHAR_NAME: {}})[SheetNames.CONTAINERS]
     expected = DEFAULT_XLS[SheetNames.CONTAINERS]
     expected[1].append(make_deck_name(MY_TEST_CHAR_NAME))
+    assert result == expected
+
+
+def test_parse_dict_to_models():
+    decks = [
+        {"hero": {
+            "name": "a",
+            "speed": 1,
+            "health": 2,
+            "size": 3,
+        },
+            "cards": [
+                {
+                    "name": "a's ability",
+                    "type": "Basic",
+                    "text": "ability text"
+                }
+            ]
+        }
+    ]
+
+    result = [Deck.parse_obj(deck) for deck in decks]
+
+    expected = [Deck(hero=Unit(name="a", speed=1, health=2, size=3),
+                     cards=[Ability(name="a's ability", type="Basic", text="ability text")])]
+
     assert result == expected

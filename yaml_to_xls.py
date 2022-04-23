@@ -1,14 +1,32 @@
 import dataclasses
 from copy import deepcopy
 from pathlib import Path
-import pyexcel
+from typing import Literal
+
+from pydantic import BaseModel
 
 data_path = Path(r"data/")
 
 
-@dataclasses.dataclass
-class Sheet:
-    pass
+class Card(BaseModel):
+    name: str
+
+
+class Unit(Card):
+    speed: int
+    health: int
+    size: int = 2
+
+
+class Ability(Card):
+    type: Literal["Basic"] | Literal["Quick"]
+    text: str
+
+
+class Deck(BaseModel):
+    hero: Unit
+    cards: list[Unit | Ability]
+
 
 
 class SheetNames:
@@ -76,8 +94,10 @@ DEFAULT_XLS = {
     ],
 }
 
+
 def make_deck_name(character_name: str):
     return f"{character_name} deck"
+
 
 def structure_to_xls(structure: dict):
     sheets = deepcopy(DEFAULT_XLS)
@@ -89,6 +109,5 @@ def structure_to_xls(structure: dict):
         sheets[SheetNames.DECKS].append(deck_rows)
 
         sheets[SheetNames.CONTAINERS][1].append(deck_name)
-
 
     return sheets
