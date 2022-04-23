@@ -10,16 +10,57 @@ data_path = Path(r"data/")
 class Card(BaseModel):
     name: str
 
+    def make_card_row(self, hero_name: str):
+        raise NotImplementedError
+
 
 class Unit(Card):
     speed: int
     health: int
     size: int = 1
 
+    def make_card_row(self, hero_name: str):
+        return [
+            HERO_CARD_LABEL, self.name,
+            SPEED_LABEL, str(self.speed),
+            HEALTH_LABEL, str(self.health),
+            hero_name
+        ]
+
+
+class Hero(Unit):
+    def make_card_row(self, hero_name: str):
+        return [
+            HERO_CARD_LABEL, self.name,
+            SPEED_LABEL, str(self.speed),
+            HEALTH_LABEL, str(self.health),
+            hero_name
+        ]
+
+
+BASIC = "Basic"
+QUICK = "Quick"
+
+UNIT_CARD_LABEL = "Unit"
+HERO_CARD_LABEL = "HeroCard"
+ABILITY_CARD_LABEL = "Ability"
+SPEED_LABEL = "Speed"
+HEALTH_LABEL = "Health"
+SIZE_LABEL = "Size"
+
 
 class Ability(Card):
     type: Literal["Basic"] | Literal["Quick"]
+    cost: str = ''
     text: str
+
+    def make_card_row(self, hero_name: str):
+        return [
+            ABILITY_CARD_LABEL, self.name,
+            self.cost,
+            self.text,
+            hero_name
+        ]
 
 
 class Deck(BaseModel):
@@ -113,6 +154,12 @@ def decks_to_xls(decks: list[Deck]):
             [deck.hero.name, "1"]
         ]
         sheets[SheetNames.DECKS] += deck_rows
+
+        # Setup Complex Objects
+        card_rows = [deck.hero.make_card_row(deck.hero.name)] + [
+            card.make_card_row(deck.hero.name) for card in deck.cards
+        ]
+        sheets[SheetNames.COMPLEX_OBJECTS] += card_rows
 
         # Setup containers
         sheets[SheetNames.CONTAINERS][1].append(deck_name)
