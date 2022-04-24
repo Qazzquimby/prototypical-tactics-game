@@ -2,9 +2,17 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Literal
 
+import yaml
 from pydantic import BaseModel
 
 data_path = Path(r"data/")
+
+Sheets = dict[str: list]
+
+
+def yaml_string_to_xls(yaml_string: str) -> Sheets:
+    decks = yaml.safe_load(yaml_string)
+    return decks_to_xls(decks)
 
 
 class Card(BaseModel):
@@ -21,7 +29,7 @@ class Unit(Card):
 
     def make_card_row(self, hero_name: str):
         return [
-            HERO_CARD_LABEL, self.name,
+            self.name, HERO_CARD_LABEL, self.name,
             SPEED_LABEL, str(self.speed),
             HEALTH_LABEL, str(self.health),
             hero_name
@@ -31,7 +39,7 @@ class Unit(Card):
 class Hero(Unit):
     def make_card_row(self, hero_name: str):
         return [
-            HERO_CARD_LABEL, self.name,
+            self.name, HERO_CARD_LABEL, self.name,
             SPEED_LABEL, str(self.speed),
             HEALTH_LABEL, str(self.health),
             hero_name
@@ -50,13 +58,13 @@ SIZE_LABEL = "Size"
 
 
 class Ability(Card):
-    type: Literal["Basic"] | Literal["Quick"]
+    type: Literal["Basic"] | Literal["Quick"] = BASIC
     cost: str = ''
     text: str
 
     def make_card_row(self, hero_name: str):
         return [
-            ABILITY_CARD_LABEL, self.name,
+            self.name, ABILITY_CARD_LABEL, self.name,
             self.type,
             self.cost,
             self.text,
@@ -68,6 +76,8 @@ class Deck(BaseModel):
     hero: Unit
     cards: list[Unit | Ability]
 
+class Game(BaseModel):
+    decks: list[Deck]
 
 def parse_decks(decks: list[dict]):
     return [Deck.parse_obj(deck) for deck in decks]
@@ -143,7 +153,7 @@ def make_deck_name(character_name: str):
     return f"{character_name} deck"
 
 
-def decks_to_xls(decks: list[Deck]):
+def decks_to_xls(decks: list[Deck]) -> Sheets:
     sheets = deepcopy(DEFAULT_XLS)
 
     for deck in decks:
@@ -165,3 +175,10 @@ def decks_to_xls(decks: list[Deck]):
         sheets[SheetNames.CONTAINERS][1].append(deck_name)
 
     return sheets
+
+if __name__ == '__main__':
+    yaml = """
+- hero:
+    """
+
+    yaml_string_to_xls()
