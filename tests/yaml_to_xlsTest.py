@@ -14,8 +14,7 @@ MY_TEST_CHAR_HERO = Unit(
     size=MY_TEST_CHAR_SIZE
 )
 MY_TEST_CHAR__NO_ABILITIES = Deck(
-    hero=MY_TEST_CHAR_HERO,
-    cards=[]
+    hero=MY_TEST_CHAR_HERO
 )
 
 MY_ABILITY_NAME = "My Ability"
@@ -24,7 +23,7 @@ MY_ABILITY_TEXT = "My Ability Text"
 MY_ABILITY = Ability(name=MY_ABILITY_NAME, type=BASIC, text=MY_ABILITY_TEXT)
 MY_TEST_CHAR__WITH_ABILITY = Deck(
     hero=MY_TEST_CHAR_HERO,
-    cards=[MY_ABILITY]
+    abilities=[MY_ABILITY]
 )
 
 
@@ -74,7 +73,8 @@ def test_character_abilities_created():
     expected = DEFAULT_XLS[SheetNames.COMPLEX_OBJECTS]
 
     expected += [HERO_COMPLEX_OBJECT_ROW,
-                 [MY_ABILITY_NAME, "Ability", MY_ABILITY_NAME, BASIC, MY_ABILITY_COST, MY_ABILITY_TEXT, MY_TEST_CHAR_NAME]]
+                 [MY_ABILITY_NAME, "Ability", MY_ABILITY_NAME, BASIC, MY_ABILITY_COST, MY_ABILITY_TEXT,
+                  MY_TEST_CHAR_NAME]]
     assert result == expected
 
 

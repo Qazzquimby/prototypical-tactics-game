@@ -74,10 +74,17 @@ class Ability(Card):
 
 class Deck(BaseModel):
     hero: Unit
-    cards: list[Unit | Ability]
+    abilities: list[Ability] = []
+    units: list[Unit] = []
+
+    @property
+    def cards(self) -> list[Card]:
+        return [self.hero] + self.abilities + self.units
+
 
 class Game(BaseModel):
     decks: list[Deck]
+
 
 def parse_decks(decks: list[dict]):
     return [Deck.parse_obj(deck) for deck in decks]
@@ -162,7 +169,7 @@ def decks_to_xls(decks: list[Deck]) -> Sheets:
         sheets[SheetNames.DECKS].append(["Deck", deck_name])
 
         # Add cards
-        for card in [deck.hero] + deck.cards:
+        for card in deck.cards:
             sheets[SheetNames.COMPLEX_OBJECTS].append(
                 card.make_card_row(deck.hero.name)
             )
@@ -175,6 +182,7 @@ def decks_to_xls(decks: list[Deck]) -> Sheets:
         sheets[SheetNames.CONTAINERS][1].append(deck_name)
 
     return sheets
+
 
 if __name__ == '__main__':
     yaml = """
