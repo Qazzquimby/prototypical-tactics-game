@@ -5,6 +5,7 @@ from reader.cell import read_cell
 from reader.dimensions import read_dimensions
 from reader.fromlist import read_fromlist
 
+
 class ComplexTypeParser:
     @staticmethod
     def parse(sheet, shapeSheet):
@@ -15,23 +16,31 @@ class ComplexTypeParser:
             try:
                 size = read_dimensions(sheet.cell(rowx=row, colx=1).value)
             except ValueError as e:
-                raise ValueError(str(e) + "(while reading size for " + name + ")") from None
+                raise ValueError(
+                    str(e) + "(while reading size for " + name + ")"
+                ) from None
 
             try:
                 topLeft = read_cell(sheet.cell(rowx=row, colx=2).value)
                 bottomRight = read_cell(sheet.cell(rowx=row, colx=3).value)
             except ValueError as e:
-                raise ValueError(str(e) + "(while reading shape for " + name + ")") from None
+                raise ValueError(
+                    str(e) + "(while reading shape for " + name + ")"
+                ) from None
 
             try:
                 shape = ComplexTypeParser.parseShape(shapeSheet, topLeft, bottomRight)
             except ValueError as e:
-                raise ValueError(str(e) + " (while reading shape for " + name + ")") from None
+                raise ValueError(
+                    str(e) + " (while reading shape for " + name + ")"
+                ) from None
 
             bgColor = ColorReader.read_color(sheet.cell(rowx=row, colx=4).value)
             backside = ColorReader.read_color(sheet.cell(rowx=row, colx=5).value)
             try:
-                type = read_fromlist(sheet.cell(rowx=row, colx=6).value, ("card", "board"))
+                type = read_fromlist(
+                    sheet.cell(rowx=row, colx=6).value, ("card", "board")
+                )
             except ValueError as e:
                 raise ValueError(str(e) + " (while reading: " + name + ")") from None
 
@@ -51,9 +60,11 @@ class ComplexTypeParser:
             cols = []
             for col in range(firstCol, lastCol + 1):
                 try:
-                    cols.append(shapeSheet.cell(rowx = row, colx = col).value)
+                    cols.append(shapeSheet.cell(rowx=row, colx=col).value)
                 except IndexError as e:
-                    raise ValueError("Unable to parse a shape: it extends beyond the edge of the Shapes spreadsheet.")
+                    raise ValueError(
+                        "Unable to parse a shape: it extends beyond the edge of the Shapes spreadsheet."
+                    )
             rows.append(cols)
 
         size = (lastCol - firstCol + 1, lastRow - firstRow + 1)
@@ -69,7 +80,9 @@ class ComplexTypeParser:
                 if char == 0.0:
                     continue
                 if char in areas:
-                    areas[char] = ComplexTypeParser.updateArea(areas[char], rowNum, colNum)
+                    areas[char] = ComplexTypeParser.updateArea(
+                        areas[char], rowNum, colNum
+                    )
                 else:
                     areas[char] = (rowNum, colNum, rowNum, colNum)
         return Shape(size, ComplexTypeParser.reduceNames(areas))
@@ -78,15 +91,33 @@ class ComplexTypeParser:
     def validateAllowed(char, rowNum, colNum, areas):
         if char in areas:
             if areas[char][1] > colNum:
-                raise ValueError("Malformed Shape: trying to extend `" + char + "` to the left, that means this shape is not a rectangle!")
+                raise ValueError(
+                    "Malformed Shape: trying to extend `"
+                    + char
+                    + "` to the left, that means this shape is not a rectangle!"
+                )
             if colNum > areas[char][3] and areas[char][0] != areas[char][2]:
-                raise ValueError("Malformed shape: trying to extend `" + char + "` to the right, but already on a second row. This shape is not a rectangle!")
-            if areas[char][2]+1 < rowNum:
-                raise ValueError("Malformed shape: trying to extend `" + char + "` down by two rows at once. This shape is not a rectangle!")
+                raise ValueError(
+                    "Malformed shape: trying to extend `"
+                    + char
+                    + "` to the right, but already on a second row. This shape is not a rectangle!"
+                )
+            if areas[char][2] + 1 < rowNum:
+                raise ValueError(
+                    "Malformed shape: trying to extend `"
+                    + char
+                    + "` down by two rows at once. This shape is not a rectangle!"
+                )
         for charKey, area in areas.items():
             if charKey != char:
                 if rowNum == area[2] and area[1] < colNum < area[3]:
-                    raise ValueError("Malformed shape: a `" + char + "` is inside an area already claimed by `" + charKey + "`. This shape is not a rectangle!")
+                    raise ValueError(
+                        "Malformed shape: a `"
+                        + char
+                        + "` is inside an area already claimed by `"
+                        + charKey
+                        + "`. This shape is not a rectangle!"
+                    )
         return True
 
     # will expand the size of this area to include the new cell (if required)
@@ -110,7 +141,7 @@ class ComplexTypeParser:
         value = 0
         isHeader = False
         for char in chars:
-            if char == '\\':
+            if char == "\\":
                 isHeader = True
                 continue
             value *= 26
