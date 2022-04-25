@@ -19,8 +19,9 @@ from domain.library import Library
 import os, sys, pysftp
 from shutil import copyfile
 
+
 def tryAndFindSaveGamesFolder():
-    if sys.platform != 'win32':
+    if sys.platform != "win32":
         return None
 
     try:
@@ -36,58 +37,65 @@ def tryAndFindSaveGamesFolder():
 
     return None
 
-def parseFile(excelFile, progressCallback):
+
+def parse_file(excelFile, progressCallback):
     # open excel file
     progressCallback("Reading spreadsheet: " + excelFile)
     workbook = xlrd.open_workbook(excelFile)
 
     # collect entity libraries
     progressCallback("Reading tokens... ", False)
-    tokens = TokenParser.parse(workbook.sheet_by_name('Tokens'))
+    tokens = TokenParser.parse(workbook.sheet_by_name("Tokens"))
     progressCallback(str(len(tokens)) + " tokens succesfully extracted.")
 
     progressCallback("Reading dice... ", False)
-    dice = DiceParser.parse(workbook.sheet_by_name('Dice'))
+    dice = DiceParser.parse(workbook.sheet_by_name("Dice"))
     progressCallback(str(len(dice)) + " dice succesfully extracted.")
 
     progressCallback("Reading complex types... ", False)
-    complexTypes = ComplexTypeParser.parse(workbook.sheet_by_name('ComplexTypes'), workbook.sheet_by_name('Shapes'))
+    complexTypes = ComplexTypeParser.parse(
+        workbook.sheet_by_name("ComplexTypes"), workbook.sheet_by_name("Shapes")
+    )
     progressCallback(str(len(complexTypes)) + " types succesfully extracted.")
 
     progressCallback("Reading complex objects... ", False)
     complexParser = ComplexObjectParser(complexTypes)
-    complexObjects = complexParser.parse(workbook.sheet_by_name('ComplexObjects'))
-    progressCallback(str(len(complexObjects)) + " complex objects succesfully extracted.")
+    complexObjects = complexParser.parse(workbook.sheet_by_name("ComplexObjects"))
+    progressCallback(
+        str(len(complexObjects)) + " complex objects succesfully extracted."
+    )
 
     progressCallback("Reading decks... ", False)
-    decks = DeckParser.parse(workbook.sheet_by_name('Decks'), complexObjects)
+    decks = DeckParser.parse(workbook.sheet_by_name("Decks"), complexObjects)
     progressCallback(str(len(decks)) + " decks succesfully extracted.")
 
     progressCallback("Reading bags... ", False)
     bagParser = BagParser(tokens + dice + complexObjects + decks)
-    bags = bagParser.parse(workbook.sheet_by_name('Containers'))
+    bags = bagParser.parse(workbook.sheet_by_name("Containers"))
     progressCallback(str(len(bags)) + " bags succesfully extracted.")
 
     # UGLY - we have to redo this step later because we set the image paths after drawing and these entities won't work
     progressCallback("Reading table content... ", False)
     creator = EntityCreator(tokens + dice + complexObjects + decks + bags)
-    entities = creator.createEntities(workbook.sheet_by_name('Placement'))
+    entities = creator.createEntities(workbook.sheet_by_name("Placement"))
     progressCallback("Read " + str(len(entities)) + " items to be placed.", True)
 
     return Library(tokens, dice, complexObjects, decks, bags)
 
-def buildFile(excelFile, imageBuilder, saveDir, fileName, progressCallback, config):
+
+def build_file(excelFile, imageBuilder, saveDir, fileName, progressCallback, config):
     # setup pygame as drawing library
     import pygame
+
     pygame.init()
 
     # open save template
-    with open('data/template.json', 'r') as infile:
+    with open("data/template.json", "r") as infile:
         data = json.load(infile)
-        data['SaveName'] = fileName
+        data["SaveName"] = fileName
 
     # parse here
-    library = parseFile(excelFile, progressCallback)
+    library = parse_file(excelFile, progressCallback)
 
     progressCallback("Drawing all custom content.")
 
@@ -109,7 +117,7 @@ def buildFile(excelFile, imageBuilder, saveDir, fileName, progressCallback, conf
     progressCallback("Drawing boards... ", False)
     done = 0
     for obj in library.complexObjects:
-        if obj.type.type == 'board':
+        if obj.type.type == "board":
             drawer = ComplexObjectDrawer(obj, config)
             path = imageBuilder.build(drawer.draw(), obj.name, "jpg")
             obj.setImagePath(path)
@@ -141,7 +149,7 @@ def buildFile(excelFile, imageBuilder, saveDir, fileName, progressCallback, conf
     # UGLY - we already did this step during parsing but we need to create entities AFTER drawing or their image paths aren't set
     creator = EntityCreator(library.all())
     workbook = xlrd.open_workbook(excelFile)
-    entities = creator.createEntities(workbook.sheet_by_name('Placement'))
+    entities = creator.createEntities(workbook.sheet_by_name("Placement"))
 
     dicts = []
     for entity in entities:
@@ -153,10 +161,11 @@ def buildFile(excelFile, imageBuilder, saveDir, fileName, progressCallback, conf
     progressCallback("All entities have been placed.")
 
     # save file
-    path = saveDir + '\TS_' + fileName.replace(' ', '_') + '.json'
+    path = saveDir + "\TS_" + fileName.replace(" ", "_") + ".json"
     progressCallback("Saving file to " + path)
-    with open(path, 'w') as outfile:
+    with open(path, "w") as outfile:
         json.dump(data, outfile)
+
 
 from tkinter import *
 from tkinter import filedialog
@@ -165,7 +174,20 @@ from tkinter import font
 
 
 class Config:
-    def __init__(self, excelFile, saveDir, imagesDir, fileName, ftpServer, ftpFolder, ftpUsername, ftpPassword, ftpBaseUrl, developerKey, searchId):
+    def __init__(
+        self,
+        excelFile,
+        saveDir,
+        imagesDir,
+        fileName,
+        ftpServer,
+        ftpFolder,
+        ftpUsername,
+        ftpPassword,
+        ftpBaseUrl,
+        developerKey,
+        searchId,
+    ):
         self.excelFile = excelFile
         self.saveDir = saveDir
         self.imagesDir = imagesDir
@@ -185,15 +207,15 @@ class Config:
             self.saveFolderDeduced = True
 
     def setExcelFile(self):
-        self.excelFile.set(filedialog.askopenfilename(initialdir='~'))
+        self.excelFile.set(filedialog.askopenfilename(initialdir="~"))
         self.saveConfig()
 
     def setSaveDir(self):
-        self.saveDir.set(filedialog.askdirectory(initialdir='~'))
+        self.saveDir.set(filedialog.askdirectory(initialdir="~"))
         self.saveConfig()
 
     def setImagesDir(self):
-        self.imagesDir.set(filedialog.askdirectory(initialdir='~'))
+        self.imagesDir.set(filedialog.askdirectory(initialdir="~"))
         self.saveConfig()
 
     def setFilename(self):
@@ -201,21 +223,36 @@ class Config:
         self.saveConfig()
 
     def setFtpSettings(self):
-        self.ftpServer.set(simpledialog.askstring("Ftp server url?", "Enter the ftp url:"))
-        if self.ftpServer.get() == '':
-            self.ftpUsername.set('')
-            self.ftpPassword.set('')
-            self.ftpBaseUrl.set('')
+        self.ftpServer.set(
+            simpledialog.askstring("Ftp server url?", "Enter the ftp url:")
+        )
+        if self.ftpServer.get() == "":
+            self.ftpUsername.set("")
+            self.ftpPassword.set("")
+            self.ftpBaseUrl.set("")
             self.saveConfig()
             return
-        self.ftpFolder.set(simpledialog.askstring("Ftp folder to use?", "Enter the folder:"))
-        self.ftpUsername.set(simpledialog.askstring("Ftp server username?", "Enter the username:"))
-        self.ftpPassword.set(simpledialog.askstring("Ftp server password?", "Enter the ftp password:"))
-        self.ftpBaseUrl.set(simpledialog.askstring("Ftp www base url?", "Enter the ftp www base url:"))
+        self.ftpFolder.set(
+            simpledialog.askstring("Ftp folder to use?", "Enter the folder:")
+        )
+        self.ftpUsername.set(
+            simpledialog.askstring("Ftp server username?", "Enter the username:")
+        )
+        self.ftpPassword.set(
+            simpledialog.askstring("Ftp server password?", "Enter the ftp password:")
+        )
+        self.ftpBaseUrl.set(
+            simpledialog.askstring("Ftp www base url?", "Enter the ftp www base url:")
+        )
         self.saveConfig()
 
     def readyToRun(self):
-        return self.excelFile.get() and self.saveDir.get() and self.imagesDir.get() and self.fileName.get()
+        return (
+            self.excelFile.get()
+            and self.saveDir.get()
+            and self.imagesDir.get()
+            and self.fileName.get()
+        )
 
     def readyToParse(self):
         return self.excelFile.get()
@@ -225,23 +262,23 @@ class Config:
 
     def loadConfig(self):
         try:
-            with open('settings.json', 'r') as infile:
+            with open("settings.json", "r") as infile:
                 data = json.load(infile)
-                self.excelFile.set(data['e'])
-                self.saveDir.set(data['s'])
-                self.imagesDir.set(data['i'])
-                self.fileName.set(data['f'])
+                self.excelFile.set(data["e"])
+                self.saveDir.set(data["s"])
+                self.imagesDir.set(data["i"])
+                self.fileName.set(data["f"])
                 try:
-                    self.ftpServer.set(data['f_s'])
-                    self.ftpUsername.set(data['f_u'])
-                    self.ftpPassword.set(data['f_p'])
-                    self.ftpBaseUrl.set(data['f_w'])
-                    self.ftpFolder.set(data['f_f'])
+                    self.ftpServer.set(data["f_s"])
+                    self.ftpUsername.set(data["f_u"])
+                    self.ftpPassword.set(data["f_p"])
+                    self.ftpBaseUrl.set(data["f_w"])
+                    self.ftpFolder.set(data["f_f"])
                 except KeyError:
                     pass
                 try:
-                    self.developerKey.set(data['g_d'])
-                    self.searchId.set(data['g_s'])
+                    self.developerKey.set(data["g_d"])
+                    self.searchId.set(data["g_s"])
                 except KeyError:
                     pass
 
@@ -260,20 +297,33 @@ class Config:
             "f_w": self.ftpBaseUrl.get(),
             "f_f": self.ftpFolder.get(),
             "g_d": self.developerKey.get(),
-            "g_s": self.searchId.get()
+            "g_s": self.searchId.get(),
         }
-        with open('settings.json', 'w') as outfile:
+        with open("settings.json", "w") as outfile:
             json.dump(data, outfile)
 
 
 class App:
     def __init__(self, master):
         import pygame
+
         self.pygame = pygame
         self.master = master
         master.geometry("700x600")
         self.filenameVar = StringVar()
-        self.config = Config(StringVar(), StringVar(), StringVar(), self.filenameVar, StringVar(), StringVar(), StringVar(), StringVar(), StringVar(), StringVar(), StringVar())
+        self.config = Config(
+            StringVar(),
+            StringVar(),
+            StringVar(),
+            self.filenameVar,
+            StringVar(),
+            StringVar(),
+            StringVar(),
+            StringVar(),
+            StringVar(),
+            StringVar(),
+            StringVar(),
+        )
 
         frame = Frame(master)
         frame.grid()
@@ -301,7 +351,9 @@ class App:
         self.buildButton = Button(buttonFrame, text="BUILD GAME", command=self.build)
         self.buildButton.grid(row=0, column=1)
 
-        self.newTemplateButton = Button(buttonFrame, text="NEW TEMPLATE", command=self.template)
+        self.newTemplateButton = Button(
+            buttonFrame, text="NEW TEMPLATE", command=self.template
+        )
         self.newTemplateButton.grid(row=0, column=2)
 
         self.statusLabel = Label(frame, text="Status:")
@@ -312,24 +364,30 @@ class App:
         self.status.tag_configure("error", foreground="red", underline=True)
 
         try:
-            version = open('data/version', 'r').readline(10)
+            version = open("data/version", "r").readline(10)
         except FileNotFoundError as e:
-            version = 'dev'
+            version = "dev"
 
         self.statusLabel = Label(frame, text="version: " + version)
         self.statusLabel.grid(row=9, column=0, columnspan=2)
 
     def setFtpStatus(self):
-        if self.config.ftpServer.get() != '':
+        if self.config.ftpServer.get() != "":
             if testFtpConnection(self.config):
-                self.ftpStatusText.set(self.config.ftpServer.get() + ' as ' + self.config.ftpUsername.get())
+                self.ftpStatusText.set(
+                    self.config.ftpServer.get() + " as " + self.config.ftpUsername.get()
+                )
             else:
-                self.ftpStatusText.set("Failed to connect to " + self.config.ftpServer.get())
+                self.ftpStatusText.set(
+                    "Failed to connect to " + self.config.ftpServer.get()
+                )
         else:
             self.ftpStatusText.set("Turned off (local only)")
 
     def excelFile(self, frame):
-        self.excelButton = Button(frame, text="SET SPREADSHEET", command=self.config.setExcelFile, width=30)
+        self.excelButton = Button(
+            frame, text="SET SPREADSHEET", command=self.config.setExcelFile, width=30
+        )
         self.excelButton.grid(row=1, column=0)
 
         self.excelText = Label(frame, textvariable=self.config.excelFile)
@@ -337,28 +395,36 @@ class App:
 
     def savedirFile(self, frame):
         if not self.config.isSaveFolderDeduced():
-            self.savedirButton = Button(frame, text="SET SAVE DIR", command=self.config.setSaveDir, width=30)
+            self.savedirButton = Button(
+                frame, text="SET SAVE DIR", command=self.config.setSaveDir, width=30
+            )
             self.savedirButton.grid(row=2, column=0)
 
             self.savedirText = Label(frame, textvariable=self.config.saveDir)
             self.savedirText.grid(row=2, column=1)
 
     def imagedirFile(self, frame):
-        self.imagedirButton = Button(frame, text="SET IMAGES DIR", command=self.config.setImagesDir, width=30)
+        self.imagedirButton = Button(
+            frame, text="SET IMAGES DIR", command=self.config.setImagesDir, width=30
+        )
         self.imagedirButton.grid(row=3, column=0)
 
         self.imagedirText = Label(frame, textvariable=self.config.imagesDir)
         self.imagedirText.grid(row=3, column=1)
 
     def filename(self, frame):
-        self.filenameButton = Button(frame, text="SET GAME NAME", command=self.config.setFilename, width=30)
+        self.filenameButton = Button(
+            frame, text="SET GAME NAME", command=self.config.setFilename, width=30
+        )
         self.filenameButton.grid(row=4, column=0)
 
         self.filenameText = Label(frame, textvariable=self.config.fileName)
         self.filenameText.grid(row=4, column=1)
 
     def ftpSettings(self, frame):
-        self.ftpButton = Button(frame, text="CONFIGURE FTP", command=self.doFtpSettingsUpdate, width=30)
+        self.ftpButton = Button(
+            frame, text="CONFIGURE FTP", command=self.doFtpSettingsUpdate, width=30
+        )
         self.ftpButton.grid(row=5, column=0)
 
         self.ftpText = Label(frame, textvariable=self.ftpStatusText)
@@ -375,32 +441,41 @@ class App:
             try:
                 copyfile("data/template.xls", path)
                 self.pushStatusMessage("Created a new empty template: " + path)
-                if sys.platform == 'win32':
+                if sys.platform == "win32":
                     os.startfile(path)
             except FileNotFoundError as e:
                 self.pushErrorMessage(
                     "The base template is missing. Please ensure that the application was installed successfully.",
-                    "creating template")
+                    "creating template",
+                )
 
     def build(self):
         if self.config.readyToRun():
             self.flushStatus()
             self.pushStatusMessage("Going to build!")
             try:
-                buildFile(self.config.excelFile.get(), imageBuilder(self.pygame, self.config), self.config.saveDir.get(),
-                          self.config.fileName.get(), self.pushStatusMessage, self.config)
+                build_file(
+                    self.config.excelFile.get(),
+                    imageBuilder(self.pygame, self.config),
+                    self.config.saveDir.get(),
+                    self.config.fileName.get(),
+                    self.pushStatusMessage,
+                    self.config,
+                )
                 self.pushStatusMessage("Done building!")
             except BaseException as e:
                 self.pushErrorMessage(e)
                 raise e
         else:
-            self.pushErrorMessage("Missing some settings. Please ensure all 4 settings above are configured properly.")
+            self.pushErrorMessage(
+                "Missing some settings. Please ensure all 4 settings above are configured properly."
+            )
 
     def parse(self):
         self.flushStatus()
         self.pushStatusMessage("Going to parse!")
         try:
-            parseFile(self.config.excelFile.get(), self.pushStatusMessage)
+            parse_file(self.config.excelFile.get(), self.pushStatusMessage)
             self.pushStatusMessage("Done parsing!")
         except BaseException as e:
             self.pushErrorMessage(e)
@@ -408,23 +483,27 @@ class App:
 
     def pushErrorMessage(self, e, during="building"):
         import traceback
+
         self.pushStatusMessage("\n")
         index = self.status.index(INSERT)
-        curline = index.split('.')[0]
+        curline = index.split(".")[0]
         self.pushStatusMessage("\nUh oh, there was a problem while " + during + ":")
-        self.status.tag_add("error", str(int(curline) + 1) + ".0", str(int(curline) + 2) + ".0")
+        self.status.tag_add(
+            "error", str(int(curline) + 1) + ".0", str(int(curline) + 2) + ".0"
+        )
         self.pushStatusMessage(str(e))
         self.pushStatusMessage("\n" + traceback.format_exc())
 
     def pushStatusMessage(self, msg, newline=True):
-        self.status.insert(END, msg + ("\n" if newline else ''))
+        self.status.insert(END, msg + ("\n" if newline else ""))
         self.master.update()
 
     def flushStatus(self):
         self.status.delete(1.0, END)
 
+
 def imageBuilder(pygame, config):
-    if config.ftpBaseUrl.get() != '':
+    if config.ftpBaseUrl.get() != "":
         return ftpDirImageBuilder(
             pygame,
             config.imagesDir.get(),
@@ -433,22 +512,35 @@ def imageBuilder(pygame, config):
             config.ftpFolder.get(),
             config.ftpUsername.get(),
             config.ftpPassword.get(),
-            config.fileName.get()
+            config.fileName.get(),
         )
     else:
         return imagesDirImageBuilder(pygame, config.imagesDir.get())
+
 
 class imagesDirImageBuilder:
     def __init__(self, pygame, basePath):
         self.pygame = pygame
         self.basePath = basePath
+
     def build(self, image, file, extension):
-        path = self.basePath + '/' + file + "." + extension
+        path = self.basePath + "/" + file + "." + extension
         self.pygame.image.save(image, path)
         return "file:///" + path
 
+
 class ftpDirImageBuilder:
-    def __init__(self, pygame, imageBasePath, ftpBasePath, ftpServer, ftpFolder, ftpUsername, ftpPassword, gameName):
+    def __init__(
+        self,
+        pygame,
+        imageBasePath,
+        ftpBasePath,
+        ftpServer,
+        ftpFolder,
+        ftpUsername,
+        ftpPassword,
+        gameName,
+    ):
         self.imageBasePath = imageBasePath
         self.ftpBasePath = ftpBasePath
         self.pygame = pygame
@@ -457,9 +549,10 @@ class ftpDirImageBuilder:
         self.ftpUsername = ftpUsername
         self.ftpPassword = ftpPassword
         self.gameName = gameName
+
     def build(self, image, file, extension):
-        localPath = self.imageBasePath + '/' + file + "." + extension
-        localName = file + '.' + extension
+        localPath = self.imageBasePath + "/" + file + "." + extension
+        localName = file + "." + extension
         self.pygame.image.save(image, localPath)
         cnopts = pysftp.CnOpts()
         cnopts.hostkeys = None
@@ -467,7 +560,7 @@ class ftpDirImageBuilder:
             host=self.ftpServer,
             username=self.ftpUsername,
             password=self.ftpPassword,
-            cnopts=cnopts
+            cnopts=cnopts,
         )
         with pysftp.cd(self.imageBasePath):
             con.chdir(self.ftpFolder)
@@ -478,7 +571,7 @@ class ftpDirImageBuilder:
                 con.remove(localName)
             con.put(localName)
         con.close()
-        return self.ftpBasePath + '/' + self.gameName + '/' + file + '.' + extension
+        return self.ftpBasePath + "/" + self.gameName + "/" + file + "." + extension
 
 
 def testFtpConnection(config):
@@ -490,7 +583,7 @@ def testFtpConnection(config):
             host=config.ftpServer.get(),
             username=config.ftpUsername.get(),
             password=config.ftpPassword.get(),
-            cnopts=cnopts
+            cnopts=cnopts,
         )
         con.close()
         return True
@@ -505,6 +598,7 @@ from tests.reader.number import NumberReaderTest
 from tests.reader.dimensions import DimensionsReaderTest
 from tests.reader.content import ContentReaderTest
 
+
 def runTests():
     # run test cases
     ComplexTypeParserTest().run()
@@ -512,14 +606,18 @@ def runTests():
     NumberReaderTest().run()
     DimensionsReaderTest().run()
     ContentReaderTest().run()
-    def emptyCallback(msg, newLine = True):
+
+    def emptyCallback(msg, newLine=True):
         pass
-    parseFile("data/testgame.xls", emptyCallback)
 
-runTests()
+    parse_file("data/testgame.xls", emptyCallback)
 
-# run the app
-root = Tk()
-root.wm_title("Prototypical")
-app = App(root)
-root.mainloop()
+
+if __name__ == "__main__":
+    runTests()
+
+    # run the app
+    root = Tk()
+    root.wm_title("Prototypical")
+    app = App(root)
+    root.mainloop()
