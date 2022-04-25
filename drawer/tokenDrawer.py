@@ -5,8 +5,8 @@ from font.font import Font
 
 MARGIN = 10
 
-class TokenDrawer:
 
+class TokenDrawer:
     def __init__(self, token):
         self.token = token
         self.fontObj = Font.getFont(32)
@@ -16,7 +16,12 @@ class TokenDrawer:
         if isinstance(content, float) and content.is_integer():
             content = int(content)
 
-        text = self.fontObj.render(str(content), True, convert_tts_to_pygame(self.token.text_color), convert_tts_to_pygame(self.token.bg_color))
+        text = self.fontObj.render(
+            str(content),
+            True,
+            convert_tts_to_pygame(self.token.text_color),
+            convert_tts_to_pygame(self.token.bg_color),
+        )
         rect = text.get_rect()
         surf = pygame.Surface((rect[2] + 2 * MARGIN, rect[3] + 2 * MARGIN))
         surf.fill(convert_tts_to_pygame(self.token.bg_color))

@@ -2,6 +2,7 @@ import pygame
 from drawer.complexObjectDrawer import ComplexObjectDrawer
 from drawer.color import convert_tts_to_pygame
 
+
 class CardBackDrawer:
     def __init__(self, config):
         self.config = config

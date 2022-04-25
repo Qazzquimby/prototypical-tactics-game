@@ -1,6 +1,7 @@
 from tts.guid import guid
 
-class Board():
+
+class Board:
     def __init__(self, transform, object):
         self.transform = transform
         self.object = object
@@ -11,11 +12,7 @@ class Board():
             "Transform": self.transform.as_dict(),
             "Nickname": "",
             "Description": "",
-            "ColorDiffuse": {
-                "r": 0.7867647,
-                "g": 0.7867647,
-                "b": 0.7867647
-            },
+            "ColorDiffuse": {"r": 0.7867647, "g": 0.7867647, "b": 0.7867647},
             "Locked": True,
             "Grid": True,
             "Snap": True,
@@ -27,9 +24,9 @@ class Board():
             "CustomImage": {
                 "ImageURL": self.object.imagePath,
                 "ImageSecondaryURL": "",
-                "WidthScale": 1.42857146
+                "WidthScale": 1.42857146,
             },
             "LuaScript": "",
             "LuaScriptState": "",
-            "GUID": guid()
+            "GUID": guid(),
         }

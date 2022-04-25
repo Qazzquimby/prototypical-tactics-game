@@ -2,7 +2,8 @@ from tests.basicTest import BasicTest
 from reader.number import read_number
 from reader.number import read_float
 
-class NumberReaderTest (BasicTest):
+
+class NumberReaderTest(BasicTest):
     def run(self):
         self.runNumberTests()
         self.runFloatTests()
@@ -12,8 +13,7 @@ class NumberReaderTest (BasicTest):
             fn(number)
             assert False, message
         except ValueError:
-            return True # this should not be allowed
-
+            return True  # this should not be allowed
 
     def runNumberTests(self):
         assert read_number("12") == 12

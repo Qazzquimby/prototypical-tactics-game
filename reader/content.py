@@ -1,12 +1,12 @@
 def read_content(value):
-    if value == '':
+    if value == "":
         return ()
-    parts = value.split(';')
+    parts = value.split(";")
     contentItems = []
     for part in parts:
-        if part == '':
+        if part == "":
             continue
-        splits = part.split('x', 1)
+        splits = part.split("x", 1)
         if len(splits) == 1:
             amount = 1
             content_type = splits[0].strip()

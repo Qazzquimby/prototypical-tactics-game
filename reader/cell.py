@@ -1,9 +1,12 @@
 import re
 
+
 def read_cell(value):
-    parts = re.findall('\d+|\D+', value)
+    parts = re.findall("\d+|\D+", value)
     if len(parts) != 2:
-        raise ValueError("Malformed cell value: " + value + " (should be something like `A1`)")
+        raise ValueError(
+            "Malformed cell value: " + value + " (should be something like `A1`)"
+        )
     col = 0
     for char in parts[0]:
         # move forward one position
@@ -12,4 +15,4 @@ def read_cell(value):
         col += ord(char) - 64
 
     # both zero indexed
-    return(col - 1, int(parts[1]) - 1 )
+    return (col - 1, int(parts[1]) - 1)

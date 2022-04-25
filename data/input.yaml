@@ -5,12 +5,12 @@ decks:
       speed: 2
     abilities:
       - name: Damage Biotic Grasp
-        text: |- 
+        text: |-
           Range 2.
           Deal 2 damage. Heal 1.
           Put 2 charges on Healing Biotic Grasp.
       - name: Healing Biotic Grasp
-        text: |- 
+        text: |-
           Starts with 1 charge counter.
           Pay 1 charge counter:
             Piercing range 2.

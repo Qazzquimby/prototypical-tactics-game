@@ -1,11 +1,12 @@
 from tests.basicTest import BasicTest
 from reader.dimensions import read_dimensions
 
-class DimensionsReaderTest (BasicTest):
+
+class DimensionsReaderTest(BasicTest):
     def run(self):
-        assert read_dimensions("200x300") == (200,300)
-        assert read_dimensions("1x1") == (1,1)
-        assert read_dimensions("1500x1200") == (1500,1200)
+        assert read_dimensions("200x300") == (200, 300)
+        assert read_dimensions("1x1") == (1, 1)
+        assert read_dimensions("1500x1200") == (1500, 1200)
 
         self.ensureNotAllowed("0x100", "Zero should not be allowed")
         self.ensureNotAllowed("-100x100", "Negatives should not be allowed")
@@ -21,4 +22,4 @@ class DimensionsReaderTest (BasicTest):
             read_dimensions(dimensions)
             assert False, message
         except ValueError:
-            return True # this should not be allowed
+            return True  # this should not be allowed

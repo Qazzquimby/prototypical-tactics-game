@@ -1,4 +1,4 @@
-class Transform():
+class Transform:
     def __init__(self, posX, posY, posZ, rotX, rotY, rotZ, scaleX, scaleY, scaleZ):
         self.posX = posX
         self.posY = posY
@@ -12,13 +12,13 @@ class Transform():
 
     def as_dict(self):
         return {
-            'posX': self.posX,
-            'posY': self.posY,
-            'posZ': self.posZ,
-            'rotX': self.rotX,
-            'rotY': self.rotY,
-            'rotZ': self.rotZ,
-            'scaleX': self.scaleX,
-            'scaleY': self.scaleY,
-            'scaleZ': self.scaleZ,
+            "posX": self.posX,
+            "posY": self.posY,
+            "posZ": self.posZ,
+            "rotX": self.rotX,
+            "rotY": self.rotY,
+            "rotZ": self.rotZ,
+            "scaleX": self.scaleX,
+            "scaleY": self.scaleY,
+            "scaleZ": self.scaleZ,
         }

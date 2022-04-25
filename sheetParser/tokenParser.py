@@ -4,6 +4,7 @@ from domain.token import ContentToken
 from reader.fromlist import read_fromlist
 from reader.number import read_float
 
+
 class TokenParser:
     @staticmethod
     def parse(sheet):
@@ -11,11 +12,19 @@ class TokenParser:
         row = 1
         while row < sheet.nrows:
             try:
-                entity = read_fromlist(sheet.cell(rowx=row, colx=1).value, ("cube", "triangle", "pawn", "token"))
+                entity = read_fromlist(
+                    sheet.cell(rowx=row, colx=1).value,
+                    ("cube", "triangle", "pawn", "token"),
+                )
             except ValueError as e:
-                raise ValueError(str(e) + " (while checking " + str(sheet.cell(rowx=row, colx=0).value) + ")") from None
+                raise ValueError(
+                    str(e)
+                    + " (while checking "
+                    + str(sheet.cell(rowx=row, colx=0).value)
+                    + ")"
+                ) from None
 
-            if entity.lower() == 'token':
+            if entity.lower() == "token":
                 token = TokenParser._parseToken(sheet, row)
             else:
                 token = TokenParser._parseSimpleToken(sheet, row)

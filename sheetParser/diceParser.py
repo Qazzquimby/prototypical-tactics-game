@@ -2,6 +2,7 @@ from reader.color import ColorReader
 from domain.die import Die
 from reader.number import read_float
 
+
 class DiceParser:
     def parse(sheet):
         dice = []

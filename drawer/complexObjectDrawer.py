@@ -8,8 +8,8 @@ EDGE_MARGIN = 25
 LEFTRIGHT_MARGIN = 10
 TOPBOTTOM_MARGIN = 10
 
-class ComplexObjectDrawer:
 
+class ComplexObjectDrawer:
     def __init__(self, object, config):
         self.object = object
         self.config = config
@@ -40,13 +40,13 @@ class ComplexObjectDrawer:
     # note: areas in the shape are actually row, col and not x,y
     def drawContentToArea(self, content, area):
         w, h = self.getCardSize()
-        dw = w - (2*EDGE_MARGIN)
-        dh = h - (2*EDGE_MARGIN)
+        dw = w - (2 * EDGE_MARGIN)
+        dh = h - (2 * EDGE_MARGIN)
         rect = pygame.Rect(
             LEFTRIGHT_MARGIN + area[1] * dw / self.size[0],
             TOPBOTTOM_MARGIN + area[0] * dh / self.size[1],
-            (area[3]+1) * dw / self.size[0] - LEFTRIGHT_MARGIN,
-            (area[2]+1) * dh / self.size[1] - TOPBOTTOM_MARGIN
+            (area[3] + 1) * dw / self.size[0] - LEFTRIGHT_MARGIN,
+            (area[2] + 1) * dh / self.size[1] - TOPBOTTOM_MARGIN,
         )
         if isinstance(content, str) and "\\icon" in content:
             self.drawIcon(self.surf, content, rect)
@@ -60,16 +60,20 @@ class ComplexObjectDrawer:
             content = int(content)
 
         # the render function expects a rect with 0,0 topleft.
-        rerect = pygame.Rect((0,0, rect[2] - rect[0], rect[3] - rect[1]))
+        rerect = pygame.Rect((0, 0, rect[2] - rect[0], rect[3] - rect[1]))
         surf = render_fitted_textrect(str(content), rerect, (0, 0, 0), (255, 255, 255))
         if not surf:
-            raise BaseException("Unable to draw the card. Are you reserving enough space for all your content? Trying to write: " + str(content))
+            raise BaseException(
+                "Unable to draw the card. Are you reserving enough space for all your content? Trying to write: "
+                + str(content)
+            )
         self.surf.blit(surf, rect)
 
     def baseDrawImage(self, surf, content, rect, type):
         import pygame
+
         rerect = pygame.Rect((0, 0, rect[2] - rect[0], rect[3] - rect[1]))
-        if type == 'icon':
+        if type == "icon":
             picture = self.obtainIcon(content)
         else:
             picture = self.obtainImage(content)
@@ -78,7 +82,9 @@ class ComplexObjectDrawer:
         origHeight = picture.get_height()
         scaleFactor = min(rerect.width / origWidth, rerect.height / origHeight)
 
-        scaledPicture = pygame.transform.scale(picture, (int(origWidth * scaleFactor), int(origHeight * scaleFactor)))
+        scaledPicture = pygame.transform.scale(
+            picture, (int(origWidth * scaleFactor), int(origHeight * scaleFactor))
+        )
 
         surf.blit(scaledPicture, rect)
 
@@ -94,7 +100,7 @@ class ComplexObjectDrawer:
         try:
             return pygame.image.load(filename)
         except FileNotFoundError:
-            if type == 'icon':
+            if type == "icon":
                 self.makeIcon(name)
                 return self.obtainIcon(content)
             else:
@@ -102,10 +108,10 @@ class ComplexObjectDrawer:
                 return self.obtainImage(content)
 
     def obtainIcon(self, content):
-        return self.baseObtainImage(content, "icon", "\\icon ", 'icons')
+        return self.baseObtainImage(content, "icon", "\\icon ", "icons")
 
     def obtainImage(self, content):
-        return self.baseObtainImage(content, "image", "\\image ", 'images')
+        return self.baseObtainImage(content, "image", "\\image ", "images")
 
     def makeIcon(self, name):
         self.makeImageBase(name, name + " icon", "icons", "gray")
@@ -123,34 +129,47 @@ class ComplexObjectDrawer:
             self.makeEmptyImage(filepath)
             return
 
-        service = build("customsearch", "v1",
-                        developerKey=self.config.developerKey.get())
+        service = build(
+            "customsearch", "v1", developerKey=self.config.developerKey.get()
+        )
         try:
-            res = service.cse().list(
-                q=name + query,
-                cx=self.config.searchId.get(),
-                searchType='image',
-                num=1,
-                fileType="jpg",
-                imgColorType=colorType,
-                safe='off'
-            ).execute()
+            res = (
+                service.cse()
+                .list(
+                    q=name + query,
+                    cx=self.config.searchId.get(),
+                    searchType="image",
+                    num=1,
+                    fileType="jpg",
+                    imgColorType=colorType,
+                    safe="off",
+                )
+                .execute()
+            )
 
-            if not 'items' in res:
+            if not "items" in res:
                 raise BaseException("Could not find an icon for: " + name)
             else:
-                for item in res['items']:
-                    with open(filepath, 'wb') as handler:
-                        img_data = requests.get(item['link']).content
+                for item in res["items"]:
+                    with open(filepath, "wb") as handler:
+                        img_data = requests.get(item["link"]).content
                         handler.write(img_data)
         except BaseException:
             self.makeEmptyImage(filepath)
 
     def getPathForImage(self, subfolder, imagename):
         import os
-        if not os.path.exists(self.config.imagesDir.get() + '/' + subfolder):
-            os.mkdir(self.config.imagesDir.get() + '/' + subfolder)
-        return self.config.imagesDir.get() + '/' + subfolder + '/' + imagename.replace(' ', '_') + '.jpg'
+
+        if not os.path.exists(self.config.imagesDir.get() + "/" + subfolder):
+            os.mkdir(self.config.imagesDir.get() + "/" + subfolder)
+        return (
+            self.config.imagesDir.get()
+            + "/"
+            + subfolder
+            + "/"
+            + imagename.replace(" ", "_")
+            + ".jpg"
+        )
 
     def makeEmptyImage(self, filepath):
         surf = pygame.Surface((10, 10))
