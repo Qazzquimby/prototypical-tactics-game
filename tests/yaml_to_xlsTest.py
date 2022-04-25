@@ -1,6 +1,6 @@
 import pytest
 
-from yaml_to_xls import decks_to_xls, DEFAULT_XLS, SheetNames, make_deck_name, Deck, Unit, Ability, parse_decks, BASIC, \
+from yaml_to_xls import game_to_xls, DEFAULT_XLS, SheetNames, make_deck_name, Deck, Unit, Ability, parse_game, BASIC, \
     HERO_CARD_LABEL, SPEED_LABEL, HEALTH_LABEL
 
 MY_TEST_CHAR_NAME = "My Test Char"
@@ -29,7 +29,7 @@ MY_TEST_CHAR__WITH_ABILITY = Deck(
 
 def test_empty_file():
     decks = []
-    result = decks_to_xls(decks)
+    result = game_to_xls(decks)
     assert result == DEFAULT_XLS
 
 
@@ -42,7 +42,7 @@ def test_empty_file():
     SheetNames.PLACEMENT,
 ])
 def test_single_character__irrelevant_sheets_unchanged(sheet_name):
-    result = decks_to_xls([MY_TEST_CHAR__NO_ABILITIES])[SheetNames.COMPLEX_TYPES]
+    result = game_to_xls([MY_TEST_CHAR__NO_ABILITIES])[SheetNames.COMPLEX_TYPES]
     assert result == DEFAULT_XLS[SheetNames.COMPLEX_TYPES]
 
 
@@ -55,21 +55,21 @@ HERO_COMPLEX_OBJECT_ROW = [
 
 
 def test_single_empty_character__complex_objects__just_hero_added():
-    result = decks_to_xls([MY_TEST_CHAR__NO_ABILITIES])[SheetNames.COMPLEX_OBJECTS]
+    result = game_to_xls([MY_TEST_CHAR__NO_ABILITIES])[SheetNames.COMPLEX_OBJECTS]
     expected = DEFAULT_XLS[SheetNames.COMPLEX_OBJECTS] + [HERO_COMPLEX_OBJECT_ROW]
 
     assert result == expected
 
 
 def test_single_empty_character__deck_added_to_bag():
-    result = decks_to_xls([MY_TEST_CHAR__NO_ABILITIES])[SheetNames.CONTAINERS]
+    result = game_to_xls([MY_TEST_CHAR__NO_ABILITIES])[SheetNames.CONTAINERS]
     expected = DEFAULT_XLS[SheetNames.CONTAINERS]
     expected[1].append(make_deck_name(MY_TEST_CHAR_NAME))
     assert result == expected
 
 
 def test_character_abilities_created():
-    result = decks_to_xls([MY_TEST_CHAR__WITH_ABILITY])[SheetNames.COMPLEX_OBJECTS]
+    result = game_to_xls([MY_TEST_CHAR__WITH_ABILITY])[SheetNames.COMPLEX_OBJECTS]
     expected = DEFAULT_XLS[SheetNames.COMPLEX_OBJECTS]
 
     expected += [HERO_COMPLEX_OBJECT_ROW,
@@ -79,7 +79,7 @@ def test_character_abilities_created():
 
 
 def test_single_empty_character__deck__just_hero_added():
-    result = decks_to_xls([MY_TEST_CHAR__NO_ABILITIES])[SheetNames.DECKS]
+    result = game_to_xls([MY_TEST_CHAR__NO_ABILITIES])[SheetNames.DECKS]
     expected = DEFAULT_XLS[SheetNames.DECKS] + [[
         "Deck", make_deck_name(MY_TEST_CHAR_NAME)
     ]] + [[
@@ -90,7 +90,7 @@ def test_single_empty_character__deck__just_hero_added():
 
 
 def test_single_character__deck__all_added():
-    result = decks_to_xls([MY_TEST_CHAR__WITH_ABILITY])[SheetNames.DECKS]
+    result = game_to_xls([MY_TEST_CHAR__WITH_ABILITY])[SheetNames.DECKS]
     expected = DEFAULT_XLS[SheetNames.DECKS] + [[
         "Deck", make_deck_name(MY_TEST_CHAR_NAME)
     ]] + [[
@@ -119,12 +119,12 @@ def test_parse_dict_to_models():
         }
     ]
 
-    result = parse_decks(decks)
+    result = parse_game(decks)
 
     expected = [
         Deck(
             hero=Unit(name="a", speed=1, health=2, size=3),
-            cards=[
+            abilities=[
                 Ability(name="a's ability", type=BASIC, text="ability text")
             ]
         )

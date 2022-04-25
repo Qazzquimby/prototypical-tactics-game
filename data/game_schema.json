@@ -1,0 +1,115 @@
+{
+  "title": "Game",
+  "type": "object",
+  "properties": {
+    "decks": {
+      "title": "Decks",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Deck"
+      }
+    }
+  },
+  "required": [
+    "decks"
+  ],
+  "definitions": {
+    "Unit": {
+      "title": "Unit",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "speed": {
+          "title": "Speed",
+          "type": "integer"
+        },
+        "health": {
+          "title": "Health",
+          "type": "integer"
+        },
+        "size": {
+          "title": "Size",
+          "default": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "speed",
+        "health"
+      ]
+    },
+    "Ability": {
+      "title": "Ability",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "title": "Type",
+          "default": "Basic",
+          "anyOf": [
+            {
+              "enum": [
+                "Basic"
+              ],
+              "type": "string"
+            },
+            {
+              "enum": [
+                "Quick"
+              ],
+              "type": "string"
+            }
+          ]
+        },
+        "cost": {
+          "title": "Cost",
+          "default": "",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "text"
+      ]
+    },
+    "Deck": {
+      "title": "Deck",
+      "type": "object",
+      "properties": {
+        "hero": {
+          "$ref": "#/definitions/Unit"
+        },
+        "abilities": {
+          "title": "Abilities",
+          "default": [],
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Ability"
+          }
+        },
+        "units": {
+          "title": "Units",
+          "default": [],
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Unit"
+          }
+        }
+      },
+      "required": [
+        "hero"
+      ]
+    }
+  }
+}

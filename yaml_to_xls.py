@@ -2,6 +2,7 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Literal
 
+import pyexcel
 import yaml
 from pydantic import BaseModel
 
@@ -12,7 +13,7 @@ Sheets = dict[str: list]
 
 def yaml_string_to_xls(yaml_string: str) -> Sheets:
     decks = yaml.safe_load(yaml_string)
-    return decks_to_xls(decks)
+    return game_to_xls(decks)
 
 
 class Card(BaseModel):
@@ -86,8 +87,8 @@ class Game(BaseModel):
     decks: list[Deck]
 
 
-def parse_decks(decks: list[dict]):
-    return [Deck.parse_obj(deck) for deck in decks]
+def parse_game(game):
+    return Game.parse_obj(game)
 
 
 class SheetNames:
@@ -160,10 +161,10 @@ def make_deck_name(character_name: str):
     return f"{character_name} deck"
 
 
-def decks_to_xls(decks: list[Deck]) -> Sheets:
+def game_to_xls(game: Game) -> Sheets:
     sheets = deepcopy(DEFAULT_XLS)
 
-    for deck in decks:
+    for deck in game.decks:
         deck_name = make_deck_name(deck.hero.name)
 
         sheets[SheetNames.DECKS].append(["Deck", deck_name])
@@ -184,9 +185,21 @@ def decks_to_xls(decks: list[Deck]) -> Sheets:
     return sheets
 
 
-if __name__ == '__main__':
-    yaml = """
-- hero:
-    """
+def file_to_xls(src, dest=None) -> Sheets:
+    with open(src) as yaml_file:
+        game_structure = yaml.safe_load(yaml_file)
+    game = parse_game(game_structure)
+    sheets = game_to_xls(game)
+    if dest is not None:
+        pyexcel.save_book_as(bookdict=sheets, dest_file_name=dest)
+    return sheets
 
-    yaml_string_to_xls()
+
+if __name__ == '__main__':
+    schema = Game.schema_json()
+
+    src = 'data/input.yaml'
+    dest = 'dest/output.xls'
+
+    sheets = file_to_xls(src=src, dest=dest)
+    print('debug')
