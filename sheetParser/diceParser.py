@@ -13,7 +13,7 @@ class DiceParser:
                 size = read_float(sheet.cell(rowx=row, colx=2).value)
             except ValueError as e:
                 raise ValueError(str(e) + " (while reading " + name + ")") from None
-            sides = sheet.cell(rowx=row, colx=3).value
+            sides = read_float(sheet.cell(rowx=row, colx=3).value)
 
             customContent = None
             if sheet.cell(rowx=row, colx=4).value:
