@@ -1,29 +1,32 @@
 import time
 from pathlib import Path
 
+import pygame
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, FileSystemEvent
 
 import yaml_to_xls
-from prototypical import build_file, parse_file, App
+from image_builders import ImagesDirImageBuilder
+from core import build_file
 
 
 def run(yaml_path: str):
-    xls_path = f"data/{Path(yaml_path).stem}_cards.xls"
+    data_dir = "data"
+    file_stem = Path(yaml_path).stem
+    xls_path = f"{data_dir}/{file_stem}.xls"
+
     yaml_to_xls.file_to_xls(src=yaml_path, dest=xls_path)
     print("Updated xls")
 
-    library = parse_file(excelFile=xls_path, progressCallback=lambda x, y=None: None)
-    print(library)
-
+    empty_callback = lambda x, y=None: None
     build_file(
         excelFile=xls_path,
-        imageBuilder=None,
-        saveDir="data",
-        fileName=Path(yaml_path).stem,
-        progressCallback=None,
-        config=None,
+        imageBuilder=ImagesDirImageBuilder(pygame, basePath=f"{data_dir}/images"),
+        saveDir=data_dir,
+        fileName=file_stem,
+        progressCallback=empty_callback,
     )
+    print("Built images")
 
 
 class OnChangeUpdateTTSHandler(FileSystemEventHandler):

@@ -1,20 +1,7 @@
 import json
-import xlrd
 
-from creator.entityCreator import EntityCreator
-from domain.token import ContentToken
-from drawer.cardBackDrawer import CardBackDrawer
-from drawer.complexObjectDrawer import ComplexObjectDrawer
-from drawer.deckDrawer import DeckDrawer
-from drawer.diceDrawer import DiceDrawer
-from drawer.tokenDrawer import TokenDrawer
-from sheetParser.complexObjectParser import ComplexObjectParser
-from sheetParser.complexTypeParser import ComplexTypeParser
-from sheetParser.deckParser import DeckParser
-from sheetParser.diceParser import DiceParser
-from sheetParser.bagParser import BagParser
-from sheetParser.tokenParser import TokenParser
-from domain.library import Library
+from core import build_file, parse_file
+from image_builders import get_image_builder
 
 import os, sys, pysftp
 from shutil import copyfile
@@ -38,135 +25,6 @@ def tryAndFindSaveGamesFolder():
     return None
 
 
-def parse_file(excelFile, progressCallback):
-    # open excel file
-    progressCallback("Reading spreadsheet: " + excelFile)
-    workbook = xlrd.open_workbook(excelFile)
-
-    # collect entity libraries
-    progressCallback("Reading tokens... ", False)
-    tokens = TokenParser.parse(workbook.sheet_by_name("Tokens"))
-    progressCallback(str(len(tokens)) + " tokens succesfully extracted.")
-
-    progressCallback("Reading dice... ", False)
-    dice = DiceParser.parse(workbook.sheet_by_name("Dice"))
-    progressCallback(str(len(dice)) + " dice succesfully extracted.")
-
-    progressCallback("Reading complex types... ", False)
-    complexTypes = ComplexTypeParser.parse(
-        workbook.sheet_by_name("ComplexTypes"), workbook.sheet_by_name("Shapes")
-    )
-    progressCallback(str(len(complexTypes)) + " types succesfully extracted.")
-
-    progressCallback("Reading complex objects... ", False)
-    complexParser = ComplexObjectParser(complexTypes)
-    complexObjects = complexParser.parse(workbook.sheet_by_name("ComplexObjects"))
-    progressCallback(
-        str(len(complexObjects)) + " complex objects succesfully extracted."
-    )
-
-    progressCallback("Reading decks... ", False)
-    decks = DeckParser.parse(workbook.sheet_by_name("Decks"), complexObjects)
-    progressCallback(str(len(decks)) + " decks succesfully extracted.")
-
-    progressCallback("Reading bags... ", False)
-    bagParser = BagParser(tokens + dice + complexObjects + decks)
-    bags = bagParser.parse(workbook.sheet_by_name("Containers"))
-    progressCallback(str(len(bags)) + " bags succesfully extracted.")
-
-    # UGLY - we have to redo this step later because we set the image paths after drawing and these entities won't work
-    progressCallback("Reading table content... ", False)
-    creator = EntityCreator(tokens + dice + complexObjects + decks + bags)
-    entities = creator.createEntities(workbook.sheet_by_name("Placement"))
-    progressCallback("Read " + str(len(entities)) + " items to be placed.", True)
-
-    return Library(tokens, dice, complexObjects, decks, bags)
-
-
-def build_file(excelFile, imageBuilder, saveDir, fileName, progressCallback, config):
-    # setup pygame as drawing library
-    import pygame
-
-    pygame.init()
-
-    # open save template
-    with open("data/template.json", "r") as infile:
-        data = json.load(infile)
-        data["SaveName"] = fileName
-
-    # parse here
-    library = parse_file(excelFile, progressCallback)
-
-    progressCallback("Drawing all custom content.")
-
-    # draw all the card decks
-    progressCallback("Drawing decks... ", False)
-    drawer = DeckDrawer(config)
-    for deck in library.decks:
-        path = imageBuilder.build(drawer.draw(deck), deck.name, "jpg")
-        deck.setImagePath(path)
-
-    # draw all the deck backs
-    drawer = CardBackDrawer(config)
-    for deck in library.decks:
-        path = imageBuilder.build(drawer.draw(deck), deck.name + "_back", "jpg")
-        deck.setBackImagePath(path)
-    progressCallback(str(len(library.decks)) + " decks succesfully drawn.")
-
-    # draw all the boards
-    progressCallback("Drawing boards... ", False)
-    done = 0
-    for obj in library.complexObjects:
-        if obj.type.type == "board":
-            drawer = ComplexObjectDrawer(obj, config)
-            path = imageBuilder.build(drawer.draw(), obj.name, "jpg")
-            obj.setImagePath(path)
-            done += 1
-    progressCallback(str(done) + " boards succesfully drawn.")
-
-    # draw all the (custom) tokens
-    progressCallback("Drawing tokens... ", False)
-    done = 0
-    for token in library.tokens:
-        if isinstance(token, ContentToken):
-            drawer = TokenDrawer(token)
-            path = imageBuilder.build(drawer.draw(), "token_" + token.name, "jpg")
-            token.setImagePath(path)
-            done += 1
-    progressCallback(str(done) + " custom tokens succesfully drawn.")
-
-    # draw all dice
-    progressCallback("Drawing dice... ", False)
-    done = 0
-    for die in library.dice:
-        if die.customContent:
-            drawer = DiceDrawer(die)
-            path = imageBuilder.build(drawer.draw(), "die" + die.name, "png")
-            die.setImagePath(path)
-            done += 1
-    progressCallback(str(done) + " dice succesfully drawn.")
-
-    # UGLY - we already did this step during parsing but we need to create entities AFTER drawing or their image paths aren't set
-    creator = EntityCreator(library.all())
-    workbook = xlrd.open_workbook(excelFile)
-    entities = creator.createEntities(workbook.sheet_by_name("Placement"))
-
-    dicts = []
-    for entity in entities:
-        dicts.append(entity.as_dict())
-
-    progressCallback("Placing all entities on the tabletop.")
-    # add entities to save file
-    data["ObjectStates"] = dicts
-    progressCallback("All entities have been placed.")
-
-    # save file
-    path = saveDir + "\TS_" + fileName.replace(" ", "_") + ".json"
-    progressCallback("Saving file to " + path)
-    with open(path, "w") as outfile:
-        json.dump(data, outfile)
-
-
 from tkinter import *
 from tkinter import filedialog
 from tkinter import simpledialog
@@ -176,17 +34,17 @@ from tkinter import font
 class Config:
     def __init__(
         self,
-        excelFile,
-        saveDir,
-        imagesDir,
-        fileName,
-        ftpServer,
-        ftpFolder,
-        ftpUsername,
-        ftpPassword,
-        ftpBaseUrl,
-        developerKey,
-        searchId,
+        excelFile=StringVar(),
+        saveDir=StringVar(),
+        imagesDir=StringVar(),
+        fileName=StringVar(),
+        ftpServer=StringVar(),
+        ftpFolder=StringVar(),
+        ftpUsername=StringVar(),
+        ftpPassword=StringVar(),
+        ftpBaseUrl=StringVar(),
+        developerKey=StringVar(),
+        searchId=StringVar(),
     ):
         self.excelFile = excelFile
         self.saveDir = saveDir
@@ -456,7 +314,7 @@ class App:
             try:
                 build_file(
                     self.config.excelFile.get(),
-                    imageBuilder(self.pygame, self.config),
+                    get_image_builder(self.pygame, self.config),
                     self.config.saveDir.get(),
                     self.config.fileName.get(),
                     self.pushStatusMessage,
@@ -500,78 +358,6 @@ class App:
 
     def flushStatus(self):
         self.status.delete(1.0, END)
-
-
-def imageBuilder(pygame, config):
-    if config.ftpBaseUrl.get() != "":
-        return ftpDirImageBuilder(
-            pygame,
-            config.imagesDir.get(),
-            config.ftpBaseUrl.get(),
-            config.ftpServer.get(),
-            config.ftpFolder.get(),
-            config.ftpUsername.get(),
-            config.ftpPassword.get(),
-            config.fileName.get(),
-        )
-    else:
-        return imagesDirImageBuilder(pygame, config.imagesDir.get())
-
-
-class imagesDirImageBuilder:
-    def __init__(self, pygame, basePath):
-        self.pygame = pygame
-        self.basePath = basePath
-
-    def build(self, image, file, extension):
-        path = self.basePath + "/" + file + "." + extension
-        self.pygame.image.save(image, path)
-        return "file:///" + path
-
-
-class ftpDirImageBuilder:
-    def __init__(
-        self,
-        pygame,
-        imageBasePath,
-        ftpBasePath,
-        ftpServer,
-        ftpFolder,
-        ftpUsername,
-        ftpPassword,
-        gameName,
-    ):
-        self.imageBasePath = imageBasePath
-        self.ftpBasePath = ftpBasePath
-        self.pygame = pygame
-        self.ftpServer = ftpServer
-        self.ftpFolder = ftpFolder
-        self.ftpUsername = ftpUsername
-        self.ftpPassword = ftpPassword
-        self.gameName = gameName
-
-    def build(self, image, file, extension):
-        localPath = self.imageBasePath + "/" + file + "." + extension
-        localName = file + "." + extension
-        self.pygame.image.save(image, localPath)
-        cnopts = pysftp.CnOpts()
-        cnopts.hostkeys = None
-        con = pysftp.Connection(
-            host=self.ftpServer,
-            username=self.ftpUsername,
-            password=self.ftpPassword,
-            cnopts=cnopts,
-        )
-        with pysftp.cd(self.imageBasePath):
-            con.chdir(self.ftpFolder)
-            if not con.exists(self.gameName):
-                con.mkdir(self.gameName)
-            con.chdir(self.gameName)
-            if con.exists(self.gameName):
-                con.remove(localName)
-            con.put(localName)
-        con.close()
-        return self.ftpBasePath + "/" + self.gameName + "/" + file + "." + extension
 
 
 def testFtpConnection(config):
