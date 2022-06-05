@@ -51,7 +51,7 @@ def build_file(
     for deck in library.decks:
         path = image_builder.build(drawer.draw(deck), deck.name + "_back", "jpg")
         deck.setBackImagePath(path)
-    progress_callback(str(len(library.decks)) + " decks succesfully drawn.")
+    progress_callback(str(len(library.decks)) + " decks successfully drawn.")
 
     # draw all the boards
     progress_callback("Drawing boards... ", False)
@@ -62,7 +62,7 @@ def build_file(
             path = image_builder.build(drawer.draw(), obj.name, "jpg")
             obj.setImagePath(path)
             done += 1
-    progress_callback(str(done) + " boards succesfully drawn.")
+    progress_callback(str(done) + " boards successfully drawn.")
 
     # draw all the (custom) tokens
     progress_callback("Drawing tokens... ", False)
@@ -73,7 +73,7 @@ def build_file(
             path = image_builder.build(drawer.draw(), "token_" + token.name, "jpg")
             token.setImagePath(path)
             done += 1
-    progress_callback(str(done) + " custom tokens succesfully drawn.")
+    progress_callback(str(done) + " custom tokens successfully drawn.")
 
     # draw all dice
     progress_callback("Drawing dice... ", False)
@@ -84,9 +84,9 @@ def build_file(
             path = image_builder.build(drawer.draw(), "die" + die.name, "png")
             die.setImagePath(path)
             done += 1
-    progress_callback(str(done) + " dice succesfully drawn.")
+    progress_callback(str(done) + " dice successfully drawn.")
 
-    # UGLY - we already did this step during parsing but we need to create entities AFTER drawing or their image paths aren't set
+    # UGLY - we already did this step during parsing, but we need to create entities AFTER drawing or their image paths aren't set
     creator = EntityCreator(library.all())
     workbook = xlrd.open_workbook(excel_file)
     entities = creator.createEntities(workbook.sheet_by_name("Placement"))
@@ -107,46 +107,46 @@ def build_file(
         json.dump(data, outfile)
 
 
-def parse_file(excelFile, progressCallback):
-    # open excel file
-    progressCallback("Reading spreadsheet: " + excelFile)
-    workbook = xlrd.open_workbook(excelFile)
+def parse_file(excel_file, progress_callback):
+    # open Excel file
+    progress_callback("Reading spreadsheet: " + excel_file)
+    workbook = xlrd.open_workbook(excel_file)
 
     # collect entity libraries
-    progressCallback("Reading tokens... ", False)
+    progress_callback("Reading tokens... ", False)
     tokens = TokenParser.parse(workbook.sheet_by_name("Tokens"))
-    progressCallback(str(len(tokens)) + " tokens succesfully extracted.")
+    progress_callback(str(len(tokens)) + " tokens successfully extracted.")
 
-    progressCallback("Reading dice... ", False)
+    progress_callback("Reading dice... ", False)
     dice = DiceParser.parse(workbook.sheet_by_name("Dice"))
-    progressCallback(str(len(dice)) + " dice succesfully extracted.")
+    progress_callback(str(len(dice)) + " dice successfully extracted.")
 
-    progressCallback("Reading complex types... ", False)
-    complexTypes = ComplexTypeParser.parse(
+    progress_callback("Reading complex types... ", False)
+    complex_types = ComplexTypeParser.parse(
         workbook.sheet_by_name("ComplexTypes"), workbook.sheet_by_name("Shapes")
     )
-    progressCallback(str(len(complexTypes)) + " types succesfully extracted.")
+    progress_callback(str(len(complex_types)) + " types successfully extracted.")
 
-    progressCallback("Reading complex objects... ", False)
-    complexParser = ComplexObjectParser(complexTypes)
-    complexObjects = complexParser.parse(workbook.sheet_by_name("ComplexObjects"))
-    progressCallback(
-        str(len(complexObjects)) + " complex objects succesfully extracted."
+    progress_callback("Reading complex objects... ", False)
+    complex_parser = ComplexObjectParser(complex_types)
+    complex_objects = complex_parser.parse(workbook.sheet_by_name("ComplexObjects"))
+    progress_callback(
+        str(len(complex_objects)) + " complex objects successfully extracted."
     )
 
-    progressCallback("Reading decks... ", False)
-    decks = DeckParser.parse(workbook.sheet_by_name("Decks"), complexObjects)
-    progressCallback(str(len(decks)) + " decks succesfully extracted.")
+    progress_callback("Reading decks... ", False)
+    decks = DeckParser.parse(workbook.sheet_by_name("Decks"), complex_objects)
+    progress_callback(str(len(decks)) + " decks successfully extracted.")
 
-    progressCallback("Reading bags... ", False)
-    bagParser = BagParser(tokens + dice + complexObjects + decks)
-    bags = bagParser.parse(workbook.sheet_by_name("Containers"))
-    progressCallback(str(len(bags)) + " bags succesfully extracted.")
+    progress_callback("Reading bags... ", False)
+    bag_parser = BagParser(tokens + dice + complex_objects + decks)
+    bags = bag_parser.parse(workbook.sheet_by_name("Containers"))
+    progress_callback(str(len(bags)) + " bags successfully extracted.")
 
     # UGLY - we have to redo this step later because we set the image paths after drawing and these entities won't work
-    progressCallback("Reading table content... ", False)
-    creator = EntityCreator(tokens + dice + complexObjects + decks + bags)
+    progress_callback("Reading table content... ", False)
+    creator = EntityCreator(tokens + dice + complex_objects + decks + bags)
     entities = creator.createEntities(workbook.sheet_by_name("Placement"))
-    progressCallback("Read " + str(len(entities)) + " items to be placed.", True)
+    progress_callback("Read " + str(len(entities)) + " items to be placed.", True)
 
-    return Library(tokens, dice, complexObjects, decks, bags)
+    return Library(tokens, dice, complex_objects, decks, bags)
