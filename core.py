@@ -19,8 +19,11 @@ from sheetParser.tokenParser import TokenParser
 
 
 def build_file(
-    excelFile, imageBuilder, saveDir, fileName, progressCallback, config=None
+    excel_file, image_builder, save_dir, file_name, progress_callback=None, config=None
 ):
+    if progress_callback is None:
+        progress_callback = lambda x, y=None: None
+
     # setup pygame as drawing library
     import pygame
 
@@ -29,77 +32,77 @@ def build_file(
     # open save template
     with open("data/template.json", "r") as infile:
         data = json.load(infile)
-        data["SaveName"] = fileName
+        data["SaveName"] = file_name
 
     # parse here
-    library = parse_file(excelFile, progressCallback)
+    library = parse_file(excel_file, progress_callback)
 
-    progressCallback("Drawing all custom content.")
+    progress_callback("Drawing all custom content.")
 
     # draw all the card decks
-    progressCallback("Drawing decks... ", False)
+    progress_callback("Drawing decks... ", False)
     drawer = DeckDrawer(config)
     for deck in library.decks:
-        path = imageBuilder.build(drawer.draw(deck), deck.name, "jpg")
+        path = image_builder.build(drawer.draw(deck), deck.name, "jpg")
         deck.setImagePath(path)
 
     # draw all the deck backs
     drawer = CardBackDrawer(config)
     for deck in library.decks:
-        path = imageBuilder.build(drawer.draw(deck), deck.name + "_back", "jpg")
+        path = image_builder.build(drawer.draw(deck), deck.name + "_back", "jpg")
         deck.setBackImagePath(path)
-    progressCallback(str(len(library.decks)) + " decks succesfully drawn.")
+    progress_callback(str(len(library.decks)) + " decks succesfully drawn.")
 
     # draw all the boards
-    progressCallback("Drawing boards... ", False)
+    progress_callback("Drawing boards... ", False)
     done = 0
     for obj in library.complexObjects:
         if obj.type.type == "board":
             drawer = ComplexObjectDrawer(obj, config)
-            path = imageBuilder.build(drawer.draw(), obj.name, "jpg")
+            path = image_builder.build(drawer.draw(), obj.name, "jpg")
             obj.setImagePath(path)
             done += 1
-    progressCallback(str(done) + " boards succesfully drawn.")
+    progress_callback(str(done) + " boards succesfully drawn.")
 
     # draw all the (custom) tokens
-    progressCallback("Drawing tokens... ", False)
+    progress_callback("Drawing tokens... ", False)
     done = 0
     for token in library.tokens:
         if isinstance(token, ContentToken):
             drawer = TokenDrawer(token)
-            path = imageBuilder.build(drawer.draw(), "token_" + token.name, "jpg")
+            path = image_builder.build(drawer.draw(), "token_" + token.name, "jpg")
             token.setImagePath(path)
             done += 1
-    progressCallback(str(done) + " custom tokens succesfully drawn.")
+    progress_callback(str(done) + " custom tokens succesfully drawn.")
 
     # draw all dice
-    progressCallback("Drawing dice... ", False)
+    progress_callback("Drawing dice... ", False)
     done = 0
     for die in library.dice:
         if die.customContent:
             drawer = DiceDrawer(die)
-            path = imageBuilder.build(drawer.draw(), "die" + die.name, "png")
+            path = image_builder.build(drawer.draw(), "die" + die.name, "png")
             die.setImagePath(path)
             done += 1
-    progressCallback(str(done) + " dice succesfully drawn.")
+    progress_callback(str(done) + " dice succesfully drawn.")
 
     # UGLY - we already did this step during parsing but we need to create entities AFTER drawing or their image paths aren't set
     creator = EntityCreator(library.all())
-    workbook = xlrd.open_workbook(excelFile)
+    workbook = xlrd.open_workbook(excel_file)
     entities = creator.createEntities(workbook.sheet_by_name("Placement"))
 
     dicts = []
     for entity in entities:
         dicts.append(entity.as_dict())
 
-    progressCallback("Placing all entities on the tabletop.")
+    progress_callback("Placing all entities on the tabletop.")
     # add entities to save file
     data["ObjectStates"] = dicts
-    progressCallback("All entities have been placed.")
+    progress_callback("All entities have been placed.")
 
     # save file
-    path = saveDir + "\TS_" + fileName.replace(" ", "_") + ".json"
-    progressCallback("Saving file to " + path)
+    path = save_dir + "\TS_" + file_name.replace(" ", "_") + ".json"
+    progress_callback("Saving file to " + path)
     with open(path, "w") as outfile:
         json.dump(data, outfile)
 

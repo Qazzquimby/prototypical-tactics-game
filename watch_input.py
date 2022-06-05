@@ -18,13 +18,11 @@ def run(yaml_path: str):
     yaml_to_xls.file_to_xls(src=yaml_path, dest=xls_path)
     print("Updated xls")
 
-    empty_callback = lambda x, y=None: None
     build_file(
-        excelFile=xls_path,
-        imageBuilder=ImagesDirImageBuilder(pygame, basePath=f"{data_dir}/images"),
-        saveDir=data_dir,
-        fileName=file_stem,
-        progressCallback=empty_callback,
+        excel_file=xls_path,
+        image_builder=ImagesDirImageBuilder(pygame, basePath=f"{data_dir}/images"),
+        save_dir=data_dir,
+        file_name=file_stem,
     )
     print("Built images")
 
