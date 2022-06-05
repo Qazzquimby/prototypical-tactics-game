@@ -1,0 +1,8 @@
+pydantic
+pyYAML
+pyexcel
+pyexcel-xls
+pygame
+watchdog
+pysftp
+xlrd
