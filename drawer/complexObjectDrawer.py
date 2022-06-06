@@ -24,18 +24,21 @@ class ComplexObjectDrawer:
 
     def draw(self):
         w, h = self.getCardSize()
-        surface_size = (w - 2 * EDGE_MARGIN, h - 2 * EDGE_MARGIN)
-        self.surf = pygame.Surface(surface_size)
+        self.surf = pygame.Surface((w, h))
 
         if self.object.type.name == "Ability":
             template = (TemplatesPath / "ability.html").read_text()
             html = jinja2.Template(template).render(
+                width=w - 2 * EDGE_MARGIN,
+                height=h - 2 * EDGE_MARGIN,
                 name=self.object.content[2],
                 type=self.object.content[3],
                 text=self.object.content[5],
                 owner=self.object.content[6],
             )
-            image_bytes = imgkit.from_string(html, False, options={"format": "png"})
+            image_bytes = imgkit.from_string(
+                html, False, options={"format": "png"}, css="data/templates/ability.css"
+            )
             image = pygame.image.load(io.BytesIO(image_bytes), "img.png")
             self.surf.blit(image, (0, 0))
         else:
