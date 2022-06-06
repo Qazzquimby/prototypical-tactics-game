@@ -1,3 +1,8 @@
+import io
+from pathlib import Path
+
+import imgkit as imgkit
+import jinja2
 import pygame
 
 from drawer.textrect import render_fitted_textrect
@@ -8,6 +13,8 @@ EDGE_MARGIN = 25
 LEFTRIGHT_MARGIN = 10
 TOPBOTTOM_MARGIN = 10
 
+TemplatesPath = Path("data/templates")
+
 
 class ComplexObjectDrawer:
     def __init__(self, object, config):
@@ -17,15 +24,31 @@ class ComplexObjectDrawer:
 
     def draw(self):
         w, h = self.getCardSize()
-        self.surf = pygame.Surface((w - 2 * EDGE_MARGIN, h - 2 * EDGE_MARGIN))
-        if isinstance(self.object.type.bgColor, str):
-            self.drawImage(self.surf, self.object.type.bgColor, self.surf.get_rect())
-        else:
-            self.surf.fill(convert_tts_to_pygame(self.object.type.bgColor))
-        for key, content in self.object.content.items():
-            self.drawContentToArea(content, self.object.type.shape.areas[key])
-        self.fullSurf = pygame.Surface((w, h))
+        surface_size = (w - 2 * EDGE_MARGIN, h - 2 * EDGE_MARGIN)
+        self.surf = pygame.Surface(surface_size)
 
+        if self.object.type.name == "Ability":
+            template = (TemplatesPath / "ability.html").read_text()
+            html = jinja2.Template(template).render(
+                name=self.object.content[2],
+                type=self.object.content[3],
+                text=self.object.content[5],
+                owner=self.object.content[6],
+            )
+            image_bytes = imgkit.from_string(html, False, options={"format": "png"})
+            image = pygame.image.load(io.BytesIO(image_bytes), "img.png")
+            self.surf.blit(image, (0, 0))
+        else:
+            if isinstance(self.object.type.bgColor, str):
+                self.drawImage(
+                    self.surf, self.object.type.bgColor, self.surf.get_rect()
+                )
+            else:
+                self.surf.fill(convert_tts_to_pygame(self.object.type.bgColor))
+            for key, content in self.object.content.items():
+                self.drawContentToArea(content, self.object.type.shape.areas[key])
+
+        self.fullSurf = pygame.Surface((w, h))
         self.fullSurf.fill(convert_tts_to_pygame((0, 0, 0)))
 
         self.fullSurf.blit(self.surf, (EDGE_MARGIN, EDGE_MARGIN))

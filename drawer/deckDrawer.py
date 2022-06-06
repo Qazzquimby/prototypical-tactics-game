@@ -1,7 +1,9 @@
 import pygame
 from drawer.complexObjectDrawer import ComplexObjectDrawer
 
-
+# todo this is really stupid organization.
+#  What is the difference between draw and draw_cards?
+#  draw initializes the variables. Should make a new instance each time instead of mutating on draw.
 class DeckDrawer:
     def __init__(self, config):
         self.config = config
@@ -13,11 +15,11 @@ class DeckDrawer:
         self.cardSize = (w, h)
 
         surf = pygame.Surface(self.size)
-        self.drawCards(surf, deck.cards)
+        self.draw_cards(surf, deck.cards)
         return surf
 
-    def drawCards(self, surf, cards):
-        done = 0
+    def draw_cards(self, surf, cards):
+        done = 0  # todo make this a proper enumerated loop.
         for i in range(0, 7):
             for j in range(0, 10):
                 cardDrawer = ComplexObjectDrawer(cards[done].object, self.config)
