@@ -162,14 +162,17 @@ decks:
           range 2, 3 damage.
       - name: Blink
         text: |-
-          Reaction
           3 Charges
-          Free action
-          Teleport up to 3 spaces.
-          End of turn, gain 1 charge.
+          1 charge, free action
+            teleport up to 3.
+          or
+          1 charge, interrupt
+            Gain +2 dodge during the interrupted action. 
+            After the action, teleport up to 3 spaces.
       - name: Recall
         text: |-
-          Reaction
+          1/battle
+          Free or interrupt
           Reset your health to what it was at the end of your last turn.
           Teleport as close as possible to where you were at the end of your last turn.
       - name: Summon Pulse Bomb
