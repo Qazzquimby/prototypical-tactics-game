@@ -2,7 +2,7 @@ decks:
   - hero:
       name: Moira
       health: 6
-      speed: 2
+      speed: 3
     abilities:
       - name: Damage Biotic Grasp
         text: |-
@@ -47,7 +47,7 @@ decks:
   - hero:
       name: Reinhardt
       health: 12
-      speed: 2
+      speed: 3
       size: 2
       dodge: -2
     abilities:
@@ -88,7 +88,7 @@ decks:
   - hero:
       name: Bastion
       health: 8
-      speed: 2
+      speed: 3
     abilities:
       - name: Gun
         text: |-
@@ -121,7 +121,7 @@ decks:
   - hero:
       name: Winston
       health: 10
-      speed: 2
+      speed: 3
     abilities:
       - name: Tesla Cannon
         text: |-
@@ -157,7 +157,7 @@ decks:
   - hero:
       name: Tracer
       health: 6
-      speed: 3
+      speed: 4
     abilities:
       - name: Pulse Pistols
         text: |-
@@ -187,7 +187,7 @@ decks:
   - hero:
       name: Mercy
       health: 6
-      speed: 2
+      speed: 3
     abilities:
       - name: Regeneration
         text: |-
