@@ -52,48 +52,38 @@ decks:
     abilities:
       - name: Armor
         text: |-
-          Replace your top 1 health die with an armor die.
-          While it is active, you have armor 1.
+          While you have 3+ HD, you have 1 damage resistance.
       - name: Steadfast
         text: |-
           Passive.
-          You can not be pushed.
+          Immune to involuntary movement.
       - name: Rocket Hammer
         text: |-
           Default
-          3 connected spaces in range 1. Deal 2 damage
+          Blast 1, range 0. Deal 2 damage
       - name: Barrier Field
         text: |-
-          The barrier has 4 health dice.
-          Full action: Enter stance.
-          While in stance:
-            You have facing.
-            You are slowed and disarmed (only move actions)
-            You may exit the stance as a free action at the start of your turn.
-            The edge in front of you, and extending to two spaces on either side, is your barrier.
-            Enemies cannot draw range through the barrier. 
-          While not in stance:
-            This heals 4.
-          If the barrier dies, it goes on cooldown 3, and then returns to 1 health.
+          Reaction, you on an ally is attacked
+          Create a 4space line of barrier terrain adjacent to you. The barrier has 4HD and moves with you.
+          Opponents' attacks through the barrier hit the barrier instead.
+          While you have the barrier, you are slowed and disarmed.
+          You can dismiss the barrier at the end of your turn as a free action.
+          When you destroy and recreate the barrier, it keeps its previous health.
       - name: Charge
         text: |-
-          Full action
-          Reactable.
-          Move as far as possible in a direction.
-          The first enemy you contact is pushed with you.
-          At the end of your movement, if the enemy is adjacent between you and an obstruction, they take 10 damage.
-          Other enemies you contact while moving are pushed 1 space to the side, and take 1 damage. 
-          Cooldown 3
+          Full Action, 1/battle
+          Move as far as possible in a line.
+          When you contact an enemy, roll attack with +2 dodge. 
+          The first enemy hit this way is pushed with you and take 10 damage.
       - name: Fire Strike
         text:
-          Reactable
-          Line 8, piercing, 3 damage
+          Line 8, piercing, +1 dodge, 3 damage
           Cooldown 1
       - name: Earthshatter
         text: |-
-          Reactable
-          Ultimate: When you deal or heal damage, put a charge on this. Needs 15 charges to use.
-          Cone 4, piercing, 1 damage and stun
+          Ultimate: At the end of your turn, if you dealt or healed damage, gain 1 charge. These charges persist between rounds.
+          Spend 5 charges:
+            Cone 4, piercing, 1 damage and stun
   - hero:
       name: Bastion
       health: 3
