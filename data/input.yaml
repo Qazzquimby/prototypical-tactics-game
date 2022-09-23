@@ -7,43 +7,39 @@ decks:
       - name: Damage Biotic Grasp
         text: |-
           Default
-          Range 3.
-          Deal 2 damage. Heal 1.
-          Put a charge on your Healing Biotic Grasp.
+          Range 4, 2 damage.
+          Heal 1.
       - name: Healing Biotic Grasp
         text: |-
-          Starts with 1 charge counter.
-          Pay 1 charge counter:
-            Piercing range cone 3.
-            Heal 3 all allies in range.
+          Piercing cone 3.
+          Allies heal 3.
       - name: Fade
         text: |-
-          Reaction.
+          1/battle, interrupt.
           Teleport up to 4 spaces.
           You may purge any number of effects from yourself.
       - name: Summon Biotic Orb
         text: |-
-          Range 1
+          1/battle, Range 1
           Summon a Healing Biotic Orb or Damage Biotic Orb.
       - name: Healing Biotic Orb
         text: |-
-          Fading 3.
           Has facing.
           At the beginning of your turn, burst 1, heal 2 to all allies
           Then move 2 spaces forwards, skipping spaces occupied by units.
       - name: Damage Biotic Orb
         text: |-
-          Fading 3.
           Has facing.
           At the beginning of your turn, burst 1, deal 2 damage to all enemies. 
           Then move 2 spaces forwards, skipping spaces occupied by units.
       - name: Coalescence
         text: |-
-          Ultimate: Gain a counter for each damage you deal or heal. Ready at 12 counters.
+          Ultimate: At the end of your turn, if you dealt or healed damage, gain 1 charge. These charges persist between rounds.
+          Spend 5 charges:
           Full action
-          Move up to 2 spaces.
+          Move up to 2.
           Heal 2.
-          For each units in line 8, ignoring obstructions, choose to deal 2 damage or heal 4.
+          Piercing line 8, 2 damage to enemies, heal 4 to allies.
   - hero:
       name: Reinhardt
       health: 12
@@ -66,7 +62,7 @@ decks:
         text: |-
           Reaction, you on an ally is attacked
           Create a 4space line of barrier terrain adjacent to you. The barrier has 4HD and moves with you.
-          Opponents' attacks through the barrier hit the barrier instead.
+          Opponents' non-piercing attacks through the barrier hit the barrier instead.
           While you have the barrier, you are slowed and disarmed.
           You can dismiss the barrier at the end of your turn as a free action.
           When you destroy and recreate the barrier, it keeps its previous health.
@@ -111,17 +107,18 @@ decks:
             Attacks from behind you deal double damage to you.
       - name: Self Repair
         text: |-
-          Heal yourself 3.
+          You heal 3.
       - name: Configuration Tank
         text: |-
-          Ultimate: When you deal or heal damage, put a charge counter on this. Requires 15 charges to use.
-          Enter tank stance. End your turn.
-          While in tank stance, you have armor 1.
-          Fade 3.
+          Ultimate: At the end of your turn, if you dealt or healed damage, gain 1 charge. These charges persist between rounds.
+          Free action at start of turn, Spend 5 charges:
+            Enter tank stance for rest of battle.
+            While in tank stance, you have armor 1.
   - hero:
       name: Winston
       health: 10
       speed: 3
+      size: 2
     abilities:
       - name: Tesla Cannon
         text: |-
@@ -129,31 +126,31 @@ decks:
           Range 1, blast 1, deal 2 damage to enemies.
       - name: Jump Pack
         text: |-
-          Reactable
-          Fly up to your speed, ending in a clear space on the ground.
-          Deal 1 damage to each adjacent enemy.
-          CD 1
+          1/battle
+          Fly up to double your speed, ending on the ground.
+          Deal 2 damage to each adjacent enemy.
       - name: Barrier Projector
         text: |-
-          Summon a size 3 Barrier field in your space.
+          1/battle, quick
+          Range 1, Summon a blast 1 field of Barrier terrain.
       - name: Barrier
         text: |-
-          2 health dice.
-          Takes 6 damage at start of turn.
-          Enemies cannot draw range or aoe through the edges of the barrier.
+          8hp
+          Enemy non-piercing attacks through the edges of the barrier hit the barrier instead.
       - name: Primal Rage
         text: |-
-          Ultimate: When you deal or heal damage, put a charge counter on this. Requires 15 charges to use.
-          Free action at start of turn.
-          Set your health to 6 health dice.
-          Reset your cooldowns.
-          You enter primal stance.
+          Ultimate: At the end of your turn, if you dealt or healed damage, gain 1 charge. These charges persist between rounds.
+          Free action at start of turn, spend 5 charges:
+              You enter primal stance.
       - name: Primal Stance
         text: |-
-          Fading 2
+          Entry:
+            Set your current and maximum health to 18.
           Your move speed is doubled
-          You can only use your default abilities and Jump Pack.
-          When this ends, lower your health to 3 health dice.
+          You can only use your default abilities and Jump Pack, ignoring its 1/scene requirement.
+          Start of turn, free action, you may end primal stance.
+          Leave:
+            Lower your current and maximum health to default.
   - hero:
       name: Tracer
       health: 6
@@ -177,13 +174,19 @@ decks:
           Teleport as close as possible to where you were at the end of your last turn.
       - name: Summon Pulse Bomb
         text: |-
-          Ultimate: When you deal or heal damage, put a charge counter on this. Requires 15 charges to use.
-          Reactable
-          Range 1, attach a pulse bomb to the ground or target unit.
+          Ultimate: At the end of your turn, if you dealt or healed damage, gain 1 charge. These charges persist between rounds.
+          Spend 5 charges:
+            Place a Pulse Bomb in range 1
+            or
+            Range 1, Dodge+1, 
+              hit: attach a pulse bomb to the target as a status effect. 
+              miss: attach a pulse bomb to the ground in the target's space.
       - name: Pulse Bomb
         text: |- 
-          Fading 1
-          When this dies, deal 9 damage to anyone in this space, and 3 damage to all enemies in blast 2.
+          At the start of the creator's turn:
+          destroy this,
+          deal 9 damage to anyone in this space,
+          and 3 damage to all enemies in blast 2.
   - hero:
       name: Mercy
       health: 6
@@ -192,7 +195,7 @@ decks:
       - name: Regeneration
         text: |-
           Passive.
-          At the start of your turn, if you did not take damage since your last turn, heal 2.
+          At the start of your turn, if you did not take damage since your last turn, heal 3.
           You are immune to fall damage.
       - name: Guardian Angel
         text: |-
@@ -213,17 +216,16 @@ decks:
         text: |-
           Allies leave corpses.
           ---
-          Full action
-          Reactable
-          Range 1, Resurrect target corpse to full health. 
-          Cooldown 6
+          Full action, 1/battle, range 1
+            Resurrect target corpse to full health.
       - name: Valkyrie
         text: |-
-          Ultimate: When you deal or heal damage, put a charge counter on this. Requires 15 charges to use.
-          Enter Valkyrie stance
+          Ultimate: At the end of your turn, if you dealt or healed damage, gain 1 charge. These charges persist between rounds.
+          Spend 5 charges:
+            Enter Valkyrie stance
       - name: Valkyrie Stance
         text: |-
-          Fading 3
-          At the beginning of your turn, heal 2hp.
-          Your caduceus staff has blast 3 and affects all allies in aoe.
-          You can fly in any direction when moving and can hover.
+          For rest of battle:
+            At the beginning of your turn, heal 2hp.
+            Your caduceus staff has blast 3 and affects all allies in aoe.
+            You can fly in any direction when moving and can hover.
