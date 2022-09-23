@@ -1,7 +1,7 @@
 decks:
   - hero:
       name: Moira
-      health: 2
+      health: 6
       speed: 2
     abilities:
       - name: Damage Biotic Grasp
@@ -46,7 +46,7 @@ decks:
           For each units in line 8, ignoring obstructions, choose to deal 2 damage or heal 4.
   - hero:
       name: Reinhardt
-      health: 4
+      health: 12
       speed: 2
       size: 2
       dodge: -2
@@ -87,7 +87,7 @@ decks:
             Cone 4, piercing, 1 damage and stun
   - hero:
       name: Bastion
-      health: 3
+      health: 8
       speed: 2
     abilities:
       - name: Gun
@@ -120,7 +120,7 @@ decks:
           Fade 3.
   - hero:
       name: Winston
-      health: 3
+      health: 10
       speed: 2
     abilities:
       - name: Tesla Cannon
@@ -156,7 +156,7 @@ decks:
           When this ends, lower your health to 3 health dice.
   - hero:
       name: Tracer
-      health: 2
+      health: 6
       speed: 3
     abilities:
       - name: Pulse Pistols
@@ -186,7 +186,7 @@ decks:
           When this dies, deal 9 damage to anyone in this space, and 3 damage to all enemies in blast 2.
   - hero:
       name: Mercy
-      health: 2
+      health: 6
       speed: 2
     abilities:
       - name: Regeneration
