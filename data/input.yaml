@@ -34,7 +34,7 @@ decks:
           Then move 2 spaces forwards, skipping spaces occupied by units.
       - name: Coalescence
         text: |-
-          Ultimate: At the end of your turn, if you dealt or healed damage, gain 1 charge. These charges persist between rounds.
+          Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
           Spend 5 charges:
           Full action
           Move up to 2.
@@ -78,7 +78,7 @@ decks:
           Cooldown 1
       - name: Earthshatter
         text: |-
-          Ultimate: At the end of your turn, if you dealt or healed damage, gain 1 charge. These charges persist between rounds.
+          Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
           Spend 5 charges:
             Cone 4, piercing, 1 damage and stun
   - hero:
@@ -110,7 +110,7 @@ decks:
           You heal 3.
       - name: Configuration Tank
         text: |-
-          Ultimate: At the end of your turn, if you dealt or healed damage, gain 1 charge. These charges persist between rounds.
+          Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
           Free action at start of turn, Spend 5 charges:
             Enter tank stance for rest of battle.
             While in tank stance, you have armor 1.
@@ -140,7 +140,7 @@ decks:
           Enemy non-piercing attacks through the edges of the barrier hit the barrier instead.
       - name: Primal Rage
         text: |-
-          Ultimate: At the end of your turn, if you dealt or healed damage, gain 1 charge. These charges persist between rounds.
+          Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
           Free action at start of turn, spend 5 charges:
               You enter primal stance.
       - name: Primal Stance
@@ -178,7 +178,7 @@ decks:
           Teleport as close as possible to where you were at the end of your last turn.
       - name: Summon Pulse Bomb
         text: |-
-          Ultimate: At the end of your turn, if you dealt or healed damage, gain 1 charge. These charges persist between rounds.
+          Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
           Spend 5 charges:
             Place a Pulse Bomb in range 1
             or
@@ -224,7 +224,7 @@ decks:
             Resurrect target corpse to full health.
       - name: Valkyrie
         text: |-
-          Ultimate: At the end of your turn, if you dealt or healed damage, gain 1 charge. These charges persist between rounds.
+          Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
           Spend 5 charges:
             Enter Valkyrie stance
       - name: Valkyrie Stance
