@@ -6,25 +6,7 @@ from image_builders import get_image_builder
 import os, sys, pysftp
 from shutil import copyfile
 
-
-def tryAndFindSaveGamesFolder():
-    if sys.platform != "win32":
-        return None
-
-    try:
-        import win32com.client
-    except ImportError:
-        return None
-
-    objShell = win32com.client.Dispatch("WScript.Shell")
-    docs = objShell.SpecialFolders("MyDocuments") + "\My Games\Tabletop Simulator\Saves"
-
-    if os.path.isdir(docs):
-        return docs
-
-    return None
-
-
+from tts_dir import try_and_find_save_games_folder
 from tkinter import *
 from tkinter import filedialog
 from tkinter import simpledialog
@@ -59,7 +41,7 @@ class Config:
         self.searchId = searchId
         self.saveFolderDeduced = False
         self.loadConfig()
-        folder = tryAndFindSaveGamesFolder()
+        folder = try_and_find_save_games_folder()
         if folder:
             self.saveDir.set(folder)
             self.saveFolderDeduced = True
@@ -400,7 +382,7 @@ def runTests():
 
 
 if __name__ == "__main__":
-    runTests()
+    # runTests()
 
     # run the app
     root = Tk()

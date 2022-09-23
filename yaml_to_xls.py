@@ -211,7 +211,7 @@ def file_to_xls(src, dest=None) -> Sheets:
     game = parse_game(game_structure)
     sheets = game_to_xls(game)
     if dest is not None:
-        pyexcel.save_book_as(bookdict=sheets, dest_file_name=dest)
+        pyexcel.save_book_as(bookdict=sheets, dest_file_name=str(dest))
     return sheets
 
 

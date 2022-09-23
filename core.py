@@ -101,15 +101,15 @@ def build_file(
     progress_callback("All entities have been placed.")
 
     # save file
-    path = save_dir + "\TS_" + file_name.replace(" ", "_") + ".json"
-    progress_callback("Saving file to " + path)
+    path = save_dir / f"TS_{file_name.replace(' ', '_')}.json"
+    progress_callback(f"Saving file to {path}")
     with open(path, "w") as outfile:
         json.dump(data, outfile)
 
 
 def parse_file(excel_file, progress_callback):
     # open Excel file
-    progress_callback("Reading spreadsheet: " + excel_file)
+    progress_callback(f"Reading spreadsheet: {excel_file}")
     workbook = xlrd.open_workbook(excel_file)
 
     # collect entity libraries

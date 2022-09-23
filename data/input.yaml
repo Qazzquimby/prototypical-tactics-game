@@ -6,13 +6,233 @@ decks:
     abilities:
       - name: Damage Biotic Grasp
         text: |-
-          Range 2.
+          Default
+          Range 3.
           Deal 2 damage. Heal 1.
-          Put 2 charges on Healing Biotic Grasp.
+          Put a charge on your Healing Biotic Grasp.
       - name: Healing Biotic Grasp
         text: |-
           Starts with 1 charge counter.
           Pay 1 charge counter:
-            Piercing range 2.
+            Piercing range cone 3.
             Heal 3 all allies in range.
-
+      - name: Fade
+        text: |-
+          Reaction.
+          Teleport up to 4 spaces.
+          You may purge any number of effects from yourself.
+      - name: Summon Biotic Orb
+        text: |-
+          Range 1
+          Summon a Healing Biotic Orb or Damage Biotic Orb.
+      - name: Healing Biotic Orb
+        text: |-
+          Fading 3.
+          Has facing.
+          At the beginning of your turn, burst 1, heal 2 to all allies
+          Then move 2 spaces forwards, skipping spaces occupied by units.
+      - name: Damage Biotic Orb
+        text: |-
+          Fading 3.
+          Has facing.
+          At the beginning of your turn, burst 1, deal 2 damage to all enemies. 
+          Then move 2 spaces forwards, skipping spaces occupied by units.
+      - name: Coalescence
+        text: |-
+          Ultimate: Gain a counter for each damage you deal or heal. Ready at 12 counters.
+          Full action
+          Move up to 2 spaces.
+          Heal 2.
+          For each units in line 8, ignoring obstructions, choose to deal 2 damage or heal 4.
+  - hero:
+      name: Reinhardt
+      health: 4
+      speed: 2
+      size: 2
+    abilities:
+      - name: Armor
+        text: |-
+          Replace your top 1 health die with an armor die.
+          While it is active, you have armor 1.
+      - name: Steadfast
+        text: |-
+          Passive.
+          You can not be pushed.
+      - name: Rocket Hammer
+        text: |-
+          Default
+          3 connected spaces in range 1. Deal 2 damage
+      - name: Barrier Field
+        text: |-
+          The barrier has 4 health dice.
+          Full action: Enter stance.
+          While in stance:
+            You have facing.
+            You are slowed and disarmed (only move actions)
+            You may exit the stance as a free action at the start of your turn.
+            The edge in front of you, and extending to two spaces on either side, is your barrier.
+            Enemies cannot draw range through the barrier. 
+          While not in stance:
+            This heals 4.
+          If the barrier dies, it goes on cooldown 3, and then returns to 1 health.
+      - name: Charge
+        text: |-
+          Full action
+          Reactable.
+          Move as far as possible in a direction.
+          The first enemy you contact is pushed with you.
+          At the end of your movement, if the enemy is adjacent between you and an obstruction, they take 10 damage.
+          Other enemies you contact while moving are pushed 1 space to the side, and take 1 damage. 
+          Cooldown 3
+      - name: Fire Strike
+        text:
+          Reactable
+          Line 8, piercing, 3 damage
+          Cooldown 1
+      - name: Earthshatter
+        text: |-
+          Reactable
+          Ultimate: When you deal or heal damage, put a charge on this. Needs 15 charges to use.
+          Cone 4, piercing, 1 damage and stun
+  - hero:
+      name: Bastion
+      health: 3
+      speed: 2
+    abilities:
+      - name: Gun
+        text: |-
+          Default
+          If in sentry stance:
+            Full action
+            Range 3, 4*target size damage.
+          If in tank stance:
+            Range 4, burst 1, deal 5 damage.
+          else: 
+            Range 5, 1 damage.
+      - name: Transform
+        text: |-
+          Change stance between recon and sentry.
+          End your turn.
+          While in sentry stance:
+            You are immobile.
+            You have armor 1.
+            You have facing.
+            Attacks from behind you deal double damage to you.
+      - name: Self Repair
+        text: |-
+          Heal yourself 3.
+      - name: Configuration Tank
+        text: |-
+          Ultimate: When you deal or heal damage, put a charge counter on this. Requires 15 charges to use.
+          Enter tank stance. End your turn.
+          While in tank stance, you have armor 1.
+          Fade 3.
+  - hero:
+      name: Winston
+      health: 3
+      speed: 2
+    abilities:
+      - name: Tesla Cannon
+        text: |-
+          Default
+          Range 1, blast 1, deal 2 damage to enemies.
+      - name: Jump Pack
+        text: |-
+          Reactable
+          Fly up to your speed, ending in a clear space on the ground.
+          Deal 1 damage to each adjacent enemy.
+          CD 1
+      - name: Barrier Projector
+        text: |-
+          Summon a size 3 Barrier field in your space.
+      - name: Barrier
+        text: |-
+          2 health dice.
+          Takes 6 damage at start of turn.
+          Enemies cannot draw range or aoe through the edges of the barrier.
+      - name: Primal Rage
+        text: |-
+          Ultimate: When you deal or heal damage, put a charge counter on this. Requires 15 charges to use.
+          Free action at start of turn.
+          Set your health to 6 health dice.
+          Reset your cooldowns.
+          You enter primal stance.
+      - name: Primal Stance
+        text: |-
+          Fading 2
+          Your move speed is doubled
+          You can only use your default abilities and Jump Pack.
+          When this ends, lower your health to 3 health dice.
+  - hero:
+      name: Tracer
+      health: 2
+      speed: 3
+    abilities:
+      - name: Pulse Pistols
+        text: |-
+          default
+          range 2, 3 damage.
+      - name: Blink
+        text: |-
+          Reaction
+          3 Charges
+          Free action
+          Teleport up to 3 spaces.
+          End of turn, gain 1 charge.
+      - name: Recall
+        text: |-
+          Reaction
+          Reset your health to what it was at the end of your last turn.
+          Teleport as close as possible to where you were at the end of your last turn.
+      - name: Summon Pulse Bomb
+        text: |-
+          Ultimate: When you deal or heal damage, put a charge counter on this. Requires 15 charges to use.
+          Reactable
+          Range 1, attach a pulse bomb to the ground or target unit.
+      - name: Pulse Bomb
+        text: |- 
+          Fading 1
+          When this dies, deal 9 damage to anyone in this space, and 3 damage to all enemies in blast 2.
+  - hero:
+      name: Mercy
+      health: 2
+      speed: 2
+    abilities:
+      - name: Regeneration
+        text: |-
+          Passive.
+          At the start of your turn, if you did not take damage since your last turn, heal 2.
+          You are immune to fall damage.
+      - name: Guardian Angel
+        text: |-
+          Move action
+          Target ally or allied corpse in line of sight. Fly adjacent to them as directly as possible.
+      - name: Caduceus Staff
+        text: |-
+          Default
+          Target ally in range 4
+          Choose one:
+            - Heal target 4hp.
+            - Until end of target's next turn, they deal +1 damage.
+      - name: Caduceus Blaster
+        text: |-
+          Default
+          range 4, 2 damage
+      - name: Resurrect
+        text: |-
+          Allies leave corpses.
+          ---
+          Full action
+          Reactable
+          Range 1, Resurrect target corpse to full health. 
+          Cooldown 6
+      - name: Valkyrie
+        text: |-
+          Ultimate: When you deal or heal damage, put a charge counter on this. Requires 15 charges to use.
+          Enter Valkyrie stance
+      - name: Valkyrie Stance
+        text: |-
+          Fading 3
+          At the beginning of your turn, heal 2hp.
+          Your caduceus staff has blast 3 and affects all allies in aoe.
+          You can fly in any direction when moving and can hover.

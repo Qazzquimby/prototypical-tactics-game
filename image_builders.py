@@ -23,9 +23,9 @@ class ImagesDirImageBuilder:
         self.basePath = basePath
 
     def build(self, image, file, extension):
-        path = self.basePath + "/" + file + "." + extension
+        path = self.basePath / f"{file}.{extension}"
         self.pygame.image.save(image, path)
-        return "file:///" + path
+        return f"file:///{path}"
 
 
 class ftpDirImageBuilder:
