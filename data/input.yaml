@@ -49,6 +49,7 @@ decks:
       health: 4
       speed: 2
       size: 2
+      dodge: -2
     abilities:
       - name: Armor
         text: |-

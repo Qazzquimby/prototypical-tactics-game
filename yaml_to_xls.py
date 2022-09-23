@@ -27,6 +27,7 @@ class Unit(Card):
     speed: int
     health: int
     size: int = 1
+    dodge: int = 0
 
     def make_card_row(self, hero_name: str):
         return [
