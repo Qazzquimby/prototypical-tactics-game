@@ -119,6 +119,7 @@ decks:
       health: 10
       speed: 3
       size: 2
+      dodge: -2
     abilities:
       - name: Tesla Cannon
         text: |-
@@ -181,7 +182,7 @@ decks:
           Spend 5 charges:
             Place a Pulse Bomb in range 1
             or
-            Range 1, Dodge+1, 
+            Range 1, +1 Dodge, 
               hit: attach a pulse bomb to the target as a status effect. 
               miss: attach a pulse bomb to the ground in the target's space.
       - name: Pulse Bomb
