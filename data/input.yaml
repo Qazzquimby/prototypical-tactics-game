@@ -39,7 +39,7 @@ decks:
           Full action
           Move up to 2.
           Heal 2.
-          Piercing line 8, 2 damage to enemies, heal 4 to allies.
+          Piercing line, 2 damage to enemies, heal 4 to allies.
   - hero:
       name: Reinhardt
       health: 12
@@ -71,7 +71,7 @@ decks:
           Full Action, 1/battle
           Move as far as possible in a line.
           When you contact an enemy, roll attack with +2 dodge. 
-          The first enemy hit this way is pushed with you and take 10 damage.
+          The first enemy hit this way is pushed with you and take 7 damage.
       - name: Fire Strike
         text:
           Line 8, piercing, +1 dodge, 3 damage
@@ -141,7 +141,7 @@ decks:
       - name: Primal Rage
         text: |-
           Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
-          Free action at start of turn, spend 5 charges:
+          Interrupt, spend 5 charges:
               You enter primal stance.
       - name: Primal Stance
         text: |-
@@ -164,16 +164,16 @@ decks:
       - name: Blink
         text: |-
           3 Charges
-          1 charge, free action
-            teleport up to 3.
-          or
-          1 charge, interrupt
-            Gain +2 dodge during the interrupted action. 
-            After the action, teleport up to 3 spaces.
+          1 charge, Interrupt
+            if interrupting an action:
+              Gain +2 dodge during the interrupted action. 
+              After the action, teleport up to 3 spaces.
+            else:
+              teleport up to 3.
       - name: Recall
         text: |-
           1/battle
-          Free or interrupt
+          Interrupt
           Reset your health to what it was at the end of your last turn.
           Teleport as close as possible to where you were at the end of your last turn.
       - name: Summon Pulse Bomb
@@ -181,7 +181,7 @@ decks:
           Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
           Spend 5 charges:
             Place a Pulse Bomb in range 1
-            or
+            orasd
             Range 1, +1 Dodge, 
               hit: attach a pulse bomb to the target as a status effect. 
               miss: attach a pulse bomb to the ground in the target's space.
@@ -204,7 +204,7 @@ decks:
       - name: Guardian Angel
         text: |-
           Move action
-          Target ally or allied corpse in line of sight. Fly adjacent to them as directly as possible.
+          Target ally or allied corpse in line of sight. Fly to any space adjacent to them as directly as possible.
       - name: Caduceus Staff
         text: |-
           Default
