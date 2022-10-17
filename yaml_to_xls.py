@@ -23,7 +23,14 @@ class Card(BaseModel):
         raise NotImplementedError
 
 
-class Unit(Card):
+class Token(BaseModel):
+    name: str
+
+    def make_token_row(self):
+        raise NotImplementedError
+
+
+class UnitCard(Card, Token):
     speed: int
     health: int
     size: int = 1
@@ -41,8 +48,18 @@ class Unit(Card):
             hero_name,
         ]
 
+    def make_token_row(self):
+        return [
+            self.name,
+            "token",
+            "\\",
+            self.size,
+            "black",
+            "the content!",
+        ]
 
-class Hero(Unit):
+
+class Hero(UnitCard):
     def make_card_row(self, hero_name: str):
         return [
             self.name,
@@ -87,21 +104,36 @@ class Ability(Card):
 
 
 class Deck(BaseModel):
-    hero: Unit
+    """One hero can have multiple decks, like a loadout. Maybe call 'loadout' instead"""
+
     abilities: list[Ability] = []
-    units: list[Unit] = []
+    units: list[UnitCard] = []
 
     @property
     def cards(self) -> list[Card]:
         return [self.hero] + self.abilities + self.units
 
 
-class Game(BaseModel):
+class HeroBox(BaseModel):
+    hero: Hero
     decks: list[Deck]
+    tokens: list[Token] = []
+    # maybe a description here
 
 
-def parse_game(game):
-    return Game.parse_obj(game)
+class GameSet(BaseModel):
+    name: str
+    hero_boxes: list[HeroBox] = []
+    # set rules
+    # maps
+
+
+class Game(BaseModel):
+    sets: list[GameSet]
+
+
+def parse_game(game_structure):
+    return Game.parse_obj(game_structure)
 
 
 class SheetNames:
@@ -218,6 +250,8 @@ def file_to_xls(src, dest=None) -> Sheets:
 
 if __name__ == "__main__":
     schema = Game.schema_json()
+    with open("data/game_schema.json", "w") as f:
+        f.write(schema)
 
     src = "data/input.yaml"
     dest = "dest/output.xls"

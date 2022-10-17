@@ -6,7 +6,7 @@ from yaml_to_xls import (
     SheetNames,
     make_deck_name,
     Deck,
-    Unit,
+    UnitCard,
     Ability,
     parse_game,
     BASIC,
@@ -20,7 +20,7 @@ MY_TEST_CHAR_NAME = "My Test Char"
 MY_TEST_CHAR_SPEED = 1
 MY_TEST_CHAR_HEALTH = 2
 MY_TEST_CHAR_SIZE = 3
-MY_TEST_CHAR_HERO = Unit(
+MY_TEST_CHAR_HERO = UnitCard(
     name=MY_TEST_CHAR_NAME,
     speed=MY_TEST_CHAR_SPEED,
     health=MY_TEST_CHAR_HEALTH,
@@ -159,7 +159,7 @@ def test_parse_dict_to_models():
     expected = Game(
         decks=[
             Deck(
-                hero=Unit(name="a", speed=1, health=2, size=3),
+                hero=UnitCard(name="a", speed=1, health=2, size=3),
                 abilities=[
                     Ability(name="a's ability", type=BASIC, text="ability text")
                 ],

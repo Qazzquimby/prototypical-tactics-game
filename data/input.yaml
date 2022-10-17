@@ -1,235 +1,247 @@
-decks:
-  - hero:
-      name: Moira
-      health: 6
-      speed: 3
-    abilities:
-      - name: Damage Biotic Grasp
-        text: |-
-          Default
-          Range 4, 2 damage.
-          Heal 1.
-      - name: Healing Biotic Grasp
-        text: |-
-          Piercing cone 3.
-          Allies heal 3.
-      - name: Fade
-        text: |-
-          1/battle, interrupt.
-          Teleport up to 4 spaces.
-          You may purge any number of effects from yourself.
-      - name: Summon Biotic Orb
-        text: |-
-          1/battle, Range 1
-          Summon a Healing Biotic Orb or Damage Biotic Orb.
-      - name: Healing Biotic Orb
-        text: |-
-          Has facing.
-          At the beginning of your turn, burst 1, heal 2 to all allies
-          Then move 2 spaces forwards, skipping spaces occupied by units.
-      - name: Damage Biotic Orb
-        text: |-
-          Has facing.
-          At the beginning of your turn, burst 1, deal 2 damage to all enemies. 
-          Then move 2 spaces forwards, skipping spaces occupied by units.
-      - name: Coalescence
-        text: |-
-          Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
-          Spend 5 charges:
-          Full action
-          Move up to 2.
-          Heal 2.
-          Piercing line, 2 damage to enemies, heal 4 to allies.
-  - hero:
-      name: Reinhardt
-      health: 12
-      speed: 3
-      size: 2
-      dodge: -2
-    abilities:
-      - name: Armor
-        text: |-
-          While you have 3+ HD, you have 1 damage resistance.
-      - name: Steadfast
-        text: |-
-          Passive.
-          Immune to involuntary movement.
-      - name: Rocket Hammer
-        text: |-
-          Default
-          Blast 1, range 0. Deal 2 damage
-      - name: Barrier Field
-        text: |-
-          Reaction, you on an ally is attacked
-          Create a 4space line of barrier terrain adjacent to you. The barrier has 4HD and moves with you.
-          Opponents' non-piercing attacks through the barrier hit the barrier instead.
-          While you have the barrier, you are slowed and disarmed.
-          You can dismiss the barrier at the end of your turn as a free action.
-          When you destroy and recreate the barrier, it keeps its previous health.
-      - name: Charge
-        text: |-
-          Full Action, 1/battle
-          Move as far as possible in a line.
-          When you contact an enemy, roll attack with +2 dodge. 
-          The first enemy hit this way is pushed with you and take 7 damage.
-      - name: Fire Strike
-        text:
-          Line 8, piercing, +1 dodge, 3 damage
-          Cooldown 1
-      - name: Earthshatter
-        text: |-
-          Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
-          Spend 5 charges:
-            Cone 4, piercing, 1 damage and stun
-  - hero:
-      name: Bastion
-      health: 8
-      speed: 3
-    abilities:
-      - name: Gun
-        text: |-
-          Default
-          If in sentry stance:
-            Full action
-            Range 3, 4*target size damage.
-          If in tank stance:
-            Range 4, burst 1, deal 5 damage.
-          else: 
-            Range 5, 1 damage.
-      - name: Transform
-        text: |-
-          Change stance between recon and sentry.
-          End your turn.
-          While in sentry stance:
-            You are immobile.
-            You have armor 1.
-            You have facing.
-            Attacks from behind you deal double damage to you.
-      - name: Self Repair
-        text: |-
-          You heal 3.
-      - name: Configuration Tank
-        text: |-
-          Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
-          Free action at start of turn, Spend 5 charges:
-            Enter tank stance for rest of battle.
-            While in tank stance, you have armor 1.
-  - hero:
-      name: Winston
-      health: 10
-      speed: 3
-      size: 2
-      dodge: -2
-    abilities:
-      - name: Tesla Cannon
-        text: |-
-          Default
-          Range 1, blast 1, deal 2 damage to enemies.
-      - name: Jump Pack
-        text: |-
-          1/battle
-          Fly up to double your speed, ending on the ground.
-          Deal 2 damage to each adjacent enemy.
-      - name: Barrier Projector
-        text: |-
-          1/battle, quick
-          Range 1, Summon a blast 1 field of Barrier terrain.
-      - name: Barrier
-        text: |-
-          8hp
-          Enemy non-piercing attacks through the edges of the barrier hit the barrier instead.
-      - name: Primal Rage
-        text: |-
-          Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
-          Interrupt, spend 5 charges:
-              You enter primal stance.
-      - name: Primal Stance
-        text: |-
-          Entry:
-            Set your current and maximum health to 18.
-          Your move speed is doubled
-          You can only use your default abilities and Jump Pack, ignoring its 1/scene requirement.
-          Start of turn, free action, you may end primal stance.
-          Leave:
-            Lower your current and maximum health to default.
-  - hero:
-      name: Tracer
-      health: 6
-      speed: 4
-    abilities:
-      - name: Pulse Pistols
-        text: |-
-          default
-          range 2, 3 damage.
-      - name: Blink
-        text: |-
-          3 Charges
-          1 charge, Interrupt
-            if interrupting an action:
-              Gain +2 dodge during the interrupted action. 
-              After the action, teleport up to 3 spaces.
-            else:
-              teleport up to 3.
-      - name: Recall
-        text: |-
-          1/battle
-          Interrupt
-          Reset your health to what it was at the end of your last turn.
-          Teleport as close as possible to where you were at the end of your last turn.
-      - name: Summon Pulse Bomb
-        text: |-
-          Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
-          Spend 5 charges:
-            Place a Pulse Bomb in range 1
-            orasd
-            Range 1, +1 Dodge, 
-              hit: attach a pulse bomb to the target as a status effect. 
-              miss: attach a pulse bomb to the ground in the target's space.
-      - name: Pulse Bomb
-        text: |- 
-          At the start of the creator's turn:
-          destroy this,
-          deal 9 damage to anyone in this space,
-          and 3 damage to all enemies in blast 2.
-  - hero:
-      name: Mercy
-      health: 6
-      speed: 3
-    abilities:
-      - name: Regeneration
-        text: |-
-          Passive.
-          At the start of your turn, if you did not take damage since your last turn, heal 3.
-          You are immune to fall damage.
-      - name: Guardian Angel
-        text: |-
-          Move action
-          Target ally or allied corpse in line of sight. Fly to any space adjacent to them as directly as possible.
-      - name: Caduceus Staff
-        text: |-
-          Default
-          Target ally in range 4
-          Choose one:
-            - Heal target 4hp.
-            - Until end of target's next turn, they deal +1 damage.
-      - name: Caduceus Blaster
-        text: |-
-          Default
-          range 4, 2 damage
-      - name: Resurrect
-        text: |-
-          Allies leave corpses.
-          ---
-          Full action, 1/battle, range 1
-            Resurrect target corpse to full health.
-      - name: Valkyrie
-        text: |-
-          Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
-          Spend 5 charges:
-            Enter Valkyrie stance
-      - name: Valkyrie Stance
-        text: |-
-          For rest of battle:
-            At the beginning of your turn, heal 2hp.
-            Your caduceus staff has blast 3 and affects all allies in aoe.
-            You can fly in any direction when moving and can hover.
+sets:
+  - name: Overwatch
+    hero_boxes:
+      - hero:
+          name: Moira
+          health: 6
+          speed: 3
+        decks:
+          - abilities:
+              - name: Damage Biotic Grasp
+                text: |-
+                  Default
+                  Range 4, 2 damage.
+                  Heal 1.
+              - name: Healing Biotic Grasp
+                text: |-
+                  Piercing cone 3.
+                  Allies heal 3.
+              - name: Fade
+                text: |-
+                  1/battle, interrupt.
+                  Teleport up to 4 spaces.
+                  You may purge any number of effects from yourself.
+              - name: Summon Biotic Orb
+                text: |-
+                  1/battle, Range 1
+                  Summon a Healing Biotic Orb or Damage Biotic Orb.
+              - name: Healing Biotic Orb
+                text: |-
+                  Has facing.
+                  At the beginning of your turn, burst 1, heal 2 to all allies
+                  Then move 2 spaces forwards, skipping spaces occupied by units.
+              - name: Damage Biotic Orb
+                text: |-
+                  Has facing.
+                  At the beginning of your turn, burst 1, deal 2 damage to all enemies. 
+                  Then move 2 spaces forwards, skipping spaces occupied by units.
+              - name: Coalescence
+                text: |-
+                  Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
+                  Spend 5 charges:
+                  Full action
+                  Move up to 2.
+                  Heal 2.
+                  Piercing line, 2 damage to enemies, heal 4 to allies.
+
+
+
+
+      - hero:
+          name: Reinhardt
+          health: 12
+          speed: 3
+          size: 2
+          dodge: -2
+        decks:
+          - abilities:
+              - name: Armor
+                text: |-
+                  While you have 3+ HD, you have 1 damage resistance.
+              - name: Steadfast
+                text: |-
+                  Passive.
+                  Immune to involuntary movement.
+              - name: Rocket Hammer
+                text: |-
+                  Default
+                  Blast 1, range 0. Deal 2 damage
+              - name: Barrier Field
+                text: |-
+                  Reaction, you on an ally is attacked
+                  Create a 4space line of barrier terrain adjacent to you. The barrier has 4HD and moves with you.
+                  Opponents' non-piercing attacks through the barrier hit the barrier instead.
+                  While you have the barrier, you are slowed and disarmed.
+                  You can dismiss the barrier at the end of your turn as a free action.
+                  When you destroy and recreate the barrier, it keeps its previous health.
+              - name: Charge
+                text: |-
+                  Full Action, 1/battle
+                  Move as far as possible in a line.
+                  When you contact an enemy, roll attack with +2 dodge. 
+                  The first enemy hit this way is pushed with you and take 7 damage.
+              - name: Fire Strike
+                text:
+                  Line 8, piercing, +1 dodge, 3 damage
+                  Cooldown 1
+              - name: Earthshatter
+                text: |-
+                  Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
+                  Spend 5 charges:
+                    Cone 4, piercing, 1 damage and stun
+      - hero:
+          name: Bastion
+          health: 8
+          speed: 3
+        decks:
+          - abilities:
+              - name: Gun
+                text: |-
+                  Default
+                  If in sentry stance:
+                    Full action
+                    Range 3, 4*target size damage.
+                  If in tank stance:
+                    Range 4, burst 1, deal 5 damage.
+                  else: 
+                    Range 5, 1 damage.
+              - name: Transform
+                text: |-
+                  Change stance between recon and sentry.
+                  End your turn.
+                  While in sentry stance:
+                    You are immobile.
+                    You have armor 1.
+                    You have facing.
+                    Attacks from behind you deal double damage to you.
+              - name: Self Repair
+                text: |-
+                  You heal 3.
+              - name: Configuration Tank
+                text: |-
+                  Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
+                  Free action at start of turn, Spend 5 charges:
+                    Enter tank stance for rest of battle.
+                    While in tank stance, you have armor 1.
+      - hero:
+          name: Winston
+          health: 10
+          speed: 3
+          size: 2
+          dodge: -2
+        decks:
+          - abilities:
+              - name: Tesla Cannon
+                text: |-
+                  Default
+                  Range 1, blast 1, deal 2 damage to enemies.
+              - name: Jump Pack
+                text: |-
+                  1/battle
+                  Fly up to double your speed, ending on the ground.
+                  Deal 2 damage to each adjacent enemy.
+              - name: Barrier Projector
+                text: |-
+                  1/battle, quick
+                  Range 1, Summon a blast 1 field of Barrier terrain.
+              - name: Barrier
+                text: |-
+                  8hp
+                  Enemy non-piercing attacks through the edges of the barrier hit the barrier instead.
+              - name: Primal Rage
+                text: |-
+                  Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
+                  Interrupt, spend 5 charges:
+                      You enter primal stance.
+              - name: Primal Stance
+                text: |-
+                  Entry:
+                    Set your current and maximum health to 18.
+                  Your move speed is doubled
+                  You can only use your default abilities and Jump Pack, ignoring its 1/scene requirement.
+                  Start of turn, free action, you may end primal stance.
+                  Leave:
+                    Lower your current and maximum health to default.
+      - hero:
+          name: Tracer
+          health: 6
+          speed: 4
+        decks:
+          - abilities:
+              - name: Pulse Pistols
+                text: |-
+                  default
+                  range 2, 3 damage.
+              - name: Blink
+                text: |-
+                  3 Charges
+                  1 charge, Interrupt
+                    if interrupting an action:
+                      Gain +2 dodge during the interrupted action. 
+                      After the action, teleport up to 3 spaces.
+                    else:
+                      teleport up to 3.
+              - name: Recall
+                text: |-
+                  1/battle
+                  Interrupt
+                  Reset your health to what it was at the end of your last turn.
+                  Teleport as close as possible to where you were at the end of your last turn.
+              - name: Summon Pulse Bomb
+                text: |-
+                  Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
+                  Spend 5 charges:
+                    Place a Pulse Bomb in range 1
+                    orasd
+                    Range 1, +1 Dodge, 
+                      hit: attach a pulse bomb to the target as a status effect. 
+                      miss: attach a pulse bomb to the ground in the target's space.
+              - name: Pulse Bomb
+                text: |-
+                  At the start of the creator's turn:
+                  destroy this,
+                  deal 9 damage to anyone in this space,
+                  and 3 damage to all enemies in blast 2.
+      - hero:
+          name: Mercy
+          health: 6
+          speed: 3
+        decks:
+          - abilities:
+              - name: Regeneration
+                text: |-
+                  Passive.
+                  At the start of your turn, if you did not take damage since your last turn, heal 3.
+                  You are immune to fall damage.
+              - name: Guardian Angel
+                text: |-
+                  Move action
+                  Target ally or allied corpse in line of sight. Fly to any space adjacent to them as directly as possible.
+              - name: Caduceus Staff
+                text: |-
+                  Default
+                  Target ally in range 4
+                  Choose one:
+                    - Heal target 4hp.
+                    - Until end of target's next turn, they deal +1 damage.
+              - name: Caduceus Blaster
+                text: |-
+                  Default
+                  range 4, 2 damage
+              - name: Resurrect
+                text: |-
+                  Allies leave corpses.
+                  ---
+                  Full action, 1/battle, range 1
+                    Resurrect target corpse to full health.
+              - name: Valkyrie
+                text: |-
+                  Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
+                  Spend 5 charges:
+                    Enter Valkyrie stance
+              - name: Valkyrie Stance
+                text: |-
+                  For rest of battle:
+                    At the beginning of your turn, heal 2hp.
+                    Your caduceus staff has blast 3 and affects all allies in aoe.
+                    You can fly in any direction when moving and can hover.
