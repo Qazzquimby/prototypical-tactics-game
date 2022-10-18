@@ -15,7 +15,7 @@ class BagParser:
         row = 1
         while row < sheet.nrows:
             name = sheet.cell(rowx=row, colx=0).value
-            type = read_fromlist(
+            object_type = read_fromlist(
                 sheet.cell(rowx=row, colx=1).value, ("bag", "infinite-bag")
             )
             color = ColorReader.read_color(sheet.cell(rowx=row, colx=2).value)
@@ -23,22 +23,22 @@ class BagParser:
 
             bag = (
                 Bag(name, size, color)
-                if type == "bag"
+                if object_type == "bag"
                 else InfiniteBag(name, size, color)
             )
-            contentNum = 0
-            while contentNum < (sheet.ncols - 4):
-                content = read_content(sheet.cell(rowx=row, colx=contentNum + 4).value)
+            content_num = 0
+            while content_num < (sheet.ncols - 4):
+                content = read_content(sheet.cell(rowx=row, colx=content_num + 4).value)
                 for key, item in enumerate(content):
-                    bag.addContent(item[0], self.findType(item[1]))
-                contentNum += 1
+                    bag.addContent(item[0], self.find_type(item[1]))
+                content_num += 1
 
             bags.append(bag)
             row += 1
         return bags
 
-    def findType(self, name):
-        for type in self.types:
-            if type.name == name:
-                return type
+    def find_type(self, name):
+        for object_type in self.types:
+            if object_type.name == name:
+                return object_type
         raise ValueError("Unknown bag content: `" + str(name) + "`.") from None

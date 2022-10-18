@@ -139,7 +139,7 @@ def parse_file(excel_file, progress_callback):
     progress_callback(str(len(decks)) + " decks successfully extracted.")
 
     progress_callback("Reading bags... ", False)
-    bag_parser = BagParser(tokens + dice + complex_objects + decks)
+    bag_parser = BagParser(types=tokens + dice + complex_objects + decks)
     bags = bag_parser.parse(workbook.sheet_by_name("Containers"))
     progress_callback(str(len(bags)) + " bags successfully extracted.")
 
