@@ -60,19 +60,7 @@ class UnitCard(Card, Token):
 
 
 class Hero(UnitCard):
-    def make_card_row(self, hero_name: str):
-        return [
-            self.name,
-            HERO_CARD_LABEL,
-            self.name,
-            SPEED_LABEL,
-            str(self.speed),
-            HEALTH_LABEL,
-            str(self.health),
-            SPEED_LABEL,
-            str(self.speed),
-            hero_name,
-        ]
+    pass
 
 
 BASIC = "Basic"
@@ -190,7 +178,10 @@ DEFAULT_XLS = {
     SheetNames.DECKS: [],
     SheetNames.CONTAINERS: [
         ["NAME", "TYPE", "COLOR", "SIZE", "CONTENTS"],
-        ["Characters", "bag", "black", "1"],
+        ["Sets", "bag", "black", "1"]
+        # default is game sets
+        # in game sets are hero boxes
+        # in hero boxes are decks (not bags)  ["Characters", "bag", "black", "1"],
     ],
     SheetNames.TOKENS: [
         [
@@ -219,23 +210,38 @@ def make_deck_name(character_name: str):
 def game_to_xls(game: Game) -> Sheets:
     sheets = deepcopy(DEFAULT_XLS)
 
-    for deck in game.decks:
-        deck_name = make_deck_name(deck.hero.name)
+    for game_set in game.sets:
+        game_set_to_xlsx(game_set, sheets)
+
+    return sheets
+
+
+def game_set_to_xlsx(game_set: GameSet, sheets: Sheets) -> Sheets:
+    # Make a bag for each set
+    for hero_box in game_set.hero_boxes:
+        hero_box_to_xlsx(game_set, hero_box, sheets)
+
+
+def hero_box_to_xlsx(game_set: GameSet, hero_box: HeroBox, sheets: Sheets) -> Sheets:
+    sheets[SheetNames.COMPLEX_OBJECTS].append(
+        hero_box.hero.make_card_row(hero_box.hero.name)
+    )
+
+    for deck in hero_box.decks:
+        deck_name = make_deck_name(hero_box.hero.name)
 
         sheets[SheetNames.DECKS].append(["Deck", deck_name])
 
         # Add cards
         for card in deck.cards:
             sheets[SheetNames.COMPLEX_OBJECTS].append(
-                card.make_card_row(deck.hero.name)
+                card.make_card_row(hero_box.hero.name)
             )
 
             sheets[SheetNames.DECKS].append([card.name, "1"])
 
         # Setup containers
         sheets[SheetNames.CONTAINERS][1].append(deck_name)
-
-    return sheets
 
 
 def file_to_xls(src, dest=None) -> Sheets:

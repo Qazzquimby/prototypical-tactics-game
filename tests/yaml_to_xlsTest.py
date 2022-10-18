@@ -14,31 +14,44 @@ from yaml_to_xls import (
     SPEED_LABEL,
     HEALTH_LABEL,
     Game,
+    HeroBox,
+    Hero,
+    GameSet,
 )
 
 MY_TEST_CHAR_NAME = "My Test Char"
 MY_TEST_CHAR_SPEED = 1
 MY_TEST_CHAR_HEALTH = 2
 MY_TEST_CHAR_SIZE = 3
-MY_TEST_CHAR_HERO = UnitCard(
+MY_TEST_CHAR_HERO = Hero(
     name=MY_TEST_CHAR_NAME,
     speed=MY_TEST_CHAR_SPEED,
     health=MY_TEST_CHAR_HEALTH,
     size=MY_TEST_CHAR_SIZE,
 )
-MY_TEST_CHAR__NO_ABILITIES = Deck(hero=MY_TEST_CHAR_HERO)
+MY_TEST_CHAR__NO_ABILITIES = HeroBox(hero=MY_TEST_CHAR_HERO, decks=[])
 
 MY_ABILITY_NAME = "My Ability"
 MY_ABILITY_COST = ""
 MY_ABILITY_TEXT = "My Ability Text"
 MY_ABILITY = Ability(name=MY_ABILITY_NAME, type=BASIC, text=MY_ABILITY_TEXT)
-MY_TEST_CHAR__WITH_ABILITY = Deck(hero=MY_TEST_CHAR_HERO, abilities=[MY_ABILITY])
+MY_TEST_CHAR__WITH_ABILITY = HeroBox(
+    hero=MY_TEST_CHAR_HERO, decks=[Deck(abilities=[MY_ABILITY])]
+)
 
 
 def test_empty_file():
-    decks = Game(decks=[])
+    decks = Game(sets=[])
     result = game_to_xls(decks)
     assert result == DEFAULT_XLS
+
+
+def sets_to_xls(sets):
+    return game_to_xls(Game(sets=sets))
+
+
+def make_set(hero_boxes, name="set0"):
+    return GameSet(name=name, hero_boxes=hero_boxes)
 
 
 @pytest.mark.parametrize(
@@ -53,10 +66,15 @@ def test_empty_file():
     ],
 )
 def test_single_character__irrelevant_sheets_unchanged(sheet_name):
-    result = game_to_xls(Game(decks=[MY_TEST_CHAR__NO_ABILITIES]))[
-        SheetNames.COMPLEX_TYPES
-    ]
-    assert result == DEFAULT_XLS[SheetNames.COMPLEX_TYPES]
+    xls = sets_to_xls(
+        [
+            make_set(
+                hero_boxes=[MY_TEST_CHAR__NO_ABILITIES],
+            )
+        ]
+    )
+    result_complex_types = xls[SheetNames.COMPLEX_TYPES]
+    assert result_complex_types == DEFAULT_XLS[SheetNames.COMPLEX_TYPES]
 
 
 HERO_COMPLEX_OBJECT_ROW = [
@@ -72,11 +90,9 @@ HERO_COMPLEX_OBJECT_ROW = [
 
 
 def test_single_empty_character__complex_objects__just_hero_added():
-    result = game_to_xls(Game(decks=[MY_TEST_CHAR__NO_ABILITIES]))[
-        SheetNames.COMPLEX_OBJECTS
-    ]
+    xls = sets_to_xls([make_set(hero_boxes=[MY_TEST_CHAR__NO_ABILITIES])])
+    result = xls[SheetNames.COMPLEX_OBJECTS]
     expected = DEFAULT_XLS[SheetNames.COMPLEX_OBJECTS] + [HERO_COMPLEX_OBJECT_ROW]
-
     assert result == expected
 
 
