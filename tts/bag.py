@@ -19,7 +19,7 @@ class Bag:
         return {
             "Name": "Infinite_Bag" if self.isInfinite else "Bag",
             "Transform": self.transform.as_dict(),
-            "Nickname": "",
+            "Nickname": self.name,
             "Description": "",
             "ColorDiffuse": {
                 "r": self.color[0],

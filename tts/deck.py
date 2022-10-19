@@ -27,7 +27,7 @@ class Deck:
         return {
             "Name": "Card",
             "Transform": self.transform.as_dict(),
-            "Nickname": "",
+            "Nickname": self.name,
             "Description": "",
             "ColorDiffuse": {"r": 0.713235259, "g": 0.713235259, "b": 0.713235259},
             "Locked": False,
