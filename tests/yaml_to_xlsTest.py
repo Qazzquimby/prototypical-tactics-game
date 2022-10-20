@@ -112,7 +112,7 @@ def test_single_empty_character__deck_added_to_bag():
             "bag",
             "red",
             "1",
-            # make_deck_name(MY_TEST_CHAR_NAME), # they have no deck in this test
+            make_deck_name(MY_TEST_CHAR_NAME),
         ]
     )
     expected.append(["set0", "bag", "black", "2", make_box_name(MY_TEST_CHAR_NAME)])
@@ -121,9 +121,8 @@ def test_single_empty_character__deck_added_to_bag():
 
 
 def test_character_abilities_created():
-    result = game_to_xls(Game(decks=[MY_TEST_CHAR__WITH_ABILITY]))[
-        SheetNames.COMPLEX_OBJECTS
-    ]
+    xls = sets_to_xls([make_set(hero_boxes=[MY_TEST_CHAR__WITH_ABILITY])])
+    result = xls[SheetNames.COMPLEX_OBJECTS]
     expected = TEST_DEFAULT_XLS[SheetNames.COMPLEX_OBJECTS]
 
     expected += [
@@ -142,9 +141,10 @@ def test_character_abilities_created():
 
 
 def test_single_empty_character__deck__just_hero_added():
-    result = game_to_xls(Game(decks=[MY_TEST_CHAR__NO_ABILITIES]))[SheetNames.DECKS]
+    xls = sets_to_xls([make_set(hero_boxes=[MY_TEST_CHAR__NO_ABILITIES])])
+    result = xls[SheetNames.DECKS]
     expected = (
-        get_default_xls()[SheetNames.DECKS]
+        TEST_DEFAULT_XLS[SheetNames.DECKS]
         + [["Deck", make_deck_name(MY_TEST_CHAR_NAME)]]
         + [[MY_TEST_CHAR__NO_ABILITIES.hero.name, "1"]]
     )
@@ -153,9 +153,10 @@ def test_single_empty_character__deck__just_hero_added():
 
 
 def test_single_character__deck__all_added():
-    result = game_to_xls(Game(decks=[MY_TEST_CHAR__WITH_ABILITY]))[SheetNames.DECKS]
+    xls = sets_to_xls([make_set(hero_boxes=[MY_TEST_CHAR__WITH_ABILITY])])
+    result = xls[SheetNames.DECKS]
     expected = (
-        DEFAULT_XLS[SheetNames.DECKS]
+        TEST_DEFAULT_XLS[SheetNames.DECKS]
         + [["Deck", make_deck_name(MY_TEST_CHAR_NAME)]]
         + [[MY_TEST_CHAR__NO_ABILITIES.hero.name, "1"]]
         + [
