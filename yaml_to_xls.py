@@ -99,7 +99,7 @@ class Deck(BaseModel):
 
     @property
     def cards(self) -> list[Card]:
-        return [self.hero] + self.abilities + self.units
+        return self.abilities + self.units
 
 
 class HeroBox(BaseModel):
@@ -178,7 +178,7 @@ DEFAULT_XLS = {
     SheetNames.DECKS: [],
     SheetNames.CONTAINERS: [
         ["NAME", "TYPE", "COLOR", "SIZE", "CONTENTS"],
-        ["Sets", "bag", "black", "1"]
+        ["Sets", "bag", "white", "3"]
         # default is game sets
         # in game sets are hero boxes
         # in hero boxes are decks (not bags)  ["Characters", "bag", "black", "1"],
@@ -207,6 +207,10 @@ def make_deck_name(character_name: str):
     return f"{character_name} deck"
 
 
+def make_box_name(character_name: str):
+    return f"{character_name} box"
+
+
 def game_to_xls(game: Game) -> Sheets:
     sheets = deepcopy(DEFAULT_XLS)
 
@@ -217,20 +221,34 @@ def game_to_xls(game: Game) -> Sheets:
 
 
 def game_set_to_xlsx(game_set: GameSet, sheets: Sheets) -> Sheets:
+    container_row = [game_set.name, "bag", "black", "2"]
+    sheets[SheetNames.CONTAINERS][1].append(game_set.name)
+
     # Make a bag for each set
     for hero_box in game_set.hero_boxes:
-        hero_box_to_xlsx(game_set, hero_box, sheets)
+        hero_box_to_xlsx(hero_box, sheets)
+        container_row.append(make_box_name(hero_box.hero.name))
+
+    sheets[SheetNames.CONTAINERS].append(container_row)
 
 
-def hero_box_to_xlsx(game_set: GameSet, hero_box: HeroBox, sheets: Sheets) -> Sheets:
+def hero_box_to_xlsx(hero_box: HeroBox, sheets: Sheets) -> Sheets:
+    container_row = [make_box_name(hero_box.hero.name), "bag", "red", "1"]
+
     sheets[SheetNames.COMPLEX_OBJECTS].append(
         hero_box.hero.make_card_row(hero_box.hero.name)
     )
 
+    # refactor this into separate methods make_deck and add_cards
+
     for deck in hero_box.decks:
-        deck_name = make_deck_name(hero_box.hero.name)
+        deck_name = make_deck_name(
+            hero_box.hero.name
+        )  # this will need to change when a hero has multiple loadouts
+        container_row.append(deck_name)
 
         sheets[SheetNames.DECKS].append(["Deck", deck_name])
+        sheets[SheetNames.DECKS].append([hero_box.hero.name, "1"])
 
         # Add cards
         for card in deck.cards:
@@ -239,9 +257,7 @@ def hero_box_to_xlsx(game_set: GameSet, hero_box: HeroBox, sheets: Sheets) -> Sh
             )
 
             sheets[SheetNames.DECKS].append([card.name, "1"])
-
-        # Setup containers
-        sheets[SheetNames.CONTAINERS][1].append(deck_name)
+    sheets[SheetNames.CONTAINERS].append(container_row)
 
 
 def file_to_xls(src, dest=None) -> Sheets:

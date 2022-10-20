@@ -17,6 +17,7 @@ from yaml_to_xls import (
     HeroBox,
     Hero,
     GameSet,
+    make_box_name,
 )
 
 MY_TEST_CHAR_NAME = "My Test Char"
@@ -89,19 +90,33 @@ HERO_COMPLEX_OBJECT_ROW = [
 ]
 
 
+TEST_DEFAULT_XLS = DEFAULT_XLS.copy()
+
+
 def test_single_empty_character__complex_objects__just_hero_added():
     xls = sets_to_xls([make_set(hero_boxes=[MY_TEST_CHAR__NO_ABILITIES])])
     result = xls[SheetNames.COMPLEX_OBJECTS]
-    expected = DEFAULT_XLS[SheetNames.COMPLEX_OBJECTS] + [HERO_COMPLEX_OBJECT_ROW]
+    expected = TEST_DEFAULT_XLS[SheetNames.COMPLEX_OBJECTS] + [HERO_COMPLEX_OBJECT_ROW]
     assert result == expected
 
 
 def test_single_empty_character__deck_added_to_bag():
-    result = game_to_xls(Game(decks=[MY_TEST_CHAR__NO_ABILITIES]))[
-        SheetNames.CONTAINERS
-    ]
-    expected = DEFAULT_XLS[SheetNames.CONTAINERS]
-    expected[1].append(make_deck_name(MY_TEST_CHAR_NAME))
+    xls = sets_to_xls([make_set(hero_boxes=[MY_TEST_CHAR__NO_ABILITIES])])
+    result = xls[SheetNames.CONTAINERS]
+
+    expected = TEST_DEFAULT_XLS[SheetNames.CONTAINERS]
+    expected[1].append("set0")
+    expected.append(
+        [
+            make_box_name(MY_TEST_CHAR_NAME),
+            "bag",
+            "red",
+            "1",
+            # make_deck_name(MY_TEST_CHAR_NAME), # they have no deck in this test
+        ]
+    )
+    expected.append(["set0", "bag", "black", "2", make_box_name(MY_TEST_CHAR_NAME)])
+
     assert result == expected
 
 
@@ -109,7 +124,7 @@ def test_character_abilities_created():
     result = game_to_xls(Game(decks=[MY_TEST_CHAR__WITH_ABILITY]))[
         SheetNames.COMPLEX_OBJECTS
     ]
-    expected = DEFAULT_XLS[SheetNames.COMPLEX_OBJECTS]
+    expected = TEST_DEFAULT_XLS[SheetNames.COMPLEX_OBJECTS]
 
     expected += [
         HERO_COMPLEX_OBJECT_ROW,
@@ -129,7 +144,7 @@ def test_character_abilities_created():
 def test_single_empty_character__deck__just_hero_added():
     result = game_to_xls(Game(decks=[MY_TEST_CHAR__NO_ABILITIES]))[SheetNames.DECKS]
     expected = (
-        DEFAULT_XLS[SheetNames.DECKS]
+        get_default_xls()[SheetNames.DECKS]
         + [["Deck", make_deck_name(MY_TEST_CHAR_NAME)]]
         + [[MY_TEST_CHAR__NO_ABILITIES.hero.name, "1"]]
     )
