@@ -246,6 +246,8 @@ def hero_box_to_xlsx(hero_box: HeroBox, sheets: Sheets) -> Sheets:
         deck_name = make_deck_name(
             hero_box.hero.name
         )  # this will need to change when a hero has multiple loadouts
+
+        sheets[SheetNames.DECKS] += [["Deck", deck_name], [hero_box.hero.name, "1"]]
         container_row.append(deck_name)
 
         # Add cards
@@ -253,8 +255,8 @@ def hero_box_to_xlsx(hero_box: HeroBox, sheets: Sheets) -> Sheets:
             sheets[SheetNames.COMPLEX_OBJECTS].append(
                 card.make_card_row(hero_box.hero.name)
             )
-
             sheets[SheetNames.DECKS].append([card.name, "1"])
+
     sheets[SheetNames.CONTAINERS].append(container_row)
 
 
