@@ -171,16 +171,29 @@ def test_single_character__deck__all_added():
 
 def test_parse_dict_to_models():
     game = {
-        "decks": [
+        "sets": [
             {
-                "hero": {
-                    "name": "a",
-                    "speed": 1,
-                    "health": 2,
-                    "size": 3,
-                },
-                "abilities": [
-                    {"name": "a's ability", "type": BASIC, "text": "ability text"}
+                "name": "set0",
+                "hero_boxes": [
+                    {
+                        "hero": {
+                            "name": "a",
+                            "speed": 1,
+                            "health": 2,
+                            "size": 3,
+                        },
+                        "decks": [
+                            {
+                                "abilities": [
+                                    {
+                                        "name": "a's ability",
+                                        "type": BASIC,
+                                        "text": "ability text",
+                                    }
+                                ]
+                            }
+                        ],
+                    }
                 ],
             }
         ]
@@ -189,12 +202,24 @@ def test_parse_dict_to_models():
     result = parse_game(game)
 
     expected = Game(
-        decks=[
-            Deck(
-                hero=UnitCard(name="a", speed=1, health=2, size=3),
-                abilities=[
-                    Ability(name="a's ability", type=BASIC, text="ability text")
-                ],
+        sets=[
+            make_set(
+                hero_boxes=[
+                    HeroBox(
+                        hero=Hero(name="a", speed=1, health=2, size=3),
+                        decks=[
+                            Deck(
+                                abilities=[
+                                    Ability(
+                                        name="a's ability",
+                                        type=BASIC,
+                                        text="ability text",
+                                    )
+                                ],
+                            )
+                        ],
+                    )
+                ]
             )
         ]
     )
