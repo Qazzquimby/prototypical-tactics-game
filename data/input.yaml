@@ -167,6 +167,28 @@ sets:
                   Spend 5 charges:
                     Cone 4, piercing, 1 damage and stun
       - hero:
+          name: Soldier 76
+          health: 8
+          speed: 3
+        decks:
+          - abilities:
+              - name: Heavy Pulse Rifle
+                text: |-
+                  Default
+                  Range 3, 2 damage
+              - name: Sprint
+                text: |-
+                  Default
+                  Move up to 3.
+              - name: Helix Rockets
+                text: |-
+                  Range 3, +2 dodge, 5 damage, and 1 damage to others in burst 1 of target
+              - name: Tactical Visor
+                text: |-
+                  Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
+                  Spend 5 charges:
+                    Until end of battle, your attacks cannot miss, and you can make a free default attack at start of turn.
+      - hero:
           name: Tracer
           health: 6
           speed: 4
@@ -179,7 +201,7 @@ sets:
               - name: Blink
                 text: |-
                   3 Charges
-                  1 charge, Interrupt
+                  1 charge, Interrupt Dodge +2
                     if interrupting an action:
                       Gain +2 dodge during the interrupted action. 
                       After the action, teleport up to 3 spaces.
@@ -188,7 +210,7 @@ sets:
               - name: Recall
                 text: |-
                   1/battle
-                  Interrupt
+                  Interrupt Dodge +3
                   Reset your health to what it was at the end of your last turn.
                   Teleport as close as possible to where you were at the end of your last turn.
               - name: Summon Pulse Bomb
@@ -197,15 +219,7 @@ sets:
                   Spend 5 charges:
                     Pick a space in range 1. If there's a character in the space, attach the pulse bomb to them with dodge+2.
                     If it doesn't attach to someone, it drops in that space.
-                    Range 1, +1 Dodge, 
-                      hit: attach a pulse bomb to the target as a status effect. 
-                      miss: attach a pulse bomb to the ground in the target's space.
-              - name: Pulse Bomb
-                text: |-
-                  At the start of the creator's turn:
-                  destroy this,
-                  deal 9 damage to anyone in this space,
-                  and 3 damage to all enemies in blast 2.
+                    At the start of your next turn, destroy the pulse bomb. It deals 9 damage to anyone in its space and 3 damage to anyone else in burst 1.
       - hero:
           name: Winston
           health: 10
@@ -287,8 +301,16 @@ sets:
                 text: |-
                   Default
                   Range 3, Damage 1 + 1 for each energy counter you have.
-                - name: Particle Barrier
-                  text: |-
-                    2/battle
-                    Range 1, create a 3x3 field of barrier terrain.
-                    You gain 1 energy counter.
+              - name: Particle Barrier
+                text: |-
+                  2/battle
+                  Target in range 3
+                  Interrupt Dodge +2 on attack on the target
+                  Until the start of your next turn, when the target would take damage, negate that damage and you gain an energy counter.
+              - name: Graviton Surge
+                text: |-
+                  Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
+                  Spend 5 charges:
+                    Target empty space in range 3
+                    Pull enemies in burst 2 of the space as close to the center as possible, starting with the enemies nearest the center already. They get rooted 1.
+
