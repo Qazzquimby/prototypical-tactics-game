@@ -2,8 +2,85 @@ sets:
   - name: Overwatch
     hero_boxes:
       - hero:
+          name: Bastion
+          health: 10
+          speed: 3
+        decks:
+          - abilities:
+              - name: Gun
+                text: |-
+                  Default
+                  If in sentry stance:
+                    Full action
+                    Range 3, 4*target size damage.
+                  If in tank stance:
+                    Range 4, burst 1, deal 5 damage.
+                  else: 
+                    Range 5, 1 damage.
+              - name: Transform
+                text: |-
+                  Change stance between recon and sentry.
+                  End your turn.
+                  While in sentry stance:
+                    You are immobile.
+                    You have armor 1.
+                    You have facing.
+                    Attacks from behind you deal double damage to you.
+              - name: Self Repair
+                text: |-
+                  You heal 3.
+              - name: Configuration Tank
+                text: |-
+                  Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
+                  Free action at start of turn, Spend 5 charges:
+                    Enter tank stance for rest of battle.
+                    While in tank stance, you have armor 1.
+      - hero:
+          name: Mercy
+          health: 8
+          speed: 3
+        decks:
+          - abilities:
+              - name: Regeneration
+                text: |-
+                  Passive.
+                  At the start of your turn, if you did not take damage since your last turn, heal 3.
+                  You are immune to fall damage.
+              - name: Guardian Angel
+                text: |-
+                  Move action
+                  Target ally or allied corpse in line of sight. Fly to any space adjacent to them as directly as possible.
+              - name: Caduceus Staff
+                text: |-
+                  Default
+                  Target ally in range 4
+                  Choose one:
+                    - Heal target 4hp.
+                    - Until end of target's next turn, they deal +1 damage.
+              - name: Caduceus Blaster
+                text: |-
+                  Default
+                  range 4, 2 damage
+              - name: Resurrect
+                text: |-
+                  Allies leave corpses.
+                  ---
+                  Full action, 1/battle, range 1
+                    Resurrect target corpse to full health.
+              - name: Valkyrie
+                text: |-
+                  Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
+                  Spend 5 charges:
+                    Enter Valkyrie stance
+              - name: Valkyrie Stance
+                text: |-
+                  For rest of battle:
+                    At the beginning of your turn, heal 2hp.
+                    Your caduceus staff has blast 3 and affects all allies in aoe.
+                    You can fly in any direction when moving and can hover.
+      - hero:
           name: Moira
-          health: 6
+          health: 8
           speed: 3
         decks:
           - abilities:
@@ -90,39 +167,45 @@ sets:
                   Spend 5 charges:
                     Cone 4, piercing, 1 damage and stun
       - hero:
-          name: Bastion
-          health: 8
-          speed: 3
+          name: Tracer
+          health: 6
+          speed: 4
         decks:
           - abilities:
-              - name: Gun
+              - name: Pulse Pistols
                 text: |-
-                  Default
-                  If in sentry stance:
-                    Full action
-                    Range 3, 4*target size damage.
-                  If in tank stance:
-                    Range 4, burst 1, deal 5 damage.
-                  else: 
-                    Range 5, 1 damage.
-              - name: Transform
+                  default
+                  range 2, 3 damage.
+              - name: Blink
                 text: |-
-                  Change stance between recon and sentry.
-                  End your turn.
-                  While in sentry stance:
-                    You are immobile.
-                    You have armor 1.
-                    You have facing.
-                    Attacks from behind you deal double damage to you.
-              - name: Self Repair
+                  3 Charges
+                  1 charge, Interrupt
+                    if interrupting an action:
+                      Gain +2 dodge during the interrupted action. 
+                      After the action, teleport up to 3 spaces.
+                    else:
+                      teleport up to 3.
+              - name: Recall
                 text: |-
-                  You heal 3.
-              - name: Configuration Tank
+                  1/battle
+                  Interrupt
+                  Reset your health to what it was at the end of your last turn.
+                  Teleport as close as possible to where you were at the end of your last turn.
+              - name: Summon Pulse Bomb
                 text: |-
                   Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
-                  Free action at start of turn, Spend 5 charges:
-                    Enter tank stance for rest of battle.
-                    While in tank stance, you have armor 1.
+                  Spend 5 charges:
+                    Pick a space in range 1. If there's a character in the space, attach the pulse bomb to them with dodge+2.
+                    If it doesn't attach to someone, it drops in that space.
+                    Range 1, +1 Dodge, 
+                      hit: attach a pulse bomb to the target as a status effect. 
+                      miss: attach a pulse bomb to the ground in the target's space.
+              - name: Pulse Bomb
+                text: |-
+                  At the start of the creator's turn:
+                  destroy this,
+                  deal 9 damage to anyone in this space,
+                  and 3 damage to all enemies in blast 2.
       - hero:
           name: Winston
           health: 10
@@ -164,85 +247,48 @@ sets:
                   Leave:
                     Lower your current and maximum health to default.
       - hero:
-          name: Tracer
-          health: 6
-          speed: 4
-        decks:
-          - abilities:
-              - name: Pulse Pistols
-                text: |-
-                  default
-                  range 2, 3 damage.
-              - name: Blink
-                text: |-
-                  3 Charges
-                  1 charge, Interrupt
-                    if interrupting an action:
-                      Gain +2 dodge during the interrupted action. 
-                      After the action, teleport up to 3 spaces.
-                    else:
-                      teleport up to 3.
-              - name: Recall
-                text: |-
-                  1/battle
-                  Interrupt
-                  Reset your health to what it was at the end of your last turn.
-                  Teleport as close as possible to where you were at the end of your last turn.
-              - name: Summon Pulse Bomb
-                text: |-
-                  Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
-                  Spend 5 charges:
-                    Place a Pulse Bomb in range 1
-                    orasd
-                    Range 1, +1 Dodge, 
-                      hit: attach a pulse bomb to the target as a status effect. 
-                      miss: attach a pulse bomb to the ground in the target's space.
-              - name: Pulse Bomb
-                text: |-
-                  At the start of the creator's turn:
-                  destroy this,
-                  deal 9 damage to anyone in this space,
-                  and 3 damage to all enemies in blast 2.
-      - hero:
-          name: Mercy
-          health: 6
+          name: Zenyatta
+          health: 8
           speed: 3
         decks:
+            - abilities:
+                - name: Snap Kick
+                  text: |-
+                    Default
+                    Range 1, 2 damage, kb 2
+                - name: Orb of Destruction
+                  text: |-
+                    Default
+                    Range 3, dodge+1, 3 damage
+                - name: Orb of Harmony
+                  text: |-
+                    Default
+                    Range 4, +1 damage to target ally until end of turn.
+                - name: Orb of Harmony
+                  text: |-
+                    Mark an ally. At the start of your turn, heal them 2. When you use this again, it removes the original mark.
+                - name: Orb of Discord
+                  text: |-
+                    Mark an enemy. They take +1 damage from all attacks. When you use this again, it removes the original mark.
+                - name: Transcendence
+                  text: |-
+                    Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
+                    Reaction on dodge+2
+                    Spend 5 charges:
+                        Heal to full, heal all allies in burst 1 by 5, you are immune to damage till the start of your next turn.
+      - hero:
+          name: Zarya
+          health: 10
+          speed: 3
+          size: 1
+        decks:
           - abilities:
-              - name: Regeneration
-                text: |-
-                  Passive.
-                  At the start of your turn, if you did not take damage since your last turn, heal 3.
-                  You are immune to fall damage.
-              - name: Guardian Angel
-                text: |-
-                  Move action
-                  Target ally or allied corpse in line of sight. Fly to any space adjacent to them as directly as possible.
-              - name: Caduceus Staff
+              - name: Particle Cannon
                 text: |-
                   Default
-                  Target ally in range 4
-                  Choose one:
-                    - Heal target 4hp.
-                    - Until end of target's next turn, they deal +1 damage.
-              - name: Caduceus Blaster
-                text: |-
-                  Default
-                  range 4, 2 damage
-              - name: Resurrect
-                text: |-
-                  Allies leave corpses.
-                  ---
-                  Full action, 1/battle, range 1
-                    Resurrect target corpse to full health.
-              - name: Valkyrie
-                text: |-
-                  Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
-                  Spend 5 charges:
-                    Enter Valkyrie stance
-              - name: Valkyrie Stance
-                text: |-
-                  For rest of battle:
-                    At the beginning of your turn, heal 2hp.
-                    Your caduceus staff has blast 3 and affects all allies in aoe.
-                    You can fly in any direction when moving and can hover.
+                  Range 3, Damage 1 + 1 for each energy counter you have.
+                - name: Particle Barrier
+                  text: |-
+                    2/battle
+                    Range 1, create a 3x3 field of barrier terrain.
+                    You gain 1 energy counter.
