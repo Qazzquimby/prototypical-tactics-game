@@ -133,6 +133,7 @@ class SheetNames:
     DECKS = "Decks"
     TOKENS = "Tokens"
     PLACEMENT = "Placement"
+    FIGURINES = "Figurines"
 
 
 DEFAULT_XLS = {
@@ -200,6 +201,7 @@ DEFAULT_XLS = {
         ["HealthDie", "white", "1", "6"],
     ],
     SheetNames.PLACEMENT: [["", "", "", "", "Sets"]],
+    SheetNames.FIGURINES: [["NAME", "SIZE", "IMAGE-PATH"]],
 }
 
 

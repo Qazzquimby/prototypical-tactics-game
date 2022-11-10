@@ -15,6 +15,7 @@ from sheetParser.complexObjectParser import ComplexObjectParser
 from sheetParser.complexTypeParser import ComplexTypeParser
 from sheetParser.deckParser import DeckParser
 from sheetParser.diceParser import DiceParser
+from sheetParser.figurineParser import FigurineParser
 from sheetParser.tokenParser import TokenParser
 
 
@@ -117,6 +118,10 @@ def parse_file(excel_file, progress_callback):
     tokens = TokenParser.parse(workbook.sheet_by_name("Tokens"))
     progress_callback(str(len(tokens)) + " tokens successfully extracted.")
 
+    progress_callback("Reading figurines... ", False)
+    figurines = FigurineParser.parse(workbook.sheet_by_name("Figurines"))
+    progress_callback(str(len(figurines)) + " figurines successfully extracted.")
+
     progress_callback("Reading dice... ", False)
     dice = DiceParser.parse(workbook.sheet_by_name("Dice"))
     progress_callback(str(len(dice)) + " dice successfully extracted.")
@@ -139,7 +144,7 @@ def parse_file(excel_file, progress_callback):
     progress_callback(str(len(decks)) + " decks successfully extracted.")
 
     progress_callback("Reading bags... ", False)
-    bag_parser = BagParser(types=tokens + dice + complex_objects + decks)
+    bag_parser = BagParser(types=tokens + figurines + dice + complex_objects + decks)
     bags = bag_parser.parse(workbook.sheet_by_name("Containers"))
     progress_callback(str(len(bags)) + " bags successfully extracted.")
 

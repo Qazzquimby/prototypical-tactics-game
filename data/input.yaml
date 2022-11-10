@@ -120,10 +120,6 @@ sets:
                   Move up to 2.
                   Heal 2.
                   Piercing line, 2 damage to enemies, heal 4 to allies.
-
-
-
-
       - hero:
           name: Reinhardt
           health: 12
@@ -313,4 +309,49 @@ sets:
                   Spend 5 charges:
                     Target empty space in range 3
                     Pull enemies in burst 2 of the space as close to the center as possible, starting with the enemies nearest the center already. They get rooted 1.
+  - name: Dota
+    hero_boxes:
+      - hero:
+          name: Axe
+          health: 6
+          speed: 3
+          armor: 1
+        decks:
+          - abilities:
+              - name: Axe
+                text: |-
+                  Default
+                  Range 1, 2 damage
+              - name: Berserker's Call
+                text: |- 
+                  1/battle
+                  Until the beginning of your next turn, 
+                    you have +1 armor,
+                    and when an enemy starts their turn in range 1 of you, they must use a default attack targeting you, if possible.
+              - name: Culling Blade
+                text: |-
+                  1/battle
+                  Range 1, 3 damage, if the target is below half health, they are killed.
+              - name: Battle Hunger
+                text: |-
+                  1/battle
+                  Range 3
+                  Until end of battle,
+                    at the start of each of the target's turns, they take damage equal to your current armor.
+                    Moving away from you costs twice as many move spaces.
+                    This effect ends as soon as the target kills anything.
+              - name: Counter Helix
+                text: |-
+                  Reaction after being hit by an attack:
+                    Burst 1, 1 damage
+              - name: Culling Blade
+                text: |-
+                  Ultimate: 1/game
+                  Range 1
+                  on hit, if the target has 3 or less health:
+                   The target dies, but does not trigger any on-death reactions.
+                   You gain 1 armor until end of battle.
+                   This ability is refreshed.
+                  // Try health of 2 and keep armor for game
+                  
 

@@ -1,4 +1,6 @@
 import random
+
+from domain.figurine import Figurine
 from domain.token import Token
 from domain.token import ContentToken
 from domain.die import Die
@@ -11,6 +13,7 @@ from tts.die import Die as TTSDie
 from tts.deck import Deck as TTSDeck
 from tts.board import Board as TTSBoard
 from tts.token import Token as TTSToken
+from tts.figurine import Figurine as TTSFigurine
 from tts.bag import Bag as TTSBag
 from reader.content import read_content
 
@@ -56,6 +59,8 @@ class EntityCreator:
     def createEntity(self, coords, entity):
         if isinstance(entity, Token):
             return self.placeToken(coords, entity)
+        if isinstance(entity, Figurine):
+            return self.placeFigurine(coords, entity)
         if isinstance(entity, Die):
             return self.placeDie(coords, entity)
         if isinstance(entity, Deck):
@@ -104,6 +109,21 @@ class EntityCreator:
             )
             bs = SimpleToken(entity.entity, transform, entity.color)
             return bs
+
+    def placeFigurine(self, coords, entity):
+        transform = Transform(
+            coords[0],
+            YHEIGHT,
+            coords[1],
+            0,
+            180,
+            0,
+            entity.size,
+            entity.size,
+            entity.size,
+        )
+        bs = TTSFigurine(transform=transform, entity=entity)
+        return bs
 
     def placeDie(self, coords, entity):
         transform = Transform(
