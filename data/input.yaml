@@ -5,6 +5,7 @@ sets:
           name: Bastion
           health: 10
           speed: 3
+        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/272?cb=20220409014728
         decks:
           - abilities:
               - name: Gun
@@ -39,6 +40,7 @@ sets:
           name: Mercy
           health: 8
           speed: 3
+        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0f/Mercy-ow2-portrait.png/revision/latest/scale-to-width-down/149?cb=20191104213936
         decks:
           - abilities:
               - name: Regeneration
@@ -82,6 +84,7 @@ sets:
           name: Moira
           health: 8
           speed: 3
+        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b5/Moira.png/revision/latest/scale-to-width-down/162?cb=20171104021652
         decks:
           - abilities:
               - name: Damage Biotic Grasp
@@ -126,6 +129,7 @@ sets:
           speed: 3
           size: 2
           dodge: -2
+        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/3b/Reinhardt-ow2-portrait.png/revision/latest/scale-to-width-down/252?cb=20191104214011
         decks:
           - abilities:
               - name: Armor
@@ -166,6 +170,7 @@ sets:
           name: Soldier 76
           health: 8
           speed: 3
+        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Soldier76-portrait.png/revision/latest/scale-to-width-down/224?cb=20160620014955
         decks:
           - abilities:
               - name: Heavy Pulse Rifle
@@ -188,6 +193,7 @@ sets:
           name: Tracer
           health: 6
           speed: 4
+        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1b/Tracer_ow2_portrait.png/revision/latest/scale-to-width-down/116?cb=20220625025656
         decks:
           - abilities:
               - name: Pulse Pistols
@@ -222,6 +228,7 @@ sets:
           speed: 3
           size: 2
           dodge: -2
+        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7c/Winston-ow2-portrait.png/revision/latest/scale-to-width-down/279?cb=20191104221341
         decks:
           - abilities:
               - name: Tesla Cannon
@@ -260,6 +267,7 @@ sets:
           name: Zenyatta
           health: 8
           speed: 3
+        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/92/Zenyatta-portrait.png/revision/latest/scale-to-width-down/269?cb=20160620015935
         decks:
             - abilities:
                 - name: Snap Kick
@@ -291,6 +299,7 @@ sets:
           health: 10
           speed: 3
           size: 1
+        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Zarya-portrait.png/revision/latest/scale-to-width-down/350?cb=20160620015842
         decks:
           - abilities:
               - name: Particle Cannon
@@ -316,6 +325,7 @@ sets:
           health: 6
           speed: 3
           armor: 1
+        image: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/axe.png
         decks:
           - abilities:
               - name: Axe

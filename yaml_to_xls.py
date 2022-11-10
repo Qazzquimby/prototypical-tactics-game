@@ -106,6 +106,7 @@ class HeroBox(BaseModel):
     hero: Hero
     decks: list[Deck]
     tokens: list[Token] = []
+    image: str
     # maybe a description here
 
 
