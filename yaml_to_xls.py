@@ -199,7 +199,7 @@ DEFAULT_XLS = {
         ["NAME", "COLOR", "SIZE", "SIDES", "CONTENT?"],
         ["HealthDie", "white", "1", "6"],
     ],
-    SheetNames.PLACEMENT: [["", "", "", "", "Characters"]],
+    SheetNames.PLACEMENT: [["", "", "", "", "Sets"]],
 }
 
 
