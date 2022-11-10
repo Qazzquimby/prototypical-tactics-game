@@ -214,6 +214,10 @@ def make_box_name(character_name: str):
     return f"{character_name} box"
 
 
+def make_figurine_name(character_name: str):
+    return f"{character_name} figurine"
+
+
 def game_to_xls(game: Game) -> Sheets:
     sheets = deepcopy(DEFAULT_XLS)
 
@@ -241,6 +245,12 @@ def hero_box_to_xlsx(hero_box: HeroBox, sheets: Sheets) -> Sheets:
     sheets[SheetNames.COMPLEX_OBJECTS].append(
         hero_box.hero.make_card_row(hero_box.hero.name)
     )
+
+    figurine_name = make_figurine_name(hero_box.hero.name)
+    sheets[SheetNames.FIGURINES].append(
+        [figurine_name, hero_box.hero.size, hero_box.image]
+    )
+    container_row.append(figurine_name)
 
     if not hero_box.decks:
         hero_box.decks.append(Deck())

@@ -11,7 +11,7 @@ class Figurine:
         return {
             "Name": "Figurine_Custom",
             "Transform": self.transform.as_dict(),
-            "Nickname": self.entity.name,
+            "Nickname": self.entity.name.split(" figurine")[0],
             "Description": "",
             "ColorDiffuse": {"r": 0.713235259, "g": 0.713235259, "b": 0.713235259},
             "Locked": False,

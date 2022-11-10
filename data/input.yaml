@@ -325,7 +325,7 @@ sets:
           health: 6
           speed: 3
           armor: 1
-        image: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/axe.png
+        image: https://iili.io/yT240N.png
         decks:
           - abilities:
               - name: Axe
