@@ -37,6 +37,45 @@ sets:
                     Enter tank stance for rest of battle.
                     While in tank stance, you have armor 1.
       - hero:
+          name: Lucio
+          health: 8
+          speed: 3
+        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c1/Lucio-ow2-portrait.png/revision/latest/scale-to-width-down/148?cb=20191104073705
+        decks:
+          - abilities:
+            - name: Wall Ride
+              text: |-
+                Passive
+                Once per turn when you move next to a wall, you may move one space.
+            - name: Sonic Amplifier
+              text: |-
+                Default
+                Range 4, 2 damage, dodge+2.
+            - name: Soundwave
+              text: |-
+                Default
+                Range 1, 2 damage, kb 2.
+            - name: Crossfade
+              text: |-
+                Start in healing mode.
+                Passive:
+                  While in healing mode:
+                    At the start of your turn, you and allies in burst 2 heal 2.
+                  While in speed mode:
+                    At the start of your turn, you and allies in burst 2 can move up to 2.
+                ---
+                Free action:
+                  Switch modes
+            - name: Amp It Up
+              text: |-
+                Free action, 1/battle
+                You may change Crossfade modes.
+                Trigger your current crossfade mode, as if it was the start of your turn.
+            - name: Sound Barrier
+              text: |-
+                Range 3, 1 damage.
+                If you hit, you may push the target 1.
+      - hero:
           name: Mercy
           health: 8
           speed: 3
@@ -67,8 +106,12 @@ sets:
                 text: |-
                   Allies leave corpses.
                   ---
-                  Full action, 1/battle, range 1
-                    Resurrect target corpse to full health.
+                  1/battle
+                  Channel:
+                    At the start of your next turn, you may resurrect target corpse in range 1
+                  
+                  ?Full action, 1/battle, range 1
+                  ?  Resurrect target corpse to full health.
               - name: Valkyrie
                 text: |-
                   Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
@@ -98,7 +141,7 @@ sets:
                   Allies heal 3.
               - name: Fade
                 text: |-
-                  1/battle, interrupt.
+                  1/battle, reaction.
                   Teleport up to 4 spaces.
                   You may purge any number of effects from yourself.
               - name: Summon Biotic Orb
@@ -156,7 +199,7 @@ sets:
                   Full Action, 1/battle
                   Move as far as possible in a line.
                   When you contact an enemy, roll attack with +2 dodge. 
-                  The first enemy hit this way is pushed with you and take 7 damage.
+                  The first enemy hit this way is pushed with you, interrupted, and take 7 damage.
               - name: Fire Strike
                 text:
                   Line 8, piercing, +1 dodge, 3 damage
@@ -166,6 +209,37 @@ sets:
                   Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
                   Spend 5 charges:
                     Cone 4, piercing, 1 damage and stun
+      - hero:
+          name: Roadhog
+          health: 12
+          speed: 2
+        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/ce/Roadhog-Portrait.png/revision/latest/scale-to-width-down/345?cb=20160620014755
+        decks:
+          - abilities:
+              - name: Scrap Gun
+                text: |-
+                  Default
+                  Range 2, 4 damage, +1 dodge
+              - name: Take a Breather
+                text: |-
+                  1/battle
+                  Channel:
+                    Until the start of your next turn, you take half damage.
+                    At the start of your next turn, heal 6.
+              - name: Chain Hook
+                text: |-
+                  1/battle, Free action, range 5, +1 dodge
+                  1 damage, interrupt
+                  Pull target as close as possible.
+              - name: Whole Hog
+                text: |-
+                  Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
+                  Spend 5 charges:
+                    Until end of battle, you can only use default actions, and scrap gun changes to:
+                    Free action
+                    Range 1, 6 damage, kb 5
+                    or Range 2, 4 damage, kb 3
+                    or Range 3, 2 damage, kb 1
       - hero:
           name: Soldier 76
           health: 8
@@ -203,16 +277,12 @@ sets:
               - name: Blink
                 text: |-
                   3 Charges
-                  1 charge, Interrupt Dodge +2
-                    if interrupting an action:
-                      Gain +2 dodge during the interrupted action. 
-                      After the action, teleport up to 3 spaces.
-                    else:
+                  1 charge, Reaction Dodge +2
                       teleport up to 3.
               - name: Recall
                 text: |-
                   1/battle
-                  Interrupt Dodge +3
+                  Reaction Dodge +3
                   Reset your health to what it was at the end of your last turn.
                   Teleport as close as possible to where you were at the end of your last turn.
               - name: Summon Pulse Bomb
@@ -252,7 +322,7 @@ sets:
               - name: Primal Rage
                 text: |-
                   Ultimate: The first time each round that you deal or heal damage, gain 1 charge. These charges persist between rounds.
-                  Interrupt, spend 5 charges:
+                  Reaction Dodge +2, spend 5 charges:
                       You enter primal stance.
               - name: Primal Stance
                 text: |-
@@ -310,7 +380,7 @@ sets:
                 text: |-
                   2/battle
                   Target in range 3
-                  Interrupt Dodge +2 on attack on the target
+                  Reaction Dodge +2 on attack on the target
                   Until the start of your next turn, when the target would take damage, negate that damage and you gain an energy counter.
               - name: Graviton Surge
                 text: |-
