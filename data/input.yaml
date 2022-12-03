@@ -3,42 +3,43 @@ sets:
     hero_boxes:
       - hero:
           name: Bastion
-          health: 10
+          health: 8
           speed: 3
         image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/272?cb=20220409014728
         decks:
           - abilities:
-              - name: Gun
-                text: |-
-                  Default
-                  If in sentry stance:
-                    Full action
-                    5 damage, Range 2
-                    or 3 damage, Range 4
-                    Double damage against targets size 2+.
-                  If in tank stance:
-                    Range 4, burst 1, deal 5 damage.
-                  else: 
-                    Range 5, 1 damage.
-              - name: Transform
-                text: |-
-                  If in recon, enter sentry and end turn.
-                  If in sentry, enter recon and move 2.
-                  While in sentry stance:
-                    You are immobile.
-                    You have armor 1.
-                    You have facing.
-                    Attacks from behind you deal double damage to you.
-                    If interrupted, you change to sentry stance.
-              - name: Self Repair
-                text: |-
-                  You heal 3.
-              - name: Configuration Tank
-                text: |-
-                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                  Free action at start of turn, Spend 5 charges:
-                    Enter tank stance for rest of battle.
-                    While in tank stance, you have armor 1.
+            - name: Rotary Canon
+              text: |-
+                Default
+                Only usable in Assault stance
+                5 damage, Range 2
+                or 3 damage, Range 4
+                Double damage against targets size 2+.
+            - name: Light Machine Gun
+              text: |-
+                Default
+                Only usable in Recon stance
+                Range 4, 1 damage.
+            - name: Configuration Assault
+              text: |-
+                At the end of your turn, you may exit assault stance.
+                If interrupted, exit assault stance.
+
+                While in Assault stance:
+                  You are slowed.
+                  +1 armor
+                  You have facing, and attacks from behind you deal double damage to you.
+                  You may use Rotary Canon, and cannot use other abilities.
+            - name: A-36 Tactical Grenade
+              text: |-
+                Range 4, +2 dodge, 4 damage
+                Then 1 damage to all in burst 1 of the target space
+            - name: Configuration Artillery
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                  Mark 3 spaces. 
+                  At the beginning of your next turn, for each marked space, deal 10 damage to everyone inside, and 2 damage to everyone else in burst 1.
       - hero:
           name: Lucio
           health: 8
@@ -46,10 +47,16 @@ sets:
         image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c1/Lucio-ow2-portrait.png/revision/latest/scale-to-width-down/148?cb=20191104073705
         decks:
           - abilities:
+            - name: Crossfade
+              text: |-
+                Passive
+                At the start of your turn, choose one:
+                  You and allies in burst 1 heal 2.
+                  You and allies in burst 1 can move 1.
             - name: Wall Ride
               text: |-
                 Passive
-                Once per turn when you move next to a wall, you may move one space.
+                Once per turn when you move next to a wall, you may move one space for free.
             - name: Sonic Amplifier
               text: |-
                 Default
@@ -58,26 +65,15 @@ sets:
               text: |-
                 Default
                 Range 1, 2 damage, kb 2.
-            - name: Crossfade
-              text: |-
-                Start in healing mode.
-                Passive:
-                  While in healing mode:
-                    At the start of your turn, you and allies in burst 2 heal 2.
-                  While in speed mode:
-                    At the start of your turn, you and allies in burst 2 can move up to 2.
-                ---
-                Free action:
-                  Switch modes
             - name: Amp It Up
               text: |-
                 Free action, 1/battle
-                You may change Crossfade modes.
-                Trigger your current crossfade mode, as if it was the start of your turn.
+                Trigger Crossfade as if it was the start of your turn.
             - name: Sound Barrier
               text: |-
-                Range 3, 1 damage.
-                If you hit, you may push the target 1.
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                  Until the beginning of your next turn, you and allies in burst 3 have
       - hero:
           name: Mercy
           health: 8
@@ -89,15 +85,14 @@ sets:
               text: |-
                 Passive.
                 At the start of your turn, if you did not take damage since your last turn, heal 3.
-                You are immune to fall damage.
-            - name: Guardian Angel
+            - name: Souls
               text: |-
-                Move action
-                Target ally or allied corpse in line of sight. Fly to any space adjacent to them as directly as possible.
+                Passive.
+                Allies leave corpse makers when they die.
             - name: Caduceus Staff
               text: |-
                 Default
-                Target ally in range 4
+                Target ally in range 3
                 Choose one:
                   - Heal target 4hp.
                   - Until end of target's next turn, they deal +.5x damage.
@@ -105,27 +100,22 @@ sets:
               text: |-
                 Default
                 range 4, 2 damage
+            - name: Guardian Angel
+              text: |-
+                Fly to any space adjacent to an ally or friendly corpse, as directly as possible.
             - name: Resurrect
               text: |-
-                Allies leave corpses.
-                ---
                 1/battle
                 Channel:
-                  At the start of your next turn, you may resurrect target corpse in range 1
-                
-                ?Full action, 1/battle, range 1
-                ?  Resurrect target corpse to full health.
+                  At the start of your next turn, you may resurrect target corpse in range 1.
             - name: Valkyrie
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
-                  Enter Valkyrie stance
-            - name: Valkyrie Stance
-              text: |-
-                For rest of battle:
-                  At the beginning of your turn, heal 2hp.
-                  Your caduceus staff has blast 3 and affects all allies in aoe.
-                  You can fly in any direction when moving and can hover.
+                  At the beginning of each your turns, heal 2hp.
+                  Your Caduceus Staff has range 5, burst 2, and only affects allies.
+                  You can use Guardian Angel as a move action.
+                  You are always flying.
       - hero:
           name: Moira
           health: 8
@@ -144,37 +134,33 @@ sets:
                 Allies heal 3.
             - name: Fade
               text: |-
-                1/battle, reaction.
+                1/battle
+                Reaction dodge+3.
                 Teleport up to 4 spaces.
                 You may purge any number of effects from yourself.
             - name: Summon Biotic Orb
               text: |-
-                1/battle, Range 1
-                Summon a Healing Biotic Orb or Damage Biotic Orb.
-            - name: Healing Biotic Orb
-              text: |-
-                Field. Has facing.
-                At the beginning of your turn, burst 1, heal 2 to all allies
-                Then move 2 spaces forwards.
-            - name: Damage Biotic Orb
-              text: |-
-                Field. Has facing.
-                At the beginning of your turn, burst 1, deal 2 damage to all enemies. 
-                Then move 2 spaces forwards.
+                1/battle
+                Choose Damage or Healing.
+                Summon a Biotic Orb in range 1. 
+                Biotic Orb is a size 1 field with facing.
+                At the beginning of your turn it performs:
+                  If you chose Healing, Burst 1, heal 2 to all allies
+                  If you chose Damage, Burst 1, 2 damage to all enemies
+                  Then move 2 spaces forwards, reversing direction when blocked by a wall.
             - name: Coalescence
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
                 Full action
-                Move up to 2.
                 Heal 2.
+                Move up to 2.
                 Piercing line, 2 damage to enemies, heal 4 to allies.
       - hero:
           name: Reinhardt
           health: 12
           speed: 3
           size: 2
-          armor: 1
           dodge: -2
         image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/3b/Reinhardt-ow2-portrait.png/revision/latest/scale-to-width-down/252?cb=20191104214011
         decks:
@@ -186,22 +172,25 @@ sets:
             - name: Rocket Hammer
               text: |-
                 Default
-                all in blast 1, 2 damage
+                all in burst 1, 2 damage
             - name: Barrier Field
               text: |-
-                Reaction, you on an ally is attacked
-                Create a 4space line of barrier terrain adjacent to you. The barrier has 4HD and moves with you.
-                Opponents' non-piercing attacks through the barrier hit the barrier instead.
-                While you have the barrier, you are slowed and disarmed.
+                Reaction dodge+2
+                This ability has 10 hp.
+                Enter shield stance.
+                In shield stance:
+                  You have facing.
+                  You're slowed and disarmed.
+                  There is a 4 space long line on the edge in front of you, which moves with you.
+                  Opponents' non-piercing attacks through the barrier hit the barrier instead.
                 You can dismiss the barrier at the end of your turn as a free action.
-                When you destroy and recreate the barrier, it keeps its previous health.
             - name: Charge
               text: |-
                 Full Action, 1/battle
                 Move as far as possible in a line.
                 When you contact an enemy, roll attack with +2 dodge. 
                 The first enemy hit this way is pushed with you, interrupted, and take 7 damage.
-                Other enemies in the line are pushed to the nearest available space and take 1 damage.
+                Other enemies in the line are pushed to the side and take 1 damage.
             - name: Fire Strike
               text:
                 All in line, +1 dodge, 3 damage
@@ -214,23 +203,26 @@ sets:
       - hero:
           name: Roadhog
           health: 12
-          speed: 2
+          speed: 3
+          size: 2
+          dodge: -2
         image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/ce/Roadhog-Portrait.png/revision/latest/scale-to-width-down/345?cb=20160620014755
         decks:
           - abilities:
             - name: Scrap Gun
               text: |-
                 Default
-                Range 2, 4 damage, +1 dodge
+                Range 2, 3 damage, +1 dodge
+                x2 damage to size 2+
             - name: Take a Breather
               text: |-
                 1/battle
                 Channel:
-                  Until the start of your next turn, you take half damage.
+                  Until the start of your next turn, you take 0.5x damage.
                   At the start of your next turn, heal 6.
             - name: Chain Hook
               text: |-
-                1/battle, Move action, range 5, +1 dodge
+                1/battle, Move action, range 5, +2 dodge
                 1 damage, interrupt
                 Pull target as close as possible.
             - name: Whole Hog
@@ -252,19 +244,27 @@ sets:
             - name: Heavy Pulse Rifle
               text: |-
                 Default
-                Range 3, 3 damage
+                Range 4, 3 damage
             - name: Sprint
               text: |-
                 Default
                 Move up to 3.
             - name: Helix Rockets
               text: |-
-                Range 3, +2 dodge, 5 damage, and 1 damage to others in burst 1 of target
+                1/battle
+                Range 4, +1 dodge, 5 damage and 1 damage to others in burst 1 of target
+            - name: Biotic Field
+              text: |-
+                1/battle
+                Place a size 2 Biotic Field, overlapping your space.
+                At the beginning of your turn, all allies in the field heal 2.
             - name: Tactical Visor
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
-                  Until end of battle, your attacks cannot miss, and you can make a free default attack at start of turn.
+                  Heavy Pulse Rifle range becomes 6
+                  Enemies cannot dodge your attacks
+                  At the start of your turn, you can make a default attack as a free action.
       - hero:
           name: Tracer
           health: 6
@@ -280,14 +280,14 @@ sets:
               text: |-
                 3/battle
                 Reaction Dodge +2
-                    teleport up to 3.
+                Teleport up to 3.
             - name: Recall
               text: |-
                 1/battle
                 Reaction Dodge +3
                 Reset your health to what it was at the end of your last turn.
                 Teleport as close as possible to where you were at the end of your last turn.
-            - name: Summon Pulse Bomb
+            - name: Pulse Bomb
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
@@ -306,35 +306,28 @@ sets:
             - name: Tesla Cannon
               text: |-
                 Default
-                Enemies in range 1, blast 1, 1 damage.
-                or Range 4, 1 damage, +1 dodge
+                Enemies in Range 1 burst 1, 1 damage.
+                or Range 4, +1 dodge, 1 damage
             - name: Jump Pack
               text: |-
                 1/battle
+                Move action
                 Fly up to 6, ending on the ground.
                 Burst 1, 1 damage.
             - name: Barrier Projector
               text: |-
-                1/battle, quick
-                Range 1, Summon a blast 1 field of Barrier terrain.
-            - name: Barrier
-              text: |-
-                8hp
-                Enemy non-piercing attacks through the edges of the barrier hit the barrier instead.
+                1/battle
+                Quick action
+                Range 1, Summon a size 3 Barrier. The barrier has 8hp, and blocks enemy non-piercing attacks.
             - name: Primal Rage
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Reaction Dodge +2, spend 5 charges:
-                    You enter primal stance.
-            - name: Primal Stance
-              text: |-
-                Entry:
                   Set your current and maximum health to 18.
-                Your move speed is doubled
-                You can only use your default abilities and Jump Pack, ignoring its 1/scene requirement.
-                Start of turn, free action, you may end primal stance.
-                Leave:
-                  Lower your current and maximum health to default.
+                  Until the end of your next turn:
+                    Refresh the use of Jump Pack.
+                    When you deal damage, also deal knock back 3.
+                  At the end of your next turn, lower your current and maximum health to your starting health.
       - hero:
           name: Zenyatta
           health: 8
@@ -349,20 +342,21 @@ sets:
             - name: Orb of Destruction
               text: |-
                 Default
-                Range 4, dodge+1, 3 damage
-                or end your turn, get slowed 1, and orb of destruction next turn deals double damage
+                Range 5, dodge+1, 3 damage
+                or end your turn, get slowed 1, and next turn you must use orb of destruction, but it deals 2x damage.
             - name: Orb of Harmony
               text: |-
                 Mark an ally. Now and at the start of your turn, heal them 2. When you use this again, it removes the original mark.
             - name: Orb of Discord
               text: |-
-                Mark an enemy. They take +1 damage from all attacks. When you use this again, it removes the original mark.
+                Mark an enemy. They take +1.5x damage from all attacks. When you use this again, it removes the original mark.
             - name: Transcendence
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Reaction on dodge+2
-                Spend 5 charges:
-                    Heal to full, heal all allies in burst 1 by 5, you are immune to damage till the start of your next turn.
+                Spend 5 charges, Reaction dodge+2:
+                    Heal to full. Purge all conditions you don't want.
+                    Heal all allies in burst 1 by 5.
+                    Until the start of your next turn, you are immune to damage and don't take conditions you don't want.
       - hero:
           name: Zarya
           health: 10
@@ -379,7 +373,9 @@ sets:
               text: |-
                 2/battle
                 Reaction Dodge +2 on attack on target in range 3
-                Until the start of your next turn, when the target would take damage, negate that damage and you gain an energy counter.
+                Until the start of your next turn, 
+                  the target is immune to involuntary movement, 
+                  and when the target would take damage, negate that damage and you gain an energy counter.
             - name: Graviton Surge
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
