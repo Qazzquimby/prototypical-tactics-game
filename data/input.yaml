@@ -295,6 +295,37 @@ sets:
                   If it doesn't attach to someone, it drops in that space.
                   At the start of your next turn, destroy the pulse bomb. It deals 9 damage to anyone in its space and 3 damage to anyone else in burst 1.
       - hero:
+          name: Widowmaker
+          health: 8
+          speed: 3
+        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ab/OW2_Widowmaker.png/revision/latest/scale-to-width-down/272?cb=20210623082021
+        decks:
+          - abilities:
+            - name: Widow's Kiss
+              text: |-
+                Default
+                Range 2, 2 damage
+                or get slowed 1, and channel: next turn Widow's kiss has unlimited range, +1 crit and 5 damage.
+            - name: Venom Mine
+              text: |-
+                1/battle
+                Range 3, place a size 1 Venom Mine.
+                When an enemy enters the mine's space, destroy it and they take poison 1.
+            - name: Grappling Hook
+              text: |-
+                1/battle
+                Move action, fly up to 5 in a straight line.
+            - name: Infra-Sight
+              text: |-
+                1/battle
+                Enemies cannot be invisible, hide, or benefit from cover.
+                All allies have +1 crit
+              # text: |-
+              #  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+              #    Spend 5 charges:
+              #    Range 6, 6 damage, +2 dodge
+              #    If this kills, you can make repeat the attack.
+      - hero:
           name: Winston
           health: 10
           speed: 3
