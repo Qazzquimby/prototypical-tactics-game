@@ -85,47 +85,47 @@ sets:
         image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0f/Mercy-ow2-portrait.png/revision/latest/scale-to-width-down/149?cb=20191104213936
         decks:
           - abilities:
-              - name: Regeneration
-                text: |-
-                  Passive.
-                  At the start of your turn, if you did not take damage since your last turn, heal 3.
-                  You are immune to fall damage.
-              - name: Guardian Angel
-                text: |-
-                  Move action
-                  Target ally or allied corpse in line of sight. Fly to any space adjacent to them as directly as possible.
-              - name: Caduceus Staff
-                text: |-
-                  Default
-                  Target ally in range 4
-                  Choose one:
-                    - Heal target 4hp.
-                    - Until end of target's next turn, they deal +.5x damage.
-              - name: Caduceus Blaster
-                text: |-
-                  Default
-                  range 4, 2 damage
-              - name: Resurrect
-                text: |-
-                  Allies leave corpses.
-                  ---
-                  1/battle
-                  Channel:
-                    At the start of your next turn, you may resurrect target corpse in range 1
-                  
-                  ?Full action, 1/battle, range 1
-                  ?  Resurrect target corpse to full health.
-              - name: Valkyrie
-                text: |-
-                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                  Spend 5 charges:
-                    Enter Valkyrie stance
-              - name: Valkyrie Stance
-                text: |-
-                  For rest of battle:
-                    At the beginning of your turn, heal 2hp.
-                    Your caduceus staff has blast 3 and affects all allies in aoe.
-                    You can fly in any direction when moving and can hover.
+            - name: Regeneration
+              text: |-
+                Passive.
+                At the start of your turn, if you did not take damage since your last turn, heal 3.
+                You are immune to fall damage.
+            - name: Guardian Angel
+              text: |-
+                Move action
+                Target ally or allied corpse in line of sight. Fly to any space adjacent to them as directly as possible.
+            - name: Caduceus Staff
+              text: |-
+                Default
+                Target ally in range 4
+                Choose one:
+                  - Heal target 4hp.
+                  - Until end of target's next turn, they deal +.5x damage.
+            - name: Caduceus Blaster
+              text: |-
+                Default
+                range 4, 2 damage
+            - name: Resurrect
+              text: |-
+                Allies leave corpses.
+                ---
+                1/battle
+                Channel:
+                  At the start of your next turn, you may resurrect target corpse in range 1
+                
+                ?Full action, 1/battle, range 1
+                ?  Resurrect target corpse to full health.
+            - name: Valkyrie
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                  Enter Valkyrie stance
+            - name: Valkyrie Stance
+              text: |-
+                For rest of battle:
+                  At the beginning of your turn, heal 2hp.
+                  Your caduceus staff has blast 3 and affects all allies in aoe.
+                  You can fly in any direction when moving and can hover.
       - hero:
           name: Moira
           health: 8
@@ -133,42 +133,42 @@ sets:
         image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b5/Moira.png/revision/latest/scale-to-width-down/162?cb=20171104021652
         decks:
           - abilities:
-              - name: Damage Biotic Grasp
-                text: |-
-                  Default
-                  Range 4, 2 damage.
-                  Heal 1.
-              - name: Healing Biotic Grasp
-                text: |-
-                  Piercing cone 3.
-                  Allies heal 3.
-              - name: Fade
-                text: |-
-                  1/battle, reaction.
-                  Teleport up to 4 spaces.
-                  You may purge any number of effects from yourself.
-              - name: Summon Biotic Orb
-                text: |-
-                  1/battle, Range 1
-                  Summon a Healing Biotic Orb or Damage Biotic Orb.
-              - name: Healing Biotic Orb
-                text: |-
-                  Field. Has facing.
-                  At the beginning of your turn, burst 1, heal 2 to all allies
-                  Then move 2 spaces forwards.
-              - name: Damage Biotic Orb
-                text: |-
-                  Field. Has facing.
-                  At the beginning of your turn, burst 1, deal 2 damage to all enemies. 
-                  Then move 2 spaces forwards.
-              - name: Coalescence
-                text: |-
-                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                  Spend 5 charges:
-                  Full action
-                  Move up to 2.
-                  Heal 2.
-                  Piercing line, 2 damage to enemies, heal 4 to allies.
+            - name: Damage Biotic Grasp
+              text: |-
+                Default
+                Range 4, 2 damage.
+                Heal 1.
+            - name: Healing Biotic Grasp
+              text: |-
+                Piercing cone 3.
+                Allies heal 3.
+            - name: Fade
+              text: |-
+                1/battle, reaction.
+                Teleport up to 4 spaces.
+                You may purge any number of effects from yourself.
+            - name: Summon Biotic Orb
+              text: |-
+                1/battle, Range 1
+                Summon a Healing Biotic Orb or Damage Biotic Orb.
+            - name: Healing Biotic Orb
+              text: |-
+                Field. Has facing.
+                At the beginning of your turn, burst 1, heal 2 to all allies
+                Then move 2 spaces forwards.
+            - name: Damage Biotic Orb
+              text: |-
+                Field. Has facing.
+                At the beginning of your turn, burst 1, deal 2 damage to all enemies. 
+                Then move 2 spaces forwards.
+            - name: Coalescence
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                Full action
+                Move up to 2.
+                Heal 2.
+                Piercing line, 2 damage to enemies, heal 4 to allies.
       - hero:
           name: Reinhardt
           health: 12
@@ -179,38 +179,38 @@ sets:
         image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/3b/Reinhardt-ow2-portrait.png/revision/latest/scale-to-width-down/252?cb=20191104214011
         decks:
           - abilities:
-              - name: Steadfast
-                text: |-
-                  Passive.
-                  Immune to involuntary movement.
-              - name: Rocket Hammer
-                text: |-
-                  Default
-                  all in blast 1, 2 damage
-              - name: Barrier Field
-                text: |-
-                  Reaction, you on an ally is attacked
-                  Create a 4space line of barrier terrain adjacent to you. The barrier has 4HD and moves with you.
-                  Opponents' non-piercing attacks through the barrier hit the barrier instead.
-                  While you have the barrier, you are slowed and disarmed.
-                  You can dismiss the barrier at the end of your turn as a free action.
-                  When you destroy and recreate the barrier, it keeps its previous health.
-              - name: Charge
-                text: |-
-                  Full Action, 1/battle
-                  Move as far as possible in a line.
-                  When you contact an enemy, roll attack with +2 dodge. 
-                  The first enemy hit this way is pushed with you, interrupted, and take 7 damage.
-                  Other enemies in the line are pushed to the nearest available space and take 1 damage.
-              - name: Fire Strike
-                text:
-                  All in line, +1 dodge, 3 damage
-                  Cooldown 1
-              - name: Earthshatter
-                text: |-
-                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                  Spend 5 charges:
-                    Cone 4, piercing, 1 damage and stun
+            - name: Steadfast
+              text: |-
+                Passive.
+                Immune to involuntary movement.
+            - name: Rocket Hammer
+              text: |-
+                Default
+                all in blast 1, 2 damage
+            - name: Barrier Field
+              text: |-
+                Reaction, you on an ally is attacked
+                Create a 4space line of barrier terrain adjacent to you. The barrier has 4HD and moves with you.
+                Opponents' non-piercing attacks through the barrier hit the barrier instead.
+                While you have the barrier, you are slowed and disarmed.
+                You can dismiss the barrier at the end of your turn as a free action.
+                When you destroy and recreate the barrier, it keeps its previous health.
+            - name: Charge
+              text: |-
+                Full Action, 1/battle
+                Move as far as possible in a line.
+                When you contact an enemy, roll attack with +2 dodge. 
+                The first enemy hit this way is pushed with you, interrupted, and take 7 damage.
+                Other enemies in the line are pushed to the nearest available space and take 1 damage.
+            - name: Fire Strike
+              text:
+                All in line, +1 dodge, 3 damage
+                Cooldown 1
+            - name: Earthshatter
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                  Cone 4, piercing, 1 damage and stun
       - hero:
           name: Roadhog
           health: 12
@@ -218,30 +218,30 @@ sets:
         image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/ce/Roadhog-Portrait.png/revision/latest/scale-to-width-down/345?cb=20160620014755
         decks:
           - abilities:
-              - name: Scrap Gun
-                text: |-
-                  Default
-                  Range 2, 4 damage, +1 dodge
-              - name: Take a Breather
-                text: |-
-                  1/battle
-                  Channel:
-                    Until the start of your next turn, you take half damage.
-                    At the start of your next turn, heal 6.
-              - name: Chain Hook
-                text: |-
-                  1/battle, Free action, range 5, +1 dodge
-                  1 damage, interrupt
-                  Pull target as close as possible.
-              - name: Whole Hog
-                text: |-
-                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                  Spend 5 charges:
-                    Until end of battle, you can only use default actions, and scrap gun changes to:
-                    Free action
-                    Range 1, 6 damage, kb 5
-                    or Range 2, 4 damage, kb 3
-                    or Range 3, 2 damage, kb 1
+            - name: Scrap Gun
+              text: |-
+                Default
+                Range 2, 4 damage, +1 dodge
+            - name: Take a Breather
+              text: |-
+                1/battle
+                Channel:
+                  Until the start of your next turn, you take half damage.
+                  At the start of your next turn, heal 6.
+            - name: Chain Hook
+              text: |-
+                1/battle, Move action, range 5, +1 dodge
+                1 damage, interrupt
+                Pull target as close as possible.
+            - name: Whole Hog
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                  Until end of battle, you can only use default actions, and scrap gun changes to:
+                  Free action
+                  Range 1, 6 damage, kb 5
+                  or Range 2, 4 damage, kb 3
+                  or Range 3, 2 damage, kb 1
       - hero:
           name: Soldier 76
           health: 8
@@ -249,22 +249,22 @@ sets:
         image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Soldier76-portrait.png/revision/latest/scale-to-width-down/224?cb=20160620014955
         decks:
           - abilities:
-              - name: Heavy Pulse Rifle
-                text: |-
-                  Default
-                  Range 3, 2 damage
-              - name: Sprint
-                text: |-
-                  Default
-                  Move up to 3.
-              - name: Helix Rockets
-                text: |-
-                  Range 3, +2 dodge, 5 damage, and 1 damage to others in burst 1 of target
-              - name: Tactical Visor
-                text: |-
-                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                  Spend 5 charges:
-                    Until end of battle, your attacks cannot miss, and you can make a free default attack at start of turn.
+            - name: Heavy Pulse Rifle
+              text: |-
+                Default
+                Range 3, 3 damage
+            - name: Sprint
+              text: |-
+                Default
+                Move up to 3.
+            - name: Helix Rockets
+              text: |-
+                Range 3, +2 dodge, 5 damage, and 1 damage to others in burst 1 of target
+            - name: Tactical Visor
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                  Until end of battle, your attacks cannot miss, and you can make a free default attack at start of turn.
       - hero:
           name: Tracer
           health: 6
@@ -272,28 +272,28 @@ sets:
         image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1b/Tracer_ow2_portrait.png/revision/latest/scale-to-width-down/116?cb=20220625025656
         decks:
           - abilities:
-              - name: Pulse Pistols
-                text: |-
-                  default
-                  range 2, 3 damage.
-              - name: Blink
-                text: |-
-                  3/battle
-                  Reaction Dodge +2
-                      teleport up to 3.
-              - name: Recall
-                text: |-
-                  1/battle
-                  Reaction Dodge +3
-                  Reset your health to what it was at the end of your last turn.
-                  Teleport as close as possible to where you were at the end of your last turn.
-              - name: Summon Pulse Bomb
-                text: |-
-                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                  Spend 5 charges:
-                    Pick a space in range 1. If there's a character in the space, attach the pulse bomb to them with dodge+2.
-                    If it doesn't attach to someone, it drops in that space.
-                    At the start of your next turn, destroy the pulse bomb. It deals 9 damage to anyone in its space and 3 damage to anyone else in burst 1.
+            - name: Pulse Pistols
+              text: |-
+                default
+                range 2, 3 damage.
+            - name: Blink
+              text: |-
+                3/battle
+                Reaction Dodge +2
+                    teleport up to 3.
+            - name: Recall
+              text: |-
+                1/battle
+                Reaction Dodge +3
+                Reset your health to what it was at the end of your last turn.
+                Teleport as close as possible to where you were at the end of your last turn.
+            - name: Summon Pulse Bomb
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                  Pick a space in range 1. If there's a character in the space, attach the pulse bomb to them with dodge+2.
+                  If it doesn't attach to someone, it drops in that space.
+                  At the start of your next turn, destroy the pulse bomb. It deals 9 damage to anyone in its space and 3 damage to anyone else in burst 1.
       - hero:
           name: Winston
           health: 10
@@ -303,66 +303,66 @@ sets:
         image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7c/Winston-ow2-portrait.png/revision/latest/scale-to-width-down/279?cb=20191104221341
         decks:
           - abilities:
-              - name: Tesla Cannon
-                text: |-
-                  Default
-                  Enemies in range 1, blast 1, 1 damage.
-                  or Range 4, 1 damage, +1 dodge
-              - name: Jump Pack
-                text: |-
-                  1/battle
-                  Fly up to 6, ending on the ground.
-                  Burst 1, 1 damage.
-              - name: Barrier Projector
-                text: |-
-                  1/battle, quick
-                  Range 1, Summon a blast 1 field of Barrier terrain.
-              - name: Barrier
-                text: |-
-                  8hp
-                  Enemy non-piercing attacks through the edges of the barrier hit the barrier instead.
-              - name: Primal Rage
-                text: |-
-                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                  Reaction Dodge +2, spend 5 charges:
-                      You enter primal stance.
-              - name: Primal Stance
-                text: |-
-                  Entry:
-                    Set your current and maximum health to 18.
-                  Your move speed is doubled
-                  You can only use your default abilities and Jump Pack, ignoring its 1/scene requirement.
-                  Start of turn, free action, you may end primal stance.
-                  Leave:
-                    Lower your current and maximum health to default.
+            - name: Tesla Cannon
+              text: |-
+                Default
+                Enemies in range 1, blast 1, 1 damage.
+                or Range 4, 1 damage, +1 dodge
+            - name: Jump Pack
+              text: |-
+                1/battle
+                Fly up to 6, ending on the ground.
+                Burst 1, 1 damage.
+            - name: Barrier Projector
+              text: |-
+                1/battle, quick
+                Range 1, Summon a blast 1 field of Barrier terrain.
+            - name: Barrier
+              text: |-
+                8hp
+                Enemy non-piercing attacks through the edges of the barrier hit the barrier instead.
+            - name: Primal Rage
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Reaction Dodge +2, spend 5 charges:
+                    You enter primal stance.
+            - name: Primal Stance
+              text: |-
+                Entry:
+                  Set your current and maximum health to 18.
+                Your move speed is doubled
+                You can only use your default abilities and Jump Pack, ignoring its 1/scene requirement.
+                Start of turn, free action, you may end primal stance.
+                Leave:
+                  Lower your current and maximum health to default.
       - hero:
           name: Zenyatta
           health: 8
           speed: 3
         image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/92/Zenyatta-portrait.png/revision/latest/scale-to-width-down/269?cb=20160620015935
         decks:
-            - abilities:
-                - name: Snap Kick
-                  text: |-
-                    Default
-                    Range 1, 2 damage, kb 2
-                - name: Orb of Destruction
-                  text: |-
-                    Default
-                    Range 4, dodge+1, 3 damage
-                    or end your turn, and orb of destruction next turn deals double damage
-                - name: Orb of Harmony
-                  text: |-
-                    Mark an ally. Now and at the start of your turn, heal them 2. When you use this again, it removes the original mark.
-                - name: Orb of Discord
-                  text: |-
-                    Mark an enemy. They take +1 damage from all attacks. When you use this again, it removes the original mark.
-                - name: Transcendence
-                  text: |-
-                    Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                    Reaction on dodge+2
-                    Spend 5 charges:
-                        Heal to full, heal all allies in burst 1 by 5, you are immune to damage till the start of your next turn.
+          - abilities:
+            - name: Snap Kick
+              text: |-
+                Default
+                Range 1, 2 damage, kb 2
+            - name: Orb of Destruction
+              text: |-
+                Default
+                Range 4, dodge+1, 3 damage
+                or end your turn, get slowed 1, and orb of destruction next turn deals double damage
+            - name: Orb of Harmony
+              text: |-
+                Mark an ally. Now and at the start of your turn, heal them 2. When you use this again, it removes the original mark.
+            - name: Orb of Discord
+              text: |-
+                Mark an enemy. They take +1 damage from all attacks. When you use this again, it removes the original mark.
+            - name: Transcendence
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Reaction on dodge+2
+                Spend 5 charges:
+                    Heal to full, heal all allies in burst 1 by 5, you are immune to damage till the start of your next turn.
       - hero:
           name: Zarya
           health: 10
@@ -371,21 +371,21 @@ sets:
         image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Zarya-portrait.png/revision/latest/scale-to-width-down/350?cb=20160620015842
         decks:
           - abilities:
-              - name: Particle Cannon
-                text: |-
-                  Default
-                  Range 3, Damage 1 + 1 for each energy counter you have.
-              - name: Particle Barrier
-                text: |-
-                  2/battle
-                  Reaction Dodge +2 on attack on target in range 3
-                  Until the start of your next turn, when the target would take damage, negate that damage and you gain an energy counter.
-              - name: Graviton Surge
-                text: |-
-                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                  Spend 5 charges:
-                    Target empty space in range 3
-                    Pull enemies in burst 2 of the space as close to the center as possible, starting with the enemies nearest the center already. They get rooted 1.
+            - name: Particle Cannon
+              text: |-
+                Default
+                Range 3, Damage 1 + 1 for each energy counter you have.
+            - name: Particle Barrier
+              text: |-
+                2/battle
+                Reaction Dodge +2 on attack on target in range 3
+                Until the start of your next turn, when the target would take damage, negate that damage and you gain an energy counter.
+            - name: Graviton Surge
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                  Target empty space in range 3
+                  Pull enemies in burst 2 of the space as close to the center as possible, starting with the enemies nearest the center already. They get rooted 1.
   - name: Dota
     hero_boxes:
       - hero:
@@ -396,40 +396,40 @@ sets:
         image: https://iili.io/yT240N.png
         decks:
           - abilities:
-              - name: Axe
-                text: |-
-                  Default
-                  Range 1, 2 damage
-              - name: Berserker's Call
-                text: |- 
-                  1/battle
-                  Until the beginning of your next turn, 
-                    you have +1 armor,
-                    and when an enemy starts their turn in range 1 of you, they must use a default attack targeting you, if possible.
-              - name: Culling Blade
-                text: |-
-                  1/battle
-                  Range 1, 3 damage, if the target is below half health, they are killed.
-              - name: Battle Hunger
-                text: |-
-                  1/battle
-                  Range 3
-                  Until end of battle,
-                    at the start of each of the target's turns, they take damage equal to your current armor.
-                    Moving away from you costs twice as many move spaces.
-                    This effect ends as soon as the target kills anything.
-              - name: Counter Helix
-                text: |-
-                  Reaction after being hit by an attack:
-                    Burst 1, 1 damage
-              - name: Culling Blade
-                text: |-
-                  Ultimate: 1/game
-                  Range 1
-                  on hit, if the target has 3 or less health:
-                   The target dies, but does not trigger any on-death reactions.
-                   You gain 1 armor until end of battle.
-                   This ability is refreshed.
-                  // Try health of 2 and keep armor for game
+            - name: Axe
+              text: |-
+                Default
+                Range 1, 2 damage
+            - name: Berserker's Call
+              text: |- 
+                1/battle
+                Until the beginning of your next turn, 
+                  you have +1 armor,
+                  and when an enemy starts their turn in range 1 of you, they must use a default attack targeting you, if possible.
+            - name: Culling Blade
+              text: |-
+                1/battle
+                Range 1, 3 damage, if the target is below half health, they are killed.
+            - name: Battle Hunger
+              text: |-
+                1/battle
+                Range 3
+                Until end of battle,
+                  at the start of each of the target's turns, they take damage equal to your current armor.
+                  Moving away from you costs twice as many move spaces.
+                  This effect ends as soon as the target kills anything.
+            - name: Counter Helix
+              text: |-
+                Reaction after being hit by an attack:
+                  Burst 1, 1 damage
+            - name: Culling Blade
+              text: |-
+                Ultimate: 1/game
+                Range 1
+                on hit, if the target has 3 or less health:
+                 The target dies, but does not trigger any on-death reactions.
+                 You gain 1 armor until end of battle.
+                 This ability is refreshed.
+                // Try health of 2 and keep armor for game
                   
 
