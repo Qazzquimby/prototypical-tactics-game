@@ -11,8 +11,9 @@ sets:
             - name: Biotic Rifle
               text: |-
                 Default 
-                Unlimited range, choose heal 3 or damage 3
-                You get slowed 1.
+                Full action
+                Unlimited range, choose heal 3 or 2 damage.
+                You may move up to 1.
             - name: Sleep Dart
               text: |-
                 1/Battle
@@ -146,7 +147,8 @@ sets:
             - name: Steel Trap
               text: |-
                 1/Battle
-                Place a Steel Trap in range 2.
+                Free action
+                Place a Steel Trap in range 2, with size 1, and 3hp. 
                 When an enemy enters the trap's space, they end their movement get rooted until the end of their next turn.
             - name: RIP-Tire
               text: |-
@@ -448,7 +450,7 @@ sets:
                   If it doesn't attach to someone, it drops in that space.
                   At the start of your next turn, destroy the pulse bomb. It deals 9 damage to anyone in its space and 3 damage to anyone else in burst 1.
       - hero:
-          name: Widowmaker
+          name: Widow
           health: 8
           speed: 3
         image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ab/OW2_Widowmaker.png/revision/latest/scale-to-width-down/272?cb=20210623082021
@@ -501,7 +503,7 @@ sets:
             - name: Barrier Projector
               text: |-
                 1/battle
-                Quick action
+                Reaction dodge +2
                 Range 1, Summon a size 3 Barrier. The barrier has 8hp, and blocks enemy non-piercing attacks.
             - name: Primal Rage
               text: |-
