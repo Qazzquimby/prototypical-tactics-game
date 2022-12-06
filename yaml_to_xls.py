@@ -11,11 +11,6 @@ data_path = Path(r"data/")
 Sheets = dict[str:list]
 
 
-def yaml_string_to_xls(yaml_string: str) -> Sheets:
-    decks = yaml.safe_load(yaml_string)
-    return game_to_xls(decks)
-
-
 class Card(BaseModel):
     name: str
 
@@ -121,10 +116,6 @@ class Game(BaseModel):
     sets: list[GameSet]
 
 
-def parse_game(game_structure):
-    return Game.parse_obj(game_structure)
-
-
 class SheetNames:
     COMPLEX_TYPES = "ComplexTypes"
     SHAPES = "Shapes"
@@ -137,7 +128,7 @@ class SheetNames:
     FIGURINES = "Figurines"
 
 
-DEFAULT_XLS = {
+DEFAULT_SHEETS = {
     SheetNames.COMPLEX_TYPES: [
         [
             "NAME",
@@ -206,6 +197,37 @@ DEFAULT_XLS = {
 }
 
 
+def yaml_file_to_xls_file(yaml_path: str, dest=None) -> Sheets:
+    yaml_content = read_yaml_file(yaml_path)
+
+    sheets = yaml_content_to_sheets(yaml_content)
+
+    if dest is not None:
+        pyexcel.save_book_as(bookdict=sheets, dest_file_name=str(dest))
+    return sheets
+
+
+def read_yaml_file(yaml_path: str) -> dict:
+    with open(yaml_path) as yaml_file:
+        yaml_content = yaml.safe_load(yaml_file)
+    return yaml_content
+
+
+def yaml_content_to_sheets(yaml_content: dict) -> Sheets:
+    game = Game.parse_obj(yaml_content)
+    sheets = game_to_sheets(game)
+    return sheets
+
+
+def game_to_sheets(game: Game) -> Sheets:
+    sheets = deepcopy(DEFAULT_SHEETS)
+
+    for game_set in game.sets:
+        game_set_to_sheets(game_set, sheets)
+
+    return sheets
+
+
 def make_deck_name(character_name: str):
     return f"{character_name} deck"
 
@@ -218,28 +240,19 @@ def make_figurine_name(character_name: str):
     return f"{character_name} figurine"
 
 
-def game_to_xls(game: Game) -> Sheets:
-    sheets = deepcopy(DEFAULT_XLS)
-
-    for game_set in game.sets:
-        game_set_to_xlsx(game_set, sheets)
-
-    return sheets
-
-
-def game_set_to_xlsx(game_set: GameSet, sheets: Sheets) -> Sheets:
+def game_set_to_sheets(game_set: GameSet, sheets: Sheets) -> Sheets:
     container_row = [game_set.name, "bag", "black", "2"]
     sheets[SheetNames.CONTAINERS][1].append(game_set.name)
 
     # Make a bag for each set
     for hero_box in game_set.hero_boxes:
-        hero_box_to_xlsx(hero_box, sheets)
+        hero_box_to_sheets(hero_box, sheets)
         container_row.append(make_box_name(hero_box.hero.name))
 
     sheets[SheetNames.CONTAINERS].append(container_row)
 
 
-def hero_box_to_xlsx(hero_box: HeroBox, sheets: Sheets) -> Sheets:
+def hero_box_to_sheets(hero_box: HeroBox, sheets: Sheets) -> Sheets:
     container_row = [make_box_name(hero_box.hero.name), "bag", "red", "1"]
 
     sheets[SheetNames.COMPLEX_OBJECTS].append(
@@ -273,16 +286,6 @@ def hero_box_to_xlsx(hero_box: HeroBox, sheets: Sheets) -> Sheets:
     sheets[SheetNames.CONTAINERS].append(container_row)
 
 
-def file_to_xls(src, dest=None) -> Sheets:
-    with open(src) as yaml_file:
-        game_structure = yaml.safe_load(yaml_file)
-    game = parse_game(game_structure)
-    sheets = game_to_xls(game)
-    if dest is not None:
-        pyexcel.save_book_as(bookdict=sheets, dest_file_name=str(dest))
-    return sheets
-
-
 if __name__ == "__main__":
     schema = Game.schema_json()
     with open("data/game_schema.json", "w") as f:
@@ -291,5 +294,5 @@ if __name__ == "__main__":
     src = "data/input.yaml"
     dest = "dest/output.xls"
 
-    sheets = file_to_xls(src=src, dest=dest)
+    sheets = yaml_file_to_xls_file(yaml_path=src, dest=dest)
     print("debug")

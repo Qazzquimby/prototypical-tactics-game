@@ -6,6 +6,7 @@ pygame
 watchdog
 pysftp
 xlrd
+xlwt
 jinja2
 imgkit
 pytest

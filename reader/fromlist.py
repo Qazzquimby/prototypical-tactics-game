@@ -1,4 +1,4 @@
-def read_fromlist(value, list):
-    if not value.lower() in list:
-        raise ValueError(value + " is not in list: " + str(list))
+def read_fromlist(value, lst):
+    if not value.lower() in lst:
+        raise ValueError(value + " is not in list: " + str(lst))
     return value.lower()

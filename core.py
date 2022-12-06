@@ -19,43 +19,40 @@ from sheetParser.figurineParser import FigurineParser
 from sheetParser.tokenParser import TokenParser
 
 
-def build_file(
-    excel_file, image_builder, save_dir, file_name, progress_callback=None, config=None
+def xls_file_to_tts_save(
+    xls_file_path, image_builder, save_dir, file_name, config=None
 ):
-    if progress_callback is None:
-        progress_callback = lambda x, y=None: None
+    sheets = xlrd.open_workbook(xls_file_path)
 
-    # setup pygame as drawing library
-    import pygame
+    tts_json = sheets_to_tts_json(sheets, image_builder, file_name, config)
 
-    pygame.init()
+    save_tts(tts_json=tts_json, save_dir=save_dir, file_name=file_name)
 
-    # open save template
-    with open("data/template.json", "r") as infile:
-        data = json.load(infile)
-        data["SaveName"] = file_name
 
-    # parse here
-    library = parse_file(excel_file, progress_callback)
+def sheets_to_tts_json(sheets: dict, image_builder, file_name, config=None):
+    library = sheets_to_library(sheets)
+    return library_to_tts_json(
+        library, image_builder, file_name, sheets["Placement"], config
+    )
 
-    progress_callback("Drawing all custom content.")
 
-    # draw all the card decks
-    progress_callback("Drawing decks... ", False)
+def library_to_tts_json(
+    library: Library, image_builder, file_name, placement, config=None
+):
+    setup_pygame()
+
+    tts_json = read_template(file_name)
+
     drawer = DeckDrawer(config)
     for deck in library.decks:
         path = image_builder.build(drawer.draw(deck), deck.name, "jpg")
         deck.setImagePath(path)
 
-    # draw all the deck backs
     drawer = CardBackDrawer(config)
     for deck in library.decks:
         path = image_builder.build(drawer.draw(deck), deck.name + "_back", "jpg")
         deck.setBackImagePath(path)
-    progress_callback(str(len(library.decks)) + " decks successfully drawn.")
 
-    # draw all the boards
-    progress_callback("Drawing boards... ", False)
     done = 0
     for obj in library.complexObjects:
         if obj.type.type == "board":
@@ -63,10 +60,7 @@ def build_file(
             path = image_builder.build(drawer.draw(), obj.name, "jpg")
             obj.setImagePath(path)
             done += 1
-    progress_callback(str(done) + " boards successfully drawn.")
 
-    # draw all the (custom) tokens
-    progress_callback("Drawing tokens... ", False)
     done = 0
     for token in library.tokens:
         if isinstance(token, ContentToken):
@@ -74,10 +68,8 @@ def build_file(
             path = image_builder.build(drawer.draw(), "token_" + token.name, "jpg")
             token.setImagePath(path)
             done += 1
-    progress_callback(str(done) + " custom tokens successfully drawn.")
 
     # draw all dice
-    progress_callback("Drawing dice... ", False)
     done = 0
     for die in library.dice:
         if die.customContent:
@@ -85,73 +77,64 @@ def build_file(
             path = image_builder.build(drawer.draw(), "die" + die.name, "png")
             die.setImagePath(path)
             done += 1
-    progress_callback(str(done) + " dice successfully drawn.")
 
     # UGLY - we already did this step during parsing, but we need to create entities AFTER drawing or their image paths aren't set
     creator = EntityCreator(library.all())
-    workbook = xlrd.open_workbook(excel_file)
-    entities = creator.createEntities(workbook.sheet_by_name("Placement"))
+    entities = creator.createEntities(placement)
 
     dicts = []
     for entity in entities:
         dicts.append(entity.as_dict())
+    tts_json["ObjectStates"] = dicts
 
-    progress_callback("Placing all entities on the tabletop.")
-    # add entities to save file
-    data["ObjectStates"] = dicts
-    progress_callback("All entities have been placed.")
+    return tts_json
 
-    # save file
+
+def save_tts(tts_json, save_dir, file_name):
     path = save_dir / f"TS_{file_name.replace(' ', '_')}.json"
-    progress_callback(f"Saving file to {path}")
     with open(path, "w") as outfile:
-        json.dump(data, outfile)
+        json.dump(tts_json, outfile)
 
 
-def parse_file(excel_file, progress_callback):
+def setup_pygame():
+    # setup pygame as drawing library
+    import pygame
+
+    pygame.init()
+
+
+def read_template(file_name: str):
+    # open save template
+    with open("data/template.json", "r") as infile:
+        data = json.load(infile)
+        data["SaveName"] = file_name
+    return data
+
+
+def xls_file_to_library(excel_file) -> Library:
     # open Excel file
-    progress_callback(f"Reading spreadsheet: {excel_file}")
-    workbook = xlrd.open_workbook(excel_file)
+    sheets = xlrd.open_workbook(excel_file)
+    return sheets_to_library(sheets)
 
-    # collect entity libraries
-    progress_callback("Reading tokens... ", False)
-    tokens = TokenParser.parse(workbook.sheet_by_name("Tokens"))
-    progress_callback(str(len(tokens)) + " tokens successfully extracted.")
 
-    progress_callback("Reading figurines... ", False)
-    figurines = FigurineParser.parse(workbook.sheet_by_name("Figurines"))
-    progress_callback(str(len(figurines)) + " figurines successfully extracted.")
+def sheets_to_library(sheets: dict):
+    tokens = TokenParser.parse(sheets["Tokens"])
 
-    progress_callback("Reading dice... ", False)
-    dice = DiceParser.parse(workbook.sheet_by_name("Dice"))
-    progress_callback(str(len(dice)) + " dice successfully extracted.")
+    figurines = FigurineParser.parse(sheets["Figurines"])
 
-    progress_callback("Reading complex types... ", False)
-    complex_types = ComplexTypeParser.parse(
-        workbook.sheet_by_name("ComplexTypes"), workbook.sheet_by_name("Shapes")
-    )
-    progress_callback(str(len(complex_types)) + " types successfully extracted.")
+    dice = DiceParser.parse(sheets["Dice"])
 
-    progress_callback("Reading complex objects... ", False)
+    complex_types = ComplexTypeParser.parse(sheets["ComplexTypes"], sheets["Shapes"])
+
     complex_parser = ComplexObjectParser(complex_types)
-    complex_objects = complex_parser.parse(workbook.sheet_by_name("ComplexObjects"))
-    progress_callback(
-        str(len(complex_objects)) + " complex objects successfully extracted."
-    )
+    complex_objects = complex_parser.parse(sheets["ComplexObjects"])
 
-    progress_callback("Reading decks... ", False)
-    decks = DeckParser.parse(workbook.sheet_by_name("Decks"), complex_objects)
-    progress_callback(str(len(decks)) + " decks successfully extracted.")
+    decks = DeckParser.parse(sheets["Decks"], complex_objects)
 
-    progress_callback("Reading bags... ", False)
     bag_parser = BagParser(types=tokens + figurines + dice + complex_objects + decks)
-    bags = bag_parser.parse(workbook.sheet_by_name("Containers"))
-    progress_callback(str(len(bags)) + " bags successfully extracted.")
+    bags = bag_parser.parse(sheets["Containers"])
 
-    # UGLY - we have to redo this step later because we set the image paths after drawing and these entities won't work
-    progress_callback("Reading table content... ", False)
     creator = EntityCreator(tokens + dice + complex_objects + decks + bags)
-    entities = creator.createEntities(workbook.sheet_by_name("Placement"))
-    progress_callback("Read " + str(len(entities)) + " items to be placed.", True)
+    entities = creator.createEntities(sheets["Placement"])  # todo, unused?
 
     return Library(tokens, dice, complex_objects, decks, bags)

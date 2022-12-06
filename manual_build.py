@@ -1,4 +1,4 @@
-from core import build_file
+from core import xls_file_to_tts_save
 
 
 import time
@@ -6,14 +6,14 @@ from pathlib import Path
 import pygame
 from tts_dir import try_and_find_save_games_folder
 from image_builders import ImagesDirImageBuilder
-from core import build_file
+from core import xls_file_to_tts_save
 
 
 def run(xls_path: Path, save_dir: Path):
     data_dir = Path("data").absolute()
 
-    build_file(
-        excel_file=str(xls_path),
+    xls_file_to_tts_save(
+        xls_file_path=str(xls_path),
         image_builder=ImagesDirImageBuilder(pygame, basePath=data_dir / "images"),
         save_dir=save_dir,
         file_name=xls_path.stem,

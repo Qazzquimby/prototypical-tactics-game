@@ -1,13 +1,12 @@
 import pytest
 
 from yaml_to_xls import (
-    game_to_xls,
-    DEFAULT_XLS,
+    game_to_sheets,
+    DEFAULT_SHEETS,
     SheetNames,
     make_deck_name,
     Deck,
     Ability,
-    parse_game,
     BASIC,
     HERO_CARD_LABEL,
     SPEED_LABEL,
@@ -43,12 +42,12 @@ MY_TEST_CHAR__WITH_ABILITY = HeroBox(
 
 def test_empty_file():
     decks = Game(sets=[])
-    result = game_to_xls(decks)
-    assert result == DEFAULT_XLS
+    result = game_to_sheets(decks)
+    assert result == DEFAULT_SHEETS
 
 
 def sets_to_xls(sets):
-    return game_to_xls(Game(sets=sets))
+    return game_to_sheets(Game(sets=sets))
 
 
 def make_set(hero_boxes, name="set0"):
@@ -75,7 +74,7 @@ def test_single_character__irrelevant_sheets_unchanged(sheet_name):
         ]
     )
     result_complex_types = xls[SheetNames.COMPLEX_TYPES]
-    assert result_complex_types == DEFAULT_XLS[SheetNames.COMPLEX_TYPES]
+    assert result_complex_types == DEFAULT_SHEETS[SheetNames.COMPLEX_TYPES]
 
 
 HERO_COMPLEX_OBJECT_ROW = [
@@ -90,7 +89,7 @@ HERO_COMPLEX_OBJECT_ROW = [
 ]
 
 
-TEST_DEFAULT_XLS = DEFAULT_XLS.copy()
+TEST_DEFAULT_XLS = DEFAULT_SHEETS.copy()
 
 
 def test_single_empty_character__complex_objects__just_hero_added():
@@ -209,7 +208,7 @@ def test_parse_dict_to_models():
         ]
     }
 
-    result = parse_game(game)
+    result = Game.parse_obj(game)
 
     expected = Game(
         sets=[

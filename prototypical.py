@@ -1,6 +1,6 @@
 import json
 
-from core import build_file, parse_file
+from core import xls_file_to_tts_save, xls_file_to_library
 from image_builders import get_image_builder
 
 import os, sys, pysftp
@@ -292,14 +292,12 @@ class App:
     def build(self):
         if self.config.readyToRun():
             self.flushStatus()
-            self.pushStatusMessage("Going to build!")
             try:
-                build_file(
+                xls_file_to_tts_save(
                     self.config.excelFile.get(),
                     get_image_builder(self.pygame, self.config),
                     self.config.saveDir.get(),
                     self.config.fileName.get(),
-                    self.pushStatusMessage,
                     self.config,
                 )
                 self.pushStatusMessage("Done building!")
@@ -313,10 +311,8 @@ class App:
 
     def parse(self):
         self.flushStatus()
-        self.pushStatusMessage("Going to parse!")
         try:
-            parse_file(self.config.excelFile.get(), self.pushStatusMessage)
-            self.pushStatusMessage("Done parsing!")
+            xls_file_to_library(self.config.excelFile.get())
         except BaseException as e:
             self.pushErrorMessage(e)
             raise e
@@ -361,10 +357,10 @@ def testFtpConnection(config):
 
 # tests - need to be moved!! (and not run on every load)
 from tests.complexTypeParserTest import ComplexTypeParserTest
-from tests.reader.color import ColorReaderTest
-from tests.reader.number import NumberReaderTest
-from tests.reader.dimensions import DimensionsReaderTest
-from tests.reader.content import ContentReaderTest
+from tests.reader.color_test import ColorReaderTest
+from tests.reader.number_test import NumberReaderTest
+from tests.reader.dimensions_test import DimensionsReaderTest
+from tests.reader.content_test import ContentReaderTest
 
 
 def runTests():
@@ -378,7 +374,7 @@ def runTests():
     def emptyCallback(msg, newLine=True):
         pass
 
-    parse_file("data/testgame.xls", emptyCallback)
+    xls_file_to_library("data/testgame.xls")
 
 
 if __name__ == "__main__":
