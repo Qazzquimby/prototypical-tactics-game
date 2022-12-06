@@ -46,7 +46,7 @@ class EntityCreator:
 
         width = (XMAX - XMIN) / numXChunks
         height = (ZMAX - ZMIN) / numYChunks
-        xOffset = random.uniform(0, width)
+        xOffset = random.uniform(0, width)  # todo, why are these random?
         yOffset = random.uniform(0, height)
         return (xOffset + XMIN + (chunkX * width), yOffset + ZMIN + (chunkY * height))
 

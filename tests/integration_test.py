@@ -47,7 +47,24 @@ def test_basic_char():
     tts_dict = game_to_tts_dict(game)
     expected_dict = json.loads(EXPECTED_TTS_JSON, strict=False)
 
+    deep_clean(tts_dict)
+    deep_clean(expected_dict)
+
     assert tts_dict == expected_dict
+
+
+def deep_clean(tts_dict: dict) -> dict:
+    # search deep for any nondeterministic key and delete it
+    for key, value in list(tts_dict.items()):
+        if key in ("Transform", "GUID"):
+            del tts_dict[key]
+        elif isinstance(value, dict):
+            tts_dict[key] = deep_clean(value)
+        elif isinstance(tts_dict[key], list):
+            for item in tts_dict[key]:
+                if isinstance(item, dict):
+                    tts_dict[key] = deep_clean(item)
+    return tts_dict
 
 
 yaml_string = """\

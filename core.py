@@ -41,7 +41,7 @@ def library_to_tts_json(
 ):
     setup_pygame()
 
-    tts_json = read_template(file_name)
+    tts_dict = read_template_dict(file_name)
 
     drawer = DeckDrawer(config)
     for deck in library.decks:
@@ -85,9 +85,9 @@ def library_to_tts_json(
     dicts = []
     for entity in entities:
         dicts.append(entity.as_dict())
-    tts_json["ObjectStates"] = dicts
+    tts_dict["ObjectStates"] = dicts
 
-    return tts_json
+    return tts_dict
 
 
 def save_tts(tts_json, save_dir, file_name):
@@ -103,7 +103,7 @@ def setup_pygame():
     pygame.init()
 
 
-def read_template(file_name: str):
+def read_template_dict(file_name: str):
     # open save template
     with open("data/template.json", "r") as infile:
         data = json.load(infile)
