@@ -6,7 +6,6 @@ from yaml_to_xls import (
     SheetNames,
     make_deck_name,
     Deck,
-    UnitCard,
     Ability,
     parse_game,
     BASIC,
@@ -18,6 +17,7 @@ from yaml_to_xls import (
     Hero,
     GameSet,
     make_box_name,
+    make_figurine_name,
 )
 
 MY_TEST_CHAR_NAME = "My Test Char"
@@ -30,14 +30,14 @@ MY_TEST_CHAR_HERO = Hero(
     health=MY_TEST_CHAR_HEALTH,
     size=MY_TEST_CHAR_SIZE,
 )
-MY_TEST_CHAR__NO_ABILITIES = HeroBox(hero=MY_TEST_CHAR_HERO, decks=[])
+MY_TEST_CHAR__NO_ABILITIES = HeroBox(hero=MY_TEST_CHAR_HERO, decks=[], image="no_image")
 
 MY_ABILITY_NAME = "My Ability"
 MY_ABILITY_COST = ""
 MY_ABILITY_TEXT = "My Ability Text"
 MY_ABILITY = Ability(name=MY_ABILITY_NAME, type=BASIC, text=MY_ABILITY_TEXT)
 MY_TEST_CHAR__WITH_ABILITY = HeroBox(
-    hero=MY_TEST_CHAR_HERO, decks=[Deck(abilities=[MY_ABILITY])]
+    hero=MY_TEST_CHAR_HERO, decks=[Deck(abilities=[MY_ABILITY])], image="no_image"
 )
 
 
@@ -112,10 +112,19 @@ def test_single_empty_character__deck_added_to_bag():
             "bag",
             "red",
             "1",
+            make_figurine_name(MY_TEST_CHAR_NAME),
             make_deck_name(MY_TEST_CHAR_NAME),
         ]
     )
-    expected.append(["set0", "bag", "black", "2", make_box_name(MY_TEST_CHAR_NAME)])
+    expected.append(
+        [
+            "set0",
+            "bag",
+            "black",
+            "2",
+            make_box_name(MY_TEST_CHAR_NAME),
+        ]
+    )
 
     assert result == expected
 
@@ -182,6 +191,7 @@ def test_parse_dict_to_models():
                             "health": 2,
                             "size": 3,
                         },
+                        "image": "no_image",
                         "decks": [
                             {
                                 "abilities": [
@@ -218,6 +228,7 @@ def test_parse_dict_to_models():
                                 ],
                             )
                         ],
+                        image="no_image",
                     )
                 ]
             )
