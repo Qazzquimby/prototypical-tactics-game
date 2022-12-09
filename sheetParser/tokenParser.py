@@ -1,5 +1,3 @@
-import itertools
-
 from reader.color import ColorReader
 from domain.token import Token
 from domain.token import ContentToken

@@ -15,4 +15,4 @@ def read_cell(value):
         col += ord(char) - 64
 
     # both zero indexed
-    return (col - 1, int(parts[1]) - 1)
+    return col - 1, int(parts[1]) - 1

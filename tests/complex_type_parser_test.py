@@ -1,7 +1,5 @@
 import pytest
-
 from sheetParser.complexTypeParser import ComplexTypeParser
-from tests.basicTest import BasicTest
 
 
 @pytest.mark.parametrize(

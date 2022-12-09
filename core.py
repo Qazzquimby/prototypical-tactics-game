@@ -22,6 +22,7 @@ from sheetParser.tokenParser import TokenParser
 def xls_file_to_tts_save(
     xls_file_path, image_builder, save_dir, file_name, config=None
 ):
+    print("Depreciate this, go straight from yaml using sheets_to_tts_json")
     sheets = xlrd.open_workbook(xls_file_path)
 
     tts_json = sheets_to_tts_json(sheets, image_builder, file_name, config)

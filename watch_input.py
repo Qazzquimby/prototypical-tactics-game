@@ -2,8 +2,6 @@ import time
 from pathlib import Path
 
 import pygame
-import xlutils as xlutils
-import xlwt
 import yaml.scanner
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, FileSystemEvent

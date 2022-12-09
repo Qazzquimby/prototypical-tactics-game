@@ -1,7 +1,3 @@
-from core import xls_file_to_tts_save
-
-
-import time
 from pathlib import Path
 import pygame
 from tts_dir import try_and_find_save_games_folder

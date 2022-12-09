@@ -1,6 +1,4 @@
 import pytest
-
-from tests.basicTest import BasicTest
 from reader.color import ColorReader
 
 
