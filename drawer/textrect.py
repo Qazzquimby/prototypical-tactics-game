@@ -21,7 +21,7 @@ def render_fitted_textrect(string, rect, text_color, background_color, justifica
             return render_textrect(
                 string, font, rect, text_color, background_color, justification
             )
-        except TextRectException as e:
+        except TextRectException:
             continue
 
 

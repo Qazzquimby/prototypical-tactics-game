@@ -20,8 +20,8 @@ class ColorReader:
             r = float(int(code[1:3], 16)) / 255
             g = float(int(code[3:5], 16)) / 255
             b = float(int(code[5:7], 16)) / 255
-            return (r, g, b)
-        except ValueError as e:
+            return r, g, b
+        except ValueError:
             raise ValueError("Unable to read hex-based color: " + code)
 
     @staticmethod

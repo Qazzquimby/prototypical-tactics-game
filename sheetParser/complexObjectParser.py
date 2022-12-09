@@ -41,7 +41,7 @@ class ComplexObjectParser:
                                 content[column] = self.templateHeaders[type.name][
                                     column
                                 ]
-                            except KeyError as e:
+                            except KeyError:
                                 raise ValueError(
                                     type.name
                                     + " contains headers, but no template was defined for it."

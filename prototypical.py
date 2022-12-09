@@ -205,7 +205,7 @@ class App:
 
         try:
             version = open("data/version", "r").readline(10)
-        except FileNotFoundError as e:
+        except FileNotFoundError:
             version = "dev"
 
         self.statusLabel = Label(frame, text="version: " + version)
@@ -283,7 +283,7 @@ class App:
                 self.pushStatusMessage("Created a new empty template: " + path)
                 if sys.platform == "win32":
                     os.startfile(path)
-            except FileNotFoundError as e:
+            except FileNotFoundError:
                 self.pushErrorMessage(
                     "The base template is missing. Please ensure that the application was installed successfully.",
                     "creating template",

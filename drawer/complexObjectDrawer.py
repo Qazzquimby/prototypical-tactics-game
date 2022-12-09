@@ -91,7 +91,7 @@ class ComplexObjectDrawer:
         rerect = pygame.Rect((0, 0, rect[2] - rect[0], rect[3] - rect[1]))
         surf = render_fitted_textrect(str(content), rerect, (0, 0, 0), (255, 255, 255))
         if not surf:
-            raise BaseException(
+            raise ValueError(
                 "Unable to draw the card. Are you reserving enough space for all your content? Trying to write: "
                 + str(content)
             )
@@ -176,13 +176,13 @@ class ComplexObjectDrawer:
             )
 
             if not "items" in res:
-                raise BaseException("Could not find an icon for: " + name)
+                raise ValueError("Could not find an icon for: " + name)
             else:
                 for item in res["items"]:
                     with open(filepath, "wb") as handler:
                         img_data = requests.get(item["link"]).content
                         handler.write(img_data)
-        except BaseException:
+        except ValueError:
             make_empty_image(filepath)
 
     def getPathForImage(self, subfolder, imagename):

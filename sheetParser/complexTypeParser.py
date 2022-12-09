@@ -61,7 +61,7 @@ class ComplexTypeParser:
             for col in range(firstCol, lastCol + 1):
                 try:
                     cols.append(shapeSheet.cell(rowx=row, colx=col).value)
-                except IndexError as e:
+                except IndexError:
                     raise ValueError(
                         "Unable to parse a shape: it extends beyond the edge of the Shapes spreadsheet."
                     )

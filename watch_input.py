@@ -14,16 +14,14 @@ from tts_dir import try_and_find_save_games_folder
 
 import yaml_to_xls
 from image_builders import ImagesDirImageBuilder
-from core import xls_file_to_tts_save, sheets_to_tts_json, save_tts
+from core import sheets_to_tts_json, save_tts
 
 
 def yaml_file_to_tts_save(yaml_path: str, save_dir: Path):
     data_dir = Path("data").absolute()
     file_stem = Path(yaml_path).stem
-    xls_path = data_dir / f"{file_stem}.xls"
 
     try:
-        # yaml_to_xls.yaml_file_to_xls_file(yaml_path=yaml_path, dest=xls_path)
         yaml_content = yaml_to_xls.read_yaml_file(yaml_path)
     except yaml.scanner.ScannerError as e:
         print(f"Error parsing {yaml_path}")
@@ -41,13 +39,6 @@ def yaml_file_to_tts_save(yaml_path: str, save_dir: Path):
     )
 
     save_tts(tts_json, save_dir=save_dir, file_name=file_stem)
-
-    # xls_file_to_tts_save(
-    #     xls_file_path=xls_path,
-    #     image_builder=ImagesDirImageBuilder(pygame, basePath=data_dir / "images"),
-    #     save_dir=save_dir,
-    #     file_name=file_stem,
-    # )
     print("Built images")
 
 

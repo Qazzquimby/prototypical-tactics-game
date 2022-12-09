@@ -134,7 +134,7 @@ def sheets_to_library(sheets: dict):
     bag_parser = BagParser(types=tokens + figurines + dice + complex_objects + decks)
     bags = bag_parser.parse(sheets["Containers"])
 
-    creator = EntityCreator(tokens + dice + complex_objects + decks + bags)
-    entities = creator.createEntities(sheets["Placement"])  # todo, unused?
+    # creator = EntityCreator(tokens + dice + complex_objects + decks + bags)
+    # entities = creator.createEntities(sheets["Placement"])  # todo, unused? May be important
 
     return Library(tokens, dice, complex_objects, decks, bags)
