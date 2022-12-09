@@ -1,34 +1,65 @@
-from tests.basicTest import BasicTest
+import pytest
+
 from reader.number import read_number
 from reader.number import read_float
 
 
-class NumberReaderTest(BasicTest):
-    def run(self):
-        self.runNumberTests()
-        self.runFloatTests()
+@pytest.mark.parametrize(
+    "number, expected",
+    [
+        ("12", 12),
+        ("1", 1),
+        ("0", 0),
+        ("99999", 99999),
+    ],
+)
+def test_read_number(number, expected):
+    assert read_number(number) == expected
 
-    def ensureNotAllowed(self, fn, number, message):
-        try:
-            fn(number)
-            assert False, message
-        except ValueError:
-            return True  # this should not be allowed
 
-    def runNumberTests(self):
-        assert read_number("12") == 12
-        assert read_number("1") == 1
-        assert read_number("0") == 0
-        assert read_number("99999") == 99999
+@pytest.mark.parametrize(
+    "bad_number",
+    [
+        "2.0",
+        "2.5",
+        "abc",
+        "",
+    ],
+    ids=[
+        "Floats are not supported",
+        "Floats are not supported",
+        "Text is not supported",
+        "Blank is not supported",
+    ],
+)
+def test_read_number_fails(bad_number):
+    with pytest.raises(ValueError):
+        read_number(bad_number)
 
-        self.ensureNotAllowed(read_number, "2.0", "Floats are not supported")
-        self.ensureNotAllowed(read_number, "2.5", "Floats are not supported")
-        self.ensureNotAllowed(read_number, "abc", "Text is not supported")
-        self.ensureNotAllowed(read_number, "", "Blank is not supported")
 
-    def runFloatTests(self):
-        assert read_float("1.5") == 1.5
-        assert read_float("1.0") == 1
-        assert read_float("3") == 3
-        self.ensureNotAllowed(read_float, "abc", "Text is not supported")
-        self.ensureNotAllowed(read_float, "", "Blank is not supported")
+@pytest.mark.parametrize(
+    "number, expected",
+    [
+        ("1.5", 1.5),
+        ("1.0", 1),
+        ("3", 3),
+    ],
+)
+def test_read_float(number, expected):
+    assert read_float(number) == expected
+
+
+@pytest.mark.parametrize(
+    "bad_number",
+    [
+        "abc",
+        "",
+    ],
+    ids=[
+        "Text is not supported",
+        "Blank is not supported",
+    ],
+)
+def test_read_float_fails(bad_number):
+    with pytest.raises(ValueError):
+        read_float(bad_number)
