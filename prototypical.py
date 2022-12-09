@@ -1,5 +1,7 @@
 import json
 
+from pysftp.exceptions import ConnectionException
+
 from core import xls_file_to_tts_save, xls_file_to_library
 from image_builders import get_image_builder
 
@@ -351,7 +353,7 @@ def testFtpConnection(config):
         )
         con.close()
         return True
-    except BaseException:
+    except ConnectionException:
         return False
 
 

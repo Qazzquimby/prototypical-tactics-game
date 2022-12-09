@@ -22,10 +22,10 @@ def make_empty_image(filepath):
 
 
 class ComplexObjectDrawer:
-    def __init__(self, object, config):
-        self.object = object
+    def __init__(self, obj, config):
+        self.object = obj
         self.config = config
-        self.size = object.type.shape.size
+        self.size = obj.type.shape.size
 
     def draw(self):
         w, h = self.getCardSize()
@@ -97,11 +97,11 @@ class ComplexObjectDrawer:
             )
         self.surf.blit(surf, rect)
 
-    def baseDrawImage(self, surf, content, rect, type):
+    def baseDrawImage(self, surf, content, rect, type_):
         import pygame
 
         rerect = pygame.Rect((0, 0, rect[2] - rect[0], rect[3] - rect[1]))
-        if type == "icon":
+        if type_ == "icon":
             picture = self.obtainIcon(content)
         else:
             picture = self.obtainImage(content)
@@ -122,13 +122,13 @@ class ComplexObjectDrawer:
     def drawImage(self, surf, content, rect):
         self.baseDrawImage(surf, content, rect, "image")
 
-    def baseObtainImage(self, content, type, replace, folder):
+    def baseObtainImage(self, content, type_, replace, folder):
         name = content.replace(replace, "")
         filename = self.getPathForImage(folder, name)
         try:
             return pygame.image.load(filename)
         except FileNotFoundError:
-            if type == "icon":
+            if type_ == "icon":
                 self.makeIcon(name)
                 return self.obtainIcon(content)
             else:

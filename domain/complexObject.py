@@ -1,7 +1,7 @@
 class ComplexObject:
-    def __init__(self, name, type, content):
+    def __init__(self, name, type_, content):
         self.name = name
-        self.type = type
+        self.type = type_
         self.content = content
         # only used if this is a board, not used if its a deck
         self.imagePath = ""

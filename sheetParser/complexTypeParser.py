@@ -38,13 +38,15 @@ class ComplexTypeParser:
             bgColor = ColorReader.read_color(sheet.cell(rowx=row, colx=4).value)
             backside = ColorReader.read_color(sheet.cell(rowx=row, colx=5).value)
             try:
-                type = read_fromlist(
+                type_ = read_fromlist(
                     sheet.cell(rowx=row, colx=6).value, ("card", "board")
                 )
             except ValueError as e:
                 raise ValueError(str(e) + " (while reading: " + name + ")") from None
 
-            complexTypes.append(ComplexType(name, size, shape, bgColor, backside, type))
+            complexTypes.append(
+                ComplexType(name, size, shape, bgColor, backside, type_)
+            )
             row += 1
         return complexTypes
 

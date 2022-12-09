@@ -141,9 +141,9 @@ class EntityCreator:
         self.library = library
 
     def findObjectByName(self, name):
-        for type in self.library:
-            if type.name == name:
-                return type
+        for type_ in self.library:
+            if type_.name == name:
+                return type_
         raise ValueError("Unknown entity type: " + name)
 
     def createEntity(self, coords, entity):
@@ -204,7 +204,7 @@ class EntityCreator:
                 content = read_content(sheet.cell(rowx=row, colx=col).value)
                 for item in content:
                     try:
-                        object = self.findObjectByName(item[1])
+                        object_ = self.findObjectByName(item[1])
                     except ValueError as e:
                         raise ValueError(
                             str(e) + " (while trying to place items on the board)"
@@ -213,7 +213,7 @@ class EntityCreator:
                         entities.append(
                             self.createEntity(
                                 get_random_coord_in_chunk(row, col, XCHUNKS, YCHUNKS),
-                                object,
+                                object_,
                             )
                         )
         return entities

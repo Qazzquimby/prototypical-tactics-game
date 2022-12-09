@@ -1,8 +1,8 @@
 from domain.complexObject import ComplexObject
 
 
-def is_type_a_template(type):
-    return type[0] == "\\"
+def is_type_a_template(type_):
+    return type_[0] == "\\"
 
 
 class ComplexObjectParser:
@@ -19,34 +19,34 @@ class ComplexObjectParser:
             if name or typeName:
                 isTemplate = is_type_a_template(typeName)
                 if isTemplate:
-                    type = self.findType(typeName)
+                    type_ = self.findType(typeName)
                     content = {}
-                    for column in type.shape.areas:
+                    for column in type_.shape.areas:
                         if column < 1000:
                             pass
                         else:
                             content[column] = sheet.cell(
                                 rowx=row, colx=column - 1000
                             ).value
-                    self.templateHeaders[type.name] = content
+                    self.templateHeaders[type_.name] = content
                 else:
-                    type = self.findType(typeName)
+                    type_ = self.findType(typeName)
                     content = {}
-                    for column in type.shape.areas:
+                    for column in type_.shape.areas:
                         # headers...
                         if column < 1000:
                             content[column] = sheet.cell(rowx=row, colx=column).value
                         else:
                             try:
-                                content[column] = self.templateHeaders[type.name][
+                                content[column] = self.templateHeaders[type_.name][
                                     column
                                 ]
                             except KeyError:
                                 raise ValueError(
-                                    type.name
+                                    type_.name
                                     + " contains headers, but no template was defined for it."
                                 )
-                    complexObjects.append(ComplexObject(name, type, content))
+                    complexObjects.append(ComplexObject(name, type_, content))
             row += 1
         return complexObjects
 
@@ -55,9 +55,9 @@ class ComplexObjectParser:
         if name[0] == "\\":
             name = name[1:]
 
-        for type in self.types:
-            if type.name == name:
-                return type
+        for type_ in self.types:
+            if type_.name == name:
+                return type_
         raise ValueError(
             "The ComplexType `" + str(name) + "` does not exist."
         ) from None

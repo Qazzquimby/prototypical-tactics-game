@@ -2,9 +2,9 @@ from tts.guid import guid
 
 
 class Board:
-    def __init__(self, transform, object):
+    def __init__(self, transform, obj):
         self.transform = transform
-        self.object = object
+        self.object = obj
 
     def as_dict(self):
         return {
