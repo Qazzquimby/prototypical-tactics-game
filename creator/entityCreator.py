@@ -28,27 +28,34 @@ XCHUNKS = 15
 YCHUNKS = 15
 
 
+def get_random_coord_in_chunk(
+    chunk_x: int, chunk_y: int, num_x_chunks: int, num_y_chunks: int
+) -> (int, int):
+    if not 0 <= chunk_x < num_x_chunks:
+        raise ValueError(
+            "Trying to place an object outside the playing field; x-coordinates should be between 0 and "
+            + str(int(num_x_chunks - 1))
+        )
+    if not 0 <= chunk_y < num_y_chunks:
+        raise ValueError(
+            "Trying to place an object outside the playing field; y-coordinates should be between 0 and "
+            + str(int(num_y_chunks - 1))
+        )
+
+    width = (XMAX - XMIN) / num_x_chunks
+    height = (ZMAX - ZMIN) / num_y_chunks
+    random_x_offset = random.uniform(0, width)  # todo, why are these random?
+    random_y_offset = random.uniform(0, height)
+
+    x_coord = random_x_offset + XMIN + (chunk_x * width)
+    y_coord = random_y_offset + ZMIN + (chunk_y * height)
+
+    return x_coord, y_coord
+
+
 class EntityCreator:
     def __init__(self, library):
         self.library = library
-
-    def getCoordInChunk(self, chunkX, chunkY, numXChunks, numYChunks):
-        if not 0 <= chunkX < numXChunks:
-            raise ValueError(
-                "Trying to place an object outside the playing field; x-coordinates should be between 0 and "
-                + str(int(numXChunks - 1))
-            )
-        if not 0 <= chunkY < numYChunks:
-            raise ValueError(
-                "Trying to place an object outside the playing field; y-coordinates should be between 0 and "
-                + str(int(numYChunks - 1))
-            )
-
-        width = (XMAX - XMIN) / numXChunks
-        height = (ZMAX - ZMIN) / numYChunks
-        xOffset = random.uniform(0, width)  # todo, why are these random?
-        yOffset = random.uniform(0, height)
-        return (xOffset + XMIN + (chunkX * width), yOffset + ZMIN + (chunkY * height))
 
     def findObjectByName(self, name):
         for type in self.library:
@@ -200,7 +207,8 @@ class EntityCreator:
                     for i in range(0, int(item[0])):
                         entities.append(
                             self.createEntity(
-                                self.getCoordInChunk(row, col, XCHUNKS, YCHUNKS), object
+                                get_random_coord_in_chunk(row, col, XCHUNKS, YCHUNKS),
+                                object,
                             )
                         )
         return entities
