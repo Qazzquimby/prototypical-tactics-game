@@ -1,25 +1,38 @@
-from tests.basicTest import BasicTest
+import pytest
+
 from reader.dimensions import read_dimensions
 
+assert read_dimensions("200x300") == (200, 300)
+assert read_dimensions("1x1") == (1, 1)
+assert read_dimensions("1500x1200") == (1500, 1200)
 
-class DimensionsReaderTest(BasicTest):
-    def run(self):
-        assert read_dimensions("200x300") == (200, 300)
-        assert read_dimensions("1x1") == (1, 1)
-        assert read_dimensions("1500x1200") == (1500, 1200)
 
-        self.ensureNotAllowed("0x100", "Zero should not be allowed")
-        self.ensureNotAllowed("-100x100", "Negatives should not be allowed")
-        self.ensureNotAllowed("100x-100", "Negatives should not be allowed")
-        self.ensureNotAllowed("100", "An x should be required")
-        self.ensureNotAllowed("100n50", "An x should be required")
-        self.ensureNotAllowed("text", "Both sides should be numbers.")
-        self.ensureNotAllowed("100x", "Both sides should exist.")
-        self.ensureNotAllowed("x100", "Both sides should exist.")
+@pytest.mark.parametrize(
+    "text, expected",
+    [
+        ("200x300", (200, 300)),
+        ("1x1", (1, 1)),
+        ("1500x1200", (1500, 1200)),
+    ],
+)
+def test_read_dimensions(text, expected):
+    assert read_dimensions(text) == expected
 
-    def ensureNotAllowed(self, dimensions, message):
-        try:
-            read_dimensions(dimensions)
-            assert False, message
-        except ValueError:
-            return True  # this should not be allowed
+
+@pytest.mark.parametrize(
+    "text",
+    ["0x100", "-100x100", "100x-100", "100", "100n50", "text", "100x", "x100"],
+    ids=[
+        "Zero should not be allowed",
+        "Negatives should not be allowed",
+        "Negatives should not be allowed",
+        "An x should be required",
+        "An x should be required",
+        "Both sides should be numbers.",
+        "Both sides should exist.",
+        "Both sides should exist.",
+    ],
+)
+def test_invalid_dimensions(text):
+    with pytest.raises(ValueError):
+        read_dimensions(text)
