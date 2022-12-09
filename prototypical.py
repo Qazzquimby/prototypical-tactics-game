@@ -355,28 +355,6 @@ def testFtpConnection(config):
         return False
 
 
-# tests - need to be moved!! (and not run on every load)
-from tests.complexTypeParserTest import ComplexTypeParserTest
-from tests.reader.color_test import ColorReaderTest
-from tests.reader.number_test import NumberReaderTest
-from tests.reader.dimensions_test import DimensionsReaderTest
-from tests.reader.content_test import ContentReaderTest
-
-
-def runTests():
-    # run test cases
-    ComplexTypeParserTest().run()
-    ColorReaderTest().run()
-    NumberReaderTest().run()
-    DimensionsReaderTest().run()
-    ContentReaderTest().run()
-
-    def emptyCallback(msg, newLine=True):
-        pass
-
-    xls_file_to_library("data/testgame.xls")
-
-
 if __name__ == "__main__":
     # runTests()
 
