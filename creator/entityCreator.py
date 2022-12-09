@@ -53,6 +53,89 @@ def get_random_coord_in_chunk(
     return x_coord, y_coord
 
 
+def place_token(coords, entity):
+    if isinstance(entity, ContentToken):
+        transform = Transform(
+            posX=coords[0],
+            posY=YHEIGHT,
+            posZ=coords[1],
+            rotX=0,
+            rotY=180,
+            rotZ=0,
+            scaleX=entity.size,
+            scaleY=entity.size,
+            scaleZ=entity.size,
+        )
+        bs = TTSToken(transform, entity.imagePath)
+        return bs
+    else:
+        transform = Transform(
+            coords[0],
+            YHEIGHT,
+            coords[1],
+            0,
+            0,
+            0,
+            entity.size,
+            entity.size,
+            entity.size,
+        )
+        bs = SimpleToken(entity.entity, transform, entity.color)
+        return bs
+
+
+def place_figurine(coords, entity):
+    transform = Transform(
+        coords[0],
+        YHEIGHT,
+        coords[1],
+        0,
+        180,
+        0,
+        entity.size,
+        entity.size,
+        entity.size,
+    )
+    bs = TTSFigurine(transform=transform, entity=entity)
+    return bs
+
+
+def place_die(coords, entity):
+    transform = Transform(
+        coords[0],
+        YHEIGHT,
+        coords[1],
+        0,
+        0,
+        0,
+        entity.size,
+        entity.size,
+        entity.size,
+    )
+    die = TTSDie(
+        entity.sides,
+        entity.color,
+        transform,
+        entity.customContent,
+        entity.imagePath,
+    )
+    return die
+
+
+def place_deck(coords, entity):
+    transform = Transform(coords[0], YHEIGHT, coords[1], 0, 180, 180, 1, 1, 1)
+    deck = TTSDeck(
+        transform, entity.name, entity.cards, entity.imagePath, entity.backImagePath
+    )
+    return deck
+
+
+def place_board(coords, entity):
+    transform = Transform(coords[0], BOARDYHEIGHT, coords[1], 0, 0, 0, 1, 1, 1)
+    board = TTSBoard(transform, entity)
+    return board
+
+
 class EntityCreator:
     def __init__(self, library):
         self.library = library
@@ -65,16 +148,16 @@ class EntityCreator:
 
     def createEntity(self, coords, entity):
         if isinstance(entity, Token):
-            return self.placeToken(coords, entity)
+            return place_token(coords, entity)
         if isinstance(entity, Figurine):
-            return self.placeFigurine(coords, entity)
+            return place_figurine(coords, entity)
         if isinstance(entity, Die):
-            return self.placeDie(coords, entity)
+            return place_die(coords, entity)
         if isinstance(entity, Deck):
-            return self.placeDeck(coords, entity)
+            return place_deck(coords, entity)
         if isinstance(entity, ComplexObject):
             if entity.type.type == "board":
-                return self.placeBoard(coords, entity)
+                return place_board(coords, entity)
             else:
                 raise ValueError(
                     "Only ComplexTypes of the 'board' type can be placed directly. The others go into a deck! (Tried placing a "
@@ -86,84 +169,6 @@ class EntityCreator:
         raise NotImplementedError(
             "Not sure what to do with this: " + entity.__class__.__name__
         )
-
-    def placeToken(self, coords, entity):
-        if isinstance(entity, ContentToken):
-            transform = Transform(
-                coords[0],
-                YHEIGHT,
-                coords[1],
-                0,
-                180,
-                0,
-                entity.size,
-                entity.size,
-                entity.size,
-            )
-            bs = TTSToken(transform, entity.imagePath)
-            return bs
-        else:
-            transform = Transform(
-                coords[0],
-                YHEIGHT,
-                coords[1],
-                0,
-                0,
-                0,
-                entity.size,
-                entity.size,
-                entity.size,
-            )
-            bs = SimpleToken(entity.entity, transform, entity.color)
-            return bs
-
-    def placeFigurine(self, coords, entity):
-        transform = Transform(
-            coords[0],
-            YHEIGHT,
-            coords[1],
-            0,
-            180,
-            0,
-            entity.size,
-            entity.size,
-            entity.size,
-        )
-        bs = TTSFigurine(transform=transform, entity=entity)
-        return bs
-
-    def placeDie(self, coords, entity):
-        transform = Transform(
-            coords[0],
-            YHEIGHT,
-            coords[1],
-            0,
-            0,
-            0,
-            entity.size,
-            entity.size,
-            entity.size,
-        )
-        die = TTSDie(
-            entity.sides,
-            entity.color,
-            transform,
-            entity.customContent,
-            entity.imagePath,
-        )
-        return die
-
-    def placeDeck(self, coords, entity):
-        transform = Transform(coords[0], YHEIGHT, coords[1], 0, 180, 180, 1, 1, 1)
-        deck = TTSDeck(
-            transform, entity.name, entity.cards, entity.imagePath, entity.backImagePath
-        )
-        return deck
-
-    def placeBoard(self, coords, entity):
-        transform = Transform(coords[0], BOARDYHEIGHT, coords[1], 0, 0, 0, 1, 1, 1)
-        board = TTSBoard(transform, entity)
-        return board
 
     def placeBag(self, coords, entity):
         transform = Transform(
@@ -178,11 +183,11 @@ class EntityCreator:
             entity.size,
         )
         bag = TTSBag(
-            transform,
-            entity.color,
-            entity.name,
-            self.convertToTTS(coords, entity.content),
-            isinstance(entity, InfiniteBag),
+            transform=transform,
+            color=entity.color,
+            name=entity.name,
+            content=self.convertToTTS(coords, entity.content),
+            isInfinite=isinstance(entity, InfiniteBag),
         )
         return bag
 
