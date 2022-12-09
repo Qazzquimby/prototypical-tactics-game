@@ -1,6 +1,10 @@
 from domain.complexObject import ComplexObject
 
 
+def is_type_a_template(type):
+    return type[0] == "\\"
+
+
 class ComplexObjectParser:
     def __init__(self, types):
         self.types = types
@@ -13,7 +17,7 @@ class ComplexObjectParser:
             name = sheet.cell(rowx=row, colx=0).value
             typeName = sheet.cell(rowx=row, colx=1).value
             if name or typeName:
-                isTemplate = self.isTemplate(typeName)
+                isTemplate = is_type_a_template(typeName)
                 if isTemplate:
                     type = self.findType(typeName)
                     content = {}
@@ -45,9 +49,6 @@ class ComplexObjectParser:
                     complexObjects.append(ComplexObject(name, type, content))
             row += 1
         return complexObjects
-
-    def isTemplate(self, type):
-        return type[0] == "\\"
 
     def findType(self, name):
         # handle the template column

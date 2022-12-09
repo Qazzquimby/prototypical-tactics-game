@@ -16,11 +16,16 @@ TOPBOTTOM_MARGIN = 10
 TemplatesPath = Path("data/templates")
 
 
+def make_empty_image(filepath):
+    surf = pygame.Surface((10, 10))
+    pygame.image.save(surf, filepath)
+
+
 class ComplexObjectDrawer:
     def __init__(self, object, config):
         self.object = object
         self.config = config
-        self.size = self.getShapeSize(object.type.shape)
+        self.size = object.type.shape.size
 
     def draw(self):
         w, h = self.getCardSize()
@@ -59,9 +64,6 @@ class ComplexObjectDrawer:
 
     def getCardSize(self):
         return self.object.type.size
-
-    def getShapeSize(self, shape):
-        return shape.size
 
     # note: areas in the shape are actually row, col and not x,y
     def drawContentToArea(self, content, area):
@@ -152,7 +154,7 @@ class ComplexObjectDrawer:
         filepath = self.getPathForImage(folder, name)
 
         if self.config.developerKey.get() == "":
-            self.makeEmptyImage(filepath)
+            make_empty_image(filepath)
             return
 
         service = build(
@@ -181,7 +183,7 @@ class ComplexObjectDrawer:
                         img_data = requests.get(item["link"]).content
                         handler.write(img_data)
         except BaseException:
-            self.makeEmptyImage(filepath)
+            make_empty_image(filepath)
 
     def getPathForImage(self, subfolder, imagename):
         import os
@@ -196,7 +198,3 @@ class ComplexObjectDrawer:
             + imagename.replace(" ", "_")
             + ".jpg"
         )
-
-    def makeEmptyImage(self, filepath):
-        surf = pygame.Surface((10, 10))
-        pygame.image.save(surf, filepath)
