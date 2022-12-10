@@ -6,6 +6,9 @@ import pyexcel
 import yaml
 from pydantic import BaseModel
 
+from domain.complexType import ComplexType
+from domain.shape import Shape
+
 data_path = Path(r"data/")
 
 Sheets = dict[str:list]
@@ -57,6 +60,29 @@ class UnitCard(Card, Token):
 class Hero(UnitCard):
     pass
 
+    @staticmethod
+    def to_complex_type():
+        return ComplexType(
+            name=HERO_CARD_LABEL,
+            backside=(0, 0, 0),
+            bgColor=(1, 1, 1),
+            size=(500, 500),
+            type_="card",
+            shape=Shape(
+                areas={
+                    2: (0, 0, 0, 3),
+                    3: (1, 0, 1, 0),
+                    4: (1, 1, 1, 1),
+                    5: (2, 0, 2, 0),
+                    6: (2, 1, 2, 1),
+                    7: (3, 0, 3, 0),
+                    8: (3, 1, 3, 1),
+                    9: (5, 1, 5, 2),
+                },
+                size=(4, 6),
+            ),
+        )
+
 
 BASIC = "Basic"
 QUICK = "Quick"
@@ -84,6 +110,26 @@ class Ability(Card):
             self.text,
             hero_name,
         ]
+
+    @staticmethod
+    def make_complex_type():
+        return ComplexType(
+            name=ABILITY_CARD_LABEL,
+            backside=(0, 0, 0),
+            bgColor=(1, 1, 1),
+            size=(500, 500),
+            type_="card",
+            shape=Shape(
+                areas={
+                    2: (0, 0, 0, 2),
+                    3: (0, 3, 0, 3),
+                    4: (1, 0, 1, 3),
+                    5: (2, 0, 4, 3),
+                    6: (5, 1, 5, 2),
+                },
+                size=(4, 6),
+            ),
+        )
 
 
 class Deck(BaseModel):

@@ -1,5 +1,5 @@
 class ComplexObject:
-    def __init__(self, name, type_, content):
+    def __init__(self, name: str, type_, content):
         self.name = name
         self.type = type_
         self.content = content

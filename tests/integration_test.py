@@ -18,32 +18,34 @@ from image_builders import ImagesDirImageBuilder
 from tts.fake_xls_books import FakeBook
 from yaml_to_xls import Game, game_to_sheets
 
+BASIC_GAME = Game(
+    sets=[
+        GameSet(
+            name="TestSet",
+            hero_boxes=[
+                HeroBox(
+                    hero=Hero(name="TestHero", speed=3, health=8),
+                    image="TestImage",
+                    decks=[
+                        Deck(
+                            abilities=[
+                                Ability(
+                                    name="TestAbility",
+                                    type=BASIC,
+                                    text="TestText",
+                                )
+                            ]
+                        )
+                    ],
+                )
+            ],
+        )
+    ]
+)
+
 
 def test_basic_char():
-    game = Game(
-        sets=[
-            GameSet(
-                name="TestSet",
-                hero_boxes=[
-                    HeroBox(
-                        hero=Hero(name="TestHero", speed=3, health=8),
-                        image="TestImage",
-                        decks=[
-                            Deck(
-                                abilities=[
-                                    Ability(
-                                        name="TestAbility",
-                                        type=BASIC,
-                                        text="TestText",
-                                    )
-                                ]
-                            )
-                        ],
-                    )
-                ],
-            )
-        ]
-    )
+    game = BASIC_GAME
     tts_dict = game_to_tts_dict(game)
     expected_dict = json.loads(EXPECTED_TTS_JSON, strict=False)
 

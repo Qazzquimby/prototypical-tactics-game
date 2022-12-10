@@ -3,6 +3,11 @@ import json
 import xlrd
 
 from creator.entityCreator import EntityCreator
+from domain.bag import Bag
+from domain.card import Card
+from domain.complexObject import ComplexObject
+from domain.deck import Deck as DomainDeck
+from domain.figurine import Figurine
 from domain.library import Library
 from domain.token import ContentToken
 from drawer.cardBackDrawer import CardBackDrawer
@@ -17,6 +22,15 @@ from sheetParser.deckParser import DeckParser
 from sheetParser.diceParser import DiceParser
 from sheetParser.figurineParser import FigurineParser
 from sheetParser.tokenParser import TokenParser
+from yaml_to_xls import (
+    GameSet,
+    make_box_name,
+    HeroBox,
+    make_figurine_name,
+    Deck,
+    make_deck_name,
+    HERO_CARD_LABEL,
+)
 
 
 def xls_file_to_tts_save(
@@ -35,6 +49,104 @@ def sheets_to_tts_json(sheets: dict, image_builder, file_name, config=None):
     return library_to_tts_json(
         library, image_builder, file_name, sheets["Placement"], config
     )
+
+
+DEFAULT_LIBRARY = Library(
+    tokens=[],
+    dice=[],
+    complex_objects=[],
+    decks=[],
+    bags=[],
+)
+
+
+def game_to_library(game):
+    library = Library(
+        tokens=[],
+        dice=[],
+        complex_objects=[],
+        decks=[],
+        bags=[],
+    )
+
+    for game_set in game.sets:
+        add_game_set_to_library(library, game_set)
+
+    return library
+
+
+def add_game_set_to_library(library: Library, game_set: GameSet):
+    bag = Bag(name=game_set.name, size=2, color="black")
+    library.bags.append(bag)
+
+    # Make a bag for each set
+    for hero_box in game_set.hero_boxes:
+        add_hero_box_to_library(library, hero_box)
+        bag.content.append(make_box_name(hero_box.hero.name))
+
+    library.bags.append(bag)
+
+
+def add_hero_box_to_library(library: Library, hero_box: HeroBox):
+    bag = Bag(name=make_box_name(hero_box.hero.name), size=1, color="red")
+
+    library.complex_objects.append(
+        complex_object_row_to_complex_object(
+            hero_box.hero.make_card_row(hero_box.hero.name)
+        )
+    )
+    bag.content.append(hero_box.hero.name)  # unsure
+
+    figurine_name = make_figurine_name(hero_box.hero.name)
+    library.figurines.append(
+        Figurine(
+            name=figurine_name,
+            size=hero_box.hero.size,
+            image_path=hero_box.image,
+        )
+    )
+    bag.content.append(figurine_name)
+
+    if not hero_box.decks:
+        hero_box.decks.append(Deck())
+
+    for deck in hero_box.decks:
+        deck_name = make_deck_name(
+            hero_box.hero.name
+        )  # this will need to change when a hero has multiple loadouts
+        bag.append(deck_name)
+
+        domain_deck = DomainDeck(name=deck_name)
+
+        hero_card = Card(
+            obj=ComplexObject(
+                name=hero_box.hero.name,
+                type_=HERO_CARD_LABEL,
+                content=complex_object_row_to_complex_object(
+                    hero_box.hero.make_card_row(hero_box.hero.name)
+                ),
+            )
+        )
+        domain_deck.cards.append(hero_card)
+
+        for card in deck.cards:
+            domain_deck.cards.append(
+                Card(
+                    id_=len(domain_deck.cards) + 1,
+                    obj=complex_object_row_to_complex_object(
+                        card.make_card_row(hero_box.hero.name)
+                    ),
+                    count=1,
+                )
+            )
+
+        library.decks.append(domain_deck)
+
+    library.bags.append(bag)
+
+
+def complex_object_row_to_complex_object(row) -> ComplexObject:
+    return ComplexObject(name=row[0], type_=row[1], content=row[2:])
 
 
 def library_to_tts_json(
