@@ -4,6 +4,7 @@ from reader.number import read_number
 
 
 class DeckParser:
+    @staticmethod
     def parse(sheet, complexObjects):
         decks = []
 
@@ -41,6 +42,7 @@ class DeckParser:
             decks.append(current_deck)
         return decks
 
+    @staticmethod
     def findObject(name, objects):
         for obj in objects:
             if obj.name == name:

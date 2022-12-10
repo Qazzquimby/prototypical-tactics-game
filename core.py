@@ -55,7 +55,7 @@ def library_to_tts_json(
         deck.setBackImagePath(path)
 
     done = 0
-    for obj in library.complexObjects:
+    for obj in library.complex_objects:
         if obj.type.type == "board":
             drawer = ComplexObjectDrawer(obj, config)
             path = image_builder.build(drawer.draw(), obj.name, "jpg")
