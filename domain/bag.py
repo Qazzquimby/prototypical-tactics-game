@@ -1,8 +1,9 @@
+from functools import cached_property
+
 from domain.abstract import DomainEntity
 from domain.deck import Deck
 from tts.guid import guid
 from tts.transform import Transform
-from tts.bag import Bag as TTSBag
 
 
 class Bag(DomainEntity):
@@ -17,12 +18,14 @@ class Bag(DomainEntity):
         for _ in range(0, amount):
             self.content.append(content)
 
+    @cached_property
+    def transform(self):
+        return Transform.from_size_and_coords(self.size)
+
     def as_dict(self, transform=None):
-        if not transform:
-            transform = Transform.from_size_and_coords(self.size)
         return {
             "Name": "Infinite_Bag" if self.is_infinite else "Bag",
-            "Transform": transform.as_dict(),
+            "Transform": self.transform.as_dict(),
             "Nickname": self.name,
             "Description": "",
             "ColorDiffuse": {
@@ -46,23 +49,6 @@ class Bag(DomainEntity):
             "GUID": guid(),
         }
 
-    def to_tts(self):
-        transform = Transform.from_size_and_coords(self.size)
-
-        content = [
-            item.to_tts() for item in self.content
-        ]
-
-        bag = TTSBag(
-            transform=transform,
-            color=self.color,
-            name=self.name,
-            content=content,
-            is_infinite=self.is_infinite,
-        )
-        return bag
-
-
     def get_decks(self):
         # recursively get decks from self and internal bags
         decks = []
@@ -72,6 +58,7 @@ class Bag(DomainEntity):
             elif isinstance(item, Deck):
                 decks.append(item)
         return decks
+
 
 class InfiniteBag(Bag):
     def add_content(self, amount, content):

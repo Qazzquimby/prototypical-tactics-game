@@ -48,14 +48,11 @@ class EntityCreator:
                 return type_
         raise ValueError("Unknown entity type: " + name)
 
-    def create_entities(self, sheet=None):
-        entities = []
+    def create_entities(self, sheet=None) -> list[DomainEntity]:
         if sheet is None:
-            for coord, domain_entity in zip(
-                itertools.product(range(14), range(14)), self.all_entities
-            ):
-                entities.append(domain_entity.to_tts())
+            return self.all_entities
         else:
+            entities = []
             for col in range(0, min(14, sheet.ncols)):
                 for row in range(0, min(14, sheet.nrows)):
                     content = read_content(sheet.cell(rowx=row, colx=col).value)
@@ -64,5 +61,5 @@ class EntityCreator:
                         object_name = item[1]
                         domain_entity = self.get_domain_entity_by_name(object_name)
                         for _ in range(count):
-                            entities.append(domain_entity.to_tts())
+                            entities.append(domain_entity)
         return entities

@@ -1,7 +1,7 @@
 from domain.abstract import DomainEntity
 from tts.guid import guid
 from tts.transform import Transform
-from tts.figurine import Figurine as TTSFigurine
+
 
 class Figurine(DomainEntity):
     def __init__(self, name, size, image_path):
@@ -40,9 +40,3 @@ class Figurine(DomainEntity):
             "LuaScriptState": "",
             "GUID": guid(),
         }
-
-    def to_tts(self):
-        transform = Transform.from_size_and_coords(self.size)
-        transform.rot_y = 180
-        bs = TTSFigurine(transform=transform, entity=self)
-        return bs

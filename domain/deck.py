@@ -1,7 +1,5 @@
 from domain.abstract import DomainEntity
 from tts.guid import guid
-from tts.transform import Transform
-from tts.deck import Deck as TTSDeck
 
 
 class Deck(DomainEntity):
@@ -11,12 +9,10 @@ class Deck(DomainEntity):
         self.image_path = ""
         self.back_image_path = ""
 
-    def as_dict(self, transform=None):
-        if not transform:
-            transform = Transform.from_size_and_coords(1)
+    def as_dict(self):
         return {
             "Name": "DeckCustom",
-            "Transform": transform.as_dict(),
+            "Transform": self.transform.as_dict(),
             "Nickname": "",
             "Description": "",
             "ColorDiffuse": {"r": 0.713235259, "g": 0.713235259, "b": 0.713235259},
@@ -45,16 +41,6 @@ class Deck(DomainEntity):
             "ContainedObjects": self.get_card_instances(),
             "GUID": guid(),
         }
-
-    def to_tts(self):
-        transform = Transform.from_size_and_coords(1)
-        transform.rot_y = 180
-        transform.rot_z = 180
-
-        deck = TTSDeck(
-            transform, self.name, self.cards, self.image_path, self.back_image_path
-        )
-        return deck
 
     def get_ids(self):
         ids = []

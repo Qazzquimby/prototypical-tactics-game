@@ -1,6 +1,8 @@
+from functools import cached_property
+
 from domain.abstract import DomainEntity
+from tts.guid import guid
 from tts.transform import Transform
-from tts.board import Board as TTSBoard
 
 
 class ComplexObject(DomainEntity):
@@ -11,14 +13,28 @@ class ComplexObject(DomainEntity):
         # only used if this is a board, not used if it's a deck
         self.image_path = ""
 
-    def to_tts(self):
-        if self.type.type == "board":
-            transform = Transform.from_size_and_coords(size=1)
-            board = TTSBoard(transform, self)
-            return board
-        else:
-            raise ValueError(
-                "Only ComplexTypes of the 'board' type can be placed directly. The others go into a deck! (Tried placing a "
-                + self.name
-                + ")"
-            )
+    def as_dict(self):
+        # assumes this is a board
+        return {
+            "Name": "Custom_Board",
+            "Transform": self.transform.as_dict(),
+            "Nickname": "",
+            "Description": "",
+            "ColorDiffuse": {"r": 0.7867647, "g": 0.7867647, "b": 0.7867647},
+            "Locked": True,
+            "Grid": True,
+            "Snap": True,
+            "Autoraise": True,
+            "Sticky": True,
+            "Tooltip": True,
+            "GridProjection": False,
+            "Hands": False,
+            "CustomImage": {
+                "ImageURL": self.image_path,
+                "ImageSecondaryURL": "",
+                "WidthScale": 1.42857146,
+            },
+            "LuaScript": "",
+            "LuaScriptState": "",
+            "GUID": guid(),
+        }
