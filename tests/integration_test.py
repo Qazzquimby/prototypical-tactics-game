@@ -13,7 +13,7 @@ from pathlib import Path
 import pygame
 import yaml
 
-from core import game_to_library, library_to_tts_json
+from core import game_to_library, library_to_tts_dict
 from image_builders import ImagesDirImageBuilder
 from yaml_to_xls import Game
 
@@ -699,8 +699,7 @@ data_dir = Path("data").absolute()
 
 def game_to_tts_dict(game: Game) -> dict:
     library = game_to_library(game)
-    # fake_book = FakeBook(sheets)
-    tts_dict = library_to_tts_json(
+    tts_dict = library_to_tts_dict(
         library=library,
         image_builder=ImagesDirImageBuilder(pygame, basePath=data_dir / "images"),
         file_name="TestGame",

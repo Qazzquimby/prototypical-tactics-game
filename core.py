@@ -49,7 +49,7 @@ def xls_file_to_tts_save(
 
 def sheets_to_tts_json(sheets: dict, image_builder, file_name, config=None):
     library = sheets_to_library(sheets)
-    return library_to_tts_json(
+    return library_to_tts_dict(
         library, image_builder, file_name, sheets["Placement"], config
     )
 
@@ -159,7 +159,7 @@ def complex_object_row_to_complex_object(
     return ComplexObject(name=row[0], type_=type_, content=dict(row[2:]))
 
 
-def library_to_tts_json(
+def library_to_tts_dict(
     library: Library, image_builder, file_name, placement=None, config=None
 ):
     setup_pygame()

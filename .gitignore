@@ -14,3 +14,4 @@ build/
 *.zip
 sftp.py
 icon.py
+/data/images/

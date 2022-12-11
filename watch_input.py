@@ -6,13 +6,12 @@ import yaml.scanner
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, FileSystemEvent
 
-from tts.fake_xls_books import FakeBook
 from tts_dir import try_and_find_save_games_folder
 
 
 import yaml_to_xls
 from image_builders import ImagesDirImageBuilder
-from core import sheets_to_tts_json, save_tts
+from core import save_tts, game_to_library, library_to_tts_dict
 
 
 def yaml_file_to_tts_save(yaml_path: str, save_dir: Path):
@@ -22,21 +21,17 @@ def yaml_file_to_tts_save(yaml_path: str, save_dir: Path):
     try:
         yaml_content = yaml_to_xls.read_yaml_file(yaml_path)
     except yaml.scanner.ScannerError as e:
-        print(f"Error parsing {yaml_path}")
-        print(e)
+        print(f"Error parsing {yaml_path}\n{e}")
         return
-    print("Updated xls")
 
-    sheets = yaml_to_xls.yaml_content_to_sheets(yaml_content)
-    fake_book = FakeBook(sheets)
-
-    tts_json = sheets_to_tts_json(
-        sheets=fake_book.sheets,
+    game = yaml_to_xls.Game.parse_obj(yaml_content)
+    library = game_to_library(game)
+    tts_dict = library_to_tts_dict(
+        library=library,
         image_builder=ImagesDirImageBuilder(pygame, basePath=data_dir / "images"),
         file_name="TestGame",
     )
-
-    save_tts(tts_json, save_dir=save_dir, file_name=file_stem)
+    save_tts(tts_dict, save_dir=save_dir, file_name=file_stem)
     print("Built images")
 
 
