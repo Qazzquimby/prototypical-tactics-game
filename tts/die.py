@@ -1,7 +1,8 @@
+from tts.abstract import TtsEntity
 from tts.guid import guid
 
 
-class Die:
+class Die(TtsEntity):
     def __init__(self, sides, color, transform, custom_content=None, image_path=None):
         self.sides = sides
         self.color = color

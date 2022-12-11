@@ -1,7 +1,8 @@
+from tts.abstract import TtsEntity
 from tts.guid import guid
 
 
-class SimpleToken:
+class SimpleToken(TtsEntity):
     def __init__(self, typename, transform, color):
         self.typename = typename
         self.transform = transform

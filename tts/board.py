@@ -1,7 +1,8 @@
+from tts.abstract import TtsEntity
 from tts.guid import guid
 
 
-class Board:
+class Board(TtsEntity):
     def __init__(self, transform, obj):
         self.transform = transform
         self.object = obj

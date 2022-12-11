@@ -1,4 +1,7 @@
-class Bag:
+from tts.abstract import TtsEntity
+
+
+class Bag(TtsEntity):
     def __init__(self, transform, color, name, content, is_infinite=False):
         self.transform = transform
         self.content = content
@@ -11,3 +14,6 @@ class Bag:
         for item in self.content:
             items.append(item.as_dict())
         return items
+
+    def as_dict(self):
+        raise NotImplementedError

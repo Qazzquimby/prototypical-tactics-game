@@ -1,7 +1,8 @@
+from tts.abstract import TtsEntity
 from tts.guid import guid
 
 
-class Token:
+class Token(TtsEntity):
     def __init__(self, transform, image):
         self.transform = transform
         self.image = image

@@ -1,7 +1,8 @@
+from tts.abstract import TtsEntity
 from tts.guid import guid
 
 
-class Deck:
+class Deck(TtsEntity):
     def __init__(self, transform, name, cards, image_path, back_image_path):
         self.transform = transform
         self.cards = cards

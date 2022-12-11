@@ -1,8 +1,11 @@
 from creator.constants import BOARDYHEIGHT
+from tts.abstract import TtsEntity
 
 
-class Transform:
-    def __init__(self, pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, scale_x, scale_y, scale_z):
+class Transform(TtsEntity):
+    def __init__(
+        self, pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, scale_x, scale_y, scale_z
+    ):
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.pos_z = pos_z
