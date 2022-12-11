@@ -8,9 +8,15 @@ LIBRARY_PICKLE = b'\x80\x04\x95\xac\x08\x00\x00\x00\x00\x00\x00\x8c\x0edomain.li
 
 
 def test_game_to_library():
-    game = BASIC_GAME
-    # library = game_to_library(game)
-
     expected = pickle.loads(LIBRARY_PICKLE)
-    # todo remove game board and die from expected
+
+    game = BASIC_GAME
+    library = game_to_library(game)
+
+    # todo remove game board and die and pawns from expected
+    expected.tokens = []
+    expected.dice = []
+    expected.complex_objects = expected.complexObjects
+    del expected.complexObjects
+    del expected.complex_objects[0]
     assert library == expected

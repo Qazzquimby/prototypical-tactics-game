@@ -13,10 +13,9 @@ from pathlib import Path
 import pygame
 import yaml
 
-from core import sheets_to_tts_json
+from core import game_to_library, library_to_tts_json
 from image_builders import ImagesDirImageBuilder
-from tts.fake_xls_books import FakeBook
-from yaml_to_xls import Game, game_to_sheets
+from yaml_to_xls import Game
 
 BASIC_GAME = Game(
     sets=[
@@ -46,13 +45,13 @@ BASIC_GAME = Game(
 
 def test_basic_char():
     game = BASIC_GAME
-    tts_dict = game_to_tts_dict(game)
+    actual_tts_dict = game_to_tts_dict(game)
     expected_dict = json.loads(EXPECTED_TTS_JSON, strict=False)
 
-    deep_clean(tts_dict)
+    deep_clean(actual_tts_dict)
     deep_clean(expected_dict)
 
-    assert tts_dict == expected_dict
+    assert actual_tts_dict == expected_dict
 
 
 def deep_clean(tts_dict: dict) -> dict:
@@ -687,11 +686,22 @@ EXPECTED_TTS_JSON = r"""{
 data_dir = Path("data").absolute()
 
 
+# def game_to_tts_dict(game: Game) -> dict:
+#     sheets = game_to_sheets(game)
+#     fake_book = FakeBook(sheets)
+#     tts_dict = sheets_to_tts_json(
+#         sheets=fake_book.sheets,
+#         image_builder=ImagesDirImageBuilder(pygame, basePath=data_dir / "images"),
+#         file_name="TestGame",
+#     )
+#     return tts_dict
+
+
 def game_to_tts_dict(game: Game) -> dict:
-    sheets = game_to_sheets(game)
-    fake_book = FakeBook(sheets)
-    tts_dict = sheets_to_tts_json(
-        sheets=fake_book.sheets,
+    library = game_to_library(game)
+    # fake_book = FakeBook(sheets)
+    tts_dict = library_to_tts_json(
+        library=library,
         image_builder=ImagesDirImageBuilder(pygame, basePath=data_dir / "images"),
         file_name="TestGame",
     )

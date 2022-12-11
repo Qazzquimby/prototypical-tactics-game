@@ -1,4 +1,5 @@
 from copy import deepcopy
+from functools import lru_cache
 from pathlib import Path
 from typing import Literal
 
@@ -61,6 +62,7 @@ class Hero(UnitCard):
     pass
 
     @staticmethod
+    @lru_cache
     def to_complex_type():
         return ComplexType(
             name=HERO_CARD_LABEL,
@@ -112,7 +114,8 @@ class Ability(Card):
         ]
 
     @staticmethod
-    def make_complex_type():
+    @lru_cache
+    def to_complex_type():
         return ComplexType(
             name=ABILITY_CARD_LABEL,
             backside=(0, 0, 0),

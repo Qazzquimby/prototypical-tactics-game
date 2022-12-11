@@ -16,12 +16,12 @@ class Deck:
                 ids.append(99 + card.id)
         return ids
 
-    def get_cards(self):
-        data = []
+    def get_card_instances(self):
+        cards = []
         for card in self.cards:
             for i in range(0, card.count):
-                data.append(self.card_as_dict(card))
-        return data
+                cards.append(self.card_as_dict(card))
+        return cards
 
     def card_as_dict(self, card):
         return {
@@ -75,6 +75,6 @@ class Deck:
             },
             "LuaScript": "",
             "LuaScriptState": "",
-            "ContainedObjects": self.get_cards(),
+            "ContainedObjects": self.get_card_instances(),
             "GUID": guid(),
         }

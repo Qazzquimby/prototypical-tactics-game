@@ -1,5 +1,16 @@
+import itertools
 import random
 
+from creator.constants import (
+    XMIN,
+    XMAX,
+    ZMIN,
+    ZMAX,
+    YHEIGHT,
+    BOARDYHEIGHT,
+    XCHUNKS,
+    YCHUNKS,
+)
 from domain.figurine import Figurine
 from domain.token import Token
 from domain.token import ContentToken
@@ -17,19 +28,9 @@ from tts.figurine import Figurine as TTSFigurine
 from tts.bag import Bag as TTSBag
 from reader.content import read_content
 
-XMIN = -27
-XMAX = 27
-ZMIN = -17
-ZMAX = 17
-YHEIGHT = 2
-BOARDYHEIGHT = 1
-
-XCHUNKS = 15
-YCHUNKS = 15
-
 
 def get_random_coord_in_chunk(
-    chunk_x: int, chunk_y: int, num_x_chunks: int, num_y_chunks: int
+    chunk_x: int, chunk_y: int, num_x_chunks: int = XCHUNKS, num_y_chunks: int = YCHUNKS
 ) -> (int, int):
     if not 0 <= chunk_x < num_x_chunks:
         raise ValueError(
@@ -137,11 +138,11 @@ def place_board(coords, entity):
 
 
 class EntityCreator:
-    def __init__(self, library):
-        self.library = library
+    def __init__(self, all_entities):
+        self.all_entities = all_entities
 
     def findObjectByName(self, name):
-        for type_ in self.library:
+        for type_ in self.all_entities:
             if type_.name == name:
                 return type_
         raise ValueError("Unknown entity type: " + name)
@@ -187,7 +188,7 @@ class EntityCreator:
             color=entity.color,
             name=entity.name,
             content=self.convertToTTS(coords, entity.content),
-            isInfinite=isinstance(entity, InfiniteBag),
+            is_infinite=isinstance(entity, InfiniteBag),
         )
         return bag
 
@@ -197,23 +198,30 @@ class EntityCreator:
             converted.append(self.createEntity(coords, item))
         return converted
 
-    def createEntities(self, sheet):
+    def createEntities(self, sheet=None):
         entities = []
-        for col in range(0, min(14, sheet.ncols)):
-            for row in range(0, min(14, sheet.nrows)):
-                content = read_content(sheet.cell(rowx=row, colx=col).value)
-                for item in content:
-                    try:
-                        object_ = self.findObjectByName(item[1])
-                    except ValueError as e:
-                        raise ValueError(
-                            str(e) + " (while trying to place items on the board)"
-                        )
-                    for i in range(0, int(item[0])):
-                        entities.append(
-                            self.createEntity(
-                                get_random_coord_in_chunk(row, col, XCHUNKS, YCHUNKS),
-                                object_,
+        if sheet is None:
+            for coord, entity in zip(
+                itertools.product(range(14), range(14)), self.all_entities
+            ):
+                self.createEntity(
+                    get_random_coord_in_chunk(coord[0], coord[1]),
+                    entity,
+                )
+                entities.append(entity)
+        else:
+            for col in range(0, min(14, sheet.ncols)):
+                for row in range(0, min(14, sheet.nrows)):
+                    content = read_content(sheet.cell(rowx=row, colx=col).value)
+                    for item in content:
+                        count = int(item[0])
+                        object_name = item[1]
+                        object_ = self.findObjectByName(object_name)
+                        for i in range(count):
+                            entities.append(
+                                self.createEntity(
+                                    get_random_coord_in_chunk(row, col),
+                                    object_,
+                                )
                             )
-                        )
         return entities

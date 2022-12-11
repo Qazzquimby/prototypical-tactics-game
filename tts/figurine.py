@@ -8,6 +8,7 @@ class Figurine:
         self.entity = entity
 
     def as_dict(self):
+        print("depreciated")
         return {
             "Name": "Figurine_Custom",
             "Transform": self.transform.as_dict(),
