@@ -28,7 +28,7 @@ class DiceDrawer:
     def draw(self):
         surf = pygame.image.load("data/D6.png")
         for pos, spot in enumerate(DRAWSPOTS):
-            content = self.die.customContent[pos]
+            content = self.die.custom_content[pos]
             if isinstance(content, float) and content.is_integer():
                 content = int(content)
             content = str(content)

@@ -2,12 +2,12 @@ from tts.guid import guid
 
 
 class Die:
-    def __init__(self, sides, color, transform, customContent=None, imagePath=None):
+    def __init__(self, sides, color, transform, custom_content=None, image_path=None):
         self.sides = sides
         self.color = color
         self.transform = transform
-        self.customContent = customContent
-        self.imagePath = imagePath
+        self.custom_content = custom_content
+        self.image_path = image_path
 
     def as_dict(self):
         base = {
@@ -32,28 +32,28 @@ class Die:
             "LuaScript": "",
             "LuaScriptState": "",
             "GUID": guid(),
-            "RotationValues": self.getRotValues(),
+            "RotationValues": self.get_rot_values(),
         }
-        if self.customContent:
-            base["CustomImage"] = self.customDice()
+        if self.custom_content:
+            base["CustomImage"] = self.custom_dice()
 
         return base
 
     def name(self):
-        if self.customContent:
+        if self.custom_content:
             return "Custom_Dice"
         return "Die_" + str(int(self.sides))
 
-    def customDice(self):
+    def custom_dice(self):
         return {
-            "ImageURL": self.imagePath,
+            "ImageURL": self.image_path,
             "ImageSecondaryURL": "",
             "WidthScale": 0.0,
             "CustomDice": {"Type": 1},
         }
 
-    def getRotValues(self):
-        if self.customContent:
+    def get_rot_values(self):
+        if self.custom_content:
             return self.get_rot_values_custom()
         if self.sides == 4:
             return ROT_VALUES_4
@@ -69,27 +69,27 @@ class Die:
     def get_rot_values_custom(self):
         return [
             {
-                "Value": self.customContent[0],
+                "Value": self.custom_content[0],
                 "Rotation": {"x": -90.0, "y": 0.0, "z": 0.0},
             },
             {
-                "Value": self.customContent[1],
+                "Value": self.custom_content[1],
                 "Rotation": {"x": 0.0, "y": 0.0, "z": 0.0},
             },
             {
-                "Value": self.customContent[2],
+                "Value": self.custom_content[2],
                 "Rotation": {"x": 0.0, "y": 0.0, "z": -90.0},
             },
             {
-                "Value": self.customContent[3],
+                "Value": self.custom_content[3],
                 "Rotation": {"x": 0.0, "y": 0.0, "z": 90.0},
             },
             {
-                "Value": self.customContent[4],
+                "Value": self.custom_content[4],
                 "Rotation": {"x": 0.0, "y": 0.0, "z": -180.0},
             },
             {
-                "Value": self.customContent[5],
+                "Value": self.custom_content[5],
                 "Rotation": {"x": 90.0, "y": 0.0, "z": 0.0},
             },
         ]

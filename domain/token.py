@@ -28,6 +28,6 @@ class ContentToken(Token):
 
     def to_tts(self):
         transform = Transform.from_size_and_coords(self.size)
-        transform.rotY = 180
+        transform.rot_y = 180
         bs = TTSToken(transform, self.imagePath)
         return bs

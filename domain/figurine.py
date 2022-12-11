@@ -43,6 +43,6 @@ class Figurine(DomainEntity):
 
     def to_tts(self):
         transform = Transform.from_size_and_coords(self.size)
-        transform.rotY = 180
+        transform.rot_y = 180
         bs = TTSFigurine(transform=transform, entity=self)
         return bs

@@ -22,7 +22,7 @@ class Board:
             "GridProjection": False,
             "Hands": False,
             "CustomImage": {
-                "ImageURL": self.object.imagePath,
+                "ImageURL": self.object.image_path,
                 "ImageSecondaryURL": "",
                 "WidthScale": 1.42857146,
             },

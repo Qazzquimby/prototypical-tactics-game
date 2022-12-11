@@ -47,8 +47,8 @@ class Deck(DomainEntity):
 
     def to_tts(self):
         transform = Transform.from_size_and_coords(1)
-        transform.rotY = 180
-        transform.rotZ = 180
+        transform.rot_y = 180
+        transform.rot_z = 180
 
         deck = TTSDeck(
             transform, self.name, self.cards, self.imagePath, self.backImagePath

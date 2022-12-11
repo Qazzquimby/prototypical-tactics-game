@@ -2,24 +2,24 @@ from tts.guid import guid
 
 
 class Deck:
-    def __init__(self, transform, name, cards, imagePath, backImagePath):
+    def __init__(self, transform, name, cards, image_path, back_image_path):
         self.transform = transform
         self.cards = cards
         self.name = name
-        self.imagePath = imagePath
-        self.backImagePath = backImagePath
+        self.image_path = image_path
+        self.back_image_path = back_image_path
 
     def get_ids(self):
         ids = []
         for card in self.cards:
-            for i in range(0, card.count):
+            for _ in range(0, card.count):
                 ids.append(99 + card.id)
         return ids
 
     def get_card_instances(self):
         cards = []
         for card in self.cards:
-            for i in range(0, card.count):
+            for _ in range(0, card.count):
                 cards.append(self.card_as_dict(card))
         return cards
 
@@ -65,8 +65,8 @@ class Deck:
             "DeckIDs": self.get_ids(),
             "CustomDeck": {
                 "1": {
-                    "FaceURL": self.imagePath,
-                    "BackURL": self.backImagePath,
+                    "FaceURL": self.image_path,
+                    "BackURL": self.back_image_path,
                     "NumWidth": 10,
                     "NumHeight": 7,
                     "BackIsHidden": False,
