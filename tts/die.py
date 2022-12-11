@@ -16,9 +16,9 @@ class Die:
             "Nickname": "",
             "Description": "",
             "ColorDiffuse": {
-                "r": self.color[0],
-                "g": self.color[1],
-                "b": self.color[2],
+                "r": self.color[0.0],
+                "g": self.color[1.0],
+                "b": self.color[2.0],
             },
             "Locked": False,
             "Grid": False,

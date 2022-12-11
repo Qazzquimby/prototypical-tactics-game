@@ -66,8 +66,8 @@ class Hero(UnitCard):
     def to_complex_type():
         return ComplexType(
             name=HERO_CARD_LABEL,
-            backside=(0, 0, 0),
-            bgColor=(1, 1, 1),
+            backside=(0.0, 0.0, 0.0),
+            bgColor=(1.0, 1.0, 1.0),
             size=(500, 500),
             type_="card",
             shape=Shape(
@@ -118,8 +118,8 @@ class Ability(Card):
     def to_complex_type():
         return ComplexType(
             name=ABILITY_CARD_LABEL,
-            backside=(0, 0, 0),
-            bgColor=(1, 1, 1),
+            backside=(0.0, 0.0, 0.0),
+            bgColor=(1.0, 1.0, 1.0),
             size=(500, 500),
             type_="card",
             shape=Shape(

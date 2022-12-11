@@ -72,21 +72,24 @@ def game_to_library(game):
         bags=[],
     )
 
-    sets_bag = Bag(name="Sets", size=3, color=(0, 0, 0))
+    sets_bag = Bag(name="Sets", size=3, color=(1.0, 1.0, 1.0))
     for game_set in game.sets:
         game_set_bag = add_game_set_to_library(library, game_set)
         sets_bag.content.append(game_set_bag)
+    library.bags.append(sets_bag)
 
     return library
 
 
 def add_game_set_to_library(library: Library, game_set: GameSet):
-    bag = Bag(name=game_set.name, size=2, color=(1, 1, 1))
+    bag = Bag(name=game_set.name, size=2, color=(0.0, 0.0, 0.0))
 
     # Make a bag for each set
     for hero_box in game_set.hero_boxes:
-        add_hero_box_to_library(library, hero_box)
-        bag.content.append(make_box_name(hero_box.hero.name))
+        hero_box_bag = add_hero_box_to_library(library, hero_box)
+        bag.content.append(
+            hero_box_bag
+        )
 
     return bag
 
@@ -97,7 +100,7 @@ def card_row_to_content_dict(row: list):
 
 
 def add_hero_box_to_library(library: Library, hero_box: HeroBox):
-    hero_box_bag = Bag(name=make_box_name(hero_box.hero.name), size=1, color=(1, 0, 0))
+    hero_box_bag = Bag(name=make_box_name(hero_box.hero.name), size=1, color=(1.0, 0.0, 0.0))
 
     figurine_name = make_figurine_name(hero_box.hero.name)
     hero_box_bag.content.append(
@@ -137,7 +140,7 @@ def add_hero_box_to_library(library: Library, hero_box: HeroBox):
                     id_=len(domain_deck.cards) + 1,
                     count=1,
                     obj=ComplexObject(
-                        name=card.name,
+                        name=deck_name,
                         type_=Ability.to_complex_type(),  # todo make work for other card types
                         content=card_row_to_content_dict(card.make_card_row(card.name)),
                     ),
@@ -146,7 +149,8 @@ def add_hero_box_to_library(library: Library, hero_box: HeroBox):
 
         hero_box_bag.content.append(domain_deck)
 
-    library.bags.append(hero_box_bag)
+    # library.bags.append(hero_box_bag)
+    return hero_box_bag
 
 
 def complex_object_row_to_complex_object(
