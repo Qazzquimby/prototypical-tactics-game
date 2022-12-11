@@ -176,30 +176,23 @@ def library_to_tts_dict(
         path = image_builder.build(drawer.draw(deck), deck.name + "_back", "jpg")
         deck.setBackImagePath(path)
 
-    done = 0
     for obj in library.complex_objects:
         if obj.type.type == "board":
             drawer = ComplexObjectDrawer(obj, config)
             path = image_builder.build(drawer.draw(), obj.name, "jpg")
             obj.setImagePath(path)
-            done += 1
 
-    done = 0
     for token in library.tokens:
         if isinstance(token, ContentToken):
             drawer = TokenDrawer(token)
             path = image_builder.build(drawer.draw(), "token_" + token.name, "jpg")
             token.setImagePath(path)
-            done += 1
 
-    # draw all dice
-    done = 0
     for die in library.dice:
         if die.customContent:
             drawer = DiceDrawer(die)
             path = image_builder.build(drawer.draw(), "die" + die.name, "png")
             die.setImagePath(path)
-            done += 1
 
     # UGLY - we already did this step during parsing, but we need to create entities AFTER drawing or their image paths aren't set
     creator = EntityCreator(library.all())
