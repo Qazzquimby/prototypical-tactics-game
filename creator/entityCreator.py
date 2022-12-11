@@ -11,21 +11,12 @@ from creator.constants import (
     XCHUNKS,
     YCHUNKS,
 )
-from domain.figurine import Figurine
-from domain.token import Token
+from domain.abstract import DomainEntity
 from domain.token import ContentToken
-from domain.die import Die
-from domain.deck import Deck
-from domain.complexObject import ComplexObject
-from domain.bag import Bag, InfiniteBag
 from tts.simpletoken import SimpleToken
 from tts.transform import Transform
-from tts.die import Die as TTSDie
-from tts.deck import Deck as TTSDeck
 from tts.board import Board as TTSBoard
 from tts.token import Token as TTSToken
-from tts.figurine import Figurine as TTSFigurine
-from tts.bag import Bag as TTSBag
 from reader.content import read_content
 
 
@@ -54,89 +45,6 @@ def get_random_coord_in_chunk(
     return x_coord, y_coord
 
 
-def place_token(coords, entity):
-    if isinstance(entity, ContentToken):
-        transform = Transform(
-            posX=coords[0],
-            posY=YHEIGHT,
-            posZ=coords[1],
-            rotX=0,
-            rotY=180,
-            rotZ=0,
-            scaleX=entity.size,
-            scaleY=entity.size,
-            scaleZ=entity.size,
-        )
-        bs = TTSToken(transform, entity.imagePath)
-        return bs
-    else:
-        transform = Transform(
-            coords[0],
-            YHEIGHT,
-            coords[1],
-            0,
-            0,
-            0,
-            entity.size,
-            entity.size,
-            entity.size,
-        )
-        bs = SimpleToken(entity.entity, transform, entity.color)
-        return bs
-
-
-def place_figurine(coords, entity):
-    transform = Transform(
-        coords[0],
-        YHEIGHT,
-        coords[1],
-        0,
-        180,
-        0,
-        entity.size,
-        entity.size,
-        entity.size,
-    )
-    bs = TTSFigurine(transform=transform, entity=entity)
-    return bs
-
-
-def place_die(coords, entity):
-    transform = Transform(
-        coords[0],
-        YHEIGHT,
-        coords[1],
-        0,
-        0,
-        0,
-        entity.size,
-        entity.size,
-        entity.size,
-    )
-    die = TTSDie(
-        entity.sides,
-        entity.color,
-        transform,
-        entity.customContent,
-        entity.imagePath,
-    )
-    return die
-
-
-def place_deck(coords, entity):
-    transform = Transform(coords[0], YHEIGHT, coords[1], 0, 180, 180, 1, 1, 1)
-    deck = TTSDeck(
-        transform, entity.name, entity.cards, entity.imagePath, entity.backImagePath
-    )
-    return deck
-
-
-def place_board(coords, entity):
-    transform = Transform(coords[0], BOARDYHEIGHT, coords[1], 0, 0, 0, 1, 1, 1)
-    board = TTSBoard(transform, entity)
-    return board
-
-
 class EntityCreator:
     def __init__(self, all_entities):
         self.all_entities = all_entities
@@ -147,56 +55,8 @@ class EntityCreator:
                 return type_
         raise ValueError("Unknown entity type: " + name)
 
-    def createEntity(self, coords, entity):
-        if isinstance(entity, Token):
-            return place_token(coords, entity)
-        if isinstance(entity, Figurine):
-            return place_figurine(coords, entity)
-        if isinstance(entity, Die):
-            return place_die(coords, entity)
-        if isinstance(entity, Deck):
-            return place_deck(coords, entity)
-        if isinstance(entity, ComplexObject):
-            if entity.type.type == "board":
-                return place_board(coords, entity)
-            else:
-                raise ValueError(
-                    "Only ComplexTypes of the 'board' type can be placed directly. The others go into a deck! (Tried placing a "
-                    + entity.name
-                    + ")"
-                )
-        if isinstance(entity, Bag):
-            return self.placeBag(coords, entity)
-        raise NotImplementedError(
-            "Not sure what to do with this: " + entity.__class__.__name__
-        )
-
-    def placeBag(self, coords, entity):
-        transform = Transform(
-            coords[0],
-            BOARDYHEIGHT,
-            coords[1],
-            0,
-            0,
-            0,
-            entity.size,
-            entity.size,
-            entity.size,
-        )
-        bag = TTSBag(
-            transform=transform,
-            color=entity.color,
-            name=entity.name,
-            content=self.convertToTTS(coords, entity.content),
-            is_infinite=isinstance(entity, InfiniteBag),
-        )
-        return bag
-
-    def convertToTTS(self, coords, items):
-        converted = []
-        for item in items:
-            converted.append(self.createEntity(coords, item))
-        return converted
+    def createEntity(self, entity: DomainEntity):
+        return entity.to_tts() # todo this might need random coords
 
     def createEntities(self, sheet=None):
         entities = []
@@ -205,7 +65,7 @@ class EntityCreator:
                 itertools.product(range(14), range(14)), self.all_entities
             ):
                 self.createEntity(
-                    get_random_coord_in_chunk(coord[0], coord[1]),
+                    # get_random_coord_in_chunk(coord[0], coord[1]),
                     entity,
                 )
                 entities.append(entity)

@@ -1,9 +1,14 @@
-from domain.figurine import Figurine as DomainFigurine
+import typing
+
 from tts.guid import guid
+
+if typing.TYPE_CHECKING:
+    from domain.figurine import Figurine as DomainFigurine
+
 
 
 class Figurine:
-    def __init__(self, transform, entity: DomainFigurine):
+    def __init__(self, transform, entity: "DomainFigurine"):
         self.transform = transform
         self.entity = entity
 

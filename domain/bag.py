@@ -1,9 +1,11 @@
+from domain.abstract import DomainEntity
 from domain.deck import Deck
 from tts.guid import guid
 from tts.transform import Transform
+from tts.bag import Bag as TTSBag
 
 
-class Bag:
+class Bag(DomainEntity):
     def __init__(self, name, size, color, is_infinite=False):
         self.name = name
         self.size = size
@@ -44,6 +46,23 @@ class Bag:
             "GUID": guid(),
         }
 
+    def to_tts(self):
+        transform = Transform.from_size_and_coords(self.size)
+
+        content = [
+            item.to_tts() for item in self.content
+        ]
+
+        bag = TTSBag(
+            transform=transform,
+            color=self.color,
+            name=self.name,
+            content=content,
+            is_infinite=self.is_infinite,
+        )
+        return bag
+
+
     def get_decks(self):
         # recursively get decks from self and internal bags
         decks = []
@@ -56,6 +75,7 @@ class Bag:
 
 class InfiniteBag(Bag):
     def addContent(self, amount, content):
+        # depreciate infinite bags
         if len(self.content) == 1:
             raise ValueError(
                 "There is no point to putting more than one thing in an Infinite bag."

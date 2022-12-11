@@ -1,4 +1,8 @@
-class Die:
+from domain.abstract import DomainEntity
+from tts.transform import Transform
+from tts.die import Die as TTSDie
+
+class Die(DomainEntity):
     def __init__(self, name, color, size, sides, customContent=None, imagePath=None):
         self.name = name
         self.color = color
@@ -15,3 +19,14 @@ class Die:
 
     def setImagePath(self, path):
         self.imagePath = path
+
+    def to_tts(self):
+        transform = Transform.from_size_and_coords(self.size)
+        die = TTSDie(
+            self.sides,
+            self.color,
+            transform,
+            self.customContent,
+            self.imagePath,
+        )
+        return die

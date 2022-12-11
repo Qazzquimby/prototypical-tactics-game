@@ -1,8 +1,8 @@
+from domain.abstract import DomainEntity
 from tts.guid import guid
 from tts.transform import Transform
 
-
-class Card:
+class Card(DomainEntity):
     def __init__(self, obj, count, id_):
         self.id = id_
         self.count = count
@@ -32,3 +32,6 @@ class Card:
             "ContainedObjects": [],
             "GUID": guid(),
         }
+
+    def to_tts(self):
+        raise NotImplementedError
