@@ -30,7 +30,6 @@ from yaml_to_xls import (
     make_figurine_name,
     Deck,
     make_deck_name,
-    HERO_CARD_LABEL,
     Hero,
     Ability,
 )
@@ -74,19 +73,19 @@ def game_to_library(game):
 
     sets_bag = Bag(name="Sets", size=3, color=(1.0, 1.0, 1.0))
     for game_set in game.sets:
-        game_set_bag = add_game_set_to_library(library, game_set)
+        game_set_bag = make_game_set_bag(game_set)
         sets_bag.content.append(game_set_bag)
     library.bags.append(sets_bag)
 
     return library
 
 
-def add_game_set_to_library(library: Library, game_set: GameSet):
+def make_game_set_bag(game_set: GameSet):
     bag = Bag(name=game_set.name, size=2, color=(0.0, 0.0, 0.0))
 
     # Make a bag for each set
     for hero_box in game_set.hero_boxes:
-        hero_box_bag = add_hero_box_to_library(library, hero_box)
+        hero_box_bag = make_hero_box_bag(hero_box)
         bag.content.append(hero_box_bag)
 
     return bag
@@ -97,7 +96,7 @@ def card_row_to_content_dict(row: list):
     return {i + 2: value for i, value in enumerate(no_label)}
 
 
-def add_hero_box_to_library(library: Library, hero_box: HeroBox):
+def make_hero_box_bag(hero_box: HeroBox):
     hero_box_bag = Bag(
         name=make_box_name(hero_box.hero.name), size=1, color=(1.0, 0.0, 0.0)
     )
@@ -149,7 +148,6 @@ def add_hero_box_to_library(library: Library, hero_box: HeroBox):
 
         hero_box_bag.content.append(domain_deck)
 
-    # library.bags.append(hero_box_bag)
     return hero_box_bag
 
 
@@ -180,7 +178,7 @@ def library_to_tts_dict(
         if obj.type.type == "board":
             drawer = ComplexObjectDrawer(obj, config)
             path = image_builder.build(drawer.draw(), obj.name, "jpg")
-            obj.set_image_path(path)
+            obj.image_path = path
 
     for token in library.tokens:
         if isinstance(token, ContentToken):
@@ -192,7 +190,7 @@ def library_to_tts_dict(
         if die.custom_content:
             drawer = DiceDrawer(die)
             path = image_builder.build(drawer.draw(), "die" + die.name, "png")
-            die.set_image_path(path)
+            die.image_path = path
 
     # UGLY - we already did this step during parsing, but we need to create entities AFTER drawing or their image paths aren't set
     creator = EntityCreator(library.all())

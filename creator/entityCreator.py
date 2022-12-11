@@ -6,17 +6,10 @@ from creator.constants import (
     XMAX,
     ZMIN,
     ZMAX,
-    YHEIGHT,
-    BOARDYHEIGHT,
     XCHUNKS,
     YCHUNKS,
 )
 from domain.abstract import DomainEntity
-from domain.token import ContentToken
-from tts.simpletoken import SimpleToken
-from tts.transform import Transform
-from tts.board import Board as TTSBoard
-from tts.token import Token as TTSToken
 from reader.content import read_content
 
 
@@ -56,7 +49,7 @@ class EntityCreator:
         raise ValueError("Unknown entity type: " + name)
 
     def createEntity(self, entity: DomainEntity):
-        return entity.to_tts() # todo this might need random coords
+        return entity.to_tts()  # todo this might need random coords
 
     def createEntities(self, sheet=None):
         entities = []

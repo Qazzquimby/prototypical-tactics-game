@@ -2,6 +2,7 @@ from domain.abstract import DomainEntity
 from tts.transform import Transform
 from tts.die import Die as TTSDie
 
+
 class Die(DomainEntity):
     def __init__(self, name, color, size, sides, custom_content=None, image_path=None):
         self.name = name
@@ -16,9 +17,6 @@ class Die(DomainEntity):
 
         if sides not in (4, 6, 8, 10, 12, 20):
             raise ValueError("This number of dice-sides is not supported.")
-
-    def set_image_path(self, path):
-        self.image_path = path
 
     def to_tts(self):
         transform = Transform.from_size_and_coords(self.size)

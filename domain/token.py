@@ -25,9 +25,6 @@ class ContentToken(Token):
         self.content = content
         self.image_path = ""
 
-    def set_image_path(self, path):
-        self.image_path = path
-
     def to_tts(self):
         transform = Transform.from_size_and_coords(self.size)
         transform.rot_y = 180

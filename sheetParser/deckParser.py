@@ -35,7 +35,7 @@ class DeckParser:
                     ) from None
 
                 id_ = current_deck.next_id()
-                current_deck.add_card(Card(card, amount, id_))
+                current_deck.cards.append(Card(card, amount, id_))
             row += 1
 
         if current_deck and current_deck.cards:

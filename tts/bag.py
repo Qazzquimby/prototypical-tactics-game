@@ -1,6 +1,3 @@
-from tts.guid import guid
-
-
 class Bag:
     def __init__(self, transform, color, name, content, is_infinite=False):
         self.transform = transform

@@ -3,6 +3,7 @@ from tts.guid import guid
 from tts.transform import Transform
 from tts.deck import Deck as TTSDeck
 
+
 class Deck(DomainEntity):
     def __init__(self, name):
         self.name = name
@@ -69,14 +70,5 @@ class Deck(DomainEntity):
                 cards.append(card.as_dict())
         return cards
 
-    def add_card(self, card):
-        self.cards.append(card)
-
     def next_id(self):
         return len(self.cards) + 1
-
-    def set_image_path(self, path):
-        self.imagePath = path
-
-    def set_back_image_path(self, path):
-        self.backImagePath = path

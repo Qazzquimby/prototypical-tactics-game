@@ -2,6 +2,7 @@ from domain.abstract import DomainEntity
 from tts.transform import Transform
 from tts.board import Board as TTSBoard
 
+
 class ComplexObject(DomainEntity):
     def __init__(self, name: str, type_, content):
         self.name = name
@@ -9,9 +10,6 @@ class ComplexObject(DomainEntity):
         self.content = content
         # only used if this is a board, not used if it's a deck
         self.image_path = ""
-
-    def set_image_path(self, path):
-        self.image_path = path
 
     def to_tts(self):
         if self.type.type == "board":
