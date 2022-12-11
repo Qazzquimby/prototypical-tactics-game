@@ -96,7 +96,7 @@ def add_game_set_to_library(library: Library, game_set: GameSet):
 
 def card_row_to_content_dict(row: list):
     no_label = row[2:]
-    return {i: value for i, value in enumerate(no_label)}
+    return {i+2: value for i, value in enumerate(no_label)}
 
 
 def add_hero_box_to_library(library: Library, hero_box: HeroBox):

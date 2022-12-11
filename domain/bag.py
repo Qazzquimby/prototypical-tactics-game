@@ -1,3 +1,4 @@
+from domain.deck import Deck
 from tts.guid import guid
 from tts.transform import Transform
 
@@ -43,6 +44,15 @@ class Bag:
             "GUID": guid(),
         }
 
+    def get_decks(self):
+        # recursively get decks from self and internal bags
+        decks = []
+        for item in self.content:
+            if isinstance(item, Bag):
+                decks += item.get_decks()
+            elif isinstance(item, Deck):
+                decks.append(item)
+        return decks
 
 class InfiniteBag(Bag):
     def addContent(self, amount, content):
