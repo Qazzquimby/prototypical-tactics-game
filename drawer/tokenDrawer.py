@@ -9,7 +9,7 @@ MARGIN = 10
 class TokenDrawer:
     def __init__(self, token):
         self.token = token
-        self.fontObj = Font.getFont(32)
+        self.fontObj = Font.get_font(32)
 
     def draw(self):
         content = self.token.content

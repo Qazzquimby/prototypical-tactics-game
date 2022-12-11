@@ -10,7 +10,7 @@ def run(xls_path: Path, save_dir: Path):
 
     xls_file_to_tts_save(
         xls_file_path=str(xls_path),
-        image_builder=ImagesDirImageBuilder(pygame, basePath=data_dir / "images"),
+        image_builder=ImagesDirImageBuilder(pygame, base_path=data_dir / "images"),
         save_dir=save_dir,
         file_name=xls_path.stem,
     )

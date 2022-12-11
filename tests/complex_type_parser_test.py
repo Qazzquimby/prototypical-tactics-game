@@ -20,7 +20,7 @@ from sheetParser.complexTypeParser import ComplexTypeParser
     ],
 )
 def test_valid_input(char, row_num, col_num, areas):
-    ComplexTypeParser.validateAllowed(char, row_num, col_num, areas)
+    ComplexTypeParser.validate_allowed(char, row_num, col_num, areas)
 
 
 @pytest.mark.parametrize(
@@ -38,4 +38,4 @@ def test_valid_input(char, row_num, col_num, areas):
 )
 def test_invalid_input(char, row_num, col_num, areas):
     with pytest.raises(ValueError):
-        ComplexTypeParser.validateAllowed(char, row_num, col_num, areas)
+        ComplexTypeParser.validate_allowed(char, row_num, col_num, areas)

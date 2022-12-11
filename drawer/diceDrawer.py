@@ -22,8 +22,8 @@ DRAWSPOTS = [
 class DiceDrawer:
     def __init__(self, die):
         self.die = die
-        self.largeFontObj = Font.getFont(256)
-        self.smallFontObj = Font.getFont(96)
+        self.large_font_obj = Font.get_font(256)
+        self.smallFontObj = Font.get_font(96)
 
     def draw(self):
         surf = pygame.image.load("data/D6.png")
@@ -38,17 +38,17 @@ class DiceDrawer:
                     str(content), True, (0, 0, 0), (255, 255, 255)
                 )
             else:
-                text = self.largeFontObj.render(
+                text = self.large_font_obj.render(
                     str(content), True, (0, 0, 0), (255, 255, 255)
                 )
             rect = text.get_rect(center=(WIDTH / 2, HEIGHT / 2))
 
-            drawSurf = pygame.Surface((WIDTH, HEIGHT))
-            drawSurf.fill((255, 255, 255))
-            drawSurf.blit(text, rect)
+            draw_surf = pygame.Surface((WIDTH, HEIGHT))
+            draw_surf.fill((255, 255, 255))
+            draw_surf.blit(text, rect)
 
             if spot[2]:  # should be upside down
-                drawSurf = pygame.transform.rotate(drawSurf, 180)
+                draw_surf = pygame.transform.rotate(draw_surf, 180)
 
-            surf.blit(drawSurf, (spot[0], spot[1]))
+            surf.blit(draw_surf, (spot[0], spot[1]))
         return surf

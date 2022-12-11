@@ -10,12 +10,12 @@ class ColorReader:
         workbook = xlrd.open_workbook("data/colors.xls")
         sheet = workbook.sheet_by_index(0)
         for i in range(0, sheet.nrows):
-            colorName = sheet.cell(rowx=i, colx=0).value
-            colorCode = sheet.cell(rowx=i, colx=1).value
-            ColorReader.colors[colorName] = ColorReader.codeToRGB(colorCode)
+            color_name = sheet.cell(rowx=i, colx=0).value
+            color_code = sheet.cell(rowx=i, colx=1).value
+            ColorReader.colors[color_name] = ColorReader.code_to_rgb(color_code)
 
     @staticmethod
-    def codeToRGB(code):
+    def code_to_rgb(code):
         try:
             r = float(int(code[1:3], 16)) / 255
             g = float(int(code[3:5], 16)) / 255
@@ -45,4 +45,4 @@ class ColorReader:
 
     @staticmethod
     def read_color_by_code(value):
-        return ColorReader.codeToRGB(value)
+        return ColorReader.code_to_rgb(value)

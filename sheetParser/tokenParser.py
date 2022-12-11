@@ -25,16 +25,16 @@ class TokenParser:
                 ) from None
 
             if entity.lower() == "token":
-                token = TokenParser._parseToken(sheet, row)
+                token = TokenParser._parse_token(sheet, row)
             else:
-                token = TokenParser._parseSimpleToken(sheet, row)
+                token = TokenParser._parse_simple_token(sheet, row)
 
             tokens.append(token)
             row += 1
         return tokens
 
     @staticmethod
-    def _parseSimpleToken(sheet, row):
+    def _parse_simple_token(sheet, row):
         entity = sheet.cell(rowx=row, colx=1).value
         name = sheet.cell(rowx=row, colx=0).value
         color = ColorReader.read_color(sheet.cell(rowx=row, colx=2).value)
@@ -45,7 +45,7 @@ class TokenParser:
         return Token(name, entity, color, size)
 
     @staticmethod
-    def _parseToken(sheet, row):
+    def _parse_token(sheet, row):
         entity = sheet.cell(rowx=row, colx=1).value
         name = sheet.cell(rowx=row, colx=0).value
         bg_color = ColorReader.read_color(sheet.cell(rowx=row, colx=2).value)

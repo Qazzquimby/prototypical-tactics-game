@@ -17,9 +17,9 @@ class DiceParser:
                 raise ValueError(str(e) + " (while reading " + name + ")") from None
             sides = read_float(sheet.cell(rowx=row, colx=3).value)
 
-            customContent = None
+            custom_content = None
             if sheet.cell(rowx=row, colx=4).value:
-                customContent = [
+                custom_content = [
                     sheet.cell(rowx=row, colx=4).value,
                     sheet.cell(rowx=row, colx=5).value,
                     sheet.cell(rowx=row, colx=6).value,
@@ -29,7 +29,7 @@ class DiceParser:
                 ]
 
             try:
-                dice.append(Die(name, color, size, sides, customContent))
+                dice.append(Die(name, color, size, sides, custom_content))
             except ValueError as e:
                 raise ValueError(str(e) + " (while reading " + name + ")") from None
             row += 1

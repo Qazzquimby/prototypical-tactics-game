@@ -8,8 +8,8 @@ class Deck(DomainEntity):
     def __init__(self, name):
         self.name = name
         self.cards = []
-        self.imagePath = ""
-        self.backImagePath = ""
+        self.image_path = ""
+        self.back_image_path = ""
 
     def as_dict(self, transform=None):
         if not transform:
@@ -32,8 +32,8 @@ class Deck(DomainEntity):
             "DeckIDs": self.get_ids(),
             "CustomDeck": {
                 "1": {
-                    "FaceURL": self.imagePath,
-                    "BackURL": self.backImagePath,
+                    "FaceURL": self.image_path,
+                    "BackURL": self.back_image_path,
                     "NumWidth": 10,
                     "NumHeight": 7,
                     "BackIsHidden": False,
@@ -52,7 +52,7 @@ class Deck(DomainEntity):
         transform.rot_z = 180
 
         deck = TTSDeck(
-            transform, self.name, self.cards, self.imagePath, self.backImagePath
+            transform, self.name, self.cards, self.image_path, self.back_image_path
         )
         return deck
 

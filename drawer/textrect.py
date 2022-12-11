@@ -16,7 +16,7 @@ sizes = (512, 256, 128, 96, 72, 60, 48, 36, 32, 24, 18, 16)
 
 def render_fitted_textrect(string, rect, text_color, background_color, justification=0):
     for size in sizes:
-        font = Font.getFont(size)
+        font = Font.get_font(size)
         try:
             return render_textrect(
                 string, font, rect, text_color, background_color, justification

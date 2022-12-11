@@ -5,7 +5,7 @@ from reader.number import read_number
 
 class DeckParser:
     @staticmethod
-    def parse(sheet, complexObjects):
+    def parse(sheet, complex_objects):
         decks = []
 
         if sheet.ncols == 1:
@@ -22,8 +22,8 @@ class DeckParser:
             else:
                 # add card to current deck
                 try:
-                    card = DeckParser.findObject(
-                        sheet.cell(rowx=row, colx=0).value, complexObjects
+                    card = DeckParser.find_object(
+                        sheet.cell(rowx=row, colx=0).value, complex_objects
                     )
                     amount = read_number(sheet.cell(rowx=row, colx=1).value)
                 except ValueError as e:
@@ -43,7 +43,7 @@ class DeckParser:
         return decks
 
     @staticmethod
-    def findObject(name, objects):
+    def find_object(name, objects):
         for obj in objects:
             if obj.name == name:
                 return obj

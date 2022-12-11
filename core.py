@@ -167,12 +167,12 @@ def library_to_tts_dict(
     drawer = DeckDrawer(config)
     for deck in library.decks:
         path = image_builder.build(drawer.draw(deck), deck.name, "jpg")
-        deck.set_image_path(path)
+        deck.image_path = path
 
     drawer = CardBackDrawer(config)
     for deck in library.decks:
         path = image_builder.build(drawer.draw(deck), deck.name + "_back", "jpg")
-        deck.set_back_image_path(path)
+        deck.back_image_path = path
 
     for obj in library.complex_objects:
         if obj.type.type == "board":
@@ -194,7 +194,7 @@ def library_to_tts_dict(
 
     # UGLY - we already did this step during parsing, but we need to create entities AFTER drawing or their image paths aren't set
     creator = EntityCreator(library.all())
-    entities = creator.createEntities(placement)
+    entities = creator.create_entities(placement)
 
     dicts = []
     for entity in entities:

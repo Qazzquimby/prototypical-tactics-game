@@ -11,8 +11,10 @@ def try_and_find_save_games_folder():
     except ImportError:
         return None
 
-    objShell = win32com.client.Dispatch("WScript.Shell")
-    docs = objShell.SpecialFolders("MyDocuments") + "\My Games\Tabletop Simulator\Saves"
+    obj_shell = win32com.client.Dispatch("WScript.Shell")
+    docs = (
+        obj_shell.SpecialFolders("MyDocuments") + "\My Games\Tabletop Simulator\Saves"
+    )
 
     if os.path.isdir(docs):
         return docs

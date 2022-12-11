@@ -10,9 +10,9 @@ class DeckDrawer:
 
     def draw(self, deck):
         drawer = ComplexObjectDrawer(deck.cards[0].object, self.config)
-        w, h = drawer.getCardSize()
+        w, h = drawer.get_card_size()
         self.size = (w * 10, h * 7)
-        self.cardSize = (w, h)
+        self.card_size = (w, h)
 
         surf = pygame.Surface(self.size)
         self.draw_cards(surf, deck.cards)
@@ -22,9 +22,9 @@ class DeckDrawer:
         done = 0  # todo make this a proper enumerated loop.
         for i in range(0, 7):
             for j in range(0, 10):
-                cardDrawer = ComplexObjectDrawer(cards[done].object, self.config)
+                card_drawer = ComplexObjectDrawer(cards[done].object, self.config)
                 surf.blit(
-                    cardDrawer.draw(), (j * self.cardSize[0], i * self.cardSize[1])
+                    card_drawer.draw(), (j * self.card_size[0], i * self.card_size[1])
                 )
                 done += 1
                 if done == len(cards):

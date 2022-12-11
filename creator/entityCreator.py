@@ -29,7 +29,7 @@ def get_random_coord_in_chunk(
 
     width = (XMAX - XMIN) / num_x_chunks
     height = (ZMAX - ZMIN) / num_y_chunks
-    random_x_offset = random.uniform(0, width)  # todo, why are these random?
+    random_x_offset = random.uniform(0, width)
     random_y_offset = random.uniform(0, height)
 
     x_coord = random_x_offset + XMIN + (chunk_x * width)
@@ -42,26 +42,19 @@ class EntityCreator:
     def __init__(self, all_entities):
         self.all_entities = all_entities
 
-    def findObjectByName(self, name):
+    def get_domain_entity_by_name(self, name: str) -> DomainEntity:
         for type_ in self.all_entities:
             if type_.name == name:
                 return type_
         raise ValueError("Unknown entity type: " + name)
 
-    def createEntity(self, entity: DomainEntity):
-        return entity.to_tts()  # todo this might need random coords
-
-    def createEntities(self, sheet=None):
+    def create_entities(self, sheet=None):
         entities = []
         if sheet is None:
-            for coord, entity in zip(
+            for coord, domain_entity in zip(
                 itertools.product(range(14), range(14)), self.all_entities
             ):
-                self.createEntity(
-                    # get_random_coord_in_chunk(coord[0], coord[1]),
-                    entity,
-                )
-                entities.append(entity)
+                entities.append(domain_entity.to_tts())
         else:
             for col in range(0, min(14, sheet.ncols)):
                 for row in range(0, min(14, sheet.nrows)):
@@ -69,12 +62,7 @@ class EntityCreator:
                     for item in content:
                         count = int(item[0])
                         object_name = item[1]
-                        object_ = self.findObjectByName(object_name)
-                        for i in range(count):
-                            entities.append(
-                                self.createEntity(
-                                    get_random_coord_in_chunk(row, col),
-                                    object_,
-                                )
-                            )
+                        domain_entity = self.get_domain_entity_by_name(object_name)
+                        for _ in range(count):
+                            entities.append(domain_entity.to_tts())
         return entities

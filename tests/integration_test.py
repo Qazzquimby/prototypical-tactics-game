@@ -701,7 +701,7 @@ def game_to_tts_dict(game: Game) -> dict:
     library = game_to_library(game)
     tts_dict = library_to_tts_dict(
         library=library,
-        image_builder=ImagesDirImageBuilder(pygame, basePath=data_dir / "images"),
+        image_builder=ImagesDirImageBuilder(pygame, base_path=data_dir / "images"),
         file_name="TestGame",
     )
     return tts_dict

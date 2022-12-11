@@ -2,7 +2,7 @@ def read_content(value):
     if value == "":
         return ()
     parts = value.split(";")
-    contentItems = []
+    content_items = []
     for part in parts:
         if part == "":
             continue
@@ -17,5 +17,5 @@ def read_content(value):
             else:
                 amount = 1
                 content_type = splits[0].strip() + "x" + splits[1].strip()
-        contentItems.append((amount, content_type))
-    return contentItems
+        content_items.append((amount, content_type))
+    return content_items

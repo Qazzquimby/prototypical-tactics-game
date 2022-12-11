@@ -2,25 +2,25 @@ import pysftp
 
 
 def get_image_builder(pygame, config):
-    if config.ftpBaseUrl.get() != "":
-        return ftpDirImageBuilder(
+    if config.ftp_base_url.get() != "":
+        return FtpDirImageBuilder(
             pygame,
-            config.imagesDir.get(),
-            config.ftpBaseUrl.get(),
-            config.ftpServer.get(),
-            config.ftpFolder.get(),
-            config.ftpUsername.get(),
-            config.ftpPassword.get(),
-            config.fileName.get(),
+            config.images_dir.get(),
+            config.ftp_base_url.get(),
+            config.ftp_server.get(),
+            config.ftp_folder.get(),
+            config.ftp_username.get(),
+            config.ftp_password.get(),
+            config.file_name.get(),
         )
     else:
-        return ImagesDirImageBuilder(pygame, config.imagesDir.get())
+        return ImagesDirImageBuilder(pygame, config.images_dir.get())
 
 
 class ImagesDirImageBuilder:
-    def __init__(self, pygame, basePath):
+    def __init__(self, pygame, base_path):
         self.pygame = pygame
-        self.basePath = basePath
+        self.basePath = base_path
 
     def build(self, image, file, extension):
         path = self.basePath / f"{file}.{extension}"
@@ -28,46 +28,46 @@ class ImagesDirImageBuilder:
         return f"file:///{path}"
 
 
-class ftpDirImageBuilder:
+class FtpDirImageBuilder:
     def __init__(
         self,
         pygame,
-        imageBasePath,
-        ftpBasePath,
-        ftpServer,
-        ftpFolder,
-        ftpUsername,
-        ftpPassword,
-        gameName,
+        image_base_path,
+        ftp_base_path,
+        ftp_server,
+        ftp_folder,
+        ftp_username,
+        ftp_password,
+        game_name,
     ):
-        self.imageBasePath = imageBasePath
-        self.ftpBasePath = ftpBasePath
+        self.image_base_path = image_base_path
+        self.ftp_base_path = ftp_base_path
         self.pygame = pygame
-        self.ftpServer = ftpServer
-        self.ftpFolder = ftpFolder
-        self.ftpUsername = ftpUsername
-        self.ftpPassword = ftpPassword
-        self.gameName = gameName
+        self.ftp_server = ftp_server
+        self.ftp_folder = ftp_folder
+        self.ftp_username = ftp_username
+        self.ftp_password = ftp_password
+        self.game_name = game_name
 
     def build(self, image, file, extension):
-        localPath = self.imageBasePath + "/" + file + "." + extension
-        localName = file + "." + extension
-        self.pygame.image.save(image, localPath)
+        local_path = self.image_base_path + "/" + file + "." + extension
+        local_name = file + "." + extension
+        self.pygame.image.save(image, local_path)
         cnopts = pysftp.CnOpts()
         cnopts.hostkeys = None
         con = pysftp.Connection(
-            host=self.ftpServer,
-            username=self.ftpUsername,
-            password=self.ftpPassword,
+            host=self.ftp_server,
+            username=self.ftp_username,
+            password=self.ftp_password,
             cnopts=cnopts,
         )
-        with pysftp.cd(self.imageBasePath):
-            con.chdir(self.ftpFolder)
-            if not con.exists(self.gameName):
-                con.mkdir(self.gameName)
-            con.chdir(self.gameName)
-            if con.exists(self.gameName):
-                con.remove(localName)
-            con.put(localName)
+        with pysftp.cd(self.image_base_path):
+            con.chdir(self.ftp_folder)
+            if not con.exists(self.game_name):
+                con.mkdir(self.game_name)
+            con.chdir(self.game_name)
+            if con.exists(self.game_name):
+                con.remove(local_name)
+            con.put(local_name)
         con.close()
-        return self.ftpBasePath + "/" + self.gameName + "/" + file + "." + extension
+        return self.ftp_base_path + "/" + self.game_name + "/" + file + "." + extension

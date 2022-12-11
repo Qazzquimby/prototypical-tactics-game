@@ -18,128 +18,128 @@ from tkinter import font
 class Config:
     def __init__(
         self,
-        excelFile=StringVar(),
-        saveDir=StringVar(),
-        imagesDir=StringVar(),
-        fileName=StringVar(),
-        ftpServer=StringVar(),
-        ftpFolder=StringVar(),
-        ftpUsername=StringVar(),
-        ftpPassword=StringVar(),
-        ftpBaseUrl=StringVar(),
-        developerKey=StringVar(),
-        searchId=StringVar(),
+        excel_file=StringVar(),
+        save_dir=StringVar(),
+        images_dir=StringVar(),
+        file_name=StringVar(),
+        ftp_server=StringVar(),
+        ftp_folder=StringVar(),
+        ftp_username=StringVar(),
+        ftp_password=StringVar(),
+        ftp_base_url=StringVar(),
+        developer_key=StringVar(),
+        search_id=StringVar(),
     ):
-        self.excelFile = excelFile
-        self.saveDir = saveDir
-        self.imagesDir = imagesDir
-        self.fileName = fileName
-        self.ftpServer = ftpServer
-        self.ftpFolder = ftpFolder
-        self.ftpUsername = ftpUsername
-        self.ftpPassword = ftpPassword
-        self.ftpBaseUrl = ftpBaseUrl
-        self.developerKey = developerKey
-        self.searchId = searchId
-        self.saveFolderDeduced = False
-        self.loadConfig()
+        self.excel_file = excel_file
+        self.save_dir = save_dir
+        self.images_dir = images_dir
+        self.file_name = file_name
+        self.ftp_server = ftp_server
+        self.ftp_folder = ftp_folder
+        self.ftp_username = ftp_username
+        self.ftp_password = ftp_password
+        self.ftp_base_url = ftp_base_url
+        self.developer_key = developer_key
+        self.search_id = search_id
+        self.save_folder_deduced = False
+        self.load_config()
         folder = try_and_find_save_games_folder()
         if folder:
-            self.saveDir.set(folder)
-            self.saveFolderDeduced = True
+            self.save_dir.set(folder)
+            self.save_folder_deduced = True
 
-    def setExcelFile(self):
-        self.excelFile.set(filedialog.askopenfilename(initialdir="~"))
-        self.saveConfig()
+    def set_excel_file(self):
+        self.excel_file.set(filedialog.askopenfilename(initialdir="~"))
+        self.save_config()
 
-    def setSaveDir(self):
-        self.saveDir.set(filedialog.askdirectory(initialdir="~"))
-        self.saveConfig()
+    def set_save_dir(self):
+        self.save_dir.set(filedialog.askdirectory(initialdir="~"))
+        self.save_config()
 
-    def setImagesDir(self):
-        self.imagesDir.set(filedialog.askdirectory(initialdir="~"))
-        self.saveConfig()
+    def set_images_dir(self):
+        self.images_dir.set(filedialog.askdirectory(initialdir="~"))
+        self.save_config()
 
-    def setFilename(self):
-        self.fileName.set(simpledialog.askstring("Filename?", "Enter the filename:"))
-        self.saveConfig()
+    def set_filename(self):
+        self.file_name.set(simpledialog.askstring("Filename?", "Enter the filename:"))
+        self.save_config()
 
-    def setFtpSettings(self):
-        self.ftpServer.set(
+    def set_ftp_settings(self):
+        self.ftp_server.set(
             simpledialog.askstring("Ftp server url?", "Enter the ftp url:")
         )
-        if self.ftpServer.get() == "":
-            self.ftpUsername.set("")
-            self.ftpPassword.set("")
-            self.ftpBaseUrl.set("")
-            self.saveConfig()
+        if self.ftp_server.get() == "":
+            self.ftp_username.set("")
+            self.ftp_password.set("")
+            self.ftp_base_url.set("")
+            self.save_config()
             return
-        self.ftpFolder.set(
+        self.ftp_folder.set(
             simpledialog.askstring("Ftp folder to use?", "Enter the folder:")
         )
-        self.ftpUsername.set(
+        self.ftp_username.set(
             simpledialog.askstring("Ftp server username?", "Enter the username:")
         )
-        self.ftpPassword.set(
+        self.ftp_password.set(
             simpledialog.askstring("Ftp server password?", "Enter the ftp password:")
         )
-        self.ftpBaseUrl.set(
+        self.ftp_base_url.set(
             simpledialog.askstring("Ftp www base url?", "Enter the ftp www base url:")
         )
-        self.saveConfig()
+        self.save_config()
 
-    def readyToRun(self):
+    def ready_to_run(self):
         return (
-            self.excelFile.get()
-            and self.saveDir.get()
-            and self.imagesDir.get()
-            and self.fileName.get()
+            self.excel_file.get()
+            and self.save_dir.get()
+            and self.images_dir.get()
+            and self.file_name.get()
         )
 
-    def readyToParse(self):
-        return self.excelFile.get()
+    def ready_to_parse(self):
+        return self.excel_file.get()
 
-    def isSaveFolderDeduced(self):
-        return self.saveFolderDeduced
+    def is_save_folder_deduced(self):
+        return self.save_folder_deduced
 
-    def loadConfig(self):
+    def load_config(self):
         try:
             with open("settings.json", "r") as infile:
                 data = json.load(infile)
-                self.excelFile.set(data["e"])
-                self.saveDir.set(data["s"])
-                self.imagesDir.set(data["i"])
-                self.fileName.set(data["f"])
+                self.excel_file.set(data["e"])
+                self.save_dir.set(data["s"])
+                self.images_dir.set(data["i"])
+                self.file_name.set(data["f"])
                 try:
-                    self.ftpServer.set(data["f_s"])
-                    self.ftpUsername.set(data["f_u"])
-                    self.ftpPassword.set(data["f_p"])
-                    self.ftpBaseUrl.set(data["f_w"])
-                    self.ftpFolder.set(data["f_f"])
+                    self.ftp_server.set(data["f_s"])
+                    self.ftp_username.set(data["f_u"])
+                    self.ftp_password.set(data["f_p"])
+                    self.ftp_base_url.set(data["f_w"])
+                    self.ftp_folder.set(data["f_f"])
                 except KeyError:
                     pass
                 try:
-                    self.developerKey.set(data["g_d"])
-                    self.searchId.set(data["g_s"])
+                    self.developer_key.set(data["g_d"])
+                    self.search_id.set(data["g_s"])
                 except KeyError:
                     pass
 
         except FileNotFoundError:
             return
 
-    def saveConfig(self):
+    def save_config(self):
         data = {
-            "e": self.excelFile.get(),
-            "s": self.saveDir.get(),
-            "i": self.imagesDir.get(),
-            "f": self.fileName.get(),
-            "f_s": self.ftpServer.get(),
-            "f_u": self.ftpUsername.get(),
-            "f_p": self.ftpPassword.get(),
-            "f_w": self.ftpBaseUrl.get(),
-            "f_f": self.ftpFolder.get(),
-            "g_d": self.developerKey.get(),
-            "g_s": self.searchId.get(),
+            "e": self.excel_file.get(),
+            "s": self.save_dir.get(),
+            "i": self.images_dir.get(),
+            "f": self.file_name.get(),
+            "f_s": self.ftp_server.get(),
+            "f_u": self.ftp_username.get(),
+            "f_p": self.ftp_password.get(),
+            "f_w": self.ftp_base_url.get(),
+            "f_f": self.ftp_folder.get(),
+            "g_d": self.developer_key.get(),
+            "g_s": self.search_id.get(),
         }
         with open("settings.json", "w") as outfile:
             json.dump(data, outfile)
@@ -176,25 +176,25 @@ class App:
         self.headerLabel.grid(row=0, column=0, columnspan=2)
 
         self.ftpStatusText = StringVar()
-        self.setFtpStatus()
+        self.set_ftp_status()
 
-        self.excelFile(frame)
-        self.savedirFile(frame)
-        self.imagedirFile(frame)
+        self.excel_file(frame)
+        self.savedir_file(frame)
+        self.imagedir_file(frame)
         self.filename(frame)
-        self.ftpSettings(frame)
+        self.ftp_settings(frame)
 
-        buttonFrame = Frame(frame)
-        buttonFrame.grid(row=6, column=1)
+        button_frame = Frame(frame)
+        button_frame.grid(row=6, column=1)
 
-        self.parseButton = Button(buttonFrame, text="PARSE GAME", command=self.parse)
+        self.parseButton = Button(button_frame, text="PARSE GAME", command=self.parse)
         self.parseButton.grid(row=0, column=0)
 
-        self.buildButton = Button(buttonFrame, text="BUILD GAME", command=self.build)
+        self.buildButton = Button(button_frame, text="BUILD GAME", command=self.build)
         self.buildButton.grid(row=0, column=1)
 
         self.newTemplateButton = Button(
-            buttonFrame, text="NEW TEMPLATE", command=self.template
+            button_frame, text="NEW TEMPLATE", command=self.template
         )
         self.newTemplateButton.grid(row=0, column=2)
 
@@ -213,68 +213,70 @@ class App:
         self.statusLabel = Label(frame, text="version: " + version)
         self.statusLabel.grid(row=9, column=0, columnspan=2)
 
-    def setFtpStatus(self):
-        if self.config.ftpServer.get() != "":
-            if testFtpConnection(self.config):
+    def set_ftp_status(self):
+        if self.config.ftp_server.get() != "":
+            if test_ftp_connection(self.config):
                 self.ftpStatusText.set(
-                    self.config.ftpServer.get() + " as " + self.config.ftpUsername.get()
+                    self.config.ftp_server.get()
+                    + " as "
+                    + self.config.ftp_username.get()
                 )
             else:
                 self.ftpStatusText.set(
-                    "Failed to connect to " + self.config.ftpServer.get()
+                    "Failed to connect to " + self.config.ftp_server.get()
                 )
         else:
             self.ftpStatusText.set("Turned off (local only)")
 
-    def excelFile(self, frame):
-        self.excelButton = Button(
-            frame, text="SET SPREADSHEET", command=self.config.setExcelFile, width=30
+    def excel_file(self, frame):
+        self.excel_button = Button(
+            frame, text="SET SPREADSHEET", command=self.config.set_excel_file, width=30
         )
-        self.excelButton.grid(row=1, column=0)
+        self.excel_button.grid(row=1, column=0)
 
-        self.excelText = Label(frame, textvariable=self.config.excelFile)
-        self.excelText.grid(row=1, column=1)
+        self.excel_text = Label(frame, textvariable=self.config.excel_file)
+        self.excel_text.grid(row=1, column=1)
 
-    def savedirFile(self, frame):
-        if not self.config.isSaveFolderDeduced():
-            self.savedirButton = Button(
-                frame, text="SET SAVE DIR", command=self.config.setSaveDir, width=30
+    def savedir_file(self, frame):
+        if not self.config.is_save_folder_deduced():
+            self.savedir_button = Button(
+                frame, text="SET SAVE DIR", command=self.config.set_save_dir, width=30
             )
-            self.savedirButton.grid(row=2, column=0)
+            self.savedir_button.grid(row=2, column=0)
 
-            self.savedirText = Label(frame, textvariable=self.config.saveDir)
-            self.savedirText.grid(row=2, column=1)
+            self.savedir_text = Label(frame, textvariable=self.config.save_dir)
+            self.savedir_text.grid(row=2, column=1)
 
-    def imagedirFile(self, frame):
-        self.imagedirButton = Button(
-            frame, text="SET IMAGES DIR", command=self.config.setImagesDir, width=30
+    def imagedir_file(self, frame):
+        self.imagedir_button = Button(
+            frame, text="SET IMAGES DIR", command=self.config.set_images_dir, width=30
         )
-        self.imagedirButton.grid(row=3, column=0)
+        self.imagedir_button.grid(row=3, column=0)
 
-        self.imagedirText = Label(frame, textvariable=self.config.imagesDir)
-        self.imagedirText.grid(row=3, column=1)
+        self.imagedir_text = Label(frame, textvariable=self.config.images_dir)
+        self.imagedir_text.grid(row=3, column=1)
 
     def filename(self, frame):
-        self.filenameButton = Button(
-            frame, text="SET GAME NAME", command=self.config.setFilename, width=30
+        self.filename_button = Button(
+            frame, text="SET GAME NAME", command=self.config.set_filename, width=30
         )
-        self.filenameButton.grid(row=4, column=0)
+        self.filename_button.grid(row=4, column=0)
 
-        self.filenameText = Label(frame, textvariable=self.config.fileName)
-        self.filenameText.grid(row=4, column=1)
+        self.filename_text = Label(frame, textvariable=self.config.file_name)
+        self.filename_text.grid(row=4, column=1)
 
-    def ftpSettings(self, frame):
-        self.ftpButton = Button(
-            frame, text="CONFIGURE FTP", command=self.doFtpSettingsUpdate, width=30
+    def ftp_settings(self, frame):
+        self.ftp_button = Button(
+            frame, text="CONFIGURE FTP", command=self.do_ftp_settings_update, width=30
         )
-        self.ftpButton.grid(row=5, column=0)
+        self.ftp_button.grid(row=5, column=0)
 
-        self.ftpText = Label(frame, textvariable=self.ftpStatusText)
-        self.ftpText.grid(row=5, column=1)
+        self.ftp_text = Label(frame, textvariable=self.ftpStatusText)
+        self.ftp_text.grid(row=5, column=1)
 
-    def doFtpSettingsUpdate(self):
-        self.config.setFtpSettings()
-        self.setFtpStatus()
+    def do_ftp_settings_update(self):
+        self.config.set_ftp_settings()
+        self.set_ftp_status()
 
     def template(self):
         file = filedialog.asksaveasfilename()
@@ -282,73 +284,73 @@ class App:
             path = file + ".xls"
             try:
                 copyfile("data/template.xls", path)
-                self.pushStatusMessage("Created a new empty template: " + path)
+                self.push_status_message("Created a new empty template: " + path)
                 if sys.platform == "win32":
                     os.startfile(path)
             except FileNotFoundError:
-                self.pushErrorMessage(
+                self.push_error_message(
                     "The base template is missing. Please ensure that the application was installed successfully.",
                     "creating template",
                 )
 
     def build(self):
-        if self.config.readyToRun():
-            self.flushStatus()
+        if self.config.ready_to_run():
+            self.flush_status()
             try:
                 xls_file_to_tts_save(
-                    self.config.excelFile.get(),
+                    self.config.excel_file.get(),
                     get_image_builder(self.pygame, self.config),
-                    self.config.saveDir.get(),
-                    self.config.fileName.get(),
+                    self.config.save_dir.get(),
+                    self.config.file_name.get(),
                     self.config,
                 )
-                self.pushStatusMessage("Done building!")
+                self.push_status_message("Done building!")
             except BaseException as e:
-                self.pushErrorMessage(e)
+                self.push_error_message(e)
                 raise e
         else:
-            self.pushErrorMessage(
+            self.push_error_message(
                 "Missing some settings. Please ensure all 4 settings above are configured properly."
             )
 
     def parse(self):
-        self.flushStatus()
+        self.flush_status()
         try:
-            xls_file_to_library(self.config.excelFile.get())
+            xls_file_to_library(self.config.excel_file.get())
         except BaseException as e:
-            self.pushErrorMessage(e)
+            self.push_error_message(e)
             raise e
 
-    def pushErrorMessage(self, e, during="building"):
+    def push_error_message(self, e, during="building"):
         import traceback
 
-        self.pushStatusMessage("\n")
+        self.push_status_message("\n")
         index = self.status.index(INSERT)
         curline = index.split(".")[0]
-        self.pushStatusMessage("\nUh oh, there was a problem while " + during + ":")
+        self.push_status_message("\nUh oh, there was a problem while " + during + ":")
         self.status.tag_add(
             "error", str(int(curline) + 1) + ".0", str(int(curline) + 2) + ".0"
         )
-        self.pushStatusMessage(str(e))
-        self.pushStatusMessage("\n" + traceback.format_exc())
+        self.push_status_message(str(e))
+        self.push_status_message("\n" + traceback.format_exc())
 
-    def pushStatusMessage(self, msg, newline=True):
+    def push_status_message(self, msg, newline=True):
         self.status.insert(END, msg + ("\n" if newline else ""))
         self.master.update()
 
-    def flushStatus(self):
+    def flush_status(self):
         self.status.delete(1.0, END)
 
 
-def testFtpConnection(config):
+def test_ftp_connection(config):
     cnopts = pysftp.CnOpts()
     cnopts.hostkeys = None
 
     try:
         con = pysftp.Connection(
-            host=config.ftpServer.get(),
-            username=config.ftpUsername.get(),
-            password=config.ftpPassword.get(),
+            host=config.ftp_server.get(),
+            username=config.ftp_username.get(),
+            password=config.ftp_password.get(),
             cnopts=cnopts,
         )
         con.close()

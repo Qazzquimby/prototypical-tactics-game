@@ -28,7 +28,7 @@ class ComplexObjectDrawer:
         self.size = obj.type.shape.size
 
     def draw(self):
-        w, h = self.getCardSize()
+        w, h = self.get_card_size()
         self.surf = pygame.Surface((w, h))
 
         if self.object.type.name == "Ability":
@@ -48,26 +48,26 @@ class ComplexObjectDrawer:
             self.surf.blit(image, (0, 0))
         else:
             if isinstance(self.object.type.background_color, str):
-                self.drawImage(
+                self.draw_image(
                     self.surf, self.object.type.background_color, self.surf.get_rect()
                 )
             else:
                 self.surf.fill(convert_tts_to_pygame(self.object.type.background_color))
             for key, content in self.object.content.items():
-                self.drawContentToArea(content, self.object.type.shape.areas[key])
+                self.draw_content_to_area(content, self.object.type.shape.areas[key])
 
-        self.fullSurf = pygame.Surface((w, h))
-        self.fullSurf.fill(convert_tts_to_pygame((0, 0, 0)))
+        self.full_surf = pygame.Surface((w, h))
+        self.full_surf.fill(convert_tts_to_pygame((0, 0, 0)))
 
-        self.fullSurf.blit(self.surf, (EDGE_MARGIN, EDGE_MARGIN))
-        return self.fullSurf
+        self.full_surf.blit(self.surf, (EDGE_MARGIN, EDGE_MARGIN))
+        return self.full_surf
 
-    def getCardSize(self):
+    def get_card_size(self):
         return self.object.type.size
 
     # note: areas in the shape are actually row, col and not x,y
-    def drawContentToArea(self, content, area):
-        w, h = self.getCardSize()
+    def draw_content_to_area(self, content, area):
+        w, h = self.get_card_size()
         dw = w - (2 * EDGE_MARGIN)
         dh = h - (2 * EDGE_MARGIN)
         rect = pygame.Rect(
@@ -77,9 +77,9 @@ class ComplexObjectDrawer:
             (area[2] + 1) * dh / self.size[1] - TOPBOTTOM_MARGIN,
         )
         if isinstance(content, str) and "\\icon" in content:
-            self.drawIcon(self.surf, content, rect)
+            self.draw_icon(self.surf, content, rect)
         elif isinstance(content, str) and "\\image" in content:
-            self.drawImage(self.surf, content, rect)
+            self.draw_image(self.surf, content, rect)
         else:
             self.write(content, rect)
 
@@ -97,104 +97,105 @@ class ComplexObjectDrawer:
             )
         self.surf.blit(surf, rect)
 
-    def baseDrawImage(self, surf, content, rect, type_):
+    def base_draw_image(self, surf, content, rect, type_):
         import pygame
 
         rerect = pygame.Rect((0, 0, rect[2] - rect[0], rect[3] - rect[1]))
         if type_ == "icon":
-            picture = self.obtainIcon(content)
+            picture = self.obtain_icon(content)
         else:
-            picture = self.obtainImage(content)
+            picture = self.obtain_image(content)
         # rescale but keep proportions
-        origWidth = picture.get_width()
-        origHeight = picture.get_height()
-        scaleFactor = min(rerect.width / origWidth, rerect.height / origHeight)
+        orig_width = picture.get_width()
+        orig_height = picture.get_height()
+        scale_factor = min(rerect.width / orig_width, rerect.height / orig_height)
 
-        scaledPicture = pygame.transform.scale(
-            picture, (int(origWidth * scaleFactor), int(origHeight * scaleFactor))
+        scaled_picture = pygame.transform.scale(
+            picture, (int(orig_width * scale_factor), int(orig_height * scale_factor))
         )
 
-        surf.blit(scaledPicture, rect)
+        surf.blit(scaled_picture, rect)
 
-    def drawIcon(self, surf, content, rect):
-        self.baseDrawImage(surf, content, rect, "icon")
+    def draw_icon(self, surf, content, rect):
+        self.base_draw_image(surf, content, rect, "icon")
 
-    def drawImage(self, surf, content, rect):
-        self.baseDrawImage(surf, content, rect, "image")
+    def draw_image(self, surf, content, rect):
+        self.base_draw_image(surf, content, rect, "image")
 
-    def baseObtainImage(self, content, type_, replace, folder):
+    def base_obtain_image(self, content, type_, replace, folder):
         name = content.replace(replace, "")
-        filename = self.getPathForImage(folder, name)
+        filename = self.get_path_for_image(folder, name)
         try:
             return pygame.image.load(filename)
         except FileNotFoundError:
             if type_ == "icon":
-                self.makeIcon(name)
-                return self.obtainIcon(content)
+                self.make_icon(name)
+                return self.obtain_icon(content)
             else:
-                self.makeImage(name)
-                return self.obtainImage(content)
+                self.make_image(name)
+                return self.obtain_image(content)
 
-    def obtainIcon(self, content):
-        return self.baseObtainImage(content, "icon", "\\icon ", "icons")
+    def obtain_icon(self, content):
+        return self.base_obtain_image(content, "icon", "\\icon ", "icons")
 
-    def obtainImage(self, content):
-        return self.baseObtainImage(content, "image", "\\image ", "images")
+    def obtain_image(self, content):
+        return self.base_obtain_image(content, "image", "\\image ", "images")
 
-    def makeIcon(self, name):
-        self.makeImageBase(name, name + " icon", "icons", "gray")
+    def make_icon(self, name):
+        self.make_image_base(name, name + " icon", "icons", "gray")
 
-    def makeImage(self, name):
-        self.makeImageBase(name, name, "images", "color")
+    def make_image(self, name):
+        self.make_image_base(name, name, "images", "color")
 
-    def makeImageBase(self, name, query, folder, colorType):
-        import requests
-        from apiclient.discovery import build
+    def make_image_base(self, name, query, folder, color_type):
+        pass
+        # import requests
+        # from apiclient.discovery import build
+        #
+        # filepath = self.get_path_for_image(folder, name)
+        #
+        # if self.config.developerKey.get() == "":
+        #     make_empty_image(filepath)
+        #     return
+        #
+        # service = build(
+        #     "customsearch", "v1", developerKey=self.config.developerKey.get()
+        # )
+        # try:
+        #     res = (
+        #         service.cse()
+        #         .list(
+        #             q=name + query,
+        #             cx=self.config.searchId.get(),
+        #             searchType="image",
+        #             num=1,
+        #             fileType="jpg",
+        #             imgColorType=color_type,
+        #             safe="off",
+        #         )
+        #         .execute()
+        #     )
+        #
+        #     if "items" not in res:
+        #         raise ValueError("Could not find an icon for: " + name)
+        #     else:
+        #         for item in res["items"]:
+        #             with open(filepath, "wb") as handler:
+        #                 img_data = requests.get(item["link"]).content
+        #                 handler.write(img_data)
+        # except ValueError:
+        #     make_empty_image(filepath)
 
-        filepath = self.getPathForImage(folder, name)
-
-        if self.config.developerKey.get() == "":
-            make_empty_image(filepath)
-            return
-
-        service = build(
-            "customsearch", "v1", developerKey=self.config.developerKey.get()
-        )
-        try:
-            res = (
-                service.cse()
-                .list(
-                    q=name + query,
-                    cx=self.config.searchId.get(),
-                    searchType="image",
-                    num=1,
-                    fileType="jpg",
-                    imgColorType=colorType,
-                    safe="off",
-                )
-                .execute()
-            )
-
-            if not "items" in res:
-                raise ValueError("Could not find an icon for: " + name)
-            else:
-                for item in res["items"]:
-                    with open(filepath, "wb") as handler:
-                        img_data = requests.get(item["link"]).content
-                        handler.write(img_data)
-        except ValueError:
-            make_empty_image(filepath)
-
-    def getPathForImage(self, subfolder, imagename):
+    def get_path_for_image(self, subfolder, image_name):
         import os
 
-        if not os.path.exists(self.config.imagesDir.get() + "/" + subfolder):
-            os.mkdir(self.config.imagesDir.get() + "/" + subfolder)
+        if not os.path.exists(self.config.images_dir.get() + "/" + subfolder):
+            os.mkdir(self.config.images_dir.get() + "/" + subfolder)
         return (
-            self.config.imagesDir.get()
+            self.config.images_dir.get()
             + "/"
             + subfolder
             + "/"
-            + imagename.replace(" ", "_")
+            + image_name.replace(" ", "_")
             + ".jpg"
         )

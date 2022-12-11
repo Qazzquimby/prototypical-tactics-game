@@ -28,7 +28,7 @@ def yaml_file_to_tts_save(yaml_path: str, save_dir: Path):
     library = game_to_library(game)
     tts_dict = library_to_tts_dict(
         library=library,
-        image_builder=ImagesDirImageBuilder(pygame, basePath=data_dir / "images"),
+        image_builder=ImagesDirImageBuilder(pygame, base_path=data_dir / "images"),
         file_name="TestGame",
     )
     save_tts(tts_dict, save_dir=save_dir, file_name=file_stem)

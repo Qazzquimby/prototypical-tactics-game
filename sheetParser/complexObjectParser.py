@@ -11,15 +11,15 @@ class ComplexObjectParser:
         self.templateHeaders = {}
 
     def parse(self, sheet):
-        complexObjects = []
+        complex_objects = []
         row = 1
         while row < sheet.nrows:
             name = sheet.cell(rowx=row, colx=0).value
-            typeName = sheet.cell(rowx=row, colx=1).value
-            if name or typeName:
-                isTemplate = is_type_a_template(typeName)
-                if isTemplate:
-                    type_ = self.findType(typeName)
+            type_name = sheet.cell(rowx=row, colx=1).value
+            if name or type_name:
+                is_template = is_type_a_template(type_name)
+                if is_template:
+                    type_ = self.find_type(type_name)
                     content = {}
                     for column in type_.shape.areas:
                         if column < 1000:
@@ -30,7 +30,7 @@ class ComplexObjectParser:
                             ).value
                     self.templateHeaders[type_.name] = content
                 else:
-                    type_ = self.findType(typeName)
+                    type_ = self.find_type(type_name)
                     content = {}
                     for column in type_.shape.areas:
                         # headers...
@@ -46,11 +46,11 @@ class ComplexObjectParser:
                                     type_.name
                                     + " contains headers, but no template was defined for it."
                                 )
-                    complexObjects.append(ComplexObject(name, type_, content))
+                    complex_objects.append(ComplexObject(name, type_, content))
             row += 1
-        return complexObjects
+        return complex_objects
 
-    def findType(self, name):
+    def find_type(self, name):
         # handle the template column
         if name[0] == "\\":
             name = name[1:]
