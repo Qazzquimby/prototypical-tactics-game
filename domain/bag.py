@@ -13,8 +13,8 @@ class Bag(DomainEntity):
         self.content = []
         self.is_infinite = is_infinite
 
-    def addContent(self, amount, content):
-        for i in range(0, amount):
+    def add_content(self, amount, content):
+        for _ in range(0, amount):
             self.content.append(content)
 
     def as_dict(self, transform=None):
@@ -74,7 +74,7 @@ class Bag(DomainEntity):
         return decks
 
 class InfiniteBag(Bag):
-    def addContent(self, amount, content):
+    def add_content(self, amount, content):
         # depreciate infinite bags
         if len(self.content) == 1:
             raise ValueError(

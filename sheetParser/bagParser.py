@@ -52,7 +52,7 @@ class BagParser:
         while content_num < (sheet.ncols - 4):
             content = read_content(sheet.cell(rowx=row, colx=content_num + 4).value)
             for key, item in enumerate(content):
-                bag.addContent(item[0], self.find_type(item[1]))
+                bag.add_content(item[0], self.find_type(item[1]))
             content_num += 1
         return bag
 

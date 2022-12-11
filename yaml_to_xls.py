@@ -67,7 +67,7 @@ class Hero(UnitCard):
         return ComplexType(
             name=HERO_CARD_LABEL,
             backside=(0.0, 0.0, 0.0),
-            bgColor=(1.0, 1.0, 1.0),
+            background_color=(1.0, 1.0, 1.0),
             size=(500, 500),
             type_="card",
             shape=Shape(
@@ -119,7 +119,7 @@ class Ability(Card):
         return ComplexType(
             name=ABILITY_CARD_LABEL,
             backside=(0.0, 0.0, 0.0),
-            bgColor=(1.0, 1.0, 1.0),
+            background_color=(1.0, 1.0, 1.0),
             size=(500, 500),
             type_="card",
             shape=Shape(

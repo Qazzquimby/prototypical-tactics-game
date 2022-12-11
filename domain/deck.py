@@ -58,25 +58,25 @@ class Deck(DomainEntity):
     def get_ids(self):
         ids = []
         for card in self.cards:
-            for i in range(0, card.count):
+            for _ in range(0, card.count):
                 ids.append(99 + card.id)
         return ids
 
     def get_card_instances(self):
         cards = []
         for card in self.cards:
-            for i in range(0, card.count):
+            for _ in range(0, card.count):
                 cards.append(card.as_dict())
         return cards
 
-    def addCard(self, card):
+    def add_card(self, card):
         self.cards.append(card)
 
-    def nextId(self):
+    def next_id(self):
         return len(self.cards) + 1
 
-    def setImagePath(self, path):
+    def set_image_path(self, path):
         self.imagePath = path
 
-    def setBackImagePath(self, path):
+    def set_back_image_path(self, path):
         self.backImagePath = path

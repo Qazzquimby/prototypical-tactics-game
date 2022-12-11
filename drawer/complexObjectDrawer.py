@@ -47,12 +47,12 @@ class ComplexObjectDrawer:
             image = pygame.image.load(io.BytesIO(image_bytes), "img.png")
             self.surf.blit(image, (0, 0))
         else:
-            if isinstance(self.object.type.bgColor, str):
+            if isinstance(self.object.type.background_color, str):
                 self.drawImage(
-                    self.surf, self.object.type.bgColor, self.surf.get_rect()
+                    self.surf, self.object.type.background_color, self.surf.get_rect()
                 )
             else:
-                self.surf.fill(convert_tts_to_pygame(self.object.type.bgColor))
+                self.surf.fill(convert_tts_to_pygame(self.object.type.background_color))
             for key, content in self.object.content.items():
                 self.drawContentToArea(content, self.object.type.shape.areas[key])
 

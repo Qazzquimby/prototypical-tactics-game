@@ -3,6 +3,7 @@ from tts.simpletoken import SimpleToken
 from tts.transform import Transform
 from tts.token import Token as TTSToken
 
+
 class Token(DomainEntity):
     def __init__(self, name, entity, color, size):
         self.name = name
@@ -15,19 +16,20 @@ class Token(DomainEntity):
         bs = SimpleToken(self.entity, transform, self.color)
         return bs
 
+
 class ContentToken(Token):
     def __init__(self, name, entity, bg_color, text_color, content, size, color):
         super().__init__(name, entity, color, size)
         self.bg_color = bg_color
         self.text_color = text_color
         self.content = content
-        self.imagePath = ""
+        self.image_path = ""
 
-    def setImagePath(self, path):
-        self.imagePath = path
+    def set_image_path(self, path):
+        self.image_path = path
 
     def to_tts(self):
         transform = Transform.from_size_and_coords(self.size)
         transform.rot_y = 180
-        bs = TTSToken(transform, self.imagePath)
+        bs = TTSToken(transform, self.image_path)
         return bs

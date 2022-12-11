@@ -6,7 +6,14 @@ from domain.token import Token
 
 
 class Library:
-    def __init__(self, tokens: list[Token], dice: list[Die], complex_objects: list[ComplexObject], decks: list[Deck], bags: list[Bag]):
+    def __init__(
+        self,
+        tokens: list[Token],
+        dice: list[Die],
+        complex_objects: list[ComplexObject],
+        decks: list[Deck],
+        bags: list[Bag],
+    ):
         self.tokens = tokens
         self.dice = dice
         self.complex_objects = complex_objects

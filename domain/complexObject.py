@@ -7,11 +7,11 @@ class ComplexObject(DomainEntity):
         self.name = name
         self.type = type_
         self.content = content
-        # only used if this is a board, not used if its a deck
-        self.imagePath = ""
+        # only used if this is a board, not used if it's a deck
+        self.image_path = ""
 
-    def setImagePath(self, path):
-        self.imagePath = path
+    def set_image_path(self, path):
+        self.image_path = path
 
     def to_tts(self):
         if self.type.type == "board":

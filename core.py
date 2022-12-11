@@ -87,20 +87,20 @@ def add_game_set_to_library(library: Library, game_set: GameSet):
     # Make a bag for each set
     for hero_box in game_set.hero_boxes:
         hero_box_bag = add_hero_box_to_library(library, hero_box)
-        bag.content.append(
-            hero_box_bag
-        )
+        bag.content.append(hero_box_bag)
 
     return bag
 
 
 def card_row_to_content_dict(row: list):
     no_label = row[2:]
-    return {i+2: value for i, value in enumerate(no_label)}
+    return {i + 2: value for i, value in enumerate(no_label)}
 
 
 def add_hero_box_to_library(library: Library, hero_box: HeroBox):
-    hero_box_bag = Bag(name=make_box_name(hero_box.hero.name), size=1, color=(1.0, 0.0, 0.0))
+    hero_box_bag = Bag(
+        name=make_box_name(hero_box.hero.name), size=1, color=(1.0, 0.0, 0.0)
+    )
 
     figurine_name = make_figurine_name(hero_box.hero.name)
     hero_box_bag.content.append(
@@ -169,30 +169,30 @@ def library_to_tts_dict(
     drawer = DeckDrawer(config)
     for deck in library.decks:
         path = image_builder.build(drawer.draw(deck), deck.name, "jpg")
-        deck.setImagePath(path)
+        deck.set_image_path(path)
 
     drawer = CardBackDrawer(config)
     for deck in library.decks:
         path = image_builder.build(drawer.draw(deck), deck.name + "_back", "jpg")
-        deck.setBackImagePath(path)
+        deck.set_back_image_path(path)
 
     for obj in library.complex_objects:
         if obj.type.type == "board":
             drawer = ComplexObjectDrawer(obj, config)
             path = image_builder.build(drawer.draw(), obj.name, "jpg")
-            obj.setImagePath(path)
+            obj.set_image_path(path)
 
     for token in library.tokens:
         if isinstance(token, ContentToken):
             drawer = TokenDrawer(token)
             path = image_builder.build(drawer.draw(), "token_" + token.name, "jpg")
-            token.setImagePath(path)
+            token.image_path = path
 
     for die in library.dice:
-        if die.customContent:
+        if die.custom_content:
             drawer = DiceDrawer(die)
             path = image_builder.build(drawer.draw(), "die" + die.name, "png")
-            die.setImagePath(path)
+            die.set_image_path(path)
 
     # UGLY - we already did this step during parsing, but we need to create entities AFTER drawing or their image paths aren't set
     creator = EntityCreator(library.all())
