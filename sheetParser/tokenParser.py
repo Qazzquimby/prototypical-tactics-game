@@ -58,4 +58,12 @@ class TokenParser:
             size = size / 5
         except ValueError as e:
             raise ValueError(str(e) + " (while reading " + name + ")") from None
-        return ContentToken(name, entity, bg_color, text_color, content, size)
+        return ContentToken(
+            name=name,
+            entity=entity,
+            bg_color=bg_color,
+            text_color=text_color,
+            content=content,
+            size=size,
+            color=bg_color,
+        )

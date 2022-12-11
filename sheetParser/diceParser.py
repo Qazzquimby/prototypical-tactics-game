@@ -4,6 +4,7 @@ from reader.number import read_float
 
 
 class DiceParser:
+    @staticmethod
     def parse(sheet):
         dice = []
         row = 1
