@@ -8,7 +8,7 @@ from tts.transform import Transform
 class Token(DomainEntity):
     def __init__(self, name, entity, color, size):
         self.name = name
-        self.entity = entity
+        self.entity = entity  # rename to type_name?
         self.color = color
         self.size = size
 
@@ -39,6 +39,16 @@ class Token(DomainEntity):
             "LuaScriptState": "",
             "GUID": guid(),
         }
+
+    def get_tts_name(self):
+        if self.entity.lower() == "cube":
+            return "BlockSquare"
+        elif self.entity.lower() == "pawn":
+            return "PlayerPawn"
+        elif self.entity.lower() == "triangle":
+            return "BlockTriangle"
+        else:
+            raise ValueError("Unknown entity type: " + self.entity)
 
 
 class ContentToken(Token):

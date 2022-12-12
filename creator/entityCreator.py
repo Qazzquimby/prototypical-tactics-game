@@ -1,4 +1,3 @@
-import itertools
 import random
 
 from creator.constants import (

@@ -1,8 +1,5 @@
-from functools import cached_property
-
 from domain.abstract import DomainEntity
 from tts.guid import guid
-from tts.transform import Transform
 
 
 class ComplexObject(DomainEntity):
