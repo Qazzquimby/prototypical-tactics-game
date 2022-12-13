@@ -23,18 +23,8 @@ class DeckDrawer(BaseDrawer):
         return surf
 
     def draw_cards(self, surf, cards):
-        card_index = 0  # todo make this a proper enumerated loop.
-        for i in range(0, 7):
-            for j in range(0, 10):
-                card_drawer = ComplexObjectDrawer(cards[card_index].object, self.config)
-                surf.blit(
-                    card_drawer.draw(), (j * self.card_size[0], i * self.card_size[1])
-                )
-                card_index += 1
-                if card_index == len(cards):
-                    return
-
-        # todo test me
-        # for card, (x, y) in zip(cards, itertools.product(range(10), range(7))):
-        #     card_drawer = ComplexObjectDrawer(card.object, self.config)
-        #     surf.blit(card_drawer.draw(), (x * self.card_size[0], y * self.card_size[1]))
+        for card, (x, y) in zip(cards, itertools.product(range(10), range(7))):
+            card_drawer = ComplexObjectDrawer(card.object, self.config)
+            surf.blit(
+                card_drawer.draw(), (x * self.card_size[0], y * self.card_size[1])
+            )
