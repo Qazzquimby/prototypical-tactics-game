@@ -14,6 +14,7 @@ from domain.deck import Deck as DomainDeck
 from domain.figurine import Figurine
 from domain.library import Library
 from domain.token import ContentToken
+from drawer.base import BaseDrawer
 from drawer.cardBackDrawer import CardBackDrawer
 from drawer.complexObjectDrawer import ComplexObjectDrawer
 from drawer.deckDrawer import DeckDrawer
@@ -179,7 +180,7 @@ async def library_to_tts_dict(
             _save_image_and_set_attribute(
                 image_builder=image_builder,
                 drawer=drawer,
-                deck=deck,
+                object_=deck,
                 file_name=deck.name,
                 file_extension="jpg",
                 attribute_to_set="image_path",
@@ -188,8 +189,16 @@ async def library_to_tts_dict(
 
     drawer = CardBackDrawer(config)
     for deck in library.decks:
-        path = await image_builder.build(drawer.draw(deck), deck.name + "_back", "jpg")
-        deck.back_image_path = path
+        coroutines.append(
+            _save_image_and_set_attribute(
+                image_builder=image_builder,
+                drawer=drawer,
+                object_=deck,
+                file_name=f"{deck.name}_back",
+                file_extension="jpg",
+                attribute_to_set="back_image_path",
+            )
+        )
 
     for obj in library.complex_objects:
         if obj.type.type == "board":
@@ -227,17 +236,17 @@ async def library_to_tts_dict(
 
 async def _save_image_and_set_attribute(
     image_builder: ImageBuilder,
-    drawer: DeckDrawer,
-    deck: DomainDeck,
+    drawer: BaseDrawer,
+    object_,
     file_name: str,
     file_extension: str,
     attribute_to_set: str,
 ):
-    image: Surface = drawer.draw(deck)
+    image: Surface = drawer.draw(object_)
     path = await image_builder.build(
         image=image, file_name=file_name, file_extension=file_extension
     )
-    deck.__setattr__(attribute_to_set, path)
+    object_.__setattr__(attribute_to_set, path)
 
 
 def save_tts(tts_json: dict, save_dir: Path, file_name: str):

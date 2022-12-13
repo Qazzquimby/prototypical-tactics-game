@@ -1,4 +1,6 @@
 import pygame
+
+from drawer.base import BaseDrawer
 from drawer.complexObjectDrawer import ComplexObjectDrawer
 from drawer.color import convert_tts_to_pygame
 
@@ -10,7 +12,7 @@ def draw_card_backs(drawer, surf, cards):
         surf.fill(convert_tts_to_pygame(cards[0].object.type.backside))
 
 
-class CardBackDrawer:
+class CardBackDrawer(BaseDrawer):
     def __init__(self, config):
         self.config = config
 
