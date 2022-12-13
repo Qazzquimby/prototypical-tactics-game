@@ -13,7 +13,6 @@ def test_game_to_library():
     game = BASIC_GAME
     library = game_to_library(game)
 
-    # todo remove game board and die and pawns from expected
     expected.tokens = []
     expected.dice = []
     expected.complex_objects = expected.complexObjects
