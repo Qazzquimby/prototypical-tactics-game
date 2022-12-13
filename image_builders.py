@@ -25,12 +25,12 @@ def get_image_builder(pygame, config):
         return ImagesDirImageBuilder(pygame, config.images_dir.get())
 
 
-class ImagesBuilder(abc.ABC):
+class ImageBuilder(abc.ABC):
     async def build(self, image: Surface, file_name: str, file_extension: str) -> str:
         raise NotImplementedError
 
 
-class ImgBoxImagesBuilder(ImagesBuilder):
+class ImgBoxImagesBuilder(ImageBuilder):
     def __init__(self, pygame, project_name: str = "prototypical_project"):
         self.pygame = pygame
         self.project_name = project_name
@@ -73,10 +73,10 @@ class ImgBoxImagesBuilder(ImagesBuilder):
 
     def __del__(self):
         self.temp_dir.cleanup()
-        await self.gallery.close()
+        asyncio.get_event_loop().run_until_complete(self.gallery.close())
 
 
-class ImagesDirImageBuilder(ImagesBuilder):
+class ImagesDirImageBuilder(ImageBuilder):
     def __init__(self, pygame, base_path):
         self.pygame = pygame
         self.base_path = base_path
@@ -87,7 +87,7 @@ class ImagesDirImageBuilder(ImagesBuilder):
         return f"file:///{path}"
 
 
-class FtpDirImageBuilder(ImagesBuilder):
+class FtpDirImageBuilder(ImageBuilder):
     def __init__(
         self,
         pygame,

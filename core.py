@@ -1,7 +1,9 @@
+import asyncio
 import json
 from pathlib import Path
 
 import xlrd
+from pygame import Surface
 
 from creator.entityCreator import EntityCreator
 from domain.bag import Bag
@@ -17,6 +19,7 @@ from drawer.complexObjectDrawer import ComplexObjectDrawer
 from drawer.deckDrawer import DeckDrawer
 from drawer.diceDrawer import DiceDrawer
 from drawer.tokenDrawer import TokenDrawer
+from image_builders import ImageBuilder
 from sheetParser.bagParser import BagParser
 from sheetParser.complexObjectParser import ComplexObjectParser
 from sheetParser.complexTypeParser import ComplexTypeParser
@@ -159,16 +162,29 @@ def complex_object_row_to_complex_object(
 
 
 async def library_to_tts_dict(
-    library: Library, image_builder, file_name, placement=None, config=None
+    library: Library,
+    image_builder: ImageBuilder,
+    file_name,
+    placement=None,
+    config=None,
 ):
     setup_pygame()
 
     tts_dict = read_template_dict(file_name)
-
     drawer = DeckDrawer(config)
+
+    coroutines = []
     for deck in library.decks:
-        path = await image_builder.build(drawer.draw(deck), deck.name, "jpg")
-        deck.image_path = path
+        coroutines.append(
+            _save_image_and_set_attribute(
+                image_builder=image_builder,
+                drawer=drawer,
+                deck=deck,
+                file_name=deck.name,
+                file_extension="jpg",
+                attribute_to_set="image_path",
+            )
+        )
 
     drawer = CardBackDrawer(config)
     for deck in library.decks:
@@ -195,6 +211,8 @@ async def library_to_tts_dict(
             path = await image_builder.build(drawer.draw(), "die" + die.name, "png")
             die.image_path = path
 
+    await asyncio.gather(*coroutines)
+
     # UGLY - we already did this step during parsing, but we need to create entities AFTER drawing or their image paths aren't set
     creator = EntityCreator(library.all())
     entities = creator.create_entities(placement)
@@ -205,6 +223,21 @@ async def library_to_tts_dict(
     tts_dict["ObjectStates"] = dicts
 
     return tts_dict
+
+
+async def _save_image_and_set_attribute(
+    image_builder: ImageBuilder,
+    drawer: DeckDrawer,
+    deck: DomainDeck,
+    file_name: str,
+    file_extension: str,
+    attribute_to_set: str,
+):
+    image: Surface = drawer.draw(deck)
+    path = await image_builder.build(
+        image=image, file_name=file_name, file_extension=file_extension
+    )
+    deck.__setattr__(attribute_to_set, path)
 
 
 def save_tts(tts_json: dict, save_dir: Path, file_name: str):
