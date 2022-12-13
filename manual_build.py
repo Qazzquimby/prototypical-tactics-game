@@ -5,10 +5,10 @@ from image_builders import ImagesDirImageBuilder
 from core import xls_file_to_tts_save
 
 
-def run(xls_path: Path, save_dir: Path):
+async def run(xls_path: Path, save_dir: Path):
     data_dir = Path("data").absolute()
 
-    xls_file_to_tts_save(
+    await xls_file_to_tts_save(
         xls_file_path=str(xls_path),
         image_builder=ImagesDirImageBuilder(pygame, base_path=data_dir / "images"),
         save_dir=save_dir,
@@ -21,4 +21,4 @@ if __name__ == "__main__":
     save_dir = Path(try_and_find_save_games_folder())
     xls_path = Path("data/input_newformat.xls")
 
-    run(xls_path, save_dir=save_dir)
+    await run(xls_path, save_dir=save_dir)

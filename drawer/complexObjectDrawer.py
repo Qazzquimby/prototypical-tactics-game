@@ -32,7 +32,9 @@ class ComplexObjectDrawer:
         self.surf = pygame.Surface((w, h))
 
         if self.object.type.name == "Ability":
-            template = (TemplatesPath / "ability.html").read_text()
+            template = (
+                TemplatesPath / "ability.html"
+            ).read_text()  # todo jinja drawing
             html = jinja2.Template(template).render(
                 width=w - 2 * EDGE_MARGIN,
                 height=h - 2 * EDGE_MARGIN,

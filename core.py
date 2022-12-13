@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import xlrd
 
@@ -35,20 +36,20 @@ from yaml_to_xls import (
 )
 
 
-def xls_file_to_tts_save(
+async def xls_file_to_tts_save(
     xls_file_path, image_builder, save_dir, file_name, config=None
 ):
     print("Depreciate this, go straight from yaml using sheets_to_tts_json")
     sheets = xlrd.open_workbook(xls_file_path)
 
-    tts_json = sheets_to_tts_json(sheets, image_builder, file_name, config)
+    tts_json = await sheets_to_tts_json(sheets, image_builder, file_name, config)
 
     save_tts(tts_json=tts_json, save_dir=save_dir, file_name=file_name)
 
 
-def sheets_to_tts_json(sheets: dict, image_builder, file_name, config=None):
+async def sheets_to_tts_json(sheets: dict, image_builder, file_name, config=None):
     library = sheets_to_library(sheets)
-    return library_to_tts_dict(
+    return await library_to_tts_dict(
         library, image_builder, file_name, sheets["Placement"], config
     )
 
@@ -157,7 +158,7 @@ def complex_object_row_to_complex_object(
     return ComplexObject(name=row[0], type_=type_, content=dict(row[2:]))
 
 
-def library_to_tts_dict(
+async def library_to_tts_dict(
     library: Library, image_builder, file_name, placement=None, config=None
 ):
     setup_pygame()
@@ -166,30 +167,32 @@ def library_to_tts_dict(
 
     drawer = DeckDrawer(config)
     for deck in library.decks:
-        path = image_builder.build(drawer.draw(deck), deck.name, "jpg")
+        path = await image_builder.build(drawer.draw(deck), deck.name, "jpg")
         deck.image_path = path
 
     drawer = CardBackDrawer(config)
     for deck in library.decks:
-        path = image_builder.build(drawer.draw(deck), deck.name + "_back", "jpg")
+        path = await image_builder.build(drawer.draw(deck), deck.name + "_back", "jpg")
         deck.back_image_path = path
 
     for obj in library.complex_objects:
         if obj.type.type == "board":
             drawer = ComplexObjectDrawer(obj, config)
-            path = image_builder.build(drawer.draw(), obj.name, "jpg")
+            path = await image_builder.build(drawer.draw(), obj.name, "jpg")
             obj.image_path = path
 
     for token in library.tokens:
         if isinstance(token, ContentToken):
             drawer = TokenDrawer(token)
-            path = image_builder.build(drawer.draw(), "token_" + token.name, "jpg")
+            path = await image_builder.build(
+                drawer.draw(), "token_" + token.name, "jpg"
+            )
             token.image_path = path
 
     for die in library.dice:
         if die.custom_content:
             drawer = DiceDrawer(die)
-            path = image_builder.build(drawer.draw(), "die" + die.name, "png")
+            path = await image_builder.build(drawer.draw(), "die" + die.name, "png")
             die.image_path = path
 
     # UGLY - we already did this step during parsing, but we need to create entities AFTER drawing or their image paths aren't set
@@ -204,7 +207,7 @@ def library_to_tts_dict(
     return tts_dict
 
 
-def save_tts(tts_json, save_dir, file_name):
+def save_tts(tts_json: dict, save_dir: Path, file_name: str):
     path = save_dir / f"TS_{file_name.replace(' ', '_')}.json"
     with open(path, "w") as outfile:
         json.dump(tts_json, outfile)

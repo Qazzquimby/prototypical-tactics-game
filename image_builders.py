@@ -1,4 +1,12 @@
+import abc
+import asyncio
+import tempfile
+from pathlib import Path
+
+import pyimgbox as pyimgbox
 import pysftp
+from pygame import Surface
+from retry import retry
 
 
 def get_image_builder(pygame, config):
@@ -17,18 +25,69 @@ def get_image_builder(pygame, config):
         return ImagesDirImageBuilder(pygame, config.images_dir.get())
 
 
-class ImagesDirImageBuilder:
+class ImagesBuilder(abc.ABC):
+    async def build(self, image: Surface, file_name: str, file_extension: str) -> str:
+        raise NotImplementedError
+
+
+class ImgBoxImagesBuilder(ImagesBuilder):
+    def __init__(self, pygame, project_name: str = "prototypical_project"):
+        self.pygame = pygame
+        self.project_name = project_name
+
+        self.temp_dir = tempfile.TemporaryDirectory()
+        self.images_dir_builder = ImagesDirImageBuilder(
+            pygame, base_path=Path(self.temp_dir.name)
+        )
+        self.gallery = pyimgbox.Gallery(title=self.project_name)
+
+        self.printed_url = False
+
+    async def build(self, image: Surface, file_name: str, file_extension: str):
+        save_path = (
+            await self.save_to_temp_dir(image, file_name, file_extension)
+        ).split("file:///")[1]
+
+        result = await self.upload(save_path)
+        return result["image_url"]
+
+    async def save_to_temp_dir(self, image, file_name, file_extension):
+        return await self.images_dir_builder.build(image, file_name, file_extension)
+
+    @retry(tries=10, delay=2, backoff=2, jitter=(1, 3), exceptions=ConnectionError)
+    async def upload(self, save_path: str):
+        result = await self.gallery.upload(save_path)
+        if not result["success"]:
+            raise ConnectionError(
+                f"Failed to upload image to imgbox\n {result['error']}"
+            )
+
+        if not self.printed_url:
+            print(
+                "imgbox gallery created\n"
+                f"Url: {self.gallery.url}\n"
+                f"Edit url: {self.gallery.edit_url}"
+            )
+            self.printed_url = True
+        return result
+
+    def __del__(self):
+        self.temp_dir.cleanup()
+        await self.gallery.close()
+
+
+class ImagesDirImageBuilder(ImagesBuilder):
     def __init__(self, pygame, base_path):
         self.pygame = pygame
-        self.basePath = base_path
+        self.base_path = base_path
 
-    def build(self, image, file, extension):
-        path = self.basePath / f"{file}.{extension}"
+    async def build(self, image: Surface, file_name: str, file_extension: str):
+        path = self.base_path / f"{file_name}.{file_extension}"
         self.pygame.image.save(image, path)
         return f"file:///{path}"
 
 
-class FtpDirImageBuilder:
+class FtpDirImageBuilder(ImagesBuilder):
     def __init__(
         self,
         pygame,
@@ -49,9 +108,9 @@ class FtpDirImageBuilder:
         self.ftp_password = ftp_password
         self.game_name = game_name
 
-    def build(self, image, file, extension):
-        local_path = self.image_base_path + "/" + file + "." + extension
-        local_name = file + "." + extension
+    async def build(self, image, file_name, file_extension):
+        local_path = self.image_base_path + "/" + file_name + "." + file_extension
+        local_name = file_name + "." + file_extension
         self.pygame.image.save(image, local_path)
         cnopts = pysftp.CnOpts()
         cnopts.hostkeys = None
@@ -70,4 +129,12 @@ class FtpDirImageBuilder:
                 con.remove(local_name)
             con.put(local_name)
         con.close()
-        return self.ftp_base_path + "/" + self.game_name + "/" + file + "." + extension
+        return (
+            self.ftp_base_path
+            + "/"
+            + self.game_name
+            + "/"
+            + file_name
+            + "."
+            + file_extension
+        )

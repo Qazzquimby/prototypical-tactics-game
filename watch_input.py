@@ -1,3 +1,4 @@
+import asyncio
 import time
 from pathlib import Path
 
@@ -10,12 +11,11 @@ from tts_dir import try_and_find_save_games_folder
 
 
 import yaml_to_xls
-from image_builders import ImagesDirImageBuilder
+from image_builders import ImgBoxImagesBuilder
 from core import save_tts, game_to_library, library_to_tts_dict
 
 
 def yaml_file_to_tts_save(yaml_path: str, save_dir: Path):
-    data_dir = Path("data").absolute()
     file_stem = Path(yaml_path).stem
 
     try:
@@ -26,10 +26,13 @@ def yaml_file_to_tts_save(yaml_path: str, save_dir: Path):
 
     game = yaml_to_xls.Game.parse_obj(yaml_content)
     library = game_to_library(game)
-    tts_dict = library_to_tts_dict(
-        library=library,
-        image_builder=ImagesDirImageBuilder(pygame, base_path=data_dir / "images"),
-        file_name="TestGame",
+    tts_dict = asyncio.run(
+        library_to_tts_dict(
+            library=library,
+            image_builder=ImgBoxImagesBuilder(pygame=pygame, project_name="tactics"),
+            file_name="TestGame",
+        ),
+        debug=True,
     )
     save_tts(tts_dict, save_dir=save_dir, file_name=file_stem)
     print("Built images")
