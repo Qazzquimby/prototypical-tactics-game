@@ -5,9 +5,10 @@ import pygame
 from drawer.base import BaseDrawer
 from drawer.complexObjectDrawer import ComplexObjectDrawer
 
-# todo this is really stupid organization.
-#  What is the difference between draw and draw_cards?
-#  draw initializes the variables. Should make a new instance each time instead of mutating on draw.
+DECK_IMAGE_CARDS_PER_ROW = 10
+DECK_IMAGE_CARDS_PER_COLUMN = 7
+
+
 class DeckDrawer(BaseDrawer):
     def __init__(self, config):
         self.config = config
@@ -15,16 +16,14 @@ class DeckDrawer(BaseDrawer):
     def draw(self, deck):
         drawer = ComplexObjectDrawer(deck.cards[0].object, self.config)
         w, h = drawer.get_card_size()
-        self.size = (w * 10, h * 7)
-        self.card_size = (w, h)
+        size = (w * DECK_IMAGE_CARDS_PER_ROW, h * DECK_IMAGE_CARDS_PER_COLUMN)
+        card_size = (w, h)
 
-        surf = pygame.Surface(self.size)
-        self.draw_cards(surf, deck.cards)
+        surf = pygame.Surface(size)
+        self._draw_cards(surf, deck.cards, card_size)
         return surf
 
-    def draw_cards(self, surf, cards):
+    def _draw_cards(self, surf, cards, card_size: tuple[int, int]):
         for card, (x, y) in zip(cards, itertools.product(range(10), range(7))):
             card_drawer = ComplexObjectDrawer(card.object, self.config)
-            surf.blit(
-                card_drawer.draw(), (x * self.card_size[0], y * self.card_size[1])
-            )
+            surf.blit(card_drawer.draw(), (x * card_size[0], y * card_size[1]))
