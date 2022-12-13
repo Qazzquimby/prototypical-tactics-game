@@ -1,4 +1,6 @@
 import pygame
+
+from drawer.base import BaseDrawer
 from font.font import Font
 
 # 2,4,5
@@ -19,13 +21,14 @@ DRAWSPOTS = [
 ]
 
 
-class DiceDrawer:
+class DiceDrawer(BaseDrawer):
     def __init__(self, die):
         self.die = die
         self.large_font_obj = Font.get_font(256)
         self.smallFontObj = Font.get_font(96)
 
-    def draw(self):
+    def draw(self, _=None):
+        # draws self, so doesn't need object parameter
         surf = pygame.image.load("data/D6.png")
         for pos, spot in enumerate(DRAWSPOTS):
             content = self.die.custom_content[pos]

@@ -202,23 +202,42 @@ async def library_to_tts_dict(
 
     for obj in library.complex_objects:
         if obj.type.type == "board":
-            drawer = ComplexObjectDrawer(obj, config)
-            path = await image_builder.build(drawer.draw(), obj.name, "jpg")
-            obj.image_path = path
+            coroutines.append(
+                _save_image_and_set_attribute(
+                    image_builder=image_builder,
+                    drawer=drawer,
+                    object_=obj,
+                    file_name=obj.name,
+                    file_extension="jpg",
+                    attribute_to_set="image_path",
+                )
+            )
 
     for token in library.tokens:
         if isinstance(token, ContentToken):
-            drawer = TokenDrawer(token)
-            path = await image_builder.build(
-                drawer.draw(), "token_" + token.name, "jpg"
+            coroutines.append(
+                _save_image_and_set_attribute(
+                    image_builder=image_builder,
+                    drawer=drawer,
+                    object_=token,
+                    file_name="token_" + token.name,
+                    file_extension="jpg",
+                    attribute_to_set="image_path",
+                )
             )
-            token.image_path = path
 
     for die in library.dice:
         if die.custom_content:
-            drawer = DiceDrawer(die)
-            path = await image_builder.build(drawer.draw(), "die" + die.name, "png")
-            die.image_path = path
+            coroutines.append(
+                _save_image_and_set_attribute(
+                    image_builder=image_builder,
+                    drawer=drawer,
+                    object_=die,
+                    file_name="die" + die.name,
+                    file_extension="png",
+                    attribute_to_set="image_path",
+                )
+            )
 
     await asyncio.gather(*coroutines)
 

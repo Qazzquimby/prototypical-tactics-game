@@ -1,17 +1,19 @@
 import pygame
 
+from drawer.base import BaseDrawer
 from drawer.color import convert_tts_to_pygame
 from font.font import Font
 
 MARGIN = 10
 
 
-class TokenDrawer:
+class TokenDrawer(BaseDrawer):
     def __init__(self, token):
         self.token = token
         self.fontObj = Font.get_font(32)
 
-    def draw(self):
+    def draw(self, _=None):
+        # draws self, so doesn't need object parameter
         content = self.token.content
         if isinstance(content, float) and content.is_integer():
             content = int(content)

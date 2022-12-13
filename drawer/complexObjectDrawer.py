@@ -5,6 +5,7 @@ import imgkit as imgkit
 import jinja2
 import pygame
 
+from drawer.base import BaseDrawer
 from drawer.textrect import render_fitted_textrect
 from drawer.color import convert_tts_to_pygame
 
@@ -21,13 +22,14 @@ def make_empty_image(filepath):
     pygame.image.save(surf, filepath)
 
 
-class ComplexObjectDrawer:
+class ComplexObjectDrawer(BaseDrawer):
     def __init__(self, obj, config):
         self.object = obj
         self.config = config
         self.size = obj.type.shape.size
 
-    def draw(self):
+    def draw(self, _=None):
+        # draws self, so doesn't need the object param
         w, h = self.get_card_size()
         self.surf = pygame.Surface((w, h))
 
