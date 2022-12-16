@@ -26,10 +26,10 @@ class Library:
     @property
     def decks(self):
         # search bags for decks
-        decks = self._decks
+        current_decks = self._decks.copy()
         for bag in self.bags:
-            decks += bag.get_decks()
-        return decks
+            current_decks += bag.get_decks()
+        return current_decks
 
     @decks.setter
     def decks(self, value):
