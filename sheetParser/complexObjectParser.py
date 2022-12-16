@@ -8,7 +8,7 @@ def is_type_a_template(type_):
 class ComplexObjectParser:
     def __init__(self, types):
         self.types = types
-        self.templateHeaders = {}
+        self.template_headers = {}
 
     def parse(self, sheet):
         complex_objects = []
@@ -22,13 +22,11 @@ class ComplexObjectParser:
                     type_ = self.find_type(type_name)
                     content = {}
                     for column in type_.shape.areas:
-                        if column < 1000:
-                            pass
-                        else:
+                        if column >= 1000:
                             content[column] = sheet.cell(
                                 rowx=row, colx=column - 1000
                             ).value
-                    self.templateHeaders[type_.name] = content
+                    self.template_headers[type_.name] = content
                 else:
                     type_ = self.find_type(type_name)
                     content = {}
@@ -38,7 +36,7 @@ class ComplexObjectParser:
                             content[column] = sheet.cell(rowx=row, colx=column).value
                         else:
                             try:
-                                content[column] = self.templateHeaders[type_.name][
+                                content[column] = self.template_headers[type_.name][
                                     column
                                 ]
                             except KeyError:

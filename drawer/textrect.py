@@ -3,7 +3,7 @@
 from font.font import Font
 
 
-class TextRectException(BaseException):
+class TextRectException(Exception):
     def __init__(self, message=None):
         self.message = message
 

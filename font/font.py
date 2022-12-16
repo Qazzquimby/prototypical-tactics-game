@@ -6,6 +6,6 @@ class Font:
 
     @staticmethod
     def get_font(size):
-        if not size in Font.fonts:
+        if size not in Font.fonts:
             Font.fonts[size] = pygame.font.Font("data/proto.ttf", size)
         return Font.fonts[size]

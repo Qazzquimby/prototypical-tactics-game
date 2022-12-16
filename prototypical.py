@@ -152,12 +152,12 @@ class App:
         self.pygame = pygame
         self.master = master
         master.geometry("700x600")
-        self.filenameVar = StringVar()
+        self.filename_var = StringVar()
         self.config = Config(
             StringVar(),
             StringVar(),
             StringVar(),
-            self.filenameVar,
+            self.filename_var,
             StringVar(),
             StringVar(),
             StringVar(),
@@ -171,11 +171,11 @@ class App:
         frame.grid()
         frame.grid_columnconfigure(1, minsize=400)
 
-        self.customFont = font.Font(family="Arial", size=18)
-        self.headerLabel = Label(frame, text="Prototypical!", font=self.customFont)
-        self.headerLabel.grid(row=0, column=0, columnspan=2)
+        self.custom_font = font.Font(family="Arial", size=18)
+        self.header_label = Label(frame, text="Prototypical!", font=self.custom_font)
+        self.header_label.grid(row=0, column=0, columnspan=2)
 
-        self.ftpStatusText = StringVar()
+        self.ftp_status_text = StringVar()
         self.set_ftp_status()
 
         self.excel_file(frame)
@@ -187,19 +187,19 @@ class App:
         button_frame = Frame(frame)
         button_frame.grid(row=6, column=1)
 
-        self.parseButton = Button(button_frame, text="PARSE GAME", command=self.parse)
-        self.parseButton.grid(row=0, column=0)
+        self.parse_button = Button(button_frame, text="PARSE GAME", command=self.parse)
+        self.parse_button.grid(row=0, column=0)
 
-        self.buildButton = Button(button_frame, text="BUILD GAME", command=self.build)
-        self.buildButton.grid(row=0, column=1)
+        self.build_button = Button(button_frame, text="BUILD GAME", command=self.build)
+        self.build_button.grid(row=0, column=1)
 
-        self.newTemplateButton = Button(
+        self.new_template_button = Button(
             button_frame, text="NEW TEMPLATE", command=self.template
         )
-        self.newTemplateButton.grid(row=0, column=2)
+        self.new_template_button.grid(row=0, column=2)
 
-        self.statusLabel = Label(frame, text="Status:")
-        self.statusLabel.grid(row=7, column=0, columnspan=2)
+        self.status_label = Label(frame, text="Status:")
+        self.status_label.grid(row=7, column=0, columnspan=2)
 
         self.status = Text(frame)
         self.status.grid(row=8, column=0, columnspan=2)
@@ -210,23 +210,23 @@ class App:
         except FileNotFoundError:
             version = "dev"
 
-        self.statusLabel = Label(frame, text="version: " + version)
-        self.statusLabel.grid(row=9, column=0, columnspan=2)
+        self.status_label = Label(frame, text="version: " + version)
+        self.status_label.grid(row=9, column=0, columnspan=2)
 
     def set_ftp_status(self):
         if self.config.ftp_server.get() != "":
             if test_ftp_connection(self.config):
-                self.ftpStatusText.set(
+                self.ftp_status_text.set(
                     self.config.ftp_server.get()
                     + " as "
                     + self.config.ftp_username.get()
                 )
             else:
-                self.ftpStatusText.set(
+                self.ftp_status_text.set(
                     "Failed to connect to " + self.config.ftp_server.get()
                 )
         else:
-            self.ftpStatusText.set("Turned off (local only)")
+            self.ftp_status_text.set("Turned off (local only)")
 
     def excel_file(self, frame):
         self.excel_button = Button(
@@ -271,7 +271,7 @@ class App:
         )
         self.ftp_button.grid(row=5, column=0)
 
-        self.ftp_text = Label(frame, textvariable=self.ftpStatusText)
+        self.ftp_text = Label(frame, textvariable=self.ftp_status_text)
         self.ftp_text.grid(row=5, column=1)
 
     def do_ftp_settings_update(self):
@@ -279,9 +279,9 @@ class App:
         self.set_ftp_status()
 
     def template(self):
-        file = filedialog.asksaveasfilename()
-        if file:
-            path = file + ".xls"
+        file_ = filedialog.asksaveasfilename()
+        if file_:
+            path = file_ + ".xls"
             try:
                 copyfile("data/template.xls", path)
                 self.push_status_message("Created a new empty template: " + path)
