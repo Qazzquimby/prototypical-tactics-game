@@ -93,7 +93,7 @@ def make_hero_box_bag(hero_box: HeroBox):
             id_=1,
             count=1,
             obj=ComplexObject(
-                name=hero_box.hero.name,
+                name=deck_name,
                 type_=Hero.to_complex_type(),
                 content=hero_box.hero,
             ),
@@ -203,7 +203,7 @@ async def library_to_tts_dict(
             )
     await asyncio.gather(*coroutines)
 
-    entities = library.all()
+    entities = library.bags  # will need to change for games that are more than one bag
     tts_dict["ObjectStates"] = [entity.as_dict() for entity in entities]
 
     return tts_dict
