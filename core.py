@@ -130,7 +130,6 @@ async def library_to_tts_dict(
         library: Library,
         image_builder: ImageBuilder,
         file_name,
-        placement=None,
         config=None,
 ):
     setup_pygame()
@@ -202,17 +201,10 @@ async def library_to_tts_dict(
                     attribute_to_set="image_path",
                 )
             )
-
     await asyncio.gather(*coroutines)
 
-    # UGLY - we already did this step during parsing, but we need to create entities AFTER drawing or their image paths aren't set
-    creator = EntityCreator(library.all())
-    entities = creator.create_entities(placement)
-
-    dicts = []
-    for entity in entities:
-        dicts.append(entity.as_dict())
-    tts_dict["ObjectStates"] = dicts
+    entities = library.all()
+    tts_dict["ObjectStates"] = [entity.as_dict() for entity in entities]
 
     return tts_dict
 
