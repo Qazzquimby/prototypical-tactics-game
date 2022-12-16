@@ -5,7 +5,7 @@ sets:
           name: Ana
           health: 8
           speed: 3
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/76/Ana.png/revision/latest/scale-to-width-down/143?cb=20160715094551
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/76/Ana.png/revision/latest/scale-to-width-down/143?cb=20160715094551
         decks:
           - abilities:
             - name: Biotic Rifle
@@ -36,7 +36,7 @@ sets:
           name: Bastion
           health: 8
           speed: 3
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/272?cb=20220409014728
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/272?cb=20220409014728
         decks:
           - abilities:
             - name: Rotary Canon
@@ -76,7 +76,7 @@ sets:
           health: 12
           speed: 3
           dodge: -2
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
         decks:
           - abilities:
             - name: Pilot D.Va
@@ -124,7 +124,7 @@ sets:
           name: Junkrat
           health: 8
           speed: 3
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/99/Junkrat-Portrait.png/revision/latest/scale-to-width-down/286?cb=20160620014456
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/99/Junkrat-Portrait.png/revision/latest/scale-to-width-down/286?cb=20160620014456
         decks:
           - abilities:
             - name: Used to It
@@ -162,7 +162,7 @@ sets:
           name: Lucio
           health: 8
           speed: 3
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c1/Lucio-ow2-portrait.png/revision/latest/scale-to-width-down/148?cb=20191104073705
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c1/Lucio-ow2-portrait.png/revision/latest/scale-to-width-down/148?cb=20191104073705
         decks:
           - abilities:
             - name: Crossfade
@@ -196,7 +196,7 @@ sets:
           name: Mei
           health: 10
           speed: 3
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/da/Mei-ow2-portrait.png/revision/latest/scale-to-width-down/165?cb=20191104081317
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/da/Mei-ow2-portrait.png/revision/latest/scale-to-width-down/165?cb=20191104081317
         decks:
           - abilities:
             - name: Endothermic Blaster
@@ -233,7 +233,7 @@ sets:
           name: Mercy
           health: 8
           speed: 3
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0f/Mercy-ow2-portrait.png/revision/latest/scale-to-width-down/149?cb=20191104213936
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0f/Mercy-ow2-portrait.png/revision/latest/scale-to-width-down/149?cb=20191104213936
         decks:
           - abilities:
             - name: Regeneration
@@ -275,7 +275,7 @@ sets:
           name: Moira
           health: 8
           speed: 3
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b5/Moira.png/revision/latest/scale-to-width-down/162?cb=20171104021652
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b5/Moira.png/revision/latest/scale-to-width-down/162?cb=20171104021652
         decks:
           - abilities:
             - name: Damage Biotic Grasp
@@ -317,7 +317,7 @@ sets:
           speed: 3
           size: 2
           dodge: -2
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/3b/Reinhardt-ow2-portrait.png/revision/latest/scale-to-width-down/252?cb=20191104214011
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/3b/Reinhardt-ow2-portrait.png/revision/latest/scale-to-width-down/252?cb=20191104214011
         decks:
           - abilities:
             - name: Steadfast
@@ -361,7 +361,7 @@ sets:
           speed: 3
           size: 2
           dodge: -2
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/ce/Roadhog-Portrait.png/revision/latest/scale-to-width-down/345?cb=20160620014755
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/ce/Roadhog-Portrait.png/revision/latest/scale-to-width-down/345?cb=20160620014755
         decks:
           - abilities:
             - name: Scrap Gun
@@ -393,7 +393,7 @@ sets:
           name: Soldier 76
           health: 8
           speed: 3
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Soldier76-portrait.png/revision/latest/scale-to-width-down/224?cb=20160620014955
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Soldier76-portrait.png/revision/latest/scale-to-width-down/224?cb=20160620014955
         decks:
           - abilities:
             - name: Heavy Pulse Rifle
@@ -424,7 +424,7 @@ sets:
           name: Tracer
           health: 6
           speed: 4
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1b/Tracer_ow2_portrait.png/revision/latest/scale-to-width-down/116?cb=20220625025656
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1b/Tracer_ow2_portrait.png/revision/latest/scale-to-width-down/116?cb=20220625025656
         decks:
           - abilities:
             - name: Pulse Pistols
@@ -453,7 +453,7 @@ sets:
           name: Widow
           health: 8
           speed: 3
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ab/OW2_Widowmaker.png/revision/latest/scale-to-width-down/272?cb=20210623082021
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ab/OW2_Widowmaker.png/revision/latest/scale-to-width-down/272?cb=20210623082021
         decks:
           - abilities:
             - name: Widow's Kiss
@@ -486,7 +486,7 @@ sets:
           speed: 3
           size: 2
           dodge: -2
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7c/Winston-ow2-portrait.png/revision/latest/scale-to-width-down/279?cb=20191104221341
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7c/Winston-ow2-portrait.png/revision/latest/scale-to-width-down/279?cb=20191104221341
         decks:
           - abilities:
             - name: Tesla Cannon
@@ -518,7 +518,7 @@ sets:
           name: Zenyatta
           health: 8
           speed: 3
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/92/Zenyatta-portrait.png/revision/latest/scale-to-width-down/269?cb=20160620015935
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/92/Zenyatta-portrait.png/revision/latest/scale-to-width-down/269?cb=20160620015935
         decks:
           - abilities:
             - name: Snap Kick
@@ -548,7 +548,7 @@ sets:
           health: 10
           speed: 3
           size: 1
-        image: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Zarya-portrait.png/revision/latest/scale-to-width-down/350?cb=20160620015842
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Zarya-portrait.png/revision/latest/scale-to-width-down/350?cb=20160620015842
         decks:
           - abilities:
             - name: Particle Cannon
@@ -575,7 +575,7 @@ sets:
           health: 6
           speed: 3
           armor: 1
-        image: https://iili.io/yT240N.png
+          image_url: https://iili.io/yT240N.png
         decks:
           - abilities:
             - name: Axe
