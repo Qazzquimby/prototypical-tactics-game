@@ -28,7 +28,7 @@ class Card(DomainEntity):
             "Hands": True,
             "CardID": 99 + self.id,
             "SidewaysCard": False,
-            "LuaScript": "",
+            "LuaScript": self.object.content.get_lua(),
             "LuaScriptState": "",
             "ContainedObjects": [],
             "GUID": guid(),
