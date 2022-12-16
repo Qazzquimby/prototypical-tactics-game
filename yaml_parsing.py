@@ -31,6 +31,8 @@ class Card(BaseModel):
     def make_content_dict(self, hero_name: str) -> dict:
         raise NotImplementedError
 
+    def get_lua(self) -> str:
+        return ""
 
 class UnitCard(Card, Figurine):
     speed: int
@@ -86,7 +88,7 @@ class Hero(UnitCard):
             name=HERO_CARD_LABEL,
             backside=(0.0, 0.0, 0.0),
             background_color=(1.0, 1.0, 1.0),
-            size=(300, 500),
+            size=(500, 500),
             type_="card",
             shape=Shape(
                 areas={

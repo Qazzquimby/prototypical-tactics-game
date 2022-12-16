@@ -16,7 +16,7 @@ import pygame
 import yaml
 
 from core import game_to_library, library_to_tts_dict
-from image_builders import ImagesDirImageBuilder
+from image_builders import DirectoryImagesBuilder
 from yaml_parsing import Game
 
 BASIC_GAME = Game(
@@ -705,7 +705,7 @@ def game_to_tts_dict(game: Game) -> dict:
     tts_dict = asyncio.run(
         library_to_tts_dict(
             library=library,
-            image_builder=ImagesDirImageBuilder(pygame, base_path=data_dir / "images"),
+            image_builder=DirectoryImagesBuilder(pygame, base_path=data_dir / "images"),
             file_name="TestGame",
         )
     )

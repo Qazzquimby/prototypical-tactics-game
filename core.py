@@ -95,7 +95,7 @@ def make_hero_box_bag(hero_box: HeroBox):
             obj=ComplexObject(
                 name=hero_box.hero.name,
                 type_=Hero.to_complex_type(),
-                content=hero_box.hero.make_content_dict(hero_box.hero.name),
+                content=hero_box.hero,
             ),
         )
 

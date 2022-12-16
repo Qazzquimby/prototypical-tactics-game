@@ -7,11 +7,12 @@ import yaml.scanner
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, FileSystemEvent
 
+from tests.integration_test import data_dir
 from tts_dir import try_and_find_save_games_folder
 
 
 import yaml_parsing
-from image_builders import ImgBoxImagesBuilder
+from image_builders import DirectoryImagesBuilder
 from core import save_tts, game_to_library, library_to_tts_dict
 
 
@@ -29,10 +30,9 @@ def yaml_file_to_tts_save(yaml_path: str, save_dir: Path):
     tts_dict = asyncio.run(
         library_to_tts_dict(
             library=library,
-            image_builder=ImgBoxImagesBuilder(pygame=pygame, project_name="tactics"),
+            image_builder=DirectoryImagesBuilder(pygame=pygame, base_path=data_dir / "images"),
             file_name="TestGame",
         ),
-        debug=True,
     )
     save_tts(tts_dict, save_dir=save_dir, file_name=file_stem)
     print("Built images")
@@ -45,6 +45,10 @@ class OnChangeUpdateTTSHandler(FileSystemEventHandler):
 
 
 if __name__ == "__main__":
+    schema = yaml_parsing.Game.schema_json()
+    with open("data/game_schema.json", "w") as f:
+        f.write(schema)
+
     save_dir = Path(try_and_find_save_games_folder())
 
     yaml_file_to_tts_save("data/input.yaml", save_dir=save_dir)

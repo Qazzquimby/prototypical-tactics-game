@@ -22,7 +22,7 @@ def get_image_builder(pygame, config):
             config.file_name.get(),
         )
     else:
-        return ImagesDirImageBuilder(pygame, config.images_dir.get())
+        return DirectoryImagesBuilder(pygame, config.images_dir.get())
 
 
 class ImageBuilder(abc.ABC):
@@ -36,7 +36,7 @@ class ImgBoxImagesBuilder(ImageBuilder):
         self.project_name = project_name
 
         self.temp_dir = tempfile.TemporaryDirectory()
-        self.images_dir_builder = ImagesDirImageBuilder(
+        self.images_dir_builder = DirectoryImagesBuilder(
             pygame, base_path=Path(self.temp_dir.name)
         )
         self.gallery = pyimgbox.Gallery(title=self.project_name)
@@ -76,7 +76,7 @@ class ImgBoxImagesBuilder(ImageBuilder):
         asyncio.get_event_loop().run_until_complete(self.gallery.close())
 
 
-class ImagesDirImageBuilder(ImageBuilder):
+class DirectoryImagesBuilder(ImageBuilder):
     def __init__(self, pygame, base_path):
         self.pygame = pygame
         self.base_path = base_path
