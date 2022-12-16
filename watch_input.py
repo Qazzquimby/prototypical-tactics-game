@@ -10,7 +10,7 @@ from watchdog.events import FileSystemEventHandler, FileSystemEvent
 from tts_dir import try_and_find_save_games_folder
 
 
-import yaml_to_xls
+import yaml_parsing
 from image_builders import ImgBoxImagesBuilder
 from core import save_tts, game_to_library, library_to_tts_dict
 
@@ -19,12 +19,12 @@ def yaml_file_to_tts_save(yaml_path: str, save_dir: Path):
     file_stem = Path(yaml_path).stem
 
     try:
-        yaml_content = yaml_to_xls.read_yaml_file(yaml_path)
+        yaml_content = yaml_parsing.read_yaml_file(yaml_path)
     except yaml.scanner.ScannerError as e:
         print(f"Error parsing {yaml_path}\n{e}")
         return
 
-    game = yaml_to_xls.Game.parse_obj(yaml_content)
+    game = yaml_parsing.Game.parse_obj(yaml_content)
     library = game_to_library(game)
     tts_dict = asyncio.run(
         library_to_tts_dict(

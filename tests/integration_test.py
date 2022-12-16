@@ -1,6 +1,6 @@
 import asyncio
 
-from yaml_to_xls import (
+from yaml_parsing import (
     GameSet,
     HeroBox,
     Deck,
@@ -17,7 +17,7 @@ import yaml
 
 from core import game_to_library, library_to_tts_dict
 from image_builders import ImagesDirImageBuilder
-from yaml_to_xls import Game
+from yaml_parsing import Game
 
 BASIC_GAME = Game(
     sets=[

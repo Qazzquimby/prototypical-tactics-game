@@ -16,10 +16,7 @@ from domain.library import Library
 from domain.token import ContentToken
 from drawer.base import BaseDrawer
 from drawer.cardBackDrawer import CardBackDrawer
-from drawer.complexObjectDrawer import ComplexObjectDrawer
 from drawer.deckDrawer import DeckDrawer
-from drawer.diceDrawer import DiceDrawer
-from drawer.tokenDrawer import TokenDrawer
 from image_builders import ImageBuilder
 from sheetParser.bagParser import BagParser
 from sheetParser.complexObjectParser import ComplexObjectParser
@@ -28,7 +25,7 @@ from sheetParser.deckParser import DeckParser
 from sheetParser.diceParser import DiceParser
 from sheetParser.figurineParser import FigurineParser
 from sheetParser.tokenParser import TokenParser
-from yaml_to_xls import (
+from yaml_parsing import (
     GameSet,
     make_box_name,
     HeroBox,
