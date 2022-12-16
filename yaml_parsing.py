@@ -18,25 +18,27 @@ class Token(BaseModel):
     size: float = 1
 
 
+class Figurine(BaseModel):
+    name: str
+    image_url: str
+    size: int = 1
+
+
 class Card(BaseModel):
     name: str
-    tokens: Token = []
+    tokens: list[Token] = None
 
-    def make_card_row(self, hero_name: str):
+    def make_content_dict(self, hero_name: str) -> dict:
         raise NotImplementedError
 
 
-class UnitCard(Card):
-    name: str
+class UnitCard(Card, Figurine):
     speed: int
     health: int
-    size: int = 1
     dodge: int = 0
 
-    def make_card_row(self, hero_name: str):
-        return [
-            self.name,
-            HERO_CARD_LABEL,
+    def make_content_dict(self, hero_name: str):
+        content_list = [
             self.name,
             SPEED_LABEL,
             str(self.speed),
@@ -44,16 +46,7 @@ class UnitCard(Card):
             str(self.health),
             hero_name,
         ]
-
-    def make_token_row(self):
-        return [
-            self.name,
-            "token",
-            "\\",
-            self.size,
-            "black",
-            "the content!",
-        ]
+        return {i + 2: value for i, value in enumerate(content_list)}
 
 
 class Hero(UnitCard):
@@ -146,7 +139,6 @@ class HeroBox(BaseModel):
     hero: Hero
     decks: list[Deck]
     tokens: list[Token] = []
-    image: str
     # maybe a description here
 
 

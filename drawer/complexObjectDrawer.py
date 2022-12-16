@@ -40,10 +40,10 @@ class ComplexObjectDrawer(BaseDrawer):
             html = jinja2.Template(template).render(
                 width=w - 2 * EDGE_MARGIN,
                 height=h - 2 * EDGE_MARGIN,
-                name=self.object.content[2],
-                type=self.object.content[3],
-                text=self.object.content[5],
-                owner=self.object.content[6],
+                name=self.object.content.name,
+                type=self.object.content.type,
+                text=self.object.content.text,
+                owner="todo: owner",
             )
             image_bytes = imgkit.from_string(
                 html, False, options={"format": "png"}, css="data/templates/ability.css"

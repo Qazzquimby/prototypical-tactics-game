@@ -25,8 +25,9 @@ BASIC_GAME = Game(
             name="TestSet",
             hero_boxes=[
                 HeroBox(
-                    hero=Hero(name="TestHero", speed=3, health=8),
-                    image="TestImage",
+                    hero=Hero(
+                        name="TestHero", speed=3, health=8, image_url="TestImage"
+                    ),
                     decks=[
                         Deck(
                             abilities=[

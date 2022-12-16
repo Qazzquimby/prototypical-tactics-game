@@ -1,11 +1,12 @@
 from domain.abstract import DomainEntity
+from domain.card import Card
 from tts.guid import guid
 
 
 class Deck(DomainEntity):
     def __init__(self, name):
         self.name = name
-        self.cards = []
+        self.cards: list[Card] = []
         self.image_path = ""
         self.back_image_path = ""
 
