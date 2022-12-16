@@ -57,7 +57,9 @@ class ComplexObjectDrawer(BaseDrawer):
                 )
             else:
                 self.surf.fill(convert_tts_to_pygame(self.object.type.background_color))
-            for key, content in self.object.content.items():
+            for key, content in self.object.content.make_content_dict(
+                "todo owner"
+            ).items():
                 self.draw_content_to_area(content, self.object.type.shape.areas[key])
 
         self.full_surf = pygame.Surface((w, h))
