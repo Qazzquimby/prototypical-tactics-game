@@ -11,21 +11,23 @@ from domain.shape import Shape
 data_path = Path(r"data/")
 
 
+class Token(BaseModel):
+    name: str
+    image_url: str
+    back_image_url: str = None
+    size: float = 1
+
+
 class Card(BaseModel):
     name: str
+    tokens: Token = []
 
     def make_card_row(self, hero_name: str):
         raise NotImplementedError
 
 
-class Token(BaseModel):
+class UnitCard(Card):
     name: str
-
-    def make_token_row(self):
-        raise NotImplementedError
-
-
-class UnitCard(Card, Token):
     speed: int
     health: int
     size: int = 1
