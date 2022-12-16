@@ -26,13 +26,14 @@ class Figurine(BaseModel):
 
 class Card(BaseModel):
     name: str
-    tokens: list[Token]  = None
+    tokens: list[Token] = None
 
     def make_content_dict(self, hero_name: str) -> dict:
         raise NotImplementedError
 
     def get_lua(self) -> str:
         return ""
+
 
 class UnitCard(Card, Figurine):
     speed: int
@@ -79,6 +80,7 @@ class UnitCard(Card, Figurine):
             }})
         end
         """
+
 
 class Hero(UnitCard):
     @staticmethod

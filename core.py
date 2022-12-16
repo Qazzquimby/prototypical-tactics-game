@@ -121,16 +121,16 @@ def make_hero_box_bag(hero_box: HeroBox):
 
 
 def complex_object_row_to_complex_object(
-        row: list, type_: ComplexType
+    row: list, type_: ComplexType
 ) -> ComplexObject:
     return ComplexObject(name=row[0], type_=type_, content=dict(row[2:]))
 
 
 async def library_to_tts_dict(
-        library: Library,
-        image_builder: ImageBuilder,
-        file_name,
-        config=None,
+    library: Library,
+    image_builder: ImageBuilder,
+    file_name,
+    config=None,
 ):
     setup_pygame()
 
@@ -210,12 +210,12 @@ async def library_to_tts_dict(
 
 
 async def _save_image_and_set_attribute(
-        image_builder: ImageBuilder,
-        drawer: BaseDrawer,
-        object_,
-        file_name: str,
-        file_extension: str,
-        attribute_to_set: str,
+    image_builder: ImageBuilder,
+    drawer: BaseDrawer,
+    object_,
+    file_name: str,
+    file_extension: str,
+    attribute_to_set: str,
 ):
     image: Surface = drawer.draw(object_)
     path = await image_builder.build(
