@@ -4,7 +4,6 @@ from pathlib import Path
 
 from pygame import Surface
 
-from creator.entityCreator import EntityCreator
 from domain.bag import Bag
 from domain.card import Card
 from domain.complexObject import ComplexObject
