@@ -23,7 +23,14 @@ class DeckDrawer(BaseDrawer):
         self._draw_cards(surf, deck.cards, card_size)
         return surf
 
-    def _draw_cards(self, surf, cards, card_size: tuple[int, int]):
-        for card, (x, y) in zip(cards, itertools.product(range(10), range(7))):
+    def _draw_cards(
+        self, surf, cards, card_size: tuple[int, int]
+    ):  # I think this might be mirrored on the diagonal
+        for card, (y, x) in zip(
+            cards,
+            itertools.product(
+                range(DECK_IMAGE_CARDS_PER_COLUMN), range(DECK_IMAGE_CARDS_PER_ROW)
+            ),
+        ):
             card_drawer = ComplexObjectDrawer(card.object, self.config)
             surf.blit(card_drawer.draw(), (x * card_size[0], y * card_size[1]))
