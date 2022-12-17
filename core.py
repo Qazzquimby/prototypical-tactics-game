@@ -131,6 +131,7 @@ async def library_to_tts_dict(
     file_name,
     config=None,
 ):
+    await image_builder.initialize()
     setup_pygame()
 
     tts_dict = read_template_dict(file_name)

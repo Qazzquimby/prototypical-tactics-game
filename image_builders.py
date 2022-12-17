@@ -9,25 +9,12 @@ from pygame import Surface
 from retry import retry
 
 
-def get_image_builder(pygame, config):
-    if config.ftp_base_url.get() != "":
-        return FtpDirImageBuilder(
-            pygame,
-            config.images_dir.get(),
-            config.ftp_base_url.get(),
-            config.ftp_server.get(),
-            config.ftp_folder.get(),
-            config.ftp_username.get(),
-            config.ftp_password.get(),
-            config.file_name.get(),
-        )
-    else:
-        return DirectoryImagesBuilder(pygame, config.images_dir.get())
-
-
 class ImageBuilder(abc.ABC):
     async def build(self, image: Surface, file_name: str, file_extension: str) -> str:
         raise NotImplementedError
+
+    async def initialize(self):
+        pass  # by default doesnt need initializing
 
 
 class ImgBoxImagesBuilder(ImageBuilder):
@@ -39,9 +26,15 @@ class ImgBoxImagesBuilder(ImageBuilder):
         self.images_dir_builder = DirectoryImagesBuilder(
             pygame, base_path=Path(self.temp_dir.name)
         )
-        self.gallery = pyimgbox.Gallery(title=self.project_name)
+        self.gallery = pyimgbox.Gallery(title="prototypical_project")
 
-        self.printed_url = False
+    async def initialize(self):
+        await self.gallery.create()
+        print(
+            "imgbox gallery created\n"
+            f"Url: {self.gallery.url}\n"
+            f"Edit url: {self.gallery.edit_url}"
+        )
 
     async def build(self, image: Surface, file_name: str, file_extension: str):
         save_path = (
@@ -61,19 +54,11 @@ class ImgBoxImagesBuilder(ImageBuilder):
             raise ConnectionError(
                 f"Failed to upload image to imgbox\n {result['error']}"
             )
-
-        if not self.printed_url:
-            print(
-                "imgbox gallery created\n"
-                f"Url: {self.gallery.url}\n"
-                f"Edit url: {self.gallery.edit_url}"
-            )
-            self.printed_url = True
         return result
 
     def __del__(self):
         self.temp_dir.cleanup()
-        asyncio.get_event_loop().run_until_complete(self.gallery.close())
+        asyncio.gather(self.gallery.close())
 
 
 class DirectoryImagesBuilder(ImageBuilder):

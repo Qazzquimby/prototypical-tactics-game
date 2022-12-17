@@ -16,7 +16,7 @@ import pygame
 import yaml
 
 from core import game_to_library, library_to_tts_dict
-from image_builders import DirectoryImagesBuilder
+from image_builders import DirectoryImagesBuilder, ImgBoxImagesBuilder
 from yaml_parsing import Game
 
 BASIC_GAME = Game(
@@ -48,7 +48,11 @@ BASIC_GAME = Game(
 
 def test_basic_char():
     game = BASIC_GAME
-    actual_tts_dict = game_to_tts_dict(game)
+
+    # image_builder = DirectoryImagesBuilder(pygame, base_path=data_dir / "images")
+    image_builder = ImgBoxImagesBuilder(pygame, project_name="TestGame")
+
+    actual_tts_dict = game_to_tts_dict(game, image_builder)
     expected_dict = json.loads(EXPECTED_TTS_JSON, strict=False)
 
     deep_clean(actual_tts_dict)
@@ -700,12 +704,14 @@ data_dir = Path("data").absolute()
 #     return tts_dict
 
 
-def game_to_tts_dict(game: Game) -> dict:
+def game_to_tts_dict(game: Game, image_builder=None) -> dict:
+    if image_builder is None:
+        image_builder = DirectoryImagesBuilder(pygame, base_path=data_dir / "images")
     library = game_to_library(game)
     tts_dict = asyncio.run(
         library_to_tts_dict(
             library=library,
-            image_builder=DirectoryImagesBuilder(pygame, base_path=data_dir / "images"),
+            image_builder=image_builder,
             file_name="TestGame",
         )
     )
