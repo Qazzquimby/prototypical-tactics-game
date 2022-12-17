@@ -21,6 +21,9 @@ sets:
                 Put a sleep dart marker on the target.
                 At the beginning of your next turn, the target with the sleep dart marker gets Asleep, unable to act.
                 If the target takes damage, they lose the sleep dart marker and any stun from this ability.
+              tokens:
+                - name: Sleeping
+                  image_url: https://static.wikia.nocookie.net/overwatch/images/a/af/Ana_sleepdart.png/revision/latest?cb=20160712173740
             - name: Biotic Grenade
               text: |-
                 1/Battle

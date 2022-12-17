@@ -15,7 +15,37 @@ class Token(BaseModel):
     name: str
     image_url: str
     back_image_url: str = None
-    size: float = 1
+    size: float = 0.25
+
+    def get_spawn_lua(self):
+        back_image_url = self.back_image_url or self.image_url
+        return f"""\
+      local front='{self.image_url}'
+      local back='{back_image_url}'
+      local name='{self.name}'
+      local tile_type=2
+      local s={self.size}
+      local my_position = self.getPosition()
+      local tint={{ r=0/255, g=0/255,  b=0/255  }}
+
+      local obj = spawnObject({{
+      type = "Custom_Tile",
+      position = {{x=my_position.x, y=my_position.y+1, z=my_position.z}},
+      rotation = {{x=0, y=0, z=0}},
+      scale = {{x=s, y=s, z=s}},
+      callback_function = function(newObj)
+        newObj.setName(name)
+        newObj.setColorTint(tint)
+      end
+    }})
+    obj.setCustomObject({{
+      type ="Custom_Tile",
+      type = tile_type, -- circlef
+      image = front,
+      image_bottom = back,
+      thickness = 0.15,
+    }})
+        """
 
 
 class Figurine(BaseModel):
@@ -32,7 +62,16 @@ class Card(BaseModel):
         raise NotImplementedError
 
     def get_lua(self) -> str:
-        return ""
+        if not self.tokens:
+            return ""
+        else:
+            spawn_luas = [token.get_spawn_lua() for token in self.tokens]
+            spawn_lua = "\n\n\n".join(spawn_luas)
+            return f"""\
+function onLoad()
+   {spawn_lua} 
+end
+            """
 
 
 class UnitCard(Card, Figurine):
@@ -74,35 +113,6 @@ function onLoad()
     }})
 end
 """
-
-        # """
-        # function onLoad()
-        #       local front='https://live-production.wcms.abc-cdn.net.au/a3e43d3ebfc6102ef6d18feabcb3dcec?impolicy=wcms_crop_resize&cropH=726&cropW=1097&xPos=756&yPos=400&width=862&height=575'
-        #       local back='https://domf5oio6qrcr.cloudfront.net/medialibrary/8862/back-pain-lower-black-man.jpg'
-        #       local name='testtoken'
-        #       local tile_type=2 -- or 2 or 3
-        #       local s=1.0
-        #       local tint={{ r=107/255, g=71/255,  b=28/255  }}
-        #
-        #       local obj = spawnObject({{
-        #       type = "Custom_Tile",
-        #       position = {{x=-48, y=15, z=10}},
-        #       rotation = {{x=0, y=0, z=0}},
-        #       scale = {{x=s, y=s, z=s}},
-        #       callback_function = function(newObj)
-        #         newObj.setName(name)
-        #         newObj.setColorTint(tint)
-        #       end
-        #     }})
-        #     obj.setCustomObject({{
-        #       type ="Custom_Tile",
-        #       type = tile_type, -- circlef
-        #       image = front,
-        #       image_bottom = back,
-        #       thickness = 0.15,
-        #     }})
-        # end
-        # """
 
 
 class Hero(UnitCard):
