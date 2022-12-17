@@ -1,3 +1,4 @@
+import abc
 from functools import lru_cache
 from pathlib import Path
 from typing import Literal
@@ -7,17 +8,24 @@ from pydantic import BaseModel
 
 from domain.complexType import ComplexType
 from domain.shape import Shape
+from spawning_lua import get_full_lua
 
 data_path = Path(r"data/")
 
+class Spawnable(abc.ABC):
+    def get_lua(self) -> str:
+        return get_full_lua(self.get_spawning_lua())
 
-class Token(BaseModel):
+    def get_spawning_lua(self):
+        raise NotImplementedError
+
+class Token(BaseModel, Spawnable):
     name: str
     image_url: str
-    back_image_url: str = None
+    back_image_url: str = ''
     size: float = 0.25
 
-    def get_spawn_lua(self):
+    def get_spawning_lua(self):
         back_image_url = self.back_image_url or self.image_url
         return f"""\
       local front='{self.image_url}'
@@ -48,30 +56,44 @@ class Token(BaseModel):
         """
 
 
-class Figurine(BaseModel):
+class Figurine(BaseModel, Spawnable):
     name: str
     image_url: str
     size: int = 1
 
 
-class Card(BaseModel):
+    def get_spawning_lua(self):
+        return f"""\
+    local front='{self.image_url}'
+    local name='{self.name}'
+    local s={self.size}
+    local my_position = self.getPosition()
+
+    local obj = spawnObject({{
+        type = "Figurine_Custom",
+        position = {{x=my_position.x, y=my_position.y+1, z=my_position.z}},
+        rotation = {{x=0, y=0, z=0}},
+        scale = {{x=s, y=s, z=s}},
+        callback_function = function(newObj)
+            newObj.setName(name)
+        end
+    }})
+    obj.setCustomObject({{
+        type ="Figurine_Custom",
+        image = front,
+    }})"""
+
+class Card(BaseModel, Spawnable):
     name: str
-    tokens: list[Token] = None
+    tokens: list[Token] = []
 
     def make_content_dict(self, hero_name: str) -> dict:
         raise NotImplementedError
 
-    def get_lua(self) -> str:
-        if not self.tokens:
-            return ""
-        else:
-            spawn_luas = [token.get_spawn_lua() for token in self.tokens]
-            spawn_lua = "\n\n\n".join(spawn_luas)
-            return f"""\
-function onLoad()
-   {spawn_lua} 
-end
-            """
+    def get_spawning_lua(self):
+        spawning_luas = [token.get_spawning_lua() for token in self.tokens]
+        full_spawning_lua = "\n\n\n".join(spawning_luas)
+        return full_spawning_lua
 
 
 class UnitCard(Card, Figurine):
@@ -90,30 +112,8 @@ class UnitCard(Card, Figurine):
         ]
         return {i + 2: value for i, value in enumerate(content_list)}
 
-    def get_lua(self):
-        return f"""\
-function onLoad()
-    local front='{self.image_url}'
-    local name='{self.name}'
-    local s={self.size}
-    local my_position = self.getPosition()
-
-    local obj = spawnObject({{
-        type = "Figurine_Custom",
-        position = {{x=my_position.x, y=my_position.y+1, z=my_position.z}},
-        rotation = {{x=0, y=0, z=0}},
-        scale = {{x=s, y=s, z=s}},
-        callback_function = function(newObj)
-            newObj.setName(name)
-        end
-    }})
-    obj.setCustomObject({{
-        type ="Figurine_Custom",
-        image = front,
-    }})
-end
-"""
-
+    def get_spawning_lua(self):
+        return Card.get_spawning_lua(self) + "\n\n\n" + Figurine.get_spawning_lua(self)
 
 class Hero(UnitCard):
     @staticmethod
@@ -153,6 +153,9 @@ SIZE_LABEL = "Size"
 
 
 class Ability(Card):
+    def make_content_dict(self, hero_name: str) -> dict:
+        return NotImplemented # this should replace card row?
+
     type: Literal["Basic"] | Literal["Quick"] = BASIC
     cost: str = ""
     text: str

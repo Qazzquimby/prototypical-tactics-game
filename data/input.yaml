@@ -23,18 +23,26 @@ sets:
                 If the target takes damage, they lose the sleep dart marker and any stun from this ability.
               tokens:
                 - name: Sleeping
-                  image_url: https://static.wikia.nocookie.net/overwatch/images/a/af/Ana_sleepdart.png/revision/latest?cb=20160712173740
+                  image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/2/2b/Sleep_Dart_Icon.png/revision/latest?cb=20170918221723
             - name: Biotic Grenade
               text: |-
                 1/Battle
                 Range 4, size 2, Dodge +1
                 Allies in the area heal 3 and get 1.5x healing.
                 Enemies in the area take 2 damage and cannot regain health.
+              tokens:
+                - name: Grenade Healing Buff
+                  image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/a/ae/Grenade_Spray.png/revision/latest/scale-to-width-down/120?cb=20170919004315
+                - name: Grenade Healing Debuff
+                  image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/c/c4/Biotic_Grenade_Icon.png/revision/latest?cb=20170918221557
             - name: Nano Boost
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
                 Choose an ally in range 4. They deal 1.5x damage and take 0.5x damage.
+              tokens:
+                - name: Nano Boosted
+                  image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/9/9e/Nano_Boost_Icon.png/revision/latest?cb=20170918221647
       - hero:
           name: Bastion
           health: 8
