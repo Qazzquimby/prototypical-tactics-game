@@ -16,3 +16,9 @@ function spawnSelf()
     {spawning_lua}
 end
 """
+
+def scale_size(size):
+    if size == 0.25:
+        return size
+    else:
+        return size * 0.4

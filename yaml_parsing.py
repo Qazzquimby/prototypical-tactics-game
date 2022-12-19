@@ -8,7 +8,7 @@ from pydantic import BaseModel
 
 from domain.complexType import ComplexType
 from domain.shape import Shape
-from spawning_lua import get_full_lua
+from spawning_lua import get_full_lua, scale_size
 
 data_path = Path(r"data/")
 
@@ -31,8 +31,12 @@ class Token(BaseModel, Spawnable):
       local front='{self.image_url}'
       local back='{back_image_url}'
       local name='{self.name}'
+      local s={scale_size(self.size)}
       local tile_type=2
-      local s={self.size}
+      if s > 0.25 then
+        tile_type=3
+    end
+      
       local my_position = self.getPosition()
       local tint={{ r=0/255, g=0/255,  b=0/255  }}
 
@@ -66,7 +70,7 @@ class Figurine(BaseModel, Spawnable):
         return f"""\
     local front='{self.image_url}'
     local name='{self.name}'
-    local s={self.size}
+    local s={scale_size(self.size)}
     local my_position = self.getPosition()
 
     local obj = spawnObject({{

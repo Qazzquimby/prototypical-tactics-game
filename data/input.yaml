@@ -72,6 +72,10 @@ sets:
                   +1 armor
                   You have facing, and attacks from behind you deal double damage to you.
                   You may use Rotary Canon, and cannot use other abilities.
+              tokens:
+                - name: Bastion Stance
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/350?cb=20220409014728
+                  back_image_url: https://pm1.narvii.com/6131/4b01877db14d895dac021ae4c575bcde2acb62e4_128.jpg
             - name: A-36 Tactical Grenade
               text: |-
                 Range 4, +2 dodge, 4 damage
@@ -86,6 +90,7 @@ sets:
           name: D.Va
           health: 12
           speed: 3
+          size: 2
           dodge: -2
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
         decks:
@@ -98,6 +103,9 @@ sets:
                 
                 Light Gun: Default, Range 3, 2 damage, gain a Mech charge.
                 Call Mech: Spend 2 Mech charges and sacrifice this to summon D.Va
+              tokens:
+                - name: Pilot D.va
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/09/Ability-dva5.png/revision/latest/scale-to-width-down/100?cb=20181119021945
             - name: Eject
               text: |-
                 Passive
@@ -113,6 +121,10 @@ sets:
                 Reaction Dodge +2
                 Create a size 2 Defense Matrix in range 1 that lasts until the beginning of your next turn.
                 Enemy attacks that draw range through the defense matrix are cancelled without effect.
+              tokens:
+                - name: Defense Matrix
+                  image_url: https://static.wikia.nocookie.net/overwatch/images/9/9c/IconDefenseMatrix.png/revision/latest?cb=20151106233820
+                  size: 2
             - name: Boosters
               text: |-
                 CD 2
@@ -131,6 +143,10 @@ sets:
                   Sacrifice D.Va (triggering the Eject passive)
                   Pilot D.Va may move up to 3.
                   At the beginning of your next turn, Deal 7 damage to all enemies in burst 3 of the space you died in.
+              tokens:
+                - name: Self-Destruct
+                  image_url: https://static.icy-veins.com/images/heroes/icons/large/storm_ui_icon_dva_selfdestruct.jpg
+                  size: 2
       - hero:
           name: Junkrat
           health: 8
@@ -146,6 +162,10 @@ sets:
               text: |-
                 When you die, place a size 2 Payback field in range 0.
                 At the beginning of your next turn, sacrifice the payback field and deal 3 damage to all enemies in inside.
+              tokens:
+                - name: Total Mayhem
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/18/Ability-Junkrat4.png/revision/latest/scale-to-width-down/100?cb=20150924023347
+                  size: 1
             - name: Frag Launcher
               text: |-
                 Default
@@ -155,12 +175,20 @@ sets:
                 1/Battle
                 Place a Concussion Mine in range 2.
                 When anyone enters the mine's space, you may sacrifice the mine for Dodge+1, 4 damage and push 2 in any direction.
+              tokens:
+                - name: Concussion Mine
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/87/Ability-Junkrat2.png/revision/latest/scale-to-width-down/100?cb=20150924023319
+                  size: 1
             - name: Steel Trap
               text: |-
                 1/Battle
                 Free action
                 Place a Steel Trap in range 2, with size 1, and 3hp. 
                 When an enemy enters the trap's space, they end their movement get rooted until the end of their next turn.
+              tokens:
+                - name: Steel Trap
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/9c/Ability-Junkrat3.png/revision/latest/scale-to-width-down/100?cb=20150924023330
+                  size: 1
             - name: RIP-Tire
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
@@ -169,6 +197,11 @@ sets:
                   Summon a RIP-Tire with 4 health and 7 speed.
                   At the beginning of your next turn, sacrifice the RIP-Tire.
                   When RIP-Tire dies, it deals 8 damage in burst 1.
+              tokens:
+                - name: RIP-Tire
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/32/Ability-Junkrat5.png/revision/latest/scale-to-width-down/100?cb=20150924023400
+                  size: 1
+
       - hero:
           name: Lucio
           health: 8
@@ -197,12 +230,13 @@ sets:
             - name: Amp It Up
               text: |-
                 Free action, 1/battle
-                Trigger Crossfade as if it was the start of your turn.
+                Repeat your last Crossfade effect, twice.
             - name: Sound Barrier
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
-                  Until the beginning of your next turn, you and allies in burst 3 have
+                  You and allies in burst 3 gain 6 overshield.
+                  At the start of your next turn, anyone who gained overshield this way loses that much overshield.
       - hero:
           name: Mei
           health: 10
@@ -233,6 +267,10 @@ sets:
                 Reaction Dodge +2
                 Create a 4x1 Ice Wall, at least partly within range 3, that lasts until the beginning of your next turn.
                 The Ice Wall acts like a wall, and has 6 health.
+              tokens:
+                - name: Ice Wall Segment
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/ea/Ability-mei3.png/revision/latest/scale-to-width-down/100?cb=20221128011555
+                  size: 1
             - name: Blizzard
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
@@ -240,6 +278,10 @@ sets:
                   Place a Size 3 Blizzard field in range 3.
                   Enemies in the Blizzard are slowed and take 1 damage.
                   At the beginning of your next turn, enemies in the blizzard are stunned and take 1 damage.
+              tokens:
+                - name: Blizzard
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f0/Ability-mei4.png/revision/latest/scale-to-width-down/100?cb=20151107172516
+                  size: 3
       - hero:
           name: Mercy
           health: 8
@@ -314,6 +356,13 @@ sets:
                   If you chose Healing, Burst 1, heal 2 to all allies
                   If you chose Damage, Burst 1, 2 damage to all enemies
                   Then move 2 spaces forwards, reversing direction when blocked by a wall.
+              tokens:
+                - name: Healing Biotic Orb
+                  image_url: https://pbs.twimg.com/profile_images/1332252696942956544/mRhKFbI2_400x400.jpg
+                  size: 1
+                - name: Damage Biotic Orb
+                  image_url: https://pbs.twimg.com/profile_images/1595378173990035456/VyA7l6ri_400x400.jpg
+                  size: 1
             - name: Coalescence
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
@@ -424,6 +473,10 @@ sets:
                 1/battle
                 Place a size 2 Biotic Field, overlapping your space.
                 At the beginning of your turn, all allies in the field heal 2.
+              tokens:
+                - name: Biotic Field
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/50/Icon-ability.bioticfield.png/revision/latest/scale-to-width-down/100?cb=20150708110158
+                  size: 2
             - name: Tactical Visor
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
@@ -441,7 +494,7 @@ sets:
             - name: Pulse Pistols
               text: |-
                 default
-                range 2, 3 damage.
+                range 1, 4 damage.
             - name: Blink
               text: |-
                 3/battle
@@ -453,6 +506,10 @@ sets:
                 Reaction Dodge +3
                 Reset your health to what it was at the end of your last turn.
                 Teleport as close as possible to where you were at the end of your last turn.
+              tokens:
+                - name: Recall location
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/63/Ability-tracer3.png/revision/latest/scale-to-width-down/100?cb=20141112192409
+                  size: 1
             - name: Pulse Bomb
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
@@ -460,6 +517,10 @@ sets:
                   Pick a space in range 1. If there's a character in the space, attach the pulse bomb to them with dodge+2.
                   If it doesn't attach to someone, it drops in that space.
                   At the start of your next turn, destroy the pulse bomb. It deals 9 damage to anyone in its space and 3 damage to anyone else in burst 1.
+              tokens:
+                - name: Pulse Bomb
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/af/Ability-tracer4.png/revision/latest/scale-to-width-down/100?cb=20141112192411
+                  size: 1
       - hero:
           name: Widow
           health: 8
@@ -471,12 +532,20 @@ sets:
               text: |-
                 Default
                 Range 2, 2 damage
-                or get slowed 1, and channel: next turn Widow's kiss has unlimited range, +1 crit and 5 damage.
+                or until the end of your next turn you are immobilized, and have locked facing
+                Channel: next turn Widow's kiss has unlimited range, 6 damage and +1 crit.
+              tokens:
+                - name: Widow's Kiss Charged
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bf/Ability-widowmaker1.png/revision/latest/scale-to-width-down/100?cb=20181119054154
             - name: Venom Mine
               text: |-
                 1/battle
                 Range 3, place a size 1 Venom Mine.
                 When an enemy enters the mine's space, destroy it and they take poison 1.
+              tokens:
+                - name: Venom Mine
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-widowmaker3.png/revision/latest/scale-to-width-down/100?cb=20141112192613
+                  size: 1
             - name: Grappling Hook
               text: |-
                 1/battle
@@ -516,6 +585,10 @@ sets:
                 1/battle
                 Reaction dodge +2
                 Range 1, Summon a size 3 Barrier. The barrier has 8hp, and blocks enemy non-piercing attacks.
+              tokens:
+                - name: Barrier
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/13/Ability-winston3.png/revision/latest/scale-to-width-down/100?cb=20141112192620
+                  size: 3
             - name: Primal Rage
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
@@ -541,12 +614,21 @@ sets:
                 Default
                 Range 5, dodge+1, 3 damage
                 or end your turn, get slowed 1, and next turn you must use orb of destruction, but it deals 2x damage.
+              tokens:
+                - name: Orb of Destruction Charged
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d1/Ability-zenyatta1.png/revision/latest/scale-to-width-down/100?cb=20181119055020
             - name: Orb of Harmony
               text: |-
                 Mark an ally. Now and at the start of your turn, heal them 2. When you use this again, it removes the original mark.
+              tokens:
+                - name: Orb of Harmony
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0c/Ability-zenyatta2.png/revision/latest/scale-to-width-down/100?cb=20141112192735
             - name: Orb of Discord
               text: |-
                 Mark an enemy. They take +1.5x damage from all attacks. When you use this again, it removes the original mark.
+              tokens:
+                - name: Orb of Discord
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/04/Ability-zenyatta3.png/revision/latest/scale-to-width-down/100?cb=20141112192736
             - name: Transcendence
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
@@ -570,15 +652,25 @@ sets:
               text: |-
                 2/battle
                 Reaction Dodge +2 on attack on target in range 3
+                The target purges unwanted conditions
                 Until the start of your next turn, 
                   the target is immune to damage, involuntary movement, and unwanted conditions, 
                   and when the target would take damage you gain an energy counter.
+              tokens:
+                - name: Particle Barrier
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/71/Ability-zarya2.png/revision/latest/scale-to-width-down/100?cb=20150309115939
+                - name: Particle Barrier
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/71/Ability-zarya2.png/revision/latest/scale-to-width-down/100?cb=20150309115939
             - name: Graviton Surge
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
                   Target empty space in range 3
                   Pull enemies in burst 2 of the space as close to the center as possible, starting with the enemies nearest the center already. They get rooted 1.
+              tokens:
+                - name: Graviton Surge
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5d/Ability-zarya4.png/revision/latest/scale-to-width-down/100?cb=20150309115950
+                  size: 1
   - name: Dota
     hero_boxes:
       - hero:
