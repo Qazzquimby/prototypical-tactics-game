@@ -572,11 +572,11 @@ sets:
             - name: Tesla Cannon
               text: |-
                 Default
-                Enemies in Range 1 burst 1, 1 damage.
-                or Range 4, +1 dodge, 1 damage
+                Enemies in Range 1 burst 1, 2 damage.
+                or Range 4, +1 dodge, 2 damage
             - name: Jump Pack
               text: |-
-                1/battle
+                CD 2
                 Move action
                 Fly up to 6, ending on the ground.
                 Burst 1, 1 damage.
@@ -584,7 +584,7 @@ sets:
               text: |-
                 1/battle
                 Reaction dodge +2
-                Range 1, Summon a size 3 Barrier. The barrier has 8hp, and blocks enemy non-piercing attacks.
+                Range 1, Summon a size 3 Barrier. The barrier has 8hp, and blocks enemy non-piercing attacks through its borders.
               tokens:
                 - name: Barrier
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/13/Ability-winston3.png/revision/latest/scale-to-width-down/100?cb=20141112192620
