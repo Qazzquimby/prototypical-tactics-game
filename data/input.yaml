@@ -95,6 +95,11 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
         decks:
           - abilities:
+            - name: Huge head
+              text: |-
+                Passive
+                You have facing
+                Attacks made from in front of you have +1 crit
             - name: Pilot D.Va
               text: |-
                 Character
@@ -106,6 +111,8 @@ sets:
               tokens:
                 - name: Pilot D.va
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/09/Ability-dva5.png/revision/latest/scale-to-width-down/100?cb=20181119021945
+                - name: Mech Charge
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f0/Ability-dva6.png/revision/latest/scale-to-width-down/100?cb=20151116085308
             - name: Eject
               text: |-
                 Passive
@@ -445,7 +452,6 @@ sets:
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
                   Until end of battle, you can only use default actions, and scrap gun changes to:
-                  Free action
                   Range 1, 6 damage, kb 5
                   or Range 2, 4 damage, kb 3
                   or Range 3, 2 damage, kb 1
@@ -553,8 +559,12 @@ sets:
             - name: Infra-Sight
               text: |-
                 1/battle
+                Free action
                 Enemies cannot be invisible, hide, or benefit from cover.
                 All allies have +1 crit
+              tokens:
+                - name: Infra-Sight
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/94/Ability-widowmaker4.png/revision/latest/scale-to-width-down/100?cb=20141112192615
               # text: |-
               #  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
               #    Spend 5 charges:
@@ -716,5 +726,11 @@ sets:
                  You gain 1 armor until end of battle.
                  This ability is refreshed.
                 // Try health of 2 and keep armor for game
-                  
 
+
+
+https://static:
+  wikia:
+    nocookie:
+      net/overwatch_gamepedia/images/9/94/Ability-widowmaker4:
+        png/revision/latest/scale-to-width-down/100?cb=20141112192615:
