@@ -486,6 +486,39 @@ sets:
                   then deal 3 more damage to all enemies in range 2,
                   deal deal 2 more damage to all enemies in range 3.
       - hero:
+          name: Reaper
+          health: 8
+          speed: 3
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8c/OW2_Reaper.png/revision/latest/scale-to-width-down/272?cb=20210623082134
+        decks:
+          - abilities:
+            - name: The Reaping
+              text: |-
+                Passive
+                When you deal damage, heal half the amount.
+            - name: Hellfire Shotguns
+              text: |-
+                Default
+                Range 1, 4 damage
+                or range 2, 2 damage
+                Deals double damage against enemies with size 2+.
+            - name: Wraith Form
+              text: |-
+                1/battle
+                Reaction dodge +2
+                Move 2 spaces. Purge any number of conditions.
+                Until the beginning of your next turn, you are invulnerable to damage and effects you don't want.
+            - name: Shadow Step
+              text: |-
+                1/battle
+                Full action
+                Teleport up to 8 spaces.
+            - name: Death Blossom
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                Burst 1, 7 damage
+      - hero:
           name: Reinhardt
           health: 12
           speed: 3
