@@ -102,6 +102,11 @@ sets:
                 If you have ammo-loaded: 
                   Range 4, 3 damage, +1 crit
                   or Range 1, 5 damage. Switch to ammo-empty.
+              tokens:
+                - name: Ammo Loaded
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-mccree1.png/revision/latest/scale-to-width-down/100?cb=20181119023403
+                  back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
+
             - name: Reload
               text: |-
                 Full action
@@ -242,7 +247,44 @@ sets:
             - name: Storm Bow
               text: |-
                 Default
-                TODO, should be like dva movement
+                Full action
+                Move up to 1
+                +1 dodge/3 distance, 5 damage, +1crit
+            - name: Sonic Arrow
+              text: |-
+                1/Battle
+                Full action
+                Move up to 1
+                +1 dodge/3 distance, 6 damage, +1crit
+                On hit, attach a sonic arrow to the target.
+                On miss, place a sonic arrow next to the struck wall.
+                
+                Enemies within burst 2 of a sonic arrow cannot benefit from invisibility or soft cover, and receive +1crit
+            - name: Storm Arrows
+              text: |-
+                1/Battle
+                Free action
+                Until the end of your next turn, you can make two default attacks as a single standard action, but they do 3 damage.
+              tokens:
+                - name: Storm Arrows
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/76/Ability-hanzo2.png/revision/latest/scale-to-width-down/100?cb=20221128012521
+            - name: Lunge
+              text: |-
+                1/Battle
+                Free action
+                Move 2 spaces in a straight line, ignoring enemies.
+            - name: Dragonstrike
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                  Draw a straight beam 3 spaces wide, from you to the edge of the map in a direction of your choice.
+                  At the start of your next turn, the beam becomes active until the start of your turn after.
+                  While the beam is active, enemies who start their turn in the beam or move into the beam take 7 damage. They can't be damaged this way more than once.
+              tokens:
+                - name: Dragonstrike
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/44/Ability-hanzo4.png/revision/latest/scale-to-width-down/100?cb=20141111201819
+                  back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
+                  size: 3
       - hero:
           name: Junkrat
           health: 8
@@ -725,6 +767,106 @@ sets:
                   Heavy Pulse Rifle range becomes 6
                   Your attacks cannot miss or be dodged.
                   At the start of your turn, you can make a default attack as a free action.
+      - hero:
+          name: Symmetra
+          health: 8
+          speed: 3
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/18/Symmetra-portrait.png/revision/latest/scale-to-width-down/161?cb=20160620015059
+        decks:
+          - abilities:
+            - name: Photon Beam
+              text: |-
+                Default
+                Range 2, 2 damage.
+                If this hits the same target last turn, it deals 4 damage instead.
+                If this hits the same target the last two turns, it deals 6 damage instead.
+            - name: Photon Orb
+              text: |-
+                Default
+                +1 dodge/distance, 1 damage
+                or Next turn you must use Photon Orb, and it has: +1dodge/3 distance, 6 damage.
+              tokens:
+                - name: Photon Orb Charged
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7e/Ability-symmetra1.png/revision/latest/scale-to-width-down/100?cb=20181119051026
+            - name: Sentry Turret
+              text: |-
+                3/battle
+                Free action
+                Place a size 1 Sentry Turret in line of sight. It has 1hp.
+                At the start of your turn, each sentry turret deals 1 damage to the nearest enemy in range 3.
+                If two turrets hit the same target, the target is slowed.
+              tokens:
+                - name: Sentry Turret
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
+                  size: 1
+            - name: Teleporter
+              text: |-
+                1/battle
+                Full action
+                Place a size 1 in an emtpy space in range 1, and another in an empty space in range 6.
+                Teleporters have 8hp.
+                Allied units can freely move between the two teleporter spaces on their turn, even partway through another action, and even if they could not normally move.
+              tokens:
+                - name: Teleporter
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Ability-symmetra4.png/revision/latest/scale-to-width-down/100?cb=20141112192203
+                  size: 1
+                - name: Teleporter
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Ability-symmetra4.png/revision/latest/scale-to-width-down/100?cb=20141112192203
+                  size: 1
+            - name: Photon Barrier
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                  Draw a straight line barrier across the entire map.
+                  Enemy attacks through the line hit the barrier instead. The barrier has 16hp
+              tokens:
+                - name: Photon Barrier
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/Photon_Barrier.png/revision/latest/scale-to-width-down/100?cb=20180626211607
+                  size: 1
+                - name: Photon Barrier
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/Photon_Barrier.png/revision/latest/scale-to-width-down/100?cb=20180626211607
+                  size: 1
+      - hero:
+          name: Torbjorn
+          health: 10
+          speed: 3
+          dodge: +1
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/db/Torbj%C3%B6rn-ow2-portrait.png/revision/latest/scale-to-width-down/272?cb=20210623082654
+        decks:
+          - abilities:
+            - name: Rivet Gun
+              text: |-
+                Default
+                +1 dodge/2 distance, 2 damage
+                or range 1, 3 damage
+            - name: Deploy Turret
+              text: |-
+                1/battle
+                Place a size 1 turret in an empty space in range 4.
+                When placed, the turret has 4hp.
+                At the beginning of your next turn, the turret gains 6 current and max hp.
+                At the beginning of each your turns, the turret deals 2 damage to the nearest enemy in its line of sight.
+              tokens:
+                - name: Turret
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a7/Ability-torbjorn3.png/revision/latest/scale-to-width-down/100?cb=20181010190250
+                  size: 1
+            - name: Overload
+              text: |-
+                1/battle
+                Free action
+                Gain 4 overshield 
+                This turn and next turn you have +2 move speed and can make two default attacks
+                At end of your next turn, lose overshield gained with this ability
+            - name: Molten Core
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                  Pick three 2x2 areas in range 5
+                  The first time each enemy is in one of the areas, they take 3 damage.
+              tokens:
+                - name: Molten Core
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/ef/Ability-torbjorn5.png/revision/latest/scale-to-width-down/100?cb=20181018043327
+                  size: 2
       - hero:
           name: Tracer
           health: 6
