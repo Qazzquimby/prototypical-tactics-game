@@ -88,6 +88,40 @@ sets:
                   Mark 3 spaces. 
                   At the beginning of your next turn, for each marked space, deal 10 damage to everyone inside, and 2 damage to everyone else in burst 1.
       - hero:
+          name: Cassidy
+          health: 8
+          speed: 3
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/2e/OW2_McCree.png/revision/latest/scale-to-width-down/1000?cb=20210623082527
+        decks:
+          - abilities:
+            - name: Peacekeeper
+              text: |-
+                You start with ammo-loaded.
+                
+                Default
+                If you have ammo-loaded: 
+                  Range 4, 3 damage, +1 crit
+                  or Range 1, 5 damage. Switch to ammo-empty.
+            - name: Reload
+              text: |-
+                Full action
+                Switch to ammo-loaded.
+            - name: Combat Roll
+              text: |-
+                1/Battle
+                Free action
+                Move 1 space and switch to ammo-loaded.
+            - name: Magnetic Grenade
+              text: |-
+                1/Battle
+                Range 5, 2 damage, 2 damage to all in burst 1 of target.
+            - name: Deadeye
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                  At the beginning of your next turn,
+                  deal 8 undodgeable damage to each enemy in line of sight
+      - hero:
           name: D.Va
           health: 12
           speed: 3
@@ -165,8 +199,8 @@ sets:
             - name: Cyber Agility
               text: |-
                 Passive
-                You have facing
                 Attacks made on you within range 2 have +2 dodge
+                You ignore difficult terrain
             - name: Shuriken
               text: |-
                 Default
@@ -194,6 +228,21 @@ sets:
 #                  You may use Swift Strike 3 times this turn.
 #                  You may use Shuriken 3 times this turn.
 #                  You may use Deflect 3 times this turn.
+      - hero:
+          name: Hanzo
+          health: 8
+          speed: 3
+          image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/66/OW2_Hanzo.png/revision/latest?cb=20221029021242
+        decks:
+          - abilities:
+            - name: Wall Climb
+              text: |-  
+                Passive
+                You ignore difficult terrain
+            - name: Storm Bow
+              text: |-
+                Default
+                TODO, should be like dva movement
       - hero:
           name: Junkrat
           health: 8
@@ -493,6 +542,10 @@ sets:
         decks:
           - abilities:
             - name: Hover Jets
+              text: |-
+                Passive
+                All your movement is flying.
+            - name: Deplete Hover Jets
               text: |-
                 Move action
                 CD 1
