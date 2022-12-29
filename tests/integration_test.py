@@ -49,8 +49,8 @@ BASIC_GAME = Game(
 def test_basic_char():
     game = BASIC_GAME
 
-    # image_builder = DirectoryImagesBuilder(pygame, base_path=data_dir / "images")
-    image_builder = ImgBoxImagesBuilder(pygame, project_name="TestGame")
+    image_builder = DirectoryImagesBuilder(pygame, base_path=data_dir / "images")
+    # image_builder = ImgBoxImagesBuilder(pygame, project_name="TestGame")
 
     actual_tts_dict = game_to_tts_dict(game, image_builder)
     expected_dict = json.loads(EXPECTED_TTS_JSON, strict=False)
@@ -66,6 +66,9 @@ def deep_clean(tts_dict: dict) -> dict:
     for key, value in list(tts_dict.items()):
         if key in ("Transform", "GUID"):
             del tts_dict[key]
+        elif key == "LuaScript":
+            if tts_dict[key] != "":
+                tts_dict[key] = "NOT EMPTY"
         elif isinstance(value, dict):
             tts_dict[key] = deep_clean(value)
         elif isinstance(tts_dict[key], list):
@@ -534,7 +537,7 @@ EXPECTED_TTS_JSON = r"""{
                       "Hands": true,
                       "CardID": 101,
                       "SidewaysCard": false,
-                      "LuaScript": "",
+                      "LuaScript": "NOT EMPTY", 
                       "LuaScriptState": "",
                       "ContainedObjects": [],
                       "GUID": "cc4fdbe5c2204bb88f2a93ef5599a19e"

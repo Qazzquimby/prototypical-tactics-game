@@ -5,10 +5,10 @@ from pathlib import Path
 from pygame import Surface
 
 from domain.bag import Bag
-from domain.card import Card
+
 from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
-from domain.deck import Deck as DomainDeck
+
 from domain.library import Library
 from domain.token import ContentToken
 from drawer.base import BaseDrawer
@@ -57,66 +57,11 @@ def make_game_set_bag(game_set: GameSet):
 
     # Make a bag for each set
     for hero_box in game_set.hero_boxes:
-        hero_box_bag = make_hero_box_bag(hero_box)
+        hero_box_bag = hero_box.make_bag()
         bag.content.append(hero_box_bag)
 
     return bag
 
-
-def make_hero_box_bag(hero_box: HeroBox):
-    hero_box_bag = Bag(
-        name=make_box_name(hero_box.hero.name), size=1, color=(1.0, 0.0, 0.0)
-    )
-
-    # figurine_name = make_figurine_name(hero_box.hero.name)
-    # hero_box_bag.content.append(
-    #     Figurine(
-    #         name=figurine_name,
-    #         size=hero_box.hero.size,
-    #         image_path=hero_box.hero.image_url,
-    #     )
-    # ) #todo remove
-    # instead of putting the figurine in the bag, spawn it on demand when the card is drawn
-
-    if not hero_box.decks:
-        hero_box.decks.append(Deck())
-
-    for deck in hero_box.decks:
-        deck_name = make_deck_name(
-            hero_box.hero.name
-        )  # this will need to change when a hero has multiple loadouts
-
-        domain_deck = DomainDeck(name=deck_name)
-
-        hero_card = Card(
-            id_=1,
-            count=1,
-            obj=ComplexObject(
-                name=deck_name,
-                type_=Hero.to_complex_type(),
-                content=hero_box.hero,
-            ),
-        )
-
-        domain_deck.cards.append(hero_card)
-
-        for card in deck.cards:
-            domain_deck.cards.append(
-                Card(
-                    id_=len(domain_deck.cards) + 1,
-                    count=1,
-                    obj=ComplexObject(
-                        name=deck_name,
-                        type_=Ability.to_complex_type(),
-                        # todo make work for other card types
-                        content=card,  # no longer used because of jinja rendering
-                    ),
-                ),
-            )
-
-        hero_box_bag.content.append(domain_deck)
-
-    return hero_box_bag
 
 
 def complex_object_row_to_complex_object(

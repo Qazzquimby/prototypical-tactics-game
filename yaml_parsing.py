@@ -6,9 +6,13 @@ from typing import Literal
 import yaml
 from pydantic import BaseModel
 
+from domain.bag import Bag
+from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
 from domain.shape import Shape
 from spawning_lua import get_full_lua, scale_size, clean_string_for_lua
+from domain.deck import Deck as DomainDeck
+from domain.card import Card as DomainCard
 
 data_path = Path(r"data/")
 
@@ -211,8 +215,52 @@ class Deck(BaseModel):
 class HeroBox(BaseModel):
     hero: Hero
     decks: list[Deck]
-    tokens: list[Token] = []
     # maybe a description here
+
+    def make_bag(self):
+        hero_box_bag = Bag(
+            name=make_box_name(self.hero.name), size=1, color=(1.0, 0.0, 0.0)
+        )
+
+        if not self.decks:
+            self.decks.append(Deck())
+
+        for deck in self.decks:
+            deck_name = make_deck_name(
+                self.hero.name
+            )  # this will need to change when a hero has multiple loadouts
+
+            domain_deck = DomainDeck(name=deck_name)
+
+            hero_card = DomainCard(
+                id_=1,
+                count=1,
+                obj=ComplexObject(
+                    name=deck_name,
+                    type_=Hero.to_complex_type(),
+                    content=self.hero,
+                ),
+            )
+
+            domain_deck.cards.append(hero_card)
+
+            for card in deck.cards:
+                domain_deck.cards.append(
+                    DomainCard(
+                        id_=len(domain_deck.cards) + 1,
+                        count=1,
+                        obj=ComplexObject(
+                            name=deck_name,
+                            type_=Ability.to_complex_type(),
+                            # todo make work for other card types
+                            content=card,  # no longer used because of jinja rendering
+                        ),
+                    ),
+                )
+
+            hero_box_bag.content.append(domain_deck)
+
+        return hero_box_bag
 
 
 class GameSet(BaseModel):
