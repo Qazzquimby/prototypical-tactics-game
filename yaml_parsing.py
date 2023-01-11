@@ -6,7 +6,7 @@ from typing import Literal
 import yaml
 from pydantic import BaseModel
 
-from domain.bag import Bag
+from domain.bag import CustomBag
 from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
 from domain.shape import Shape
@@ -217,8 +217,8 @@ class HeroBox(BaseModel):
     decks: list[Deck]
     # maybe a description here
 
-    def make_bag(self):
-        hero_box_bag = Bag(
+    def get_tts_obj(self):
+        hero_box_bag = CustomBag(
             name=make_box_name(self.hero.name), size=1, color=(1.0, 0.0, 0.0)
         )
 

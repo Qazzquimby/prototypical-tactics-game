@@ -57,7 +57,7 @@ def make_game_set_bag(game_set: GameSet):
 
     # Make a bag for each set
     for hero_box in game_set.hero_boxes:
-        hero_box_bag = hero_box.make_bag()
+        hero_box_bag = hero_box.get_tts_obj()
         bag.content.append(hero_box_bag)
 
     return bag
