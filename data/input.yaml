@@ -12,8 +12,8 @@ sets:
               text: |-
                 Default 
                 Full action
-                Unlimited range, choose heal 3 or 2 damage.
                 You may move up to 1.
+                Unlimited range, choose heal 3 or 2 damage.
             - name: Sleep Dart
               text: |-
                 1/Battle
@@ -130,7 +130,6 @@ sets:
           name: D.Va
           health: 12
           speed: 3
-          size: 2
           dodge: -2
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
         decks:
@@ -193,7 +192,7 @@ sets:
               tokens:
                 - name: Self-Destruct
                   image_url: https://static.icy-veins.com/images/heroes/icons/large/storm_ui_icon_dva_selfdestruct.jpg
-                  size: 2
+                  size: 1
       - hero:
           name: Genji
           health: 6
@@ -276,14 +275,14 @@ sets:
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
-                  Draw a straight beam 3 spaces wide, from you to the edge of the map in a direction of your choice.
+                  Draw a straight beam 2 spaces wide, from you to the edge of the map in a direction of your choice.
                   At the start of your next turn, the beam becomes active until the start of your turn after.
                   While the beam is active, enemies who start their turn in the beam or move into the beam take 7 damage. They can't be damaged this way more than once.
               tokens:
                 - name: Dragonstrike
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/44/Ability-hanzo4.png/revision/latest/scale-to-width-down/100?cb=20141111201819
                   back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
-                  size: 3
+                  size: 2
       - hero:
           name: Junkrat
           health: 8
@@ -306,7 +305,7 @@ sets:
             - name: Frag Launcher
               text: |-
                 Default
-                +1 dodge/distance, 4 damage, 1 damage to others in burst 1
+                +1 dodge/distance, 4 damage, +1 damage in burst 1 of the hit target.
             - name: Concussion Mine
               text: |-
                 1/Battle
@@ -383,7 +382,7 @@ sets:
             - name: Endothermic Blaster
               text: |-
                 Default
-                Range 2, 2 damage, target is slowed
+                All in line 2, 2 damage, target is slowed
             - name: Icicle
               text: |-
                 Default
@@ -401,7 +400,7 @@ sets:
               text: |-
                 1/Battle
                 Reaction Dodge +2
-                Create a 4x1 Ice Wall, at least partly within range 3, that lasts until the beginning of your next turn.
+                Create a 3x1 Ice Wall, at least partly within range 3, that lasts until the beginning of your next turn.
                 The Ice Wall acts like a wall, and has 6 health.
               tokens:
                 - name: Ice Wall Segment
@@ -515,7 +514,6 @@ sets:
           name: Orisa
           health: 12
           speed: 3
-          size: 2
           dodge: -2
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d4/Orisa_Skin_Overwatch_2.png/revision/latest?cb=20221116224621
         decks:
@@ -658,7 +656,6 @@ sets:
           name: Reinhardt
           health: 12
           speed: 3
-          size: 2
           dodge: -2
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/3b/Reinhardt-ow2-portrait.png/revision/latest/scale-to-width-down/252?cb=20191104214011
         decks:
@@ -706,7 +703,6 @@ sets:
           name: Roadhog
           health: 12
           speed: 3
-          size: 2
           dodge: -2
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/ce/Roadhog-Portrait.png/revision/latest/scale-to-width-down/345?cb=20160620014755
         decks:
@@ -794,15 +790,21 @@ sets:
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7e/Ability-symmetra1.png/revision/latest/scale-to-width-down/100?cb=20181119051026
             - name: Sentry Turret
               text: |-
-                3/battle
-                Free action
-                Place a size 1 Sentry Turret in line of sight. It has 1hp.
+                Quick action
+                1/battle
+                Place three size 1 Sentry Turret in line of sight. It has 1hp.
                 At the start of your turn, each sentry turret deals 1 damage to the nearest enemy in range 3.
                 If two turrets hit the same target, the target is slowed.
               tokens:
                 - name: Sentry Turret
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
-                  size: 1
+                  size: 0.5
+                - name: Sentry Turret
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
+                  size: 0.5
+                - name: Sentry Turret
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
+                  size: 0.5
             - name: Teleporter
               text: |-
                 1/battle
@@ -843,6 +845,7 @@ sets:
                 Default
                 +1 dodge/2 distance, 2 damage
                 or range 1, 3 damage
+                or Turret in range 3, heal 3
             - name: Deploy Turret
               text: |-
                 1/battle
@@ -955,7 +958,6 @@ sets:
           name: Winston
           health: 10
           speed: 3
-          size: 2
           dodge: -2
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7c/Winston-ow2-portrait.png/revision/latest/scale-to-width-down/279?cb=20191104221341
         decks:
@@ -963,7 +965,7 @@ sets:
             - name: Tesla Cannon
               text: |-
                 Default
-                Enemies in Range 1 burst 1, 2 damage.
+                Enemies in Range 1 burst 1, 2 damage, undodgeable,
                 or +1 dodge/3 distance, 2 damage
             - name: Jump Pack
               text: |-
