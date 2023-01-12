@@ -16,6 +16,9 @@ from domain.card import Card as DomainCard
 
 data_path = Path(r"data/")
 
+CARD_HEIGHT = 500
+CARD_WIDTH = 350
+
 class Spawnable(abc.ABC):
     def get_lua(self) -> str:
         return get_full_lua(self.get_spawning_lua())
@@ -109,6 +112,18 @@ class UnitCard(Card, Figurine):
     health: int
     dodge: int = 0
 
+    @property
+    def text(self):
+        _text = f"""\
+        Speed: {self.speed}
+        Health: {self.health}
+        """
+
+        if self.dodge:
+            _text += f"Dodge: {self.dodge}"
+        if self.size != 1:
+            _text += f"Size: {self.size}"
+        return _text
     def make_content_dict(self, hero_name: str):
         content_list = [
             self.name,

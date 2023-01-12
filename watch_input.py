@@ -54,10 +54,10 @@ if __name__ == "__main__":
 
     save_dir = Path(try_and_find_save_games_folder())
 
-    # image_builder=DirectoryImagesBuilder(pygame=pygame, base_path=data_dir / "images")
-    image_builder = ImgBoxImagesBuilder(
-        pygame=pygame, project_name="prototypical_project"
-    )  # todo change
+    image_builder=DirectoryImagesBuilder(pygame=pygame, base_path=data_dir / "images")
+    # image_builder = ImgBoxImagesBuilder(
+    #     pygame=pygame, project_name="prototypical_project"
+    # )
 
     yaml_file_to_tts_save(
         "data/input.yaml", save_dir=save_dir, image_builder=image_builder

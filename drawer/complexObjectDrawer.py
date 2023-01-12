@@ -33,34 +33,35 @@ class ComplexObjectDrawer(BaseDrawer):
         w, h = self.get_card_size()
         self.surf = pygame.Surface((w, h))
 
-        if self.object.type.name == "Ability":
-            template = (
-                TemplatesPath / "ability.html"
-            ).read_text()  # todo jinja drawing
-            html = jinja2.Template(template).render(
-                # width=w - 2 * EDGE_MARGIN,
-                # height=h - 2 * EDGE_MARGIN,
-                name=self.object.content.name,
-                # type=self.object.content.type,
-                text=self.object.content.text,
-                owner="todo: owner",
-            )
-            image_bytes = imgkit.from_string(
-                html, False, options={"format": "png"}, css="data/templates/ability.css"
-            )
-            image = pygame.image.load(io.BytesIO(image_bytes), "img.png")
-            self.surf.blit(image, (0, 0))
-        else:
-            if isinstance(self.object.type.background_color, str):
-                self.draw_image(
-                    self.surf, self.object.type.background_color, self.surf.get_rect()
-                )
-            else:
-                self.surf.fill(convert_tts_to_pygame(self.object.type.background_color))
-            for key, content in self.object.content.make_content_dict(
-                "todo owner"
-            ).items():
-                self.draw_content_to_area(content, self.object.type.shape.areas[key])
+        # if self.object.type.name == "Ability":
+        html_template_path = TemplatesPath / "card.html"
+        css_template_path = TemplatesPath / "card.css"
+
+        html_template = html_template_path.read_text()
+        html = jinja2.Template(html_template).render(
+            width=w - 2 * EDGE_MARGIN,
+            height=h - 2 * EDGE_MARGIN,
+            name=self.object.content.name,
+            text=self.object.content.text,
+            owner="todo: owner",
+        )
+
+        image_bytes = imgkit.from_string(
+            html, False, options={"format": "png"}, css=css_template_path
+        )
+        image = pygame.image.load(io.BytesIO(image_bytes), "img.png")
+        self.surf.blit(image, (0, 0))
+        # else:
+        #     if isinstance(self.object.type.background_color, str):
+        #         self.draw_image(
+        #             self.surf, self.object.type.background_color, self.surf.get_rect()
+        #         )
+        #     else:
+        #         self.surf.fill(convert_tts_to_pygame(self.object.type.background_color))
+        #     for key, content in self.object.content.make_content_dict(
+        #         "todo owner"
+        #     ).items():
+        #         self.draw_content_to_area(content, self.object.type.shape.areas[key])
 
         self.full_surf = pygame.Surface((w, h))
         self.full_surf.fill(convert_tts_to_pygame((0, 0, 0)))

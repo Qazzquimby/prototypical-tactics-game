@@ -1,15 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400&family=Special+Elite&family=Yeseva+One&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400&family=Special+Elite&family=Yeseva+One&display=swap');*/
 * {
-    font-family: Roboto Slab,sans-serif;
+    /*font-family: Roboto Slab,sans-serif;*/
     background-color: rgb(10, 1, 26);
     padding: 0;
     margin: 0;
 }
 
 .card {
-    height: 88mm;
-    width: 63mm;
-
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -21,16 +18,17 @@
 }
 
 .character h1 {
-    font-family: Yeseva One, serif;
-    font-size: 1.3rem;
+    /*font-family: Yeseva One, serif;*/
+    font-size: 1.4rem;
 }
 
 .description {
     padding: 2mm 0;
     flex-grow: 1;
-    font-size: 0.8rem;
+    font-size: 1rem;
+    white-space: pre-wrap;
 }
 
 .owner {
-    font-family: Yeseva One,serif;
+    /*font-family: Yeseva One,serif;*/
 }
