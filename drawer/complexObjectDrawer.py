@@ -38,10 +38,10 @@ class ComplexObjectDrawer(BaseDrawer):
                 TemplatesPath / "ability.html"
             ).read_text()  # todo jinja drawing
             html = jinja2.Template(template).render(
-                width=w - 2 * EDGE_MARGIN,
-                height=h - 2 * EDGE_MARGIN,
+                # width=w - 2 * EDGE_MARGIN,
+                # height=h - 2 * EDGE_MARGIN,
                 name=self.object.content.name,
-                type=self.object.content.type,
+                # type=self.object.content.type,
                 text=self.object.content.text,
                 owner="todo: owner",
             )

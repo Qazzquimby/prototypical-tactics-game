@@ -219,7 +219,9 @@ class HeroBox(BaseModel):
 
     def get_tts_obj(self):
         hero_box_bag = CustomBag(
-            name=make_box_name(self.hero.name), size=1, color=(1.0, 0.0, 0.0)
+            name=make_box_name(self.hero.name), size=1, color=(1.0, 0.0, 0.0),
+            diffuse_url="http://cloud-3.steamusercontent.com/ugc/1469815174066637129/930D22149972BB2B9C6164FB8D1819249640546B/",
+            #todo, generate the image and url like how cards are generated
         )
 
         if not self.decks:

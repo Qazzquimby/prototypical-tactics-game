@@ -59,8 +59,10 @@ class Bag(DomainEntity):
                 decks.append(item)
         return decks
 
+BOX_MESH_URL = "http://cloud-3.steamusercontent.com/ugc/1469815240708973394/DA07673D2A5C47A5544D2024B92585069B40EE91/"
+
 class CustomBag(Bag):
-    def __init__(self, name, size, color, mesh_url, diffuse_url, is_infinite=False):
+    def __init__(self, name, size, color, diffuse_url, mesh_url=BOX_MESH_URL, is_infinite=False):
         super().__init__(name, size, color, is_infinite)
         self.mesh_url = mesh_url
         self.diffuse_url = diffuse_url
@@ -69,7 +71,7 @@ class CustomBag(Bag):
         bag_dict = super().as_dict(transform)
         bag_dict["Name"] = "Custom_Model_Bag"
         bag_dict["CustomMesh"] = {
-        "MeshURL": self.mesh_url, #"http://cloud-3.steamusercontent.com/ugc/1469815240708973394/DA07673D2A5C47A5544D2024B92585069B40EE91/"
+        "MeshURL": self.mesh_url,
         "DiffuseURL": self.diffuse_url, #"http://cloud-3.steamusercontent.com/ugc/1469815174066637129/930D22149972BB2B9C6164FB8D1819249640546B/",
         "NormalURL": "",
         "ColliderURL": "",
