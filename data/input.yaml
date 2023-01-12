@@ -532,7 +532,7 @@ sets:
               text: |-
                 1/battle
                 Reaction dodge +2
-                You have facing. Turn and move 2 spaces forwards.
+                You have facing. Turn and move 2 spaces forwards, pushing.
                 Until the beginning of your next turn, you are immune to damage from your front.
 #            - name: Protective Barrier
 #              text: |-
@@ -574,9 +574,9 @@ sets:
                 Pull all enemies in range 3 are 1 space towards you.
                 Until the beginning of your next turn, enemies in range 3 are slowed.
                 At the beginning of your next turn, 
-                  deal 4 damage to all enemies in range 1,
-                  then deal 3 more damage to all enemies in range 2,
-                  deal deal 2 more damage to all enemies in range 3.
+                  deal 9 damage to all enemies in range 1,
+                  then deal 5 damage to all other enemies in range 2,
+                  deal deal 2 damage to all other enemies in range 3.
       - hero:
           name: Pharah
           health: 8
@@ -698,7 +698,7 @@ sets:
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
-                  Cone 4, piercing, 1 damage and stun
+                  range 2 burst 1, piercing, 1 damage and stun
       - hero:
           name: Roadhog
           health: 12
@@ -783,7 +783,7 @@ sets:
             - name: Photon Orb
               text: |-
                 Default
-                +1 dodge/distance, 1 damage
+                +1 dodge/distance, 2 damage
                 or Next turn you must use Photon Orb, and it has: +1dodge/3 distance, 6 damage.
               tokens:
                 - name: Photon Orb Charged
@@ -939,7 +939,7 @@ sets:
             - name: Grappling Hook
               text: |-
                 1/battle
-                Move action, fly up to 5 in a straight line.
+                Move action, fly to any point in range 5.
             - name: Infra-Sight
               text: |-
                 1/battle
