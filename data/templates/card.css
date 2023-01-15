@@ -1,6 +1,6 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400&family=Special+Elite&family=Yeseva+One&display=swap');*/
 * {
-    /*font-family: Roboto Slab,sans-serif;*/
+    font-family: Roboto Slab,sans-serif;
     background-color: rgb(10, 1, 26);
     padding: 0;
     margin: 0;
@@ -18,7 +18,7 @@
 }
 
 .character h1 {
-    /*font-family: Yeseva One, serif;*/
+    font-family: Yeseva One, serif;
     font-size: 1.4rem;
 }
 
@@ -27,8 +27,9 @@
     flex-grow: 1;
     font-size: 1rem;
     white-space: pre-wrap;
+    margin-bottom: auto;
 }
 
 .owner {
-    /*font-family: Yeseva One,serif;*/
+    font-family: Yeseva One,serif;
 }

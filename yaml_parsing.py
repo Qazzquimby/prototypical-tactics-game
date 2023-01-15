@@ -18,6 +18,7 @@ data_path = Path(r"data/")
 
 CARD_HEIGHT = 500
 CARD_WIDTH = 350
+CARD_SIZE = (CARD_WIDTH, CARD_HEIGHT)
 
 class Spawnable(abc.ABC):
     def get_lua(self) -> str:
@@ -120,9 +121,9 @@ class UnitCard(Card, Figurine):
         """
 
         if self.dodge:
-            _text += f"Dodge: {self.dodge}"
+            _text += f"\nDodge: {self.dodge}"
         if self.size != 1:
-            _text += f"Size: {self.size}"
+            _text += f"\nSize: {self.size}"
         return _text
     def make_content_dict(self, hero_name: str):
         content_list = [
@@ -146,7 +147,7 @@ class Hero(UnitCard):
             name=HERO_CARD_LABEL,
             backside=(0.0, 0.0, 0.0),
             background_color=(1.0, 1.0, 1.0),
-            size=(500, 500),
+            size=CARD_SIZE,
             type_="card",
             shape=Shape(
                 areas={
@@ -201,7 +202,7 @@ class Ability(Card):
             name=ABILITY_CARD_LABEL,
             backside=(0.0, 0.0, 0.0),
             background_color=(1.0, 1.0, 1.0),
-            size=(500, 500),
+            size=CARD_SIZE,
             type_="card",
             shape=Shape(
                 areas={
