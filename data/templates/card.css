@@ -31,5 +31,7 @@
 }
 
 .owner {
+    margin-top: auto;
+    flex-grow: 0;
     font-family: Yeseva One,serif;
 }

@@ -28,10 +28,15 @@ class ComplexObjectDrawer(BaseDrawer):
         self.config = config
         self.size = obj.type.shape.size
 
+        self.surf = None
+        self.full_surf = None
+
     def draw(self, _=None):
         # draws self, so doesn't need the object param
         w, h = self.get_card_size()
-        self.surf = pygame.Surface((w, h))
+        image_width = w - (2 * EDGE_MARGIN)
+        image_height = h - (2 * EDGE_MARGIN)
+        self.surf = pygame.Surface((image_width, image_height))
 
         # if self.object.type.name == "Ability":
         html_template_path = TemplatesPath / "card.html"
@@ -39,29 +44,17 @@ class ComplexObjectDrawer(BaseDrawer):
 
         html_template = html_template_path.read_text()
         html = jinja2.Template(html_template).render(
-            width=w - 2 * EDGE_MARGIN,
-            height=h - 2 * EDGE_MARGIN,
+            width=image_width,
+            height=image_height,
             name=self.object.content.name,
             text=self.object.content.text,
             owner="todo: owner",
         )
-
         image_bytes = imgkit.from_string(
             html, False, options={"format": "png"}, css=css_template_path
         )
         image = pygame.image.load(io.BytesIO(image_bytes), "img.png")
         self.surf.blit(image, (0, 0))
-        # else:
-        #     if isinstance(self.object.type.background_color, str):
-        #         self.draw_image(
-        #             self.surf, self.object.type.background_color, self.surf.get_rect()
-        #         )
-        #     else:
-        #         self.surf.fill(convert_tts_to_pygame(self.object.type.background_color))
-        #     for key, content in self.object.content.make_content_dict(
-        #         "todo owner"
-        #     ).items():
-        #         self.draw_content_to_area(content, self.object.type.shape.areas[key])
 
         self.full_surf = pygame.Surface((w, h))
         self.full_surf.fill(convert_tts_to_pygame((0, 0, 0)))
