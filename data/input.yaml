@@ -17,11 +17,12 @@ sets:
             - name: Sleep Dart
               text: |-
                 1/Battle
-                +1 dodge/2 distance
-                Put a sleep dart marker on the target.
-                At the beginning of your next turn, the target with the sleep dart marker gets Asleep, unable to act.
-                If the target takes damage, they lose the sleep dart marker and any stun from this ability.
+                1+1 dodge/2 distance
+                Full action
+                Target is stunned for their next two turns. If they take damage from another source, end this condition.
               tokens:
+                - name: Sleeping
+                  image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/2/2b/Sleep_Dart_Icon.png/revision/latest?cb=20170918221723
                 - name: Sleeping
                   image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/2/2b/Sleep_Dart_Icon.png/revision/latest?cb=20170918221723
             - name: Biotic Grenade
@@ -305,7 +306,7 @@ sets:
             - name: Frag Launcher
               text: |-
                 Default
-                +1 dodge/distance, 4 damage, +1 damage in burst 1 of the hit target.
+                1+1 dodge/2 distance, 4 damage, +1 damage to others in burst 1 of the hit target.
             - name: Concussion Mine
               text: |-
                 1/Battle
