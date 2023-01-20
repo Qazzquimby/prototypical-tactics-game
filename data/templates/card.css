@@ -1,7 +1,7 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400&family=Special+Elite&family=Yeseva+One&display=swap');*/
 * {
     font-family: Roboto Slab,sans-serif;
-    background-color: rgb(10, 1, 26);
+    background-color: rgb(46, 28, 86);
     padding: 0;
     margin: 0;
 }
@@ -19,7 +19,7 @@
 
 .character h1 {
     font-family: Yeseva One, serif;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
 }
 
 .description {
