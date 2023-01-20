@@ -9,7 +9,7 @@ from drawer.base import BaseDrawer
 from drawer.textrect import render_fitted_textrect
 from drawer.color import convert_tts_to_pygame
 
-EDGE_MARGIN = 25
+EDGE_MARGIN = 10
 
 LEFTRIGHT_MARGIN = 10
 TOPBOTTOM_MARGIN = 10
@@ -44,7 +44,7 @@ class ComplexObjectDrawer(BaseDrawer):
 
         html_template = html_template_path.read_text()
         html = jinja2.Template(html_template).render(
-            width=image_width,
+            width=image_width- 2*EDGE_MARGIN, #shouldnt be needed but theres clipping
             height=image_height,
             name=self.object.content.name,
             text=self.object.content.text,
