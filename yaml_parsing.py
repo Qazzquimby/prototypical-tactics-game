@@ -16,7 +16,7 @@ from domain.card import Card as DomainCard
 
 data_path = Path(r"data/")
 
-CARD_HEIGHT = 500
+CARD_HEIGHT = 450
 CARD_WIDTH = 350
 CARD_SIZE = (CARD_WIDTH, CARD_HEIGHT)
 
