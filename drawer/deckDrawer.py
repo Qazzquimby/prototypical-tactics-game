@@ -13,17 +13,17 @@ class DeckDrawer(BaseDrawer):
     def __init__(self, config):
         self.config = config
 
-    def draw(self, deck):
+    async def draw(self, deck):
         drawer = ComplexObjectDrawer(deck.cards[0].object, self.config)
         w, h = drawer.get_card_size()
         size = (w * DECK_IMAGE_CARDS_PER_ROW, h * DECK_IMAGE_CARDS_PER_COLUMN)
         card_size = (w, h)
 
         surf = pygame.Surface(size)
-        self._draw_cards(surf, deck.cards, card_size)
+        await self._draw_cards(surf, deck.cards, card_size)
         return surf
 
-    def _draw_cards(
+    async def _draw_cards(
         self, surf, cards, card_size: tuple[int, int]
     ):  # I think this might be mirrored on the diagonal
         for card, (y, x) in zip(
@@ -33,4 +33,5 @@ class DeckDrawer(BaseDrawer):
             ),
         ):
             card_drawer = ComplexObjectDrawer(card.object, self.config)
-            surf.blit(card_drawer.draw(), (x * card_size[0], y * card_size[1]))
+            card_image = await card_drawer.draw()
+            surf.blit(card_image, (x * card_size[0], y * card_size[1]))

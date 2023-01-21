@@ -1,6 +1,7 @@
 import asyncio
 import json
 from pathlib import Path
+from typing import Union, Coroutine
 
 from pygame import Surface
 
@@ -162,7 +163,10 @@ async def _save_image_and_set_attribute(
     file_extension: str,
     attribute_to_set: str,
 ):
-    image: Surface = drawer.draw(object_)
+    image: Union[Surface, Coroutine[Surface]] = drawer.draw(object_)
+    # if image is promise, resolve
+    if isinstance(image, Coroutine):
+        image = await image
     path = await image_builder.build(
         image=image, file_name=file_name, file_extension=file_extension
     )

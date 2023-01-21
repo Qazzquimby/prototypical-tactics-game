@@ -1,7 +1,8 @@
+import asyncio
 import io
 from pathlib import Path
 
-import imgkit as imgkit
+from playwright.async_api import async_playwright
 import jinja2
 import pygame
 
@@ -16,6 +17,17 @@ TOPBOTTOM_MARGIN = 10
 
 TemplatesPath = Path("data/templates")
 
+_BROWSER = None
+lock= asyncio.Lock()
+
+async def get_browser():
+    global _BROWSER
+    if _BROWSER is None:
+        async with lock:
+            if _BROWSER is None:
+                p = await async_playwright().start()
+                _BROWSER = await p.chromium.launch()
+    return _BROWSER
 
 def make_empty_image(filepath):
     surf = pygame.Surface((10, 10))
@@ -31,7 +43,8 @@ class ComplexObjectDrawer(BaseDrawer):
         self.surf = None
         self.full_surf = None
 
-    def draw(self, _=None):
+
+    async def draw(self, _=None):
         # draws self, so doesn't need the object param
         w, h = self.get_card_size()
         image_width = w - (2 * EDGE_MARGIN)
@@ -42,18 +55,28 @@ class ComplexObjectDrawer(BaseDrawer):
         html_template_path = TemplatesPath / "card.html"
         css_template_path = TemplatesPath / "card.css"
 
+        name = self.object.content.name
+        temp_path = Path("data/temp_images") / f"{name}.png"
+
         html_template = html_template_path.read_text()
         html = jinja2.Template(html_template).render(
             width=image_width- 2*EDGE_MARGIN, #shouldnt be needed but theres clipping
             height=image_height,
-            name=self.object.content.name,
+            name=name,
             text=self.object.content.text,
             owner="todo: owner",
         )
-        image_bytes = imgkit.from_string(
-            html, False, options={"format": "png"}, css=css_template_path
-        )
+
+        browser = await get_browser()
+        page = await browser.new_page()
+        await page.set_viewport_size({"width": image_width, "height": image_height})
+        await page.set_content(html)
+        await page.add_style_tag(content=css_template_path.read_text())
+        image_bytes = await page.screenshot()#path=temp_path)
+
+        # image = pygame.image.load(temp_path)
         image = pygame.image.load(io.BytesIO(image_bytes), "img.png")
+
         self.surf.blit(image, (0, 0))
 
         self.full_surf = pygame.Surface((w, h))
