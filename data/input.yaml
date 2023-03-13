@@ -13,11 +13,11 @@ sets:
                 Default 
                 Full action
                 You may move up to 1.
-                Unlimited range, choose heal 3 or 2 damage.
+                Unlimited range, choose ✚3 or ⚔2.
             - name: Sleep Dart
               text: |-
                 1/Battle
-                Dodge 1 + 1/2 distance
+                ⛨ 1 + 1/2 distance
                 Full action
                 Target is stunned for their next two turns. If they take damage from another source, end this condition.
               tokens:
@@ -28,9 +28,9 @@ sets:
             - name: Biotic Grenade
               text: |-
                 1/Battle
-                Range 4, size 2, Dodge 1
-                Allies in the area heal 3 and get 1.5x healing.
-                Enemies in the area take 2 damage and cannot regain health.
+                Range 4, size 2, ⛨ 1
+                Allies in the area ✚3 and get 1.5x healing.
+                Enemies in the area take ⚔2 and cannot regain health.
               tokens:
                 - name: Grenade Healing Buff
                   image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/a/ae/Grenade_Spray.png/revision/latest/scale-to-width-down/120?cb=20170919004315
@@ -55,14 +55,14 @@ sets:
               text: |-
                 Default
                 Only usable in Assault stance
-                5 damage, Range 2
-                or 3 damage, Range 4
+                ⚔5, Range 2
+                or ⚔3, Range 4
                 Double damage against targets size 2+.
             - name: Light Machine Gun
               text: |-
                 Default
                 Only usable in Recon stance
-                Range 4, 1 damage.
+                Range 4, ⚔1.
             - name: Configuration Assault
               text: |-
                 Enter assault stance
@@ -80,14 +80,14 @@ sets:
                   back_image_url: https://pm1.narvii.com/6131/4b01877db14d895dac021ae4c575bcde2acb62e4_128.jpg
             - name: A-36 Tactical Grenade
               text: |-
-                Range 4, 3 damage
-                Then 1 damage to all others in burst 1 of the target space
+                Range 4, ⚔3
+                Then ⚔1 to all others in burst 1 of the target space
             - name: Configuration Artillery
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
                   Mark 3 spaces. 
-                  At the beginning of your next turn, for each marked space, deal 10 damage to everyone inside, and 2 damage to everyone else in burst 1.
+                  At the beginning of your next turn, for each marked space, deal ⚔10 to everyone inside, and ⚔2 to everyone else in burst 1.
       - hero:
           name: Cassidy
           health: 8
@@ -101,8 +101,8 @@ sets:
                 
                 Default
                 If you have ammo-loaded: 
-                  Range 4, 3 damage, +1 crit
-                  or Range 1, 5 damage. Switch to ammo-empty.
+                  Range 4, ⚔3, +1 crit
+                  or Range 1, ⚔5. Switch to ammo-empty.
               tokens:
                 - name: Ammo Loaded
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-mccree1.png/revision/latest/scale-to-width-down/100?cb=20181119023403
@@ -120,13 +120,13 @@ sets:
             - name: Magnetic Grenade
               text: |-
                 1/Battle
-                Range 5, 2 damage, 2 damage to all in burst 1 of target.
+                Range 5, ⚔2, ⚔2 to all in burst 1 of target.
             - name: Deadeye
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
                   At the beginning of your next turn,
-                  deal 8 undodgeable damage to each enemy in line of sight
+                  deal ⚔8 undodgeable to each enemy in line of sight
       - hero:
           name: D.Va
           health: 12
@@ -146,7 +146,7 @@ sets:
                 Health 6
                 Speed 3
                 
-                Light Gun: Default, Range 3, 2 damage, gain a Mech charge.
+                Light Gun: Default, Range 3, ⚔2, gain a Mech charge.
                 Call Mech: Spend 2 Mech charges and sacrifice this to summon D.Va
               tokens:
                 - name: Pilot D.va
@@ -160,7 +160,7 @@ sets:
             - name: Fusion Cannons
               text: |-
                 Default
-                Range 2, 2 damage
+                Range 2, ⚔2
                 Can't be used on the same turn as your standard move
             - name: Defense Matrix
               text: |-
@@ -177,19 +177,19 @@ sets:
                 CD 2
                 Move action
                 Fly up to 6 spaces, ignoring enemies.
-                Each enemy you move through takes 1 damage, and 1 knockback to the side.
+                Each enemy you move through takes ⚔1, and 1 knockback to the side.
             - name: Micro Missiles
               text: |-
                 1/Battle
                 Free action
-                Dodge 1/2 distance, 3 damage
+                ⛨ 1/2 distance, ⚔3
             - name: Self-Destruct
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
                   Sacrifice D.Va (triggering the Eject passive)
                   Pilot D.Va may move up to 3.
-                  At the beginning of your next turn, Deal 7 damage to all enemies in burst 3 of the space you died in.
+                  At the beginning of your next turn, Deal ⚔7 to all enemies in burst 3 of the space you died in.
               tokens:
                 - name: Self-Destruct
                   image_url: https://static.icy-veins.com/images/heroes/icons/large/storm_ui_icon_dva_selfdestruct.jpg
@@ -204,13 +204,13 @@ sets:
             - name: Cyber Agility
               text: |-
                 Passive
-                Attacks made on you within range 2 have Dodge +2
+                Attacks made on you within range 2 have Dodge⛨ +2
                 You ignore difficult terrain
             - name: Shuriken
               text: |-
                 Default
-                Dodge 1/2 distance, 3 damage
-                or range 1, 4 damage
+                ⛨ 1/2 distance, ⚔3
+                or range 1, ⚔4
             - name: Deflect
               text: |-
                 1/Battle
@@ -221,7 +221,7 @@ sets:
                 1/Battle
                 Free action
                 Move 4 spaces in a straight line, ignoring enemies.
-                2 damage to each enemy you move through.
+                ⚔2 to each enemy you move through.
                 When an enemy dies, refresh this ability.
             - name: Dragonblade
               text: |-
@@ -229,7 +229,7 @@ sets:
                 Spend 5 charges:
                   For the rest of the battle, you have +1 speed, and replace your default attacks with:
                     default
-                    range 1, 5 damage
+                    range 1, ⚔5
 #                  You may use Swift Strike 3 times this turn.
 #                  You may use Shuriken 3 times this turn.
 #                  You may use Deflect 3 times this turn.
@@ -249,7 +249,7 @@ sets:
                 Default
                 Full action
                 Move up to 1
-                Dodge 1/3 distance, 5 damage, +1crit
+                ⛨ 1/3 distance, ⚔5, +1crit
             - name: Sonic Arrow
               text: |-
                 1/Battle
@@ -266,7 +266,7 @@ sets:
               text: |-
                 1/Battle
                 Free action
-                Until the end of your next turn, you can make two default attacks as a single standard action, but they do 3 damage.
+                Until the end of your next turn, you can make two default attacks as a single standard action, but they do ⚔3.
             - name: Lunge
               text: |-
                 1/Battle
@@ -278,7 +278,7 @@ sets:
                 Spend 5 charges:
                   Draw a straight beam 2 spaces wide, from you to the edge of the map in a direction of your choice.
                   At the start of your next turn, the beam becomes active until the start of your turn after.
-                  While the beam is active, enemies who start their turn in the beam or move into the beam take 7 damage. They can't be damaged this way more than once.
+                  While the beam is active, enemies who start their turn in the beam or move into the beam take ⚔7. They can't be damaged this way more than once.
               tokens:
                 - name: Dragonstrike
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/44/Ability-hanzo4.png/revision/latest/scale-to-width-down/100?cb=20141111201819
@@ -298,7 +298,7 @@ sets:
             - name: Total Mayhem
               text: |-
                 When you die, place a size 2 Payback field in range 0.
-                At the beginning of your next turn, sacrifice the payback field and deal 3 damage to all enemies in inside.
+                At the beginning of your next turn, sacrifice the payback field and deal ⚔3 to all enemies in inside.
               tokens:
                 - name: Total Mayhem
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/18/Ability-Junkrat4.png/revision/latest/scale-to-width-down/100?cb=20150924023347
@@ -306,12 +306,12 @@ sets:
             - name: Frag Launcher
               text: |-
                 Default
-                Dodge 1 + 1/2 distance, 4 damage, +1 damage to others in burst 1 of the hit target.
+                ⛨1 + 1/2 distance, ⚔4, and ⚔1 to others in burst 1 of the hit target.
             - name: Concussion Mine
               text: |-
                 1/Battle
-                Place a Concussion Mine in range 2.
-                When anyone enters the mine's space, you may sacrifice the mine for Dodge 1,  4 damage and push 2 in any direction.
+                Place a Concussion Mine in an empty space within range 2.
+                At the start of your turn, or when anyone becomes adjacent to the mine's space, you may sacrifice the mine for ⛨1, ⚔4 and push 2 in any direction.
               tokens:
                 - name: Concussion Mine
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/87/Ability-Junkrat2.png/revision/latest/scale-to-width-down/100?cb=20150924023319
@@ -333,7 +333,7 @@ sets:
                   You are stunned.
                   Summon a RIP-Tire with 4 health and 7 speed.
                   At the beginning of your next turn, sacrifice the RIP-Tire.
-                  When RIP-Tire dies, it deals 8 damage in burst 1.
+                  When RIP-Tire dies, it deals ⚔8 in burst 1.
               tokens:
                 - name: RIP-Tire
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/32/Ability-Junkrat5.png/revision/latest/scale-to-width-down/100?cb=20150924023400
@@ -349,7 +349,7 @@ sets:
               text: |-
                 Passive
                 At the start of your turn, choose one:
-                  You and allies in burst 1 heal 2.
+                  You and allies in burst 1 ✚2.
                   You and allies in burst 1 can move 1.
             - name: Wall Ride
               text: |-
@@ -358,11 +358,11 @@ sets:
             - name: Sonic Amplifier
               text: |-
                 Default
-                Dodge 1/2 distance, 2 damage.
+                ⛨1/2 distance, ⚔2.
             - name: Soundwave
               text: |-
                 Default
-                Range 1, 2 damage, kb 2.
+                Range 1, ⚔2, kb 2.
             - name: Amp It Up
               text: |-
                 Free action, 1/battle
@@ -383,16 +383,16 @@ sets:
             - name: Endothermic Blaster
               text: |-
                 Default
-                All in line 2, 2 damage, target is slowed
+                All in line 2, ⚔2, target is slowed
             - name: Icicle
               text: |-
                 Default
-                Dodge 1 + 1/2 distance, 3 damage
+                ⛨1 + 1/2 distance, ⚔3
             - name: Cryo-Freeze
               text: |-
                 1/Battle
                 Reaction Block +2
-                Heal 4
+                ✚4
                 Remove any unwanted conditions.
                 Until the beginning of your next turn:
                   You are immune to damage, involuntary movement, and unwanted conditions.
@@ -412,8 +412,8 @@ sets:
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
                   Place a Size 3 Blizzard field in range 3.
-                  Enemies in the Blizzard are slowed and take 1 damage.
-                  At the beginning of your next turn, enemies in the blizzard are stunned and take 1 damage.
+                  Enemies in the Blizzard are slowed and take ⚔1.
+                  At the beginning of your next turn, enemies in the blizzard are stunned and take ⚔1.
               tokens:
                 - name: Blizzard
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f0/Ability-mei4.png/revision/latest/scale-to-width-down/100?cb=20151107172516
@@ -428,7 +428,7 @@ sets:
             - name: Regeneration
               text: |-
                 Passive.
-                At the start of your turn, if you did not take damage since your last turn, heal 3.
+                At the start of your turn, if you did not take damage since your last turn, ✚3.
             - name: Souls
               text: |-
                 Passive.
@@ -438,7 +438,7 @@ sets:
                 Default
                 Target ally in range 3
                 Choose one:
-                  - Heal target 4hp.
+                  - Target gets ✚4.
                   - Until end of target's next turn, they deal +.5x damage.
               tokens:
                 - name: Caduceus Staff
@@ -447,7 +447,7 @@ sets:
             - name: Caduceus Blaster
               text: |-
                 Default
-                Dodge 1/3 distance, 2 damage
+                ⛨1/3 distance, ⚔2.
             - name: Guardian Angel
               text: |-
                 Fly to any space adjacent to an ally or friendly corpse, as directly as possible.
@@ -460,7 +460,7 @@ sets:
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
-                  At the beginning of each your turns, heal 2hp.
+                  At the beginning of each your turns, ✚2.
                   Your Caduceus Staff has range 5, burst 2, and only affects allies.
                   You can use Guardian Angel as a move action.
                   You are always flying.
@@ -474,16 +474,16 @@ sets:
             - name: Damage Biotic Grasp
               text: |-
                 Default
-                Range 4, 2 damage.
-                Heal 1.
+                Range 4, ⚔2.
+                ✚1.
             - name: Healing Biotic Grasp
               text: |-
                 Piercing cone 3.
-                Allies heal 3.
+                Allies get ✚3.
             - name: Fade
               text: |-
                 1/battle
-                Reaction Dodge 3.
+                Reaction⛨3.
                 Teleport up to 4 spaces.
                 You may purge any number of effects from yourself.
             - name: Summon Biotic Orb
@@ -493,8 +493,8 @@ sets:
                 Summon a Biotic Orb in range 1. 
                 Biotic Orb is a size 1 field with facing.
                 Now, and at the beginning of each your turns, it performs:
-                  Healing: Burst 1, heal 2 to all allies
-                  Damage: Burst 1, 2 damage to all enemies
+                  Healing: Burst 1, ✚2 to all allies
+                  Damage: Burst 1, ⚔2 to all enemies
                   Then move 2 spaces forwards, reversing direction when blocked by a wall.
               tokens:
                 - name: Healing Biotic Orb
@@ -508,9 +508,9 @@ sets:
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
                 Full action
-                Heal 2.
+                ✚2.
                 Move up to 2.
-                Piercing line, 2 damage to enemies, heal 4 to allies.
+                Piercing line, ⚔2 to enemies, ✚4 to allies.
       - hero:
           name: Orisa
           health: 12
@@ -522,12 +522,12 @@ sets:
             - name: Fusion Driver
               text: |-
                 Default
-                Range 3, 2 damage.
+                Range 3, ⚔2.
             - name: Energy Javelin
               text: |-
                 CD 2
-                Dodge 1/2 distance, 2 damage. 
-                +2 damage if target is adjacent to a wall. 
+                ⛨1/2 distance, ⚔2. 
+                ⚔2 more if target is adjacent to a wall. 
                 Interrupt
             - name: Javelin Spin
               text: |-
@@ -538,7 +538,7 @@ sets:
 #            - name: Protective Barrier
 #              text: |-
 #                1/battle
-#                Reaction dodge +2
+#                Reaction ⛨2
 #                Create a 2x1 barrier in range 2.
 #                The barrier has 6 health.
 #              tokens:
@@ -557,7 +557,7 @@ sets:
                 1/battle
                 Reaction Block +2
                 Until the beginning of your next turn
-                  you take half damage from all sources
+                  you take 0.5x damage from all sources
                   You cannot be moved or prevented from moving or taken actions by enemy sources.
 #            - name: Supercharger
 #              text: |-
@@ -575,9 +575,9 @@ sets:
                 Pull all enemies in range 3 are 1 space towards you.
                 Until the beginning of your next turn, enemies in range 3 are slowed.
                 At the beginning of your next turn, 
-                  deal 9 damage to all enemies in range 1,
-                  then deal 5 damage to all other enemies in range 2,
-                  deal deal 2 damage to all other enemies in range 3.
+                  deal ⚔9 to all enemies in range 1,
+                  then deal ⚔5 to all other enemies in range 2,
+                  deal deal ⚔2 to all other enemies in range 3.
       - hero:
           name: Pharah
           health: 8
@@ -593,19 +593,19 @@ sets:
               text: |-
                 Move action
                 CD 1
-                Move up to 2. Gain "high altitude" (you count as 2 spaces further when calculating range)
+                Move up to 2. Gain "high altitude" until the start of your next turn. (when drawing range to or from you, ignores soft cover and is 2 spaces further)
               tokens:
                 - name: High Altitude
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/14/Ability-parah2.png/revision/latest/scale-to-width-down/100?cb=20181119024127
             - name: Rocket Launcher
               text: |-
                 Default
-                Dodge 1/3 distance, 3 damage, 1 damage to all others in burst 1
+                ⛨1/3 distance, ⚔3, and ⚔1 to all others in burst 1
             - name: Jump Jet
               text: |-
                 1/battle
                 Free action
-                Move up to 2. Gain "high altitude" (you count as 2 spaces further when calculating range)
+                Move up to 2. Gain "high altitude" until the start of your next turn. (when drawing range to or from you, ignores soft cover and is 2 spaces further)
               tokens:
                 - name: High Altitude
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/14/Ability-parah2.png/revision/latest/scale-to-width-down/100?cb=20181119024127
@@ -618,7 +618,7 @@ sets:
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
                 Full action
-                Dodge 1/2 distance, 8 damage, 3 damage to all others in burst 1
+                ⛨1/2 distance, ⚔8, ⚔3 to all others in burst 1
                 You're immobilized until your next turn.
       - hero:
           name: Reaper
@@ -634,9 +634,9 @@ sets:
             - name: Hellfire Shotguns
               text: |-
                 Default
-                Range 1, 4 damage
-                or range 2, 2 damage
-                Deals double damage against enemies with size 2+.
+                Range 1, ⚔4
+                or range 2, ⚔2
+                Deals 2x damage against enemies with size 2+.
             - name: Wraith Form
               text: |-
                 1/battle
@@ -652,7 +652,7 @@ sets:
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
-                Burst 1, 7 damage
+                Burst 1, ⚔7
       - hero:
           name: Reinhardt
           health: 12
@@ -668,7 +668,7 @@ sets:
             - name: Rocket Hammer
               text: |-
                 Default
-                up to 3 adjacent targets in burst 1, 2 damage
+                up to 3 adjacent targets in burst 1, ⚔2
             - name: Barrier Field
               text: |-
                 Reaction Block +2
@@ -688,18 +688,18 @@ sets:
               text: |-
                 Full Action, 1/battle
                 Move as far as possible in a line.
-                When you contact an enemy, roll attack with Dodge 2 + 1/2 distance from your start position. 
-                The first enemy hit this way is pushed with you, interrupted, and take 7 damage.
-                Other enemies in the line are pushed to the side and take 1 damage.
+                When you contact an enemy, roll attack with ⛨2 + 1/2 distance from your start position. 
+                The first enemy hit this way is pushed with you, interrupted, and take ⚔7.
+                Other enemies in the line are pushed to the side and take ⚔1.
             - name: Fire Strike
               text:
                 CD 2
-                All in line, Dodge 1/3 distance, 3 damage
+                All in line, ⛨1/3 distance, ⚔3
             - name: Earthshatter
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
-                  range 2 burst 1, piercing, 1 damage and stun
+                  range 2 burst 1, piercing, ⚔1 and stun
       - hero:
           name: Roadhog
           health: 12
@@ -711,19 +711,19 @@ sets:
             - name: Scrap Gun
               text: |-
                 Default
-                Range 1, 3 damage, Dodge 1
-                or Range 3, 3 damage, Dodge 3
-                x2 damage to size 2+
+                Range 1, ⚔3, ⛨1
+                or Range 3, ⚔3, ⛨3
+                2x damage to size 2+
             - name: Take a Breather
               text: |-
                 1/battle
                 Channel:
                   Until the start of your next turn, you take 0.5x damage.
-                  At the start of your next turn, heal 6.
+                  At the start of your next turn, ✚6.
             - name: Chain Hook
               text: |-
-                1/battle, Move action, range 5, Dodge 1/2 distance
-                1 damage, interrupt
+                1/battle, Move action, range 5, ⛨1/2 distance
+                ⚔1, interrupt
                 Pull target as close as possible.
             - name: Whole Hog
               text: |-
@@ -731,8 +731,8 @@ sets:
                 Spend 5 charges:
                   Until end of battle, you can only use default actions, and scrap gun changes to:
                   Range 1, 6 damage, kb 5
-                  or Range 2, 4 damage, kb 3
-                  or Range 3, 2 damage, kb 1
+                  or Range 2, ⚔4, kb 3
+                  or Range 3, ⚔2, kb 1
       - hero:
           name: Soldier 76
           health: 8
@@ -743,7 +743,7 @@ sets:
             - name: Heavy Pulse Rifle
               text: |-
                 Default
-                Range 4, 3 damage
+                Range 4, ⚔3
             - name: Sprint
               text: |-
                 Default
@@ -751,12 +751,12 @@ sets:
             - name: Helix Rockets
               text: |-
                 1/battle
-                Dodge 1/2 distance, 5 damage and 1 damage to others in burst 1 of target
+                ⛨1/2 distance, ⚔5 and ⚔1 to others in burst 1 of target
             - name: Biotic Field
               text: |-
                 1/battle
                 Place a size 2 Biotic Field, overlapping your space.
-                Now, and at the beginning of each your turns, all allies in the field heal 2.
+                Now, and at the beginning of each your turns, all allies in the field ✚2.
               tokens:
                 - name: Biotic Field
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/50/Icon-ability.bioticfield.png/revision/latest/scale-to-width-down/100?cb=20150708110158
@@ -766,7 +766,7 @@ sets:
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
                   Heavy Pulse Rifle range becomes 6
-                  Your attacks cannot miss or be dodged.
+                  Your attacks are undodgeable and can't take penalties.
                   Now and at the start of each your turns, you can make a default attack as a free action.
       - hero:
           name: Symmetra
@@ -778,14 +778,14 @@ sets:
             - name: Photon Beam
               text: |-
                 Default
-                Range 2, 2 damage.
-                If this hits the same target last turn, it deals 4 damage instead.
-                If this hits the same target the last two turns, it deals 6 damage instead.
+                Range 2, ⚔2.
+                If this hits the same target last turn, it deals ⚔4 instead.
+                If this hits the same target the last two turns, it deals ⚔6 instead.
             - name: Photon Orb
               text: |-
                 Default
-                Dodge 1/distance, 2 damage
-                or Next turn you must use Photon Orb, and it has: Dodge 1/3 distance, 6 damage.
+                ⛨1/distance, ⚔2
+                or Next turn you must use Photon Orb, and it has: ⛨1/3 distance, ⚔6.
               tokens:
                 - name: Photon Orb Charged
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7e/Ability-symmetra1.png/revision/latest/scale-to-width-down/100?cb=20181119051026
@@ -794,7 +794,7 @@ sets:
                 Quick action
                 1/battle
                 Place three size 1 Sentry Turret in line of sight. It has 1hp.
-                At the start of your turn, each sentry turret deals 1 damage to the nearest enemy in range 3.
+                At the start of your turn, each sentry turret deals ⚔1 to the nearest enemy in range 3.
                 If two turrets hit the same target, the target is slowed.
               tokens:
                 - name: Sentry Turret
@@ -844,16 +844,16 @@ sets:
             - name: Rivet Gun
               text: |-
                 Default
-                Dodge 1/2 distance, 2 damage
-                or range 1, 3 damage
-                or Turret in range 3, heal 3
+                ⛨1/2 distance, ⚔2
+                or range 1, ⚔3
+                or Turret in range 3, ✚3
             - name: Deploy Turret
               text: |-
                 1/battle
                 Place a size 1 turret in an empty space in range 4.
                 When placed, the turret has 4hp.
                 At the beginning of your next turn, the turret gains 6 current and max hp.
-                At the beginning of each your turns, the turret deals 2 damage to the nearest enemy in its line of sight.
+                At the beginning of each your turns, the turret deals ⚔2 to the nearest enemy in its line of sight.
               tokens:
                 - name: Turret
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a7/Ability-torbjorn3.png/revision/latest/scale-to-width-down/100?cb=20181010190250
@@ -870,7 +870,7 @@ sets:
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
                   Pick three 2x2 areas in range 5
-                  The first time each enemy is in one of the areas, they take 3 damage.
+                  The first time each enemy is in one of the areas, they take ⚔3.
               tokens:
                 - name: Molten Core
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/ef/Ability-torbjorn5.png/revision/latest/scale-to-width-down/100?cb=20181018043327
@@ -885,16 +885,16 @@ sets:
             - name: Pulse Pistols
               text: |-
                 default
-                range 1, 4 damage.
+                range 1, ⚔4.
             - name: Blink
               text: |-
                 3/battle
-                Reaction Dodge 2
+                Reaction Dodge⛨2
                 Teleport up to 3.
             - name: Recall
               text: |-
                 1/battle
-                Reaction Dodge 3
+                Reaction Dodge⛨3
                 Reset your health to what it was at the end of your last turn.
                 Teleport as close as possible to where you were at the end of your last turn.
               tokens:
@@ -905,9 +905,9 @@ sets:
               text: |-
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges:
-                  Pick a space in range 1. If there's a character in the space, attach the pulse bomb to them with Dodge 2.
+                  Pick a space in range 1. If there's a character in the space, attach the pulse bomb to them with ⛨2.
                   If it doesn't attach to someone, it drops in that space.
-                  At the start of your next turn, destroy the pulse bomb. It deals 9 damage to anyone in its space and 3 damage to anyone else in burst 1.
+                  At the start of your next turn, destroy the pulse bomb. It deals ⚔9 to anyone in its space and ⚔3 to anyone else in burst 1.
               tokens:
                 - name: Pulse Bomb
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/af/Ability-tracer4.png/revision/latest/scale-to-width-down/100?cb=20141112192411
@@ -922,9 +922,9 @@ sets:
             - name: Widow's Kiss
               text: |-
                 Default
-                Range 2, 2 damage
+                Range 2, ⚔2
                 or until the end of your next turn you are immobilized, and have locked facing
-                Channel: next turn Widow's kiss has unlimited range, 7 damage and +2 crit.
+                Channel: next turn Widow's kiss has unlimited range, ⚔7 and +2 crit.
               tokens:
                 - name: Widow's Kiss Charged
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bf/Ability-widowmaker1.png/revision/latest/scale-to-width-down/100?cb=20181119054154
@@ -953,7 +953,7 @@ sets:
               # text: |-
               #  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
               #    Spend 5 charges:
-              #    Range 6, 6 damage, +2 dodge
+              #    Range 6, ⚔6, ⛨2
               #    If this kills, you can make repeat the attack.
       - hero:
           name: Winston
@@ -966,14 +966,14 @@ sets:
             - name: Tesla Cannon
               text: |-
                 Default
-                Enemies in Range 1 burst 1, 2 damage, undodgeable,
-                or Dodge 1/3 distance, 2 damage
+                Spaces in Range 1 burst 1, ⚔2,
+                or ⛨1/3 distance, ⚔2
             - name: Jump Pack
               text: |-
                 CD 2
                 Move action
                 Fly up to 6, ending on the ground.
-                Burst 1, 1 damage.
+                Burst 1, ⚔1.
             - name: Barrier Projector
               text: |-
                 1/battle
@@ -1002,18 +1002,18 @@ sets:
             - name: Snap Kick
               text: |-
                 Default
-                Range 1, 2 damage, kb 2
+                Range 1, ⚔2, kb 2
             - name: Orb of Destruction
               text: |-
                 Default
-                Dodge 1/4 distance, 3 damage
+                ⛨1/4 distance, ⚔3
                 or end your turn, get slowed 1, and next turn you must use orb of destruction, but it deals 2x damage.
               tokens:
                 - name: Orb of Destruction Charged
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d1/Ability-zenyatta1.png/revision/latest/scale-to-width-down/100?cb=20181119055020
             - name: Orb of Harmony
               text: |-
-                Mark an ally. Now and at the start of your turn, heal them 2. When you use this again, it removes the original mark.
+                Mark an ally. Now and at the start of your turn, they get ✚2. When you use this again, it removes the original mark.
               tokens:
                 - name: Orb of Harmony
                   image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0c/Ability-zenyatta2.png/revision/latest/scale-to-width-down/100?cb=20141112192735
@@ -1028,7 +1028,7 @@ sets:
                 Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
                 Spend 5 charges, Reaction +2:
                     Heal to full. Purge all conditions you don't want.
-                    Heal all allies in burst 1 by 5.
+                    All allies in burst 1 get ✚5.
                     Until the start of your next turn, you are immune to damage and don't take conditions you don't want.
       - hero:
           name: Zarya
@@ -1078,7 +1078,7 @@ sets:
             - name: Axe
               text: |-
                 Default
-                Range 1, 2 damage
+                Range 1, ⚔2
             - name: Berserker's Call
               text: |- 
                 1/battle
@@ -1088,7 +1088,7 @@ sets:
             - name: Culling Blade
               text: |-
                 1/battle
-                Range 1, 3 damage, if the target is below half health, they are killed.
+                Range 1, ⚔3, if the target is below half health, they are killed.
             - name: Battle Hunger
               text: |-
                 1/battle
@@ -1100,7 +1100,7 @@ sets:
             - name: Counter Helix
               text: |-
                 Reaction after being hit by an attack:
-                  Burst 1, 1 damage
+                  Burst 1, ⚔1
             - name: Culling Blade
               text: |-
                 Ultimate: 1/game
