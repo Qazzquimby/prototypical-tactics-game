@@ -8,42 +8,42 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/76/Ana.png/revision/latest/scale-to-width-down/143?cb=20160715094551
         decks:
           - abilities:
-            - name: Biotic Rifle
-              text: |-
-                Default 
-                Full action
-                You may move up to 1.
-                Unlimited range, choose ✚3 or ⚔2.
-            - name: Sleep Dart
-              text: |-
-                1/Battle
-                ⛨ 1 + 1/2 distance
-                Full action
-                Target is stunned for their next two turns. If they take damage from another source, end this condition.
-              tokens:
-                - name: Sleeping
-                  image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/2/2b/Sleep_Dart_Icon.png/revision/latest?cb=20170918221723
-                - name: Sleeping
-                  image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/2/2b/Sleep_Dart_Icon.png/revision/latest?cb=20170918221723
-            - name: Biotic Grenade
-              text: |-
-                1/Battle
-                Range 4, size 2, ⛨ 1
-                Allies in the area ✚3 and get 1.5x healing.
-                Enemies in the area take ⚔2 and cannot regain health.
-              tokens:
-                - name: Grenade Healing Buff
-                  image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/a/ae/Grenade_Spray.png/revision/latest/scale-to-width-down/120?cb=20170919004315
-                - name: Grenade Healing Debuff
-                  image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/c/c4/Biotic_Grenade_Icon.png/revision/latest?cb=20170918221557
-            - name: Nano Boost
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                Choose an ally in range 4. They deal 1.5x damage and take 0.5x damage.
-              tokens:
-                - name: Nano Boosted
-                  image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/9/9e/Nano_Boost_Icon.png/revision/latest?cb=20170918221647
+              - name: Biotic Rifle
+                text: |-
+                  Default 
+                  Full action
+                  You may move up to 1.
+                  Unlimited range, choose ✚3 or ⚔2.
+              - name: Sleep Dart
+                text: |-
+                  1/Battle
+                  ⛨ 1 + 1/2 distance
+                  Full action
+                  Target is stunned for their next two turns. If they take damage from another source, end this condition.
+                tokens:
+                  - name: Sleeping
+                    image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/2/2b/Sleep_Dart_Icon.png/revision/latest?cb=20170918221723
+                  - name: Sleeping
+                    image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/2/2b/Sleep_Dart_Icon.png/revision/latest?cb=20170918221723
+              - name: Biotic Grenade
+                text: |-
+                  1/Battle
+                  Range 4, size 2, ⛨ 1
+                  Allies in the area ✚3 and get 1.5x healing.
+                  Enemies in the area take ⚔2 and cannot regain health.
+                tokens:
+                  - name: Grenade Healing Buff
+                    image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/a/ae/Grenade_Spray.png/revision/latest/scale-to-width-down/120?cb=20170919004315
+                  - name: Grenade Healing Debuff
+                    image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/c/c4/Biotic_Grenade_Icon.png/revision/latest?cb=20170918221557
+              - name: Nano Boost
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                  Choose an ally in range 4. They deal 1.5x damage and take 0.5x damage.
+                tokens:
+                  - name: Nano Boosted
+                    image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/9/9e/Nano_Boost_Icon.png/revision/latest?cb=20170918221647
       - hero:
           name: Bastion
           health: 8
@@ -51,43 +51,43 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/272?cb=20220409014728
         decks:
           - abilities:
-            - name: Rotary Canon
-              text: |-
-                Default
-                Only usable in Assault stance
-                ⚔5, Range 2
-                or ⚔3, Range 4
-                Double damage against targets size 2+.
-            - name: Light Machine Gun
-              text: |-
-                Default
-                Only usable in Recon stance
-                Range 4, ⚔1.
-            - name: Configuration Assault
-              text: |-
-                Enter assault stance
-
-                While in Assault stance:
-                  At the end of your turn, you may exit assault stance.
-                  If interrupted, exit assault stance.
-                  You are slowed.
-                  +1 armor
-                  You have facing, and attacks from behind you deal double damage to you.
-                  You may use Rotary Canon, and cannot use other abilities.
-              tokens:
-                - name: Bastion Stance
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/350?cb=20220409014728
-                  back_image_url: https://pm1.narvii.com/6131/4b01877db14d895dac021ae4c575bcde2acb62e4_128.jpg
-            - name: A-36 Tactical Grenade
-              text: |-
-                Range 4, ⚔3
-                Then ⚔1 to all others in burst 1 of the target space
-            - name: Configuration Artillery
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  Mark 3 spaces. 
-                  At the beginning of your next turn, for each marked space, deal ⚔10 to everyone inside, and ⚔2 to everyone else in burst 1.
+              - name: Rotary Canon
+                text: |-
+                  Default
+                  Only usable in Assault stance
+                  ⚔5, Range 2
+                  or ⚔3, Range 4
+                  Double damage against targets size 2+.
+              - name: Light Machine Gun
+                text: |-
+                  Default
+                  Only usable in Recon stance
+                  Range 4, ⚔1.
+              - name: Configuration Assault
+                text: |-
+                  Enter assault stance
+                  
+                  While in Assault stance:
+                    At the end of your turn, you may exit assault stance.
+                    If interrupted, exit assault stance.
+                    You are slowed.
+                    +1 armor
+                    You have facing, and attacks from behind you deal double damage to you.
+                    You may use Rotary Canon, and cannot use other abilities.
+                tokens:
+                  - name: Bastion Stance
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/350?cb=20220409014728
+                    back_image_url: https://pm1.narvii.com/6131/4b01877db14d895dac021ae4c575bcde2acb62e4_128.jpg
+              - name: A-36 Tactical Grenade
+                text: |-
+                  Range 4, ⚔3
+                  Then ⚔1 to all others in burst 1 of the target space
+              - name: Configuration Artillery
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    Mark 3 spaces. 
+                    At the beginning of your next turn, for each marked space, deal ⚔10 to everyone inside, and ⚔2 to everyone else in burst 1.
       - hero:
           name: Cassidy
           health: 8
@@ -95,38 +95,38 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/2e/OW2_McCree.png/revision/latest/scale-to-width-down/1000?cb=20210623082527
         decks:
           - abilities:
-            - name: Peacekeeper
-              text: |-
-                You start with ammo-loaded.
-                
-                Default
-                If you have ammo-loaded: 
-                  Range 4, ⚔3, +1 crit
-                  or Range 1, ⚔5. Switch to ammo-empty.
-              tokens:
-                - name: Ammo Loaded
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-mccree1.png/revision/latest/scale-to-width-down/100?cb=20181119023403
-                  back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
+              - name: Peacekeeper
+                text: |-
+                  You start with ammo-loaded.
+                  
+                  Default
+                  If you have ammo-loaded: 
+                    Range 4, ⚔3, +1 crit
+                    or Range 1, ⚔5. Switch to ammo-empty.
+                tokens:
+                  - name: Ammo Loaded
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-mccree1.png/revision/latest/scale-to-width-down/100?cb=20181119023403
+                    back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
 
-            - name: Reload
-              text: |-
-                Full action
-                Switch to ammo-loaded.
-            - name: Combat Roll
-              text: |-
-                1/Battle
-                Free action
-                Move 1 space and switch to ammo-loaded.
-            - name: Magnetic Grenade
-              text: |-
-                1/Battle
-                Range 5, ⚔2, ⚔2 to all in burst 1 of target.
-            - name: Deadeye
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  At the beginning of your next turn,
-                  deal ⚔8 undodgeable to each enemy in line of sight
+              - name: Reload
+                text: |-
+                  Full action
+                  Switch to ammo-loaded.
+              - name: Combat Roll
+                text: |-
+                  1/Battle
+                  Free action
+                  Move 1 space and switch to ammo-loaded.
+              - name: Magnetic Grenade
+                text: |-
+                  1/Battle
+                  Range 5, ⚔2, ⚔2 to all in burst 1 of target.
+              - name: Deadeye
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    At the beginning of your next turn,
+                    deal ⚔8 undodgeable to each enemy in line of sight
       - hero:
           name: D.Va
           health: 12
@@ -135,65 +135,65 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
         decks:
           - abilities:
-            - name: Huge head
-              text: |-
-                Passive
-                You have facing
-                Attacks made from in front of you have +1 crit
-            - name: Pilot D.Va
-              text: |-
-                Character
-                Health 6
-                Speed 3
-                
-                Light Gun: Default, Range 3, ⚔2, gain a Mech charge.
-                Call Mech: Spend 2 Mech charges and sacrifice this to summon D.Va
-              tokens:
-                - name: Pilot D.va
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/09/Ability-dva5.png/revision/latest/scale-to-width-down/100?cb=20181119021945
-                - name: Mech Charge
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f0/Ability-dva6.png/revision/latest/scale-to-width-down/100?cb=20151116085308
-            - name: Eject
-              text: |-
-                Passive
-                When you die, summon Pilot D.Va
-            - name: Fusion Cannons
-              text: |-
-                Default
-                Range 2, ⚔2
-                Can't be used on the same turn as your standard move
-            - name: Defense Matrix
-              text: |-
-                1/Battle
-                Reaction Block +2
-                Create a size 2 Defense Matrix in range 1 that lasts until the beginning of your next turn.
-                Enemy attacks that draw range through the defense matrix are cancelled without effect.
-              tokens:
-                - name: Defense Matrix
-                  image_url: https://static.wikia.nocookie.net/overwatch/images/9/9c/IconDefenseMatrix.png/revision/latest?cb=20151106233820
-                  size: 2
-            - name: Boosters
-              text: |-
-                CD 2
-                Move action
-                Fly up to 6 spaces, ignoring enemies.
-                Each enemy you move through takes ⚔1, and 1 knockback to the side.
-            - name: Micro Missiles
-              text: |-
-                1/Battle
-                Free action
-                ⛨ 1/2 distance, ⚔3
-            - name: Self-Destruct
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  Sacrifice D.Va (triggering the Eject passive)
-                  Pilot D.Va may move up to 3.
-                  At the beginning of your next turn, Deal ⚔7 to all enemies in burst 3 of the space you died in.
-              tokens:
-                - name: Self-Destruct
-                  image_url: https://static.icy-veins.com/images/heroes/icons/large/storm_ui_icon_dva_selfdestruct.jpg
-                  size: 1
+              - name: Huge head
+                text: |-
+                  Passive
+                  You have facing
+                  Attacks made from in front of you have +1 crit
+              - name: Pilot D.Va
+                text: |-
+                  Character
+                  Health 6
+                  Speed 3
+                  
+                  Light Gun: Default, Range 3, ⚔2, gain a Mech charge.
+                  Call Mech: Spend 2 Mech charges and sacrifice this to summon D.Va
+                tokens:
+                  - name: Pilot D.va
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/09/Ability-dva5.png/revision/latest/scale-to-width-down/100?cb=20181119021945
+                  - name: Mech Charge
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f0/Ability-dva6.png/revision/latest/scale-to-width-down/100?cb=20151116085308
+              - name: Eject
+                text: |-
+                  Passive
+                  When you die, summon Pilot D.Va
+              - name: Fusion Cannons
+                text: |-
+                  Default
+                  Range 2, ⚔2
+                  Can't be used on the same turn as your standard move
+              - name: Defense Matrix
+                text: |-
+                  1/Battle
+                  Reaction Block +2
+                  Create a size 2 Defense Matrix in range 1 that lasts until the beginning of your next turn.
+                  Enemy attacks that draw range through the defense matrix are cancelled without effect.
+                tokens:
+                  - name: Defense Matrix
+                    image_url: https://static.wikia.nocookie.net/overwatch/images/9/9c/IconDefenseMatrix.png/revision/latest?cb=20151106233820
+                    size: 2
+              - name: Boosters
+                text: |-
+                  CD 2
+                  Move action
+                  Fly up to 6 spaces, ignoring enemies.
+                  Each enemy you move through takes ⚔1, and 1 knockback to the side.
+              - name: Micro Missiles
+                text: |-
+                  1/Battle
+                  Free action
+                  ⛨ 1/2 distance, ⚔3
+              - name: Self-Destruct
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    Sacrifice D.Va (triggering the Eject passive)
+                    Pilot D.Va may move up to 3.
+                    At the beginning of your next turn, Deal ⚔7 to all enemies in burst 3 of the space you died in.
+                tokens:
+                  - name: Self-Destruct
+                    image_url: https://static.icy-veins.com/images/heroes/icons/large/storm_ui_icon_dva_selfdestruct.jpg
+                    size: 1
       - hero:
           name: Genji
           health: 6
@@ -201,38 +201,38 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Genji-ow2-portrait.png/revision/latest/scale-to-width-down/149?cb=20191104043734
         decks:
           - abilities:
-            - name: Cyber Agility
-              text: |-
-                Passive
-                Attacks made on you within range 2 have Dodge⛨ +2
-                You ignore difficult terrain
-            - name: Shuriken
-              text: |-
-                Default
-                ⛨ 1/2 distance, ⚔3
-                or range 1, ⚔4
-            - name: Deflect
-              text: |-
-                1/Battle
-                Reaction Block +2
-                You have facing. Attacks targeting you from the front with max range>1 are reflected, choosing a new target with you as the attack origin.
-            - name: Swift Strike
-              text: |-
-                1/Battle
-                Free action
-                Move 4 spaces in a straight line, ignoring enemies.
-                ⚔2 to each enemy you move through.
-                When an enemy dies, refresh this ability.
-            - name: Dragonblade
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  For the rest of the battle, you have +1 speed, and replace your default attacks with:
-                    default
-                    range 1, ⚔5
-#                  You may use Swift Strike 3 times this turn.
-#                  You may use Shuriken 3 times this turn.
-#                  You may use Deflect 3 times this turn.
+              - name: Cyber Agility
+                text: |-
+                  Passive
+                  Attacks made on you within range 2 have Dodge⛨ +2
+                  You ignore difficult terrain
+              - name: Shuriken
+                text: |-
+                  Default
+                  ⛨ 1/2 distance, ⚔3
+                  or range 1, ⚔4
+              - name: Deflect
+                text: |-
+                  1/Battle
+                  Reaction Block +2
+                  You have facing. Attacks targeting you from the front with max range>1 are reflected, choosing a new target with you as the attack origin.
+              - name: Swift Strike
+                text: |-
+                  1/Battle
+                  Free action
+                  Move 4 spaces in a straight line, ignoring enemies.
+                  ⚔2 to each enemy you move through.
+                  When an enemy dies, refresh this ability.
+              - name: Dragonblade
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    For the rest of the battle, you have +1 speed, and replace your default attacks with:
+                      default
+                      range 1, ⚔5
+      #                  You may use Swift Strike 3 times this turn.
+      #                  You may use Shuriken 3 times this turn.
+      #                  You may use Deflect 3 times this turn.
       - hero:
           name: Hanzo
           health: 8
@@ -240,50 +240,50 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/66/OW2_Hanzo.png/revision/latest?cb=20221029021242
         decks:
           - abilities:
-            - name: Wall Climb
-              text: |-  
-                Passive
-                You ignore difficult terrain
-            - name: Storm Bow
-              text: |-
-                Default
-                Full action
-                Move up to 1
-                ⛨ 1/3 distance, ⚔5, +1crit
-            - name: Sonic Arrow
-              text: |-
-                1/Battle
-                Free action
-                The next time you make a ranged attack
-                  On hit, attach a sonic arrow to the target.
-                  On miss, place a sonic arrow at the end of the attack's range.
-                
-                Enemies within burst 2 of a sonic arrow cannot benefit from invisibility or soft cover, and receive +1crit
-              tokens:
-                - name: Sonic Arrow
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/76/Ability-hanzo2.png/revision/latest/scale-to-width-down/100?cb=20221128012521
-            - name: Storm Arrows
-              text: |-
-                1/Battle
-                Free action
-                Until the end of your next turn, you can make two default attacks as a single standard action, but they do ⚔3.
-            - name: Lunge
-              text: |-
-                1/Battle
-                Free action
-                Fly 2 spaces in a straight line, ignoring enemies.
-            - name: Dragonstrike
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  Draw a straight beam 2 spaces wide, from you to the edge of the map in a direction of your choice.
-                  At the start of your next turn, the beam becomes active until the start of your turn after.
-                  While the beam is active, enemies who start their turn in the beam or move into the beam take ⚔7. They can't be damaged this way more than once.
-              tokens:
-                - name: Dragonstrike
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/44/Ability-hanzo4.png/revision/latest/scale-to-width-down/100?cb=20141111201819
-                  back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
-                  size: 2
+              - name: Wall Climb
+                text: |-
+                  Passive
+                  You ignore difficult terrain
+              - name: Storm Bow
+                text: |-
+                  Default
+                  Full action
+                  Move up to 1
+                  ⛨ 1/3 distance, ⚔5, +1crit
+              - name: Sonic Arrow
+                text: |-
+                  1/Battle
+                  Free action
+                  The next time you make a ranged attack
+                    On hit, attach a sonic arrow to the target.
+                    On miss, place a sonic arrow at the end of the attack's range.
+                  
+                  Enemies within burst 2 of a sonic arrow cannot benefit from invisibility or soft cover, and receive +1crit
+                tokens:
+                  - name: Sonic Arrow
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/76/Ability-hanzo2.png/revision/latest/scale-to-width-down/100?cb=20221128012521
+              - name: Storm Arrows
+                text: |-
+                  1/Battle
+                  Free action
+                  Until the end of your next turn, you can make two default attacks as a single standard action, but they do ⚔3.
+              - name: Lunge
+                text: |-
+                  1/Battle
+                  Free action
+                  Fly 2 spaces in a straight line, ignoring enemies.
+              - name: Dragonstrike
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    Draw a straight beam 2 spaces wide, from you to the edge of the map in a direction of your choice.
+                    At the start of your next turn, the beam becomes active until the start of your turn after.
+                    While the beam is active, enemies who start their turn in the beam or move into the beam take ⚔7. They can't be damaged this way more than once.
+                tokens:
+                  - name: Dragonstrike
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/44/Ability-hanzo4.png/revision/latest/scale-to-width-down/100?cb=20141111201819
+                    back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
+                    size: 2
       - hero:
           name: Junkrat
           health: 8
@@ -291,53 +291,53 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/99/Junkrat-Portrait.png/revision/latest/scale-to-width-down/286?cb=20160620014456
         decks:
           - abilities:
-            - name: Used to It
-              text: |-
-                Passive
-                You are immune to damage from your own attacks. When you avoid damage this way, you may move 1 space.
-            - name: Total Mayhem
-              text: |-
-                When you die, place a size 2 Payback field in range 0.
-                At the beginning of your next turn, sacrifice the payback field and deal ⚔3 to all enemies in inside.
-              tokens:
-                - name: Total Mayhem
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/18/Ability-Junkrat4.png/revision/latest/scale-to-width-down/100?cb=20150924023347
-                  size: 1
-            - name: Frag Launcher
-              text: |-
-                Default
-                ⛨1 + 1/2 distance, ⚔4, and ⚔1 to others in burst 1 of the hit target.
-            - name: Concussion Mine
-              text: |-
-                1/Battle
-                Place a Concussion Mine in an empty space within range 2.
-                At the start of your turn, or when anyone becomes adjacent to the mine's space, you may sacrifice the mine for ⛨1, ⚔4 and push 2 in any direction.
-              tokens:
-                - name: Concussion Mine
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/87/Ability-Junkrat2.png/revision/latest/scale-to-width-down/100?cb=20150924023319
-                  size: 1
-            - name: Steel Trap
-              text: |-
-                1/Battle
-                Free action
-                Place a Steel Trap in range 2, with size 1, and 3hp. 
-                When an enemy enters the trap's space, they end their movement get rooted until the end of their next turn.
-              tokens:
-                - name: Steel Trap
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/9c/Ability-Junkrat3.png/revision/latest/scale-to-width-down/100?cb=20150924023330
-                  size: 1
-            - name: RIP-Tire
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  You are stunned.
-                  Summon a RIP-Tire with 4 health and 7 speed.
-                  At the beginning of your next turn, sacrifice the RIP-Tire.
-                  When RIP-Tire dies, it deals ⚔8 in burst 1.
-              tokens:
-                - name: RIP-Tire
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/32/Ability-Junkrat5.png/revision/latest/scale-to-width-down/100?cb=20150924023400
-                  size: 1
+              - name: Used to It
+                text: |-
+                  Passive
+                  You are immune to damage from your own attacks. When you avoid damage this way, you may move 1 space.
+              - name: Total Mayhem
+                text: |-
+                  When you die, place a size 2 Payback field in range 0.
+                  At the beginning of your next turn, sacrifice the payback field and deal ⚔3 to all enemies in inside.
+                tokens:
+                  - name: Total Mayhem
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/18/Ability-Junkrat4.png/revision/latest/scale-to-width-down/100?cb=20150924023347
+                    size: 1
+              - name: Frag Launcher
+                text: |-
+                  Default
+                  ⛨1 + 1/2 distance, ⚔4, and ⚔1 to others in burst 1 of the hit target.
+              - name: Concussion Mine
+                text: |-
+                  1/Battle
+                  Place a Concussion Mine in an empty space within range 2.
+                  At the start of your turn, or when anyone becomes adjacent to the mine's space, you may sacrifice the mine for ⛨1, ⚔4 and push 2 in any direction.
+                tokens:
+                  - name: Concussion Mine
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/87/Ability-Junkrat2.png/revision/latest/scale-to-width-down/100?cb=20150924023319
+                    size: 1
+              - name: Steel Trap
+                text: |-
+                  1/Battle
+                  Free action
+                  Place a Steel Trap in range 2, with size 1, and 3hp. 
+                  When an enemy enters the trap's space, they end their movement get rooted until the end of their next turn.
+                tokens:
+                  - name: Steel Trap
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/9c/Ability-Junkrat3.png/revision/latest/scale-to-width-down/100?cb=20150924023330
+                    size: 1
+              - name: RIP-Tire
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    You are stunned.
+                    Summon a RIP-Tire with 4 health and 7 speed.
+                    At the beginning of your next turn, sacrifice the RIP-Tire.
+                    When RIP-Tire dies, it deals ⚔8 in burst 1.
+                tokens:
+                  - name: RIP-Tire
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/32/Ability-Junkrat5.png/revision/latest/scale-to-width-down/100?cb=20150924023400
+                    size: 1
       - hero:
           name: Lucio
           health: 8
@@ -345,34 +345,34 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c1/Lucio-ow2-portrait.png/revision/latest/scale-to-width-down/148?cb=20191104073705
         decks:
           - abilities:
-            - name: Crossfade
-              text: |-
-                Passive
-                At the start of your turn, choose one:
-                  You and allies in burst 1 ✚2.
-                  You and allies in burst 1 can move 1.
-            - name: Wall Ride
-              text: |-
-                Passive
-                Once per turn when you move next to a wall, you may move one space for free.
-            - name: Sonic Amplifier
-              text: |-
-                Default
-                ⛨1/2 distance, ⚔2.
-            - name: Soundwave
-              text: |-
-                Default
-                Range 1, ⚔2, kb 2.
-            - name: Amp It Up
-              text: |-
-                Free action, 1/battle
-                Repeat your last Crossfade effect, twice.
-            - name: Sound Barrier
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  You and allies in burst 3 gain 6 overshield.
-                  At the start of your next turn, anyone who gained overshield this way loses that much overshield.
+              - name: Crossfade
+                text: |-
+                  Passive
+                  At the start of your turn, choose one:
+                    You and allies in burst 1 ✚2.
+                    You and allies in burst 1 can move 1.
+              - name: Wall Ride
+                text: |-
+                  Passive
+                  Once per turn when you move next to a wall, you may move one space for free.
+              - name: Sonic Amplifier
+                text: |-
+                  Default
+                  ⛨1/2 distance, ⚔2.
+              - name: Soundwave
+                text: |-
+                  Default
+                  Range 1, ⚔2, kb 2.
+              - name: Amp It Up
+                text: |-
+                  Free action, 1/battle
+                  Repeat your last Crossfade effect, twice.
+              - name: Sound Barrier
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    You and allies in burst 3 gain 6 overshield.
+                    At the start of your next turn, anyone who gained overshield this way loses that much overshield.
       - hero:
           name: Mei
           health: 10
@@ -380,44 +380,44 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/da/Mei-ow2-portrait.png/revision/latest/scale-to-width-down/165?cb=20191104081317
         decks:
           - abilities:
-            - name: Endothermic Blaster
-              text: |-
-                Default
-                All in line 2, ⚔2, target is slowed
-            - name: Icicle
-              text: |-
-                Default
-                ⛨1 + 1/2 distance, ⚔3
-            - name: Cryo-Freeze
-              text: |-
-                1/Battle
-                Reaction Block +2
-                ✚4
-                Remove any unwanted conditions.
-                Until the beginning of your next turn:
-                  You are immune to damage, involuntary movement, and unwanted conditions.
-                  You block line of sight.
-            - name: Ice Wall
-              text: |-
-                1/Battle
-                Reaction Block +2
-                Create a 3x1 Ice Wall, at least partly within range 3, that lasts until the beginning of your next turn.
-                The Ice Wall acts like a wall, and has 6 health.
-              tokens:
-                - name: Ice Wall Segment
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/ea/Ability-mei3.png/revision/latest/scale-to-width-down/100?cb=20221128011555
-                  size: 1
-            - name: Blizzard
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  Place a Size 3 Blizzard field in range 3.
-                  Enemies in the Blizzard are slowed and take ⚔1.
-                  At the beginning of your next turn, enemies in the blizzard are stunned and take ⚔1.
-              tokens:
-                - name: Blizzard
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f0/Ability-mei4.png/revision/latest/scale-to-width-down/100?cb=20151107172516
-                  size: 3
+              - name: Endothermic Blaster
+                text: |-
+                  Default
+                  All in line 2, ⚔2, target is slowed
+              - name: Icicle
+                text: |-
+                  Default
+                  ⛨1 + 1/2 distance, ⚔3
+              - name: Cryo-Freeze
+                text: |-
+                  1/Battle
+                  Reaction Block +2
+                  ✚4
+                  Remove any unwanted conditions.
+                  Until the beginning of your next turn:
+                    You are immune to damage, involuntary movement, and unwanted conditions.
+                    You block line of sight.
+              - name: Ice Wall
+                text: |-
+                  1/Battle
+                  Reaction Block +2
+                  Create a 3x1 Ice Wall, at least partly within range 3, that lasts until the beginning of your next turn.
+                  The Ice Wall acts like a wall, and has 6 health.
+                tokens:
+                  - name: Ice Wall Segment
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/ea/Ability-mei3.png/revision/latest/scale-to-width-down/100?cb=20221128011555
+                    size: 1
+              - name: Blizzard
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    Place a Size 3 Blizzard field in range 3.
+                    Enemies in the Blizzard are slowed and take ⚔1.
+                    At the beginning of your next turn, enemies in the blizzard are stunned and take ⚔1.
+                tokens:
+                  - name: Blizzard
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f0/Ability-mei4.png/revision/latest/scale-to-width-down/100?cb=20151107172516
+                    size: 3
       - hero:
           name: Mercy
           health: 8
@@ -425,45 +425,45 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0f/Mercy-ow2-portrait.png/revision/latest/scale-to-width-down/149?cb=20191104213936
         decks:
           - abilities:
-            - name: Regeneration
-              text: |-
-                Passive.
-                At the start of your turn, if you did not take damage since your last turn, ✚3.
-            - name: Souls
-              text: |-
-                Passive.
-                Allies leave corpse makers when they die.
-            - name: Caduceus Staff
-              text: |-
-                Default
-                Target ally in range 3
-                Choose one:
-                  - Target gets ✚4.
-                  - Until end of target's next turn, they deal +.5x damage.
-              tokens:
-                - name: Caduceus Staff
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-mercy1.png/revision/latest/scale-to-width-down/100?cb=20181119023602
+              - name: Regeneration
+                text: |-
+                  Passive.
+                  At the start of your turn, if you did not take damage since your last turn, ✚3.
+              - name: Souls
+                text: |-
+                  Passive.
+                  Allies leave corpse makers when they die.
+              - name: Caduceus Staff
+                text: |-
+                  Default
+                  Target ally in range 3
+                  Choose one:
+                    - Target gets ✚4.
+                    - Until end of target's next turn, they deal +.5x damage.
+                tokens:
+                  - name: Caduceus Staff
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-mercy1.png/revision/latest/scale-to-width-down/100?cb=20181119023602
 
-            - name: Caduceus Blaster
-              text: |-
-                Default
-                ⛨1/3 distance, ⚔2.
-            - name: Guardian Angel
-              text: |-
-                Fly to any space adjacent to an ally or friendly corpse, as directly as possible.
-            - name: Resurrect
-              text: |-
-                1/battle
-                Channel:
-                  At the start of your next turn, you may resurrect target corpse in range 1.
-            - name: Valkyrie
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  At the beginning of each your turns, ✚2.
-                  Your Caduceus Staff has range 5, burst 2, and only affects allies.
-                  You can use Guardian Angel as a move action.
-                  You are always flying.
+              - name: Caduceus Blaster
+                text: |-
+                  Default
+                  ⛨1/3 distance, ⚔2.
+              - name: Guardian Angel
+                text: |-
+                  Fly to any space adjacent to an ally or friendly corpse, as directly as possible.
+              - name: Resurrect
+                text: |-
+                  1/battle
+                  Channel:
+                    At the start of your next turn, you may resurrect target corpse in range 1.
+              - name: Valkyrie
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    At the beginning of each your turns, ✚2.
+                    Your Caduceus Staff has range 5, burst 2, and only affects allies.
+                    You can use Guardian Angel as a move action.
+                    You are always flying.
       - hero:
           name: Moira
           health: 8
@@ -471,46 +471,46 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b5/Moira.png/revision/latest/scale-to-width-down/162?cb=20171104021652
         decks:
           - abilities:
-            - name: Damage Biotic Grasp
-              text: |-
-                Default
-                Range 4, ⚔2.
-                ✚1.
-            - name: Healing Biotic Grasp
-              text: |-
-                Piercing cone 3.
-                Allies get ✚3.
-            - name: Fade
-              text: |-
-                1/battle
-                Reaction⛨3.
-                Teleport up to 4 spaces.
-                You may purge any number of effects from yourself.
-            - name: Summon Biotic Orb
-              text: |-
-                1/battle
-                Choose Damage or Healing.
-                Summon a Biotic Orb in range 1. 
-                Biotic Orb is a size 1 field with facing.
-                Now, and at the beginning of each your turns, it performs:
-                  Healing: Burst 1, ✚2 to all allies
-                  Damage: Burst 1, ⚔2 to all enemies
-                  Then move 2 spaces forwards, reversing direction when blocked by a wall.
-              tokens:
-                - name: Healing Biotic Orb
-                  image_url: https://pbs.twimg.com/profile_images/1332252696942956544/mRhKFbI2_400x400.jpg
-                  size: 1
-                - name: Damage Biotic Orb
-                  image_url: https://pbs.twimg.com/profile_images/1595378173990035456/VyA7l6ri_400x400.jpg
-                  size: 1
-            - name: Coalescence
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                Full action
-                ✚2.
-                Move up to 2.
-                Piercing line, ⚔2 to enemies, ✚4 to allies.
+              - name: Damage Biotic Grasp
+                text: |-
+                  Default
+                  Range 4, ⚔2.
+                  ✚1.
+              - name: Healing Biotic Grasp
+                text: |-
+                  Piercing cone 3.
+                  Allies get ✚3.
+              - name: Fade
+                text: |-
+                  1/battle
+                  Reaction⛨3.
+                  Teleport up to 4 spaces.
+                  You may purge any number of effects from yourself.
+              - name: Summon Biotic Orb
+                text: |-
+                  1/battle
+                  Choose Damage or Healing.
+                  Summon a Biotic Orb in range 1. 
+                  Biotic Orb is a size 1 field with facing.
+                  Now, and at the beginning of each your turns, it performs:
+                    Healing: Burst 1, ✚2 to all allies
+                    Damage: Burst 1, ⚔2 to all enemies
+                    Then move 2 spaces forwards, reversing direction when blocked by a wall.
+                tokens:
+                  - name: Healing Biotic Orb
+                    image_url: https://pbs.twimg.com/profile_images/1332252696942956544/mRhKFbI2_400x400.jpg
+                    size: 1
+                  - name: Damage Biotic Orb
+                    image_url: https://pbs.twimg.com/profile_images/1595378173990035456/VyA7l6ri_400x400.jpg
+                    size: 1
+              - name: Coalescence
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                  Full action
+                  ✚2.
+                  Move up to 2.
+                  Piercing line, ⚔2 to enemies, ✚4 to allies.
       - hero:
           name: Orisa
           health: 12
@@ -519,65 +519,65 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d4/Orisa_Skin_Overwatch_2.png/revision/latest?cb=20221116224621
         decks:
           - abilities:
-            - name: Fusion Driver
-              text: |-
-                Default
-                Range 3, ⚔2.
-            - name: Energy Javelin
-              text: |-
-                CD 2
-                ⛨1/2 distance, ⚔2. 
-                ⚔2 more if target is adjacent to a wall. 
-                Interrupt
-            - name: Javelin Spin
-              text: |-
-                1/battle
-                Reaction Block +2
-                You have facing. Turn and move 2 spaces forwards, pushing.
-                Until the beginning of your next turn, you are immune to damage from your front.
-#            - name: Protective Barrier
-#              text: |-
-#                1/battle
-#                Reaction ⛨2
-#                Create a 2x1 barrier in range 2.
-#                The barrier has 6 health.
-#              tokens:
-#                - name: Barrier
-#                  image_url: todo
-#                  size: 1
-#                - name: Barrier
-#                  image_url: todo
-#                  size: 1
-#            - name: Halt!
-#              text: |-
-#                CD 2
-#                Empty space in range 3. Pull a unit in range 1 of the space into the empty space. They are slowed until the beginning of your next turn.
-            - name: Fortify
-              text: |-
-                1/battle
-                Reaction Block +2
-                Until the beginning of your next turn
-                  you take 0.5x damage from all sources
-                  You cannot be moved or prevented from moving or taken actions by enemy sources.
-#            - name: Supercharger
-#              text: |-
-#                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-#                Spend 5 charges:
-#              tokens:
-#                - name: Supercharger
-#                  image_url: todo
-#                  size: 1
-            - name: Terra Surge
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                Full action
-                Pull all enemies in range 3 are 1 space towards you.
-                Until the beginning of your next turn, enemies in range 3 are slowed.
-                At the beginning of your next turn, 
-                  deal ⚔9 to all enemies in range 1,
-                  then deal ⚔5 to all other enemies in range 2,
-                  deal deal ⚔2 to all other enemies in range 3.
+              - name: Fusion Driver
+                text: |-
+                  Default
+                  Range 3, ⚔2.
+              - name: Energy Javelin
+                text: |-
+                  CD 2
+                  ⛨1/2 distance, ⚔2. 
+                  ⚔2 more if target is adjacent to a wall. 
+                  Interrupt
+              - name: Javelin Spin
+                text: |-
+                  1/battle
+                  Reaction Block +2
+                  You have facing. Turn and move 2 spaces forwards, pushing.
+                  Until the beginning of your next turn, you are immune to damage from your front.
+              #            - name: Protective Barrier
+              #              text: |-
+              #                1/battle
+              #                Reaction ⛨2
+              #                Create a 2x1 barrier in range 2.
+              #                The barrier has 6 health.
+              #              tokens:
+              #                - name: Barrier
+              #                  image_url: todo
+              #                  size: 1
+              #                - name: Barrier
+              #                  image_url: todo
+              #                  size: 1
+              #            - name: Halt!
+              #              text: |-
+              #                CD 2
+              #                Empty space in range 3. Pull a unit in range 1 of the space into the empty space. They are slowed until the beginning of your next turn.
+              - name: Fortify
+                text: |-
+                  1/battle
+                  Reaction Block +2
+                  Until the beginning of your next turn
+                    you take 0.5x damage from all sources
+                    You cannot be moved or prevented from moving or taken actions by enemy sources.
+              #            - name: Supercharger
+              #              text: |-
+              #                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+              #                Spend 5 charges:
+              #              tokens:
+              #                - name: Supercharger
+              #                  image_url: todo
+              #                  size: 1
+              - name: Terra Surge
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                  Full action
+                  Pull all enemies in range 3 are 1 space towards you.
+                  Until the beginning of your next turn, enemies in range 3 are slowed.
+                  At the beginning of your next turn, 
+                    deal ⚔9 to all enemies in range 1,
+                    then deal ⚔5 to all other enemies in range 2,
+                    deal deal ⚔2 to all other enemies in range 3.
       - hero:
           name: Pharah
           health: 8
@@ -585,41 +585,41 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b3/OW2_Pharah.png/revision/latest/scale-to-width-down/272?cb=20210623082353
         decks:
           - abilities:
-            - name: Hover Jets
-              text: |-
-                Passive
-                All your movement is flying.
-            - name: Deplete Hover Jets
-              text: |-
-                Move action
-                CD 1
-                Move up to 2. Gain "high altitude" until the start of your next turn. (when drawing range to or from you, ignores soft cover and is 2 spaces further)
-              tokens:
-                - name: High Altitude
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/14/Ability-parah2.png/revision/latest/scale-to-width-down/100?cb=20181119024127
-            - name: Rocket Launcher
-              text: |-
-                Default
-                ⛨1/3 distance, ⚔3, and ⚔1 to all others in burst 1
-            - name: Jump Jet
-              text: |-
-                1/battle
-                Free action
-                Move up to 2. Gain "high altitude" until the start of your next turn. (when drawing range to or from you, ignores soft cover and is 2 spaces further)
-              tokens:
-                - name: High Altitude
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/14/Ability-parah2.png/revision/latest/scale-to-width-down/100?cb=20181119024127
-            - name: Concussive Blast
-              text: |-
-                1/battle
-                Range 4, push 2 spaces in any direction. Push each other target in burst 1 1 space away from the area.
-            - name: Barrage
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                Full action
-                ⛨1/2 distance, ⚔8, ⚔3 to all others in burst 1
-                You're immobilized until your next turn.
+              - name: Hover Jets
+                text: |-
+                  Passive
+                  All your movement is flying.
+              - name: Deplete Hover Jets
+                text: |-
+                  Move action
+                  CD 1
+                  Move up to 2. Gain "high altitude" until the start of your next turn. (when drawing range to or from you, ignores soft cover and is 2 spaces further)
+                tokens:
+                  - name: High Altitude
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/14/Ability-parah2.png/revision/latest/scale-to-width-down/100?cb=20181119024127
+              - name: Rocket Launcher
+                text: |-
+                  Default
+                  ⛨1/3 distance, ⚔3, and ⚔1 to all others in burst 1
+              - name: Jump Jet
+                text: |-
+                  1/battle
+                  Free action
+                  Move up to 2. Gain "high altitude" until the start of your next turn. (when drawing range to or from you, ignores soft cover and is 2 spaces further)
+                tokens:
+                  - name: High Altitude
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/14/Ability-parah2.png/revision/latest/scale-to-width-down/100?cb=20181119024127
+              - name: Concussive Blast
+                text: |-
+                  1/battle
+                  Range 4, push 2 spaces in any direction. Push each other target in burst 1 1 space away from the area.
+              - name: Barrage
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                  Full action
+                  ⛨1/2 distance, ⚔8, ⚔3 to all others in burst 1
+                  You're immobilized until your next turn.
       - hero:
           name: Reaper
           health: 8
@@ -627,32 +627,32 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8c/OW2_Reaper.png/revision/latest/scale-to-width-down/272?cb=20210623082134
         decks:
           - abilities:
-            - name: The Reaping
-              text: |-
-                Passive
-                When you deal damage, heal half the amount.
-            - name: Hellfire Shotguns
-              text: |-
-                Default
-                Range 1, ⚔4
-                or range 2, ⚔2
-                Deals 2x damage against enemies with size 2+.
-            - name: Wraith Form
-              text: |-
-                1/battle
-                Reaction +2
-                Move 2 spaces. Purge any number of conditions.
-                Until the beginning of your next turn, you are invulnerable to damage and effects you don't want.
-            - name: Shadow Step
-              text: |-
-                1/battle
-                Full action
-                Teleport up to 8 spaces.
-            - name: Death Blossom
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                Burst 1, ⚔7
+              - name: The Reaping
+                text: |-
+                  Passive
+                  When you deal damage, heal half the amount.
+              - name: Hellfire Shotguns
+                text: |-
+                  Default
+                  Range 1, ⚔4
+                  or range 2, ⚔2
+                  Deals 2x damage against enemies with size 2+.
+              - name: Wraith Form
+                text: |-
+                  1/battle
+                  Reaction +2
+                  Move 2 spaces. Purge any number of conditions.
+                  Until the beginning of your next turn, you are invulnerable to damage and effects you don't want.
+              - name: Shadow Step
+                text: |-
+                  1/battle
+                  Full action
+                  Teleport up to 8 spaces.
+              - name: Death Blossom
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                  Burst 1, ⚔7
       - hero:
           name: Reinhardt
           health: 12
@@ -661,45 +661,45 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/3b/Reinhardt-ow2-portrait.png/revision/latest/scale-to-width-down/252?cb=20191104214011
         decks:
           - abilities:
-            - name: Steadfast
-              text: |-
-                Passive.
-                Immune to involuntary movement.
-            - name: Rocket Hammer
-              text: |-
-                Default
-                up to 3 adjacent targets in burst 1, ⚔2
-            - name: Barrier Field
-              text: |-
-                Reaction Block +2
-                This ability has 10 hp.
-                Enter shield stance.
-                In shield stance:
-                  You have facing.
-                  You're slowed and disarmed.
-                  There is a 4 space long line on the edge in front of you, which moves with you.
-                  Opponents' non-piercing attacks through the barrier hit the barrier instead.
-                You can dismiss the barrier at the end of your turn as a free action.
-              tokens:
-                - name: Barrier Field
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/97/Ability-reinhardt2.png/revision/latest/scale-to-width-down/100?cb=20221128013412
-                  size: 0.5
-            - name: Charge
-              text: |-
-                Full Action, 1/battle
-                Move as far as possible in a line.
-                When you contact an enemy, roll attack with ⛨2 + 1/2 distance from your start position. 
-                The first enemy hit this way is pushed with you, interrupted, and take ⚔7.
-                Other enemies in the line are pushed to the side and take ⚔1.
-            - name: Fire Strike
-              text:
-                CD 2
-                All in line, ⛨1/3 distance, ⚔3
-            - name: Earthshatter
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  range 2 burst 1, piercing, ⚔1 and stun
+              - name: Steadfast
+                text: |-
+                  Passive.
+                  Immune to involuntary movement.
+              - name: Rocket Hammer
+                text: |-
+                  Default
+                  up to 3 adjacent targets in burst 1, ⚔2
+              - name: Barrier Field
+                text: |-
+                  Reaction Block +2
+                  This ability has 10 hp.
+                  Enter shield stance.
+                  In shield stance:
+                    You have facing.
+                    You're slowed and disarmed.
+                    There is a 4 space long line on the edge in front of you, which moves with you.
+                    Opponents' non-piercing attacks through the barrier hit the barrier instead.
+                  You can dismiss the barrier at the end of your turn as a free action.
+                tokens:
+                  - name: Barrier Field
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/97/Ability-reinhardt2.png/revision/latest/scale-to-width-down/100?cb=20221128013412
+                    size: 0.5
+              - name: Charge
+                text: |-
+                  Full Action, 1/battle
+                  Move as far as possible in a line.
+                  When you contact an enemy, roll attack with ⛨2 + 1/2 distance from your start position. 
+                  The first enemy hit this way is pushed with you, interrupted, and take ⚔7.
+                  Other enemies in the line are pushed to the side and take ⚔1.
+              - name: Fire Strike
+                text:
+                  CD 2
+                  All in line, ⛨1/3 distance, ⚔3
+              - name: Earthshatter
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    range 2 burst 1, piercing, ⚔1 and stun
       - hero:
           name: Roadhog
           health: 12
@@ -708,31 +708,31 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/ce/Roadhog-Portrait.png/revision/latest/scale-to-width-down/345?cb=20160620014755
         decks:
           - abilities:
-            - name: Scrap Gun
-              text: |-
-                Default
-                Range 1, ⚔3, ⛨1
-                or Range 3, ⚔3, ⛨3
-                2x damage to size 2+
-            - name: Take a Breather
-              text: |-
-                1/battle
-                Channel:
-                  Until the start of your next turn, you take 0.5x damage.
-                  At the start of your next turn, ✚6.
-            - name: Chain Hook
-              text: |-
-                1/battle, Move action, range 5, ⛨1/2 distance
-                ⚔1, interrupt
-                Pull target as close as possible.
-            - name: Whole Hog
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  Until end of battle, you can only use default actions, and scrap gun changes to:
-                  Range 1, 6 damage, kb 5
-                  or Range 2, ⚔4, kb 3
-                  or Range 3, ⚔2, kb 1
+              - name: Scrap Gun
+                text: |-
+                  Default
+                  Range 1, ⚔3, ⛨1
+                  or Range 3, ⚔3, ⛨3
+                  2x damage to size 2+
+              - name: Take a Breather
+                text: |-
+                  1/battle
+                  Channel:
+                    Until the start of your next turn, you take 0.5x damage.
+                    At the start of your next turn, ✚6.
+              - name: Chain Hook
+                text: |-
+                  1/battle, Move action, range 5, ⛨1/2 distance
+                  ⚔1, interrupt
+                  Pull target as close as possible.
+              - name: Whole Hog
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    Until end of battle, you can only use default actions, and scrap gun changes to:
+                    Range 1, 6 damage, kb 5
+                    or Range 2, ⚔4, kb 3
+                    or Range 3, ⚔2, kb 1
       - hero:
           name: Soldier 76
           health: 8
@@ -740,34 +740,34 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Soldier76-portrait.png/revision/latest/scale-to-width-down/224?cb=20160620014955
         decks:
           - abilities:
-            - name: Heavy Pulse Rifle
-              text: |-
-                Default
-                Range 4, ⚔3
-            - name: Sprint
-              text: |-
-                Default
-                Move up to 3.
-            - name: Helix Rockets
-              text: |-
-                1/battle
-                ⛨1/2 distance, ⚔5 and ⚔1 to others in burst 1 of target
-            - name: Biotic Field
-              text: |-
-                1/battle
-                Place a size 2 Biotic Field, overlapping your space.
-                Now, and at the beginning of each your turns, all allies in the field ✚2.
-              tokens:
-                - name: Biotic Field
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/50/Icon-ability.bioticfield.png/revision/latest/scale-to-width-down/100?cb=20150708110158
-                  size: 2
-            - name: Tactical Visor
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  Heavy Pulse Rifle range becomes 6
-                  Your attacks are undodgeable and can't take penalties.
-                  Now and at the start of each your turns, you can make a default attack as a free action.
+              - name: Heavy Pulse Rifle
+                text: |-
+                  Default
+                  Range 4, ⚔3
+              - name: Sprint
+                text: |-
+                  Default
+                  Move up to 3.
+              - name: Helix Rockets
+                text: |-
+                  1/battle
+                  ⛨1/2 distance, ⚔5 and ⚔1 to others in burst 1 of target
+              - name: Biotic Field
+                text: |-
+                  1/battle
+                  Place a size 2 Biotic Field, overlapping your space.
+                  Now, and at the beginning of each your turns, all allies in the field ✚2.
+                tokens:
+                  - name: Biotic Field
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/50/Icon-ability.bioticfield.png/revision/latest/scale-to-width-down/100?cb=20150708110158
+                    size: 2
+              - name: Tactical Visor
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    Heavy Pulse Rifle range becomes 6
+                    Your attacks are undodgeable and can't take penalties.
+                    Now and at the start of each your turns, you can make a default attack as a free action.
       - hero:
           name: Symmetra
           health: 8
@@ -775,64 +775,64 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/18/Symmetra-portrait.png/revision/latest/scale-to-width-down/161?cb=20160620015059
         decks:
           - abilities:
-            - name: Photon Beam
-              text: |-
-                Default
-                Range 2, ⚔2.
-                If this hits the same target last turn, it deals ⚔4 instead.
-                If this hits the same target the last two turns, it deals ⚔6 instead.
-            - name: Photon Orb
-              text: |-
-                Default
-                ⛨1/distance, ⚔2
-                or Next turn you must use Photon Orb, and it has: ⛨1/3 distance, ⚔6.
-              tokens:
-                - name: Photon Orb Charged
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7e/Ability-symmetra1.png/revision/latest/scale-to-width-down/100?cb=20181119051026
-            - name: Sentry Turret
-              text: |-
-                Quick action
-                1/battle
-                Place three size 1 Sentry Turret in line of sight. It has 1hp.
-                At the start of your turn, each sentry turret deals ⚔1 to the nearest enemy in range 3.
-                If two turrets hit the same target, the target is slowed.
-              tokens:
-                - name: Sentry Turret
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
-                  size: 0.5
-                - name: Sentry Turret
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
-                  size: 0.5
-                - name: Sentry Turret
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
-                  size: 0.5
-            - name: Teleporter
-              text: |-
-                1/battle
-                Full action
-                Place a size 1 in an emtpy space in range 1, and another in an empty space in range 6.
-                Teleporters have 8hp.
-                Allied units can freely move between the two teleporter spaces on their turn, even partway through another action, and even if they could not normally move.
-              tokens:
-                - name: Teleporter
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Ability-symmetra4.png/revision/latest/scale-to-width-down/100?cb=20141112192203
-                  size: 1
-                - name: Teleporter
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Ability-symmetra4.png/revision/latest/scale-to-width-down/100?cb=20141112192203
-                  size: 1
-            - name: Photon Barrier
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  Draw a straight line barrier across the entire map.
-                  Enemy attacks through the line hit the barrier instead. The barrier has 16hp
-              tokens:
-                - name: Photon Barrier
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/Photon_Barrier.png/revision/latest/scale-to-width-down/100?cb=20180626211607
-                  size: 1
-                - name: Photon Barrier
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/Photon_Barrier.png/revision/latest/scale-to-width-down/100?cb=20180626211607
-                  size: 1
+              - name: Photon Beam
+                text: |-
+                  Default
+                  Range 2, ⚔2.
+                  If this hits the same target last turn, it deals ⚔4 instead.
+                  If this hits the same target the last two turns, it deals ⚔6 instead.
+              - name: Photon Orb
+                text: |-
+                  Default
+                  ⛨1/distance, ⚔2
+                  or Next turn you must use Photon Orb, and it has: ⛨1/3 distance, ⚔6.
+                tokens:
+                  - name: Photon Orb Charged
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7e/Ability-symmetra1.png/revision/latest/scale-to-width-down/100?cb=20181119051026
+              - name: Sentry Turret
+                text: |-
+                  Quick action
+                  1/battle
+                  Place three size 1 Sentry Turret in line of sight. It has 1hp.
+                  At the start of your turn, each sentry turret deals ⚔1 to the nearest enemy in range 3.
+                  If two turrets hit the same target, the target is slowed.
+                tokens:
+                  - name: Sentry Turret
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
+                    size: 0.5
+                  - name: Sentry Turret
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
+                    size: 0.5
+                  - name: Sentry Turret
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
+                    size: 0.5
+              - name: Teleporter
+                text: |-
+                  1/battle
+                  Full action
+                  Place a size 1 in an emtpy space in range 1, and another in an empty space in range 6.
+                  Teleporters have 8hp.
+                  Allied units can freely move between the two teleporter spaces on their turn, even partway through another action, and even if they could not normally move.
+                tokens:
+                  - name: Teleporter
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Ability-symmetra4.png/revision/latest/scale-to-width-down/100?cb=20141112192203
+                    size: 1
+                  - name: Teleporter
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Ability-symmetra4.png/revision/latest/scale-to-width-down/100?cb=20141112192203
+                    size: 1
+              - name: Photon Barrier
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    Draw a straight line barrier across the entire map.
+                    Enemy attacks through the line hit the barrier instead. The barrier has 16hp
+                tokens:
+                  - name: Photon Barrier
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/Photon_Barrier.png/revision/latest/scale-to-width-down/100?cb=20180626211607
+                    size: 1
+                  - name: Photon Barrier
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/Photon_Barrier.png/revision/latest/scale-to-width-down/100?cb=20180626211607
+                    size: 1
       - hero:
           name: Torbjorn
           health: 10
@@ -841,40 +841,40 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/db/Torbj%C3%B6rn-ow2-portrait.png/revision/latest/scale-to-width-down/272?cb=20210623082654
         decks:
           - abilities:
-            - name: Rivet Gun
-              text: |-
-                Default
-                ⛨1/2 distance, ⚔2
-                or range 1, ⚔3
-                or Turret in range 3, ✚3
-            - name: Deploy Turret
-              text: |-
-                1/battle
-                Place a size 1 turret in an empty space in range 4.
-                When placed, the turret has 4hp.
-                At the beginning of your next turn, the turret gains 6 current and max hp.
-                At the beginning of each your turns, the turret deals ⚔2 to the nearest enemy in its line of sight.
-              tokens:
-                - name: Turret
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a7/Ability-torbjorn3.png/revision/latest/scale-to-width-down/100?cb=20181010190250
-                  size: 1
-            - name: Overload
-              text: |-
-                1/battle
-                Free action
-                Gain 4 overshield 
-                This turn and next turn you have +2 move speed and can make two default attacks
-                At end of your next turn, lose overshield gained with this ability
-            - name: Molten Core
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  Pick three 2x2 areas in range 5
-                  The first time each enemy is in one of the areas, they take ⚔3.
-              tokens:
-                - name: Molten Core
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/ef/Ability-torbjorn5.png/revision/latest/scale-to-width-down/100?cb=20181018043327
-                  size: 2
+              - name: Rivet Gun
+                text: |-
+                  Default
+                  ⛨1/2 distance, ⚔2
+                  or range 1, ⚔3
+                  or Turret in range 3, ✚3
+              - name: Deploy Turret
+                text: |-
+                  1/battle
+                  Place a size 1 turret in an empty space in range 4.
+                  When placed, the turret has 4hp.
+                  At the beginning of your next turn, the turret gains 6 current and max hp.
+                  At the beginning of each your turns, the turret deals ⚔2 to the nearest enemy in its line of sight.
+                tokens:
+                  - name: Turret
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a7/Ability-torbjorn3.png/revision/latest/scale-to-width-down/100?cb=20181010190250
+                    size: 1
+              - name: Overload
+                text: |-
+                  1/battle
+                  Free action
+                  Gain 4 overshield 
+                  This turn and next turn you have +2 move speed and can make two default attacks
+                  At end of your next turn, lose overshield gained with this ability
+              - name: Molten Core
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    Pick three 2x2 areas in range 5
+                    The first time each enemy is in one of the areas, they take ⚔3.
+                tokens:
+                  - name: Molten Core
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/ef/Ability-torbjorn5.png/revision/latest/scale-to-width-down/100?cb=20181018043327
+                    size: 2
       - hero:
           name: Tracer
           health: 6
@@ -882,36 +882,36 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1b/Tracer_ow2_portrait.png/revision/latest/scale-to-width-down/116?cb=20220625025656
         decks:
           - abilities:
-            - name: Pulse Pistols
-              text: |-
-                default
-                range 1, ⚔4.
-            - name: Blink
-              text: |-
-                3/battle
-                Reaction Dodge⛨2
-                Teleport up to 3.
-            - name: Recall
-              text: |-
-                1/battle
-                Reaction Dodge⛨3
-                Reset your health to what it was at the end of your last turn.
-                Teleport as close as possible to where you were at the end of your last turn.
-              tokens:
-                - name: Recall location
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/63/Ability-tracer3.png/revision/latest/scale-to-width-down/100?cb=20141112192409
-                  size: 1
-            - name: Pulse Bomb
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  Pick a space in range 1. If there's a character in the space, attach the pulse bomb to them with ⛨2.
-                  If it doesn't attach to someone, it drops in that space.
-                  At the start of your next turn, destroy the pulse bomb. It deals ⚔9 to anyone in its space and ⚔3 to anyone else in burst 1.
-              tokens:
-                - name: Pulse Bomb
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/af/Ability-tracer4.png/revision/latest/scale-to-width-down/100?cb=20141112192411
-                  size: 1
+              - name: Pulse Pistols
+                text: |-
+                  default
+                  range 1, ⚔4.
+              - name: Blink
+                text: |-
+                  3/battle
+                  Reaction Dodge⛨2
+                  Teleport up to 3.
+              - name: Recall
+                text: |-
+                  1/battle
+                  Reaction Dodge⛨3
+                  Reset your health to what it was at the end of your last turn.
+                  Teleport as close as possible to where you were at the end of your last turn.
+                tokens:
+                  - name: Recall location
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/63/Ability-tracer3.png/revision/latest/scale-to-width-down/100?cb=20141112192409
+                    size: 1
+              - name: Pulse Bomb
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    Pick a space in range 1. If there's a character in the space, attach the pulse bomb to them with ⛨2.
+                    If it doesn't attach to someone, it drops in that space.
+                    At the start of your next turn, destroy the pulse bomb. It deals ⚔9 to anyone in its space and ⚔3 to anyone else in burst 1.
+                tokens:
+                  - name: Pulse Bomb
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/af/Ability-tracer4.png/revision/latest/scale-to-width-down/100?cb=20141112192411
+                    size: 1
       - hero:
           name: Widow
           health: 8
@@ -919,42 +919,42 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ab/OW2_Widowmaker.png/revision/latest/scale-to-width-down/272?cb=20210623082021
         decks:
           - abilities:
-            - name: Widow's Kiss
-              text: |-
-                Default
-                Range 2, ⚔2
-                or until the end of your next turn you are immobilized, and have locked facing
-                Channel: next turn Widow's kiss has unlimited range, ⚔7 and +2 crit.
-              tokens:
-                - name: Widow's Kiss Charged
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bf/Ability-widowmaker1.png/revision/latest/scale-to-width-down/100?cb=20181119054154
-            - name: Venom Mine
-              text: |-
-                1/battle
-                Range 3, place a size 1 Venom Mine.
-                When an enemy enters the mine's space, destroy it and they take poison 1.
-              tokens:
-                - name: Venom Mine
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-widowmaker3.png/revision/latest/scale-to-width-down/100?cb=20141112192613
-                  size: 1
-            - name: Grappling Hook
-              text: |-
-                1/battle
-                Move action, fly to any point in range 5.
-            - name: Infra-Sight
-              text: |-
-                1/battle
-                Free action
-                Enemies cannot be invisible, hide, or benefit from cover.
-                All allies have +1 crit
-              tokens:
-                - name: Infra-Sight
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/94/Ability-widowmaker4.png/revision/latest/scale-to-width-down/100?cb=20141112192615
-              # text: |-
-              #  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-              #    Spend 5 charges:
-              #    Range 6, ⚔6, ⛨2
-              #    If this kills, you can make repeat the attack.
+              - name: Widow's Kiss
+                text: |-
+                  Default
+                  Range 2, ⚔2
+                  or until the end of your next turn you are immobilized, and have locked facing
+                  Channel: next turn Widow's kiss has unlimited range, ⚔7 and +2 crit.
+                tokens:
+                  - name: Widow's Kiss Charged
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bf/Ability-widowmaker1.png/revision/latest/scale-to-width-down/100?cb=20181119054154
+              - name: Venom Mine
+                text: |-
+                  1/battle
+                  Range 3, place a size 1 Venom Mine.
+                  When an enemy enters the mine's space, destroy it and they take poison 1.
+                tokens:
+                  - name: Venom Mine
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-widowmaker3.png/revision/latest/scale-to-width-down/100?cb=20141112192613
+                    size: 1
+              - name: Grappling Hook
+                text: |-
+                  1/battle
+                  Move action, fly to any point in range 5.
+              - name: Infra-Sight
+                text: |-
+                  1/battle
+                  Free action
+                  Enemies cannot be invisible, hide, or benefit from cover.
+                  All allies have +1 crit
+                tokens:
+                  - name: Infra-Sight
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/94/Ability-widowmaker4.png/revision/latest/scale-to-width-down/100?cb=20141112192615
+                # text: |-
+                #  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                #    Spend 5 charges:
+                #    Range 6, ⚔6, ⛨2
+                #    If this kills, you can make repeat the attack.
       - hero:
           name: Winston
           health: 10
@@ -963,35 +963,35 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7c/Winston-ow2-portrait.png/revision/latest/scale-to-width-down/279?cb=20191104221341
         decks:
           - abilities:
-            - name: Tesla Cannon
-              text: |-
-                Default
-                Spaces in Range 1 burst 1, ⚔2,
-                or ⛨1/3 distance, ⚔2
-            - name: Jump Pack
-              text: |-
-                CD 2
-                Move action
-                Fly up to 6, ending on the ground.
-                Burst 1, ⚔1.
-            - name: Barrier Projector
-              text: |-
-                1/battle
-                Reaction Block +2
-                Range 1, Summon a size 3 Barrier. The barrier has 8hp, and blocks enemy non-piercing attacks through its borders.
-              tokens:
-                - name: Barrier
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/13/Ability-winston3.png/revision/latest/scale-to-width-down/100?cb=20141112192620
-                  size: 3
-            - name: Primal Rage
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Reaction Block +2, spend 5 charges:
-                  Set your current and maximum health to 18.
-                  Until the end of your next turn:
-                    Refresh the use of Jump Pack.
-                    When you deal damage, also deal knock back 3.
-                  At the end of your next turn, lower your current and maximum health to your starting health.
+              - name: Tesla Cannon
+                text: |-
+                  Default
+                  Spaces in Range 1 burst 1, ⚔2,
+                  or ⛨1/3 distance, ⚔2
+              - name: Jump Pack
+                text: |-
+                  CD 2
+                  Move action
+                  Fly up to 6, ending on the ground.
+                  Burst 1, ⚔1.
+              - name: Barrier Projector
+                text: |-
+                  1/battle
+                  Reaction Block +2
+                  Range 1, Summon a size 3 Barrier. The barrier has 8hp, and blocks enemy non-piercing attacks through its borders.
+                tokens:
+                  - name: Barrier
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/13/Ability-winston3.png/revision/latest/scale-to-width-down/100?cb=20141112192620
+                    size: 3
+              - name: Primal Rage
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Reaction Block +2, spend 5 charges:
+                    Set your current and maximum health to 18.
+                    Until the end of your next turn:
+                      Refresh the use of Jump Pack.
+                      When you deal damage, also deal knock back 3.
+                    At the end of your next turn, lower your current and maximum health to your starting health.
       - hero:
           name: Zenyatta
           health: 8
@@ -999,37 +999,37 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/92/Zenyatta-portrait.png/revision/latest/scale-to-width-down/269?cb=20160620015935
         decks:
           - abilities:
-            - name: Snap Kick
-              text: |-
-                Default
-                Range 1, ⚔2, kb 2
-            - name: Orb of Destruction
-              text: |-
-                Default
-                ⛨1/4 distance, ⚔3
-                or end your turn, get slowed 1, and next turn you must use orb of destruction, but it deals 2x damage.
-              tokens:
-                - name: Orb of Destruction Charged
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d1/Ability-zenyatta1.png/revision/latest/scale-to-width-down/100?cb=20181119055020
-            - name: Orb of Harmony
-              text: |-
-                Mark an ally. Now and at the start of your turn, they get ✚2. When you use this again, it removes the original mark.
-              tokens:
-                - name: Orb of Harmony
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0c/Ability-zenyatta2.png/revision/latest/scale-to-width-down/100?cb=20141112192735
-            - name: Orb of Discord
-              text: |-
-                Mark an enemy. They take +1.5x damage from all attacks. When you use this again, it removes the original mark.
-              tokens:
-                - name: Orb of Discord
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/04/Ability-zenyatta3.png/revision/latest/scale-to-width-down/100?cb=20141112192736
-            - name: Transcendence
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges, Reaction +2:
-                    Heal to full. Purge all conditions you don't want.
-                    All allies in burst 1 get ✚5.
-                    Until the start of your next turn, you are immune to damage and don't take conditions you don't want.
+              - name: Snap Kick
+                text: |-
+                  Default
+                  Range 1, ⚔2, kb 2
+              - name: Orb of Destruction
+                text: |-
+                  Default
+                  ⛨1/4 distance, ⚔3
+                  or end your turn, get slowed 1, and next turn you must use orb of destruction, but it deals 2x damage.
+                tokens:
+                  - name: Orb of Destruction Charged
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d1/Ability-zenyatta1.png/revision/latest/scale-to-width-down/100?cb=20181119055020
+              - name: Orb of Harmony
+                text: |-
+                  Mark an ally. Now and at the start of your turn, they get ✚2. When you use this again, it removes the original mark.
+                tokens:
+                  - name: Orb of Harmony
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0c/Ability-zenyatta2.png/revision/latest/scale-to-width-down/100?cb=20141112192735
+              - name: Orb of Discord
+                text: |-
+                  Mark an enemy. They take +1.5x damage from all attacks. When you use this again, it removes the original mark.
+                tokens:
+                  - name: Orb of Discord
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/04/Ability-zenyatta3.png/revision/latest/scale-to-width-down/100?cb=20141112192736
+              - name: Transcendence
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges, Reaction +2:
+                      Heal to full. Purge all conditions you don't want.
+                      All allies in burst 1 get ✚5.
+                      Until the start of your next turn, you are immune to damage and don't take conditions you don't want.
       - hero:
           name: Zarya
           health: 10
@@ -1038,33 +1038,33 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Zarya-portrait.png/revision/latest/scale-to-width-down/350?cb=20160620015842
         decks:
           - abilities:
-            - name: Particle Cannon
-              text: |-
-                Default
-                Range 3, Damage 1 + 1 for each energy counter you have.
-            - name: Particle Barrier
-              text: |-
-                2/battle
-                Reaction Block +2 on attack on target in range 3
-                The target purges unwanted conditions
-                Until the start of your next turn, 
-                  the target is immune to damage, involuntary movement, and unwanted conditions, 
-                  and when the target would take damage you gain an energy counter.
-              tokens:
-                - name: Particle Barrier
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/71/Ability-zarya2.png/revision/latest/scale-to-width-down/100?cb=20150309115939
-                - name: Particle Barrier
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/71/Ability-zarya2.png/revision/latest/scale-to-width-down/100?cb=20150309115939
-            - name: Graviton Surge
-              text: |-
-                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                Spend 5 charges:
-                  Target empty space in range 3
-                  Pull enemies in burst 2 of the space as close to the center as possible, starting with the enemies nearest the center already. They get rooted 1.
-              tokens:
-                - name: Graviton Surge
-                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5d/Ability-zarya4.png/revision/latest/scale-to-width-down/100?cb=20150309115950
-                  size: 1
+              - name: Particle Cannon
+                text: |-
+                  Default
+                  Range 3, Damage 1 + 1 for each energy counter you have.
+              - name: Particle Barrier
+                text: |-
+                  2/battle
+                  Reaction Block +2 on attack on target in range 3
+                  The target purges unwanted conditions
+                  Until the start of your next turn, 
+                    the target is immune to damage, involuntary movement, and unwanted conditions, 
+                    and when the target would take damage you gain an energy counter.
+                tokens:
+                  - name: Particle Barrier
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/71/Ability-zarya2.png/revision/latest/scale-to-width-down/100?cb=20150309115939
+                  - name: Particle Barrier
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/71/Ability-zarya2.png/revision/latest/scale-to-width-down/100?cb=20150309115939
+              - name: Graviton Surge
+                text: |-
+                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                  Spend 5 charges:
+                    Target empty space in range 3
+                    Pull enemies in burst 2 of the space as close to the center as possible, starting with the enemies nearest the center already. They get rooted 1.
+                tokens:
+                  - name: Graviton Surge
+                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5d/Ability-zarya4.png/revision/latest/scale-to-width-down/100?cb=20150309115950
+                    size: 1
   - name: Dota
     hero_boxes:
       - hero:
@@ -1075,38 +1075,80 @@ sets:
           image_url: https://iili.io/yT240N.png
         decks:
           - abilities:
-            - name: Axe
+              - name: Axe
+                text: |-
+                  Default
+                  Range 1, ⚔2
+              - name: Berserker's Call
+                text: |-
+                  1/battle
+                  Until the beginning of your next turn, 
+                    you have +1 armor,
+                    and when an enemy starts their turn in range 1 of you, they must use a default attack targeting you, if possible.
+              - name: Battle Hunger
+                text: |-
+                  1/battle
+                  Range 3
+                  Until end of battle,
+                    at the start of each of the target's turns, they take damage equal to your current armor.
+                    Moving away from you costs twice as many move spaces.
+                    This effect ends as soon as the target kills anything.
+              - name: Counter Helix
+                text: |-
+                  Reaction after being hit by an attack:
+                    Burst 1, ⚔1
+              - name: Culling Blade
+                text: |-
+                  1/battle
+                  Range 1, ⚔3, if the target is below half health, they are killed.
+              - name: Culling Blade
+                text: |-
+                  Ultimate: 1/game
+                  Range 1
+                  on hit, if the target has 3 or less health:
+                   The target dies, but does not trigger any on-death reactions.
+                   You gain 1 armor until end of battle.
+                   This ability is refreshed.
+                  // Try health of 2 and keep armor for game
+  - name: Malifaux
+    hero_boxes:
+      - hero:
+          name: Lady Justice
+          health: 10
+          speed: 3
+          image_url:
+        decks:
+          - abilities:
+            - name: Counterattack
+              text: |-
+                When attacked with a roll of 1-2, Counterattack range 1, 3 damage
+            - name: Inspiring Swordplay
+              text: |-
+                When this kills something, this and allies in range 3 get Focused +1
+                and the killed unit doesn't trigger on death effects.
+            - name: Unnatural Vigor
+              text: |-
+                When this or an ally kills a unit, they heal 2.
+            - name: Greatsword
               text: |-
                 Default
-                Range 1, ⚔2
-            - name: Berserker's Call
-              text: |- 
-                1/battle
-                Until the beginning of your next turn, 
-                  you have +1 armor,
-                  and when an enemy starts their turn in range 1 of you, they must use a default attack targeting you, if possible.
-            - name: Culling Blade
+                Range 2, ⚔3
+                +2 damage if you haven't moved this turn.
+            - name: Restore the Natural Order
               text: |-
-                1/battle
-                Range 1, ⚔3, if the target is below half health, they are killed.
-            - name: Battle Hunger
+                3+
+                End all conditions on units in range 2.
+            - name: Juggernaut Leap
               text: |-
-                1/battle
-                Range 3
-                Until end of battle,
-                  at the start of each of the target's turns, they take damage equal to your current armor.
-                  Moving away from you costs twice as many move spaces.
-                  This effect ends as soon as the target kills anything.
-            - name: Counter Helix
-              text: |-
-                Reaction after being hit by an attack:
-                  Burst 1, ⚔1
-            - name: Culling Blade
-              text: |-
-                Ultimate: 1/game
-                Range 1
-                on hit, if the target has 3 or less health:
-                 The target dies, but does not trigger any on-death reactions.
-                 You gain 1 armor until end of battle.
-                 This ability is refreshed.
-                // Try health of 2 and keep armor for game
+                Free
+                Teleport up to 3, or heal 2.
+
+#    - name:
+#
+#      - hero:
+#          name: Leviticus
+#          health: 10
+#          speed: 3
+#          image_url:
+#        decks:
+#          - abilities:
