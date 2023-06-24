@@ -4,7 +4,7 @@ from yaml_parsing import (
     GameSet,
     HeroBox,
     Deck,
-    Ability,
+    Passive,
     BASIC,
     Hero,
 )
@@ -31,7 +31,7 @@ BASIC_GAME = Game(
                     decks=[
                         Deck(
                             abilities=[
-                                Ability(
+                                Passive(
                                     name="TestAbility",
                                     type=BASIC,
                                     text="TestText",

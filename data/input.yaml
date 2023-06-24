@@ -6,14 +6,14 @@ sets:
           health: 8
           speed: 3
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/76/Ana.png/revision/latest/scale-to-width-down/143?cb=20160715094551
+          default_ability:
+            name: Biotic Rifle
+            text: |-
+              Full action
+              You may move up to 1.
+              Unlimited range, choose ✚3 or ⚔2.
         decks:
           - abilities:
-              - name: Biotic Rifle
-                text: |-
-                  Default 
-                  Full action
-                  You may move up to 1.
-                  Unlimited range, choose ✚3 or ⚔2.
               - name: Sleep Dart
                 text: |-
                   1/Battle
@@ -1116,7 +1116,7 @@ sets:
           name: Lady Justice
           health: 10
           speed: 3
-          image_url:
+          image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561397209226-NPKX6FNG8ZSYJZEJO1CZ/M3E_LadyJustice.png
         decks:
           - abilities:
             - name: Counterattack
@@ -1142,9 +1142,103 @@ sets:
               text: |-
                 Free
                 Teleport up to 3, or heal 2.
+      - hero:
+          name: Zoraida
+          health: 6
+          speed: 3
+          image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561403537939-XVHASDUFXUCQBA0AO133/M3E_Zoraida.jpg
+          default_ability:
+            name: Hex
+            text: |-
+              Default, vs Will
+              Range 6, ⚔1, Injured +1
+              If the target has a Voodoo attachment, this may move them up to 3.
+              An ally adjacent to the target may use a default attack targeting them.
+        decks:
+          - abilities:
+              - name: Penetrating Stench
+                text: |-
+                  When an enemy starts their turn adjacent to this or an ally,
+                  they must discard a fate card or get Silence
+              - name: Eyes in the Night
+                text: |-
+                  This can draw range and LoS from allies in range 6 and all enemies with Voodoo attachments.
+              - name: Voodoo Effigy
+                text: |-
+                  At end of turn, this may discard a card to summon a Voodoo Doll in range 1, and give a Voodoo attachment to an enemy in range 6.
+              - name: Obey
+                text: |-
+                  Vs Will, 4+
+                  Range 6, target takes an action, chosen and controlled by this.
+              - name: Thread of Fate
+                text: |-
+                  Free
+                  Both players discard their Fate Hand and draw to their starting hand size.
+          - units:
+              - name: Voodoo Doll
+                health: 2
+                speed: 3
+                image_url: https://static.wikia.nocookie.net/monster/images/f/fe/C0E23278-277F-4773-9F96-A1D4031BEDC4.png/revision/latest?cb=20180730171650
 
-#    - name:
-#
+            abilities:
+              - name: Linked Fate
+                text: |-
+                  When this takes damage, enemies with Voodoo attachments take 1 damage.
+                  When this gets a condition, enemies with Voodoo attachments get the same condition with value +1.
+              - name: Abused Effigy
+                text: |-
+                  At start of turn, end all conditions on this.
+              - name: Unexpected Connection
+                text: |-
+                  Copy the text of an ability on an enemy unit in range 6.
+              - name: Served Its Purpose
+                text: |-
+                  This draws a card, then kill this.
+
+      - hero:
+          name: Seamus
+          health: 8
+          speed: 4
+          image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679624896-DNSEY1BSLCMXCG5OT8VT/M2E_Seamus.png
+        decks:
+          - abilities:
+              - name: Willfull 2
+                text: +2 Will
+              - name: Terrifying
+                text: |-
+                  +2 Dodge against attacks from enemies with less than +2 Will.
+              - name: Hard to Kill
+                text: |-
+                  If this has 2 or more health, it cannot be reduced below 1 health.
+              - name: Redchapel Killer
+                text: |-
+                  This has -2 dodge, +2 damage to enemies adjacent to another ally
+              - name: Feast of Fear
+                text: |-
+                  When an opponent misses this with an attack, this heals 2.
+              - name: Why Hello, Love
+                text: |-
+                  At the end of an enemy's turn, if they're adjacent to this, this may make a default attack targeting it.
+              - name: .50 Flintlock
+                text: |-
+                  Default
+                  Range 3, ⚔3, Push the target 3.
+              - name: Terrorize
+                text: |-
+                  Vs will
+                  Push the target its speed away from this.
+              - name: Secret Passage
+                text: |-
+                  If adjacent to blocking terrain, teleport up to 6, ending adjacnet to blocking terrain.
+              - name: Cause for Celebration
+                text: |-
+                  Free
+                  Remove a corpse on the opponent's table half to take an action.
+
+
+
+
+
 #      - hero:
 #          name: Leviticus
 #          health: 10

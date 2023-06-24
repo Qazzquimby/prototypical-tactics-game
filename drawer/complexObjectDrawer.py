@@ -3,14 +3,17 @@ import io
 from pathlib import Path
 
 from playwright.async_api import async_playwright
-import jinja2
 import pygame
 
 from drawer.base import BaseDrawer
 from drawer.textrect import render_fitted_textrect
 from drawer.color import convert_tts_to_pygame
 
+CARD_WIDTH = 350
+CARD_HEIGHT = 450
 EDGE_MARGIN = 10
+IMAGE_WIDTH = CARD_WIDTH - (2 * EDGE_MARGIN)
+IMAGE_HEIGHT = CARD_HEIGHT - (2 * EDGE_MARGIN)
 
 LEFTRIGHT_MARGIN = 10
 TOPBOTTOM_MARGIN = 10
@@ -18,7 +21,8 @@ TOPBOTTOM_MARGIN = 10
 TemplatesPath = Path("data/templates")
 
 _BROWSER = None
-lock= asyncio.Lock()
+lock = asyncio.Lock()
+
 
 async def get_browser():
     global _BROWSER
@@ -29,9 +33,13 @@ async def get_browser():
                 _BROWSER = await p.chromium.launch()
     return _BROWSER
 
+
 def make_empty_image(filepath):
     surf = pygame.Surface((10, 10))
     pygame.image.save(surf, filepath)
+
+
+css = (TemplatesPath / "card.css").read_text()
 
 
 class ComplexObjectDrawer(BaseDrawer):
@@ -43,43 +51,25 @@ class ComplexObjectDrawer(BaseDrawer):
         self.surf = None
         self.full_surf = None
 
-
     async def draw(self, _=None):
-        # draws self, so doesn't need the object param
-        w, h = self.get_card_size()
-        image_width = w - (2 * EDGE_MARGIN)
-        image_height = h - (2 * EDGE_MARGIN)
-        self.surf = pygame.Surface((image_width, image_height))
+        self.surf = pygame.Surface((IMAGE_WIDTH, IMAGE_HEIGHT))
 
-        # if self.object.type.name == "Ability":
-        html_template_path = TemplatesPath / "card.html"
-        css_template_path = TemplatesPath / "card.css"
-
-        name = self.object.content.name
-        temp_path = Path("data/temp_images") / f"{name}.png"
-
-        html_template = html_template_path.read_text()
-        html = jinja2.Template(html_template).render(
-            width=image_width- 2*EDGE_MARGIN, #shouldnt be needed but theres clipping
-            height=image_height,
-            name=name,
-            text=self.object.content.text,
-            owner="todo: owner",
-        )
+        css = (TemplatesPath / "card.css").read_text()
 
         browser = await get_browser()
         page = await browser.new_page()
-        await page.set_viewport_size({"width": image_width, "height": image_height})
+        await page.set_viewport_size({"width": IMAGE_WIDTH, "height": IMAGE_HEIGHT})
+
+        html = self.object.content.render()
         await page.set_content(html)
-        await page.add_style_tag(content=css_template_path.read_text())
-        image_bytes = await page.screenshot()#path=temp_path)
+        await page.add_style_tag(content=css)
+        image_bytes = await page.screenshot()  # path=temp_path)
 
         # image = pygame.image.load(temp_path)
         image = pygame.image.load(io.BytesIO(image_bytes), "img.png")
-
         self.surf.blit(image, (0, 0))
 
-        self.full_surf = pygame.Surface((w, h))
+        self.full_surf = pygame.Surface((CARD_WIDTH, CARD_HEIGHT))
         self.full_surf.fill(convert_tts_to_pygame((0, 0, 0)))
 
         self.full_surf.blit(self.surf, (EDGE_MARGIN, EDGE_MARGIN))

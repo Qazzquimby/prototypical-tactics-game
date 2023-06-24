@@ -1,8 +1,9 @@
 import abc
 from functools import lru_cache
 from pathlib import Path
-from typing import Literal
+from typing import Literal, ClassVar, Optional
 
+import jinja2
 import yaml
 from pydantic import BaseModel
 
@@ -10,6 +11,12 @@ from domain.bag import CustomBag
 from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
 from domain.shape import Shape
+from drawer.complexObjectDrawer import (
+    TemplatesPath,
+    EDGE_MARGIN,
+    IMAGE_WIDTH,
+    IMAGE_HEIGHT,
+)
 from spawning_lua import get_full_lua, scale_size, clean_string_for_lua
 from domain.deck import Deck as DomainDeck
 from domain.card import Card as DomainCard
@@ -20,6 +27,7 @@ CARD_HEIGHT = 450
 CARD_WIDTH = 350
 CARD_SIZE = (CARD_WIDTH, CARD_HEIGHT)
 
+
 class Spawnable(abc.ABC):
     def get_lua(self) -> str:
         return get_full_lua(self.get_spawning_lua())
@@ -27,10 +35,11 @@ class Spawnable(abc.ABC):
     def get_spawning_lua(self):
         raise NotImplementedError
 
+
 class Token(BaseModel, Spawnable):
     name: str
     image_url: str
-    back_image_url: str = ''
+    back_image_url: str = ""
     size: float = 0.25
 
     def get_spawning_lua(self):
@@ -73,7 +82,6 @@ class Figurine(BaseModel, Spawnable):
     image_url: str
     size: int = 1
 
-
     def get_spawning_lua(self):
         return f"""\
     local front='{self.image_url}'
@@ -95,9 +103,25 @@ class Figurine(BaseModel, Spawnable):
         image = front,
     }})"""
 
+
+class Ability(BaseModel):
+    name: str
+    text: str
+
+
+class Passive(Ability):
+    pass
+
+
+class Active(Ability):
+    pass
+
+
 class Card(BaseModel, Spawnable):
     name: str
     tokens: list[Token] = []
+
+    template: ClassVar[jinja2.Template] = NotImplemented
 
     def make_content_dict(self, hero_name: str) -> dict:
         raise NotImplementedError
@@ -107,11 +131,48 @@ class Card(BaseModel, Spawnable):
         full_spawning_lua = "\n\n\n".join(spawning_luas)
         return full_spawning_lua
 
+    def render(self):
+        content = self._render_content()
+        html = f"""\
+<div class="card" style="width: {IMAGE_WIDTH}; height: {IMAGE_HEIGHT}">
+    {content}
+</div"""
+
+        return html
+
+    def _render_content(self):
+        raise NotImplementedError
+
 
 class UnitCard(Card, Figurine):
     speed: int
     health: int
-    dodge: int = 0
+    # dodge: int = 0
+    passives: list[Passive] = []
+    default_ability: Optional[Active] = None
+
+    template: ClassVar[jinja2.Template] = jinja2.Template(
+        """\
+<div class="card" style="width: {{width}}; height: {{height}}">
+    <h1>{{name}}</h1>
+    {% for passive in passives %}
+        <p>{{ passive }}</p>
+    {% endfor %}
+
+    <p>{{default}}</p>
+    <p>{{owner}}</p>
+</div>"""
+    )
+
+    def _render_content(self):
+        content = self.template.render(
+            name=self.name,
+            passives=self.passives,
+            default=self.default_ability,
+            owner="todo owner",
+        )
+
+        return content
 
     @property
     def text(self):
@@ -120,11 +181,12 @@ class UnitCard(Card, Figurine):
         Health: {self.health}
         """
 
-        if self.dodge:
-            _text += f"\nDodge: {self.dodge}"
+        # if self.dodge:
+        #     _text += f"\nDodge: {self.dodge}"
         if self.size != 1:
             _text += f"\nSize: {self.size}"
         return _text
+
     def make_content_dict(self, hero_name: str):
         content_list = [
             self.name,
@@ -138,6 +200,7 @@ class UnitCard(Card, Figurine):
 
     def get_spawning_lua(self):
         return Card.get_spawning_lua(self) + "\n\n\n" + Figurine.get_spawning_lua(self)
+
 
 class Hero(UnitCard):
     @staticmethod
@@ -176,13 +239,21 @@ HEALTH_LABEL = "Health"
 SIZE_LABEL = "Size"
 
 
-class Ability(Card):
-    def make_content_dict(self, hero_name: str) -> dict:
-        return NotImplemented # this should replace card row?
-
+class AbilityCard(Card):
     type: Literal["Basic"] | Literal["Quick"] = BASIC
-    cost: str = ""
     text: str
+
+    def _render_content(self):
+        return f"""\
+<div class="card" style="width: {CARD_WIDTH}; height: {CARD_HEIGHT}">
+    <h1>{self.name}</h1>
+    <p>{self.type}</p>
+    <p>{self.text}</p>
+    <p>{"owner todo"}</p>
+</div>"""
+
+    def make_content_dict(self, hero_name: str) -> dict:
+        return NotImplemented  # this should replace card row?
 
     def make_card_row(self, hero_name: str):
         return [
@@ -220,7 +291,7 @@ class Ability(Card):
 class Deck(BaseModel):
     """One hero can have multiple decks, like a loadout. Maybe call 'loadout' instead"""
 
-    abilities: list[Ability] = []
+    abilities: list[AbilityCard] = []
     units: list[UnitCard] = []
 
     @property
@@ -231,13 +302,16 @@ class Deck(BaseModel):
 class HeroBox(BaseModel):
     hero: Hero
     decks: list[Deck]
+
     # maybe a description here
 
     def get_tts_obj(self):
         hero_box_bag = CustomBag(
-            name=make_box_name(self.hero.name), size=1, color=(1.0, 0.0, 0.0),
+            name=make_box_name(self.hero.name),
+            size=1,
+            color=(1.0, 0.0, 0.0),
             diffuse_url="http://cloud-3.steamusercontent.com/ugc/1469815174066637129/930D22149972BB2B9C6164FB8D1819249640546B/",
-            #todo, generate the image and url like how cards are generated
+            # todo, generate the image and url like how cards are generated
         )
 
         if not self.decks:
@@ -269,7 +343,7 @@ class HeroBox(BaseModel):
                         count=1,
                         obj=ComplexObject(
                             name=deck_name,
-                            type_=Ability.to_complex_type(),
+                            type_=AbilityCard.to_complex_type(),
                             # todo make work for other card types
                             content=card,  # no longer used because of jinja rendering
                         ),

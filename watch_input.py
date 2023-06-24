@@ -18,7 +18,9 @@ from core import save_tts, game_to_library, library_to_tts_dict
 
 def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder=None):
     if image_builder is None:
-        DirectoryImagesBuilder(pygame=pygame, base_path=data_dir / "images")
+        image_builder = DirectoryImagesBuilder(
+            pygame=pygame, base_path=data_dir / "images"
+        )
 
     file_stem = Path(yaml_path).stem
 
@@ -54,7 +56,7 @@ if __name__ == "__main__":
 
     save_dir = Path(try_and_find_save_games_folder())
 
-    image_builder=DirectoryImagesBuilder(pygame=pygame, base_path=data_dir / "images")
+    image_builder = DirectoryImagesBuilder(pygame=pygame, base_path=data_dir / "images")
     # image_builder = ImgBoxImagesBuilder(
     #     pygame=pygame, project_name="prototypical_project"
     # )
