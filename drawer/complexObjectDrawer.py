@@ -60,7 +60,7 @@ class ComplexObjectDrawer(BaseDrawer):
         page = await browser.new_page()
         await page.set_viewport_size({"width": IMAGE_WIDTH, "height": IMAGE_HEIGHT})
 
-        html = self.object.content.render()
+        html = self.object.content.get_html()
         await page.set_content(html)
         await page.add_style_tag(content=css)
         image_bytes = await page.screenshot()  # path=temp_path)

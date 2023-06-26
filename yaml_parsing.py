@@ -134,7 +134,7 @@ class Card(BaseModel, Spawnable):
         full_spawning_lua = "\n\n\n".join(spawning_luas)
         return full_spawning_lua
 
-    def render(self):
+    def get_html(self):
         content = self._inner_html()
         html = f"""\
 <div class="card">
@@ -240,12 +240,11 @@ class AbilityCard(Card):
 
     def _inner_html(self):
         return f"""\
-<div class="card" style="width: {CARD_WIDTH}; height: {CARD_HEIGHT}">
-    <h1>{self.name}</h1>
-    <p>{self.type}</p>
-    <p>{self.text}</p>
-    <p>{"owner todo"}</p>
-</div>"""
+<h1>{self.name}</h1>
+<p>{self.type}</p>
+<p>{self.text}</p>
+<p>{"owner todo"}</p>
+"""
 
     def make_content_dict(self, hero_name: str) -> dict:
         return NotImplemented  # this should replace card row?
