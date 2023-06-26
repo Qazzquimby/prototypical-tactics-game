@@ -362,7 +362,7 @@ class Game(BaseModel):
 
 
 def read_yaml_file(yaml_path: str) -> dict:
-    with open(yaml_path) as yaml_file:
+    with open(yaml_path, "r", encoding="utf8") as yaml_file:
         yaml_content = yaml.safe_load(yaml_file)
     return yaml_content
 
