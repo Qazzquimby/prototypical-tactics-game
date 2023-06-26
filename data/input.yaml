@@ -49,15 +49,16 @@ sets:
           health: 8
           speed: 3
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/272?cb=20220409014728
+          default_ability:
+            name: Rotary Canon
+            text: |-
+              Default
+              Only usable in Assault stance
+              ⚔5, Range 2
+              or ⚔3, Range 4
+              Double damage against targets size 2+.
         decks:
           - abilities:
-              - name: Rotary Canon
-                text: |-
-                  Default
-                  Only usable in Assault stance
-                  ⚔5, Range 2
-                  or ⚔3, Range 4
-                  Double damage against targets size 2+.
               - name: Light Machine Gun
                 text: |-
                   Default
@@ -131,15 +132,27 @@ sets:
           name: D.Va
           health: 12
           speed: 3
-          dodge: -2
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
+          default_ability:
+            name: Fusion Cannons
+            text: |-
+              Default
+              Range 2, ⚔2
+              Can't be used on the same turn as your standard move.
+          passives:
+            - name: Huge head
+              text: |-
+                You have facing
+                Attacks made from in front of you have +1 crit
+            - name: Easy Target
+              text: |- 
+                Dodge -2
+            - name: Eject
+              text: |-
+                Passive
+                When you die, summon Pilot D.Va
         decks:
           - abilities:
-              - name: Huge head
-                text: |-
-                  Passive
-                  You have facing
-                  Attacks made from in front of you have +1 crit
               - name: Pilot D.Va
                 text: |-
                   Character
@@ -153,15 +166,6 @@ sets:
                     image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/09/Ability-dva5.png/revision/latest/scale-to-width-down/100?cb=20181119021945
                   - name: Mech Charge
                     image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f0/Ability-dva6.png/revision/latest/scale-to-width-down/100?cb=20151116085308
-              - name: Eject
-                text: |-
-                  Passive
-                  When you die, summon Pilot D.Va
-              - name: Fusion Cannons
-                text: |-
-                  Default
-                  Range 2, ⚔2
-                  Can't be used on the same turn as your standard move
               - name: Defense Matrix
                 text: |-
                   1/Battle
@@ -199,23 +203,26 @@ sets:
           health: 6
           speed: 3
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Genji-ow2-portrait.png/revision/latest/scale-to-width-down/149?cb=20191104043734
+          default_ability:
+            name: Shuriken
+            text: |-
+              Default
+              ⛨ 1/2 distance, ⚔3
+              or range 1, ⚔4
+          passives:
+            - name: Cyber Agility
+              text: |-
+                Passive
+                Attacks made on you within range 2 have Dodge⛨ +2
+                You ignore difficult terrain
         decks:
           - abilities:
-              - name: Cyber Agility
-                text: |-
-                  Passive
-                  Attacks made on you within range 2 have Dodge⛨ +2
-                  You ignore difficult terrain
-              - name: Shuriken
-                text: |-
-                  Default
-                  ⛨ 1/2 distance, ⚔3
-                  or range 1, ⚔4
               - name: Deflect
                 text: |-
                   1/Battle
                   Reaction Block +2
-                  You have facing. Attacks targeting you from the front with max range>1 are reflected, choosing a new target with you as the attack origin.
+                  Until the beginning of your next turn, 
+                  you have facing, and attacks targeting you from the front with max range>1 are reflected, choosing a new target with you as the attack origin.
               - name: Swift Strike
                 text: |-
                   1/Battle

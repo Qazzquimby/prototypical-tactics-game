@@ -108,6 +108,9 @@ class Ability(BaseModel):
     name: str
     text: str
 
+    def __str__(self):
+        return f"<span class='ability-name'>{self.name}:</span> {self.text}"
+
 
 class Passive(Ability):
     pass
@@ -132,15 +135,15 @@ class Card(BaseModel, Spawnable):
         return full_spawning_lua
 
     def render(self):
-        content = self._render_content()
+        content = self._inner_html()
         html = f"""\
-<div class="card" style="width: {IMAGE_WIDTH}; height: {IMAGE_HEIGHT}">
+<div class="card">
     {content}
-</div"""
+</div>"""
 
         return html
 
-    def _render_content(self):
+    def _inner_html(self):
         raise NotImplementedError
 
 
@@ -151,26 +154,18 @@ class UnitCard(Card, Figurine):
     passives: list[Passive] = []
     default_ability: Optional[Active] = None
 
-    template: ClassVar[jinja2.Template] = jinja2.Template(
-        """\
-<div class="card" style="width: {{width}}; height: {{height}}">
-    <h1>{{name}}</h1>
-    {% for passive in passives %}
-        <p>{{ passive }}</p>
-    {% endfor %}
+    def _inner_html(self):
+        passives = "\n".join([f"<p>{str(passive)}</p" for passive in self.passives])
 
-    <p>{{default}}</p>
-    <p>{{owner}}</p>
-</div>"""
-    )
+        content = f"""\
+<h1>{self.name}</h1>
+<p>Speed: {self.speed}; Health: {self.health}</p>
 
-    def _render_content(self):
-        content = self.template.render(
-            name=self.name,
-            passives=self.passives,
-            default=self.default_ability,
-            owner="todo owner",
-        )
+{passives}
+
+<p>{self.default_ability}</p>
+<p>{'owner todo'}</p>
+"""
 
         return content
 
@@ -243,7 +238,7 @@ class AbilityCard(Card):
     type: Literal["Basic"] | Literal["Quick"] = BASIC
     text: str
 
-    def _render_content(self):
+    def _inner_html(self):
         return f"""\
 <div class="card" style="width: {CARD_WIDTH}; height: {CARD_HEIGHT}">
     <h1>{self.name}</h1>
