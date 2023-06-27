@@ -109,7 +109,11 @@ class Ability(BaseModel):
     text: str
 
     def __str__(self):
-        return f"<span class='ability-name'>{self.name}:</span> {self.text}"
+
+        # convert markdown to html
+        # text_html = markdown.markdown(self.text)
+        text_html = "\n".join([f"<p>{line}</p>" for line in self.text.split("\n")])
+        return f"<span class='ability-name'>{self.name}:</span> {text_html}"
 
 
 class Passive(Ability):
