@@ -145,7 +145,7 @@ sets:
                 You have facing
                 Attacks made from in front of you have +1 crit
             - name: Easy Target
-              text: |- 
+              text: |-
                 Dodge -2
             - name: Eject
               text: |-
@@ -1126,29 +1126,29 @@ sets:
           image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561397209226-NPKX6FNG8ZSYJZEJO1CZ/M3E_LadyJustice.png
         decks:
           - abilities:
-            - name: Counterattack
-              text: |-
-                When attacked with a roll of 1-2, Counterattack range 1, 3 damage
-            - name: Inspiring Swordplay
-              text: |-
-                When this kills something, this and allies in range 3 get Focused +1
-                and the killed unit doesn't trigger on death effects.
-            - name: Unnatural Vigor
-              text: |-
-                When this or an ally kills a unit, they heal 2.
-            - name: Greatsword
-              text: |-
-                Default
-                Range 2, ⚔3
-                +2 damage if you haven't moved this turn.
-            - name: Restore the Natural Order
-              text: |-
-                3+
-                End all conditions on units in range 2.
-            - name: Juggernaut Leap
-              text: |-
-                Free
-                Teleport up to 3, or heal 2.
+              - name: Counterattack
+                text: |-
+                  When attacked with a roll of 1-2, Counterattack range 1, 3 damage
+              - name: Inspiring Swordplay
+                text: |-
+                  When this kills something, this and allies in range 3 get Focused +1
+                  and the killed unit doesn't trigger on death effects.
+              - name: Unnatural Vigor
+                text: |-
+                  When this or an ally kills a unit, they heal 2.
+              - name: Greatsword
+                text: |-
+                  Default
+                  Range 2, ⚔3
+                  +2 damage if you haven't moved this turn.
+              - name: Restore the Natural Order
+                text: |-
+                  3+
+                  End all conditions on units in range 2.
+              - name: Juggernaut Leap
+                text: |-
+                  Free
+                  Teleport up to 3, or heal 2.
       - hero:
           name: Zoraida
           health: 6
@@ -1241,15 +1241,60 @@ sets:
                 text: |-
                   Free
                   Remove a corpse on the opponent's table half to take an action.
+      - hero:
+          name: Leveticus
+          health: 8
+          speed: 3
+          image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561408518996-YIVKK5LYH6WZDXOVMEWE/M3E_Leveticus.png
+          default_ability:
+            name: Death Touch
+            text: |-
+              Default
+              Range 1, ⚔2 irreducible, heal 2
+              If this kills the target, create an Abomination in its space.
+          passives:
+            - name: Unmade(always)
+              text: |-
+                When attacked, the attacker takes 1 irreducible damage.
+            - name: Entropy
+              text: |-
+                Enemies that start their activation within 2 spaces take 1 damage.
+            - name: Demise(Pariah's Soul)
+              text: |-
+                When this dies, you may sacrifice a Hollow Waif to place this in the Hollow Waif's space and heal this equal to its remaining health.
+        decks:
+          - units:
+            - name: Abomination
+              health: 4
+              speed: 2
+              image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/gallery/album_386/gallery_30702_386_137300.jpg
+            passives:
+              - name: Unmade
+                text: |-
+                  When attacked with a 1-2, the attacker takes 1 irreducible damage.
+              - name: Entropy
+                text: |-
+                  Enemies that start their activation within 2 spaces take 1 damage.
+              - name: Withering Away
+                text: Enemies within range 2 cannot heal
+            default_ability:
+              name: Claws
+              text: |-
+                  Range 1, ⚔1, heal 1
+                  If this kills the target, create a Hollow Waif in its space.
 
 
-
-
-
-#      - hero:
-#          name: Leviticus
-#          health: 10
-#          speed: 3
-#          image_url:
-#        decks:
-#          - abilities:
+          - abilities:
+              - name: Unmaking
+                text: |-
+                  Vs Will
+                  Range 4, ⚔2 irreducible
+              - name: Essence Transfer
+                text: |-
+                  Range 6, Target two friendly units.
+                  Deal up to ⚔4 irreducible to one, and heal the other the same amount.
+              - name: Sanguine Evocations
+                text: |-
+                  Free
+                  Look at the top three cards of this unit's fate deck. Discard any number and place the rest back in any order.
+                  This takes 1 damage for each card discarded.
