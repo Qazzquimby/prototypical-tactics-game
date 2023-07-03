@@ -6,12 +6,12 @@ sets:
           health: 8
           speed: 3
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/76/Ana.png/revision/latest/scale-to-width-down/143?cb=20160715094551
-          default_ability:
-            name: Biotic Rifle
-            text: |-
-              Full action
-              You may move up to 1.
-              Unlimited range, choose ✚3 or ⚔2.
+          default_abilities:
+            - name: Biotic Rifle
+              text: |-
+                Full action
+                You may move up to 1.
+                Unlimited range, choose ✚3 or ⚔2.
         decks:
           - abilities:
               - name: Sleep Dart
@@ -49,14 +49,13 @@ sets:
           health: 8
           speed: 3
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/272?cb=20220409014728
-          default_ability:
-            name: Rotary Canon
-            text: |-
-              Default
-              Only usable in Assault stance
-              ⚔5, Range 2
-              or ⚔3, Range 4
-              Double damage against targets size 2+.
+          default_abilities:
+            - name: Rotary Canon
+              text: |-
+                Only usable in Assault stance
+                ⚔5, Range 2
+                or ⚔3, Range 4
+                Double damage against targets size 2+.
         decks:
           - abilities:
               - name: Light Machine Gun
@@ -133,12 +132,11 @@ sets:
           health: 12
           speed: 3
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
-          default_ability:
-            name: Fusion Cannons
-            text: |-
-              Default
-              Range 2, ⚔2
-              Can't be used on the same turn as your standard move.
+          default_abilities:
+            - name: Fusion Cannons
+              text: |-
+                Range 2, ⚔2
+                Can't be used on the same turn as your standard move.
           passives:
             - name: Huge head
               text: |-
@@ -203,12 +201,11 @@ sets:
           health: 6
           speed: 3
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Genji-ow2-portrait.png/revision/latest/scale-to-width-down/149?cb=20191104043734
-          default_ability:
-            name: Shuriken
-            text: |-
-              Default
-              ⛨ 1/2 distance, ⚔3
-              or range 1, ⚔4
+          default_abilities:
+            - name: Shuriken
+              text: |-
+                ⛨ 1/2 distance, ⚔3
+                or range 1, ⚔4
           passives:
             - name: Cyber Agility
               text: |-
@@ -476,13 +473,13 @@ sets:
           health: 8
           speed: 3
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b5/Moira.png/revision/latest/scale-to-width-down/162?cb=20171104021652
+          default_abilities:
+            - name: Damage Biotic Grasp
+              text: |-
+                Range 4, ⚔2.
+                ✚1.
         decks:
           - abilities:
-              - name: Damage Biotic Grasp
-                text: |-
-                  Default
-                  Range 4, ⚔2.
-                  ✚1.
               - name: Healing Biotic Grasp
                 text: |-
                   Piercing cone 3.
@@ -524,12 +521,12 @@ sets:
           speed: 3
           dodge: -2
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d4/Orisa_Skin_Overwatch_2.png/revision/latest?cb=20221116224621
+          default_abilities:
+            - name: Fusion Driver
+              text: |-
+                  Range 3, ⚔2.
         decks:
           - abilities:
-              - name: Fusion Driver
-                text: |-
-                  Default
-                  Range 3, ⚔2.
               - name: Energy Javelin
                 text: |-
                   CD 2
@@ -590,12 +587,17 @@ sets:
           health: 8
           speed: 4
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b3/OW2_Pharah.png/revision/latest/scale-to-width-down/272?cb=20210623082353
+          passives:
+            - name: Hover Jets
+              text: |-
+                Passive
+                All your movement is flying.
+          default_abilities:
+            - name: Rocket Launcher
+              text: |-
+                ⛨1/3 distance, ⚔3, and ⚔1 to all others in burst 1
         decks:
           - abilities:
-              - name: Hover Jets
-                text: |-
-                  Passive
-                  All your movement is flying.
               - name: Deplete Hover Jets
                 text: |-
                   Move action
@@ -604,10 +606,6 @@ sets:
                 tokens:
                   - name: High Altitude
                     image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/14/Ability-parah2.png/revision/latest/scale-to-width-down/100?cb=20181119024127
-              - name: Rocket Launcher
-                text: |-
-                  Default
-                  ⛨1/3 distance, ⚔3, and ⚔1 to all others in burst 1
               - name: Jump Jet
                 text: |-
                   1/battle
@@ -632,18 +630,18 @@ sets:
           health: 8
           speed: 3
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8c/OW2_Reaper.png/revision/latest/scale-to-width-down/272?cb=20210623082134
+          passives:
+            - name: The Reaping
+              text: |-
+                When you deal damage, heal half the amount.
+          default_abilities:
+            - name: Hellfire Shotguns
+              text: |-
+                Range 1, ⚔4
+                or range 2, ⚔2
+                Deals 2x damage against enemies with size 2+.
         decks:
           - abilities:
-              - name: The Reaping
-                text: |-
-                  Passive
-                  When you deal damage, heal half the amount.
-              - name: Hellfire Shotguns
-                text: |-
-                  Default
-                  Range 1, ⚔4
-                  or range 2, ⚔2
-                  Deals 2x damage against enemies with size 2+.
               - name: Wraith Form
                 text: |-
                   1/battle
@@ -666,16 +664,16 @@ sets:
           speed: 3
           dodge: -2
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/3b/Reinhardt-ow2-portrait.png/revision/latest/scale-to-width-down/252?cb=20191104214011
+          passives:
+            - name: Steadfast
+              text: |-
+                Immune to involuntary movement.
+          default_abilities:
+            - name: Rocket Hammer
+              text: |-
+                up to 3 adjacent targets in burst 1, ⚔2
         decks:
           - abilities:
-              - name: Steadfast
-                text: |-
-                  Passive.
-                  Immune to involuntary movement.
-              - name: Rocket Hammer
-                text: |-
-                  Default
-                  up to 3 adjacent targets in burst 1, ⚔2
               - name: Barrier Field
                 text: |-
                   Reaction Block +2
@@ -711,16 +709,18 @@ sets:
           name: Roadhog
           health: 12
           speed: 3
-          dodge: -2
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/ce/Roadhog-Portrait.png/revision/latest/scale-to-width-down/345?cb=20160620014755
+          passives:
+            - name: Easy Target
+              text: Dodge -2
+          default_abilities:
+            - name: Scrap Gun
+              text: |-
+                Range 1, ⚔3, ⛨1
+                or Range 3, ⚔3, ⛨3
+                2x damage to size 2+
         decks:
           - abilities:
-              - name: Scrap Gun
-                text: |-
-                  Default
-                  Range 1, ⚔3, ⛨1
-                  or Range 3, ⚔3, ⛨3
-                  2x damage to size 2+
               - name: Take a Breather
                 text: |-
                   1/battle
@@ -745,15 +745,13 @@ sets:
           health: 8
           speed: 3
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Soldier76-portrait.png/revision/latest/scale-to-width-down/224?cb=20160620014955
+          default_abilities:
+            - name: Heavy Pulse Rifle
+              text: Range 4, ⚔3
         decks:
           - abilities:
-              - name: Heavy Pulse Rifle
-                text: |-
-                  Default
-                  Range 4, ⚔3
               - name: Sprint
                 text: |-
-                  Default
                   Move up to 3.
               - name: Helix Rockets
                 text: |-
@@ -966,15 +964,19 @@ sets:
           name: Winston
           health: 10
           speed: 3
-          dodge: -2
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7c/Winston-ow2-portrait.png/revision/latest/scale-to-width-down/279?cb=20191104221341
+          passives:
+            - name: Easy Target
+              text: |-
+                Dodge -2
+          default_abilities:
+            - name: Tesla Cannon
+              text: |-
+                Default
+                Spaces in Range 1 burst 1, ⚔2,
+                or ⛨1/3 distance, ⚔2
         decks:
           - abilities:
-              - name: Tesla Cannon
-                text: |-
-                  Default
-                  Spaces in Range 1 burst 1, ⚔2,
-                  or ⛨1/3 distance, ⚔2
               - name: Jump Pack
                 text: |-
                   CD 2
@@ -1004,17 +1006,18 @@ sets:
           health: 8
           speed: 3
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/92/Zenyatta-portrait.png/revision/latest/scale-to-width-down/269?cb=20160620015935
+          default_abilities:
+            - name: Orb of Destruction
+              text: |-
+                Default
+                ⛨1/4 distance, ⚔3
+                or end your turn, get slowed 1, and next turn you must use orb of destruction but it deals 2x damage.
         decks:
           - abilities:
               - name: Snap Kick
                 text: |-
                   Default
                   Range 1, ⚔2, kb 2
-              - name: Orb of Destruction
-                text: |-
-                  Default
-                  ⛨1/4 distance, ⚔3
-                  or end your turn, get slowed 1, and next turn you must use orb of destruction, but it deals 2x damage.
                 tokens:
                   - name: Orb of Destruction Charged
                     image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d1/Ability-zenyatta1.png/revision/latest/scale-to-width-down/100?cb=20181119055020
@@ -1121,26 +1124,23 @@ sets:
     hero_boxes:
       - hero:
           name: Lady Justice
-          health: 10
+          health: 8
           speed: 3
           image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561397209226-NPKX6FNG8ZSYJZEJO1CZ/M3E_LadyJustice.png
+          passives:
+            - name: Attacked
+              text: |-
+                If target in range 1 and roll is 1-2, Counterattack range 1, ⚔3
+            - name: Kill
+              text: |-
+                This heals 2,
+                this and allies in range 3 get Focused +1
+                and the killed unit doesn't trigger on death effects.
+          default_abilities:
+            - name: Greatsword
+              text: Range 2, ⚔2, +2⚔ if this hasn't moved this turn.
         decks:
           - abilities:
-              - name: Counterattack
-                text: |-
-                  When attacked with a roll of 1-2, Counterattack range 1, 3 damage
-              - name: Inspiring Swordplay
-                text: |-
-                  When this kills something, this and allies in range 3 get Focused +1
-                  and the killed unit doesn't trigger on death effects.
-              - name: Unnatural Vigor
-                text: |-
-                  When this or an ally kills a unit, they heal 2.
-              - name: Greatsword
-                text: |-
-                  Default
-                  Range 2, ⚔3
-                  +2 damage if you haven't moved this turn.
               - name: Restore the Natural Order
                 text: |-
                   3+
@@ -1154,89 +1154,84 @@ sets:
           health: 6
           speed: 3
           image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561403537939-XVHASDUFXUCQBA0AO133/M3E_Zoraida.jpg
-          default_ability:
-            name: Hex
-            text: |-
-              Default, vs Will
-              Range 6, ⚔1, Injured +1
-              If the target has a Voodoo attachment, this may move them up to 3.
-              An ally adjacent to the target may use a default attack targeting them.
+          passives:
+            - name: Start
+              text: |-
+                Enemies adjacent to this or an ally must discard a fate card or get Silence
+            - name: End
+              text: |-
+                This may discard a card to summon a Voodoo Doll in range 1, and give a Voodoo attachment to an enemy in range 4.
+            - name: Eyes in the Night
+              text: |-
+                This can draw range and LoS from allies in range 4 and all enemies with Voodoo attachments.
+          default_abilities:
+            - name: Hex
+              text: |-
+                vs Will
+                Range 4, ⚔1
+                If the target has a Voodoo attachment, this may move them up to 3.
+                An ally adjacent to the target may use a default attack targeting them.
         decks:
           - abilities:
-              - name: Penetrating Stench
-                text: |-
-                  When an enemy starts their turn adjacent to this or an ally,
-                  they must discard a fate card or get Silence
-              - name: Eyes in the Night
-                text: |-
-                  This can draw range and LoS from allies in range 6 and all enemies with Voodoo attachments.
-              - name: Voodoo Effigy
-                text: |-
-                  At end of turn, this may discard a card to summon a Voodoo Doll in range 1, and give a Voodoo attachment to an enemy in range 6.
               - name: Obey
                 text: |-
                   Vs Will, 4+
-                  Range 6, target takes an action, chosen and controlled by this.
+                  Range 4, target takes an action, chosen and controlled by this.
               - name: Thread of Fate
                 text: |-
                   Free
-                  Both players discard their Fate Hand and draw to their starting hand size.
-          - units:
+                  Both players discard their Fate Hand and draw 3 fate cards.
+            units:
               - name: Voodoo Doll
                 health: 2
-                speed: 3
+                speed: 2
                 image_url: https://static.wikia.nocookie.net/monster/images/f/fe/C0E23278-277F-4773-9F96-A1D4031BEDC4.png/revision/latest?cb=20180730171650
-
-            abilities:
-              - name: Linked Fate
-                text: |-
-                  When this takes damage, enemies with Voodoo attachments take 1 damage.
-                  When this gets a condition, enemies with Voodoo attachments get the same condition with value +1.
-              - name: Abused Effigy
-                text: |-
-                  At start of turn, end all conditions on this.
-              - name: Unexpected Connection
-                text: |-
-                  Copy the text of an ability on an enemy unit in range 6.
-              - name: Served Its Purpose
-                text: |-
-                  This draws a card, then kill this.
-
+                passives:
+                  - name: Damaged
+                    text: Enemies with Voodoo attachments take 1 damage.
+                  - name: Gains Condition
+                    text: Enemies with Voodoo attachments get the same condition with value +1.
+                  - name: Start
+                    text: End all conditions on this.
+                default_abilities:
+                  - name: Unexpected Connection
+                    text: |-
+                      Copy the text of an ability on an enemy unit with a voodoo upgrade in range 4.
+                  - name: Served Its Purpose
+                    text: |-
+                      Draws a fate card, then kill this.
       - hero:
           name: Seamus
-          health: 8
+          health: 6
           speed: 4
           image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679624896-DNSEY1BSLCMXCG5OT8VT/M2E_Seamus.png
+          passives:
+            - name: +2 Will, +2 Dodge
+              text: ''
+            - name: Attacked
+              text: |-
+                When an opponent misses this with an attack, this heals 2.
+            - name: Damaged
+              text: |-
+                If this has 2 or more health, it cannot be reduced below 1 health.
+            - name: Start
+              text: |-
+                At start of activation, this may make a default attack targeting each enemy adjacent to this.
+            - name: Attacking
+              text: |-
+                When targeting enemies adjacent to another ally, -2⛨ +2⚔
+          default_abilities:
+            - name: .50 Flintlock
+              text: Range 2, ⚔3, Push the target 3.
         decks:
           - abilities:
-              - name: Willfull 2
-                text: +2 Will
-              - name: Terrifying
-                text: |-
-                  +2 Dodge against attacks from enemies with less than +2 Will.
-              - name: Hard to Kill
-                text: |-
-                  If this has 2 or more health, it cannot be reduced below 1 health.
-              - name: Redchapel Killer
-                text: |-
-                  This has -2 dodge, +2 damage to enemies adjacent to another ally
-              - name: Feast of Fear
-                text: |-
-                  When an opponent misses this with an attack, this heals 2.
-              - name: Why Hello, Love
-                text: |-
-                  At the end of an enemy's turn, if they're adjacent to this, this may make a default attack targeting it.
-              - name: .50 Flintlock
-                text: |-
-                  Default
-                  Range 3, ⚔3, Push the target 3.
               - name: Terrorize
                 text: |-
                   Vs will
-                  Push the target its speed away from this.
+                  Range 3, Push the target its speed away from this.
               - name: Secret Passage
                 text: |-
-                  If adjacent to blocking terrain, teleport up to 6, ending adjacnet to blocking terrain.
+                  If adjacent to blocking terrain, teleport up to 6, ending adjacent to blocking terrain.
               - name: Cause for Celebration
                 text: |-
                   Free
@@ -1246,55 +1241,157 @@ sets:
           health: 8
           speed: 3
           image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561408518996-YIVKK5LYH6WZDXOVMEWE/M3E_Leveticus.png
-          default_ability:
-            name: Death Touch
-            text: |-
-              Default
-              Range 1, ⚔2 irreducible, heal 2
-              If this kills the target, create an Abomination in its space.
           passives:
-            - name: Unmade(always)
+            - name: +2 Will
+              text: ''
+            - name: When Attacked
+              text: The attacker takes 1 irreducible damage.
+            - name: End
               text: |-
-                When attacked, the attacker takes 1 irreducible damage.
-            - name: Entropy
+                Enemy units in range 2 take 1 damage.
+                Heal 1
+            - name: Death
               text: |-
-                Enemies that start their activation within 2 spaces take 1 damage.
-            - name: Demise(Pariah's Soul)
+                You may sacrifice a Hollow Waif to place this in the Hollow Waif's space and heal this equal to its remaining health.
+          default_abilities:
+            - name: Unmaking
               text: |-
-                When this dies, you may sacrifice a Hollow Waif to place this in the Hollow Waif's space and heal this equal to its remaining health.
+                Range 2, ⚔2 irreducible, heal 2
+                If this kills the target, create an Abomination in its space.
         decks:
-          - units:
-            - name: Abomination
-              health: 4
-              speed: 2
-              image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/gallery/album_386/gallery_30702_386_137300.jpg
-            passives:
-              - name: Unmade
-                text: |-
-                  When attacked with a 1-2, the attacker takes 1 irreducible damage.
-              - name: Entropy
-                text: |-
-                  Enemies that start their activation within 2 spaces take 1 damage.
-              - name: Withering Away
-                text: Enemies within range 2 cannot heal
-            default_ability:
-              name: Claws
-              text: |-
-                  Range 1, ⚔1, heal 1
-                  If this kills the target, create a Hollow Waif in its space.
-
-
           - abilities:
-              - name: Unmaking
-                text: |-
-                  Vs Will
-                  Range 4, ⚔2 irreducible
               - name: Essence Transfer
                 text: |-
-                  Range 6, Target two friendly units.
-                  Deal up to ⚔4 irreducible to one, and heal the other the same amount.
+                  Range 4, Target two friendly units.
+                  Deal up to ⚔4 irreducible to one, and heal the other the amount of damage taken.
               - name: Sanguine Evocations
                 text: |-
                   Free
                   Look at the top three cards of this unit's fate deck. Discard any number and place the rest back in any order.
                   This takes 1 damage for each card discarded.
+            units:
+              - name: Hollow Waif
+                health: 3
+                speed: 2
+                image_url: https://static.wikia.nocookie.net/monster/images/9/9b/24FC90CD-48B6-40AD-AF9D-6D7D193E47CF.jpeg/revision/latest?cb=20180824202915
+                passives:
+                  - name: End
+                    text: |-
+                      Enemy units in range 2 take ⚔1.
+                default_abilities:
+                  - name: Entropic Siphon
+                    text: |-
+                      Range 4, ⚔1
+              - name: Abomination
+                health: 4
+                speed: 2
+                image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/gallery/album_386/gallery_30702_386_137300.jpg
+                passives:
+                  - name: Attacked with 1-2
+                    text: Attacker takes ⚔1 irreducible
+                  - name: End
+                    text: Burst 2, ⚔2 irreducible
+                  - name: Withering Away
+                    text: Enemies within range 2 cannot heal
+                default_abilities:
+                  - name: Claws
+                    text: |-
+                      Range 1, ⚔1, heal 1
+                      If this kills the target, create a Hollow Waif in its space.
+      - hero:
+          name: Rasputina
+          health: 6
+          speed: 3
+          image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561056426702-ONTY0Y5Z5WVKNCXBMQ7M/M3E_Rasputina.png
+          passives:
+            - name: End
+              text: |-
+                Enemies adjacent to an ice pillar are slowed.
+            - name: Damaged
+              text: |-
+                You may remove an adjacent ice pillar to reduce the damage to 0.
+            - name: Ice Mirror
+              text: |-
+                This may draw range and line of sight from ice pillars in range 4
+                Ice pillars never provide cover to enemies.
+          default_abilities:
+            - name: Winter's Strike
+              text: |-
+                Range 4 2x2, ⚔2, slow
+                If an ice pillar is in the area, +⚔1
+        decks:
+          - abilities:
+            - name: Freeze Over
+              text: |-
+                Burst 2
+                Enemies are slowed and silenced.
+                Allies heal 1.
+            - name: Create Ice Pillar
+              text: |-
+                Create a blocking destructible ice pillar in range 4.
+              tokens:
+                - name: Ice Pillar
+                  image_url: https://cdn-icons-png.flaticon.com/512/5906/5906790.png
+            - name: December's Passage
+              text: |-
+                Free
+                Target an ice pillar in range 3. Choose any number of allies adjacent to it.
+                Teleport the ice pillar up to 4, then teleport the chosen allies adjacent to it.
+            units:
+              - name: Wendigo
+                health: 3
+                speed: 4
+                image_url: https://i.pinimg.com/originals/1a/2a/88/1a2a88dd08a1d9a585a8d65487dd84f5.jpg
+                passives:
+                  - name: Frozen Conduit
+                    text: |-
+                      This may be treated as an Ice Pillar marker for the purposes of abilities.
+                  - name: Death
+                    text: |-
+                      Create a blocking destructible Ice Pillar marker in this space.
+                default_abilities:
+                  - name: Bite
+                    text: |-
+                      Range 1, ⚔2
+                      on kill, heal 2.
+
+      - hero:
+          name: Som'er Teeth Jones
+          health: 8
+          speed: 3
+          image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561399760452-BICZM3YT16TN1G4EHMDT/M3E_Somer.png
+          passives:
+            - name: After ally rolls, 1/turn
+              text: |-
+                  You may reroll the roll and take the second result.
+            - name: When ally dies in range 3
+              text: This may make a default attack against the killer.
+            - name: Attacked
+              text: This may move up to 2.
+            - name: Before ally rolls
+              text: Get +1 to rolls for each ally in range 1.
+          default_abilities:
+            - name: Boomer
+              text: |-
+                Range 3 2x2, ⚔2, push 1
+        decks:
+          - abilities:
+              - name: Extended Family
+                text: |-
+                  Create 2 Bayou Gremlins in range 3.
+              - name: Take One for the Team
+                text: |-
+                  Target an ally in range 3.
+                  It deals ⚔2 to units in range 1, then kill it.
+            units:
+              - name: Bayou Gremlin
+                health: 2
+                speed: 3
+                image_url: https://static.wikia.nocookie.net/monster/images/2/28/78BA677E-3FAB-4B1B-B634-6F957678BFFE.jpeg/revision/latest/scale-to-width-down/384?cb=20180814214132
+                passives:
+                  - name: Death
+                    text: You draw a card.
+                default_abilities:
+                  - name: Banjo Bash
+                    text: |- 
+                      Range 1, ⚔1

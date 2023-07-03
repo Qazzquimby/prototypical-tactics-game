@@ -109,11 +109,12 @@ class Ability(BaseModel):
     text: str
 
     def __str__(self):
-
-        # convert markdown to html
-        # text_html = markdown.markdown(self.text)
-        text_html = "\n".join([f"<p>{line}</p>" for line in self.text.split("\n")])
-        return f"<span class='ability-name'>{self.name}:</span> {text_html}"
+        lines = self.text.split("\n")
+        first_line, *other_lines = lines
+        ability_line = f"<p><span class='ability-name'>{self.name}:</span> {first_line}</p>"
+        other_lines = "\n".join([f"<p>{line}</p>" for line in other_lines])
+        text_html = ability_line+other_lines
+        return text_html
 
 
 class Passive(Ability):
@@ -156,18 +157,21 @@ class UnitCard(Card, Figurine):
     health: int
     # dodge: int = 0
     passives: list[Passive] = []
-    default_ability: Optional[Active] = None
+    default_abilities: list[Active] = []
 
     def _inner_html(self):
         passives = "\n".join([f"<p>{str(passive)}</p" for passive in self.passives])
+        default_abilities = "\n".join(
+            [f"<p>{str(ability)}</p" for ability in self.default_abilities]
+        )
 
         content = f"""\
 <h1>{self.name}</h1>
 <p>Speed: {self.speed}; Health: {self.health}</p>
 
 {passives}
-
-<p>{self.default_ability}</p>
+- - - 
+{default_abilities}
 <p>{'owner todo'}</p>
 """
 
