@@ -524,7 +524,7 @@ sets:
           default_abilities:
             - name: Fusion Driver
               text: |-
-                  Range 3, ⚔2.
+                Range 3, ⚔2.
         decks:
           - abilities:
               - name: Energy Javelin
@@ -1128,17 +1128,17 @@ sets:
           speed: 3
           image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561397209226-NPKX6FNG8ZSYJZEJO1CZ/M3E_LadyJustice.png
           passives:
-            - name: Attacked
+            - name: Attacked, from range 1, roll of 1-2
               text: |-
-                If target in range 1 and roll is 1-2, Counterattack range 1, ⚔3
+                Counterattack range 1, ⚔3
             - name: Kill
               text: |-
                 This heals 2,
-                this and allies in range 3 get Focused +1
+                this gets Focused +1
                 and the killed unit doesn't trigger on death effects.
           default_abilities:
             - name: Greatsword
-              text: Range 2, ⚔2, +2⚔ if this hasn't moved this turn.
+              text: Range 2, ⚔3, +1⚔ if this hasn't moved this turn.
         decks:
           - abilities:
               - name: Restore the Natural Order
@@ -1235,7 +1235,38 @@ sets:
               - name: Cause for Celebration
                 text: |-
                   Free
-                  Remove a corpse on the opponent's table half to take an action.
+                  Remove a corpse on the opponent's table half in range 1.
+                  If you did, take an action.
+      - hero:
+          name: McMourning
+          health: 8
+          speed: 3
+          image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561378118884-2HU7T647WEKGYR78XBHB/guild-masters-mcmourning.png
+          passives:
+            - name: Armor +1
+              text: ''
+            - name: End
+              text: Enemies with Poison in range 2 take 1 damage.
+            - name: Perverse Metabolism
+              text: This and allies heal from Poison instead of taking damage.
+            - name: Deploy
+              text: All allies get Poison +2.
+          default_abilities:
+            - name: Skull Saw
+              text: |-
+                Range 1, 
+                ⚔2 Irreducible, ignore overshield. 
+                Heal 2, Target gets Poison +2.
+        decks:
+          - abilities:
+              - name: Rancid Transplant
+                text: |-
+                  Two targets in Range 4
+                  Both targets get Poison +2. You may move a condition from one target to the other.
+              - name: Blood Poisoning
+                text: |-
+                  Free, VS Will
+                  Target takes damage equal to their Poison value, then remove all Poison from them.
       - hero:
           name: Leveticus
           health: 8
@@ -1244,7 +1275,7 @@ sets:
           passives:
             - name: +2 Will
               text: ''
-            - name: When Attacked
+            - name: Attacked
               text: The attacker takes 1 irreducible damage.
             - name: End
               text: |-
@@ -1253,6 +1284,8 @@ sets:
             - name: Death
               text: |-
                 You may sacrifice a Hollow Waif to place this in the Hollow Waif's space and heal this equal to its remaining health.
+            - name: Deploy
+              text: Create 2 Hollow Waifs in range 2.
           default_abilities:
             - name: Unmaking
               text: |-
@@ -1299,6 +1332,43 @@ sets:
                       Range 1, ⚔1, heal 1
                       If this kills the target, create a Hollow Waif in its space.
       - hero:
+          name: Viktoria
+          health: 6
+          speed: 4
+          image_url: https://paizo.com/image/product/catalog/WYR/WYR5003_500.jpeg
+          passives:
+            - name: Deploy
+              text: Create a copy of this in your deploy zone, without this ability.
+            - name: Start
+              text: |-
+                Another Viktoria in range 4 may teleport adjacent to this.
+                Then move up to 2.
+            - name: Kill
+              text: All Viktorias heal 2
+            - name: Death
+              text: All other Viktorias heal 2 and permanently gain +2 Dodge, +2 Will
+          default_abilities:
+            - name: Enchanted Katana
+              text: |-
+                Range 1, ⚔3
+                Other enemies in range 1 take ⚔1
+        decks:
+          - units:
+              - name: Viktoria (Copy)
+                image_url: https://www.puttyandpaint.com/images/uploads/artistworks/6442/cache/vik3-3__sized_l.jpg
+                health: 6
+                speed: 3
+          - abilities:
+              - name: Dragon's Breath
+                text: |-
+                  Target enemy in range 4
+                  All Viktorias in range 4 of the target pull 4 towards it.
+              - name: The Setting Sun
+                text: |-
+                  Free
+                  All Viktorias get 1 overshield.
+
+      - hero:
           name: Rasputina
           health: 6
           speed: 3
@@ -1314,6 +1384,9 @@ sets:
               text: |-
                 This may draw range and line of sight from ice pillars in range 4
                 Ice pillars never provide cover to enemies.
+            - name: Deploy
+              text: |-
+                Create a Wendingo in range 1.
           default_abilities:
             - name: Winter's Strike
               text: |-
@@ -1321,22 +1394,22 @@ sets:
                 If an ice pillar is in the area, +⚔1
         decks:
           - abilities:
-            - name: Freeze Over
-              text: |-
-                Burst 2
-                Enemies are slowed and silenced.
-                Allies heal 1.
-            - name: Create Ice Pillar
-              text: |-
-                Create a blocking destructible ice pillar in range 4.
-              tokens:
-                - name: Ice Pillar
-                  image_url: https://cdn-icons-png.flaticon.com/512/5906/5906790.png
-            - name: December's Passage
-              text: |-
-                Free
-                Target an ice pillar in range 3. Choose any number of allies adjacent to it.
-                Teleport the ice pillar up to 4, then teleport the chosen allies adjacent to it.
+              - name: Freeze Over
+                text: |-
+                  Burst 2
+                  Enemies are slowed and silenced.
+                  Allies heal 1.
+              - name: Create Ice Pillar
+                text: |-
+                  Create a blocking destructible ice pillar in range 4.
+                tokens:
+                  - name: Ice Pillar
+                    image_url: https://cdn-icons-png.flaticon.com/512/5906/5906790.png
+              - name: December's Passage
+                text: |-
+                  Free
+                  Target an ice pillar in range 3. Choose any number of allies adjacent to it.
+                  Teleport the ice pillar up to 4, then teleport the chosen allies adjacent to it.
             units:
               - name: Wendigo
                 health: 3
@@ -1354,6 +1427,90 @@ sets:
                     text: |-
                       Range 1, ⚔2
                       on kill, heal 2.
+      - hero:
+          name: Marcus
+          health: 8
+          speed: 4
+          image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561056384019-ABG7PJH49JLVV0FPY0JV/M3E_Marcus.png
+          passives:
+            - name: Start
+              text: |-
+                Discard all Mutation Upgrades on this,
+                then this may attach a Mutation Upgrade.
+            - name: Attacked
+              text: |-
+                you may discard a card to change the target to an adjacent friendly Jackalope.
+            - name: Ignores Severe Terrain
+              text: ""
+          default_abilities:
+            - name: Tear Apart
+              text: |-
+                Range 1, ⚔2
+                5-6, Teleport up to 3 adjacent to an enemy you haven't attacked this turn, 
+                and repeat this ability.
+        decks:
+          - abilities:
+              - name: Chimerancy
+                text: |-
+                  Range 4
+                  Attach a Mutation Upgrade to a Jackalope, or an ally without one.
+              - name: Primal Roar
+                text: |-
+                  Free
+                  Allies in range 3 may move up to 2.
+              - name: Armored Plates
+                text: |-
+                  UPGRADE
+                  Armor +1
+              - name: Feathered Wings
+                text: |-
+                  UPGRADE
+                  This may teleport when moving.
+                  Attacked: After resolving, may move up to 3.
+              - name: Formidable Horns
+                text: |-
+                  UPGRADE
+                  Attack: 5-6, repeat the attack on the same target.
+              - name: Natural Camouflage
+                text: |-
+                  UPGRADE
+                  This cannot be targeted from range 3 or more.
+              - name: Serrated Teeth and Claws
+                text: |-
+                  UPGRADE
+                  +1⚔
+          - units:
+              - name: Jackalope
+                health: 2
+                speed: 3
+                image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2016_01/large.Jackalope.jpg.69b2f6f5478acce03bf753d628b41e2b.jpg
+                passives:
+                  - name: Death
+                    text: |-
+                      CD 1
+                      You may discard a card to heal to full health.
+                  - name: Death
+                    text: |-
+                      You may lose a Mutation Upgrade to heal to full health.
+                  - name: Insignificant
+                    text: ""
+                  - name: Ignores Severe Terrain
+                    text: ""
+                default_abilities:
+                  - name: Horns
+                    text: |-
+                      Range 1, ⚔2
+                      5-6, Teleport up to 3 adjacent to an enemy you haven't attacked this turn, 
+                      and repeat this ability.
+                  - name: Leap
+                    text: |-
+                      Free
+                      Teleport up to 3.
+      
+      
+      
+      
+      
 
       - hero:
           name: Som'er Teeth Jones
@@ -1361,21 +1518,24 @@ sets:
           speed: 3
           image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561399760452-BICZM3YT16TN1G4EHMDT/M3E_Somer.png
           passives:
-            - name: After ally rolls, 1/turn
-              text: |-
-                  You may reroll the roll and take the second result.
-            - name: When ally dies in range 3
-              text: This may make a default attack against the killer.
+            - name: +1 Dodge per adjacent ally
+              text: ''
+            #            - name: After ally rolls, 1/turn
+            #              text: |-
+            #                  You may reroll the roll and take the second result.
             - name: Attacked
               text: This may move up to 2.
-            - name: Before ally rolls
-              text: Get +1 to rolls for each ally in range 1.
           default_abilities:
             - name: Boomer
               text: |-
                 Range 3 2x2, ⚔2, push 1
         decks:
           - abilities:
+              - name: Pig Eating Grin
+                text: |-
+                  CD 1
+                  Reaction after ally dies in range 3:
+                    This may make a default attack against the killer.
               - name: Extended Family
                 text: |-
                   Create 2 Bayou Gremlins in range 3.
@@ -1389,9 +1549,11 @@ sets:
                 speed: 3
                 image_url: https://static.wikia.nocookie.net/monster/images/2/28/78BA677E-3FAB-4B1B-B634-6F957678BFFE.jpeg/revision/latest/scale-to-width-down/384?cb=20180814214132
                 passives:
+                  - name: +1 Dodge per adjacent ally
+                    text: ''
                   - name: Death
                     text: You draw a card.
                 default_abilities:
                   - name: Banjo Bash
-                    text: |- 
+                    text: |-
                       Range 1, ⚔1
