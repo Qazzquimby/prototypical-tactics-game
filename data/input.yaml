@@ -1275,7 +1275,7 @@ sets:
               - name: Zombie Chihuahua
                 health: 2
                 speed: 3
-                image_url: https://static.wikia.nocookie.net/monster/images/6/6e/Chihuahua.png/revision/latest?cb=20180730171650
+                image_url: https://static.wikia.nocookie.net/monster/images/e/e9/ZombieChihuahuaimage.jpg/revision/latest/scale-to-width-down/384?cb=20170506224224
                 passives:
                   - name: End
                     text: All adjacent units get Poison +1
@@ -1358,6 +1358,8 @@ sets:
           passives:
             - name: Armor +1, Dodge +2
               text: ''
+            - name: Diversion
+              text: Enemies in range 2 cannot use free actions.
             - name: Attacked
               text: You may discard a card to change the target to an adjacent Lord Chompy Bits or Alp.
             - name: Deploy
@@ -1371,6 +1373,7 @@ sets:
           - abilities:
               - name: Manifest Nightmares
                 text: |-
+                  Once per turn
                   Summon and Exile an Alp.
             units:
               - name: Lord Chompy Bits
@@ -1395,10 +1398,10 @@ sets:
                     text: ''
                   - name: Nightmares Made Real
                     text: |-
-                      While this is in exile, if an enemy is damaged to below half health,
-                      you may place this adjacent to it.
-                      This deals 1 damage to everything in range 1.
-                      This may make a default attack.
+                      While this is in exile, if an enemy is damaged to below half health, if no other friendly Alp has been placed this activation:
+                        you may place this adjacent to it.
+                        This deals 1 damage to everything in range 1.
+                        This may make a default attack.
                 default_abilities:
                   - name: Imaginary Claws
                     text: |-
@@ -1507,7 +1510,7 @@ sets:
           passives:
             - name: End
               text: |-
-                Enemies adjacent to an ice pillar are slowed.
+                Enemies adjacent to an ice pillar are stunned (-1 action).
             - name: Damaged
               text: |-
                 You may remove an adjacent ice pillar to reduce the damage to 0.
@@ -1521,7 +1524,7 @@ sets:
           default_abilities:
             - name: Winter's Strike
               text: |-
-                Range 4 2x2, ⚔2, slow
+                Range 4 2x2, ⚔1, slow (-2 speed)
                 If an ice pillar is in the area, +⚔1
         decks:
           - abilities:
@@ -1540,7 +1543,7 @@ sets:
                 text: |-
                   Free
                   Target an ice pillar in range 3. Choose any number of allies adjacent to it.
-                  Teleport the ice pillar up to 4, then teleport the chosen allies adjacent to it.
+                  Teleport the ice pillar up to 2, then teleport the chosen allies adjacent to it.
             units:
               - name: Wendigo
                 health: 3
