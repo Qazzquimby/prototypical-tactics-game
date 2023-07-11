@@ -1350,22 +1350,23 @@ sets:
                       Range 2, ⚔2
                   - name: Grim Feast
                     text: Remove a Corpse Marker to heal 2.
-      - hero: The Dreamer
-        health: 4
-        speed: 3
-        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561406454403-LXJLZQ5JOLVVC9M8WHBB/M3E_Dreamer.png
-        passives:
-          - name: Armor +1, Dodge +2
-            text: ''
-          - name: Attacked
-            text: You may discard a card to change the target to an adjacent Lord Chompy Bits or Alp.
-          - name: Deploy
-            text: Summon and deploy a Lord Chompy Bits.
-        default_abilities:
-          - name: Cricket Bat
-            text: |-
-              Range 1, ⚔1, +1⚔ for each of your summons adjacent to the target.
-              Swap positions with an ally in range 3.
+      - hero:
+          name: The Dreamer
+          health: 4
+          speed: 3
+          image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561406454403-LXJLZQ5JOLVVC9M8WHBB/M3E_Dreamer.png
+          passives:
+            - name: Armor +1, Dodge +2
+              text: ''
+            - name: Attacked
+              text: You may discard a card to change the target to an adjacent Lord Chompy Bits or Alp.
+            - name: Deploy
+              text: Summon and deploy a Lord Chompy Bits.
+          default_abilities:
+            - name: Cricket Bat
+              text: |-
+                Range 1, ⚔1, +1⚔ for each of your summons adjacent to the target.
+                Swap positions with an ally in range 3.
         decks:
           - abilities:
               - name: Manifest Nightmares
