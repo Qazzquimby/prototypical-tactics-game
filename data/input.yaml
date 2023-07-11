@@ -1271,6 +1271,18 @@ sets:
                 text: |-
                   Free, VS Will
                   Target takes damage equal to their Poison value, then remove all Poison from them.
+            units:
+              - name: Zombie Chihuahua
+                health: 2
+                speed: 3
+                image_url: https://static.wikia.nocookie.net/monster/images/6/6e/Chihuahua.png/revision/latest?cb=20180730171650
+                passives:
+                  - name: End
+                    text: All adjacent units get Poison +1
+                default_abilities:
+                  - name: Bite
+                    text: |-
+                      Range 1, ⚔1, Poison +1
       - hero:
           name: Kirai
           health: 10
@@ -1291,53 +1303,54 @@ sets:
                 Range 1, ⚔2
         decks:
           - abilities:
-            - name: Spirit Barrage
-              text: |-
-                Range 6, ⚔1
-                3-4: An adjacent ally can attack the target.
-                5-6: Summon a gaki adjacent to the target
-            - name: Blood and Wind
-              text: |-
-                Range 3
-                Choose:
-                Summon a Gaki, max 4.
-                or roll: 5-6, summon an Ikiryo, max 1.
-            - name: Soothe Spirit
-              text: Range 3, heal 1, Overshield +1
-            - name: I've Got Your Back
-              text: |-
-                Free
-                Range 4, teleport target ally adjacent to this.
-          - units:
-            - name: Ikiryo
-              health: 4
-              speed: 4
-              image_url: https://i.ytimg.com/vi/63A_tJ8wPds/maxresdefault.jpg
-              passives:
-                - name: Dodge +2, Armor +1
-                  text: ""
-                - name: Damaged
-                  text: Attacker takes 1 damage
-              default_abilities:
-                - name: Death Touch
-                  text: |-
-                    Range 2, ⚔3 irreducible.
-                    On kill, this and Kirai heal 2.
-            - name: Gaki
-              health: 3
-              speed: 3
-              image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2015_09/large.gaki.jpg.afc89b1f23a8af53c6e322f1f434e4ea.jpg
-              passives:
-                - name: Armor +1
-                  text: ""
-                - name: Damaged
-                  text: Attacker takes 1 damage
-              default_abilities:
-                - name: Mighty Jaws
-                  text: |-
-                    Range 2, ⚔2
-                - name: Grim Feast
-                  text: Remove a Corpse Marker to heal 2.
+              - name: Spirit Barrage
+                text: |-
+                  Range 6, ⚔1
+                  3-4: An adjacent ally can attack the target.
+                  5-6: Summon a gaki adjacent to the target, max 3
+              - name: Blood and Wind
+                text: |-
+                  Range 3
+                  Choose:
+                    Summon a Gaki, max 3.
+                    or roll: 5-6, summon an Ikiryo, max 1.
+              - name: Soothe Spirit
+                text: Range 3, heal 1, Overshield +1
+              - name: I've Got Your Back
+                text: |-
+                  Free
+                  Range 4, teleport target ally adjacent to this.
+            units:
+              - name: Ikiryo
+                health: 4
+                speed: 4
+                image_url: https://i.ytimg.com/vi/63A_tJ8wPds/maxresdefault.jpg
+                passives:
+                  - name: Dodge +2, Armor +1
+                    text: ""
+                  - name: Damaged
+                    text: Attacker takes 1 damage
+                default_abilities:
+                  - name: Death Touch
+                    text: |-
+                      Range 2, ⚔3 irreducible.
+                      On kill, this and Kirai heal 2.
+              - name: Gaki
+                health: 3
+                speed: 3
+                image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2015_09/large.gaki.jpg.afc89b1f23a8af53c6e322f1f434e4ea.jpg
+                passives:
+                  - name: Armor +1
+                    text: ""
+                  - name: Damaged
+                    text: Attacker takes 1 damage
+                default_abilities:
+                  - name: Mighty Jaws
+                    text: |-
+                      Range 2, ⚔2
+                  - name: Grim Feast
+                    text: Remove a Corpse Marker to heal 2.
+
       - hero:
           name: Leveticus
           health: 8
@@ -1405,7 +1418,7 @@ sets:
       - hero:
           name: Viktoria
           health: 6
-          speed: 4
+          speed: 3
           image_url: https://paizo.com/image/product/catalog/WYR/WYR5003_500.jpeg
           passives:
             - name: Deploy
@@ -1413,7 +1426,7 @@ sets:
             - name: Start
               text: |-
                 Another Viktoria in range 4 may teleport adjacent to this.
-                Then move up to 2.
+                Teleport up to 1.
             - name: Kill
               text: All Viktorias heal 2
             - name: Death
@@ -1421,7 +1434,7 @@ sets:
           default_abilities:
             - name: Enchanted Katana
               text: |-
-                Range 1, ⚔3
+                Range 1, ⚔2 +2Crit
                 Other enemies in range 1 take ⚔1
         decks:
           - abilities:
@@ -1429,10 +1442,6 @@ sets:
                 text: |-
                   Target enemy in range 4
                   All Viktorias in range 4 of the target pull 4 towards it.
-              - name: The Setting Sun
-                text: |-
-                  Free
-                  All Viktorias get 1 overshield.
             units:
               - name: Viktoria (Copy)
                 image_url: https://www.puttyandpaint.com/images/uploads/artistworks/6442/cache/vik3-3__sized_l.jpg
@@ -1502,11 +1511,11 @@ sets:
           health: 8
           speed: 3
           image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561391468145-0KLLOT8NOW46VZKHY0NR/M3E_Colette.png
-          passive:
+          passives:
             - name: Dodge +2
               text: ""
             - name: Attacked, 1-2
-              text: Take 2 less damage, then exile this.
+              text: Take 1 less damage, then exile this.
             - name: Start, if Exiled
               text: |-
                 Place this adjacent to an ally,
@@ -1518,27 +1527,27 @@ sets:
             - name: Distracting Illusions
               text: |-
                 Vs Will
-                Range 1, target discards a card, and gets Distracted +1 and Silenced
+                Range 1, target discards a card, and gets Distracted +1 and Silenced.
         decks:
           - abilities:
-            - name: False Reality
-              text: |-
-                Vs Will
-                Range 4. Teleport the target up to 3.
-                5-6: target is Stunned(-1 action)
-            - name: Presto Chango
-              text: |-
-                Vs Will
-                Range 4. Swap places with the target
-            - name: Sword Trick
-              text: |-
-                Free
-                Range 1, ⚔2, Exile target. 
-                At the start of its next activation, place it adjacent to one of its allies.
-            - name: Practiced Choreography
-              text: |-
-                Free
-                Allies in range 2 may move up to 2.
+              - name: False Reality
+                text: |-
+                  Vs Will
+                  Range 4. Teleport the target up to 3.
+                  5-6: You may give the target Stunned(-1 action)
+              - name: Presto Chango
+                text: |-
+                  Vs Will
+                  Range 4. Swap places with the target
+              - name: Sword Trick
+                text: |-
+                  Free
+                  Range 1, ⚔2, Exile target. 
+                  At the start of its next activation, place it adjacent to one of its allies.
+              - name: Practiced Choreography
+                text: |-
+                  Free
+                  Allies in range 2 may move up to 2.
 
       - hero:
           name: Marcus
