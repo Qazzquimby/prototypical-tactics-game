@@ -249,31 +249,25 @@ HEALTH_LABEL = "Health"
 SIZE_LABEL = "Size"
 
 
-class AbilityCard(Card):
-    type: Literal["Basic"] | Literal["Quick"] = BASIC
+class RulesCard(Card):
     text: str
 
     def _inner_html(self):
         return f"""\
 <h1>{self.name}</h1>
-<p>{self.type}</p>
 <p>{self.text}</p>
-<p>{"owner todo"}</p>
 """
+
+
+class AbilityCard(Card):
+    text: str
+
+    def _inner_html(self):
+        ability = Ability(name=self.name, text=self.text)
+        return f"{str(ability)}\n<p>owner todo</p>"
 
     def make_content_dict(self, hero_name: str) -> dict:
         return NotImplemented  # this should replace card row?
-
-    def make_card_row(self, hero_name: str):
-        return [
-            self.name,
-            ABILITY_CARD_LABEL,
-            self.name,
-            self.type,
-            self.cost,
-            self.text,
-            hero_name,
-        ]
 
     @staticmethod
     @lru_cache
@@ -285,13 +279,7 @@ class AbilityCard(Card):
             size=CARD_SIZE,
             type_="card",
             shape=Shape(
-                areas={
-                    2: (0, 0, 0, 2),
-                    3: (0, 3, 0, 3),
-                    4: (1, 0, 1, 3),
-                    5: (2, 0, 4, 3),
-                    6: (5, 1, 5, 2),
-                },
+                areas={},
                 size=(4, 6),
             ),
         )
@@ -372,6 +360,7 @@ class GameSet(BaseModel):
 
 
 class Game(BaseModel):
+    rules: list[RulesCard] = []
     sets: list[GameSet]
 
 

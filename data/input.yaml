@@ -1,3 +1,6 @@
+rules:
+  - name: aaa rule
+    text: Blaahhhhhhh
 sets:
   - name: Overwatch
     hero_boxes:
