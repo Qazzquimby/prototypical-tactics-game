@@ -1,0 +1,21 @@
+
+* {
+    font-family: Roboto Slab;
+    font-size: 1rem;
+}
+
+div.box {
+    height: 1827px;
+    width: 2071px;
+    border: 5px solid;
+    padding-top: 84px;
+    padding-left: 79px;
+    padding-bottom: 84px;
+    padding-right: 84px;
+}
+
+.back {
+    border: solid 5px;
+    height: 1459px;
+    width: 857px;
+}

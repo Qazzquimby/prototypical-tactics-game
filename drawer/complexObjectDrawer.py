@@ -34,12 +34,17 @@ async def get_browser():
     return _BROWSER
 
 
-def make_empty_image(filepath):
-    surf = pygame.Surface((10, 10))
-    pygame.image.save(surf, filepath)
+async def close_browser():
+    global _BROWSER
+    if _BROWSER is not None:
+        async with lock:
+            if _BROWSER is not None:
+                await _BROWSER.close()
+                print("Browser closed")
+                _BROWSER = None
 
 
-css = (TemplatesPath / "card.css").read_text()
+CARD_CSS = (TemplatesPath / "card.css").read_text()
 
 
 class ComplexObjectDrawer(BaseDrawer):
@@ -54,15 +59,13 @@ class ComplexObjectDrawer(BaseDrawer):
     async def draw(self, _=None):
         self.surf = pygame.Surface((IMAGE_WIDTH, IMAGE_HEIGHT))
 
-        css = (TemplatesPath / "card.css").read_text()
-
         browser = await get_browser()
         page = await browser.new_page()
         await page.set_viewport_size({"width": IMAGE_WIDTH, "height": IMAGE_HEIGHT})
 
         html = self.object.content.get_html()
         await page.set_content(html)
-        await page.add_style_tag(content=css)
+        await page.add_style_tag(content=CARD_CSS)
         image_bytes = await page.screenshot()  # path=temp_path)
 
         # image = pygame.image.load(temp_path)

@@ -10,11 +10,13 @@ from domain.bag import Bag
 from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
 
-from domain.library import Library
+from domain.library import Library, get_hero_boxes
 from domain.token import ContentToken
 from drawer.base import BaseDrawer
 from drawer.cardBackDrawer import CardBackDrawer
+from drawer.complexObjectDrawer import close_browser
 from drawer.deckDrawer import DeckDrawer
+from drawer.heroBoxDrawer import HeroBoxDrawer
 from image_builders import ImageBuilder
 from yaml_parsing import GameSet
 
@@ -100,6 +102,20 @@ async def library_to_tts_dict(
             )
         )
 
+    hero_box_drawer = HeroBoxDrawer(config)
+    hero_boxes = get_hero_boxes(library)
+    for hero_box in hero_boxes:
+        coroutines.append(
+            _save_image_and_set_attribute(
+                image_builder=image_builder,
+                drawer=hero_box_drawer,
+                object_=hero_box,
+                file_name=hero_box.name,
+                file_extension="jpg",
+                attribute_to_set="diffuse_url",
+            )
+        )
+
     for obj in library.complex_objects:
         if obj.type.type == "board":
             coroutines.append(
@@ -142,6 +158,8 @@ async def library_to_tts_dict(
 
     entities = library.bags  # will need to change for games that are more than one bag
     tts_dict["ObjectStates"] = [entity.as_dict() for entity in entities]
+
+    await close_browser()
 
     return tts_dict
 

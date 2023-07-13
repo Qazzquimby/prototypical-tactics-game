@@ -1,9 +1,12 @@
 import abc
+import asyncio
+import io
 from functools import lru_cache
 from pathlib import Path
 from typing import Literal, ClassVar, Optional
 
 import jinja2
+import pygame
 import yaml
 from pydantic import BaseModel
 
@@ -11,11 +14,13 @@ from domain.bag import CustomBag
 from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
 from domain.shape import Shape
+from drawer.color import convert_tts_to_pygame
 from drawer.complexObjectDrawer import (
     TemplatesPath,
     EDGE_MARGIN,
     IMAGE_WIDTH,
     IMAGE_HEIGHT,
+    get_browser,
 )
 from spawning_lua import get_full_lua, scale_size, clean_string_for_lua
 from domain.deck import Deck as DomainDeck
@@ -111,9 +116,11 @@ class Ability(BaseModel):
     def __str__(self):
         lines = self.text.split("\n")
         first_line, *other_lines = lines
-        ability_line = f"<p><span class='ability-name'>{self.name}:</span> {first_line}</p>"
+        ability_line = (
+            f"<p><span class='ability-name'>{self.name}:</span> {first_line}</p>"
+        )
         other_lines = "\n".join([f"<p>{line}</p>" for line in other_lines])
-        text_html = ability_line+other_lines
+        text_html = f"{ability_line}\n{other_lines}"
         return text_html
 
 
@@ -311,7 +318,7 @@ class HeroBox(BaseModel):
         hero_box_bag = CustomBag(
             name=make_box_name(self.hero.name),
             size=1,
-            color=(1.0, 0.0, 0.0),
+            color=(1.0, 1.0, 1.0),
             diffuse_url="http://cloud-3.steamusercontent.com/ugc/1469815174066637129/930D22149972BB2B9C6164FB8D1819249640546B/",
             # todo, generate the image and url like how cards are generated
         )

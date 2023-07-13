@@ -34,3 +34,13 @@ class Library:
     @decks.setter
     def decks(self, value):
         self._decks = value
+
+
+def get_hero_boxes(library: Library):
+    hero_boxes = []
+    game_bag = library.bags[0]
+    set_bags = game_bag.content
+    for set_bag in set_bags:
+        hero_boxes += set_bag.content
+
+    return hero_boxes
