@@ -51,7 +51,6 @@ class ComplexObjectDrawer(BaseDrawer):
     def __init__(self, obj, config):
         self.object = obj
         self.config = config
-        self.size = obj.type.shape.size
 
         self.surf = None
         self.full_surf = None
@@ -77,41 +76,6 @@ class ComplexObjectDrawer(BaseDrawer):
 
         self.full_surf.blit(self.surf, (EDGE_MARGIN, EDGE_MARGIN))
         return self.full_surf
-
-    def get_card_size(self):
-        return self.object.type.size
-
-    # note: areas in the shape are actually row, col and not x,y
-    def draw_content_to_area(self, content, area):
-        w, h = self.get_card_size()
-        dw = w - (2 * EDGE_MARGIN)
-        dh = h - (2 * EDGE_MARGIN)
-        rect = pygame.Rect(
-            LEFTRIGHT_MARGIN + area[1] * dw / self.size[0],
-            TOPBOTTOM_MARGIN + area[0] * dh / self.size[1],
-            (area[3] + 1) * dw / self.size[0] - LEFTRIGHT_MARGIN,
-            (area[2] + 1) * dh / self.size[1] - TOPBOTTOM_MARGIN,
-        )
-        if isinstance(content, str) and "\\icon" in content:
-            self.draw_icon(self.surf, content, rect)
-        elif isinstance(content, str) and "\\image" in content:
-            self.draw_image(self.surf, content, rect)
-        else:
-            self.write(content, rect)
-
-    def write(self, content, rect):
-        if isinstance(content, float) and content.is_integer():
-            content = int(content)
-
-        # the render function expects a rect with 0,0 topleft.
-        rerect = pygame.Rect((0, 0, rect[2] - rect[0], rect[3] - rect[1]))
-        surf = render_fitted_textrect(str(content), rerect, (0, 0, 0), (255, 255, 255))
-        if not surf:
-            raise ValueError(
-                "Unable to draw the card. Are you reserving enough space for all your content? Trying to write: "
-                + str(content)
-            )
-        self.surf.blit(surf, rect)
 
     def base_draw_image(self, surf, content, rect, type_):
         import pygame

@@ -32,6 +32,10 @@ CARD_HEIGHT = 450
 CARD_WIDTH = 350
 CARD_SIZE = (CARD_WIDTH, CARD_HEIGHT)
 
+PYGAME_CARD_WIDTH = 3
+PYGAME_CARD_HEIGHT = 4
+PYGAME_CARD_SIZE = (PYGAME_CARD_WIDTH, PYGAME_CARD_HEIGHT)
+
 
 class Spawnable(abc.ABC):
     def get_lua(self) -> str:
@@ -218,23 +222,8 @@ class Hero(UnitCard):
     def to_complex_type():
         return ComplexType(
             name=HERO_CARD_LABEL,
-            backside=(0.0, 0.0, 0.0),
-            background_color=(1.0, 1.0, 1.0),
             size=CARD_SIZE,
             type_="card",
-            shape=Shape(
-                areas={
-                    2: (0, 0, 0, 3),
-                    3: (1, 0, 1, 0),
-                    4: (1, 1, 1, 1),
-                    5: (2, 0, 2, 0),
-                    6: (2, 1, 2, 1),
-                    7: (3, 0, 3, 0),
-                    8: (3, 1, 3, 1),
-                    9: (5, 1, 5, 2),
-                },
-                size=(4, 6),
-            ),
         )
 
 
@@ -274,14 +263,8 @@ class AbilityCard(Card):
     def to_complex_type():
         return ComplexType(
             name=ABILITY_CARD_LABEL,
-            backside=(0.0, 0.0, 0.0),
-            background_color=(1.0, 1.0, 1.0),
             size=CARD_SIZE,
             type_="card",
-            shape=Shape(
-                areas={},
-                size=(4, 6),
-            ),
         )
 
 

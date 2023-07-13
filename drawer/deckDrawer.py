@@ -4,6 +4,7 @@ import pygame
 
 from drawer.base import BaseDrawer
 from drawer.complexObjectDrawer import ComplexObjectDrawer
+from yaml_parsing import PYGAME_CARD_SIZE, PYGAME_CARD_WIDTH, PYGAME_CARD_HEIGHT
 
 DECK_IMAGE_CARDS_PER_ROW = 10
 DECK_IMAGE_CARDS_PER_COLUMN = 7
@@ -14,13 +15,13 @@ class DeckDrawer(BaseDrawer):
         self.config = config
 
     async def draw(self, deck):
-        drawer = ComplexObjectDrawer(deck.cards[0].object, self.config)
-        w, h = drawer.get_card_size()
-        size = (w * DECK_IMAGE_CARDS_PER_ROW, h * DECK_IMAGE_CARDS_PER_COLUMN)
-        card_size = (w, h)
+        size = (
+            PYGAME_CARD_WIDTH * DECK_IMAGE_CARDS_PER_ROW,
+            PYGAME_CARD_HEIGHT * DECK_IMAGE_CARDS_PER_COLUMN,
+        )
 
         surf = pygame.Surface(size)
-        await self._draw_cards(surf, deck.cards, card_size)
+        await self._draw_cards(surf, deck.cards, PYGAME_CARD_SIZE)
         return surf
 
     async def _draw_cards(
