@@ -39,7 +39,7 @@ class Library:
 def get_hero_boxes(library: Library):
     hero_boxes = []
     game_bag = library.bags[0]
-    set_bags = game_bag.content
+    set_bags = [item for item in game_bag.content if isinstance(item, Bag)]
     for set_bag in set_bags:
         hero_boxes += set_bag.content
 

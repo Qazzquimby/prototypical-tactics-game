@@ -18,7 +18,7 @@ from drawer.complexObjectDrawer import close_browser
 from drawer.deckDrawer import DeckDrawer
 from drawer.heroBoxDrawer import HeroBoxDrawer
 from image_builders import ImageBuilder
-from yaml_parsing import GameSet
+from yaml_parsing import GameSet, RulesDeck
 
 DEFAULT_LIBRARY = Library(
     tokens=[],
@@ -43,6 +43,11 @@ def game_to_library(game):
         game_set_bag = make_game_set_bag(game_set)
         sets_bag.content.append(game_set_bag)
     library.bags.append(sets_bag)
+
+    rules_deck = RulesDeck(cards=game.rules)
+    domain_rules_deck = rules_deck.get_tts_obj()
+    library.decks.append(domain_rules_deck)
+    library.bags[0].content.append(domain_rules_deck)
 
     return library
 
@@ -74,14 +79,17 @@ async def library_to_tts_dict(
     setup_pygame()
 
     tts_dict = read_template_dict(file_name)
-    drawer = DeckDrawer(config)
 
     coroutines = []
+
+    deck_drawer = DeckDrawer(config)
+    back_drawer = CardBackDrawer(config)
+
     for deck in library.decks:
         coroutines.append(
             _save_image_and_set_attribute(
                 image_builder=image_builder,
-                drawer=drawer,
+                drawer=deck_drawer,
                 object_=deck,
                 file_name=deck.name,
                 file_extension="jpg",
@@ -89,12 +97,10 @@ async def library_to_tts_dict(
             )
         )
 
-    drawer = CardBackDrawer(config)
-    for deck in library.decks:
         coroutines.append(
             _save_image_and_set_attribute(
                 image_builder=image_builder,
-                drawer=drawer,
+                drawer=back_drawer,
                 object_=deck,
                 file_name=f"{deck.name}_back",
                 file_extension="jpg",
@@ -116,25 +122,12 @@ async def library_to_tts_dict(
             )
         )
 
-    for obj in library.complex_objects:
-        if obj.type.type == "board":
-            coroutines.append(
-                _save_image_and_set_attribute(
-                    image_builder=image_builder,
-                    drawer=drawer,
-                    object_=obj,
-                    file_name=obj.name,
-                    file_extension="jpg",
-                    attribute_to_set="image_path",
-                )
-            )
-
     for token in library.tokens:
         if isinstance(token, ContentToken):
             coroutines.append(
                 _save_image_and_set_attribute(
                     image_builder=image_builder,
-                    drawer=drawer,
+                    drawer=back_drawer,  # todo why? Seems to work though.
                     object_=token,
                     file_name="token_" + token.name,
                     file_extension="jpg",
@@ -142,18 +135,6 @@ async def library_to_tts_dict(
                 )
             )
 
-    for die in library.dice:
-        if die.custom_content:
-            coroutines.append(
-                _save_image_and_set_attribute(
-                    image_builder=image_builder,
-                    drawer=drawer,
-                    object_=die,
-                    file_name="die" + die.name,
-                    file_extension="png",
-                    attribute_to_set="image_path",
-                )
-            )
     await asyncio.gather(*coroutines)
 
     entities = library.bags  # will need to change for games that are more than one bag

@@ -28,12 +28,12 @@ from domain.card import Card as DomainCard
 
 data_path = Path(r"data/")
 
-CARD_HEIGHT = 450
 CARD_WIDTH = 350
+CARD_HEIGHT = 450
 CARD_SIZE = (CARD_WIDTH, CARD_HEIGHT)
 
-PYGAME_CARD_WIDTH = 3
-PYGAME_CARD_HEIGHT = 4
+PYGAME_CARD_WIDTH = 350  # 3
+PYGAME_CARD_HEIGHT = 450  # 4
 PYGAME_CARD_SIZE = (PYGAME_CARD_WIDTH, PYGAME_CARD_HEIGHT)
 
 
@@ -233,6 +233,7 @@ QUICK = "Quick"
 UNIT_CARD_LABEL = "Unit"
 HERO_CARD_LABEL = "HeroCard"
 ABILITY_CARD_LABEL = "Ability"
+RULES_CARD_LABEL = "Rules"
 SPEED_LABEL = "Speed"
 HEALTH_LABEL = "Health"
 SIZE_LABEL = "Size"
@@ -246,6 +247,41 @@ class RulesCard(Card):
 <h1>{self.name}</h1>
 <p>{self.text}</p>
 """
+
+    @staticmethod
+    @lru_cache
+    def to_complex_type():
+        return ComplexType(
+            name=RULES_CARD_LABEL,
+            size=CARD_SIZE,
+            type_="card",
+        )
+
+
+class RulesDeck(BaseModel):
+    cards: list[RulesCard] = []
+
+    def get_tts_obj(self):
+        deck_name = make_deck_name("game rules")
+        # needs to update for multiple rules decks
+
+        domain_deck = DomainDeck(name=deck_name)
+
+        for card in self.cards:
+            domain_deck.cards.append(
+                DomainCard(
+                    id_=len(domain_deck.cards) + 1,
+                    count=1,
+                    obj=ComplexObject(
+                        name=deck_name,
+                        type_=RulesCard.to_complex_type(),
+                        # todo make work for other card types
+                        content=card,  # no longer used because of jinja rendering
+                    ),
+                ),
+            )
+
+        return domain_deck
 
 
 class AbilityCard(Card):
@@ -363,3 +399,10 @@ def make_box_name(character_name: str):
 
 def make_figurine_name(character_name: str):
     return f"{character_name} figurine"
+
+
+# {'1': {'FaceURL': 'file:///D:\\Users\\User\\PycharmProjects\\prototypical-tactics-game\\data\\images\\game rules deck.jpg', 'BackURL': 'file:///D:\\Users\\User\\PycharmProjects\\prototypical-tactics-game\\data\\images\\game rules deck_back.jpg', 'NumWidth': 10, 'NumHeight': 7, 'BackIsHidden': False, 'UniqueBack': False}}
+# {'Name': 'Card', 'Transform': {'posX': 1, 'posY': 1, 'posZ': 1, 'rotX': 0, 'rotY': 0, 'rotZ': 0, 'scaleX': 1, 'scaleY': 1, 'scaleZ': 1}, 'Nickname': 'game rules deck', 'Description': '', 'ColorDiffuse': {'r': 0.713235259, 'g': 0.713235259, 'b': 0.713235259}, 'Locked': False, 'Grid': True, 'Snap': True, 'Autoraise': True, 'Sticky': True, 'Tooltip': True, 'GridProjection': False, 'Hands': True, 'CardID': 100, 'SidewaysCard': False, 'LuaScript': 'function onLoad()\n    local has_spawned = false\nend\n\nfunction onDrop(player_color)\n    if has_spawned then\n        return\n    end\n    has_spawned = true  \n    spawnSelf()\nend\n\nfunction spawnSelf()\n    \nend\n', 'LuaScriptState': '', 'ContainedObjects': [], 'GUID': 'f981cff1dd904b48b68320404b3a2e50'}
+
+# {'FaceURL': 'file:///D:\\Users\\User\\PycharmProjects\\prototypical-tactics-game\\data\\images\\Ana deck.jpg',              'BackURL': 'file:///D:\\Users\\User\\PycharmProjects\\prototypical-tactics-game\\data\\images\\Ana deck_back.jpg',        'NumWidth': 10, 'NumHeight': 7, 'BackIsHidden': False, 'UniqueBack': False}
+# {'Name': 'Card', 'Transform': {'posX': 1, 'posY': 1, 'posZ': 1, 'rotX': 0, 'rotY': 0, 'rotZ': 0, 'scaleX': 1, 'scaleY': 1, 'scaleZ': 1}, 'Nickname': 'Ana deck',        'Description': '', 'ColorDiffuse': {'r': 0.713235259, 'g': 0.713235259, 'b': 0.713235259}, 'Locked': False, 'Grid': True, 'Snap': True, 'Autoraise': True, 'Sticky': True, 'Tooltip': True, 'GridProjection': False, 'Hands': True, 'CardID': 100, 'SidewaysCard': False, 'LuaScript': 'function onLoad()\n    local has_spawned = false\nend\n\nfunction onDrop(player_color)\n    if has_spawned then\n        return\n    end\n    has_spawned = true  \n    spawnSelf()\nend\n\nfunction spawnSelf()\n                         tate': '', 'ContainedObjects': [], 'GUID': '8a65d1fae16841ba844d1ee5357239b0'}
