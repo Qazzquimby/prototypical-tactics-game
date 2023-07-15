@@ -247,35 +247,6 @@ class RulesCard(Card):
         )
 
 
-class RulesDeck(BaseModel):
-    cards: list[RulesCard] = []
-
-    def get_tts_obj(self):
-        a_bag = Bag(name="game_rules_bag", size=1, color=(1.0, 0.0, 1.0))
-
-        deck_name = make_deck_name("game_rules")
-        # needs to update for multiple rules decks
-
-        domain_deck = DomainDeck(name=deck_name)
-
-        for card in self.cards:
-            domain_deck.cards.append(
-                DomainCard(
-                    id_=len(domain_deck.cards) + 1,
-                    count=1,
-                    obj=ComplexObject(
-                        name=deck_name,
-                        type_=RulesCard.to_complex_type(),
-                        content=card,
-                    ),
-                ),
-            )
-
-        a_bag.content.append(domain_deck)
-
-        return a_bag
-
-
 class AbilityCard(Card):
     text: str
 
@@ -305,6 +276,37 @@ class Deck(BaseModel):
     @property
     def cards(self) -> list[Card]:
         return self.abilities + self.units
+
+
+class RulesDeck(BaseModel):
+    # cards: list[RulesCard] = []
+    cards: list[AbilityCard] = []
+
+    def get_tts_obj(self):
+        # a_bag = Bag(name="game_rules_bag", size=1, color=(1.0, 0.0, 1.0))
+
+        deck_name = make_deck_name("game_rules")
+        # needs to update for multiple rules decks
+
+        domain_deck = DomainDeck(name=deck_name)
+
+        for card in self.cards:
+            domain_deck.cards.append(
+                DomainCard(
+                    id_=len(domain_deck.cards) + 1,
+                    count=1,
+                    obj=ComplexObject(
+                        name=deck_name,
+                        type_=RulesCard.to_complex_type(),
+                        content=card,
+                    ),
+                ),
+            )
+
+        # a_bag.content.append(domain_deck)
+        # return a_bag
+
+        return domain_deck
 
 
 class HeroBox(BaseModel):

@@ -1,6 +1,16 @@
 rules:
-  - name: aaa rule
-    text: Blaahhhhhhh
+  - name: Sleep Dart
+    text: |-
+      1/Battle
+      ⛨ 1 + 1/2 distance
+      Full action
+      Target does not act for their next two activations. If they take damage from another source, end this condition.
+  - name: Sleep Dart 2
+    text: |-
+      1/Battle
+      ⛨ 1 + 1/2 distance
+      Full action
+      Target does not act for their next two activations. If they take damage from another source, end this condition.
 sets:
   - name: Overwatch
     description: |-

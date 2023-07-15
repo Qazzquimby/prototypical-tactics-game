@@ -14,9 +14,9 @@ class Deck(DomainEntity):
         return {
             "Name": "DeckCustom",
             "Transform": self.transform.as_dict(),
-            "Nickname": "",
+            "Nickname": self.name,
             "Description": "",
-            "ColorDiffuse": {"r": 0.713235259, "g": 0.713235259, "b": 0.713235259},
+            "ColorDiffuse": {"r": 0, "g": 0, "b": 0},
             "Locked": False,
             "Grid": True,
             "Snap": True,
@@ -51,11 +51,11 @@ class Deck(DomainEntity):
         return ids
 
     def get_card_instances(self):
-        cards = []
+        card_dicts = []
         for card in self.cards:
             for _ in range(0, card.count):
-                cards.append(card.as_dict())
-        return cards
+                card_dicts.append(card.as_dict())
+        return card_dicts
 
     def next_id(self):
         return len(self.cards) + 1

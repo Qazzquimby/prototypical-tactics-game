@@ -17,7 +17,7 @@ class Card(DomainEntity):
             "Transform": transform.as_dict(),
             "Nickname": self.object.name,
             "Description": "",
-            "ColorDiffuse": {"r": 0.713235259, "g": 0.713235259, "b": 0.713235259},
+            "ColorDiffuse": {"r": 0, "g": 0, "b": 0},
             "Locked": False,
             "Grid": True,
             "Snap": True,

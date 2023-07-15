@@ -135,11 +135,10 @@ async def library_to_tts_dict(
             )
 
     await asyncio.gather(*coroutines)
+    await close_browser()
 
     entities = library.bags  # will need to change for games that are more than one bag
     tts_dict["ObjectStates"] = [entity.as_dict() for entity in entities]
-
-    await close_browser()
 
     return tts_dict
 
