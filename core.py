@@ -46,7 +46,6 @@ def game_to_library(game):
 
     rules_deck = RulesDeck(cards=game.rules)
     domain_rules_deck = rules_deck.get_tts_obj()
-    library.decks.append(domain_rules_deck)
     library.bags[0].content.append(domain_rules_deck)
 
     return library
