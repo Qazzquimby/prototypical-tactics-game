@@ -1,27 +1,16 @@
 import abc
-import asyncio
-import io
 from functools import lru_cache
 from pathlib import Path
-from typing import Literal, ClassVar, Optional
+from typing import ClassVar
 
 import jinja2
-import pygame
 import yaml
 from pydantic import BaseModel
 
-from domain.bag import CustomBag
+from domain.bag import Bag, CustomBag
 from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
-from domain.shape import Shape
-from drawer.color import convert_tts_to_pygame
-from drawer.complexObjectDrawer import (
-    TemplatesPath,
-    EDGE_MARGIN,
-    IMAGE_WIDTH,
-    IMAGE_HEIGHT,
-    get_browser,
-)
+
 from spawning_lua import get_full_lua, scale_size, clean_string_for_lua
 from domain.deck import Deck as DomainDeck
 from domain.card import Card as DomainCard
@@ -262,7 +251,9 @@ class RulesDeck(BaseModel):
     cards: list[RulesCard] = []
 
     def get_tts_obj(self):
-        deck_name = make_deck_name("game rules")
+        a_bag = Bag(name="game_rules_bag", size=1, color=(1.0, 0.0, 1.0))
+
+        deck_name = make_deck_name("game_rules")
         # needs to update for multiple rules decks
 
         domain_deck = DomainDeck(name=deck_name)
@@ -274,13 +265,15 @@ class RulesDeck(BaseModel):
                     count=1,
                     obj=ComplexObject(
                         name=deck_name,
-                        type_=AbilityCard.to_complex_type(),
+                        type_=RulesCard.to_complex_type(),
                         content=card,
                     ),
                 ),
             )
 
-        return domain_deck
+        a_bag.content.append(domain_deck)
+
+        return a_bag
 
 
 class AbilityCard(Card):
