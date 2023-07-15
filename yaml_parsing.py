@@ -274,9 +274,8 @@ class RulesDeck(BaseModel):
                     count=1,
                     obj=ComplexObject(
                         name=deck_name,
-                        type_=RulesCard.to_complex_type(),
-                        # todo make work for other card types
-                        content=card,  # no longer used because of jinja rendering
+                        type_=AbilityCard.to_complex_type(),
+                        content=card,
                     ),
                 ),
             )
@@ -331,12 +330,12 @@ class HeroBox(BaseModel):
         )
 
         if not self.decks:
-            self.decks.append(Deck())
+            self.decks.append(Deck())  # why
 
         for deck in self.decks:
             deck_name = make_deck_name(
                 self.hero.name
-            )  # this will need to change when a hero has multiple loadouts
+            )  # if there are multiple loadouts, add a counter index
 
             domain_deck = DomainDeck(name=deck_name)
 
@@ -361,7 +360,7 @@ class HeroBox(BaseModel):
                             name=deck_name,
                             type_=AbilityCard.to_complex_type(),
                             # todo make work for other card types
-                            content=card,  # no longer used because of jinja rendering
+                            content=card,
                         ),
                     ),
                 )
