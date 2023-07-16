@@ -206,6 +206,8 @@ class UnitCard(Card, Figurine):
 
 
 class Hero(UnitCard):
+    description: str
+
     @staticmethod
     @lru_cache
     def to_complex_type():
@@ -318,6 +320,7 @@ class HeroBox(BaseModel):
     def get_tts_obj(self):
         hero_box_bag = CustomBag(
             name=make_box_name(self.hero.name),
+            description=self.hero.description,
             size=1,
             color=(1.0, 1.0, 1.0),
             diffuse_url="http://cloud-3.steamusercontent.com/ugc/1469815174066637129/930D22149972BB2B9C6164FB8D1819249640546B/",

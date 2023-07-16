@@ -603,7 +603,7 @@ sets:
                   Piercing line, ⚔2 to enemies, ✚4 to allies.
       - hero:
           name: Orisa
-          description:
+          description: |-
             - Tank, Damage mitigation
           health: 12
           speed: 3
@@ -1207,6 +1207,8 @@ sets:
     hero_boxes:
       - hero:
           name: Axe
+          description: |-
+            - Provoke and counterattack
           health: 6
           speed: 3
           armor: 1
@@ -1849,7 +1851,7 @@ sets:
       - hero:
           name: Som'er Teeth Jones
           description: |-
-            - Summon and use weak minions
+            - Summon and synergize with weak minions
           health: 8
           speed: 3
           image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561399760452-BICZM3YT16TN1G4EHMDT/M3E_Somer.png

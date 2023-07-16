@@ -52,10 +52,7 @@ class Deck(DomainEntity):
 
     def get_card_instances(self):
         card_dicts = []
-        for card in reversed(self.cards):
+        for card in self.cards:
             for _ in range(0, card.count):
                 card_dicts.append(card.as_dict())
         return card_dicts
-
-    def next_id(self):
-        return len(self.cards) + 1
