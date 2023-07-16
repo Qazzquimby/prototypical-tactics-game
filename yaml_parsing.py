@@ -277,12 +277,11 @@ class Deck(BaseModel):
 
     @property
     def cards(self) -> list[Card]:
-        return self.abilities + self.units
+        return list(reversed(self.abilities + self.units))
 
 
 class RulesDeck(BaseModel):
-    # cards: list[RulesCard] = []
-    cards: list[AbilityCard] = []
+    cards: list[RulesCard] = []
 
     def get_tts_obj(self):
         # a_bag = Bag(name="game_rules_bag", size=1, color=(1.0, 0.0, 1.0))
@@ -292,7 +291,7 @@ class RulesDeck(BaseModel):
 
         domain_deck = DomainDeck(name=deck_name)
 
-        for card in self.cards:
+        for card in reversed(self.cards):
             domain_deck.cards.append(
                 DomainCard(
                     id_=len(domain_deck.cards) + 1,
