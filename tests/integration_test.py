@@ -23,6 +23,7 @@ BASIC_GAME = Game(
     sets=[
         GameSet(
             name="TestSet",
+            description="TestDescription",
             hero_boxes=[
                 HeroBox(
                     hero=Hero(

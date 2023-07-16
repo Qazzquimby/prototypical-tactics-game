@@ -7,8 +7,9 @@ from tts.transform import Transform
 
 
 class Bag(DomainEntity):
-    def __init__(self, name, size, color, is_infinite=False):
+    def __init__(self, name, size, color, is_infinite=False, description=""):
         self.name = name
+        self.description = description
         self.size = size
         self.color = color
         self.content = []
@@ -27,7 +28,7 @@ class Bag(DomainEntity):
             "Name": "Infinite_Bag" if self.is_infinite else "Bag",
             "Transform": self.transform.as_dict(),
             "Nickname": self.name,
-            "Description": "",
+            "Description": self.description,
             "ColorDiffuse": {
                 "r": self.color[0],
                 "g": self.color[1],

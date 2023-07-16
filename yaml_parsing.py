@@ -367,8 +367,9 @@ class HeroBox(BaseModel):
 
 class GameSet(BaseModel):
     name: str
+    description: str
+    rules: list[RulesDeck] = []
     hero_boxes: list[HeroBox] = []
-    # set rules
     # maps
 
 

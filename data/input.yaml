@@ -1202,6 +1202,8 @@ sets:
                     image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5d/Ability-zarya4.png/revision/latest/scale-to-width-down/100?cb=20150309115950
                     size: 1
   - name: Dota
+    description: |-
+      Early WIP
     hero_boxes:
       - hero:
           name: Axe
