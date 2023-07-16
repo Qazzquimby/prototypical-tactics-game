@@ -74,6 +74,9 @@ async def library_to_tts_dict(
     file_name,
     config=None,
 ):
+    # TODO single card decks need to be turned into cards (not decks)
+    #   TTS will delete single card decks.
+
     await image_builder.initialize()
     setup_pygame()
 

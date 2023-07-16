@@ -1,16 +1,53 @@
 rules:
-  - name: Sleep Dart
+  - name: Overview
     text: |-
-      1/Battle
-      ⛨ 1 + 1/2 distance
-      Full action
-      Target does not act for their next two activations. If they take damage from another source, end this condition.
-  - name: Sleep Dart 2
+      A quick skirmish game played over 3 battles of 6 rounds.
+      Focuses on discovering synergies and counters.
+      Often attacking has no rolls. Some depth is traded for speed of play.
+  - name: Setup Game
     text: |-
-      1/Battle
-      ⛨ 1 + 1/2 distance
-      Full action
-      Target does not act for their next two activations. If they take damage from another source, end this condition.
+      Pick up to 3 sets.
+      Draw 3 maps and 12 heroes evenly from those sets.
+      Shuffle and reveal the maps and their order.
+      Draft the heroes according the draft card.
+      Each time you play on a map is a battle. Some things last between battles.
+      Game is playing best of 3 battles.
+  - name: Draft
+    text: |-
+      P1 ------- P2
+      Ban
+      ---------- Pick
+      Pick
+      Pick
+      ---------- Pick
+      
+      ---------- Ban
+      Pick
+      ---------- Pick
+  - name: Battle
+    text: |-
+      Take turns deploying a hero in your deploy zone and placing their cards on the table.
+      Maybe track health and other resources with dice.
+      Battle lasts 6 rounds (or until concede).
+      Heroes activate in order from left to right.
+      P1's first character, P2's first character, P1's second character, P2's second character, etc.
+  - name: Actions
+    text: |-
+      Units (such as heroes) have a move action and standard action, in that order, plus a quick action.
+      Move moves up to speed (see range)
+      Character's active abilities are standard actions by default.
+      Quick actions are marked with quick.
+  - name: Range
+    text: |-
+      Range is counting squares. One square can be diagonally adjacent, the rest must be orthogonal.
+      Burst n means all squares within n range of the target square.
+      Line n means all squares in an orthogonal line of n squares from the target square.
+      Path n means all squares in a path of n squares from the target square.
+  - name: Attacking
+    text: |-
+      By default attacks hit with no roll.
+      ⛨ can be applied to the attack. A die must be rolled over the ⛨ to hit.
+      ⚔ is damage.
 sets:
   - name: Overwatch
     description: |-
