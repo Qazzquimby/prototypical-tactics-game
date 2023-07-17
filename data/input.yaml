@@ -37,6 +37,7 @@ rules:
       Move moves up to speed (see range)
       Character's active abilities are standard actions by default.
       Quick actions are marked with quick.
+      An action being "Default" makes no difference by default, but is treated differently by some rules.
   - name: Range
     text: |-
       Range is counting squares. One square can be diagonally adjacent, the rest must be orthogonal.
@@ -45,9 +46,10 @@ rules:
       Path n means all squares in a path of n squares from the target square.
   - name: Attacking
     text: |-
-      By default attacks hit with no roll.
+      By default attacks hit with no roll. Only roll when a roll could affect the result somehow.
       ⛨ can be applied to the attack. A die must be rolled over the ⛨ to hit.
       ⚔ is damage.
+      Crit can be applied to the attack. If the die is rolled at least 7-crit, the attack deals double damage.
 sets:
   - name: Overwatch
     description: |-
@@ -56,6 +58,26 @@ sets:
       - Reaction speed effects
       - Tanks, Healers, Dps
       - Many 1/battle effects
+    rules:
+      - name: Reaction Defense
+        text: |-
+          Looks like "Reaction block +2" or "Reaction dodge +1"
+          The unit is trying to use the ability before they're hit.
+          The attack gets the listed bonus to defense.
+          If the attack misses, the ability triggers before the attack, then you may make it hit instead.
+          If the attack hits, the ability triggers after the attack.
+      - name: Critical Moment
+        text: |-
+          Once per battle, you may reroll a die.
+      - name: Facing
+        text: |-
+          When a unit specifically states it has facing, at its end of turn, turn it to face an orthogonal direction.
+          Spaces to its front and the orthogonal line at its left and right are in front of it. Other spaces are behind it.
+          F F F F F
+          F F F F F
+          F F 😀 F F
+          B B B B B
+          B B B B B
     hero_boxes:
       - hero:
           name: Ana
@@ -159,38 +181,38 @@ sets:
           image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/2e/OW2_McCree.png/revision/latest/scale-to-width-down/1000?cb=20210623082527
         decks:
           - abilities:
-              - name: Peacekeeper
-                text: |-
-                  You start with ammo-loaded.
-                  
-                  Default
-                  If you have ammo-loaded: 
-                    Range 4, ⚔3, +1 crit
-                    or Range 1, ⚔5. Switch to ammo-empty.
-                tokens:
-                  - name: Ammo Loaded
-                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-mccree1.png/revision/latest/scale-to-width-down/100?cb=20181119023403
-                    back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
+            - name: Peacekeeper
+              text: |-
+                You start with ammo-loaded.
+                
+                Default
+                If you have ammo-loaded: 
+                  Range 4, ⚔3, +1 crit
+                  or Range 1, ⚔5. Switch to ammo-empty.
+              tokens:
+                - name: Ammo Loaded
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-mccree1.png/revision/latest/scale-to-width-down/100?cb=20181119023403
+                  back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
 
-              - name: Reload
-                text: |-
-                  Full action
-                  Switch to ammo-loaded.
-              - name: Combat Roll
-                text: |-
-                  1/Battle
-                  Free action
-                  Move 1 space and switch to ammo-loaded.
-              - name: Magnetic Grenade
-                text: |-
-                  1/Battle
-                  Range 5, ⚔2, ⚔2 to all in burst 1 of target.
-              - name: Deadeye
-                text: |-
-                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                  Spend 5 charges:
-                    At the beginning of your next turn,
-                    deal ⚔8 undodgeable to each enemy in line of sight
+            - name: Reload
+              text: |-
+                Full action
+                Switch to ammo-loaded.
+            - name: Combat Roll
+              text: |-
+                1/Battle
+                Free action
+                Move 1 space and switch to ammo-loaded.
+            - name: Magnetic Grenade
+              text: |-
+                1/Battle
+                Range 5, ⚔2, ⚔2 to all in burst 1 of target.
+            - name: Deadeye
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                  At the beginning of your next turn,
+                  deal ⚔8 undodgeable to each enemy in line of sight
       - hero:
           name: D.Va
           description: |-
@@ -218,51 +240,51 @@ sets:
                 When you die, summon Pilot D.Va
         decks:
           - abilities:
-              - name: Pilot D.Va
-                text: |-
-                  Character
-                  Health 6
-                  Speed 3
-                  
-                  Light Gun: Default, Range 3, ⚔2, gain a Mech charge.
-                  Call Mech: Spend 2 Mech charges and sacrifice this to summon D.Va
-                tokens:
-                  - name: Pilot D.va
-                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/09/Ability-dva5.png/revision/latest/scale-to-width-down/100?cb=20181119021945
-                  - name: Mech Charge
-                    image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f0/Ability-dva6.png/revision/latest/scale-to-width-down/100?cb=20151116085308
-              - name: Defense Matrix
-                text: |-
-                  1/Battle
-                  Reaction Block +2
-                  Create a size 2 Defense Matrix in range 1 that lasts until the beginning of your next turn.
-                  Enemy attacks that draw range through the defense matrix are cancelled without effect.
-                tokens:
-                  - name: Defense Matrix
-                    image_url: https://static.wikia.nocookie.net/overwatch/images/9/9c/IconDefenseMatrix.png/revision/latest?cb=20151106233820
-                    size: 2
-              - name: Boosters
-                text: |-
-                  CD 2
-                  Move action
-                  Fly up to 6 spaces, ignoring enemies.
-                  Each enemy you move through takes ⚔1, and 1 knockback to the side.
-              - name: Micro Missiles
-                text: |-
-                  1/Battle
-                  Free action
-                  ⛨ 1/2 distance, ⚔3
-              - name: Self-Destruct
-                text: |-
-                  Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
-                  Spend 5 charges:
-                    Sacrifice D.Va (triggering the Eject passive)
-                    Pilot D.Va may move up to 3.
-                    At the beginning of your next turn, Deal ⚔7 to all enemies in burst 3 of the space you died in.
-                tokens:
-                  - name: Self-Destruct
-                    image_url: https://static.icy-veins.com/images/heroes/icons/large/storm_ui_icon_dva_selfdestruct.jpg
-                    size: 1
+            - name: Pilot D.Va
+              text: |-
+                Character
+                Health 6
+                Speed 3
+                
+                Light Gun: Default, Range 3, ⚔2, gain a Mech charge.
+                Call Mech: Spend 2 Mech charges and sacrifice this to summon D.Va
+              tokens:
+                - name: Pilot D.va
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/09/Ability-dva5.png/revision/latest/scale-to-width-down/100?cb=20181119021945
+                - name: Mech Charge
+                  image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f0/Ability-dva6.png/revision/latest/scale-to-width-down/100?cb=20151116085308
+            - name: Defense Matrix
+              text: |-
+                1/Battle
+                Reaction Block +2
+                Create a size 2 Defense Matrix in range 1 that lasts until the beginning of your next turn.
+                Enemy attacks that draw range through the defense matrix are cancelled without effect.
+              tokens:
+                - name: Defense Matrix
+                  image_url: https://static.wikia.nocookie.net/overwatch/images/9/9c/IconDefenseMatrix.png/revision/latest?cb=20151106233820
+                  size: 2
+            - name: Boosters
+              text: |-
+                CD 2
+                Move action
+                Fly up to 6 spaces, ignoring enemies.
+                Each enemy you move through takes ⚔1, and 1 knockback to the side.
+            - name: Micro Missiles
+              text: |-
+                1/Battle
+                Free action
+                ⛨ 1/2 distance, ⚔3
+            - name: Self-Destruct
+              text: |-
+                Ultimate: At the end of each round, if you acted, gain 1 persistent charge, up to 5.
+                Spend 5 charges:
+                  Sacrifice D.Va (triggering the Eject passive)
+                  Pilot D.Va may move up to 3.
+                  At the beginning of your next turn, Deal ⚔7 to all enemies in burst 3 of the space you died in.
+              tokens:
+                - name: Self-Destruct
+                  image_url: https://static.icy-veins.com/images/heroes/icons/large/storm_ui_icon_dva_selfdestruct.jpg
+                  size: 1
       - hero:
           name: Genji
           description: |-
@@ -880,8 +902,8 @@ sets:
       - hero:
           name: Symmetra
           description: |-
-              - Summon utilities
-              - High damage on same target
+            - Summon utilities
+            - High damage on same target
 
           health: 8
           speed: 3
@@ -949,8 +971,8 @@ sets:
       - hero:
           name: Torbjorn
           description: |-
-              - Summon sustained damage turret
-              - Damage brawler
+            - Summon sustained damage turret
+            - Damage brawler
           health: 10
           speed: 3
           dodge: +1
@@ -1255,6 +1277,29 @@ sets:
       - Use cards to change player's rolls
       - No cooldowns or changes between battles
       - Many summons
+    rules:
+      - name: Fate Cards
+        text: |-
+          Each player has a deck of 24 cards, 4 copies of 1-6.
+          At the beginning of each round, each player draws up to 3 cards.
+          
+          Whenever a player would roll, they instead discard the top card of their deck face up to reveal its value.
+          Any number of times, either player may discard a card from their hand to either:
+          - replace the revealed card with the new value,
+          - or increase or decrease the target to hit by 1.
+      - name: Summoning
+        text: |-
+          Summoning creates a new unit.
+          Summoned units cannot act the turn they are summoned, and activate at the same time as their summoner.
+      - name: Will
+        text: |-
+          Certain attacks are "Vs Will" rather than defense. Defenses such as dodge do not apply.
+          Characters may have + Will defense.
+      - name: Opportunity Attack
+        text: |-
+          When a character adjacent to an enemy moves to be non-adjacent, the enemy may make a default action against them.
+      
+
     hero_boxes:
       - hero:
           name: Lady Justice
@@ -1396,8 +1441,8 @@ sets:
               text: Enemies with Poison in range 2 take 1 damage.
             - name: Perverse Metabolism
               text: This and allies heal from Poison instead of taking damage.
-#            - name: Deploy
-#              text: All allies get Poison +2.
+          #            - name: Deploy
+          #              text: All allies get Poison +2.
           default_abilities:
             - name: Skull Saw
               text: |-
@@ -1419,9 +1464,9 @@ sets:
                 health: 2
                 speed: 3
                 image_url: https://static.wikia.nocookie.net/monster/images/e/e9/ZombieChihuahuaimage.jpg/revision/latest/scale-to-width-down/384?cb=20170506224224
-#                passives:
-#                  - name: End
-#                    text: All adjacent units get Poison +1
+                #                passives:
+                #                  - name: End
+                #                    text: All adjacent units get Poison +1
                 default_abilities:
                   - name: Bite
                     text: |-
