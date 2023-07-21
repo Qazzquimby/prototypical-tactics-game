@@ -155,7 +155,6 @@ class Card(BaseModel, Spawnable):
 class UnitCard(Card, Figurine):
     speed: int
     health: int
-    # dodge: int = 0
     passives: list[Passive] = []
     default_abilities: list[Active] = []
 
@@ -168,38 +167,15 @@ class UnitCard(Card, Figurine):
         content = f"""\
 <h1>{self.name}</h1>
 <p>Speed: {self.speed}; Health: {self.health}</p>
+<img src="{self.image_url}" style="width:100%; max-height: 150px; object-fit: contain;"/>
 
 {passives}
-- - - 
+<p></p> 
 {default_abilities}
 <p>{'owner todo'}</p>
 """
 
         return content
-
-    @property
-    def text(self):
-        _text = f"""\
-        Speed: {self.speed}
-        Health: {self.health}
-        """
-
-        # if self.dodge:
-        #     _text += f"\nDodge: {self.dodge}"
-        if self.size != 1:
-            _text += f"\nSize: {self.size}"
-        return _text
-
-    def make_content_dict(self, hero_name: str):
-        content_list = [
-            self.name,
-            SPEED_LABEL,
-            str(self.speed),
-            HEALTH_LABEL,
-            str(self.health),
-            hero_name,
-        ]
-        return {i + 2: value for i, value in enumerate(content_list)}
 
     def get_spawning_lua(self):
         return Card.get_spawning_lua(self) + "\n\n\n" + Figurine.get_spawning_lua(self)
@@ -277,7 +253,7 @@ class Deck(BaseModel):
 
     @property
     def cards(self) -> list[Card]:
-        return list(reversed(self.abilities + self.units))
+        return self.abilities + self.units
 
 
 class RulesDeck(BaseModel):
@@ -303,9 +279,6 @@ class RulesDeck(BaseModel):
                     ),
                 ),
             )
-
-        # a_bag.content.append(domain_deck)
-        # return a_bag
 
         return domain_deck
 
@@ -336,19 +309,7 @@ class HeroBox(BaseModel):
 
             domain_deck = DomainDeck(name=deck_name)
 
-            hero_card = DomainCard(
-                id_=1,
-                count=1,
-                obj=ComplexObject(
-                    name=deck_name,
-                    type_=Hero.to_complex_type(),
-                    content=self.hero,
-                ),
-            )
-
-            domain_deck.cards.append(hero_card)
-
-            for card in deck.cards:
+            for card in reversed(deck.cards):
                 domain_deck.cards.append(
                     DomainCard(
                         id_=len(domain_deck.cards) + 1,
@@ -361,6 +322,17 @@ class HeroBox(BaseModel):
                         ),
                     ),
                 )
+
+            hero_card = DomainCard(
+                id_=len(domain_deck.cards) + 1,
+                count=1,
+                obj=ComplexObject(
+                    name=deck_name,
+                    type_=Hero.to_complex_type(),
+                    content=self.hero,
+                ),
+            )
+            domain_deck.cards.append(hero_card)
 
             hero_box_bag.content.append(domain_deck)
 
