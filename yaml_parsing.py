@@ -342,7 +342,7 @@ class HeroBox(BaseModel):
 class GameSet(BaseModel):
     name: str
     description: str
-    rules: list[RulesDeck] = []
+    rules: list[RulesCard] = []
     hero_boxes: list[HeroBox] = []
     # maps
 
