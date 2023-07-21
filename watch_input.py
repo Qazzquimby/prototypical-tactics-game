@@ -12,7 +12,7 @@ from tts_dir import try_and_find_save_games_folder
 
 
 import yaml_parsing
-from image_builders import DirectoryImagesBuilder, ImgBoxImagesBuilder
+from image_builders import DirectoryImagesBuilder
 from core import save_tts, game_to_library, library_to_tts_dict
 
 

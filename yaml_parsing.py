@@ -7,7 +7,7 @@ import jinja2
 import yaml
 from pydantic import BaseModel
 
-from domain.bag import Bag, CustomBag
+from domain.bag import CustomBag
 from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
 
@@ -260,17 +260,17 @@ class RulesDeck(BaseModel):
     cards: list[RulesCard] = []
 
     def get_tts_obj(self):
-        # a_bag = Bag(name="game_rules_bag", size=1, color=(1.0, 0.0, 1.0))
+        if not self.cards:
+            return None
 
         deck_name = make_deck_name("game_rules")
         # needs to update for multiple rules decks
 
-        domain_deck = DomainDeck(name=deck_name)
-
+        domain_cards = []
         for card in reversed(self.cards):
-            domain_deck.cards.append(
+            domain_cards.append(
                 DomainCard(
-                    id_=len(domain_deck.cards) + 1,
+                    id_=len(domain_cards) + 1,
                     count=1,
                     obj=ComplexObject(
                         name=deck_name,
@@ -280,6 +280,7 @@ class RulesDeck(BaseModel):
                 ),
             )
 
+        domain_deck = DomainDeck.from_cards(name=deck_name, cards=domain_cards)
         return domain_deck
 
 
@@ -303,16 +304,16 @@ class HeroBox(BaseModel):
             self.decks.append(Deck())  # why
 
         for deck in self.decks:
-            deck_name = make_deck_name(
-                self.hero.name
-            )  # if there are multiple loadouts, add a counter index
+            if not deck.cards:
+                continue
 
-            domain_deck = DomainDeck(name=deck_name)
+            deck_name = make_deck_name(self.hero.name)
 
+            domain_cards = []
             for card in reversed(deck.cards):
-                domain_deck.cards.append(
+                domain_cards.append(
                     DomainCard(
-                        id_=len(domain_deck.cards) + 1,
+                        id_=len(domain_cards) + 1,
                         count=1,
                         obj=ComplexObject(
                             name=deck_name,
@@ -324,7 +325,7 @@ class HeroBox(BaseModel):
                 )
 
             hero_card = DomainCard(
-                id_=len(domain_deck.cards) + 1,
+                id_=len(domain_cards) + 1,
                 count=1,
                 obj=ComplexObject(
                     name=deck_name,
@@ -332,8 +333,9 @@ class HeroBox(BaseModel):
                     content=self.hero,
                 ),
             )
-            domain_deck.cards.append(hero_card)
+            domain_cards.append(hero_card)
 
+            domain_deck = DomainDeck.from_cards(name=deck_name, cards=domain_cards)
             hero_box_bag.content.append(domain_deck)
 
         return hero_box_bag

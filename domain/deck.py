@@ -1,5 +1,5 @@
 from domain.abstract import DomainEntity
-from domain.card import Card
+from domain.card import Card, LoneCard
 from tts.guid import guid
 
 
@@ -9,6 +9,18 @@ class Deck(DomainEntity):
         self.cards: list[Card] = []
         self.image_path = ""
         self.back_image_path = ""
+
+    @classmethod
+    def from_cards(cls, name, cards: list[Card]):
+        # if 0 cards, return None
+        if len(cards) == 0:
+            raise ValueError("Cannot create deck from 0 cards")
+        if len(cards) == 1:
+            return LoneCard(cards[0].object)
+
+        deck = cls(name)
+        deck.cards = cards
+        return deck
 
     def as_dict(self):
         return {

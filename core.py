@@ -55,8 +55,14 @@ def make_game_set_bag(game_set: GameSet):
     bag = Bag(
         name=game_set.name,
         description=game_set.description,
-        size=2, color=(0.0, 0.0, 0.0)
+        size=2,
+        color=(0.0, 0.0, 0.0),
     )
+
+    rules_deck = RulesDeck(cards=game_set.rules)
+    domain_rules_deck = rules_deck.get_tts_obj()
+    if domain_rules_deck:
+        bag.content.append(domain_rules_deck)
 
     # Make a bag for each set
     for hero_box in game_set.hero_boxes:
@@ -67,20 +73,17 @@ def make_game_set_bag(game_set: GameSet):
 
 
 def complex_object_row_to_complex_object(
-        row: list, type_: ComplexType
+    row: list, type_: ComplexType
 ) -> ComplexObject:
     return ComplexObject(name=row[0], type_=type_, content=dict(row[2:]))
 
 
 async def library_to_tts_dict(
-        library: Library,
-        image_builder: ImageBuilder,
-        file_name,
-        config=None,
+    library: Library,
+    image_builder: ImageBuilder,
+    file_name,
+    config=None,
 ):
-    # TODO single card decks need to be turned into cards (not decks)
-    #   TTS will delete single card decks.
-
     await image_builder.initialize()
     setup_pygame()
 
@@ -90,6 +93,8 @@ async def library_to_tts_dict(
 
     deck_drawer = DeckDrawer(config)
     back_drawer = CardBackDrawer(config)
+
+    # todo render images for LoneCards
 
     for deck in library.decks:
         coroutines.append(
@@ -151,12 +156,12 @@ async def library_to_tts_dict(
 
 
 async def _save_image_and_set_attribute(
-        image_builder: ImageBuilder,
-        drawer: BaseDrawer,
-        object_,
-        file_name: str,
-        file_extension: str,
-        attribute_to_set: str,
+    image_builder: ImageBuilder,
+    drawer: BaseDrawer,
+    object_,
+    file_name: str,
+    file_extension: str,
+    attribute_to_set: str,
 ):
     image: Union[Surface, Coroutine[Surface]] = drawer.draw(object_)
     # if image is promise, resolve

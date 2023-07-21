@@ -33,3 +33,23 @@ class Card(DomainEntity):
             "ContainedObjects": [],
             "GUID": guid(),
         }
+
+
+class LoneCard(Card):
+    def __init__(self, obj):
+        super().__init__(obj, 1, 100)
+        self.image_path = ""
+
+    def as_dict(self, transform=None):
+        base_dict = super().as_dict(transform)
+        base_dict["CustomDeck"] = {
+            "1": {
+                "FaceURL": self.image_path,
+                "BackURL": self.image_path,
+                "NumWidth": 1,
+                "NumHeight": 1,
+                "BackIsHidden": True,
+                "UniqueBack": False,
+                "Type": 0,
+            }
+        }
