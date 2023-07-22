@@ -259,12 +259,11 @@ class Deck(BaseModel):
 class RulesDeck(BaseModel):
     cards: list[RulesCard] = []
 
-    def get_tts_obj(self):
+    def get_tts_obj(self, name):
         if not self.cards:
             return None
 
-        deck_name = make_deck_name("game_rules")
-        # needs to update for multiple rules decks
+        deck_name = make_deck_name(name)
 
         domain_cards = []
         for card in reversed(self.cards):

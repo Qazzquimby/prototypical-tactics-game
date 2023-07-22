@@ -45,7 +45,7 @@ def game_to_library(game):
     library.bags.append(sets_bag)
 
     rules_deck = RulesDeck(cards=game.rules)
-    domain_rules_deck = rules_deck.get_tts_obj()
+    domain_rules_deck = rules_deck.get_tts_obj(name="game rules")
     library.bags[0].content.append(domain_rules_deck)
 
     return library
@@ -60,7 +60,7 @@ def make_game_set_bag(game_set: GameSet):
     )
 
     rules_deck = RulesDeck(cards=game_set.rules)
-    domain_rules_deck = rules_deck.get_tts_obj()
+    domain_rules_deck = rules_deck.get_tts_obj(name=f"{game_set.name} rules")
     if domain_rules_deck:
         bag.content.append(domain_rules_deck)
 
@@ -95,6 +95,9 @@ async def library_to_tts_dict(
     back_drawer = CardBackDrawer(config)
 
     # todo render images for LoneCards
+
+    deck_names = [deck.name for deck in library.decks]
+    assert len(deck_names) == len(set(deck_names)), "Deck names must be unique"
 
     for deck in library.decks:
         coroutines.append(
