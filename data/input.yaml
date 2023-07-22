@@ -1226,6 +1226,10 @@ sets:
   - name: Dota
     description: |-
       Early WIP
+    rules:
+      - name: Test rules card
+        text: |-
+          blah
     hero_boxes:
       - hero:
           name: Axe

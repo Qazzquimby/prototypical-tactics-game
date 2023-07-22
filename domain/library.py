@@ -1,4 +1,4 @@
-from domain.bag import Bag
+from domain.bag import Bag, CustomBag
 from domain.complexObject import ComplexObject
 from domain.deck import Deck
 from domain.die import Die
@@ -41,6 +41,9 @@ def get_hero_boxes(library: Library):
     game_bag = library.bags[0]
     set_bags = [item for item in game_bag.content if isinstance(item, Bag)]
     for set_bag in set_bags:
-        hero_boxes += set_bag.content
+        hero_boxes_in_bag = [
+            item for item in set_bag.content if isinstance(item, CustomBag)
+        ]
+        hero_boxes += hero_boxes_in_bag
 
     return hero_boxes
