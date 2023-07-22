@@ -8,6 +8,7 @@ import yaml
 from pydantic import BaseModel
 
 from domain.bag import CustomBag
+from domain.card import MapContainer
 from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
 
@@ -287,8 +288,6 @@ class HeroBox(BaseModel):
     hero: Hero
     decks: list[Deck]
 
-    # maybe a description here
-
     def get_tts_obj(self):
         hero_box_bag = CustomBag(
             name=make_box_name(self.hero.name),
@@ -340,12 +339,67 @@ class HeroBox(BaseModel):
         return hero_box_bag
 
 
+class Map(Spawnable, BaseModel):
+    name: str
+    image_path: str
+    rules: list[RulesCard] = []
+
+    tokens: list[Token] = []
+
+    def get_spawning_lua(self):
+        spawning_luas = [token.get_spawning_lua() for token in self.tokens]
+        full_spawning_lua = "\n\n\n".join(spawning_luas)
+        return full_spawning_lua
+
+    def get_html(self):
+        html = f"""\
+<div class="map">
+    <img src="{self.image_path}" style="height: 100%; width:100%"/>
+</div>"""
+        return html  # todo may need actual dimensions
+
+    def get_tts_obj(self):
+        map_ = MapContainer(
+            obj=ComplexObject(
+                name=make_deck_name(self.name),
+                type_=ComplexType(
+                    name="Map",
+                    size=(1000, 1000),  # todo get size from image
+                    type_="card",
+                ),
+                content=self,
+            ),
+            local_path=self.image_path,
+        )
+
+        rule_cards = []
+        for rule in self.rules:
+            rule_cards.append(
+                DomainCard(
+                    id_=len(rule_cards) + 1,
+                    count=1,
+                    obj=ComplexObject(
+                        name=make_deck_name(self.name),
+                        type_=RulesCard.to_complex_type(),
+                        content=rule,
+                    ),
+                ),
+            )
+        domain_deck = DomainDeck.from_cards(
+            name=make_deck_name(self.name), cards=rule_cards
+        )
+
+        map_.content.append(domain_deck)
+
+        return map_
+
+
 class GameSet(BaseModel):
     name: str
     description: str
     rules: list[RulesCard] = []
     hero_boxes: list[HeroBox] = []
-    # maps
+    maps: list[Map] = []
 
 
 class Game(BaseModel):

@@ -51,33 +51,6 @@ def game_to_library(game):
     return library
 
 
-def make_game_set_bag(game_set: GameSet):
-    bag = Bag(
-        name=game_set.name,
-        description=game_set.description,
-        size=2,
-        color=(0.0, 0.0, 0.0),
-    )
-
-    rules_deck = RulesDeck(cards=game_set.rules)
-    domain_rules_deck = rules_deck.get_tts_obj(name=f"{game_set.name} rules")
-    if domain_rules_deck:
-        bag.content.append(domain_rules_deck)
-
-    # Make a bag for each set
-    for hero_box in game_set.hero_boxes:
-        hero_box_bag = hero_box.get_tts_obj()
-        bag.content.append(hero_box_bag)
-
-    return bag
-
-
-def complex_object_row_to_complex_object(
-    row: list, type_: ComplexType
-) -> ComplexObject:
-    return ComplexObject(name=row[0], type_=type_, content=dict(row[2:]))
-
-
 async def library_to_tts_dict(
     library: Library,
     image_builder: ImageBuilder,
@@ -195,3 +168,46 @@ def read_template_dict(file_name: str):
         data = json.load(infile)
         data["SaveName"] = file_name
     return data
+
+
+def make_game_set_bag(game_set: GameSet):
+    set_bag = Bag(
+        name=game_set.name,
+        description=game_set.description,
+        size=2,
+        color=(0.0, 0.0, 0.0),
+    )
+
+    rules_deck = RulesDeck(cards=game_set.rules)
+    domain_rules_deck = rules_deck.get_tts_obj(name=f"{game_set.name} rules")
+    if domain_rules_deck:
+        set_bag.content.append(domain_rules_deck)
+
+    # heroes
+    hero_bag = Bag(
+        name=f"{game_set.name} heroes",
+        size=2,
+        color=(0.0, 0.0, 1.0),
+    )
+    for hero_box in game_set.hero_boxes:
+        hero_box_bag = hero_box.get_tts_obj()
+        hero_bag.content.append(hero_box_bag)
+    set_bag.content.append(hero_bag)
+
+    # maps
+    map_bag = Bag(
+        name=f"{game_set.name} maps",
+        size=2,
+        color=(0.0, 1.0, 0.0),
+    )
+    for map_ in game_set.maps:
+        map_bag.content.append(map_.get_tts_obj())
+    set_bag.content.append(map_bag)
+
+    return set_bag
+
+
+def complex_object_row_to_complex_object(
+    row: list, type_: ComplexType
+) -> ComplexObject:
+    return ComplexObject(name=row[0], type_=type_, content=dict(row[2:]))

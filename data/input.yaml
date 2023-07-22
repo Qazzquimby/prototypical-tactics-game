@@ -1223,6 +1223,13 @@ sets:
                   - name: Graviton Surge
                     image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5d/Ability-zarya4.png/revision/latest/scale-to-width-down/100?cb=20150309115950
                     size: 1
+    maps:
+      - name: Nepal Shrine
+        image_path: overwatch-nepal-shrine.png
+        rules:
+          - name: TestRule
+            text: |- 
+              text text text!
   - name: Dota
     description: |-
       Early WIP

@@ -53,3 +53,17 @@ class LoneCard(Card):
                 "Type": 0,
             }
         }
+        return base_dict
+
+
+class MapContainer(LoneCard):
+    def __init__(self, obj, local_path: str):
+        super().__init__(obj)
+        self.image_path = local_path  # todo wont work for cloud I think
+
+        self.content = []
+
+    def as_dict(self, transform=None):
+        base_dict = super().as_dict(transform)
+        base_dict["ContainedObjects"] = [item.as_dict() for item in self.content]
+        return base_dict
