@@ -17,6 +17,7 @@ from drawer.cardBackDrawer import CardBackDrawer
 from drawer.complexObjectDrawer import close_browser
 from drawer.deckDrawer import DeckDrawer
 from drawer.heroBoxDrawer import HeroBoxDrawer
+from drawer.loneCardDrawer import LoneCardDrawer
 from image_builders import ImageBuilder
 from yaml_parsing import GameSet, RulesDeck
 
@@ -92,6 +93,18 @@ async def library_to_tts_dict(
                 file_name=f"{deck.name}_back",
                 file_extension="jpg",
                 attribute_to_set="back_image_path",
+            )
+        )
+
+    for lone_card in library.lone_cards:
+        coroutines.append(
+            _save_image_and_set_attribute(
+                image_builder=image_builder,
+                drawer=LoneCardDrawer(config),
+                object_=lone_card,
+                file_name=lone_card.object.name,
+                file_extension="jpg",
+                attribute_to_set="image_path",
             )
         )
 

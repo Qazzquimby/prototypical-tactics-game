@@ -59,7 +59,8 @@ class LoneCard(Card):
 class MapContainer(LoneCard):
     def __init__(self, obj, local_path: str):
         super().__init__(obj)
-        self.image_path = local_path  # todo wont work for cloud I think
+        self.local_path = local_path
+        self.image_path = ""
 
         self.content = []
 

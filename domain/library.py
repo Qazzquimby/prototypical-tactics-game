@@ -1,4 +1,5 @@
 from domain.bag import Bag, CustomBag
+from domain.card import LoneCard
 from domain.complexObject import ComplexObject
 from domain.deck import Deck
 from domain.die import Die
@@ -35,6 +36,13 @@ class Library:
     def decks(self, value):
         self._decks = value
 
+    @property
+    def lone_cards(self):
+        result = []
+        for bag in self.bags:
+            result += recursive_search(bag, LoneCard)
+        return result
+
 
 def get_hero_boxes(library: Library):
     hero_boxes = []
@@ -47,3 +55,18 @@ def get_hero_boxes(library: Library):
         hero_boxes += hero_boxes_in_bag
 
     return hero_boxes
+
+
+def recursive_search(container, type_):
+    results = []
+
+    try:
+        content = container.content
+    except AttributeError:
+        return results
+
+    for item in content:
+        if isinstance(item, type_):
+            results.append(item)
+        results += recursive_search(item, type_)
+    return results
