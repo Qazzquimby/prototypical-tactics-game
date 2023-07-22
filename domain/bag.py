@@ -50,16 +50,6 @@ class Bag(DomainEntity):
             "GUID": guid(),
         }
 
-    def get_decks(self):
-        # recursively get decks from self and internal bags
-        decks = []
-        for item in self.content:
-            if isinstance(item, Bag):
-                decks += item.get_decks()
-            elif isinstance(item, Deck):
-                decks.append(item)
-        return decks
-
 
 BOX_MESH_URL = "http://cloud-3.steamusercontent.com/ugc/1469815240708973394/DA07673D2A5C47A5544D2024B92585069B40EE91/"
 

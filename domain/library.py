@@ -26,11 +26,10 @@ class Library:
 
     @property
     def decks(self):
-        # search bags for decks
-        current_decks = self._decks.copy()
+        result = self._decks.copy()
         for bag in self.bags:
-            current_decks += bag.get_decks()
-        return current_decks
+            result += recursive_search(bag, Deck)
+        return result
 
     @decks.setter
     def decks(self, value):
