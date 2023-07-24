@@ -46,10 +46,10 @@ class Library:
 def get_hero_boxes(library: Library):
     hero_boxes = []
     game_bag = library.bags[0]
-    set_bags = [item for item in game_bag.content if isinstance(item, Bag)]
+    set_bags = [item for item in game_bag.contained_objects if isinstance(item, Bag)]
     for set_bag in set_bags:
         hero_boxes_in_bag = [
-            item for item in set_bag.content if isinstance(item, CustomBag)
+            item for item in set_bag.contained_objects if isinstance(item, CustomBag)
         ]
         hero_boxes += hero_boxes_in_bag
 
@@ -60,11 +60,11 @@ def recursive_search(container, type_):
     results = []
 
     try:
-        content = container.content
+        contained_objects = container.contained_objects
     except AttributeError:
         return results
 
-    for item in content:
+    for item in contained_objects:
         if isinstance(item, type_):
             results.append(item)
         results += recursive_search(item, type_)

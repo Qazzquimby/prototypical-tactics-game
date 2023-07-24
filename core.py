@@ -42,12 +42,12 @@ def game_to_library(game):
     sets_bag = Bag(name="Sets", size=3, color=(1.0, 1.0, 1.0))
     for game_set in game.sets:
         game_set_bag = make_game_set_bag(game_set)
-        sets_bag.content.append(game_set_bag)
+        sets_bag.contained_objects.append(game_set_bag)
     library.bags.append(sets_bag)
 
     rules_deck = RulesDeck(cards=game.rules)
     domain_rules_deck = rules_deck.get_tts_obj(name="game rules")
-    library.bags[0].content.append(domain_rules_deck)
+    library.bags[0].contained_objects.append(domain_rules_deck)
 
     return library
 
@@ -104,7 +104,6 @@ async def library_to_tts_dict(
                 object_=lone_card,
                 file_name=lone_card.object.name,
                 file_extension="jpg",
-                attribute_to_set="image_path",
             )
         )
 
@@ -150,8 +149,11 @@ async def _save_image_and_set_attribute(
     object_,
     file_name: str,
     file_extension: str,
-    attribute_to_set: str,
+    attribute_to_set: str | list[str] = None,
 ):
+    if attribute_to_set is None:
+        attribute_to_set = ["image_path", "back_image_path"]
+
     image: Union[Surface, Coroutine[Surface]] = drawer.draw(object_)
     # if image is promise, resolve
     if isinstance(image, Coroutine):
@@ -159,7 +161,11 @@ async def _save_image_and_set_attribute(
     path = await image_builder.build(
         image=image, file_name=file_name, file_extension=file_extension
     )
-    object_.__setattr__(attribute_to_set, path)
+    if isinstance(attribute_to_set, str):
+        attribute_to_set = [attribute_to_set]
+
+    for attribute in attribute_to_set:
+        object_.__setattr__(attribute, path)
 
 
 def save_tts(tts_json: dict, save_dir: Path, file_name: str):
@@ -194,7 +200,7 @@ def make_game_set_bag(game_set: GameSet):
     rules_deck = RulesDeck(cards=game_set.rules)
     domain_rules_deck = rules_deck.get_tts_obj(name=f"{game_set.name} rules")
     if domain_rules_deck:
-        set_bag.content.append(domain_rules_deck)
+        set_bag.contained_objects.append(domain_rules_deck)
 
     # heroes
     hero_bag = Bag(
@@ -204,8 +210,8 @@ def make_game_set_bag(game_set: GameSet):
     )
     for hero_box in game_set.hero_boxes:
         hero_box_bag = hero_box.get_tts_obj()
-        hero_bag.content.append(hero_box_bag)
-    set_bag.content.append(hero_bag)
+        hero_bag.contained_objects.append(hero_box_bag)
+    set_bag.contained_objects.append(hero_bag)
 
     # maps
     map_bag = Bag(
@@ -214,8 +220,8 @@ def make_game_set_bag(game_set: GameSet):
         color=(0.0, 1.0, 0.0),
     )
     for map_ in game_set.maps:
-        map_bag.content.append(map_.get_tts_obj())
-    set_bag.content.append(map_bag)
+        map_bag.contained_objects.append(map_.get_tts_obj())
+    set_bag.contained_objects.append(map_bag)
 
     return set_bag
 

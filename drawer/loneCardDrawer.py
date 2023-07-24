@@ -11,7 +11,12 @@ class LoneCardDrawer(BaseDrawer):
     def __init__(self, config):
         self.config = config
 
-    async def draw(self, card, size=PYGAME_CARD_SIZE):
+    async def draw(self, card):
+        try:
+            size = card.object.type.size
+        except AttributeError:
+            size = (PYGAME_CARD_WIDTH, PYGAME_CARD_HEIGHT)
+
         surf = pygame.Surface(size)
 
         card_drawer = ComplexObjectDrawer(card.object, self.config)

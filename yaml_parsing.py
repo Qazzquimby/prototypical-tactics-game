@@ -1,4 +1,5 @@
 import abc
+import base64
 from functools import lru_cache
 from pathlib import Path
 from typing import ClassVar
@@ -7,8 +8,8 @@ import jinja2
 import yaml
 from pydantic import BaseModel
 
-from domain.bag import CustomBag
-from domain.card import MapContainer
+from domain.bag import CustomBag, Bag
+from domain.card import DomainMap
 from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
 
@@ -334,7 +335,7 @@ class HeroBox(BaseModel):
             domain_cards.append(hero_card)
 
             domain_deck = DomainDeck.from_cards(name=deck_name, cards=domain_cards)
-            hero_box_bag.content.append(domain_deck)
+            hero_box_bag.contained_objects.append(domain_deck)
 
         return hero_box_bag
 
@@ -352,14 +353,27 @@ class Map(Spawnable, BaseModel):
         return full_spawning_lua
 
     def get_html(self):
+        local_image_path = data_path / "maps" / self.image_path
+        image_bytes = local_image_path.read_bytes()
+        image_data = base64.b64encode(image_bytes).decode()
         html = f"""\
 <div class="map">
-    <img src="{self.image_path}" style="height: 100%; width:100%"/>
+    <p> MAP HERE </p>
+    
+    <img src="data:image/jpeg;base64,{image_data}" style="height: 100%; width:100%"/>
 </div>"""
+
         return html  # todo may need actual dimensions
 
     def get_tts_obj(self):
-        map_ = MapContainer(
+        bag = Bag(
+            name=make_box_name(self.name),
+            description="",
+            size=1,
+            color=(1.0, 1.0, 1.0),
+        )
+
+        map_ = DomainMap(
             obj=ComplexObject(
                 name=make_deck_name(self.name),
                 type_=ComplexType(
@@ -371,6 +385,7 @@ class Map(Spawnable, BaseModel):
             ),
             local_path=self.image_path,
         )
+        bag.contained_objects.append(map_)
 
         rule_cards = []
         for rule in self.rules:
@@ -379,19 +394,19 @@ class Map(Spawnable, BaseModel):
                     id_=len(rule_cards) + 1,
                     count=1,
                     obj=ComplexObject(
-                        name=make_deck_name(self.name),
+                        name=make_deck_name(rule.name),
                         type_=RulesCard.to_complex_type(),
                         content=rule,
                     ),
                 ),
             )
         domain_deck = DomainDeck.from_cards(
-            name=make_deck_name(self.name), cards=rule_cards
+            name=make_deck_name(f"{self.name} rules"), cards=rule_cards
         )
 
-        map_.content.append(domain_deck)
+        bag.contained_objects.append(domain_deck)
 
-        return map_
+        return bag
 
 
 class GameSet(BaseModel):

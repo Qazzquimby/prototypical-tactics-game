@@ -15,9 +15,6 @@ EDGE_MARGIN = 10
 IMAGE_WIDTH = CARD_WIDTH - (2 * EDGE_MARGIN)
 IMAGE_HEIGHT = CARD_HEIGHT - (2 * EDGE_MARGIN)
 
-LEFTRIGHT_MARGIN = 10
-TOPBOTTOM_MARGIN = 10
-
 TemplatesPath = Path("data/templates")
 
 _BROWSER = None
@@ -56,11 +53,22 @@ class ComplexObjectDrawer(BaseDrawer):
         self.full_surf = None
 
     async def draw(self, _=None):
-        self.surf = pygame.Surface((IMAGE_WIDTH, IMAGE_HEIGHT))
+        try:
+            card_width = self.object.type.size[0]
+            card_height = self.object.type.size[1]
+            image_width = self.object.type.size[0] - (2 * EDGE_MARGIN)
+            image_height = self.object.type.size[1] - (2 * EDGE_MARGIN)
+        except AttributeError:
+            card_width = CARD_WIDTH
+            card_height = CARD_HEIGHT
+            image_width = IMAGE_WIDTH
+            image_height = IMAGE_HEIGHT
+
+        self.surf = pygame.Surface((image_width, image_height))
 
         browser = await get_browser()
         page = await browser.new_page()
-        await page.set_viewport_size({"width": IMAGE_WIDTH, "height": IMAGE_HEIGHT})
+        await page.set_viewport_size({"width": image_width, "height": image_height})
 
         html = self.object.content.get_html()
         await page.set_content(html)
@@ -71,7 +79,7 @@ class ComplexObjectDrawer(BaseDrawer):
         image = pygame.image.load(io.BytesIO(image_bytes), "img.png")
         self.surf.blit(image, (0, 0))
 
-        self.full_surf = pygame.Surface((CARD_WIDTH, CARD_HEIGHT))
+        self.full_surf = pygame.Surface((card_width, card_height))
         self.full_surf.fill(convert_tts_to_pygame((0, 0, 0)))
 
         self.full_surf.blit(self.surf, (EDGE_MARGIN, EDGE_MARGIN))

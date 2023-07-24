@@ -56,15 +56,8 @@ class LoneCard(Card):
         return base_dict
 
 
-class MapContainer(LoneCard):
+class DomainMap(LoneCard):
     def __init__(self, obj, local_path: str):
         super().__init__(obj)
         self.local_path = local_path
         self.image_path = ""
-
-        self.content = []
-
-    def as_dict(self, transform=None):
-        base_dict = super().as_dict(transform)
-        base_dict["ContainedObjects"] = [item.as_dict() for item in self.content]
-        return base_dict

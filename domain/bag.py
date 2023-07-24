@@ -12,12 +12,12 @@ class Bag(DomainEntity):
         self.description = description
         self.size = size
         self.color = color
-        self.content = []
+        self.contained_objects = []
         self.is_infinite = is_infinite
 
     def add_content(self, amount, content):
         for _ in range(0, amount):
-            self.content.append(content)
+            self.contained_objects.append(content)
 
     @cached_property
     def transform(self):
@@ -46,7 +46,7 @@ class Bag(DomainEntity):
             "MeshIndex": -1,
             "LuaScript": "",
             "LuaScriptState": "",
-            "ContainedObjects": [item.as_dict() for item in self.content],
+            "ContainedObjects": [item.as_dict() for item in self.contained_objects],
             "GUID": guid(),
         }
 
@@ -55,14 +55,22 @@ BOX_MESH_URL = "http://cloud-3.steamusercontent.com/ugc/1469815240708973394/DA07
 
 
 class CustomBag(Bag):
-    def __init__(self, name, size, color, diffuse_url, mesh_url=BOX_MESH_URL,
-                 is_infinite=False, description=""):
+    def __init__(
+        self,
+        name,
+        size,
+        color,
+        diffuse_url,
+        mesh_url=BOX_MESH_URL,
+        is_infinite=False,
+        description="",
+    ):
         super().__init__(
             name=name,
             size=size,
             color=color,
             is_infinite=is_infinite,
-            description=description
+            description=description,
         )
         self.mesh_url = mesh_url
         self.diffuse_url = diffuse_url
@@ -80,15 +88,11 @@ class CustomBag(Bag):
             "MaterialIndex": 3,
             "TypeIndex": 6,
             "CustomShader": {
-                "SpecularColor": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0
-                },
+                "SpecularColor": {"r": 1.0, "g": 1.0, "b": 1.0},
                 "SpecularIntensity": 0.0,
                 "SpecularSharpness": 2.0,
-                "FresnelStrength": 0.0
+                "FresnelStrength": 0.0,
             },
-            "CastShadows": True
+            "CastShadows": True,
         }
         return bag_dict
