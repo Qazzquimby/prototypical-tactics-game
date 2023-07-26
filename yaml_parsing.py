@@ -347,6 +347,20 @@ class Map(Spawnable, BaseModel):
 
     tokens: list[Token] = []
 
+    size_: tuple[int, int] = None
+
+    @property
+    def width_height(self):
+        if self.size_ is None:
+            import cv2
+
+            image = cv2.imread((data_path / "maps" / self.image_path).as_posix())
+            height = image.shape[0]
+            width = image.shape[1]
+            size = (width, height)
+            self.size_ = size
+        return self.size_
+
     def get_spawning_lua(self):
         spawning_luas = [token.get_spawning_lua() for token in self.tokens]
         full_spawning_lua = "\n\n\n".join(spawning_luas)
@@ -356,14 +370,16 @@ class Map(Spawnable, BaseModel):
         local_image_path = data_path / "maps" / self.image_path
         image_bytes = local_image_path.read_bytes()
         image_data = base64.b64encode(image_bytes).decode()
+
+        width, height = self.width_height
+
         html = f"""\
-<div class="map">
-    <p> MAP HERE </p>
-    
-    <img src="data:image/jpeg;base64,{image_data}" style="height: 100%; width:100%"/>
+<div class="map">    
+    <img src="data:image/jpeg;base64,{image_data}" style="height: 100%; width: 100%; object-fit: contain;"/>
 </div>"""
 
-        return html  # todo may need actual dimensions
+        # style="height: {height}px; width:{width}px"/>
+        return html
 
     def get_tts_obj(self):
         bag = Bag(
@@ -373,12 +389,14 @@ class Map(Spawnable, BaseModel):
             color=(1.0, 1.0, 1.0),
         )
 
+        width, height = self.width_height
+
         map_ = DomainMap(
             obj=ComplexObject(
                 name=make_deck_name(self.name),
                 type_=ComplexType(
                     name="Map",
-                    size=(1000, 1000),  # todo get size from image
+                    size=(width, height),
                     type_="card",
                 ),
                 content=self,
@@ -387,24 +405,24 @@ class Map(Spawnable, BaseModel):
         )
         bag.contained_objects.append(map_)
 
-        rule_cards = []
-        for rule in self.rules:
-            rule_cards.append(
-                DomainCard(
-                    id_=len(rule_cards) + 1,
-                    count=1,
-                    obj=ComplexObject(
-                        name=make_deck_name(rule.name),
-                        type_=RulesCard.to_complex_type(),
-                        content=rule,
+        if self.rules:
+            rule_cards = []
+            for rule in self.rules:
+                rule_cards.append(
+                    DomainCard(
+                        id_=len(rule_cards) + 1,
+                        count=1,
+                        obj=ComplexObject(
+                            name=make_deck_name(rule.name),
+                            type_=RulesCard.to_complex_type(),
+                            content=rule,
+                        ),
                     ),
-                ),
+                )
+            domain_deck = DomainDeck.from_cards(
+                name=make_deck_name(f"{self.name} rules"), cards=rule_cards
             )
-        domain_deck = DomainDeck.from_cards(
-            name=make_deck_name(f"{self.name} rules"), cards=rule_cards
-        )
-
-        bag.contained_objects.append(domain_deck)
+            bag.contained_objects.append(domain_deck)
 
         return bag
 

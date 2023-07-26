@@ -78,6 +78,24 @@ sets:
           F F 😀 F F
           B B B B B
           B B B B B
+      - name: Height Difference
+        text: |-
+          Double yellow line indicates the square with the second line is higher than the square bordering it.
+          Units can move from freely from high to low, but the line is impassible from low to high.
+          Todo, something with LoS
+      - name: Falling Hazard
+        text: |-
+          Purple area indicates a pit. 
+          Units standing on a pit cannot move. 
+          Units that end their turn on a pit are destroyed.
+
+          Some units may be able to escape by flying or teleporting.
+      - name: Cover
+        text: |-
+          Green lines indicate cover.
+          Cover can be moved through.
+          When at attack draws LoS through cover, the attack has +2 block, 
+          unless the attacker is adjacent to the cover.
     hero_boxes:
       - hero:
           name: Ana
@@ -1226,10 +1244,11 @@ sets:
     maps:
       - name: Nepal Shrine
         image_path: overwatch-nepal-shrine.png
-        rules:
-          - name: TestRule
-            text: |- 
-              text text text!
+      - name: Nepal Village
+        image_path: overwatch-nepal-village.png
+      - name: Nepal Sanctum
+        image_path: overwatch-nepal-sanctum.png
+
   - name: Dota
     description: |-
       Early WIP
