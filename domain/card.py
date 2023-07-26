@@ -62,9 +62,8 @@ class DomainMap(LoneCard):
         self.local_path = local_path
         self.image_path = ""
 
-    # def as_dict(self, transform=None):
-    #     if transform is None:
-    #         transform = Transform.from_size_and_coords(1)
-    #         transform = Transform.from_size_and_coords(3)  # when I did this the map image wasnt scaled and only filled the top left. Scale that too?
-    #     base_dict = super().as_dict(transform)
-    #     return base_dict
+    def as_dict(self, transform=None):
+        if transform is None:
+            transform = Transform.from_size_and_coords(3)  # scale up map
+        base_dict = super().as_dict(transform)
+        return base_dict

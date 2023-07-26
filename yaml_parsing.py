@@ -371,14 +371,10 @@ class Map(Spawnable, BaseModel):
         image_bytes = local_image_path.read_bytes()
         image_data = base64.b64encode(image_bytes).decode()
 
-        width, height = self.width_height
-
         html = f"""\
 <div class="map">    
     <img src="data:image/jpeg;base64,{image_data}" style="height: 100%; width: 100%; object-fit: contain;"/>
 </div>"""
-
-        # style="height: {height}px; width:{width}px"/>
         return html
 
     def get_tts_obj(self):
