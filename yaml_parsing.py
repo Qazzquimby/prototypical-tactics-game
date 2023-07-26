@@ -285,59 +285,38 @@ class RulesDeck(BaseModel):
         return domain_deck
 
 
-class HeroBox(BaseModel):
-    hero: Hero
-    decks: list[Deck]
-
+class HeroDeck(Hero, Deck):
     def get_tts_obj(self):
-        hero_box_bag = CustomBag(
-            name=make_box_name(self.hero.name),
-            description=self.hero.description,
-            size=1,
-            color=(1.0, 1.0, 1.0),
-            diffuse_url="http://cloud-3.steamusercontent.com/ugc/1469815174066637129/930D22149972BB2B9C6164FB8D1819249640546B/",
-            # todo, generate the image and url like how cards are generated
-        )
+        deck_name = make_deck_name(self.name)
 
-        if not self.decks:
-            self.decks.append(Deck())  # why
-
-        for deck in self.decks:
-            if not deck.cards:
-                continue
-
-            deck_name = make_deck_name(self.hero.name)
-
-            domain_cards = []
-            for card in reversed(deck.cards):
-                domain_cards.append(
-                    DomainCard(
-                        id_=len(domain_cards) + 1,
-                        count=1,
-                        obj=ComplexObject(
-                            name=deck_name,
-                            type_=AbilityCard.to_complex_type(),
-                            # todo make work for other card types
-                            content=card,
-                        ),
+        domain_cards = []
+        for card in reversed(self.cards):
+            domain_cards.append(
+                DomainCard(
+                    id_=len(domain_cards) + 1,
+                    count=1,
+                    obj=ComplexObject(
+                        name=deck_name,
+                        type_=AbilityCard.to_complex_type(),
+                        # todo make work for other card types
+                        content=card,
                     ),
-                )
-
-            hero_card = DomainCard(
-                id_=len(domain_cards) + 1,
-                count=1,
-                obj=ComplexObject(
-                    name=deck_name,
-                    type_=Hero.to_complex_type(),
-                    content=self.hero,
                 ),
             )
-            domain_cards.append(hero_card)
 
-            domain_deck = DomainDeck.from_cards(name=deck_name, cards=domain_cards)
-            hero_box_bag.contained_objects.append(domain_deck)
+        hero_card = DomainCard(
+            id_=len(domain_cards) + 1,
+            count=1,
+            obj=ComplexObject(
+                name=deck_name,
+                type_=Hero.to_complex_type(),
+                content=self,
+            ),
+        )
+        domain_cards.append(hero_card)
 
-        return hero_box_bag
+        domain_deck = DomainDeck.from_cards(name=deck_name, cards=domain_cards)
+        return domain_deck
 
 
 class Map(Spawnable, BaseModel):
@@ -427,7 +406,7 @@ class GameSet(BaseModel):
     name: str
     description: str
     rules: list[RulesCard] = []
-    hero_boxes: list[HeroBox] = []
+    heroes: list[HeroDeck] = []
     maps: list[Map] = []
 
 

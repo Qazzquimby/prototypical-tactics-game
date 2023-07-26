@@ -2,7 +2,7 @@ import asyncio
 
 from yaml_parsing import (
     GameSet,
-    HeroBox,
+    HeroDeck,
     Deck,
     Passive,
     BASIC,
@@ -25,19 +25,17 @@ BASIC_GAME = Game(
             name="TestSet",
             description="TestDescription",
             hero_boxes=[
-                HeroBox(
-                    hero=Hero(
-                        name="TestHero", speed=3, health=8, image_url="TestImage", description="TestDescription"
-                    ),
-                    decks=[
-                        Deck(
-                            abilities=[
-                                Passive(
-                                    name="TestAbility",
-                                    type=BASIC,
-                                    text="TestText",
-                                )
-                            ]
+                HeroDeck(
+                    name="TestHero",
+                    speed=3,
+                    health=8,
+                    image_url="TestImage",
+                    description="TestDescription",
+                    abilities=[
+                        Passive(
+                            name="TestAbility",
+                            type=BASIC,
+                            text="TestText",
                         )
                     ],
                 )
