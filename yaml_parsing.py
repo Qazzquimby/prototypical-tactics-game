@@ -180,7 +180,41 @@ class UnitCard(Card, Figurine):
         return content
 
     def get_spawning_lua(self):
-        return Card.get_spawning_lua(self) + "\n\n\n" + Figurine.get_spawning_lua(self)
+        # todo add health dice
+        health_dice = []
+        remaining_health = self.health
+        while remaining_health > 0:
+            health_die = min(remaining_health, 6)
+            health_dice.append(health_die)
+            remaining_health -= health_die
+
+        health_dice_lua = ""
+        for i, health_die in enumerate(health_dice):
+
+            health_dice_lua += f"""
+    local my_position = self.getPosition()
+            
+    local health_die = spawnObject({{
+        type = "Die_6",
+        position = {{x=my_position.x + {i}, y=my_position.y+1, z=my_position.z-2}},
+        rotation = {{x=0, y=0, z=0}},
+        scale = {{x=1, y=1, z=1}},
+        callback_function = function(newObj)
+            newObj.setName("Health")
+            newObj.setRotationValue({health_die})
+            newObj.setColorTint({{r=1, g=0, b=0}})
+        end
+    }})
+    """
+
+        full_spawning_lua = (
+            health_dice_lua
+            + "\n\n\n"
+            + Card.get_spawning_lua(self)
+            + "\n\n\n"
+            + Figurine.get_spawning_lua(self)
+        )
+        return full_spawning_lua
 
 
 class Hero(UnitCard):

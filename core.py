@@ -68,8 +68,6 @@ async def library_to_tts_dict(
     deck_drawer = DeckDrawer(config)
     back_drawer = CardBackDrawer(config)
 
-    # todo render images for LoneCards
-
     deck_names = [deck.name for deck in library.decks]
     assert len(deck_names) == len(set(deck_names)), "Deck names must be unique"
 
