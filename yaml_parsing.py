@@ -246,9 +246,11 @@ class RulesCard(Card):
     text: str
 
     def _inner_html(self):
+        text = "\n".join([f"<p>{line}</p>" for line in self.text.split("\n")])
+
         return f"""\
 <h1>{self.name}</h1>
-<p>{self.text}</p>
+{text}
 """
 
     @staticmethod
