@@ -161,19 +161,21 @@ class UnitCard(Card, Figurine):
     default_abilities: list[Active] = []
 
     def _inner_html(self):
-        passives = "\n".join([f"<p>{str(passive)}</p" for passive in self.passives])
+        passives = "\n".join([f"<p>{str(passive)}</p>" for passive in self.passives])
         default_abilities = "\n".join(
-            [f"<p>{str(ability)}</p" for ability in self.default_abilities]
+            [f"{str(ability)}" for ability in self.default_abilities]
         )
 
         content = f"""\
-<h1>{self.name}</h1>
-<p>Speed: {self.speed}; Health: {self.health}</p>
-<img src="{self.image_url}" style="width:100%; max-height: 150px; object-fit: contain;"/>
+<p class="card-title-bar"><span class="card-name">{self.name}</span><span class="stats">🥾{self.speed} | ❤️{self.health}</span></p>
 
-{passives}
-<p></p> 
-{default_abilities}
+<img class="image-box" src="{self.image_url}"/>
+
+<span class="card-text">
+    {passives}
+    <p></p> 
+    {default_abilities}
+</span>
 <p>{'owner todo'}</p>
 """
 
