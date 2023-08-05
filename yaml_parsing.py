@@ -42,40 +42,43 @@ class Token(BaseModel, Spawnable):
     name: str
     image_url: str
     back_image_url: str = ""
+    text: str = ""
     size: float = 0.25
 
     def get_spawning_lua(self):
         back_image_url = self.back_image_url or self.image_url
         return f"""\
-      local front='{self.image_url}'
-      local back='{back_image_url}'
-      local name='{clean_string_for_lua(self.name)}'
-      local s={scale_size(self.size)}
-      local tile_type=2
-      if s > 0.25 then
-        tile_type=3
-    end
-      
-      local my_position = self.getPosition()
-      local tint={{ r=0/255, g=0/255,  b=0/255  }}
-
-      local obj = spawnObject({{
-      type = "Custom_Tile",
-      position = {{x=my_position.x, y=my_position.y+1, z=my_position.z}},
-      rotation = {{x=0, y=0, z=0}},
-      scale = {{x=s, y=s, z=s}},
-      callback_function = function(newObj)
-        newObj.setName(name)
-        newObj.setColorTint(tint)
-      end
-    }})
-    obj.setCustomObject({{
-      type ="Custom_Tile",
-      type = tile_type, -- circlef
-      image = front,
-      image_bottom = back,
-      thickness = 0.05,
-    }})
+        local front='{self.image_url}'
+        local back='{back_image_url}'
+        local name='{clean_string_for_lua(self.name)}'
+        local description='{clean_string_for_lua(self.text)}'
+        local s={scale_size(self.size)}
+        local tile_type=2
+        if s > 0.25 then
+            tile_type=3
+        end
+        
+        local my_position = self.getPosition()
+        local tint={{ r=0/255, g=0/255,  b=0/255  }}
+        
+        local obj = spawnObject({{
+            type = "Custom_Tile",
+            position = {{x=my_position.x, y=my_position.y+1, z=my_position.z}},
+            rotation = {{x=0, y=0, z=0}},
+            scale = {{x=s, y=s, z=s}},
+            callback_function = function(newObj)
+                newObj.setName(name)
+                newObj.setDescription(description)
+                newObj.setColorTint(tint)
+            end
+        }})
+        obj.setCustomObject({{
+          type ="Custom_Tile",
+          type = tile_type, -- circlef
+          image = front,
+          image_bottom = back,
+          thickness = 0.05,
+        }})
         """
 
 
@@ -298,8 +301,10 @@ class AbilityCard(Card):
     text: str
 
     def _inner_html(self):
-        ability = Ability(name=self.name, text=self.text)
-        return f"{str(ability)}\n<p>owner todo</p>"
+        content = f'<p class ="card-title-bar"> <span class ="card-name">{self.name}</span></p>'
+        content += "\n".join([f"<p>{line}</p>" for line in self.text.split("\n")])
+        content += "\n<p>owner todo</p>"
+        return content
 
     def make_content_dict(self, hero_name: str) -> dict:
         return NotImplemented  # this should replace card row?
