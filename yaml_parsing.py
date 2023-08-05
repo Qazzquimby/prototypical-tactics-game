@@ -27,6 +27,8 @@ PYGAME_CARD_WIDTH = 350  # 3
 PYGAME_CARD_HEIGHT = 450  # 4
 PYGAME_CARD_SIZE = (PYGAME_CARD_WIDTH, PYGAME_CARD_HEIGHT)
 
+DIE_SPACING = 0.7
+
 
 class Spawnable(abc.ABC):
     def get_lua(self) -> str:
@@ -130,6 +132,7 @@ class Active(Ability):
 class Card(BaseModel, Spawnable):
     name: str
     tokens: list[Token] = []
+    white_dice: int = 0
 
     template: ClassVar[jinja2.Template] = NotImplemented
 
@@ -138,6 +141,14 @@ class Card(BaseModel, Spawnable):
 
     def get_spawning_lua(self):
         spawning_luas = [token.get_spawning_lua() for token in self.tokens]
+
+        for i in range(self.white_dice):
+            spawning_luas.append(
+                make_spawn_die_lua(
+                    1, offset={"x": i * DIE_SPACING, "y": 1, "z": -2}, scale=0.5
+                )
+            )
+
         full_spawning_lua = "\n\n\n".join(spawning_luas)
         return full_spawning_lua
 
@@ -182,32 +193,23 @@ class UnitCard(Card, Figurine):
         return content
 
     def get_spawning_lua(self):
-        # todo add health dice
-        health_dice = []
+        health_dice_values = []
         remaining_health = self.health
         while remaining_health > 0:
-            health_die = min(remaining_health, 6)
-            health_dice.append(health_die)
-            remaining_health -= health_die
+            health_die_value = min(remaining_health, 6)
+            health_dice_values.append(health_die_value)
+            remaining_health -= health_die_value
 
         health_dice_lua = ""
-        for i, health_die in enumerate(health_dice):
+        for i, health_die_value in enumerate(health_dice_values):
 
-            health_dice_lua += f"""
-    local my_position = self.getPosition()
-            
-    local health_die = spawnObject({{
-        type = "Die_6",
-        position = {{x=my_position.x + {i}, y=my_position.y+1, z=my_position.z-2}},
-        rotation = {{x=0, y=0, z=0}},
-        scale = {{x=1, y=1, z=1}},
-        callback_function = function(newObj)
-            newObj.setName("Health")
-            newObj.setRotationValue({health_die})
-            newObj.setColorTint({{r=1, g=0, b=0}})
-        end
-    }})
-    """
+            # position must be relative to the card's rotation.
+            health_dice_lua += make_spawn_die_lua(
+                die_value=health_die_value,
+                offset={"x": i * DIE_SPACING, "y": 1, "z": -2},
+                tint={"r": 1, "g": 0, "b": 0},
+                name="Health",
+            )
 
         full_spawning_lua = (
             health_dice_lua
@@ -217,6 +219,33 @@ class UnitCard(Card, Figurine):
             + Figurine.get_spawning_lua(self)
         )
         return full_spawning_lua
+
+
+def make_spawn_die_lua(
+    die_value: int, offset: dict, name="", tint: dict = None, scale: float = 1
+):
+    if tint is None:
+        tint = {"r": 1, "g": 1, "b": 1}
+
+    spawn_die_lua = f"""
+    local my_position = self.getPosition()
+    local my_rotation = self.getRotation()
+    local relative_position = {{x={offset['x']}, y={offset['y']}, z={offset['z']}}}
+    local world_position = self.positionToWorld(relative_position)
+
+    local health_die = spawnObject({{
+        type = "Die_6",
+        position = world_position,
+        rotation = my_rotation,
+        scale = {{x={scale}, y={scale}, z={scale}}},
+        callback_function = function(newObj)
+            newObj.setName("Health")
+            newObj.setRotationValue({die_value})
+            newObj.setColorTint({{r={tint['r']}, g={tint['g']}, b={tint['b']}}})
+        end
+    }})
+    """
+    return spawn_die_lua
 
 
 class Hero(UnitCard):
