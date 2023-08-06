@@ -8,7 +8,7 @@ import jinja2
 import yaml
 from pydantic import BaseModel
 
-from domain.bag import CustomBag, Bag
+from domain.bag import Bag
 from domain.card import DomainMap
 from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
@@ -19,13 +19,15 @@ from domain.card import Card as DomainCard
 
 data_path = Path(r"data/")
 
-CARD_WIDTH = 350
-CARD_HEIGHT = 450
+CARD_SCALE = 2
+
+CARD_WIDTH = 350 * CARD_SCALE
+CARD_HEIGHT = 450 * CARD_SCALE
 CARD_SIZE = (CARD_WIDTH, CARD_HEIGHT)
 
-PYGAME_CARD_WIDTH = 350  # 3
-PYGAME_CARD_HEIGHT = 450  # 4
-PYGAME_CARD_SIZE = (PYGAME_CARD_WIDTH, PYGAME_CARD_HEIGHT)
+EDGE_MARGIN = 10 * CARD_SCALE
+IMAGE_WIDTH = CARD_WIDTH - (2 * EDGE_MARGIN)
+IMAGE_HEIGHT = CARD_HEIGHT - (2 * EDGE_MARGIN)
 
 DIE_SPACING = 0.7
 
@@ -304,7 +306,12 @@ class AbilityCard(Card):
 
     def _inner_html(self):
         header = f'<p class ="card-title-bar"> <span class ="card-name">{self.name}</span></p>'
-        ability_text = "\n".join([f"<p style='white-space: pre-wrap;'>{line}</p>" for line in self.text.split("\n")])
+        ability_text = "\n".join(
+            [
+                f"<p style='white-space: pre-wrap;'>{line}</p>"
+                for line in self.text.split("\n")
+            ]
+        )
 
         content = f"""\
 {header}

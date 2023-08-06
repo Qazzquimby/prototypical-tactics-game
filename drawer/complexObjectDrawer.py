@@ -6,14 +6,9 @@ from playwright.async_api import async_playwright
 import pygame
 
 from drawer.base import BaseDrawer
-from drawer.textrect import render_fitted_textrect
 from drawer.color import convert_tts_to_pygame
-
-CARD_WIDTH = 350
-CARD_HEIGHT = 450
-EDGE_MARGIN = 10
-IMAGE_WIDTH = CARD_WIDTH - (2 * EDGE_MARGIN)
-IMAGE_HEIGHT = CARD_HEIGHT - (2 * EDGE_MARGIN)
+from drawer.css_maker import make_css
+from yaml_parsing import EDGE_MARGIN, CARD_WIDTH, CARD_HEIGHT, IMAGE_WIDTH, IMAGE_HEIGHT
 
 TemplatesPath = Path("data/templates")
 
@@ -41,7 +36,8 @@ async def close_browser():
                 _BROWSER = None
 
 
-CARD_CSS = (TemplatesPath / "card.css").read_text()
+# CARD_CSS = (TemplatesPath / "card.css").read_text()
+CARD_CSS = make_css()
 
 
 class ComplexObjectDrawer(BaseDrawer):

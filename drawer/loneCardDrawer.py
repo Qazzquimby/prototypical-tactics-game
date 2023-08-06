@@ -1,10 +1,8 @@
-import itertools
-
 import pygame
 
 from drawer.base import BaseDrawer
 from drawer.complexObjectDrawer import ComplexObjectDrawer
-from yaml_parsing import PYGAME_CARD_SIZE, PYGAME_CARD_WIDTH, PYGAME_CARD_HEIGHT
+from yaml_parsing import CARD_SIZE, CARD_WIDTH, CARD_HEIGHT
 
 
 class LoneCardDrawer(BaseDrawer):
@@ -15,7 +13,7 @@ class LoneCardDrawer(BaseDrawer):
         try:
             size = card.object.type.size
         except AttributeError:
-            size = (PYGAME_CARD_WIDTH, PYGAME_CARD_HEIGHT)
+            size = (CARD_WIDTH, CARD_HEIGHT)
 
         surf = pygame.Surface(size)
 

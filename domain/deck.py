@@ -1,5 +1,6 @@
 from domain.abstract import DomainEntity
 from domain.card import Card, LoneCard
+from drawer.deckDrawer import DECK_IMAGE_CARDS_PER_ROW, DECK_IMAGE_CARDS_PER_COLUMN
 from tts.guid import guid
 
 
@@ -43,8 +44,8 @@ class Deck(DomainEntity):
                 "1": {
                     "FaceURL": self.image_path,
                     "BackURL": self.back_image_path,
-                    "NumWidth": 10,
-                    "NumHeight": 7,
+                    "NumWidth": DECK_IMAGE_CARDS_PER_ROW,
+                    "NumHeight": DECK_IMAGE_CARDS_PER_COLUMN,
                     "BackIsHidden": False,
                     "UniqueBack": False,
                 }

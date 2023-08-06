@@ -1,12 +1,17 @@
+from yaml_parsing import CARD_SCALE, CARD_WIDTH, CARD_HEIGHT
+
+
+def make_css():
+    return f"""\
 /*@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400&family=Special+Elite&family=Yeseva+One&display=swap');*/
-* {
+* {{
     font-family: Roboto Slab, sans-serif;
-    font-size: 64px;
+    font-size: {16*CARD_SCALE}px;
     padding: 0;
     margin: 0;
-}
+}}
 
-.card {
+.card {{
     display: flex;
     flex-flow: column;
     /*justify-content: left;*/
@@ -17,78 +22,78 @@
 
     padding: 5mm;
     color: white;
-    border: 160px white;
+    border: {40*CARD_SCALE}px white;
 
-    width: 1300px;
+    width: {CARD_WIDTH}px;
     /*300px;*/
-    height: 1700px;
+    height: {CARD_HEIGHT}px;
     /*height: 400px;*/
 
     overflow: hidden;
-}
+}}
 
-.card pre {
+.card pre {{
     white-space: pre-wrap;
-}
+}}
 
-.card .ability-name {
+.card .ability-name {{
     font-size: 1.2em;
     font-weight: bold;
     margin-top: 0.2em
-}
+}}
 
-.card-title-bar {
+.card-title-bar {{
     display: flex;
     flex-flow: row;
     justify-content: space-between;
     width: 100%;
-}
+}}
 
-.card-name {
+.card-name {{
     font-family: Yeseva One, serif;
     font-size: 1.6rem;
-}
+}}
 
-.stats {
+.stats {{
     align-self: flex-end;
-}
+}}
 
-.image-box {
+.image-box {{
     width: 70%;
-    border: 12px solid;
-    border-radius: 20px;
+    border: {3*CARD_SCALE}px solid;
+    border-radius: {5*CARD_SCALE}px;
     background-color: #130f15;
-    box-shadow: 0 0 10px;
+    box-shadow: 0 0 {10*CARD_SCALE}px;
     display: block;
     margin: auto;
 
-    max-height: 520px;
+    max-height: {130*CARD_SCALE}px;
     object-fit: cover;
     /*contain*/
     object-position:top;
+}}
 
-}
-
-.card-text {
+.card-text {{
     color: black;
     background-color: #fbf7d5;
-    border-radius: 20px;
-    box-shadow: 0 0 40px;
+    border-radius: {5*CARD_SCALE}px;
+    box-shadow: 0 0 {10*CARD_SCALE}px;
     border: 12px solid white;
 
-    padding: 28px 28px 0 28px;
-    margin-top: 20px;
+    padding: {7*CARD_SCALE}px {7*CARD_SCALE}px 0 {7*CARD_SCALE}px;
+    margin-top: {5*CARD_SCALE}px;
     height: 100%;
     text-align: justify;
-}
+}}
 
-/*!*.description {*!*/
+/*!*.description {{*!*/
 /*!*    padding: 2mm 0;*!*/
 /*!*    flex-grow: 1;*!*/
 /*!*    font-size: 1rem;*!*/
 /*!*    white-space: pre-wrap;*!*/
-/*}*/
+/*}}*/
 
-.owner {
+.owner {{
     font-family: Yeseva One, serif;
-}
+}}
+"""
