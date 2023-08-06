@@ -135,7 +135,7 @@ class Active(Ability):
 class Card(BaseModel, Spawnable):
     name: str
     tokens: list[Token] = []
-    white_dice: int = 0
+    white_dice: list[int] = []
 
     template: ClassVar[jinja2.Template] = NotImplemented
 
@@ -145,10 +145,12 @@ class Card(BaseModel, Spawnable):
     def get_spawning_lua(self):
         spawning_luas = [token.get_spawning_lua() for token in self.tokens]
 
-        for i in range(self.white_dice):
+        for i, die_value in enumerate(self.white_dice):
             spawning_luas.append(
                 make_spawn_die_lua(
-                    1, offset={"x": i * DIE_SPACING, "y": 1, "z": -2}, scale=0.5
+                    die_value=die_value,
+                    offset={"x": i * DIE_SPACING, "y": 1, "z": -2},
+                    scale=0.5,
                 )
             )
 
@@ -187,7 +189,7 @@ class UnitCard(Card, Figurine):
 
 <span class="card-text">
     {passives}
-    <p></p> 
+    <p>- - -</p> 
     {default_abilities}
 </span>
 <p>{'owner todo'}</p>
@@ -301,9 +303,15 @@ class AbilityCard(Card):
     text: str
 
     def _inner_html(self):
-        content = f'<p class ="card-title-bar"> <span class ="card-name">{self.name}</span></p>'
-        content += "\n".join([f"<p>{line}</p>" for line in self.text.split("\n")])
-        content += "\n<p>owner todo</p>"
+        header = f'<p class ="card-title-bar"> <span class ="card-name">{self.name}</span></p>'
+        ability_text = "\n".join([f"<p style='white-space: pre-wrap;'>{line}</p>" for line in self.text.split("\n")])
+
+        content = f"""\
+{header}
+<span class="card-text">
+    {ability_text}
+</span>
+<p>owner todo</p>"""
         return content
 
     def make_content_dict(self, hero_name: str) -> dict:

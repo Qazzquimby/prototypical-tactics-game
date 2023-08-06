@@ -50,33 +50,61 @@ rules:
       ⛨ can be applied to the attack. A die must be rolled over the ⛨ to hit.
       ⚔ is damage.
       Crit can be applied to the attack. If the die is rolled at least 7-crit, the attack deals double damage.
+      
+      The target may also choose to be hit when an attack would miss them.
+  - name: Persistent
+    text: |-
+      Lasts between Battles, until end of game.
+      Eg a Persistent debuff would continue into later battles.
 conditions:
   Poison: &Poison
     name: Poison X
     image_url: https://cdn-icons-png.flaticon.com/512/4243/4243304.png
     text: At the start of your turn, take X damage.
+  Slow: &Slow
+    name: Slow
+    image_url: https://cdn.dribbble.com/users/4152927/screenshots/12551209/media/ae98cc06e8f934a47183831ecb84d4e1.png?compress=1&resize=400x300&vertical=center
+    text: You have -2 Speed, to a minimum of 1. Clear at the end of your turn.
+  Stun: &Stun
+    name: Stun
+    image_url: https://en.tankiwiki.com/images/en/5/53/Icon_Stun.png
+    text: You have -1 Standard Action. Clear at the end of your turn.
+  Paralyze: &Paralyze
+    name: Paralyze
+    image_url: https://game.capcom.com/manual/MH4U/common/game/6204_1.jpg
+    text: You cannot take actions. Clear at the end of your turn.
 sets:
   - name: Overwatch
     description: |-
       - Slow charging ultimate abilities
       - Projectiles less accurate at long ranges
-      - Reaction speed effects
+      - Instant speed reactions
       - Tanks, Healers, Dps
       - Many 1/battle effects
     rules:
-      - name: Reaction Defense
+      - name: Instant
         text: |-
-          Looks like "Reaction block +2" or "Reaction dodge +1"
-          The unit is trying to use the ability before they're hit.
-          The attack gets the listed bonus to defense.
-          If the attack misses, the ability triggers before the attack, then you may make it hit instead.
-          If the attack hits, the ability triggers after the attack.
+          May list a reaction speed target, like "Instant ⛨+2" or "Instant ⛨+1"
+          An ability marked as Instant can be used for free at the start of any turn, or when a unit is targeted.
+          
+          When reacting to to a targeting action, declare before the roll is made.
+          If the roll is higher than the target's defense + the Instant's bonus (if any), the Instant occurs after the action.
+          Otherwise, the Instant occurs before the action.
+          If the actor is an ally, you may choose whether the Instant triggers before or after the action.
+
+          Note that the Instant's defense bonus does not modify the target's defense - it only changes how easy it is to act first.
+          Reminder that units can choose to be hit even when an attack roll fails.
+      - name: Ultimate X
+        text: |-
+          At the end of the round, if the unit is alive,
+          put a persistent charge on the ability with Ultimate, up to X.
+          Spend X charges to use the ability.
       - name: Critical Moment
         text: |-
           Once per battle, you may reroll a die.
       - name: Flying
         text: |-
-          Flying movement ignores terrain and is unreactable.
+          Flying movement ignores terrain and does not provoke reactions.
       - name: Facing
         text: |-
           When a unit specifically states it has facing, when it acts, indicate that it faces an orthogonal direction most closely facing the direction or target of the action.
@@ -114,7 +142,7 @@ sets:
           - Charge up sniper
         health: 8
         speed: 3
-        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ab/OW2_Widowmaker.png/revision/latest/scale-to-width-down/272?cb=20210623082021
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ab/OW2_Widowmaker.png
         default_abilities:
           - name: Widow's Kiss
             text: |-
@@ -122,21 +150,27 @@ sets:
               or:
               Channel:
                 Until the end of your next turn you are immobilized, and have locked facing
-                If your next standard action is Widow's Kiss, it has unlimited range, ⚔7 and +2 crit.
+                If your next standard action is Widow's Kiss, it has unlimited range, ⚔7, undodgeable, +2 crit.
             tokens:
               - name: Widow's Kiss Charged
-                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bf/Ability-widowmaker1.png/revision/latest/scale-to-width-down/100?cb=20181119054154
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bf/Ability-widowmaker1.png
+                text: |-
+                  Widow's Kiss has unlimited range, ⚔7, undodgeable, +2 crit.
+                  Remove when you take any action.
 #            // facing marker?
         abilities:
           - name: Venom Mine
             text: |-
               1/battle
               Empty space in range 3, place a size 1 Venom Mine.
-              When an enemy enters the mine's space, destroy it and they take poison 1.
+              When an enemy enters the mine's space, destroy it and they take Poison 1.
+            # works for adjacent spaces?
             tokens:
               - name: Venom Mine
-                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-widowmaker3.png/revision/latest/scale-to-width-down/100?cb=20141112192613
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-widowmaker3.png
                 size: 1
+                text: |-
+                  When an enemy enters this space, destroy this and they get Poison 1.
               - *Poison
           - name: Grappling Hook
             text: |-
@@ -144,235 +178,251 @@ sets:
               Move action, Fly directly to any point in range 5.
           - name: Infra-Sight
             text: |-
+              Free action, Ultimate 3:
+                Enemies cannot dodge or be invisible.
+                All allies have +2 crit
+            # needs forwards compatibility for "cant use any kind of stealth"
+#            tokens:
+#              - name: Infra-Sight
+#                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/94/Ability-widowmaker4.png
+            white_dice: [1]
+      - name: Tracer
+        description: |-
+          - Fast, fragile, instant speed dodges
+          - High close range damage
+        health: 6
+        speed: 4
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1b/Tracer_ow2_portrait.png
+        default_abilities:
+          - name: Pulse Pistols
+            text: Range 1, ⚔4.
+        abilities:
+          - name: Blink
+            text: |-
+              3/battle
+              Instant ⛨+2
+              Teleport up to 3.
+            white_dice: [3]
+          - name: Recall
+            text: |-
               1/battle
-              Free action
-              Enemies cannot be invisible, hide, or benefit from cover.
-              All allies deal +2 crit
+              Instant ⛨+3
+              Reset your health to what it was at the end of your last turn.
+              Teleport as close as possible to where you were at the end of your last turn.
             tokens:
-              - name: Infra-Sight
-                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/94/Ability-widowmaker4.png/revision/latest/scale-to-width-down/100?cb=20141112192615
-            white_dice: 1
-            # text: |-
-            #  Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-            #    Spend 5 charges:
-            #    Range 6, ⚔6, ⛨2
-            #    If this kills, you can make repeat the attack.
+              - name: Recall location
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/63/Ability-tracer3.png
+                size: 1
+                text: This is the space you'll recall to.
+            white_dice: [1]
+          - name: Pulse Bomb
+            text: |-
+              Ultimate 5:
+                Pick a space in range 1. If there's a character in the space, attach the pulse bomb to them with ⛨2.
+                If it doesn't attach to someone, it drops in that space.
+                At the start of your next turn, destroy the pulse bomb. It deals ⚔9 to anyone in its space and ⚔3 to anyone else in burst 1.
+            white_dice: [1]
+            tokens:
+              - name: Pulse Bomb
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/af/Ability-tracer4.png
+                size: 1
+                text: |-
+                  At the start of your turn, destroy this. It deals ⚔9 to anyone in its space and ⚔3 to anyone else in burst 1.
+      - name: Mercy
+        description: |-
+          - Healing/Damage buff
+          - Resurrect ally
+        health: 8
+        speed: 3
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0f/Mercy-ow2-portrait.png
+        passives:
+          - name: Start
+            text: If you did not take damage since your last turn, ✚3.
+          - name: Ally dies
+            text: |-
+              Place a Corpse Marker in their space and note which ally it corresponds to.
+        tokens:
+          - name: Caduceus Staff Damage Boost
+            image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-mercy1.png
+            text: Until end of turn, deal +0.5x damage.
+          - name: Took damage last turn
+            image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b0/Ability-passive.png
+            back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
+            text: Flip this face down when you take damage, and face up at the start of your turn.
+          - name: Corpse Marker
+            image_url: https://cdn.iconscout.com/icon/premium/png-256-thumb/deadbody-641234.png?f=webp
+            size: 1
+            text: Place this in the space where an ally died.
+        default_abilities:
+          - name: Caduceus Staff
+            text: |-
+              Range 3
+              Choose one:
+                - Target heals ✚4.
+                - Until end of target's next turn, they deal +0.5x damage.
+          - name: Caduceus Blaster
+            text: |-
+              ⛨1/3 distance, ⚔2.
+        abilities:
+          - name: Guardian Angel
+            text: |-
+              Fly to any space adjacent to an ally or friendly Corpse Marker, as directly as possible.
+          - name: Resurrect
+            text: |-
+              1/battle
+              Channel:
+                At the start of your next turn, you may resurrect target corpse in range 1.
+          - name: Valkyrie
+            text: |-
+              Ultimate 5:
+                At the beginning of each your turns, ✚2.
+                Your Caduceus Staff has range 5, and may affect a second target in range 2 of the first.
+                You can use Guardian Angel as a move action.
+                You are always Flying.
+            white_dice: [1]
+      - name: Pharah
+        description: |-
+          - Rocket aoe projectiles
+          - Flying
+        health: 8
+        speed: 4
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b3/OW2_Pharah.png
+        passives:
+          - name: Ignore non-blocking terrain.
+            text: ""
+        default_abilities:
+          - name: Rocket Launcher
+            text: |-
+              ⛨1/3 distance, ⚔3, and burst 1 ⚔1
+        HighAltitude: &HighAltitude
+            name: High Altitude
+            image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/14/Ability-parah2.png
+            text: |-
+              When drawing range to or from you, ignores soft cover and is 2 spaces further.
+              Clear at the start of your turn.
+        abilities:
+          - name: Deplete Hover Jets
+            text: |-
+              Move action
+              CD 1
+              Move up to 2. Gain High Altitude until the start of your next turn.
+            tokens:
+              - *HighAltitude
+          - name: Jump Jet
+            text: |-
+              1/battle, Instant ⛨+2
+              Move up to 2. Gain High Altitude until the start of your next turn.
+            tokens:
+              - *HighAltitude
+          - name: Concussive Blast
+            text: |-
+              1/battle
+              Range 4,
+              push all adjacent to the target 1 space away from them.
+              push target 2 spaces in any direction.
+          - name: Barrage
+            text: |-
+              Move + Standard action, Ultimate 5:
+                ⛨1/2 distance, ⚔8, ⚔3 to all others in burst 1
+            white_dice: [1]
 
-
-#      - name: Tracer
-#        description: |-
-#          - Fast reaction-dodgy fragile
-#          - High close range damage
-#        health: 6
-#        speed: 4
-#        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1b/Tracer_ow2_portrait.png/revision/latest/scale-to-width-down/116?cb=20220625025656
-#        default_abilities:
-#          - name: Pulse Pistols
-#            text: Range 1, ⚔4.
-#        abilities:
-#          - name: Blink
-#            text: |-
-#              3/battle
-#              Reaction Dodge⛨2
-#              Teleport up to 3.
-#          - name: Recall
-#            text: |-
-#              1/battle
-#              Reaction Dodge⛨3
-#              Reset your health to what it was at the end of your last turn.
-#              Teleport as close as possible to where you were at the end of your last turn.
-#            tokens:
-#              - name: Recall location
-#                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/63/Ability-tracer3.png/revision/latest/scale-to-width-down/100?cb=20141112192409
-#                size: 1
-#          - name: Pulse Bomb
-#            text: |-
-#              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-#              Spend 5 charges:
-#                Pick a space in range 1. If there's a character in the space, attach the pulse bomb to them with ⛨2.
-#                If it doesn't attach to someone, it drops in that space.
-#                At the start of your next turn, destroy the pulse bomb. It deals ⚔9 to anyone in its space and ⚔3 to anyone else in burst 1.
-#            tokens:
-#              - name: Pulse Bomb
-#                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/af/Ability-tracer4.png/revision/latest/scale-to-width-down/100?cb=20141112192411
-#                size: 1
-#      - name: Mercy
-#        description: |-
-#          - Healing/Damage buff
-#          - Resurrect ally
-#        health: 8
-#        speed: 3
-#        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0f/Mercy-ow2-portrait.png/revision/latest/scale-to-width-down/149?cb=20191104213936
-#        passives:
-#          - name: Start
-#            text: If you did not take damage since your last turn, ✚3.
-#          - name: Ally dies
-#            text: |-
-#              Place a Corpse Marker in their space and note which ally it corresponds to.
-#        tokens:
-#          - name: Caduceus Staff
-#            image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-mercy1.png/revision/latest/scale-to-width-down/100?cb=20181119023602
-#          - name: Took damage last turn
-#            image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b0/Ability-passive.png/revision/latest/scale-to-width-down/100?cb=20181119020901
-#            back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
-#        default_abilities:
-#          - name: Caduceus Staff
-#            text: |-
-#              Target ally in range 3
-#              Choose one:
-#                - Target gets ✚4.
-#                - Until end of target's next turn, they deal +.5x damage.
-#
-#          - name: Caduceus Blaster
-#            text: |-
-#              ⛨1/3 distance, ⚔2.
-#        abilities:
-#          - name: Guardian Angel
-#            text: |-
-#              Fly to any space adjacent to an ally or friendly Corpse Marker, as directly as possible.
-#          - name: Resurrect
-#            text: |-
-#              1/battle
-#              Channel:
-#                At the start of your next turn, you may resurrect target corpse in range 1.
-#          - name: Valkyrie
-#            text: |-
-#              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-#              Spend 5 charges:
-#                At the beginning of each your turns, ✚2.
-#                Your Caduceus Staff has range 5, burst 2, and only affects allies.
-#                You can use Guardian Angel as a move action.
-#                You are always flying.
-#      - name: Pharah
-#        description: |-
-#          - Rocket aoe projectiles
-#          - Flying
-#        health: 8
-#        speed: 4
-#        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b3/OW2_Pharah.png/revision/latest/scale-to-width-down/272?cb=20210623082353
-#        passives:
-#          - name: Ignore non-blocking terrain.
-#            text: ""
-#        default_abilities:
-#          - name: Rocket Launcher
-#            text: |-
-#              ⛨1/3 distance, ⚔3, and burst 1 ⚔1
-#        abilities:
-#          - name: Deplete Hover Jets
-#            text: |-
-#              Move action
-#              CD 1
-#              Move up to 2. Gain "high altitude" until the start of your next turn. (when drawing range to or from you, ignores soft cover and is 2 spaces further)
-#            tokens:
-#              - name: High Altitude
-#                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/14/Ability-parah2.png/revision/latest/scale-to-width-down/100?cb=20181119024127
-#          - name: Jump Jet
-#            text: |-
-#              1/battle, reaction dodge⛨2
-#              Move up to 2. Gain "high altitude" until the start of your next turn. (when drawing range to or from you, ignores soft cover and is 2 spaces further)
-#            tokens:
-#              - name: High Altitude
-#                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/14/Ability-parah2.png/revision/latest/scale-to-width-down/100?cb=20181119024127
-#          - name: Concussive Blast
-#            text: |-
-#              1/battle
-#              Range 4,
-#              push all adjacent to the target 1 space away from them.
-#              push target 2 spaces in any direction.
-#          - name: Barrage
-#            text: |-
-#              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-#              Spend 5 charges:
-#                Move + Standard action
-#                ⛨1/2 distance, ⚔8, ⚔3 to all others in burst 1
-#                You're immobilized until your next turn.
-#      - name: Reaper
-#        description: |-
-#          - High close range damage
-#          - Self healing
-#        health: 8
-#        speed: 3
-#        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8c/OW2_Reaper.png/revision/latest/scale-to-width-down/272?cb=20210623082134
-#        passives:
-#          - name: The Reaping
-#            text: |-
-#              When you deal damage, heal half the amount.
-#        default_abilities:
-#          - name: Hellfire Shotguns
-#            text: |-
-#              Range 1, ⚔4
-#              or range 2, ⚔2
-#              Deals +⚔2 against targets with 10 or more max health.
-#        abilities:
-#          - name: Wraith Form
-#            text: |-
-#              1/battle
-#              Reaction +2
-#              Move 2 spaces. Purge any number of conditions.
-#              Until the beginning of your next turn, you are invulnerable to damage and effects you don't want.
-#          - name: Shadow Step
-#            text: |-
-#              1/battle
-#              Move + Standard action
-#              Teleport up to 8 spaces.
-#          - name: Death Blossom
-#            text: |-
-#              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-#              Spend 5 charges:
-#              Burst 1, ⚔7
-#      - name: Reinhardt
-#        description: |-
-#          - Melee cleave tank
-#          - Barrier
-#        health: 12
-#        speed: 3
-#        dodge: -2
-#        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/3b/Reinhardt-ow2-portrait.png/revision/latest/scale-to-width-down/252?cb=20191104214011
-#        passives:
-#          - name: Immune to involuntary movement
-#            text: ""
-#        default_abilities:
-#          - name: Rocket Hammer
-#            text: |-
-#              up to 3 adjacent targets in burst 1, ⚔2
-#        abilities:
-#          - name: Barrier Field
-#            text: |-
-#              Reaction Block +2
-#              This ability has 10 hp.
-#              Enter shield stance.
-#              In shield stance:
-#                You have facing.
-#                You're slowed and disarmed.
-#                There is a 3 space long line on the edge in front of you, which moves with you.
-#                Opponents' non-piercing attacks through the barrier hit the barrier instead.
-#              You can dismiss the barrier at the end of your turn as a free action.
-#            tokens:
-#              - name: Barrier Field
-#                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/97/Ability-reinhardt2.png/revision/latest/scale-to-width-down/100?cb=20221128013412
-#                size: 0.5
-#          - name: Charge
-#            text: |-
-#              Move + Standard action, 1/battle
-#              Move as far as possible in a line.
-#              When you contact an enemy, roll attack with ⛨2 + 1/2 distance from your start position.
-#              The first enemy hit this way is pushed with you, interrupted, and take ⚔7.
-#              Other enemies in the line are pushed to the side and take ⚔1.
-#          - name: Fire Strike
-#            text:
-#              CD 2
-#              All in line, ⛨1/3 distance, ⚔3
-#          - name: Earthshatter
-#            text: |-
-#              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-#              Spend 5 charges:
-#                range 2 burst 1, piercing, ⚔1 and stun
+      - name: Reaper
+        description: |-
+          - High close range damage
+          - Self healing
+        health: 8
+        speed: 3
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8c/OW2_Reaper.png
+        passives:
+          - name: The Reaping
+            text: |-
+              When you deal damage, heal half the amount.
+        default_abilities:
+          - name: Hellfire Shotguns
+            text: |-
+              Range 1, ⚔3
+              or range 2, ⚔2
+              Deals +⚔2 against targets with 10 or more max health.
+        abilities:
+          - name: Wraith Form
+            text: |-
+              1/battle
+              Instant ⛨+2
+              Move 2 spaces. Clear any number of conditions.
+              Until the beginning of your next turn, nothing affects you.
+            tokens:
+              - name: Invulnerable
+                image_url: https://static.wikia.nocookie.net/overwatch/images/2/29/IconWraithAbility.png
+                text: Nothing affects you. Clear at the beginning of your next turn.
+          - name: Shadow Step
+            text: |-
+              1/battle
+              Move + Standard action
+              Teleport up to 8.
+          - name: Death Blossom
+            text: |-
+              Ultimate 5:
+                Burst 1, ⚔7
+            white_dice: [1]
+      - name: Reinhardt
+        description: |-
+          - Melee cleave tank
+          - Block for allies
+        health: 12
+        speed: 3
+        dodge: -2
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/3b/Reinhardt-ow2-portrait.png
+        passives:
+          - name: Immune to involuntary movement
+            text: ""
+        default_abilities:
+          - name: Rocket Hammer
+            text: |-
+              3 adjacent spaces in burst 1, ⚔2
+        abilities:
+          - name: Barrier Field
+            text: |-
+              Instant ⛨+2
+              This ability has 10 hp.
+              Enter shield stance.
+              In shield stance:
+                You have facing and can freely set your facing at the end of your turn.
+                You're continually Slow (-2 speed, min 1) and can't take standard actions.
+                There is a 3 space long line on the edge in front of you, which moves with you.
+                Opponents' non-piercing attacks through the barrier hit the barrier instead.
+              You can dismiss the barrier at the end of your turn as a free action.
+            white_dice: [6, 4]
+            Barrier: &Barrier
+                name: Barrier Field
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/97/Ability-reinhardt2.png
+                size: 0.25
+                text: This edge is part of the barrier.
+            tokens:
+              - *Barrier
+              - *Barrier
+              - *Barrier
+          - name: Charge
+            text: |-
+              Move + Standard action, 1/battle
+              Move as far as possible in a line.
+              When you contact an enemy, roll attack with ⛨2 + 1/2 distance from your start position.
+              The first enemy hit this way is pushed with you, interrupted, and takes ⚔7.
+              Other enemies in the line are pushed to the side and take ⚔1.
+          - name: Fire Strike
+            text:
+              CD 2
+              All in line, ⛨1/3 distance, ⚔3
+          - name: Earthshatter
+            text: |-
+              Ultimate 5:
+                Range 2 burst 1, ⚔1 and Paralyze
+            white_dice: [1]
 #      - name: Bastion
 #        description: |-
 #          - High damage slow stance
 #        health: 8
 #        speed: 3
-#        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/272?cb=20220409014728
+#        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png
 #        default_abilities:
 #          - name: Light Machine Gun
 #            text: Range 4, ⚔1.
@@ -1462,7 +1512,7 @@ sets:
 #          - name: Voodoo Doll
 #            health: 2
 #            speed: 2
-#            image_url: https://static.wikia.nocookie.net/monster/images/f/fe/C0E23278-277F-4773-9F96-A1D4031BEDC4.png/revision/latest?cb=20180730171650
+#            image_url: https://static.wikia.nocookie.net/monster/images/f/fe/C0E23278-277F-4773-9F96-A1D4031BEDC4.png
 #            passives:
 #              - name: Summoned
 #                text: Give a Voodoo attachment to an enemy in range 4
