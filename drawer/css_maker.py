@@ -14,19 +14,16 @@ def make_css():
 .card {{
     display: flex;
     flex-flow: column;
-    /*justify-content: left;*/
-    /*align-items: start;*/
     background-color: rgb(17, 12, 23);
-    font-size: 0.8em;
-
+    font-size: 1rem;
 
     padding: 5mm;
     color: white;
-    border: {40*CARD_SCALE}px white;
+    border: {0*40*CARD_SCALE}px white;
 
-    width: {CARD_WIDTH}px;
+    width: {CARD_WIDTH-37}px;
     /*300px;*/
-    height: {CARD_HEIGHT}px;
+    height: {CARD_HEIGHT-37}px;
     /*height: 400px;*/
 
     overflow: hidden;
