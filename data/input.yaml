@@ -250,7 +250,7 @@ sets:
             back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
             text: Flip this face down when you take damage, and face up at the start of your turn.
           - name: Corpse Marker
-            image_url: https://cdn.iconscout.com/icon/premium/png-256-thumb/deadbody-641234.png?f=webp
+            image_url: https://cdn.iconscout.com/icon/premium/png-256-thumb/deadbody-641234.png
             size: 1
             text: Place this in the space where an ally died.
         default_abilities:
@@ -297,8 +297,8 @@ sets:
         HighAltitude: &HighAltitude
             name: High Altitude
             image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/14/Ability-parah2.png
-            text: |-
-              When drawing range to or from you, ignores soft cover and is 2 spaces further.
+            text: |- 
+              When drawing range to or from you, ignores soft cover and you count as 2 spaces further. 
               Clear at the start of your turn.
         abilities:
           - name: Deplete Hover Jets
@@ -1269,14 +1269,13 @@ sets:
 #            tokens:
 #              - name: Nano Boosted
 #                image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/9/9e/Nano_Boost_Icon.png/revision/latest?cb=20170918221647
-#    maps:
-#      - name: Nepal Shrine
-#        image_path: overwatch-nepal-shrine.png
-#      - name: Nepal Village
-#        image_path: overwatch-nepal-village.png
-#      - name: Nepal Sanctum
-#        image_path: overwatch-nepal-sanctum.png
-#
+    maps:
+      - name: Nepal Shrine
+        image_path: overwatch-nepal-shrine.png
+      - name: Nepal Village
+        image_path: overwatch-nepal-village.png
+      - name: Nepal Sanctum
+        image_path: overwatch-nepal-sanctum.png
 ##  - name: Dota
 ##    description: |-
 ##      Early WIP

@@ -1,27 +1,22 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400&family=Special+Elite&family=Yeseva+One&display=swap');*/
 * {
     font-family: Roboto Slab, sans-serif;
-    font-size: 64px;
-    padding: 0;
-    margin: 0;
 }
 
 .card {
     display: flex;
     flex-flow: column;
-    /*justify-content: left;*/
-    /*align-items: start;*/
     background-color: rgb(17, 12, 23);
-    font-size: 0.8em;
 
-
-    padding: 5mm;
+    font-size: 32px;
+    padding: 0;
+    margin: 0;
     color: white;
-    border: 160px white;
+    border: 0px white;
 
-    width: 1300px;
+    width: 663px;
     /*300px;*/
-    height: 1700px;
+    height: 863px;
     /*height: 400px;*/
 
     overflow: hidden;
@@ -46,7 +41,7 @@
 
 .card-name {
     font-family: Yeseva One, serif;
-    font-size: 1.6rem;
+    font-size: 1.6em;
 }
 
 .stats {
@@ -55,31 +50,31 @@
 
 .image-box {
     width: 70%;
-    border: 12px solid;
-    border-radius: 20px;
+    border: 6px solid;
+    border-radius: 10px;
     background-color: #130f15;
-    box-shadow: 0 0 10px;
+    box-shadow: 0 0 20px;
     display: block;
     margin: auto;
 
-    max-height: 520px;
+    max-height: 260px;
     object-fit: cover;
     /*contain*/
     object-position:top;
-
 }
 
 .card-text {
     color: black;
     background-color: #fbf7d5;
-    border-radius: 20px;
-    box-shadow: 0 0 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px;
     border: 12px solid white;
 
-    padding: 28px 28px 0 28px;
-    margin-top: 20px;
+    padding: 14px 14px 0 14px;
+    margin-top: 10px;
     height: 100%;
     text-align: justify;
+    font-size: 0.85em;
 }
 
 /*!*.description {*!*/

@@ -44,9 +44,16 @@ def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder=None):
 
 
 class OnChangeUpdateTTSHandler(FileSystemEventHandler):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(self.loop)
+
     def on_any_event(self, event: FileSystemEvent):
         if event.src_path.endswith(".yaml"):
-            yaml_file_to_tts_save(event.src_path, save_dir=save_dir)
+            self.loop.run_until_complete(
+                yaml_file_to_tts_save(event.src_path, save_dir=save_dir)
+            )
 
 
 if __name__ == "__main__":

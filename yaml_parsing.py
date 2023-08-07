@@ -140,7 +140,7 @@ class Card(BaseModel, Spawnable):
             spawning_luas.append(
                 make_spawn_die_lua(
                     die_value=die_value,
-                    offset={"x": i * DIE_SPACING, "y": 1, "z": -2},
+                    offset={"x": i * DIE_SPACING, "y": 1, "z": -1},
                     scale=0.5,
                 )
             )

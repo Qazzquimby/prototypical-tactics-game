@@ -56,7 +56,7 @@ class Card(DomainEntity):
 
 class LoneCard(Card):
     def __init__(self, obj):
-        super().__init__(obj, 1, 100)
+        super().__init__(obj, 1, 1)
 
     def as_dict(self, transform=None):
         base_dict = super().as_dict(transform)

@@ -6,25 +6,25 @@ def make_css():
 /*@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400&family=Special+Elite&family=Yeseva+One&display=swap');*/
 * {{
     font-family: Roboto Slab, sans-serif;
-    font-size: {16*CARD_SCALE}px;
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }}
 
 .card {{
     display: flex;
     flex-flow: column;
     background-color: rgb(17, 12, 23);
-    font-size: 1rem;
 
-    padding: 5mm;
+    font-size: {16*CARD_SCALE}px;
+    padding: 0.5em;
+    margin: 0;
     color: white;
-    border: {0*40*CARD_SCALE}px white;
+    border: {0*40*CARD_SCALE}px black;
 
-    width: {CARD_WIDTH-37}px;
-    /*300px;*/
-    height: {CARD_HEIGHT-37}px;
-    /*height: 400px;*/
+    width: {CARD_WIDTH}px;
+    height: {CARD_HEIGHT}px;
+    /*height: {CARD_HEIGHT-37}px; sometimes fits better*/
 
     overflow: hidden;
 }}
@@ -48,7 +48,7 @@ def make_css():
 
 .card-name {{
     font-family: Yeseva One, serif;
-    font-size: 1.6rem;
+    font-size: 1.6em;
 }}
 
 .stats {{
@@ -81,6 +81,7 @@ def make_css():
     margin-top: {5*CARD_SCALE}px;
     height: 100%;
     text-align: justify;
+    font-size: 0.7em;
 }}
 
 /*!*.description {{*!*/
