@@ -8,7 +8,13 @@ import pygame
 from drawer.base import BaseDrawer
 from drawer.color import convert_tts_to_pygame
 from drawer.css_maker import make_css
-from yaml_parsing import EDGE_MARGIN, CARD_WIDTH, CARD_HEIGHT, IMAGE_WIDTH, IMAGE_HEIGHT
+from drawer.size_constants import (
+    CARD_WIDTH,
+    CARD_HEIGHT,
+    EDGE_MARGIN,
+    IMAGE_WIDTH,
+    IMAGE_HEIGHT,
+)
 
 TemplatesPath = Path("data/templates")
 

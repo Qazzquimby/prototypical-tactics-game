@@ -3,7 +3,7 @@ import pygame
 from drawer.base import BaseDrawer
 from drawer.complexObjectDrawer import ComplexObjectDrawer
 from drawer.color import convert_tts_to_pygame
-from yaml_parsing import CARD_SIZE
+from drawer.size_constants import CARD_SIZE
 
 
 def draw_card_backs(drawer, surf, cards):

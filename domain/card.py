@@ -5,9 +5,11 @@ from tts.transform import Transform
 
 class Card(DomainEntity):
     def __init__(self, obj, count, id_):
-        self.id = id_
+        self._id = id_
         self.count = count
         self.object = obj
+        self.image_path = ""
+        self.back_image_path = "https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/f/f8/Magic_card_back.jpg?version=0ddc8d41c3b69c2c3c4bb5d72669ffd7"
 
     def as_dict(self, transform=None):
         if not transform:
@@ -15,9 +17,11 @@ class Card(DomainEntity):
         return {
             "Name": "Card",
             "Transform": transform.as_dict(),
-            "Nickname": self.object.name,
+            "Nickname": self.object.content.name,
             "Description": "",
             "ColorDiffuse": {"r": 0, "g": 0, "b": 0},
+            "LayoutGroupSortIndex": 0,
+            "Value": 0,
             "Locked": False,
             "Grid": True,
             "Snap": True,
@@ -26,19 +30,33 @@ class Card(DomainEntity):
             "Tooltip": True,
             "GridProjection": False,
             "Hands": True,
-            "CardID": 99 + self.id,
+            "CardID": self.get_id(),
             "SidewaysCard": False,
             "LuaScript": self.object.content.get_lua(),
             "LuaScriptState": "",
             "ContainedObjects": [],
+            "CustomDeck": {self._id: self.get_custom_deck_dict()},
             "GUID": guid(),
         }
+
+    def get_custom_deck_dict(self):
+        return {
+            "FaceURL": self.image_path,
+            "BackURL": self.back_image_path,
+            "NumWidth": 1,
+            "NumHeight": 1,
+            "BackIsHidden": True,
+            "UniqueBack": False,
+            "Type": 0,
+        }
+
+    def get_id(self):
+        return 100 * self._id
 
 
 class LoneCard(Card):
     def __init__(self, obj):
         super().__init__(obj, 1, 100)
-        self.image_path = ""
 
     def as_dict(self, transform=None):
         base_dict = super().as_dict(transform)
@@ -60,7 +78,6 @@ class DomainMap(LoneCard):
     def __init__(self, obj, local_path: str):
         super().__init__(obj)
         self.local_path = local_path
-        self.image_path = ""
 
     def as_dict(self, transform=None):
         if transform is None:

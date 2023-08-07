@@ -14,7 +14,7 @@ from domain.library import Library, get_hero_boxes
 from domain.token import ContentToken
 from drawer.base import BaseDrawer
 from drawer.cardBackDrawer import CardBackDrawer
-from drawer.complexObjectDrawer import close_browser
+from drawer.complexObjectDrawer import close_browser, ComplexObjectDrawer
 from drawer.deckDrawer import DeckDrawer
 from drawer.heroBoxDrawer import HeroBoxDrawer
 from drawer.loneCardDrawer import LoneCardDrawer
@@ -72,27 +72,39 @@ async def library_to_tts_dict(
     assert len(deck_names) == len(set(deck_names)), "Deck names must be unique"
 
     for deck in library.decks:
-        coroutines.append(
-            _save_image_and_set_attribute(
-                image_builder=image_builder,
-                drawer=deck_drawer,
-                object_=deck,
-                file_name=deck.name,
-                file_extension="jpg",
-                attribute_to_set="image_path",
+        for i, card in enumerate(deck.cards):
+            card_drawer = ComplexObjectDrawer(card.object, config)
+            coroutines.append(
+                _save_image_and_set_attribute(
+                    image_builder=image_builder,
+                    drawer=card_drawer,  # Assuming card_drawer is your CardDrawer instance
+                    object_=card,
+                    file_name=f"{deck.name}_{card.object.content.name}",  # Unique file name for each card
+                    file_extension="jpg",
+                    attribute_to_set=["image_path"],
+                )
             )
-        )
 
-        coroutines.append(
-            _save_image_and_set_attribute(
-                image_builder=image_builder,
-                drawer=back_drawer,
-                object_=deck,
-                file_name=f"{deck.name}_back",
-                file_extension="jpg",
-                attribute_to_set="back_image_path",
-            )
-        )
+        # coroutines.append(
+        #     _save_image_and_set_attribute(
+        #         image_builder=image_builder,
+        #         drawer=deck_drawer,
+        #         object_=deck,
+        #         file_name=deck.name,
+        #         file_extension="jpg",
+        #         attribute_to_set="image_path",
+        #     )
+        # )
+        # coroutines.append(
+        #     _save_image_and_set_attribute(
+        #         image_builder=image_builder,
+        #         drawer=back_drawer,
+        #         object_=deck,
+        #         file_name=f"{deck.name}_back",
+        #         file_extension="jpg",
+        #         attribute_to_set="back_image_path",
+        #     )
+        # )
 
     for lone_card in library.lone_cards:
         coroutines.append(

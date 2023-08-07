@@ -12,24 +12,13 @@ from domain.bag import Bag
 from domain.card import DomainMap
 from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
+from drawer.size_constants import CARD_SIZE, DIE_SPACING
 
 from spawning_lua import get_full_lua, scale_size, clean_string_for_lua
 from domain.deck import Deck as DomainDeck
 from domain.card import Card as DomainCard
 
 data_path = Path(r"data/")
-
-CARD_SCALE = 2
-
-CARD_WIDTH = 350 * CARD_SCALE
-CARD_HEIGHT = 450 * CARD_SCALE
-CARD_SIZE = (CARD_WIDTH, CARD_HEIGHT)
-
-EDGE_MARGIN = 10 * CARD_SCALE
-IMAGE_WIDTH = CARD_WIDTH - (2 * EDGE_MARGIN)
-IMAGE_HEIGHT = CARD_HEIGHT - (2 * EDGE_MARGIN)
-
-DIE_SPACING = 0.7
 
 
 class Spawnable(abc.ABC):

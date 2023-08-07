@@ -1,4 +1,4 @@
-from yaml_parsing import CARD_SCALE, CARD_WIDTH, CARD_HEIGHT
+from drawer.size_constants import CARD_SCALE, CARD_WIDTH, CARD_HEIGHT
 
 
 def make_css():
