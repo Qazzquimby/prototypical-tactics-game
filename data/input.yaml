@@ -147,24 +147,22 @@ sets:
           - name: Widow's Kiss
             text: |-
               Range 2, ⚔2
-              or:
+              or
               Channel:
-                Until the end of your next turn you are immobilized, and have locked facing
-                If your next standard action is Widow's Kiss, it has unlimited range, ⚔7, undodgeable, +2 crit.
+                Note your facing. At the start of your next turnUntil the end of your next turn: 
+                Unlimited range, ⚔6, undodgeable, +2 crit.
             tokens:
               - name: Widow's Kiss Charged
                 image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bf/Ability-widowmaker1.png
                 text: |-
                   Widow's Kiss has unlimited range, ⚔7, undodgeable, +2 crit.
                   Remove when you take any action.
-#            // facing marker?
         abilities:
           - name: Venom Mine
             text: |-
               1/battle
               Empty space in range 3, place a size 1 Venom Mine.
-              When an enemy enters the mine's space, destroy it and they take Poison 1.
-            # works for adjacent spaces?
+              When an enemy enters this or an adjacent space, destroy this and they take Poison 1.
             tokens:
               - name: Venom Mine
                 image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-widowmaker3.png
@@ -181,6 +179,7 @@ sets:
               Free action, Ultimate 3:
                 Enemies cannot dodge or be invisible.
                 All allies have +2 crit
+                This doesn't gain charge while active.
             # needs forwards compatibility for "cant use any kind of stealth"
 #            tokens:
 #              - name: Infra-Sight
@@ -348,8 +347,8 @@ sets:
             text: |-
               1/battle
               Instant ⛨+2
-              Move 2 spaces. Clear any number of conditions.
               Until the beginning of your next turn, nothing affects you.
+              Move up to 2. Clear any number of conditions.
             tokens:
               - name: Invulnerable
                 image_url: https://static.wikia.nocookie.net/overwatch/images/2/29/IconWraithAbility.png
@@ -390,7 +389,7 @@ sets:
                 You're continually Slow (-2 speed, min 1) and can't take standard actions.
                 There is a 3 space long line on the edge in front of you, which moves with you.
                 Opponents' non-piercing attacks through the barrier hit the barrier instead.
-              You can dismiss the barrier at the end of your turn as a free action.
+              You can dismiss the barrier as a free action once it has been up for a full round.
             white_dice: [6, 4]
             Barrier: &Barrier
                 name: Barrier Field

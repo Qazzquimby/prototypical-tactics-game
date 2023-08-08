@@ -41,8 +41,8 @@ class Token(BaseModel, Spawnable):
         return f"""\
         local front='{self.image_url}'
         local back='{back_image_url}'
-        local name='{clean_string_for_lua(self.name)}'
-        local description='{clean_string_for_lua(self.text)}'
+        local name=[[{clean_string_for_lua(self.name)}]]
+        local description=[[{clean_string_for_lua(self.text)}]]
         local s={scale_size(self.size)}
         local tile_type=2
         if s > 0.25 then
@@ -235,7 +235,7 @@ def make_spawn_die_lua(
         rotation = my_rotation,
         scale = {{x={scale}, y={scale}, z={scale}}},
         callback_function = function(newObj)
-            newObj.setName("Health")
+            newObj.setName({name})
             newObj.setRotationValue({die_value})
             newObj.setColorTint({{r={tint['r']}, g={tint['g']}, b={tint['b']}}})
         end
