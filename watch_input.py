@@ -12,7 +12,7 @@ from tts_dir import try_and_find_save_games_folder
 
 
 import yaml_parsing
-from image_builders import DirectoryImagesBuilder
+from image_builders import DirectoryImagesBuilder, ImgBoxImagesBuilder
 from core import save_tts, game_to_library, library_to_tts_dict
 
 
@@ -56,6 +56,9 @@ class OnChangeUpdateTTSHandler(FileSystemEventHandler):
             )
 
 
+USE_IMGBOX = False
+
+
 if __name__ == "__main__":
     schema = yaml_parsing.Game.schema_json()
     with open("data/game_schema.json", "w") as f:
@@ -63,10 +66,14 @@ if __name__ == "__main__":
 
     save_dir = Path(try_and_find_save_games_folder())
 
-    image_builder = DirectoryImagesBuilder(pygame=pygame, base_path=data_dir / "images")
-    # image_builder = ImgBoxImagesBuilder(
-    #     pygame=pygame, project_name="prototypical_project"
-    # )
+    if USE_IMGBOX:
+        image_builder = ImgBoxImagesBuilder(
+            pygame=pygame, project_name="prototypical_project"
+        )
+    else:
+        image_builder = DirectoryImagesBuilder(
+            pygame=pygame, base_path=data_dir / "images"
+        )
 
     yaml_file_to_tts_save(
         "data/input.yaml", save_dir=save_dir, image_builder=image_builder

@@ -81,15 +81,8 @@ def make_css():
     margin-top: {5*CARD_SCALE}px;
     height: 100%;
     text-align: justify;
-    font-size: 0.7em;
+    font-size: 0.85em;
 }}
-
-/*!*.description {{*!*/
-/*!*    padding: 2mm 0;*!*/
-/*!*    flex-grow: 1;*!*/
-/*!*    font-size: 1rem;*!*/
-/*!*    white-space: pre-wrap;*!*/
-/*}}*/
 
 .owner {{
     font-family: Yeseva One, serif;

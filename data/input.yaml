@@ -58,9 +58,13 @@ rules:
       Eg a Persistent debuff would continue into later battles.
 conditions:
   Poison: &Poison
-    name: Poison X
+    name: Poison
     image_url: https://cdn-icons-png.flaticon.com/512/4243/4243304.png
-    text: At the start of your turn, take X damage.
+    text: At the start of your turn, take 1 damage for each Poison you have.
+  Burning: &Burning
+    name: Burning
+    image_url: https://cdn-icons-png.flaticon.com/512/4243/4243304.png
+    text: At the start of your turn, take 1 damage for each Burning you have.
   Slow: &Slow
     name: Slow
     image_url: https://cdn.dribbble.com/users/4152927/screenshots/12551209/media/ae98cc06e8f934a47183831ecb84d4e1.png?compress=1&resize=400x300&vertical=center
@@ -69,6 +73,10 @@ conditions:
     name: Stun
     image_url: https://en.tankiwiki.com/images/en/5/53/Icon_Stun.png
     text: You have -1 Standard Action. Clear at the end of your turn.
+  Immobile: &Immobile
+    name: Immobile
+    image_url: https://cdn-icons-png.flaticon.com/512/4243/4243304.png
+    text: You cannot move. Clear at the end of your turn.
   Paralyze: &Paralyze
     name: Paralyze
     image_url: https://game.capcom.com/manual/MH4U/common/game/6204_1.jpg
@@ -150,7 +158,7 @@ sets:
               or
               Channel:
                 Note your facing. At the start of your next turnUntil the end of your next turn: 
-                Unlimited range, ⚔6, undodgeable, +2 crit.
+                Unlimited range, ⚔6, undefendable, +2 crit.
             tokens:
               - name: Widow's Kiss Charged
                 image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bf/Ability-widowmaker1.png
@@ -1275,8 +1283,392 @@ sets:
         image_path: overwatch-nepal-village.png
       - name: Nepal Sanctum
         image_path: overwatch-nepal-sanctum.png
-##  - name: Dota
-##    description: |-
+
+  - name: Lancer
+    description: Description TODO
+    Exposed: &Exposed
+        name: Exposed
+        image_url: https://cdn3.iconfinder.com/data/icons/role-playing-game-5/340/ability_skill_shield_game_projectile_broken_strong_arrow-512.png
+        text: |-
+          Take double damage from all sources.
+    Impaired: &Impaired
+        name: Impaired
+        image_url: https://cdn3.iconfinder.com/data/icons/role-playing-game-5/340/ability_skill_shield_game_projectile_broken_strong_arrow-512.png
+        text: |-
+          +1⛨ to all rolls.
+          Cleared at the end of the turn.
+    rules:
+      - name: Actions
+        text: |-
+          Units have +1 standard action per turn.
+          Once per turn, a unit may spend a Standard action as a Move action.
+          For two Standard actions, a unit may clear all stress and lose the Exposed condition.
+      - name: Opportunity Attacks
+        text: |- 
+          When a unit breaks adjacency with an enemy, the enemy may make an opportunity attack against it.
+      - name: Grappled
+        text: |-
+          Affects a pair of adjacent units.
+          The member of the grapple with less health is immobilized, but is pulled with the other member.
+          Cleared if they become nonadjacent, or as a free action by the member with more health.
+      - name: Stress
+        text: |-
+          Heroes can gain stress, which persists between battles.
+          When a Hero would gain their 7th stress, they gain Exposed (take double damage) and lose all stress.
+          If they already have Exposed and would gain it again, they are destroyed.
+        tokens:
+          - *Exposed
+    heroes:
+      - name: Blackbeard
+        health: 8
+        speed: 3
+        image_url: https://static.wikia.nocookie.net/lancer/images/a/a1/Blackbeard.jpg
+        description: |-
+          - Grappling Berserker
+        default_abilities:
+          - name: Grapple
+            text: |- 
+              Range 4
+              Move directly to the target and grapple them.
+          - name: Chain Axe
+            text: Range 1, ⚔3 irreducible
+        abilities:
+          - name: Grapple Swing
+            text: |-
+              Move action
+              Fly up to 4
+          - name: SEKHMET-Class NHP
+            text: |-
+              Free action at start of turn.
+              Enter SEKHMET stance:
+                You deal +⚔3, and can use Chain Axe as a free action once per turn.
+                While you are not adjacent to a unit, you must use all resources to move towards the nearest unit, allied or hostile.
+                While you are adjacent to a unit, you must use Chain Axe on an adjacent unit as many times as possible.
+                At the start of your turn, you may end your turn to exit SEKHMET stance.
+            tokens:
+              - name: SEKHMET
+                image_url: https://media.discordapp.net/attachments/999104692233711676/1138667883820499014/qazzquimby_mecha_game_Berserk_SEKHMET_AI_ability_icon_570897e0-f885-45a5-8969-b5479ddc0ac6.png?width=577&height=577
+          - name: Omni-Harpoon
+            text:
+              1/game.
+              All enemies in range 4, 
+              ⚔4, Pull as close to you as possible, stun and immobilize until the end of your next turn.
+      - name: Drake
+        health: 8
+        speed: 3
+        description: |-
+          - Bunker Turret
+        image_url: https://static.wikia.nocookie.net/lancer/images/6/62/Drake.jpg/revision/latest?cb=20200509100716
+        passives:
+          - name: Armor 1
+            text: ""
+          - name: Take half damage from attacks that can hit multiple targets.
+            text: ""
+          - name: Immune to involuntary movement.
+            text: ""
+        default_abilities:
+          - name: Leviathan Heavy Assault Cannon
+            text: |-
+              if not Spun Up: Range 4, ⚔3
+                or enter Spun Up stance:
+                  You are continually slowed.
+
+              If Spun Up: 2 Standard actions. You gain 2 stress. Range 4, ⚔8
+        tokens:
+          - name: Spun Up
+            image_url: https://i.gyazo.com/c5c0bdf39413380984f4e05c190e875d.png
+        abilities:
+          - name: Concussion Missiles
+            text: |-
+              Range 3, ⚔1, Push 2, target gets Impaired.
+            tokens:
+              - *Impaired
+          - name: Argonaut Shield
+            text: |-
+              Until the start of your next turn, when an adjacent ally would take damage,
+              you may take half that damage, before any reductions are applied.
+          - name: Fortress Protocol
+            text: |-
+              1/Game
+              Enter Fortress Stance:
+                Block⛨+3 
+                You are immobilized.
+                1/round you may take half damage from an attack.
+                Adjacent allies gain your passives.
+              At the start of your turn you may exit Fortress Stance as a free action.
+      - name: Black Witch
+        health: 6
+        speed: 3
+        image_url: https://static.wikia.nocookie.net/lancer/images/4/47/Blackwitch1.jpeg/revision/latest?cb=20210510124208
+        description: |-
+          - Forced movement controller
+          - Anti Will attacks
+        passives:
+          - name: Take half damage from all sources
+            text: ""
+          - name: You and adjacent allies have ⛨+2 against Will attacks.
+            text: ""
+        default_abilities:
+          - name: Magnetic Cannon
+            text: |-
+              Line 4, ⚔2, Pull 3.
+        abilities:
+          - name: Ferrous Lash
+            text: Range 5, Push 3 in any direction.
+          - name: Magnetic Shield
+            text: |-
+              Place or Move your Magnetic Shield into range 1.
+              Magnetic Shield is 3x1, blocks movement, but does not block line of sight.
+              Attacks that pass through the shield do 0.5x damage.
+          - name: Summon ICEOUT Drone
+            text: |-
+              2/Game
+              Summon an ICEOUT Drone in range 4.
+              As a Standard action, you may teleport an ICEOUT Drone to any location in range 4.
+          - name: Mag Field
+            text: |-
+              1/Game
+              Create a 5x5 area in range 1.
+              Units in the area are immediately pulled to the center and immobilized.
+              When an attack would pass into or out of the area, it is blocked, and put a charge on this.
+              At the end of your next turn, deal ⚔2 for each charge to each unit in the area, then end this effect.
+        units:
+          - name: ICEOUT Drone
+            health: 4
+            speed: 0
+            image_url: https://media.discordapp.net/attachments/999104692233711676/1138684830977118208/qazzquimby_ice_antihacker_drone_20c50303-2319-4259-bdbe-7ebf49d50609.png?width=577&height=577
+            passives:
+              - name: You and adjacent units cannot use Will attacks and are immune to Will attacks.
+                text: ""
+
+      - name: Death's Head
+        description: |-
+          - Sniper
+        image_url: https://static.wikia.nocookie.net/lancer/images/f/f2/Deathshead.jpeg/revision/latest?cb=20210510125250
+        health: 6
+        speed: 3
+        passives:
+          - name: Your first attack each turn is undefendable.
+            text: ""
+          - name: You ignore elevation when moving.
+            text: ""
+        default_abilities:
+          - name: Vulture DMR
+            text: |-
+              Take 1 stress, Range 3+, ⚔4
+        abilities:
+          - name: Climb Wall
+            text: |-
+              Move action
+              If you're adjacent to a wall, gain High Altitude (You count as being 2 spaces further).
+              This ends if you move away from the wall, though you may still move along the wall.
+            tokens:
+              - *HighAltitude
+          - name: Railgun
+            text: |-
+              If there is no enemy in range 1,
+              Take 2 stress, Line infinite, ⚔5 irreducible
+          - name: Mark for Death
+            text: |-
+              Free action 1/Game
+              
+              For the rest of the battle you have the following ability:
+              2 Standard Actions,
+              Give a unit your Marked for Death Mark.
+              You deal +⚔4 to the unit with the mark, so long as they are not in range 3.
+              While a unit has the mark, you are immobilized.
+              You may remove the mark as a free action at the start of your turn.
+
+      - name: Balor
+        health: 12
+        speed: 2
+        image_url: https://static.wikia.nocookie.net/lancer/images/5/53/Balor.jpg/revision/latest?cb=20200509100525
+        description: |-
+          - Self Healing
+          - Melee AoE Tank
+        passives:
+          - name: End
+            text: Heal 3, ⚔1 to all adjacent enemies.
+        default_abilities:
+          - name: Nanobot Whip
+            text: |-
+              1 target in Path 3, ⚔2, +2 crit.
+              On crit, pull the target to you.
+        abilities:
+          - name: Swarm Body
+            text: |-
+              Enter Swarm Body stance and put a charge on this:
+                At the start of your turn, ⚔2*charges to all adjacent enemies, then put a charge on this.
+                This ends if you move for any reason.
+          - name: Summon Hive Drone
+            text: |-
+              1/Battle
+              Summon a Hive Drone in range 2.
+              As a standard action, you may teleport a Hive Drone to any location in range 2.
+          - name: Hive Frenzy
+            text: |-
+              1/Game
+              You and adjacent allies have Block⛨+1.
+              Trigger your end of turn effects twice.
+              While you have more than 1hp, you cannot be reduced below 1hp.
+              All damage dealt to you is irreducible.
+        units:
+          - name: Hive Drone
+            health: 4
+            speed: 0
+            image_url: https://media.discordapp.net/attachments/999104692233711676/1138686661862117416/qazzquimby_nanite_swarm_cloud_drone_8175567b-20b9-42a7-aee7-2c9bae4935ee.png?width=577&height=577
+            passives:
+              - name: You and allies in range 2 have Block⛨+1.
+                text: ""
+              - name: End
+                text: Enemies in range 2 take ⚔1 irreducible.
+
+      - name: Goblin
+        health: 6
+        speed: 4
+        image_url: https://static.wikia.nocookie.net/lancer/images/e/ef/Goblin.jpg/revision/latest/scale-to-width-down/327?cb=20200509100851
+        description: |-
+          - Fragile Trickster
+        passives:
+          - name: Targeted by Will attack
+            text: Use Invade on the attacker.
+          - name: Your Will attacks are undefendable.
+            text: ""
+        abilities:
+          - name: Puppet System
+            text: |-
+              Unlimited Range, Vs Will
+              Force target to move up to their speed under you control. It counts as voluntary movement.
+          - name: False Idol
+            text: |-
+              Unlimited Range, Summon a False Idol corresponding to an ally.
+              1hp.
+              Units with line of sight to the idol cannot target the ally.
+            tokens:
+              - name: False Idol
+                image_url: https://media.discordapp.net/attachments/999104692233711676/1138711748829003776/qazzquimby_scifi_False_Idol_icon_e576680d-0ead-48e8-84d8-1f60af34d2ed.png?width=577&height=577
+          - name: Celestial Shackles
+            text: |-
+              Unlimited Range, Vs Will
+              Place a Shackle marker on the target's space.
+              As a free action, you may remove the marker to teleport the target back to that space.
+            tokens:
+              - name: Shackle
+                image_url: https://media.discordapp.net/attachments/999104692233711676/1138876347561803916/qazzquimby_scifi_celestial_shackles_icon_6eb35d43-15bb-4baf-9baf-85267de4b974.png?width=577&height=577
+          - name: Dimensional Emblems
+            text: |-
+              Unlimited Range
+              Create 3 Dimensional Emblem markers adjacent to the target, but not to each other.
+              When a unit moves through a Dimensional Emblem, they take 1 stress and the emblem is removed.
+            tokens:
+              - name: Dimensional Emblem
+                image_url: https://media.discordapp.net/attachments/999104692233711676/1138709949321588866/qazzquimby_Dimensional_Emblem_hologram_e187d20e-296a-4130-b0d7-71f8e3af5139.png?width=577&height=577
+          - name: Hurl into The Duat
+            text: |-
+              Unlimited Range, Vs Will
+              The effect depends on the number of Duat tokens the target has.
+              If they have 1 token, you control their standard move next turn.
+              If they have 2 tokens, they skip their next activation.
+              If they have 3 tokens, you control their next activation, then they lose all tokens.
+              Give the target a Duat token.
+            tokens:
+              - name: Duat
+                image_url: https://media.discordapp.net/attachments/999104692233711676/1138710153387069471/qazzquimby_scifi_The_Duat_symbol_token_8f39a266-6d61-4091-befe-0bc62fdc7e35.png?width=577&height=577
+          - name: Symbiosis
+            text: |-
+              1/Game
+              Ally in range 1. 
+              Remove your marker from the board. You share the ally's location and cannot move away. 
+              You have +4 block. You also take any stress or conditions the ally takes.
+              You can end the effect as a standard action.
+
+      - name: Barbarosa
+        description: |-
+          - Huge artillery tank
+        image_url: https://static.wikia.nocookie.net/lancer/images/5/53/Barbarossa.jpg/revision/latest?cb=20230317030938
+        health: 10
+        speed: 2
+        passives:
+          - name: Armor 1
+            text: ""
+          - name: Size 3
+            text: |-
+              Whenever you're moved, remove all Barbarosa Markers, then fill all free adjacent spaces with Barbarosa markers.
+              You are considered to be in all marked spaces.
+          - name: Immune to forced movement
+            text: ""
+        tokens:
+          - name: Barbarosa
+            image_url: https://static.wikia.nocookie.net/lancer/images/5/53/Barbarossa.jpg/revision/latest?cb=20230317030938
+            description: Barbarosa is considered to be in all spaces with this token.
+        default_abilities:
+          - name: Heavy Machine GUn
+            text: |-
+              +2 Dodge, Range 4, ⚔4
+        abilities:
+          - name: Direct Fire
+            text: 2 standard actions, Take 2 stress, Unlimited range, ⚔4
+          - name: Siege Cannon
+            text: |-
+              CD 1
+              2 standard actions, Must be no enemy in range 2 
+              Take 4 stress, Unlimited range, Ignores walls, 3x3 area, ⚔4
+          - name: Roller Grenade
+            text: |-
+              3/Game
+              Grenade rolls along Line 5. 
+              When it becomes adjacent to another unit, it explodes:
+                All in range 1, ⚔3, push 3 spaces.
+          - name: Apocalypse Rail
+            text: |-
+              1/Game
+              At the end of your turn, put a charge on this.
+              If you move or lose any actions, remove all charges.
+              
+              2 Standard actions, 3x3 area in Range >3, ⚔3+3*charges. 
+              Destroy all walls and terrain in the area.
+              
+              At end of battle, if you didn't fire, refresh this.
+      - name: Genghis
+        description: |-
+          - Ongoing fire damage
+          - Stress management
+        image_url: https://external-preview.redd.it/HnEsHvovvilWcBUdooCiFLgd99EzEMlwjMgzHIihSZA.jpg?auto=webp&s=10a5adb10e31c2fcba4936dec7b2b39731ec14b0
+        health: 6
+        speed: 3
+        passives:
+          - name: Armor 1
+            text: ""
+          - name: Immune to Burning
+            text: ""
+        tokens:
+          - *Burning
+        default_abilities:
+          - name: Flamethrower
+            text: |-
+              Range 1, 2x2 area, give Burning 2
+            tokens:
+              - *Burning
+        abilities:
+          - name: Plasma Thrower
+            text: |-
+              2 Standard actions
+              Take 4 stress,
+              Range 1 3x3 area, ⚔4, give Burning 3
+              The affected spaces gain Hazard: ⚔2
+          - name: AGNI-Class NHP
+            text: |-
+              1/Battle
+              Free action at end of turn
+              Clear all stress.
+              All units in range 2, give Burning 1 and push 2
+          - name: Expose Power Cells
+            text: |-
+              1/Game
+              The next time you would exceed your stress limit, clear all stress.
+              5x5 area centered on you gets terrain that gives allies +2 dodge and enemies Hazard: +2 stress +1 Burning.
+              Terrain ends at the start of your next turn.
+
 ##      Early WIP
 ##    rules:
 ##      - name: Test rules card
@@ -2070,7 +2462,6 @@ sets:
 #      - name: Demon Slayer
 #        description: |-
 #          - Mass damage, but usually attacks every other turn.
-#          - Collection of
 #        health: 10
 #        speed: 3
 #        image_url: TODO
