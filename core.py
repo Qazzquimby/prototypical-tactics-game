@@ -53,7 +53,7 @@ def game_to_library(game):
 
 
 def make_image_name(names):
-    return "__".join(names) + ".jpg"
+    return "__".join(names)
 
 
 async def library_to_tts_dict(
