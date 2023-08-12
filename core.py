@@ -46,10 +46,14 @@ def game_to_library(game):
     library.bags.append(sets_bag)
 
     rules_deck = RulesDeck(cards=game.rules)
-    domain_rules_deck = rules_deck.get_tts_obj(name="game rules")
+    domain_rules_deck = rules_deck.get_tts_obj(set_name="core")
     library.bags[0].contained_objects.append(domain_rules_deck)
 
     return library
+
+
+def make_image_name(names):
+    return "__".join(names) + ".jpg"
 
 
 async def library_to_tts_dict(
@@ -74,12 +78,14 @@ async def library_to_tts_dict(
     for deck in library.decks:
         for i, card in enumerate(deck.cards):
             card_drawer = ComplexObjectDrawer(card.object, config)
+            names = [deck.set_name, deck.name, card.object.content.name]
+            image_name = make_image_name(names)
             coroutines.append(
                 _save_image_and_set_attribute(
                     image_builder=image_builder,
-                    drawer=card_drawer,  # Assuming card_drawer is your CardDrawer instance
+                    drawer=card_drawer,
                     object_=card,
-                    file_name=f"{deck.name}_{card.object.content.name}",  # Unique file name for each card
+                    file_name=image_name,
                     file_extension="jpg",
                     attribute_to_set=["image_path"],
                 )
@@ -208,7 +214,7 @@ def make_game_set_bag(game_set: GameSet):
     )
 
     rules_deck = RulesDeck(cards=game_set.rules)
-    domain_rules_deck = rules_deck.get_tts_obj(name=f"{game_set.name} rules")
+    domain_rules_deck = rules_deck.get_tts_obj(set_name=game_set.name)
     if domain_rules_deck:
         set_bag.contained_objects.append(domain_rules_deck)
 
@@ -219,7 +225,7 @@ def make_game_set_bag(game_set: GameSet):
         color=(0.0, 0.0, 1.0),
     )
     for hero_box in game_set.heroes:
-        hero_box_bag = hero_box.get_tts_obj()
+        hero_box_bag = hero_box.get_tts_obj(set_name=game_set.name)
         hero_bag.contained_objects.append(hero_box_bag)
     set_bag.contained_objects.append(hero_bag)
 

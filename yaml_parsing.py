@@ -337,11 +337,11 @@ class Deck(BaseModel):
 class RulesDeck(BaseModel):
     cards: list[RulesCard] = []
 
-    def get_tts_obj(self, name):
+    def get_tts_obj(self, set_name):
         if not self.cards:
             return None
 
-        deck_name = make_deck_name(name)
+        deck_name = make_deck_name(f"{set_name}_rules")
 
         domain_cards = []
         for card in reversed(self.cards):
@@ -357,12 +357,14 @@ class RulesDeck(BaseModel):
                 ),
             )
 
-        domain_deck = DomainDeck.from_cards(name=deck_name, cards=domain_cards)
+        domain_deck = DomainDeck.from_cards(
+            set_name=set_name, name=deck_name, cards=domain_cards
+        )
         return domain_deck
 
 
 class HeroDeck(Hero, Deck):
-    def get_tts_obj(self):
+    def get_tts_obj(self, set_name: str):
         deck_name = make_deck_name(self.name)
 
         domain_cards = []
@@ -391,7 +393,9 @@ class HeroDeck(Hero, Deck):
         )
         domain_cards.append(hero_card)
 
-        domain_deck = DomainDeck.from_cards(name=deck_name, cards=domain_cards)
+        domain_deck = DomainDeck.from_cards(
+            set_name=set_name, name=deck_name, cards=domain_cards
+        )
         return domain_deck
 
 
@@ -498,7 +502,8 @@ def read_yaml_file(yaml_path: str) -> dict:
 
 
 def make_deck_name(character_name: str):
-    return f"{character_name} deck"
+    return character_name
+    # return f"{character_name} deck"
 
 
 def make_box_name(character_name: str):

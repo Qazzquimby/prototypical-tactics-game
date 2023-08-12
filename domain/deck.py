@@ -4,19 +4,20 @@ from tts.guid import guid
 
 
 class Deck(DomainEntity):
-    def __init__(self, name):
+    def __init__(self, name, set_name):
         self.name = name
         self.cards: list[Card] = []
+        self.set_name = set_name
 
     @classmethod
-    def from_cards(cls, name, cards: list[Card]):
+    def from_cards(cls, set_name: str, name: str, cards: list[Card]):
         # if 0 cards, return None
         if len(cards) == 0:
             raise ValueError("Cannot create deck from 0 cards")
         if len(cards) == 1:
             return LoneCard(cards[0].object)
 
-        deck = cls(name)
+        deck = cls(set_name=set_name, name=name)
         deck.cards = cards
         return deck
 

@@ -4,15 +4,13 @@ from pathlib import Path
 
 import pygame
 import yaml.scanner
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler, FileSystemEvent
 
 from tests.integration_test import data_dir
 from tts_dir import try_and_find_save_games_folder
 
 
 import yaml_parsing
-from image_builders import DirectoryImagesBuilder, ImgBoxImagesBuilder
+from image_builders import DirectoryImagesBuilder
 from core import save_tts, game_to_library, library_to_tts_dict
 
 
@@ -43,51 +41,29 @@ def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder=None):
     print("Built images")
 
 
-class OnChangeUpdateTTSHandler(FileSystemEventHandler):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(self.loop)
-
-    def on_any_event(self, event: FileSystemEvent):
-        if event.src_path.endswith(".yaml"):
-            self.loop.run_until_complete(
-                yaml_file_to_tts_save(event.src_path, save_dir=save_dir)
-            )
+def build_local():
+    image_builder = DirectoryImagesBuilder(
+        pygame=pygame, base_path=Path("tactics-site/public/images")
+    )
+    build(image_builder)
 
 
-USE_IMGBOX = False
-
-
-if __name__ == "__main__":
+def build(image_builder):
     schema = yaml_parsing.Game.schema_json()
     with open("data/game_schema.json", "w") as f:
         f.write(schema)
 
+    # copy 'data/input.yaml' to 'tactics-site/public/input.yaml'
+    with open("data/input.yaml", "r") as f:
+        input_yaml = f.read()
+    with open("tactics-site/public/input.yaml", "w+") as f:
+        f.write(input_yaml)
+
     save_dir = Path(try_and_find_save_games_folder())
-
-    if USE_IMGBOX:
-        image_builder = ImgBoxImagesBuilder(
-            pygame=pygame, project_name="prototypical_project"
-        )
-    else:
-        image_builder = DirectoryImagesBuilder(
-            pygame=pygame, base_path=data_dir / "images"
-        )
-
     yaml_file_to_tts_save(
         "data/input.yaml", save_dir=save_dir, image_builder=image_builder
     )
 
-    path = "data"
-    event_handler = OnChangeUpdateTTSHandler()
-    observer = Observer()
-    observer.schedule(event_handler, path, recursive=True)
 
-    observer.start()
-    try:
-        while True:
-            time.sleep(1)
-    finally:
-        observer.stop()
-        observer.join()
+if __name__ == "__main__":
+    build_local()
