@@ -157,7 +157,7 @@ sets:
               Range 2, ⚔2
               or
               Channel:
-                Note your facing. At the start of your next turnUntil the end of your next turn: 
+                Note your facing. At the start of your next turn: 
                 Unlimited range, ⚔6, undefendable, +2 crit.
             tokens:
               - name: Widow's Kiss Charged
