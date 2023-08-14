@@ -693,7 +693,7 @@ EXPECTED_TTS_JSON = r"""{
 }"""
 
 data_dir = Path("data").absolute()
-
+site_images_dir = Path("tactics-site").absolute() / "public" / "images"
 
 # def game_to_tts_dict(game: Game) -> dict:
 #     sheets = game_to_sheets(game)

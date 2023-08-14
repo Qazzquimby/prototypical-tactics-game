@@ -52,6 +52,13 @@ rules:
       Crit can be applied to the attack. If the die is rolled at least 7-crit, the attack deals double damage.
       
       The target may also choose to be hit when an attack would miss them.
+      By default effects have friendly fire, and will specify otherwise.
+      
+      Attacks typically target spaces rather than characters. E.g. If the target swapped places with your healer, you'd hit your healer.
+  - name: Line of Sight
+    text: |-
+      Effects nearly always need line of Sight to their target. Line of sight is drawn from the center of the source square to the center of the target square.
+      Enemies characters and some terrain blocks line of sight.
   - name: Persistent
     text: |-
       Lasts between Battles, until end of game.
@@ -130,7 +137,7 @@ sets:
         text: |-
           Double yellow line indicates the square with the second line is higher than the square bordering it.
           Units can move from freely from high to low, but the line is impassible from low to high.
-          Todo, something with LoS
+          A height difference is also Cover.
       - name: Falling Hazard
         text: |-
           Purple area indicates a pit. 
@@ -142,8 +149,8 @@ sets:
         text: |-
           Green lines indicate cover.
           Cover can be moved through.
-          When at attack draws LoS through cover, the attack has +2 block, 
-          unless the attacker is adjacent to the cover.
+          When at attack draws LoS through cover, the attack has +2 block.
+          Line of Sight only travels one space past cover.
     heroes:
       - name: Widowmaker
         description: |-
@@ -157,20 +164,20 @@ sets:
               Range 2, ⚔2
               or
               Channel:
-                Note your facing. At the start of your next turnUntil the end of your next turn: 
-                Unlimited range, ⚔6, undefendable, +2 crit.
-            tokens:
-              - name: Widow's Kiss Charged
-                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bf/Ability-widowmaker1.png
-                text: |-
-                  Widow's Kiss has unlimited range, ⚔7, undodgeable, +2 crit.
-                  Remove when you take any action.
+                Note your facing. At the start of your next turn: 
+                Range 2+, ⚔6, undodgeable, +2 crit.
+        tokens:
+          - name: Widow's Kiss Charged
+            image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bf/Ability-widowmaker1.png
+            text: |-
+              Widow's Kiss has unlimited range, ⚔7, undodgeable, +2 crit.
+              Remove when you take any action.
         abilities:
           - name: Venom Mine
             text: |-
               1/battle
               Empty space in range 3, place a size 1 Venom Mine.
-              When an enemy enters this or an adjacent space, destroy this and they take Poison 1.
+              When an enemy enters this or an adjacent space, destroy this and burst 1, give Poison 1.
             tokens:
               - name: Venom Mine
                 image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-widowmaker3.png
@@ -244,7 +251,7 @@ sets:
         image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0f/Mercy-ow2-portrait.png
         passives:
           - name: Start
-            text: If you did not take damage since your last turn, ✚3.
+            text: If you did not take damage since the start of your last turn, ✚3.
           - name: Ally dies
             text: |-
               Place a Corpse Marker in their space and note which ally it corresponds to.
@@ -252,7 +259,7 @@ sets:
           - name: Caduceus Staff Damage Boost
             image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-mercy1.png
             text: Until end of turn, deal +0.5x damage.
-          - name: Took damage last turn
+          - name: Took damage since start of last turn
             image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b0/Ability-passive.png
             back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
             text: Flip this face down when you take damage, and face up at the start of your turn.
@@ -281,11 +288,12 @@ sets:
                 At the start of your next turn, you may resurrect target corpse in range 1.
           - name: Valkyrie
             text: |-
-              Ultimate 5:
+              Free action, Ultimate 4:
                 At the beginning of each your turns, ✚2.
                 Your Caduceus Staff has range 5, and may affect a second target in range 2 of the first.
                 You can use Guardian Angel as a move action.
                 You are always Flying.
+              This doesn't gain charge while active.
             white_dice: [1]
       - name: Pharah
         description: |-
@@ -300,7 +308,7 @@ sets:
         default_abilities:
           - name: Rocket Launcher
             text: |-
-              ⛨1/3 distance, ⚔3, and burst 1 ⚔1
+              ⛨1/2 distance, ⚔3, and others in burst 1 ⚔1
         HighAltitude: &HighAltitude
             name: High Altitude
             image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/14/Ability-parah2.png
@@ -323,7 +331,6 @@ sets:
               - *HighAltitude
           - name: Concussive Blast
             text: |-
-              1/battle
               Range 4,
               push all adjacent to the target 1 space away from them.
               push target 2 spaces in any direction.
@@ -363,7 +370,6 @@ sets:
                 text: Nothing affects you. Clear at the beginning of your next turn.
           - name: Shadow Step
             text: |-
-              1/battle
               Move + Standard action
               Teleport up to 8.
           - name: Death Blossom
@@ -396,8 +402,8 @@ sets:
                 You have facing and can freely set your facing at the end of your turn.
                 You're continually Slow (-2 speed, min 1) and can't take standard actions.
                 There is a 3 space long line on the edge in front of you, which moves with you.
-                Opponents' non-piercing attacks through the barrier hit the barrier instead.
-              You can dismiss the barrier as a free action once it has been up for a full round.
+                The barrier acts as blocking for enemy's attacks (but not movement of summons or markers)
+              You can dismiss the barrier as a free action if you have ended a turn with it active.
             white_dice: [6, 4]
             Barrier: &Barrier
                 name: Barrier Field
@@ -417,13 +423,15 @@ sets:
               Other enemies in the line are pushed to the side and take ⚔1.
           - name: Fire Strike
             text:
-              CD 2
+              CD 1
               All in line, ⛨1/3 distance, ⚔3
           - name: Earthshatter
             text: |-
               Ultimate 5:
                 Range 2 burst 1, ⚔1 and Paralyze
             white_dice: [1]
+            tokens:
+              - *Paralyze
 #      - name: Bastion
 #        description: |-
 #          - High damage slow stance
