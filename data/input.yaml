@@ -359,9 +359,7 @@ sets:
         default_abilities:
           - name: Hellfire Shotguns
             text: |-
-              Range 1, ⚔3
-              or range 2, ⚔2
-              Deals +⚔2 against targets with 10 or more max health.
+              Range 1, ⚔3, or ⚔5 against targets with 10 or more max health.
         abilities:
           - name: Wraith Form
             text: |-
@@ -1683,6 +1681,14 @@ sets:
               The next time you would exceed your stress limit, clear all stress.
               5x5 area centered on you gets terrain that gives allies +2 dodge and enemies Hazard: +2 stress +1 Burning.
               Terrain ends at the start of your next turn.
+    maps:
+      - name: Rickety Station
+        image_path: lancer-rickety_station.png
+      - name: City
+        image_path: lancer-city.png
+      - name: Cargo
+        image_path: lancer-cargo.png
+
 
 ##      Early WIP
 ##    rules:
