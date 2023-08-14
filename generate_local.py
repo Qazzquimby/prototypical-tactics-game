@@ -5,7 +5,7 @@ from pathlib import Path
 import pygame
 import yaml.scanner
 
-from tests.integration_test import data_dir
+from tests.integration_test import data_dir, site_images_dir
 from tts_dir import try_and_find_save_games_folder
 
 
@@ -43,7 +43,7 @@ def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder=None):
 
 def build_local():
     image_builder = DirectoryImagesBuilder(
-        pygame=pygame, base_path=Path("tactics-site/public/images")
+        pygame=pygame, base_path=Path(site_images_dir)
     )
     build(image_builder)
 
