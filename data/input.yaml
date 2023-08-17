@@ -70,7 +70,7 @@ conditions:
     text: At the start of your turn, take 1 damage for each Poison you have.
   Burning: &Burning
     name: Burning
-    image_url: https://cdn-icons-png.flaticon.com/512/4243/4243304.png
+    image_url: https://media.discordapp.net/attachments/999104692233711676/1141769695989604382/qazzquimby_burning_status_icon_f46aa554-21e3-49ad-b27e-1c06c4742084.png?width=778&height=778
     text: At the start of your turn, take 1 damage for each Burning you have.
   Slow: &Slow
     name: Slow
@@ -111,12 +111,14 @@ sets:
           Reminder that units can choose to be hit even when an attack roll fails.
       - name: Ultimate X
         text: |-
-          At the end of the round, if the unit is alive,
-          put a persistent charge on the ability with Ultimate, up to X.
-          Spend X charges to use the ability.
+          Can be used 1/Battle, and only on turn X or later.
       - name: Critical Moment
         text: |-
           Once per battle, you may reroll a die.
+        tokens:
+          - name: Critical Moment
+            image_url: https://media.discordapp.net/attachments/999104692233711676/1141771642335395850/qazzquimby_reroll_dice_icon_8d915820-8dcc-4f45-874f-6d313acf8cd2.png?width=778&height=778
+            text: You may reroll one die.
       - name: Flying
         text: |-
           Flying movement ignores terrain and does not provoke reactions.
@@ -192,10 +194,9 @@ sets:
           - name: Infra-Sight
             text: |-
               Free action, Ultimate 3:
-                Enemies cannot dodge or be invisible.
+                Enemies cannot dodge or have Stealth.
                 All allies have +2 crit
                 This doesn't gain charge while active.
-            # needs forwards compatibility for "cant use any kind of stealth"
 #            tokens:
 #              - name: Infra-Sight
 #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/94/Ability-widowmaker4.png
@@ -296,7 +297,6 @@ sets:
                 You are always Flying.
               This doesn't gain charge while active.
             white_dice: [1]
-
       - name: Pharah
         description: |-
           - Rocket aoe projectiles
@@ -343,7 +343,6 @@ sets:
               Move + Standard action, Ultimate 5:
                 ⛨1/2 distance, ⚔8, ⚔3 to all others in burst 1
             white_dice: [1]
-
       - name: Reaper
         description: |-
           - High close range damage
@@ -380,7 +379,6 @@ sets:
               Ultimate 5:
                 Burst 1, ⚔7
             white_dice: [1]
-
       - name: Reinhardt
         description: |-
           - Melee cleave tank
@@ -906,7 +904,7 @@ sets:
 #          - name: Fortify
 #            text: |-
 #              1/battle
-#              Reaction Block +2
+#              Reaction Block⛨+2
 #              Until the beginning of your next turn
 #                you take 0.5x damage from all sources
 #                You cannot be moved or prevented from moving or taken actions by enemy sources.
@@ -1153,7 +1151,7 @@ sets:
 #          - name: Barrier Projector
 #            text: |-
 #              1/battle
-#              Reaction Block +2
+#              Reaction Block⛨+2
 #              Range 1, Summon a size 3 Barrier. The barrier has 8hp, and blocks enemy non-piercing attacks through its borders.
 #            tokens:
 #              - name: Barrier
@@ -1162,7 +1160,7 @@ sets:
 #          - name: Primal Rage
 #            text: |-
 #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-#              Reaction Block +2, spend 5 charges:
+#              Reaction Block⛨+2, spend 5 charges:
 #                Set your current and maximum health to 18.
 #                Until the end of your next turn:
 #                  Refresh the use of Jump Pack.
@@ -1224,7 +1222,7 @@ sets:
 #          - name: Particle Barrier
 #            text: |-
 #              2/battle
-#              Reaction Block +2 on attack on target in range 3
+#              Reaction Block⛨+2 on attack on target in range 3
 #              The target purges unwanted conditions
 #              Until the start of your next turn,
 #                the target is immune to damage, involuntary movement, and unwanted conditions,
@@ -1316,6 +1314,16 @@ sets:
           Units have +1 standard action per turn.
           Once per turn, a unit may spend a Standard action as a Move action.
           For two Standard actions, a unit may clear all stress and lose the Exposed condition.
+                   
+          The standard move action can be done at most twice per turn.
+          All other actions can be done at most once per turn.
+          
+          Once per turn, the active hero can "Overcharge".
+          Take an additional standard action that ignores the above x/turn restrictions.
+          Gain an Overcharge counter. Then take 2 stress for each Overcharge counter.
+        tokens:
+          - name: Overcharge
+            image_url: https://media.discordapp.net/attachments/999104692233711676/1141772956310179882/qazzquimby_scifi_overcharge_overheat_icon_7a1608ae-6277-4f49-9488-50e08d1babc3.png?width=778&height=778
       - name: Opportunity Attacks
         text: |- 
           When a unit breaks adjacency with an enemy, the enemy may make an opportunity attack against it.
@@ -1327,8 +1335,12 @@ sets:
       - name: Stress
         text: |-
           Heroes can gain stress, which persists between battles.
-          When a Hero would gain their 7th stress, they gain Exposed (take double damage) and lose all stress.
-          If they already have Exposed and would gain it again, they are destroyed.
+          When a Hero would gain their 7th stress, they "Overheat". 
+          Reset to 0 stress, and then take any remaining stress gain. 6 stress + 1 -> 1 stress. 
+          
+          When a Hero Overheats, if they have more than half health and are not Exposed, they gain Exposed (take double damage).
+          Otherwise they die at the end of their next turn, and whenever they die they deal all adjacent ⚔4.
+        white_dice: [1]
         tokens:
           - *Exposed
     heroes:
@@ -1349,7 +1361,7 @@ sets:
           - name: Grapple Swing
             text: |-
               Move action
-              Fly up to 4
+              Fly up to 4 in an orthogonal line
           - name: SEKHMET-Class NHP
             text: |-
               Free action at start of turn.
@@ -1362,8 +1374,8 @@ sets:
               - name: SEKHMET
                 image_url: https://media.discordapp.net/attachments/999104692233711676/1138667883820499014/qazzquimby_mecha_game_Berserk_SEKHMET_AI_ability_icon_570897e0-f885-45a5-8969-b5479ddc0ac6.png?width=577&height=577
           - name: Omni-Harpoon
-            text:
-              1/game.
+            text: |-
+              Ultimate 5
               All enemies in range 4, 
               ⚔4, Pull as close to you as possible, stun and immobilize until the end of your next turn.
       - name: Drake
@@ -1377,16 +1389,21 @@ sets:
             text: ""
           - name: Take half damage from attacks that can hit multiple targets.
             text: ""
+          - name: Adjacent Ally would take damage
+            text: You may each take half that damage before, resistances are applied
           - name: Immune to involuntary movement.
             text: ""
         default_abilities:
           - name: Leviathan Heavy Assault Cannon
             text: |-
-              if not Spun Up: Range 4, ⚔3
+              if not Spun Up: 
+                Range 4, ⚔2
                 or enter Spun Up stance:
                   You are continually slowed.
+                  You can exit Spun Up stance as a free action at the start of your turn.
 
-              If Spun Up: 2 Standard actions. You gain 2 stress. Range 4, ⚔8
+              If Spun Up: 2 Standard actions. You gain 2 stress. Range 4, ⚔6
+
         tokens:
           - name: Spun Up
             image_url: https://i.gyazo.com/c5c0bdf39413380984f4e05c190e875d.png
@@ -1396,13 +1413,13 @@ sets:
               Range 3, ⚔1, Push 2, target gets Impaired.
             tokens:
               - *Impaired
-          - name: Argonaut Shield
-            text: |-
-              Until the start of your next turn, when an adjacent ally would take damage,
-              you may take half that damage, before any reductions are applied.
+#          - name: Argonaut Shield
+#            text: |-
+#              Until the start of your next turn, when an adjacent ally would take damage,
+#              you may take half that damage, before any reductions are applied.
           - name: Fortress Protocol
             text: |-
-              1/Game
+              1/Battle
               Enter Fortress Stance:
                 Block⛨+3 
                 You are immobilized.
@@ -1440,7 +1457,7 @@ sets:
               As a Standard action, you may teleport an ICEOUT Drone to any location in range 4.
           - name: Mag Field
             text: |-
-              1/Game
+              Ultimate 4:
               Create a 5x5 area in range 1.
               Units in the area are immediately pulled to the center and immobilized.
               When an attack would pass into or out of the area, it is blocked, and put a charge on this.
@@ -1483,7 +1500,7 @@ sets:
               Take 2 stress, Line infinite, ⚔5 irreducible
           - name: Mark for Death
             text: |-
-              Free action 1/Game
+              Free action 1/Battle
               
               For the rest of the battle you have the following ability:
               2 Standard Actions,
@@ -1520,7 +1537,7 @@ sets:
               As a standard action, you may teleport a Hive Drone to any location in range 2.
           - name: Hive Frenzy
             text: |-
-              1/Game
+              Free, ultimate 4:
               You and adjacent allies have Block⛨+1.
               Trigger your end of turn effects twice.
               While you have more than 1hp, you cannot be reduced below 1hp.
@@ -1548,10 +1565,10 @@ sets:
           - name: Your Will attacks are undefendable.
             text: ""
         abilities:
-          - name: Puppet System
-            text: |-
-              Unlimited Range, Vs Will
-              Force target to move up to their speed under you control. It counts as voluntary movement.
+#          - name: Puppet System
+#            text: |-
+#              Unlimited Range, Vs Will
+#              Force target to move up to their speed under you control. It counts as voluntary movement.
           - name: False Idol
             text: |-
               Unlimited Range, Summon a False Idol corresponding to an ally.
@@ -1571,7 +1588,7 @@ sets:
           - name: Dimensional Emblems
             text: |-
               Unlimited Range
-              Create 3 Dimensional Emblem markers adjacent to the target, but not to each other.
+              Create 3 Dimensional Emblem markers adjacent to the target, but not orthogonally adjacent to any other Dimensional Emblem.
               When a unit moves through a Dimensional Emblem, they take 1 stress and the emblem is removed.
             tokens:
               - name: Dimensional Emblem
@@ -1579,20 +1596,23 @@ sets:
           - name: Hurl into The Duat
             text: |-
               Unlimited Range, Vs Will
+              Give the target a Duat token and +1 stress.
               The effect depends on the number of Duat tokens the target has.
-              If they have 1 token, you control their standard move next turn.
-              If they have 2 tokens, they skip their next activation.
-              If they have 3 tokens, you control their next activation, then they lose all tokens.
-              Give the target a Duat token.
+              - If they have 1 token, force them to move up to their speed under you control. It counts as voluntary movement.
+              - If they have 2 tokens, they are Slowed and Impaired.
+              - If they have 3 tokens, they skip their next activation.
+              - If they have 4 tokens, remove them, and until the end of their next turn, they are on your team (swap ally/hostile). You control their next activation, during which you cannot use any x/Game actions.
             tokens:
               - name: Duat
                 image_url: https://media.discordapp.net/attachments/999104692233711676/1138710153387069471/qazzquimby_scifi_The_Duat_symbol_token_8f39a266-6d61-4091-befe-0bc62fdc7e35.png?width=577&height=577
+              - *Slow
+              - *Impaired
           - name: Symbiosis
             text: |-
-              1/Game
+              1/Battle
               Ally in range 1. 
               Remove your marker from the board. You share the ally's location and cannot move away. 
-              You have +4 block. You also take any stress or conditions the ally takes.
+              You have Block⛨+4. You also take any stress or conditions the ally takes.
               You can end the effect as a standard action.
 
       - name: Barbarosa
@@ -1607,15 +1627,19 @@ sets:
           - name: Size 3
             text: |-
               Whenever you're moved, remove all Barbarosa Markers, then fill all free adjacent spaces with Barbarosa markers.
-              You are considered to be in all marked spaces.
+              You are considered to occupy all marked spaces. You can draw range to and from any marked space.
           - name: Immune to forced movement
             text: ""
+          - name: Start
+            text: Gain an Apocalypse Charge
+          - name: Change location or lose  actions
+            text: Lose all Apocalypse Charges
         tokens:
           - name: Barbarosa
             image_url: https://static.wikia.nocookie.net/lancer/images/5/53/Barbarossa.jpg/revision/latest?cb=20230317030938
             description: Barbarosa is considered to be in all spaces with this token.
         default_abilities:
-          - name: Heavy Machine GUn
+          - name: Heavy Machine Gun
             text: |-
               +2 Dodge, Range 4, ⚔4
         abilities:
@@ -1628,20 +1652,14 @@ sets:
               Take 4 stress, Unlimited range, Ignores walls, 3x3 area, ⚔4
           - name: Roller Grenade
             text: |-
-              3/Game
               Grenade rolls along Line 5. 
               When it becomes adjacent to another unit, it explodes:
                 All in range 1, ⚔3, push 3 spaces.
           - name: Apocalypse Rail
             text: |-
-              1/Game
-              At the end of your turn, put a charge on this.
-              If you move or lose any actions, remove all charges.
-              
-              2 Standard actions, 3x3 area in Range >3, ⚔3+3*charges. 
+              2 Standard actions, 1/Battle           
+              Range 4+, 3x3 area, ⚔3+3*Apocalypse Charges. 
               Destroy all walls and terrain in the area.
-              
-              At end of battle, if you didn't fire, refresh this.
       - name: Genghis
         description: |-
           - Ongoing fire damage
@@ -1677,8 +1695,9 @@ sets:
               All units in range 2, give Burning 1 and push 2
           - name: Expose Power Cells
             text: |-
-              1/Game
-              The next time you would exceed your stress limit, clear all stress.
+              1/Battle
+              Interrupt when you would exceed your stress limit.
+              Clear all stress.
               5x5 area centered on you gets terrain that gives allies +2 dodge and enemies Hazard: +2 stress +1 Burning.
               Terrain ends at the start of your next turn.
     maps:
