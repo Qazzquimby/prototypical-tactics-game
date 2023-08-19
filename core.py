@@ -154,7 +154,22 @@ async def library_to_tts_dict(
     await close_browser()
 
     entities = library.bags  # will need to change for games that are more than one bag
-    tts_dict["ObjectStates"] = [entity.as_dict() for entity in entities]
+    tts_dict["ObjectStates"] += [entity.as_dict() for entity in entities]
+
+    sets_bag = [
+        item for item in tts_dict["ObjectStates"] if item["Nickname"] == "Sets"
+    ][0]
+    sets_bag["Transform"] = {
+        "posX": 74.78447,
+        "posY": 1.154937,
+        "posZ": 15.9169846,
+        "rotX": 1.4840989e-05,
+        "rotY": -1.382713e-05,
+        "rotZ": 1.612498e-05,
+        "scaleX": 3.0,
+        "scaleY": 3.0,
+        "scaleZ": 3.0,
+    }
 
     return tts_dict
 
