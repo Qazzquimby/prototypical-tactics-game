@@ -75,7 +75,7 @@ conditions:
   Slow: &Slow
     name: Slow
     image_url: https://cdn.dribbble.com/users/4152927/screenshots/12551209/media/ae98cc06e8f934a47183831ecb84d4e1.png?compress=1&resize=400x300&vertical=center
-    text: You have -2 Speed, to a minimum of 1. Clear at the end of your turn.
+    text: You have -2 Speed, to a minimum of 1. You can't dodge. Clear at the end of your turn.
   Stun: &Stun
     name: Stun
     image_url: https://en.tankiwiki.com/images/en/5/53/Icon_Stun.png
@@ -197,10 +197,6 @@ sets:
                 Enemies cannot dodge or have Stealth.
                 All allies have +2 crit
                 This doesn't gain charge while active.
-#            tokens:
-#              - name: Infra-Sight
-#                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/94/Ability-widowmaker4.png
-            white_dice: [1]
       - name: Tracer
         description: |-
           - Fast, fragile, instant speed dodges
@@ -217,7 +213,10 @@ sets:
               3/battle
               Instant ⛨+2
               Teleport up to 3.
-            white_dice: [3]
+            dice:
+              - name: Uses Remaining
+                color: white
+                values: [3]
           - name: Recall
             text: |-
               1/battle
@@ -229,14 +228,16 @@ sets:
                 image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/63/Ability-tracer3.png
                 size: 1
                 text: This is the space you'll recall to.
-            white_dice: [1]
+            dice:
+              - name: Previous Health
+                color: red
+                values: [6]
           - name: Pulse Bomb
             text: |-
               Ultimate 5:
                 Pick a space in range 1. If there's a character in the space, attach the pulse bomb to them with ⛨2.
                 If it doesn't attach to someone, it drops in that space.
                 At the start of your next turn, destroy the pulse bomb. It deals ⚔9 to anyone in its space and ⚔3 to anyone else in burst 1.
-            white_dice: [1]
             tokens:
               - name: Pulse Bomb
                 image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/af/Ability-tracer4.png
@@ -296,7 +297,6 @@ sets:
                 You can use Guardian Angel as a move action.
                 You are always Flying.
               This doesn't gain charge while active.
-            white_dice: [1]
       - name: Pharah
         description: |-
           - Rocket aoe projectiles
@@ -342,7 +342,6 @@ sets:
             text: |-
               Move + Standard action, Ultimate 5:
                 ⛨1/2 distance, ⚔8, ⚔3 to all others in burst 1
-            white_dice: [1]
       - name: Reaper
         description: |-
           - High close range damage
@@ -378,7 +377,6 @@ sets:
             text: |-
               Ultimate 5:
                 Burst 1, ⚔7
-            white_dice: [1]
       - name: Reinhardt
         description: |-
           - Melee cleave tank
@@ -407,7 +405,10 @@ sets:
                 There is a 3 space long line on the edge in front of you, which moves with you.
                 The barrier acts as blocking for enemy's attacks (but not movement of summons or markers)
               You can dismiss the barrier as a free action if you have ended a turn with it active.
-            white_dice: [6, 4]
+            dice:
+              - name: Barrier health
+                color: red
+                values: [6, 4]
             Barrier: &Barrier
                 name: Barrier Field
                 image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/97/Ability-reinhardt2.png
@@ -432,7 +433,6 @@ sets:
             text: |-
               Ultimate 5:
                 Range 2 burst 1, ⚔1 and Paralyze
-            white_dice: [1]
             tokens:
               - *Paralyze
 #      - name: Bastion
@@ -1306,24 +1306,22 @@ sets:
         name: Impaired
         image_url: https://cdn3.iconfinder.com/data/icons/role-playing-game-5/340/ability_skill_shield_game_projectile_broken_strong_arrow-512.png
         text: |-
-          +1⛨ to all rolls.
+          +1 Defense to all rolls.
           Cleared at the end of the turn.
     rules:
       - name: Actions
         text: |-
-          Units have +1 standard action per turn.
-          Once per turn, a unit may spend a Standard action as a Move action.
           For two Standard actions, a unit may clear all stress and lose the Exposed condition.
-                   
-          The standard move action can be done at most twice per turn.
-          All other actions can be done at most once per turn.
+          
+          For 1 Standard action, range 4, vs Will, target gets 1 stress, Impaired and Slow
           
           Once per turn, the active hero can "Overcharge".
-          Take an additional standard action that ignores the above x/turn restrictions.
-          Gain an Overcharge counter. Then take 2 stress for each Overcharge counter.
+          They gain +1 Standard action that turn, and gain 1d6+1 stress.
         tokens:
           - name: Overcharge
             image_url: https://media.discordapp.net/attachments/999104692233711676/1141772956310179882/qazzquimby_scifi_overcharge_overheat_icon_7a1608ae-6277-4f49-9488-50e08d1babc3.png?width=778&height=778
+          - *Impaired
+          - *Slow
       - name: Opportunity Attacks
         text: |- 
           When a unit breaks adjacency with an enemy, the enemy may make an opportunity attack against it.
@@ -1338,11 +1336,20 @@ sets:
           When a Hero would gain their 7th stress, they "Overheat". 
           Reset to 0 stress, and then take any remaining stress gain. 6 stress + 1 -> 1 stress. 
           
-          When a Hero Overheats, if they have more than half health and are not Exposed, they gain Exposed (take double damage).
-          Otherwise they die at the end of their next turn, and whenever they die they deal all adjacent ⚔4.
-        white_dice: [1]
+          When a Hero Overheats, they gain Exposed (take double damage).
+          If they were already Exposed, or if they have half health or less, the get Reactor Meltdown.
+            When they die they deal all adjacent ⚔4, and they automatically die at the end of their next turn.
+        dice:
+          - name: Stress
+            color: gray
+            values: [1, 1, 1, 1, 1, 1]
         tokens:
           - *Exposed
+          - name: Reactor Meltdown
+            image_url: https://media.discordapp.net/attachments/999104692233711676/1141778690921992242/qazzquimby_reactor_meltdown_explosion_scifi_icon_0f13fed3-dc07-43b3-a135-e988a2acd9e9.png?width=778&height=778
+            text: |-
+              When you die, deal all adjacent ⚔4.
+              You die at the end of your next turn.
     heroes:
       - name: Blackbeard
         health: 8
@@ -1396,14 +1403,10 @@ sets:
         default_abilities:
           - name: Leviathan Heavy Assault Cannon
             text: |-
-              if not Spun Up: 
-                Range 4, ⚔2
+              If not Spun Up: either Range 4, ⚔2
                 or enter Spun Up stance:
-                  You are continually slowed.
-                  You can exit Spun Up stance as a free action at the start of your turn.
-
+                  You are continually slowed. You can exit as a free action at the start of your turn.
               If Spun Up: 2 Standard actions. You gain 2 stress. Range 4, ⚔6
-
         tokens:
           - name: Spun Up
             image_url: https://i.gyazo.com/c5c0bdf39413380984f4e05c190e875d.png
@@ -1413,15 +1416,11 @@ sets:
               Range 3, ⚔1, Push 2, target gets Impaired.
             tokens:
               - *Impaired
-#          - name: Argonaut Shield
-#            text: |-
-#              Until the start of your next turn, when an adjacent ally would take damage,
-#              you may take half that damage, before any reductions are applied.
           - name: Fortress Protocol
             text: |-
               1/Battle
               Enter Fortress Stance:
-                Block⛨+3 
+                Block⛨+2
                 You are immobilized.
                 1/round you may take half damage from an attack.
                 Adjacent allies gain your passives.
@@ -1452,7 +1451,7 @@ sets:
               Attacks that pass through the shield do 0.5x damage.
           - name: Summon ICEOUT Drone
             text: |-
-              2/Game
+              1/Games
               Summon an ICEOUT Drone in range 4.
               As a Standard action, you may teleport an ICEOUT Drone to any location in range 4.
           - name: Mag Field
@@ -1485,7 +1484,7 @@ sets:
         default_abilities:
           - name: Vulture DMR
             text: |-
-              Take 1 stress, Range 3+, ⚔4
+              Take 1 stress, Range 3+, ⚔3
         abilities:
           - name: Climb Wall
             text: |-
@@ -1496,19 +1495,20 @@ sets:
               - *HighAltitude
           - name: Railgun
             text: |-
-              If there is no enemy in range 1,
-              Take 2 stress, Line infinite, ⚔5 irreducible
+              If there is no enemy in range 2,
+              Take 2 stress, All in line infinite, ⚔4 irreducible
           - name: Mark for Death
             text: |-
-              Free action 1/Battle
-              
-              For the rest of the battle you have the following ability:
               2 Standard Actions,
               Give a unit your Marked for Death Mark.
               You deal +⚔4 to the unit with the mark, so long as they are not in range 3.
               While a unit has the mark, you are immobilized.
               You may remove the mark as a free action at the start of your turn.
-
+            tokens:
+              - name: Mark for Death
+                image_url: https://media.discordapp.net/attachments/999104692233711676/1142241056528793651/qazzquimby_scifi_icon_mark_for_death_symbol_game_asset_73d403d5-3b74-4534-96e0-36e0287a0b0b.png?width=778&height=778
+                text: |-
+                  Owner deals +⚔4 to you, so long as you're are not in range 3.
       - name: Balor
         health: 12
         speed: 2
@@ -1571,7 +1571,7 @@ sets:
 #              Force target to move up to their speed under you control. It counts as voluntary movement.
           - name: False Idol
             text: |-
-              Unlimited Range, Summon a False Idol corresponding to an ally.
+              Unlimited Range, Summon a False Idol corresponding to an ally. (max 1, replace old)
               1hp.
               Units with line of sight to the idol cannot target the ally.
             tokens:
@@ -2597,3 +2597,113 @@ sets:
 #                All units in line 5 + 3*charges, width 1+charges, take the following damage:
 #                  Range 1-2, 100% of their max hp,
 #                  Range 3+, 50% of their max hp
+
+
+# tf2
+# hp 6, speed 2
+# spy revolver, unlimited range , 1 damage, 3 damage on crit. Gain a guaranteed crit on knife kill
+# knife, if enemy ends their turn in range 3 and did not attack target you that turn, you mave move 2 towards them and deal 50 damage to them.
+# sapper, free action, range 1, target a summon with no speed. It is silenced and continually paralyzed. Can be removed by the summoner, range 1 standard action At the start of your turn, destroy any summons marked this way.
+# disguise. Free action at start of turn. Until you're in an enemy's LoS and you attack, take damage, or end a turn in range 3 of an ally. Enemies cannot target you while they have another enemy in line of sight. You are considered an ally to them, and may choose to be affected by any of their abilities that could affect you.
+# cloak. You cannot be targeted from range greater than 1. You may move 2 at the end of your turn. You cannot use standard actions. Can remove as a move action.
+# deadringer 1/battle, interrupt when you would take damage. You take no damage, move 2, and cloak.
+
+# heavy
+# hp 12, speed 3
+# minigun, if not spun up: 2dmg -1dmg per space between. Enter spun up stance: You are slowed and can only use minigun. You can exit the stance as a free action at start of turn.
+# punch: range 1 2dmg +2crit
+# if spun up: 6dmg -2dmg per space between.
+#sandvich: 1/battle full round action. Heal to full health. or standard action heal an ally 4.
+# Buffalo Steak: 1/battle full round action. You have +1 speed. You take +1 damage. You cannot deal damage to targets farther than range 1. You deal 1.5x damage. or standard action heal an ally 4.
+# Swap gloves: free action at start of turn. Either enter GRU stance - take 1.5x damage, gain +2 speed, or enter Fists of Steel stance - take 0.5x damage from ranges 2+, and 2x damage from range 1. Or remove your glove stance.
+#
+
+
+# sniper
+# 6hp, speed 3
+#
+# immune to burning
+# Full round. Move 1, Set facing. Start of next turn, range 3+, undodgeable 5dmg, and either +2 crit, or after the target takes 1.5x dmg.
+    # on kill gain Kill counter. +2 crit per Kill counter.
+# cleaner's carbine, range 2, 2 dmg. Gain Crikey counters equal to damage dealt, max 4. While this has 4 Crikey counters, you deal 1.5x damage.
+# jarate, target takes 1.5x damage
+# bushwacka, doubles damage bonuses
+#
+#
+# medic
+# 8hp, speed 3
+# start of turn heal 1
+# blutsauger range 3, +2dodge, 2dmg, heal equal to damage dealt
+# crossbow, +1dodge/2 spaces, 3dmg, or heal 3
+# ubersaw, range 1, 2dmg, +2crit, lower your ultimate costs by 2.
+# medigun, range 3, heal 2, they become your Healing Target until the start of your next turn, or if they stop being within range 4.
+# at start of your turn, heal them 4, with excess healing as overshield. Move up to their speed-3.
+# When they move other than in a standard move, you may copy the effect that moved them on yourself.
+# Immediate Def+3 Ultimate 5: Either: You are immune to damage but are ignored by objectives. When you use medigun on a target, they gain this effect until the start of your next turn.
+# or When you use medigun on a target they deal +1x damage and take -1x damage until the start of your next turn.
+# Amputator Song: Move+Standard. You and Allies in range 3 heal 3.
+
+
+# engineer 8hp, speed 3
+#
+# rescue ranger, repair building any range, or pick up from any range
+# carrying building. Rebuild time.
+# gain crit from sentry kill?
+# sentry, 1 round to set up, 1 round to upgrade, 1 round to rebuild to full after carrying
+# once active, sentry shoots at first target that comes available 1/round. range 6, 4dmg. lvl2 8dmg+1 to all others burst 1 of target
+# short circuit projectile eating
+#
+# effectively level 1 sentry
+# dispenser, end turn next to heal 2
+# teleporter?
+# eureka effect, move+standard, teleport to deployment zone
+#
+
+
+# demo, 10hp, speed 3
+#
+# take half damage from aoe
+# Grenade, dodge+1/2, 4dmg, 1dmg to others in burst 1 of target, push 2. On miss places grenade marker detonates start of next turn.
+# Sticky bomb, range 4 place 2 Sticky Bomb markers (1hp). Free at start of turn or Interrupt when an enemy in LoS is adjacent to a marker. For each bomb, remove it and deal burst 1, 2dmg. If this hits you, fly 4.
+# chargin' targe: 1/battle move action, move any distance in a straight line and clean any number of conditions.
+  # If you moved at least 4, your next attack this turn with range 2 or less deals 2x damage.
+# Eyelander: Range 2, 2 dmg +2crit. On kill gain a Kill counter and heal 2. If the target had Kill counters, gain them. +1 speed per Kill counter.
+# ullapool Caber: 1/game Range 1, 2dmg, 4dmg to all in burst 1 of target (including target).
+# pain train stance: Enter or exit as free action at start of turn. You count twice for objectives. You take 1.5x damage.
+
+#  pyro 10hp, speed 3
+#
+# Flamethrower, line 2, 3dmg, If they don't have burning, they get burning 1. If they have burning, +1dmg.
+# airblast: interrupt def+2 1/round, line 2, push 2. If this interrupted an attack with range 3+, passing through the line, cancel and recast the attack.
+# flare gun: +1dodge/3 spaces, 2dmg. If they don't have burning, they get burning 1. If they have burning, +2dmg.
+# Mmmph: When you deal damage, or an enemy takes damage from burning, gain that many Charge counters. discard 8 charges Move+standard: You deal 2x damage.
+# Axe: Range 1 plus anyone who they healed or healed them since the start of your last turn.
+  # 1dmg, +2crit. Remove burning from the target, +2dmg per burning removed. On kill move 2.
+# Thermal Thruster: 2/game, move action, fly 5. All in burst 1, 1dmg, push 1.
+#
+#
+# Soldier 10hp, speed 3
+# Rocket Launcher: +1dodge/2, 3dmg, 1dmg to others in burst 1 of target, push 1.
+# Rocket Jump: move action, take 2dmg, fly 4.
+# When you deal damage, gain that many charge counters. Spend 8 charges: move+standard: choose one:
+# Your team deals 1.5x damage. / Your team do not receive crits and have armor 1. / Your team has +1 speed and heals 1 when they deal damage.
+# Pickaxe: Move 2 if bloodied. 1 dmg +2 dmg if bloodied, +2 crit. You take 2x damage until the start of your next turn.
+# Disciplinary Action: You and ally in range 2 move 2.
+# pain train stance: Enter or exit as free action at start of turn. You count twice for objectives. You take 1.5x damage.
+#
+#
+# scout 6hp, speed 5
+# scattergun range 1, 4dmg, may deal push 2
+# all movement is flying. When you make a standard move action, can use unspent movement at end of turn.
+# you count twice for objectives
+# bonk atomic punch: move+standard, You are immune to damage. You can't use standard actions. Remove as a move action.
+# crit a cola: move+standard. After the start of your next turn, you deal and receive +.5x damage.
+# mad milk: 1/game range 3 2x2. Enemies in the area are Covered in Milk. When an ally damages a unit Covered in Milk, they heal 1/2 the damage dealt.
+# guillotine: 1/game +1dodge/2, 1 damage and target gets Bleed(1 damage at the start of their turn)
+# sandman: 1/game range 4+ dodge+3. Target is stunned.
+# Fan O'War: Range 1, Target takes +.5x damage
+#
+#
+#
+
+#

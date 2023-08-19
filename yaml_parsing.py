@@ -2,7 +2,7 @@ import abc
 import base64
 from functools import lru_cache
 from pathlib import Path
-from typing import ClassVar
+from typing import ClassVar, Literal
 
 import jinja2
 import yaml
@@ -123,10 +123,44 @@ class Active(Ability):
     pass
 
 
+Color = Literal[
+    "white",
+    "black",
+    "brown",
+    "red",
+    "orange",
+    "yellow",
+    "green",
+    "blue",
+    "purple",
+    "pink",
+    "gray",
+]
+color_dict = {
+    "white": {"r": 1, "g": 1, "b": 1},
+    "black": {"r": 0, "g": 0, "b": 0},
+    "brown": {"r": 0.588, "g": 0.294, "b": 0},
+    "red": {"r": 1, "g": 0, "b": 0},
+    "orange": {"r": 1, "g": 0.5, "b": 0},
+    "yellow": {"r": 1, "g": 1, "b": 0},
+    "green": {"r": 0, "g": 1, "b": 0},
+    "blue": {"r": 0, "g": 0, "b": 1},
+    "purple": {"r": 0.5, "g": 0, "b": 0.5},
+    "pink": {"r": 1, "g": 0, "b": 1},
+    "gray": {"r": 0.5, "g": 0.5, "b": 0.5},
+}
+
+
+class Dice(BaseModel):
+    name: str
+    color: Color
+    values: list[int]
+
+
 class Card(BaseModel, Spawnable):
     name: str
     tokens: list[Token] = []
-    white_dice: list[int] = []
+    dice: list[Dice] = []
 
     template: ClassVar[jinja2.Template] = NotImplemented
 
@@ -136,14 +170,17 @@ class Card(BaseModel, Spawnable):
     def get_spawning_lua(self):
         spawning_luas = [token.get_spawning_lua() for token in self.tokens]
 
-        for i, die_value in enumerate(self.white_dice):
-            spawning_luas.append(
-                make_spawn_die_lua(
-                    die_value=die_value,
-                    offset={"x": i * DIE_SPACING, "y": 1, "z": -1},
-                    scale=0.5,
+        for dice_type in self.dice:
+            for i, die_value in enumerate(dice_type.values):
+                spawning_luas.append(
+                    make_spawn_die_lua(
+                        name=dice_type.name,
+                        die_value=die_value,
+                        offset={"x": i * DIE_SPACING, "y": 1, "z": -1},
+                        color=color_dict[dice_type.color],
+                        scale=0.5,
+                    )
                 )
-            )
 
         full_spawning_lua = "\n\n\n".join(spawning_luas)
         return full_spawning_lua
@@ -203,7 +240,7 @@ class UnitCard(Card, Figurine):
             health_dice_lua += make_spawn_die_lua(
                 die_value=health_die_value,
                 offset={"x": i * DIE_SPACING, "y": 1, "z": -2},
-                tint={"r": 1, "g": 0, "b": 0},
+                color={"r": 1, "g": 0, "b": 0},
                 name="Health",
             )
 
@@ -218,10 +255,10 @@ class UnitCard(Card, Figurine):
 
 
 def make_spawn_die_lua(
-    die_value: int, offset: dict, name="", tint: dict = None, scale: float = 1
+    die_value: int, offset: dict, name="", color: dict = None, scale: float = 1
 ):
-    if tint is None:
-        tint = {"r": 1, "g": 1, "b": 1}
+    if color is None:
+        color = {"r": 1, "g": 1, "b": 1}
 
     spawn_die_lua = f"""
     local my_position = self.getPosition()
@@ -235,9 +272,9 @@ def make_spawn_die_lua(
         rotation = my_rotation,
         scale = {{x={scale}, y={scale}, z={scale}}},
         callback_function = function(newObj)
-            newObj.setName({name})
+            newObj.setName('{name}')
             newObj.setRotationValue({die_value})
-            newObj.setColorTint({{r={tint['r']}, g={tint['g']}, b={tint['b']}}})
+            newObj.setColorTint({{r={color['r']}, g={color['g']}, b={color['b']}}})
         end
     }})
     """
