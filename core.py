@@ -3,8 +3,12 @@ import json
 from pathlib import Path
 from typing import Union, Coroutine
 
+import pygame
+import yaml.scanner
+
 from pygame import Surface
 
+import yaml_parsing
 from domain.bag import Bag
 
 from domain.complexObject import ComplexObject
@@ -18,7 +22,9 @@ from drawer.complexObjectDrawer import close_browser, ComplexObjectDrawer
 from drawer.deckDrawer import DeckDrawer
 from drawer.heroBoxDrawer import HeroBoxDrawer
 from drawer.loneCardDrawer import LoneCardDrawer
-from image_builders import ImageBuilder
+from image_builders import ImageBuilder, DirectoryImagesBuilder
+from tests.integration_test import data_dir
+from tts_dir import try_and_find_save_games_folder
 from yaml_parsing import GameSet, RulesDeck
 
 DEFAULT_LIBRARY = Library(
@@ -28,6 +34,49 @@ DEFAULT_LIBRARY = Library(
     decks=[],
     bags=[],
 )
+
+
+def build(image_builder):
+    schema = yaml_parsing.Game.schema_json()
+    with open("data/game_schema.json", "w") as f:
+        f.write(schema)
+
+    with open("data/input.yaml", "r") as f:
+        input_yaml = f.read()
+    with open("tactics-site/public/input.yaml", "w+") as f:
+        f.write(input_yaml)
+
+    save_dir = Path(try_and_find_save_games_folder())
+    yaml_file_to_tts_save(
+        "data/input.yaml", save_dir=save_dir, image_builder=image_builder
+    )
+
+
+def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder=None):
+    if image_builder is None:
+        image_builder = DirectoryImagesBuilder(
+            pygame=pygame, base_path=data_dir / "images"
+        )
+
+    try:
+        yaml_content = yaml_parsing.read_yaml_file(yaml_path)
+    except yaml.scanner.ScannerError as e:
+        print(f"Error parsing {yaml_path}\n{e}")
+        return
+
+    game = yaml_parsing.Game.parse_obj(yaml_content)
+    library = game_to_library(game)
+
+    tts_dict = asyncio.run(
+        library_to_tts_dict(
+            library=library,
+            image_builder=image_builder,
+            file_name="TestGame",
+        ),
+    )
+
+    save_tts(tts_dict, save_dir=save_dir, file_name=Path(yaml_path).stem)
+    print("Built images")
 
 
 def game_to_library(game):
@@ -41,7 +90,7 @@ def game_to_library(game):
 
     sets_bag = Bag(name="Sets", size=3, color=(1.0, 1.0, 1.0))
     for game_set in game.sets:
-        game_set_bag = make_game_set_bag(game_set)
+        game_set_bag = _make_game_set_bag(game_set)
         sets_bag.contained_objects.append(game_set_bag)
     library.bags.append(sets_bag)
 
@@ -52,10 +101,6 @@ def game_to_library(game):
     return library
 
 
-def make_image_name(names):
-    return "__".join(names)
-
-
 async def library_to_tts_dict(
     library: Library,
     image_builder: ImageBuilder,
@@ -63,9 +108,9 @@ async def library_to_tts_dict(
     config=None,
 ):
     await image_builder.initialize()
-    setup_pygame()
+    _setup_pygame()
 
-    tts_dict = read_template_dict(file_name)
+    tts_dict = _read_template_dict(file_name)
 
     coroutines = []
 
@@ -78,7 +123,7 @@ async def library_to_tts_dict(
         for i, card in enumerate(deck.cards):
             card_drawer = ComplexObjectDrawer(card.object, config)
             names = [deck.set_name, deck.name, card.object.content.name]
-            image_name = make_image_name(names)
+            image_name = _make_image_name(names)
             coroutines.append(
                 _save_image_and_set_attribute(
                     image_builder=image_builder,
@@ -138,6 +183,24 @@ async def library_to_tts_dict(
     return tts_dict
 
 
+def save_tts(tts_json: dict, save_dir: Path, file_name: str):
+    path = save_dir / f"TS_{file_name.replace(' ', '_')}.json"
+    with open(path, "w") as outfile:
+        json.dump(tts_json, outfile)
+
+
+def _read_template_dict(file_name: str):
+    # open save template
+    with open("data/template.json", "r") as infile:
+        data = json.load(infile)
+        data["SaveName"] = file_name
+    return data
+
+
+def _make_image_name(names):
+    return "__".join(names)
+
+
 async def _save_image_and_set_attribute(
     image_builder: ImageBuilder,
     drawer: BaseDrawer,
@@ -163,28 +226,14 @@ async def _save_image_and_set_attribute(
         object_.__setattr__(attribute, path)
 
 
-def save_tts(tts_json: dict, save_dir: Path, file_name: str):
-    path = save_dir / f"TS_{file_name.replace(' ', '_')}.json"
-    with open(path, "w") as outfile:
-        json.dump(tts_json, outfile)
-
-
-def setup_pygame():
+def _setup_pygame():
     # setup pygame as drawing library
     import pygame
 
     pygame.init()
 
 
-def read_template_dict(file_name: str):
-    # open save template
-    with open("data/template.json", "r") as infile:
-        data = json.load(infile)
-        data["SaveName"] = file_name
-    return data
-
-
-def make_game_set_bag(game_set: GameSet):
+def _make_game_set_bag(game_set: GameSet):
     set_bag = Bag(
         name=game_set.name,
         description=game_set.description,
@@ -219,9 +268,3 @@ def make_game_set_bag(game_set: GameSet):
     set_bag.contained_objects.append(map_bag)
 
     return set_bag
-
-
-def complex_object_row_to_complex_object(
-    row: list, type_: ComplexType
-) -> ComplexObject:
-    return ComplexObject(name=row[0], type_=type_, content=dict(row[2:]))

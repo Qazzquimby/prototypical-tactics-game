@@ -1,6 +1,7 @@
 import pygame
 
-from generate_local import build, build_local
+from generate_local import build_local
+from core import build
 from image_builders import DirectoryImagesBuilder
 
 
