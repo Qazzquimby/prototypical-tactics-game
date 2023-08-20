@@ -22,7 +22,7 @@ TemplatesPath = data_dir / "templates"
 CARD_CSS = make_css()
 
 
-class ComplexObjectDrawer(BaseDrawer):
+class BrowserDrawer(BaseDrawer):
     def __init__(self, obj, config):
         self.object = obj
         self.config = config

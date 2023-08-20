@@ -1,7 +1,7 @@
 import pygame
 
 from drawer.base import BaseDrawer
-from drawer.complexObjectDrawer import ComplexObjectDrawer
+from drawer.browser_drawer import BrowserDrawer
 from drawer.size_constants import CARD_WIDTH, CARD_HEIGHT
 
 
@@ -17,7 +17,7 @@ class LoneCardDrawer(BaseDrawer):
 
         surf = pygame.Surface(size)
 
-        card_drawer = ComplexObjectDrawer(card.object, self.config)
+        card_drawer = BrowserDrawer(card.object, self.config)
         card_image = await card_drawer.draw()
         surf.blit(card_image, (0, 0))
 

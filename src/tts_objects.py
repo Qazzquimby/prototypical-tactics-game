@@ -10,8 +10,8 @@ from domain.library import Library
 from domain.token import ContentToken
 from drawer.base import BaseDrawer
 from drawer.cardBackDrawer import CardBackDrawer
-from drawer.complexObjectDrawer import ComplexObjectDrawer
-from drawer.loneCardDrawer import LoneCardDrawer
+from drawer.browser_drawer import BrowserDrawer
+from drawer.lone_card_drawer import LoneCardDrawer
 from src.image_builders import ImageBuilder
 
 
@@ -88,7 +88,7 @@ async def draw_library_assets(
 
     for deck in library.decks:
         for i, card in enumerate(deck.cards):
-            card_drawer = ComplexObjectDrawer(card.object, config)
+            card_drawer = BrowserDrawer(card.object, config)
             names = [deck.set_name, deck.name, card.object.content.name]
             image_name = make_image_name(names)
             coroutines.append(
