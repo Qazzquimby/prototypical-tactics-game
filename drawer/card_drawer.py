@@ -13,8 +13,9 @@ from drawer.size_constants import (
     IMAGE_WIDTH,
     IMAGE_HEIGHT,
 )
+from src.paths import data_dir
 
-TemplatesPath = Path("data/templates")
+TemplatesPath = data_dir / "templates"
 
 
 # CARD_CSS = (TemplatesPath / "card.css").read_text()
@@ -30,6 +31,7 @@ class ComplexObjectDrawer(BaseDrawer):
         self.full_surf = None
 
     async def draw(self, _=None) -> pygame.Surface:
+        # using browser screenshot
         try:
             card_width = self.object.type.size[0]
             card_height = self.object.type.size[1]
