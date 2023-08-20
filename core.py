@@ -24,18 +24,12 @@ from yaml_parsing import GameSet, RulesDeck
 
 
 def build(image_builder):
-    schema = yaml_parsing.Game.schema_json()
-    with open("data/game_schema.json", "w") as f:
-        f.write(schema)
-
-    with open("data/input.yaml", "r") as f:
-        input_yaml = f.read()
-    with open("tactics-site/public/input.yaml", "w+") as f:
-        f.write(input_yaml)
+    _save_schema()
+    _copy_yaml_to_site()
 
     save_dir = Path(try_and_find_save_games_folder())
     yaml_file_to_tts_save(
-        "data/input.yaml", save_dir=save_dir, image_builder=image_builder
+        yaml_path="data/input.yaml", save_dir=save_dir, image_builder=image_builder
     )
 
 
@@ -163,6 +157,19 @@ def save_tts(tts_json: dict, save_dir: Path, file_name: str):
     path = save_dir / f"TS_{file_name.replace(' ', '_')}.json"
     with open(path, "w") as outfile:
         json.dump(tts_json, outfile)
+
+
+def _save_schema():
+    schema = yaml_parsing.Game.schema_json()
+    with open("data/game_schema.json", "w") as f:
+        f.write(schema)
+
+
+def _copy_yaml_to_site():
+    with open("data/input.yaml", "r") as f:
+        input_yaml = f.read()
+    with open("tactics-site/public/input.yaml", "w+") as f:
+        f.write(input_yaml)
 
 
 def _load_game_from_yaml_path(yaml_path: str):
