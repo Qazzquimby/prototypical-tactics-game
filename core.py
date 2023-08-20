@@ -69,7 +69,6 @@ async def library_to_tts_dict(
 
     coroutines = []
 
-    deck_drawer = DeckDrawer(config)
     back_drawer = CardBackDrawer(config)
 
     deck_names = [deck.name for deck in library.decks]
@@ -91,26 +90,6 @@ async def library_to_tts_dict(
                 )
             )
 
-        # coroutines.append(
-        #     _save_image_and_set_attribute(
-        #         image_builder=image_builder,
-        #         drawer=deck_drawer,
-        #         object_=deck,
-        #         file_name=deck.name,
-        #         file_extension="jpg",
-        #         attribute_to_set="image_path",
-        #     )
-        # )
-        # coroutines.append(
-        #     _save_image_and_set_attribute(
-        #         image_builder=image_builder,
-        #         drawer=back_drawer,
-        #         object_=deck,
-        #         file_name=f"{deck.name}_back",
-        #         file_extension="jpg",
-        #         attribute_to_set="back_image_path",
-        #     )
-        # )
 
     for lone_card in library.lone_cards:
         coroutines.append(
@@ -120,20 +99,6 @@ async def library_to_tts_dict(
                 object_=lone_card,
                 file_name=lone_card.object.name,
                 file_extension="jpg",
-            )
-        )
-
-    hero_box_drawer = HeroBoxDrawer(config)
-    hero_boxes = get_hero_boxes(library)
-    for hero_box in hero_boxes:
-        coroutines.append(
-            _save_image_and_set_attribute(
-                image_builder=image_builder,
-                drawer=hero_box_drawer,
-                object_=hero_box,
-                file_name=hero_box.name,
-                file_extension="jpg",
-                attribute_to_set="diffuse_url",
             )
         )
 
