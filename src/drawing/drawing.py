@@ -9,7 +9,6 @@ from domain.token import ContentToken
 from drawer.base import BaseDrawer
 from src.drawing.card_drawer import CardDrawer
 from drawer.cardBackDrawer import CardBackDrawer
-from drawer.lone_card_drawer import LoneCardDrawer
 from src.browser import create_browser, close_browser
 from src.image_builders import ImageBuilder
 
@@ -21,6 +20,8 @@ async def draw_library_assets(
 
     coroutines = []
 
+    card_drawer = CardDrawer(config)
+
     back_drawer = CardBackDrawer(config)
 
     deck_names = [deck.name for deck in library.decks]
@@ -28,14 +29,13 @@ async def draw_library_assets(
 
     for deck in library.decks:
         for i, card in enumerate(deck.cards):
-            card_drawer = CardDrawer(card.object, config)
             names = [deck.set_name, deck.name, card.object.content.name]
             image_name = make_image_name(names)
             coroutines.append(
                 save_image_and_set_attribute(
                     image_builder=image_builder,
                     drawer=card_drawer,
-                    object_=card,
+                    card=card,
                     file_name=image_name,
                     attribute_to_set=["image_path"],
                 )
@@ -45,8 +45,8 @@ async def draw_library_assets(
         coroutines.append(
             save_image_and_set_attribute(
                 image_builder=image_builder,
-                drawer=LoneCardDrawer(config),
-                object_=lone_card,
+                drawer=card_drawer,
+                card=lone_card,
                 file_name=lone_card.object.name,
             )
         )
@@ -57,7 +57,7 @@ async def draw_library_assets(
                 save_image_and_set_attribute(
                     image_builder=image_builder,
                     drawer=back_drawer,  # todo why? Seems to work though.
-                    object_=token,
+                    card=token,
                     file_name="token_" + token.name,
                     attribute_to_set="image_path",
                 )
@@ -74,7 +74,7 @@ def make_image_name(names):
 async def save_image_and_set_attribute(
     image_builder: ImageBuilder,
     drawer: BaseDrawer,
-    object_,
+    card,
     file_name: str,
     file_extension: str = "jpg",
     attribute_to_set: str | list[str] = None,
@@ -82,7 +82,7 @@ async def save_image_and_set_attribute(
     if attribute_to_set is None:
         attribute_to_set = ["image_path", "back_image_path"]
 
-    image: Union[Surface, Coroutine[Surface]] = drawer.draw(object_)
+    image: Union[Surface, Coroutine[Surface]] = drawer.draw(card)
     # if image is promise, resolve
     if isinstance(image, Coroutine):
         image = await image
@@ -93,4 +93,4 @@ async def save_image_and_set_attribute(
         attribute_to_set = [attribute_to_set]
 
     for attribute in attribute_to_set:
-        object_.__setattr__(attribute, path)
+        card.__setattr__(attribute, path)

@@ -25,7 +25,7 @@ class Library:
         return self.tokens + self.dice + self.complex_objects + self.decks + self.bags
 
     @property
-    def decks(self):
+    def decks(self) -> list[Deck]:
         result = self._decks.copy()
         for bag in self.bags:
             result += recursive_search(bag, Deck)
@@ -36,7 +36,7 @@ class Library:
         self._decks = value
 
     @property
-    def lone_cards(self):
+    def lone_cards(self) -> list[LoneCard]:
         result = []
         for bag in self.bags:
             result += recursive_search(bag, LoneCard)

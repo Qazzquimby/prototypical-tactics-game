@@ -2599,12 +2599,39 @@ sets:
 #                  Range 3+, 50% of their max hp
 
 
-# tf2
-# hp 6, speed 2
-# spy revolver, unlimited range , 1 damage, 3 damage on crit. Gain a guaranteed crit on knife kill
-# knife, if enemy ends their turn in range 3 and did not attack target you that turn, you mave move 2 towards them and deal 50 damage to them.
-# sapper, free action, range 1, target a summon with no speed. It is silenced and continually paralyzed. Can be removed by the summoner, range 1 standard action At the start of your turn, destroy any summons marked this way.
-# disguise. Free action at start of turn. Until you're in an enemy's LoS and you attack, take damage, or end a turn in range 3 of an ally. Enemies cannot target you while they have another enemy in line of sight. You are considered an ally to them, and may choose to be affected by any of their abilities that could affect you.
+  - name: Team Fortress 2
+    description: |-
+      - high mobility and potential damage
+      - permanent buffs and debuffs
+
+    heroes:
+      - name: Spy
+        description: |-
+          - Stealth makes difficult to hit
+          - Instantly kills nearby enemies that don't target this.
+        image_url: TODO
+        health: 6
+        speed: 3
+
+        default_abilities:
+          - name: Revolver
+            text: |-
+              If this has a Kill counter, remove one and deal a crit on hit.
+              Unlimited range, 1 damage, +1 damage on crit.
+          - name: Knife
+            text: |-
+              Interrupt when an enemy ends their turn in range 3 and did not target you or your space that turn.
+              You may move 2 towards them and do ⚔50 to them.
+        abilities:
+          - name: Stealth
+            text: |-
+              You have Dodge⛨+3. You cannot be targeted beyond range 2.
+              Enemies consider you an ally rather than an enemy. When an enemy targets one of their allies while youre in range, you can make them target you
+            
+            
+
+            # sapper, free action, range 1, target a summon with no speed. It is silenced and continually paralyzed. Can be removed by the summoner, range 1 standard action At the start of your turn, destroy any summons marked this way.
+
 # cloak. You cannot be targeted from range greater than 1. You may move 2 at the end of your turn. You cannot use standard actions. Can remove as a move action.
 # deadringer 1/battle, interrupt when you would take damage. You take no damage, move 2, and cloak.
 
