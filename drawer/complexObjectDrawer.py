@@ -5,6 +5,7 @@ from pathlib import Path
 from playwright.async_api import async_playwright
 import pygame
 
+from browser import get_browser
 from drawer.base import BaseDrawer
 from drawer.color import convert_tts_to_pygame
 from drawer.css_maker import make_css
@@ -17,29 +18,6 @@ from drawer.size_constants import (
 )
 
 TemplatesPath = Path("data/templates")
-
-_BROWSER = None
-lock = asyncio.Lock()
-
-
-async def get_browser():
-    global _BROWSER
-    if _BROWSER is None:
-        async with lock:
-            if _BROWSER is None:
-                p = await async_playwright().start()
-                _BROWSER = await p.chromium.launch()
-    return _BROWSER
-
-
-async def close_browser():
-    global _BROWSER
-    if _BROWSER is not None:
-        async with lock:
-            if _BROWSER is not None:
-                await _BROWSER.close()
-                print("Browser closed")
-                _BROWSER = None
 
 
 # CARD_CSS = (TemplatesPath / "card.css").read_text()
@@ -68,7 +46,7 @@ class ComplexObjectDrawer(BaseDrawer):
 
         self.surf = pygame.Surface((image_width, image_height))
 
-        browser = await get_browser()
+        browser = get_browser()
         page = await browser.new_page()
         await page.set_viewport_size({"width": image_width, "height": image_height})
 

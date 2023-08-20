@@ -5,25 +5,22 @@ from typing import Union, Coroutine
 
 import pygame
 import yaml.scanner
+from playwright.async_api import Playwright, async_playwright
 
 from pygame import Surface
 
 import yaml_parsing
+from browser import create_browser, close_browser
 from domain.bag import Bag
 
-from domain.complexObject import ComplexObject
-from domain.complexType import ComplexType
-
-from domain.library import Library, get_hero_boxes
+from domain.library import Library
 from domain.token import ContentToken
 from drawer.base import BaseDrawer
 from drawer.cardBackDrawer import CardBackDrawer
-from drawer.complexObjectDrawer import close_browser, ComplexObjectDrawer
-from drawer.deckDrawer import DeckDrawer
-from drawer.heroBoxDrawer import HeroBoxDrawer
+from drawer.complexObjectDrawer import ComplexObjectDrawer
 from drawer.loneCardDrawer import LoneCardDrawer
 from image_builders import ImageBuilder, DirectoryImagesBuilder
-from tests.integration_test import data_dir
+from paths import data_dir
 from tts_dir import try_and_find_save_games_folder
 from yaml_parsing import GameSet, RulesDeck
 
@@ -112,6 +109,26 @@ async def library_to_tts_dict(
 
     tts_dict = _read_template_dict(file_name)
 
+    async with async_playwright() as playwright:
+        await draw_library_assets(
+            playwright=playwright,
+            library=library,
+            config=config,
+            image_builder=image_builder,
+        )
+
+    entities = library.bags
+    tts_dict["ObjectStates"] += [entity.as_dict() for entity in entities]
+    _reposition_set_bag(tts_dict)
+
+    return tts_dict
+
+
+async def draw_library_assets(
+    playwright: Playwright, library: Library, config, image_builder: ImageBuilder
+):
+    await create_browser(playwright)
+
     coroutines = []
 
     back_drawer = CardBackDrawer(config)
@@ -161,26 +178,6 @@ async def library_to_tts_dict(
 
     await asyncio.gather(*coroutines)
     await close_browser()
-
-    entities = library.bags  # will need to change for games that are more than one bag
-    tts_dict["ObjectStates"] += [entity.as_dict() for entity in entities]
-
-    sets_bag = [
-        item for item in tts_dict["ObjectStates"] if item["Nickname"] == "Sets"
-    ][0]
-    sets_bag["Transform"] = {
-        "posX": 74.78447,
-        "posY": 1.154937,
-        "posZ": 15.9169846,
-        "rotX": 1.4840989e-05,
-        "rotY": -1.382713e-05,
-        "rotZ": 1.612498e-05,
-        "scaleX": 3.0,
-        "scaleY": 3.0,
-        "scaleZ": 3.0,
-    }
-
-    return tts_dict
 
 
 def save_tts(tts_json: dict, save_dir: Path, file_name: str):
@@ -268,3 +265,21 @@ def _make_game_set_bag(game_set: GameSet):
     set_bag.contained_objects.append(map_bag)
 
     return set_bag
+
+
+def _reposition_set_bag(tts_dict):
+    # todo could combine with _make_game_set_bag
+    sets_bag = [
+        item for item in tts_dict["ObjectStates"] if item["Nickname"] == "Sets"
+    ][0]
+    sets_bag["Transform"] = {  # copied from save file to fit the table
+        "posX": 74.78447,
+        "posY": 1.154937,
+        "posZ": 15.9169846,
+        "rotX": 1.4840989e-05,
+        "rotY": -1.382713e-05,
+        "rotZ": 1.612498e-05,
+        "scaleX": 3.0,
+        "scaleY": 3.0,
+        "scaleZ": 3.0,
+    }

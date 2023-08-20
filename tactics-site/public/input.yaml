@@ -178,14 +178,14 @@ sets:
           - name: Venom Mine
             text: |-
               1/battle
-              Empty space in range 3, place a size 1 Venom Mine.
-              When an enemy enters this or an adjacent space, destroy this and burst 1, give Poison 1.
+              Empty space in range 3, Summon a Venom Mine with 1hp.
+              When an enemy enters this or an adjacent space, destroy this. When destroyed, burst 1, give Poison 1.
             tokens:
               - name: Venom Mine
                 image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-widowmaker3.png
                 size: 1
                 text: |-
-                  When an enemy enters this space, destroy this and they get Poison 1.
+                  When an enemy enters this or an adjacent space, destroy this. When destroyed, burst 1, give Poison 1.
               - *Poison
           - name: Grappling Hook
             text: |-
@@ -307,7 +307,7 @@ sets:
         speed: 4
         image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b3/OW2_Pharah.png
         passives:
-          - name: Ignore non-blocking terrain.
+          - name: All your movement is flying.
             text: ""
         default_abilities:
           - name: Rocket Launcher
@@ -336,8 +336,8 @@ sets:
           - name: Concussive Blast
             text: |-
               Range 4,
-              push all adjacent to the target 1 space away from them.
-              push target 2 spaces in any direction.
+              Others in burst 1, push 1 space away from target.
+              Push target 2 spaces in any direction.
           - name: Barrage
             text: |-
               Move + Standard action, Ultimate 5:
@@ -1373,7 +1373,7 @@ sets:
             text: |-
               Free action at start of turn.
               Enter SEKHMET stance:
-                You deal +⚔3, and can use Chain Axe as a free action once per turn.
+                You deal +⚔1, and can use Chain Axe as a free action once per turn.
                 While you are not adjacent to a unit, you must use all resources to move towards the nearest unit, allied or hostile.
                 While you are adjacent to a unit, you must use Chain Axe on an adjacent unit as many times as possible.
                 At the start of your turn, you may end your turn to exit SEKHMET stance.
