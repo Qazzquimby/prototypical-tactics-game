@@ -439,7 +439,6 @@ class HeroDeck(Hero, Deck):
 class Map(Spawnable, BaseModel):
     name: str
     image_path: str
-    rules: list[RulesCard] = []
 
     tokens: list[Token] = []
 
@@ -496,25 +495,6 @@ class Map(Spawnable, BaseModel):
             local_path=self.image_path,
         )
         bag.contained_objects.append(map_)
-
-        if self.rules:
-            rule_cards = []
-            for rule in self.rules:
-                rule_cards.append(
-                    DomainCard(
-                        id_=len(rule_cards) + 1,
-                        count=1,
-                        obj=ComplexObject(
-                            name=make_deck_name(rule.name),
-                            type_=RulesCard.to_complex_type(),
-                            content=rule,
-                        ),
-                    ),
-                )
-            domain_deck = DomainDeck.from_cards(
-                name=make_deck_name(f"{self.name} rules"), cards=rule_cards
-            )
-            bag.contained_objects.append(domain_deck)
 
         return bag
 
