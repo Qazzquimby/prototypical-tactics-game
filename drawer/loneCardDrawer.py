@@ -2,7 +2,7 @@ import pygame
 
 from drawer.base import BaseDrawer
 from drawer.complexObjectDrawer import ComplexObjectDrawer
-from drawer.size_constants import CARD_WIDTH, CARD_HEIGHT, CARD_SIZE
+from drawer.size_constants import CARD_WIDTH, CARD_HEIGHT
 
 
 class LoneCardDrawer(BaseDrawer):

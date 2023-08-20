@@ -3,7 +3,6 @@ import json
 from pathlib import Path
 from typing import Union, Coroutine
 
-import pygame
 import yaml.scanner
 from playwright.async_api import Playwright, async_playwright
 
@@ -19,18 +18,9 @@ from drawer.base import BaseDrawer
 from drawer.cardBackDrawer import CardBackDrawer
 from drawer.complexObjectDrawer import ComplexObjectDrawer
 from drawer.loneCardDrawer import LoneCardDrawer
-from image_builders import ImageBuilder, DirectoryImagesBuilder
-from paths import data_dir
+from image_builders import ImageBuilder
 from tts_dir import try_and_find_save_games_folder
 from yaml_parsing import GameSet, RulesDeck
-
-DEFAULT_LIBRARY = Library(
-    tokens=[],
-    dice=[],
-    complex_objects=[],
-    decks=[],
-    bags=[],
-)
 
 
 def build(image_builder):
@@ -49,19 +39,8 @@ def build(image_builder):
     )
 
 
-def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder=None):
-    if image_builder is None:
-        image_builder = DirectoryImagesBuilder(
-            pygame=pygame, base_path=data_dir / "images"
-        )
-
-    try:
-        yaml_content = yaml_parsing.read_yaml_file(yaml_path)
-    except yaml.scanner.ScannerError as e:
-        print(f"Error parsing {yaml_path}\n{e}")
-        return
-
-    game = yaml_parsing.Game.parse_obj(yaml_content)
+def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder: ImageBuilder):
+    game = _load_game_from_yaml_path(yaml_path)
     library = game_to_library(game)
 
     tts_dict = asyncio.run(
@@ -184,6 +163,17 @@ def save_tts(tts_json: dict, save_dir: Path, file_name: str):
     path = save_dir / f"TS_{file_name.replace(' ', '_')}.json"
     with open(path, "w") as outfile:
         json.dump(tts_json, outfile)
+
+
+def _load_game_from_yaml_path(yaml_path: str):
+    try:
+        yaml_content = yaml_parsing.read_yaml_file(yaml_path)
+    except yaml.scanner.ScannerError as e:
+        print(f"Error parsing {yaml_path}\n{e}")
+        return
+
+    game = yaml_parsing.Game.parse_obj(yaml_content)
+    return game
 
 
 def _read_template_dict(file_name: str):

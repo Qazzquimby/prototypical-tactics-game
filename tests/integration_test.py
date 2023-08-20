@@ -1,22 +1,20 @@
 import asyncio
 
+from paths import data_dir
 from yaml_parsing import (
     GameSet,
     HeroDeck,
-    Deck,
     Passive,
     BASIC,
-    Hero,
 )
 
 import json
-from pathlib import Path
 
 import pygame
 import yaml
 
 from core import game_to_library, library_to_tts_dict
-from image_builders import DirectoryImagesBuilder, ImgBoxImagesBuilder
+from image_builders import DirectoryImagesBuilder
 from yaml_parsing import Game
 
 BASIC_GAME = Game(

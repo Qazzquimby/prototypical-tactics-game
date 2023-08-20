@@ -66,7 +66,7 @@ class DirectoryImagesBuilder(ImageBuilder):
         self.pygame = pygame
         self.base_path = base_path
 
-    async def build(self, image: Surface, file_name: str, file_extension: str):
+    async def build(self, image: Surface, file_name: str, file_extension: str) -> str:
         path = self.base_path / f"{file_name}.{file_extension}"
         self.pygame.image.save(image, path)
         return f"file:///{path}"

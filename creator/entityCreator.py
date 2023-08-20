@@ -9,7 +9,6 @@ from creator.constants import (
     YCHUNKS,
 )
 from domain.abstract import DomainEntity
-from reader.content import read_content
 
 
 def get_random_coord_in_chunk(
