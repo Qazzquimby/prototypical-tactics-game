@@ -5,7 +5,7 @@ from tts.transform import Transform
 
 class Card(DomainEntity):
     def __init__(self, obj, count, id_):
-        self._id = id_
+        self.id_for_keys = id_
         self.count = count
         self.object = obj
         self.image_path = ""
@@ -30,12 +30,12 @@ class Card(DomainEntity):
             "Tooltip": True,
             "GridProjection": False,
             "Hands": True,
-            "CardID": self.get_id(),
+            "CardID": self.get_id_for_values(),
             "SidewaysCard": False,
             "LuaScript": self.object.content.get_lua(),
             "LuaScriptState": "",
             "ContainedObjects": [],
-            "CustomDeck": {self._id: self.get_custom_deck_dict()},
+            "CustomDeck": {self.id_for_keys: self.get_custom_deck_dict()},
             "GUID": guid(),
         }
 
@@ -50,8 +50,8 @@ class Card(DomainEntity):
             "Type": 0,
         }
 
-    def get_id(self):
-        return 100 * self._id
+    def get_id_for_values(self):
+        return 100 * self.id_for_keys
 
 
 class LoneCard(Card):

@@ -49,13 +49,13 @@ class Deck(DomainEntity):
         ids = []
         for card in self.cards:
             for _ in range(0, card.count):
-                ids.append(card.get_id())
+                ids.append(card.get_id_for_values())
         return ids
 
     def get_custom_deck_dict(self):
         custom_deck_dict = {}
         for card in self.cards:
-            custom_deck_dict[card._id] = card.get_custom_deck_dict()
+            custom_deck_dict[card.id_for_keys] = card.get_custom_deck_dict()
         return custom_deck_dict
 
     def get_card_instances(self):

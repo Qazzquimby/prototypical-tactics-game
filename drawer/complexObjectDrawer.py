@@ -1,8 +1,5 @@
-import asyncio
 import io
 from pathlib import Path
-
-from playwright.async_api import async_playwright
 import pygame
 
 from browser import get_browser
@@ -32,7 +29,7 @@ class ComplexObjectDrawer(BaseDrawer):
         self.surf = None
         self.full_surf = None
 
-    async def draw(self, _=None):
+    async def draw(self, _=None) -> pygame.Surface:
         try:
             card_width = self.object.type.size[0]
             card_height = self.object.type.size[1]
