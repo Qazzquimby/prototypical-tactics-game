@@ -1,6 +1,8 @@
 import os
 import sys
 
+import pythoncom
+
 
 def try_and_find_save_games_folder():
     if sys.platform != "win32":
@@ -11,7 +13,7 @@ def try_and_find_save_games_folder():
     except ImportError:
         return None
 
-    obj_shell = win32com.client.Dispatch("WScript.Shell")
+    obj_shell = win32com.client.Dispatch("WScript.Shell", pythoncom.CoInitialize())
     docs = (
         obj_shell.SpecialFolders("MyDocuments") + "\My Games\Tabletop Simulator\Saves"
     )
