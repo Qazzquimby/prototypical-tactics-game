@@ -1,7 +1,7 @@
 import asyncio
 
-from paths import data_dir
-from yaml_parsing import (
+from src.paths import data_dir
+from schema.yaml_parsing import (
     GameSet,
     HeroDeck,
     Passive,
@@ -15,8 +15,8 @@ import yaml
 
 from tts_objects import library_to_tts_dict
 from src.library import game_to_library
-from image_builders import DirectoryImagesBuilder
-from yaml_parsing import Game
+from src.image_builders import DirectoryImagesBuilder
+from schema.yaml_parsing import Game
 
 BASIC_GAME = Game(
     sets=[

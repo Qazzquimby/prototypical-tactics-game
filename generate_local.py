@@ -2,9 +2,9 @@ from pathlib import Path
 
 import pygame
 
-from image_builders import DirectoryImagesBuilder
+from src.image_builders import DirectoryImagesBuilder
 from src.orchestration import build
-from paths import site_images_dir
+from src.paths import site_images_dir
 
 
 def build_local():

@@ -2,7 +2,7 @@ import io
 from pathlib import Path
 import pygame
 
-from browser import get_browser
+from src.browser import get_browser
 from drawer.base import BaseDrawer
 from drawer.color import convert_tts_to_pygame
 from drawer.css_maker import make_css

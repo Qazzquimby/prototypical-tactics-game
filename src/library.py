@@ -1,6 +1,6 @@
 from domain.bag import Bag
 from domain.library import Library
-from yaml_parsing import GameSet, RulesDeck
+from schema.yaml_parsing import GameSet, RulesDeck
 
 
 def game_to_library(game):

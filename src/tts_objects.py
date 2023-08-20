@@ -5,14 +5,14 @@ from typing import Union, Coroutine
 from playwright.async_api import async_playwright, Playwright
 from pygame import Surface
 
-from browser import create_browser, close_browser
+from src.browser import create_browser, close_browser
 from domain.library import Library
 from domain.token import ContentToken
 from drawer.base import BaseDrawer
 from drawer.cardBackDrawer import CardBackDrawer
 from drawer.complexObjectDrawer import ComplexObjectDrawer
 from drawer.loneCardDrawer import LoneCardDrawer
-from image_builders import ImageBuilder
+from src.image_builders import ImageBuilder
 
 
 def reposition_set_bag(tts_dict):

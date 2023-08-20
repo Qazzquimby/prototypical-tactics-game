@@ -14,7 +14,7 @@ from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
 from drawer.size_constants import CARD_SIZE, DIE_SPACING
 
-from spawning_lua import get_full_lua, scale_size, clean_string_for_lua
+from src.spawning_lua import get_full_lua, scale_size, clean_string_for_lua
 from domain.deck import Deck as DomainDeck
 from domain.card import Card as DomainCard
 

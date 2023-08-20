@@ -4,11 +4,11 @@ from pathlib import Path
 
 import yaml.scanner
 
-import yaml_parsing
+from schema import yaml_parsing
 
-from image_builders import ImageBuilder
+from src.image_builders import ImageBuilder
 from src.library import game_to_library
-from tts_dir import try_and_find_save_games_folder
+from src.tts_dir import try_and_find_save_games_folder
 from src.tts_objects import library_to_tts_dict
 
 

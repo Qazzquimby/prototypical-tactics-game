@@ -2,7 +2,7 @@ import pygame
 
 from generate_local import build_local
 from core import build
-from image_builders import DirectoryImagesBuilder
+from src.image_builders import DirectoryImagesBuilder
 
 
 def build_online():
