@@ -1,6 +1,6 @@
 import pickle
 
-from core import game_to_library
+from src.library import game_to_library
 from tests.integration_test import BASIC_GAME
 
 

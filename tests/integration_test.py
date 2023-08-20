@@ -13,7 +13,8 @@ import json
 import pygame
 import yaml
 
-from core import game_to_library, library_to_tts_dict
+from tts_objects import library_to_tts_dict
+from src.library import game_to_library
 from image_builders import DirectoryImagesBuilder
 from yaml_parsing import Game
 

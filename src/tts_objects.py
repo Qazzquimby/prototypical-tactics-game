@@ -1,17 +1,11 @@
 import asyncio
 import json
-from pathlib import Path
 from typing import Union, Coroutine
 
-import yaml.scanner
-from playwright.async_api import Playwright, async_playwright
-
+from playwright.async_api import async_playwright, Playwright
 from pygame import Surface
 
-import yaml_parsing
 from browser import create_browser, close_browser
-from domain.bag import Bag
-
 from domain.library import Library
 from domain.token import ContentToken
 from drawer.base import BaseDrawer
@@ -19,115 +13,6 @@ from drawer.cardBackDrawer import CardBackDrawer
 from drawer.complexObjectDrawer import ComplexObjectDrawer
 from drawer.loneCardDrawer import LoneCardDrawer
 from image_builders import ImageBuilder
-from tts_dir import try_and_find_save_games_folder
-from yaml_parsing import GameSet, RulesDeck
-
-
-def build(image_builder):
-    save_schema()
-    copy_yaml_to_site()
-
-    save_dir = Path(try_and_find_save_games_folder())
-    yaml_file_to_tts_save(
-        yaml_path="data/input.yaml", save_dir=save_dir, image_builder=image_builder
-    )
-
-
-def save_schema():
-    schema = yaml_parsing.Game.schema_json()
-    with open("data/game_schema.json", "w") as f:
-        f.write(schema)
-
-
-def copy_yaml_to_site():
-    with open("data/input.yaml", "r") as f:
-        input_yaml = f.read()
-    with open("tactics-site/public/input.yaml", "w+") as f:
-        f.write(input_yaml)
-
-
-def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder: ImageBuilder):
-    game = load_game_from_yaml_path(yaml_path)
-    library = game_to_library(game)
-
-    tts_dict = asyncio.run(
-        library_to_tts_dict(
-            library=library,
-            image_builder=image_builder,
-            file_name="TestGame",
-        ),
-    )
-
-    save_tts(tts_dict, save_dir=save_dir, file_name=Path(yaml_path).stem)
-    print("Built images")
-
-
-def load_game_from_yaml_path(yaml_path: str):
-    try:
-        yaml_content = yaml_parsing.read_yaml_file(yaml_path)
-    except yaml.scanner.ScannerError as e:
-        print(f"Error parsing {yaml_path}\n{e}")
-        return
-
-    game = yaml_parsing.Game.parse_obj(yaml_content)
-    return game
-
-
-def game_to_library(game):
-    library = Library(
-        tokens=[],
-        dice=[],
-        complex_objects=[],
-        decks=[],
-        bags=[],
-    )
-
-    sets_bag = Bag(name="Sets", size=3, color=(1.0, 1.0, 1.0))
-    for game_set in game.sets:
-        game_set_bag = make_game_set_bag(game_set)
-        sets_bag.contained_objects.append(game_set_bag)
-    library.bags.append(sets_bag)
-
-    add_game_rules_deck(library, game)
-
-    return library
-
-
-def make_game_set_bag(game_set: GameSet):
-    set_bag = Bag(
-        name=game_set.name,
-        description=game_set.description,
-        size=2,
-        color=(0.0, 0.0, 0.0),
-    )
-
-    rules_deck = RulesDeck(cards=game_set.rules)
-    domain_rules_deck = rules_deck.get_tts_obj(set_name=game_set.name)
-    if domain_rules_deck:
-        set_bag.contained_objects.append(domain_rules_deck)
-
-    # heroes
-    hero_bag = Bag(
-        name=f"{game_set.name} heroes",
-        size=2,
-        color=(0.0, 0.0, 1.0),
-    )
-    for hero_box in game_set.heroes:
-        hero_box_bag = hero_box.get_tts_obj(set_name=game_set.name)
-        hero_bag.contained_objects.append(hero_box_bag)
-    set_bag.contained_objects.append(hero_bag)
-
-    # maps
-    map_bag = Bag(
-        name=f"{game_set.name} maps",
-        size=2,
-        color=(0.0, 1.0, 0.0),
-    )
-    for map_ in game_set.maps:
-        map_bag.contained_objects.append(map_.get_tts_obj())
-    set_bag.contained_objects.append(map_bag)
-
-    return set_bag
 
 
 def reposition_set_bag(tts_dict):
@@ -146,12 +31,6 @@ def reposition_set_bag(tts_dict):
         "scaleY": 3.0,
         "scaleZ": 3.0,
     }
-
-
-def add_game_rules_deck(library, game):
-    rules_deck = RulesDeck(cards=game.rules)
-    domain_rules_deck = rules_deck.get_tts_obj(set_name="core")
-    library.bags[0].contained_objects.append(domain_rules_deck)
 
 
 async def library_to_tts_dict(
@@ -278,9 +157,3 @@ async def save_image_and_set_attribute(
 
     for attribute in attribute_to_set:
         object_.__setattr__(attribute, path)
-
-
-def save_tts(tts_json: dict, save_dir: Path, file_name: str):
-    path = save_dir / f"TS_{file_name.replace(' ', '_')}.json"
-    with open(path, "w") as outfile:
-        json.dump(tts_json, outfile)

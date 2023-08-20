@@ -3,7 +3,7 @@ from pathlib import Path
 import pygame
 
 from image_builders import DirectoryImagesBuilder
-from core import build
+from src.orchestration import build
 from paths import site_images_dir
 
 
