@@ -37,7 +37,6 @@ async def draw_library_assets(
                     drawer=card_drawer,
                     object_=card,
                     file_name=image_name,
-                    file_extension="jpg",
                     attribute_to_set=["image_path"],
                 )
             )
@@ -49,7 +48,6 @@ async def draw_library_assets(
                 drawer=LoneCardDrawer(config),
                 object_=lone_card,
                 file_name=lone_card.object.name,
-                file_extension="jpg",
             )
         )
 
@@ -61,7 +59,6 @@ async def draw_library_assets(
                     drawer=back_drawer,  # todo why? Seems to work though.
                     object_=token,
                     file_name="token_" + token.name,
-                    file_extension="jpg",
                     attribute_to_set="image_path",
                 )
             )
@@ -79,7 +76,7 @@ async def save_image_and_set_attribute(
     drawer: BaseDrawer,
     object_,
     file_name: str,
-    file_extension: str,
+    file_extension: str = "jpg",
     attribute_to_set: str | list[str] = None,
 ):
     if attribute_to_set is None:
