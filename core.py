@@ -90,7 +90,6 @@ async def library_to_tts_dict(
                 )
             )
 
-
     for lone_card in library.lone_cards:
         coroutines.append(
             _save_image_and_set_attribute(
