@@ -18,7 +18,6 @@ from src.paths import data_dir
 TemplatesPath = data_dir / "templates"
 
 
-# CARD_CSS = (TemplatesPath / "card.css").read_text()
 CARD_CSS = make_css()
 
 
