@@ -1,11 +1,3 @@
-import itertools
-
-import pygame
-
-from drawer.base import BaseDrawer
-from drawer.browser_drawer import BrowserDrawer
-from drawer.size_constants import CARD_WIDTH, CARD_HEIGHT, CARD_SIZE
-
 DECK_IMAGE_CARDS_PER_ROW = 1  # 10
 DECK_IMAGE_CARDS_PER_COLUMN = 1  # 7
 #

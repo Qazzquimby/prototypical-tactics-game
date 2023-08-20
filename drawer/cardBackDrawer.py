@@ -1,7 +1,7 @@
 import pygame
 
 from drawer.base import BaseDrawer
-from drawer.browser_drawer import BrowserDrawer
+from src.drawing.card_drawer import CardDrawer
 from drawer.color import convert_tts_to_pygame
 from drawer.size_constants import CARD_SIZE
 
@@ -18,7 +18,7 @@ class CardBackDrawer(BaseDrawer):
         self.config = config
 
     def draw(self, deck):
-        drawer = BrowserDrawer(deck.cards[0].object, self.config)
+        drawer = CardDrawer(deck.cards[0].object, self.config)
         surf = pygame.Surface(CARD_SIZE)
         draw_card_backs(drawer, surf, deck.cards)
         return surf
