@@ -1695,23 +1695,21 @@ sets:
               Take 4 stress,
               Range 1 3x3 area, ⚔4, give Burning 3
               The affected spaces gain Hazard: ⚔2
-          - name: AGNI-Class NHP
+          - name: Havok Mine
             text: |-
-              1/Battle
-              Free action at end of turn
-              Clear all stress.
-              All units in range 2, give Burning 1 and push 2
+              Empty space in range 2, place a Havok Mine marker.
+              When any character moves into an orthogonally adjacent space, it is destroyed and does
+                All in line 4, give Burning 3
+              where the line must include the triggering character.
+            tokens:
+              - name: Havok Mine
+                image_url: https://media.discordapp.net/attachments/999104692233711676/1143274582996942998/qazzquimby_Fire_landmine_3a6c1c19-e7db-4b09-a40c-01e0d115b4f7.png?width=577&height=577
           - name: Expose Power Cells
             text: |-
               1/Battle
               Interrupt when you would exceed your stress limit.
               Clear all stress.
-              Allies in range 2 get 2 overshield.
-              Enemies in range 2 get +2 stress +1 Burning.
-            dice:
-              - name: Overshield
-                color: blue
-                values: [ 1, 1, 1]
+              Enemies in range 2 get +2 stress +1 Burning and are pushed 2.
     maps:
       - name: Rickety Station
         image_path: lancer-rickety_station.png
