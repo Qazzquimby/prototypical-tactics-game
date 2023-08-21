@@ -1,8 +1,8 @@
 import pygame
 
 from generate_local import build_local
-from core import build
 from src.image_builders import DirectoryImagesBuilder
+from src.orchestration import build
 
 
 def build_online():

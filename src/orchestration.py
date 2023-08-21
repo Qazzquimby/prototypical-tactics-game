@@ -8,6 +8,7 @@ from schema import yaml_parsing
 
 from src.image_builders import ImageBuilder
 from src.library import game_to_library
+from src.paths import data_dir, site_public_dir
 from src.tts_dir import try_and_find_save_games_folder
 from src.tts_objects import library_to_tts_dict
 
@@ -18,20 +19,22 @@ def build(image_builder):
 
     save_dir = Path(try_and_find_save_games_folder())
     yaml_file_to_tts_save(
-        yaml_path="data/input.yaml", save_dir=save_dir, image_builder=image_builder
+        yaml_path=str(data_dir / "input.yaml"),
+        save_dir=save_dir,
+        image_builder=image_builder,
     )
 
 
 def save_schema():
     schema = yaml_parsing.Game.schema_json()
-    with open("data/game_schema.json", "w") as f:
+    with open(data_dir / "game_schema.json", "w") as f:
         f.write(schema)
 
 
 def copy_yaml_to_site():
-    with open("data/input.yaml", "r") as f:
+    with open(data_dir / "input.yaml", "r") as f:
         input_yaml = f.read()
-    with open("tactics-site/public/input.yaml", "w+") as f:
+    with open(site_public_dir / "input.yaml", "w+") as f:
         f.write(input_yaml)
 
 
