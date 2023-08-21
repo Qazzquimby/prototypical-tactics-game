@@ -92,6 +92,10 @@ conditions:
     name: Silence
     image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/a/ae/Last_Word_icon.png/revision/latest/zoom-crop/width/500/height/500?cb=20121207111755
     text: You do not have Passives. You cannot use non-default abilities. Clear at the end of your turn.
+counters:
+  Kill: &Kill
+    name: Kill counter
+    image_url: https://media.discordapp.net/attachments/999104692233711676/1142897434821922926/qazzquimby_Kill_skull_game_icon_ebaccc8b-ca88-436b-8a62-f85e00c5c951.png?width=577&height=577
 sets:
   - name: Overwatch
     description: |-
@@ -1702,8 +1706,12 @@ sets:
               1/Battle
               Interrupt when you would exceed your stress limit.
               Clear all stress.
-              5x5 area centered on you gets terrain that gives allies +2 dodge and enemies Hazard: +2 stress +1 Burning.
-              Terrain ends at the start of your next turn.
+              Allies in range 2 get 2 overshield.
+              Enemies in range 2 get +2 stress +1 Burning.
+            dice:
+              - name: Overshield
+                color: blue
+                values: [ 1, 1, 1]
     maps:
       - name: Rickety Station
         image_path: lancer-rickety_station.png
@@ -2621,11 +2629,13 @@ sets:
           - name: Revolver
             text: |-
               If this has a Kill counter, remove one and deal a crit on hit.
-              Unlimited range, 1 damage, +1 damage on crit.
+              Unlimited range, ⚔1, +⚔1 on crit.
           - name: Knife
             text: |-
               Interrupt when an enemy ends their turn in range 3 and did not target you or your space that turn.
               You may move 2 towards them and do ⚔50 to them.
+        tokens:
+          - *Kill
         abilities:
           - name: Stealth
             text: |-
@@ -2645,24 +2655,28 @@ sets:
               1/game, interrupt when you would take damage. Take no damage, move 2, use Stealth.
 
 
-      - name: heavy
+      - name: Heavy
         description: |-
           - high health and damage
           - slow, close range
           - Stance changing
-        image_url: https://static.wikia.nocookie.net/villains/images/3/3e/Heavy.png/revision/latest?cb=20190406014748
+        image_url: https://wiki.teamfortress.com/w/images/thumb/a/a0/Community_Heavy_Strategy_Header.png/300px-Community_Heavy_Strategy_Header.png
         health: 12
         speed: 2
 
         default_abilities:
           - name: Minigun
             text: |-
-              If not spun up: 2dmg -1dmg per space between.
+              If not spun up: ⚔2 -⚔1 per space between.
                 Enter spun up stance: You are slowed and can only use minigun. You can exit the stance as a free action at start of turn.
               
-              If spun up: 6dmg -2dmg per space between.
+              If spun up: ⚔6 -⚔2 per space between.
           - name: Punch
-            text: Range 1 2dmg +2crit
+            text: Range 1 ⚔2 +2crit
+        tokens:
+          - name: Spun Up
+            image_url: https://wiki.teamfortress.com/w/images/thumb/4/42/Minigun_IMG.png/250px-Minigun_IMG.png
+            text: You are slowed, but your minigun is more powerful.
         abilities:
           - name: Sandvich
             text: |-
@@ -2692,7 +2706,7 @@ sets:
                   +2 Speed, receive +.5x damage.
               
                   Or enter Fists of Steel stance: 
-                  Receive -.5x damage from ranges 2+, and +1x damage from range 1.
+                  Receive -1 damage from ranges 2+, and +1x damage from range 1.
               
                   Or remove your glove stance.
             tokens:
@@ -2701,49 +2715,155 @@ sets:
                 text: +2 Speed, receive +.5x damage.
               - name: Fists of Steel
                 image_url: https://static.wikia.nocookie.net/teamfortress/images/5/52/Steamworkshop_guide_1370250342_guide_branding.png/revision/latest?cb=20180207193840
-                text: Receive -.5x damage from ranges 2+, and +1x damage from range 1.
+                text: Receive -1 damage from ranges 2+, and +1x damage from range 1.
 
 
       - name: Sniper
-        
-    # sniper
-    # 6hp, speed 3
-    #
-    # immune to burning
-    # Full round. Move 1, Set facing. Start of next turn, range 3+, undodgeable 5dmg, and either +2 crit, or after the target takes +.5x dmg.
-    # on kill gain Kill counter. +2 crit per Kill counter.
-  # cleaner's carbine, range 2, 2 dmg. Gain Crikey counters equal to damage dealt, max 4. While this has 4 Crikey counters, you deal +.5x damage.
-  # jarate, target takes +.5x damage
-  # bushwacka, doubles damage bonuses
-  #
-  #
-  # medic
-  # 8hp, speed 3
-  # start of turn heal 1
-  # blutsauger range 3, +2dodge, 2dmg, heal equal to damage dealt
-  # crossbow, +1dodge/2 spaces, 3dmg, or heal 3
-  # ubersaw, range 1, 2dmg, +2crit, lower your ultimate costs by 2.
-  # medigun, range 3, heal 2, they become your Healing Target until the start of your next turn, or if they stop being within range 4.
-  # at start of your turn, heal them 4, with excess healing as overshield. Move up to their speed-3.
-  # When they move other than in a standard move, you may copy the effect that moved them on yourself.
-  # Immediate Def+3 Ultimate 5: Either: You are immune to damage but are ignored by objectives. When you use medigun on a target, they gain this effect until the start of your next turn.
-  # or When you use medigun on a target they deal +1x damage and take -1x damage until the start of your next turn.
-  # Amputator Song: Move+Standard. You and Allies in range 3 heal 3.
+        description: |-
+          - Charge up sniper
+          - Permanent damage dealt buffs
+        health: 6
+        speed: 3
+        image_url: https://static.tvtropes.org/pmwiki/pub/images/main_menu_sniper.png
+        passives:
+          - name: Immune to Burning
+            text: ''
+        default_abilities:
+          - name: Sniper Rifle
+            text: |-
+              Move+Standard. Move 1. Note your facing.
+              At the start of your next turn, range 3+, undogeable ⚔5, +2 crit per kill counter.
+              After this attack the target takes +.5x dmg.
+              
+              On kill, gain a Kill counter.
+          - name: Bushwacka
+            text: Range 1, 2⚔, +2 crit, doubles damage bonuses
+        tokens:
+          - *Kill
+        abilities:
+          - name: Cleaner's Carbine
+            text: Range 2, 2⚔. Gain Crikey counters equal to damage dealt, max 4. While this has 4 Crikey counters, you deal +.5x damage.
+            tokens:
+              - name: Crikey
+                image_url: https://wiki.teamfortress.com/w/images/thumb/4/48/Cleaner%27s_Carbine.png/250px-Cleaner%27s_Carbine.png
+                text: While you have 4 of these, +.5x damage
+          - name: Jarate
+            text: Range 2, 2x2, targets receive +.5x damage
+            tokens:
+              - name: Jarate
+                image_url: https://wiki.teamfortress.com/w/images/thumb/3/38/Jarate.png/250px-Jarate.png
+                text: Receive +.5x damage
 
+      - name: Medic
+        description: |-
+          - Heals and overshields
+          - Powerful support ultimates
+        health: 8
+        speed: 3
+        image_url: https://wiki.teamfortress.com/w/images/thumb/c/c2/Community_Medic_Strategy_Header.png/300px-Community_Medic_Strategy_Header.png
+        passives:
+          - name: Start
+            text: Heal 1
+        default_abilities:
+          - name: Medigun
+            text: |-
+              Range 3, heal 2, target becomes your Healing Target until the start of your next turn, or if they stop being within range 4.
+              At start of your turn, heal them 4, with excess healing as overshield. Move up to their speed-3.
+              When they move other than in a standard move, you may copy that movement effect.
+          - name: Blutsauger
+            text: |-
+              Range 3, +2 dodge, 2⚔, heal equal to damage dealt.
+        tokens:
+          - name: Healing Target
+            image_url: https://wiki.teamfortress.com/w/images/thumb/5/53/RED_Medigun.png/250px-RED_Medigun.png
+            text: ''
+        abilities:
+          - name: Crossbow
+            text: +1dodge/2 spaces, 3dmg, or heal 3
+          - name: Ubersaw
+            text: Range 1, 2dmg, +2crit. On hit, lower your ultimate costs by 2.
+          - name: Amputator Song
+            text:
+              Move+Standard
+              You and Allies in range 3 heal 3.
+          - name: Ubercharge
+            text: |-
+              Instant ⛨+3, Ultimate 5: 
+              Either: 
+                You and your Healing Target are immune to damage but are ignored by objectives.
+                Or, your Healing target always crits.
+            dice:
+              - name: Required Ultimate
+                color: white
+                values: [5]
 
-  # engineer 8hp, speed 3
-  #
-  # rescue ranger, repair building any range, or pick up from any range
-  # carrying building. Rebuild time.
-  # gain crit from sentry kill?
-  # sentry, 1 round to set up, 1 round to upgrade, 1 round to rebuild to full after carrying
-  # once active, sentry shoots at first target that comes available 1/round. range 6, 4dmg. lvl2 8dmg+1 to all others burst 1 of target
-  # short circuit projectile eating
-  #
-  # effectively level 1 sentry
-  # dispenser, end turn next to heal 2
-  # teleporter?
-  # eureka effect, move+standard, teleport to deployment zone
+      - name: Engineer
+        description: |-
+          - Build and maintain stationary support summons
+        image_url: https://mediaproxy.tvtropes.org/width/350/https://static.tvtropes.org/pmwiki/pub/images/main_menu_engineer.png
+        health: 8
+        speed: 3
+        passives:
+          - name: Heavy Load
+            text: |-
+              You can carry one of your summons. Remove it from the board and place it on your card.
+              Free action, range 1, place your carried summon and Silence it.
+              You have -1 speed while carrying a summon.
+        tokens:
+          - *Silence
+          - name: Upgrade
+            image_url: https://www.pngkit.com/png/detail/105-1054665_metal-icon-tf2-tf2-engineer-logo.png
+            text: ''
+        default_abilities:
+          - name: Rescue Ranger
+            text: |-
+              ⛨1/3 distance, 2dmg 
+              Or if summon, heal 2.
+              Or if one of your summons, remove and carry.
+          - name: Wrench
+            text: |-
+              Range 1, ⚔2, +2crit
+              Or if summon, heal 4.
+              Or if one of your summons, give it an Upgrade token and Silence it.
+        abilities:
+          - name: Build
+            text: |-
+              Range 1, Summon a Sentry or Dispenser (max 1 each) and Silence it.
+          - name: Short Circuit
+            text: |-
+              Enemy attacks passing through spaces adjacent to you have Block⛨+2.
+          - name: Eureka Effect
+            text: |-
+              Move+Standard
+              Teleport to any space in your deployment zone.
+        units:
+          - name: Sentry
+            image_url: https://static.wikia.nocookie.net/teamfortress/images/7/78/Sentry3.gif/revision/latest/scale-to-width-down/250?cb=20100711094258
+            health: 4
+            speed: 0
+            passives:
+              - name: When this gets an Upgrade token, it gets +4hp, and heals 4.
+                text: ''
+              - name: There is an enemy in range 5
+                text: |-
+                  Recharge at start of turn.
+                  Mandatory Interrupt, nearest enemy in range 5, ⚔3
+                  or if upgraded, nearest enemy in range 5, ⚔6, ⚔1 to others in burst 1, push 1.
+          - name: Dispenser
+            image_url: https://wiki.teamfortress.com/w/images/thumb/1/1a/Lvl3dispenser.png/150px-Lvl3dispenser.png
+            health: 4
+            speed: 0
+            passives:
+              - name: When this gets an Upgrade token, it gets +4hp, and heals 4.
+                text: ''
+              - name: End
+                text: |-
+                  Allies in range 1, heal 2.
+                  or if upgraded, Allies in range 1 heal 4.
+                
+                
+                
+
   #
 
 
