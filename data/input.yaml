@@ -202,7 +202,7 @@ sets:
           - name: Infra-Sight
             text: |-
               Free action, Ultimate 3:
-                Enemies cannot dodge or have Stealth.
+                Enemies cannot dodge or be untargetable.
                 All allies have +2 crit
                 This doesn't gain charge while active.
       - name: Tracer
@@ -1314,8 +1314,8 @@ sets:
       name: Impaired
       image_url: https://tactics.toren.dev/image_token_Impaired_5997399677763413592.jpg
       text: |-
-        +1 Defense to all rolls.
-        Cleared at the end of the turn.
+        ⛨+2 to all rolls.
+        Cleared at the end of your turn.
     rules:
       - name: Actions
         text: |-
@@ -1509,7 +1509,7 @@ sets:
             text: |-
               2 Standard Actions,
               Give a unit your Marked for Death Mark.
-              You deal +⚔4 to the unit with the mark, so long as they are not in range 3.
+              You deal +⚔4 to the unit with the mark.
               While a unit has the mark, you are immobilized.
               You may remove the mark as a free action at the start of your turn.
             tokens:
@@ -1685,7 +1685,7 @@ sets:
         default_abilities:
           - name: Flamethrower
             text: |-
-              Range 1, 2x2 area, give Burning 2
+              Range 1, 2x2 area, give Burning 1
             tokens:
               - *Burning
         abilities:
@@ -1693,13 +1693,13 @@ sets:
             text: |-
               2 Standard actions
               Take 4 stress,
-              Range 1 3x3 area, ⚔4, give Burning 3
+              Range 1 3x3 area, ⚔4, give Burning 2
               The affected spaces gain Hazard: ⚔2
           - name: Havok Mine
             text: |-
               Empty space in range 2, place a Havok Mine marker.
               When any character moves into an orthogonally adjacent space, it is destroyed and does
-                All in line 4, give Burning 3
+                All in line 4, give Burning 2
               where the line must include the triggering character.
             tokens:
               - name: Havok Mine
@@ -1709,7 +1709,7 @@ sets:
               1/Battle
               Interrupt when you would exceed your stress limit.
               Clear all stress.
-              Enemies in range 2 get +2 stress +1 Burning and are pushed 2.
+              Enemies in range 2 get +2 stress Burning 1, and are pushed 2.
     maps:
       - name: Rickety Station
         image_path: lancer-rickety_station.png
@@ -2630,15 +2630,22 @@ sets:
               Unlimited range, ⚔1, +⚔1 on crit.
           - name: Knife
             text: |-
-              Interrupt when an enemy ends their turn in range 3 and did not target you or your space that turn.
-              You may move 2 towards them and do ⚔50 to them.
+              Interrupt when an enemy leave's an adjacent space from you, or ends their turn in path range 3 and did not target you or your space that turn.
+              You may move 2 towards them and range 1, ⚔50 to them.
         tokens:
           - *Kill
         abilities:
           - name: Stealth
             text: |-
-              You have Dodge⛨+3. You cannot be targeted beyond range 2.
+              You have +1 speed, Dodge⛨+3.
+              You don't provoke reactions. You cannot be targeted beyond range 2.
               Enemies consider you an ally rather than an enemy. When an enemy targets one of their allies while you're a valid target, you can force them to target you as well.
+              
+              Effect ends when you deal damage or receive damage.
+            tokens:
+              - name: Stealth
+                image_url: https://wiki.teamfortress.com/w/images/thumb/e/ef/Invisibilitywatch.PNG/250px-Invisibilitywatch.PNG
+
           - name: Sapper
             text: |-
               Free action, range 1, target a summon with speed 0.
@@ -2650,7 +2657,8 @@ sets:
               - *Paralyze
           - name: Deadringer
             text: |-
-              1/game, interrupt when you would take damage. Take no damage, move 2, use Stealth.
+              1/game, interrupt when you would take damage while Stealth is not active.
+              Take no damage, clear any number of contions, move 2, use Stealth.
 
 
       - name: Heavy

@@ -28,7 +28,7 @@ def reposition_set_bag(tts_dict):
 async def library_to_tts_dict(
     library: Library,
     image_builder: ImageBuilder,
-    file_name,
+    file_name: str,
     config=None,
 ):
     await image_builder.initialize()
