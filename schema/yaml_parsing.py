@@ -39,8 +39,8 @@ class Token(BaseModel, Spawnable):
     def get_spawning_lua(self):
         back_image_url = self.back_image_url or self.image_url
         return f"""\
-        local front='{self.image_url}'
-        local back='{back_image_url}'
+        local front="{self.image_url}"
+        local back="{back_image_url}"
         local name=[[{clean_string_for_lua(self.name)}]]
         local description=[[{clean_string_for_lua(self.text)}]]
         local s={scale_size(self.size)}
