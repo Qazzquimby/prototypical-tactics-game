@@ -17,7 +17,7 @@ onMounted(async () => {
 
 function get_image_path(names: string[]): string {
   const path = names.join('__')
-  return `/images/${path}.jpg`
+  return `/image_${path}.jpg`
 }
 </script>
 
