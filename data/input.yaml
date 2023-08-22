@@ -66,36 +66,36 @@ rules:
 conditions:
   Poison: &Poison
     name: Poison
-    image_url: https://tactics.toren.dev/images/tokens/Poison_5647933699778309315.jpg
+    image_url: https://tactics.toren.dev/image_token_Poison_5647933699778309315.jpg
     text: At the start of your turn, take 1 damage for each Poison you have.
   Burning: &Burning
     name: Burning
-    image_url: https://tactics.toren.dev/images/tokens/Burning_-3293685330274957657.jpg
+    image_url: https://tactics.toren.dev/image_token_Burning_-3293685330274957657.jpg
     text: At the start of your turn, take 1 damage for each Burning you have.
   Slow: &Slow
     name: Slow
-    image_url: https://tactics.toren.dev/images/tokens/Slow_1902566325755039578.jpg
+    image_url: https://tactics.toren.dev/image_token_Slow_1902566325755039578.jpg
     text: You have -2 Speed, to a minimum of 1. You can't dodge. Clear at the end of your turn.
   Stun: &Stun
     name: Stun
-    image_url: https://tactics.toren.dev/images/tokens/Stun_-947718855703478726.jpg
+    image_url: https://tactics.toren.dev/image_token_Stun_-947718855703478726.jpg
     text: You have -1 Standard Action. Clear at the end of your turn.
   Immobile: &Immobile
     name: Immobile
-    image_url: https://tactics.toren.dev/images/tokens/Poison_5647933699778309315.jpg
+    image_url: https://tactics.toren.dev/image_token_Poison_5647933699778309315.jpg
     text: You cannot move. Clear at the end of your turn.
   Paralyze: &Paralyze
     name: Paralyze
-    image_url: https://tactics.toren.dev/images/tokens/Paralyze_-2680861371538521442.jpg
+    image_url: https://tactics.toren.dev/image_token_Paralyze_-2680861371538521442.jpg
     text: You cannot take actions. Clear at the end of your turn.
   Silence: &Silence
     name: Silence
-    image_url: https://tactics.toren.dev/images/tokens/Silence_4233379504253462650.jpg
+    image_url: https://tactics.toren.dev/image_token_Silence_4233379504253462650.jpg
     text: You do not have Passives. You cannot use non-default abilities. Clear at the end of your turn.
 counters:
   Kill: &Kill
     name: Kill counter
-    image_url: https://tactics.toren.dev/images/tokens/Kill counter_984366966312148564.jpg
+    image_url: https://tactics.toren.dev/image_token_Kill counter_984366966312148564.jpg
 sets:
   - name: Overwatch
     description: |-
@@ -125,7 +125,7 @@ sets:
           Once per battle, you may reroll a die.
         tokens:
           - name: Critical Moment
-            image_url: https://tactics.toren.dev/images/tokens/Critical Moment_5737535895777788509.jpg
+            image_url: https://tactics.toren.dev/image_token_Critical Moment_5737535895777788509.jpg
             text: You may reroll one die.
       - name: Flying
         text: |-
@@ -167,7 +167,7 @@ sets:
           - Charge up sniper
         health: 8
         speed: 3
-        image_url: https://tactics.toren.dev/images/tokens/Widowmaker_3044169082943195147.jpg
+        image_url: https://tactics.toren.dev/image_token_Widowmaker_3044169082943195147.jpg
         default_abilities:
           - name: Widow's Kiss
             text: |-
@@ -178,7 +178,7 @@ sets:
                 Range 2+, ⚔6, undodgeable, +2 crit.
         tokens:
           - name: Widow's Kiss Charged
-            image_url: https://tactics.toren.dev/images/tokens/Widow's Kiss Charged_-7763573326957670311.jpg
+            image_url: https://tactics.toren.dev/image_token_Widow's Kiss Charged_-7763573326957670311.jpg
             text: |-
               Widow's Kiss has unlimited range, ⚔7, undodgeable, +2 crit.
               Remove when you take any action.
@@ -190,7 +190,7 @@ sets:
               When an enemy enters this or an adjacent space, destroy this. When destroyed, burst 1, give Poison 1.
             tokens:
               - name: Venom Mine
-                image_url: https://tactics.toren.dev/images/tokens/Venom Mine_-7291147640817522652.jpg
+                image_url: https://tactics.toren.dev/image_token_Venom Mine_-7291147640817522652.jpg
                 size: 1
                 text: |-
                   When an enemy enters this or an adjacent space, destroy this. When destroyed, burst 1, give Poison 1.
@@ -211,7 +211,7 @@ sets:
           - High close range damage
         health: 6
         speed: 4
-        image_url: https://tactics.toren.dev/images/tokens/Tracer_-8196092023965304912.jpg
+        image_url: https://tactics.toren.dev/image_token_Tracer_-8196092023965304912.jpg
         default_abilities:
           - name: Pulse Pistols
             text: Range 1, ⚔4.
@@ -233,7 +233,7 @@ sets:
               Teleport as close as possible to where you were at the end of your last turn.
             tokens:
               - name: Recall location
-                image_url: https://tactics.toren.dev/images/tokens/Recall location_7014843123727341894.jpg
+                image_url: https://tactics.toren.dev/image_token_Recall location_7014843123727341894.jpg
                 size: 1
                 text: This is the space you'll recall to.
             dice:
@@ -248,7 +248,7 @@ sets:
                 At the start of your next turn, destroy the pulse bomb. It deals ⚔9 to anyone in its space and ⚔3 to anyone else in burst 1.
             tokens:
               - name: Pulse Bomb
-                image_url: https://tactics.toren.dev/images/tokens/Pulse Bomb_4672933919487507787.jpg
+                image_url: https://tactics.toren.dev/image_token_Pulse Bomb_4672933919487507787.jpg
                 size: 1
                 text: |-
                   At the start of your turn, destroy this. It deals ⚔9 to anyone in its space and ⚔3 to anyone else in burst 1.
@@ -259,7 +259,7 @@ sets:
           - Fly to allies
         health: 8
         speed: 3
-        image_url: https://tactics.toren.dev/images/tokens/Mercy_8373339493272516722.jpg
+        image_url: https://tactics.toren.dev/image_token_Mercy_8373339493272516722.jpg
         passives:
           - name: Start
             text: If you did not take damage since the start of your last turn, ✚3.
@@ -268,14 +268,14 @@ sets:
               Place a Corpse Marker in their space and note which ally it corresponds to.
         tokens:
           - name: Caduceus Staff Damage Boost
-            image_url: https://tactics.toren.dev/images/tokens/Caduceus Staff Damage Boost_-7592169065816565248.jpg
+            image_url: https://tactics.toren.dev/image_token_Caduceus Staff Damage Boost_-7592169065816565248.jpg
             text: Until end of turn, deal +0.5x damage.
           - name: Took damage since start of last turn
-            image_url: https://tactics.toren.dev/images/tokens/Took damage since start of last turn_-3896541016264395972.jpg
-            back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
+            image_url: https://tactics.toren.dev/image_token_Took damage since start of last turn_-3896541016264395972.jpg
+            back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
             text: Flip this face down when you take damage, and face up at the start of your turn.
           - name: Corpse Marker
-            image_url: https://tactics.toren.dev/images/tokens/Corpse Marker_8974187535196407093.jpg
+            image_url: https://tactics.toren.dev/image_token_Corpse Marker_8974187535196407093.jpg
             size: 1
             text: Place this in the space where an ally died.
         default_abilities:
@@ -313,7 +313,7 @@ sets:
           - "High Altitude" avoiding short range attacks
         health: 8
         speed: 4
-        image_url: https://tactics.toren.dev/images/tokens/Pharah_2788900522477735691.jpg
+        image_url: https://tactics.toren.dev/image_token_Pharah_2788900522477735691.jpg
         passives:
           - name: All your movement is flying.
             text: ""
@@ -323,7 +323,7 @@ sets:
               ⛨1/2 distance, ⚔3, and others in burst 1 ⚔1
         HighAltitude: &HighAltitude
           name: High Altitude
-          image_url: https://tactics.toren.dev/images/tokens/High Altitude_-1699182313764770594.jpg
+          image_url: https://tactics.toren.dev/image_token_High Altitude_-1699182313764770594.jpg
           text: |-
             When drawing range to or from you, ignores soft cover and you count as 2 spaces further. 
             Clear at the start of your turn.
@@ -357,7 +357,7 @@ sets:
           - Counters high health enemies
         health: 8
         speed: 3
-        image_url: https://tactics.toren.dev/images/tokens/Reaper_3865390807997465343.jpg
+        image_url: https://tactics.toren.dev/image_token_Reaper_3865390807997465343.jpg
         passives:
           - name: The Reaping
             text: |-
@@ -375,7 +375,7 @@ sets:
               Move up to 2. Clear any number of conditions.
             tokens:
               - name: Invulnerable
-                image_url: https://tactics.toren.dev/images/tokens/Invulnerable_-1798483898600871358.jpg
+                image_url: https://tactics.toren.dev/image_token_Invulnerable_-1798483898600871358.jpg
                 text: Nothing affects you. Clear at the beginning of your next turn.
           - name: Shadow Step
             text: |-
@@ -393,7 +393,7 @@ sets:
         health: 12
         speed: 3
         dodge: -2
-        image_url: https://tactics.toren.dev/images/tokens/Reinhardt_8078956304379545605.jpg
+        image_url: https://tactics.toren.dev/image_token_Reinhardt_8078956304379545605.jpg
         passives:
           - name: Immune to involuntary movement
             text: ""
@@ -419,7 +419,7 @@ sets:
                 values: [ 6, 4 ]
             Barrier: &Barrier
               name: Barrier Field
-              image_url: https://tactics.toren.dev/images/tokens/Barrier Field_-8335640535662634721.jpg
+              image_url: https://tactics.toren.dev/image_token_Barrier Field_-8335640535662634721.jpg
               size: 0.25
               text: This edge is part of the barrier.
             tokens:
@@ -448,7 +448,7 @@ sets:
     #          - High damage slow stance
     #        health: 8
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_4/47/OW2-Bastion.png
     #        default_abilities:
     #          - name: Light Machine Gun
     #            text: Range 4, ⚔1.
@@ -473,7 +473,7 @@ sets:
     #                You may use Rotary Canon, and cannot use other abilities.
     #            tokens:
     #              - name: Bastion Stance
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/350?cb=20220409014728
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/350?cb=20220409014728
     #                back_image_url: https://pm1.narvii.com/6131/4b01877db14d895dac021ae4c575bcde2acb62e4_128.jpg
     #          - name: A-36 Tactical Grenade
     #            text: |-
@@ -487,14 +487,14 @@ sets:
     #                At the beginning of your next turn, for each marked space, deal ⚔10 to everyone inside, and ⚔2 to everyone else in burst 1.
     #            tokens:
     #              - name: Bastion Artillery Marker
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/ea/Artillery_Icon.png/revision/latest/scale-to-width-down/100?cb=20221015223113
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/ea/Artillery_Icon.png/revision/latest/scale-to-width-down/100?cb=20221015223113
     #      - name: Cassidy
     #        description: |-
     #          - Ranged sustained dps
     #          - Close range burst dps
     #        health: 8
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/2e/OW2_McCree.png/revision/latest/scale-to-width-down/1000?cb=20210623082527
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_2/2e/OW2_McCree.png/revision/latest/scale-to-width-down/1000?cb=20210623082527
     #        passives:
     #          - name: Ammo
     #            text: You start in ammo-loaded stance.
@@ -506,8 +506,8 @@ sets:
     #                or Range 1, ⚔5. Switch to ammo-empty.
     #            tokens:
     #              - name: Ammo Loaded
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-mccree1.png/revision/latest/scale-to-width-down/100?cb=20181119023403
-    #                back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_0/08/Ability-mccree1.png/revision/latest/scale-to-width-down/100?cb=20181119023403
+    #                back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
     #          - name: Reload
     #            text: |-
     #              Switch to ammo-loaded.
@@ -532,7 +532,7 @@ sets:
     #          - Extra life
     #        health: 12
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
     #        passives:
     #          - name: -2 Dodge, +1 Crit received
     #            text: ""
@@ -554,7 +554,7 @@ sets:
     #              Enemy attacks that draw range through the defense matrix are cancelled without effect.
     #            tokens:
     #              - name: Defense Matrix
-    #                image_url: https://static.wikia.nocookie.net/overwatch/images/9/9c/IconDefenseMatrix.png/revision/latest?cb=20151106233820
+    #                image_url: https://static.wikia.nocookie.net/overwatch/image_9/9c/IconDefenseMatrix.png/revision/latest?cb=20151106233820
     #                size: 2
     #          - name: Boosters
     #            text: |-
@@ -576,7 +576,7 @@ sets:
     #                At the beginning of your next turn, Deal ⚔7 to all enemies in burst 3 of the space you died in.
     #            tokens:
     #              - name: Self-Destruct
-    #                image_url: https://static.icy-veins.com/images/heroes/icons/large/storm_ui_icon_dva_selfdestruct.jpg
+    #                image_url: https://static.icy-veins.com/image_heroes/icons/large/storm_ui_icon_dva_selfdestruct.jpg
     #                size: 1
     #        units:
     #          - name: Pilot D.Va
@@ -590,14 +590,14 @@ sets:
     #                text: Spend 2 Mech charges and sacrifice this to summon D.Va
     #            tokens:
     #              - name: Mech Charge
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f0/Ability-dva6.png/revision/latest/scale-to-width-down/100?cb=20151116085308
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_f/f0/Ability-dva6.png/revision/latest/scale-to-width-down/100?cb=20151116085308
     #      - name: Genji
     #        description: |-
     #          - Fragile assassin
     #          - Finishes low health enemies
     #        health: 6
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Genji-ow2-portrait.png/revision/latest/scale-to-width-down/149?cb=20191104043734
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_6/6d/Genji-ow2-portrait.png/revision/latest/scale-to-width-down/149?cb=20191104043734
     #        passives:
     #          - name: Dodge⛨ +2
     #            text: ""
@@ -635,7 +635,7 @@ sets:
     #          - Long range with accuracy penalty
     #        health: 8
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/66/OW2_Hanzo.png/revision/latest?cb=20221029021242
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_6/66/OW2_Hanzo.png/revision/latest?cb=20221029021242
     #        passives:
     #          - name: You can move up height differences.
     #            text: ""
@@ -659,7 +659,7 @@ sets:
     #              Enemies within burst 2 of a sonic arrow cannot benefit from invisibility or soft cover, and receive +2crit
     #            tokens:
     #              - name: Sonic Arrow
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/76/Ability-hanzo2.png/revision/latest/scale-to-width-down/100?cb=20221128012521
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_7/76/Ability-hanzo2.png/revision/latest/scale-to-width-down/100?cb=20221128012521
     #          - name: Storm Arrows
     #            text: |-
     #              1/Battle
@@ -679,8 +679,8 @@ sets:
     #                While the beam is active, enemies who start their turn in the beam or move into the beam take ⚔7. They can't be damaged this way more than once.
     #            tokens:
     #              - name: Dragonstrike
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/44/Ability-hanzo4.png/revision/latest/scale-to-width-down/100?cb=20141111201819
-    #                back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_4/44/Ability-hanzo4.png/revision/latest/scale-to-width-down/100?cb=20141111201819
+    #                back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
     #                size: 2
     #      - name: Junkrat
     #        description: |-
@@ -688,7 +688,7 @@ sets:
     #          - Splash damage
     #        health: 8
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/99/Junkrat-Portrait.png/revision/latest/scale-to-width-down/286?cb=20160620014456
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_9/99/Junkrat-Portrait.png/revision/latest/scale-to-width-down/286?cb=20160620014456
     #        passives:
     #          - name: Used to It
     #            text: |-
@@ -699,7 +699,7 @@ sets:
     #              At the beginning of your next turn, sacrifice the payback field and deal ⚔3 to all enemies in inside.
     #            tokens:
     #              - name: Total Mayhem
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/18/Ability-Junkrat4.png/revision/latest/scale-to-width-down/100?cb=20150924023347
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_1/18/Ability-Junkrat4.png/revision/latest/scale-to-width-down/100?cb=20150924023347
     #                size: 1
     #        default_abilities:
     #          - name: Frag Launcher
@@ -714,7 +714,7 @@ sets:
     #              At the start of your turn, or when anyone becomes adjacent to the mine's space, you may sacrifice the mine for ⛨1, ⚔4 and push 2 in any direction.
     #            tokens:
     #              - name: Concussion Mine
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/87/Ability-Junkrat2.png/revision/latest/scale-to-width-down/100?cb=20150924023319
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_8/87/Ability-Junkrat2.png/revision/latest/scale-to-width-down/100?cb=20150924023319
     #                size: 1
     #          - name: Steel Trap
     #            text: |-
@@ -724,7 +724,7 @@ sets:
     #              When an enemy enters the trap's space, they end their movement get rooted until the end of their next turn.
     #            tokens:
     #              - name: Steel Trap
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/9c/Ability-Junkrat3.png/revision/latest/scale-to-width-down/100?cb=20150924023330
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_9/9c/Ability-Junkrat3.png/revision/latest/scale-to-width-down/100?cb=20150924023330
     #                size: 1
     #          - name: RIP-Tire
     #            text: |-
@@ -736,7 +736,7 @@ sets:
     #                When RIP-Tire dies, it deals ⚔8 in burst 1.
     #            tokens:
     #              - name: RIP-Tire
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/32/Ability-Junkrat5.png/revision/latest/scale-to-width-down/100?cb=20150924023400
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_3/32/Ability-Junkrat5.png/revision/latest/scale-to-width-down/100?cb=20150924023400
     #                size: 1
     #      - name: Lucio
     #        description: |-
@@ -744,7 +744,7 @@ sets:
     #          - Healing/speed aura
     #        health: 8
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c1/Lucio-ow2-portrait.png/revision/latest/scale-to-width-down/148?cb=20191104073705
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_c/c1/Lucio-ow2-portrait.png/revision/latest/scale-to-width-down/148?cb=20191104073705
     #        passives:
     #          - name: Crossfade
     #            text: |-
@@ -779,7 +779,7 @@ sets:
     #          - Slowing, stalling
     #        health: 10
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/da/Mei-ow2-portrait.png/revision/latest/scale-to-width-down/165?cb=20191104081317
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_d/da/Mei-ow2-portrait.png/revision/latest/scale-to-width-down/165?cb=20191104081317
     #        default_abilities:
     #          - name: Endothermic Blaster
     #            text: |-
@@ -807,7 +807,7 @@ sets:
     #              The Ice Wall acts like a wall, and has 6 health.
     #            tokens:
     #              - name: Ice Wall Segment
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/ea/Ability-mei3.png/revision/latest/scale-to-width-down/100?cb=20221128011555
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/ea/Ability-mei3.png/revision/latest/scale-to-width-down/100?cb=20221128011555
     #                size: 1
     #          - name: Blizzard
     #            text: |-
@@ -818,7 +818,7 @@ sets:
     #                At the beginning of your next turn, enemies in the blizzard are stunned and take ⚔1.
     #            tokens:
     #              - name: Blizzard
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f0/Ability-mei4.png/revision/latest/scale-to-width-down/100?cb=20151107172516
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_f/f0/Ability-mei4.png/revision/latest/scale-to-width-down/100?cb=20151107172516
     #                size: 3
     #      - name: Moira
     #        description: |-
@@ -826,7 +826,7 @@ sets:
     #          - Escape ability
     #        health: 8
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b5/Moira.png/revision/latest/scale-to-width-down/162?cb=20171104021652
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_b/b5/Moira.png/revision/latest/scale-to-width-down/162?cb=20171104021652
     #        default_abilities:
     #          - name: Damage Biotic Grasp
     #            text: |-
@@ -855,10 +855,10 @@ sets:
     #                Then move 2 spaces forwards, reversing direction when blocked by a wall.
     #            tokens:
     #              - name: Healing Biotic Orb
-    #                image_url: https://pbs.twimg.com/profile_images/1332252696942956544/mRhKFbI2_400x400.jpg
+    #                image_url: https://pbs.twimg.com/profile_image_1332252696942956544/mRhKFbI2_400x400.jpg
     #                size: 1
     #              - name: Damage Biotic Orb
-    #                image_url: https://pbs.twimg.com/profile_images/1595378173990035456/VyA7l6ri_400x400.jpg
+    #                image_url: https://pbs.twimg.com/profile_image_1595378173990035456/VyA7l6ri_400x400.jpg
     #                size: 1
     #          - name: Coalescence
     #            text: |-
@@ -874,7 +874,7 @@ sets:
     #        health: 12
     #        speed: 3
     #        dodge: -2
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d4/Orisa_Skin_Overwatch_2.png/revision/latest?cb=20221116224621
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_d/d4/Orisa_Skin_Overwatch_2.png/revision/latest?cb=20221116224621
     #        default_abilities:
     #          - name: Fusion Driver
     #            text: |-
@@ -942,7 +942,7 @@ sets:
     #          - Pull out of position
     #        health: 12
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/ce/Roadhog-Portrait.png/revision/latest/scale-to-width-down/345?cb=20160620014755
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_c/ce/Roadhog-Portrait.png/revision/latest/scale-to-width-down/345?cb=20160620014755
     #        passives:
     #          - name: Dodge -2
     #            text: ""
@@ -981,7 +981,7 @@ sets:
     #          - Healing field
     #        health: 8
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Soldier76-portrait.png/revision/latest/scale-to-width-down/224?cb=20160620014955
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/e0/Soldier76-portrait.png/revision/latest/scale-to-width-down/224?cb=20160620014955
     #        passives:
     #          - name: Sprint
     #            text: You may spend a standard action to move.
@@ -1000,7 +1000,7 @@ sets:
     #              Now, and at the beginning of each your turns, all allies in the field ✚2.
     #            tokens:
     #              - name: Biotic Field
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/50/Icon-ability.bioticfield.png/revision/latest/scale-to-width-down/100?cb=20150708110158
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_5/50/Icon-ability.bioticfield.png/revision/latest/scale-to-width-down/100?cb=20150708110158
     #                size: 2
     #          - name: Tactical Visor
     #            text: |-
@@ -1015,7 +1015,7 @@ sets:
     #          - High damage on same target
     #        health: 8
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/18/Symmetra-portrait.png/revision/latest/scale-to-width-down/161?cb=20160620015059
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_1/18/Symmetra-portrait.png/revision/latest/scale-to-width-down/161?cb=20160620015059
     #        default_abilities:
     #          - name: Photon Beam
     #            text: |-
@@ -1028,7 +1028,7 @@ sets:
     #              or: Next standard action you must use Photon Orb, and it has: ⛨1/3 distance, ⚔6.
     #            tokens:
     #              - name: Photon Orb Charged
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7e/Ability-symmetra1.png/revision/latest/scale-to-width-down/100?cb=20181119051026
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_7/7e/Ability-symmetra1.png/revision/latest/scale-to-width-down/100?cb=20181119051026
     #        abilities:
     #          - name: Sentry Turret
     #            text: |-
@@ -1040,13 +1040,13 @@ sets:
     #              If two turrets hit the same target, the target is slowed.
     #            tokens:
     #              - name: Sentry Turret
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
     #                size: 0.5
     #              - name: Sentry Turret
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
     #                size: 0.5
     #              - name: Sentry Turret
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
     #                size: 0.5
     #          - name: Teleporter
     #            text: |-
@@ -1057,10 +1057,10 @@ sets:
     #              Allied units can freely move between the two teleporter spaces on their turn, even partway through another action, and even if they could not normally move.
     #            tokens:
     #              - name: Teleporter
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Ability-symmetra4.png/revision/latest/scale-to-width-down/100?cb=20141112192203
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/e0/Ability-symmetra4.png/revision/latest/scale-to-width-down/100?cb=20141112192203
     #                size: 1
     #              - name: Teleporter
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Ability-symmetra4.png/revision/latest/scale-to-width-down/100?cb=20141112192203
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/e0/Ability-symmetra4.png/revision/latest/scale-to-width-down/100?cb=20141112192203
     #                size: 1
     #          - name: Photon Barrier
     #            text: |-
@@ -1070,10 +1070,10 @@ sets:
     #                Enemy attacks through the line hit the barrier instead. The barrier has 16hp
     #            tokens:
     #              - name: Photon Barrier
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/Photon_Barrier.png/revision/latest/scale-to-width-down/100?cb=20180626211607
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_d/d7/Photon_Barrier.png/revision/latest/scale-to-width-down/100?cb=20180626211607
     #                size: 1
     #              - name: Photon Barrier
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/Photon_Barrier.png/revision/latest/scale-to-width-down/100?cb=20180626211607
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_d/d7/Photon_Barrier.png/revision/latest/scale-to-width-down/100?cb=20180626211607
     #                size: 1
     #      - name: Torbjorn
     #        description: |-
@@ -1082,7 +1082,7 @@ sets:
     #        health: 10
     #        speed: 3
     #        dodge: +1
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/db/Torbj%C3%B6rn-ow2-portrait.png/revision/latest/scale-to-width-down/272?cb=20210623082654
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_d/db/Torbj%C3%B6rn-ow2-portrait.png/revision/latest/scale-to-width-down/272?cb=20210623082654
     #        default_abilities:
     #          - name: Rivet Gun
     #            text: |-
@@ -1096,7 +1096,7 @@ sets:
     #              Summon a size 1 turret in an empty space in range 4.
     #            tokens:
     #              - name: Turret
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a7/Ability-torbjorn3.png/revision/latest/scale-to-width-down/100?cb=20181010190250
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_a/a7/Ability-torbjorn3.png/revision/latest/scale-to-width-down/100?cb=20181010190250
     #                size: 1
     #          - name: Overload
     #            text: |-
@@ -1113,13 +1113,13 @@ sets:
     #                The first time each enemy is in one of the areas, they take ⚔3.
     #            tokens:
     #              - name: Molten Core
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/ef/Ability-torbjorn5.png/revision/latest/scale-to-width-down/100?cb=20181018043327
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/ef/Ability-torbjorn5.png/revision/latest/scale-to-width-down/100?cb=20181018043327
     #                size: 2
     #        units:
     #          - name: Turret
     #            health: 10
     #            speed: 0
-    #            image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a7/Ability-torbjorn3.png/revision/latest/scale-to-width-down/100?cb=20181010190250
+    #            image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_a/a7/Ability-torbjorn3.png/revision/latest/scale-to-width-down/100?cb=20181010190250
     #            passives:
     #              - name: Summon
     #                text: Deal 6 damage to this.
@@ -1138,7 +1138,7 @@ sets:
     #          - Large melee aoe
     #        health: 10
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7c/Winston-ow2-portrait.png/revision/latest/scale-to-width-down/279?cb=20191104221341
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_7/7c/Winston-ow2-portrait.png/revision/latest/scale-to-width-down/279?cb=20191104221341
     #        passives:
     #          - name: Easy Target
     #            text: |-
@@ -1163,7 +1163,7 @@ sets:
     #              Range 1, Summon a size 3 Barrier. The barrier has 8hp, and blocks enemy non-piercing attacks through its borders.
     #            tokens:
     #              - name: Barrier
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/13/Ability-winston3.png/revision/latest/scale-to-width-down/100?cb=20141112192620
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_1/13/Ability-winston3.png/revision/latest/scale-to-width-down/100?cb=20141112192620
     #                size: 3
     #          - name: Primal Rage
     #            text: |-
@@ -1181,10 +1181,10 @@ sets:
     #          - Burst damage
     #        health: 8
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/92/Zenyatta-portrait.png/revision/latest/scale-to-width-down/269?cb=20160620015935
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_9/92/Zenyatta-portrait.png/revision/latest/scale-to-width-down/269?cb=20160620015935
     #        tokens:
     #          - name: Orb of Destruction Charged
-    #            image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d1/Ability-zenyatta1.png/revision/latest/scale-to-width-down/100?cb=20181119055020
+    #            image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_d/d1/Ability-zenyatta1.png/revision/latest/scale-to-width-down/100?cb=20181119055020
     #        default_abilities:
     #          - name: Orb of Destruction
     #            text: |-
@@ -1201,13 +1201,13 @@ sets:
     #              Mark an ally. Now and at the start of your turn, they get ✚2. When you use this again, it removes the original mark.
     #            tokens:
     #              - name: Orb of Harmony
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0c/Ability-zenyatta2.png/revision/latest/scale-to-width-down/100?cb=20141112192735
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_0/0c/Ability-zenyatta2.png/revision/latest/scale-to-width-down/100?cb=20141112192735
     #          - name: Orb of Discord
     #            text: |-
     #              Mark an enemy. They take +.5x damage from all attacks. When you use this again, it removes the original mark.
     #            tokens:
     #              - name: Orb of Discord
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/04/Ability-zenyatta3.png/revision/latest/scale-to-width-down/100?cb=20141112192736
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_0/04/Ability-zenyatta3.png/revision/latest/scale-to-width-down/100?cb=20141112192736
     #          - name: Transcendence
     #            text: |-
     #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
@@ -1220,7 +1220,7 @@ sets:
     #          - Reaction-Block damage to increase damage dealt
     #        health: 10
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Zarya-portrait.png/revision/latest/scale-to-width-down/350?cb=20160620015842
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_6/6d/Zarya-portrait.png/revision/latest/scale-to-width-down/350?cb=20160620015842
     #        default_abilities:
     #          - name: Particle Cannon
     #            text: |-
@@ -1237,9 +1237,9 @@ sets:
     #                and when the target would take damage you gain an energy counter.
     #            tokens:
     #              - name: Particle Barrier
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/71/Ability-zarya2.png/revision/latest/scale-to-width-down/100?cb=20150309115939
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_7/71/Ability-zarya2.png/revision/latest/scale-to-width-down/100?cb=20150309115939
     #              - name: Particle Barrier
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/71/Ability-zarya2.png/revision/latest/scale-to-width-down/100?cb=20150309115939
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_7/71/Ability-zarya2.png/revision/latest/scale-to-width-down/100?cb=20150309115939
     #          - name: Graviton Surge
     #            text: |-
     #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
@@ -1248,7 +1248,7 @@ sets:
     #                Pull enemies in burst 2 of the space as close to the center as possible, starting with the enemies nearest the center already. They get rooted 1.
     #            tokens:
     #              - name: Graviton Surge
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5d/Ability-zarya4.png/revision/latest/scale-to-width-down/100?cb=20150309115950
+    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_5/5d/Ability-zarya4.png/revision/latest/scale-to-width-down/100?cb=20150309115950
     #                size: 1
     #      - name: Ana
     #        description: |-
@@ -1257,7 +1257,7 @@ sets:
     #          - Counter healing
     #        health: 8
     #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/76/Ana.png/revision/latest/scale-to-width-down/143?cb=20160715094551
+    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_7/76/Ana.png/revision/latest/scale-to-width-down/143?cb=20160715094551
     #        default_abilities:
     #          - name: Biotic Rifle
     #            text: |-
@@ -1273,9 +1273,9 @@ sets:
     #              Target does not act for their next two activations. If they take damage from another source, end this condition.
     #            tokens:
     #              - name: Sleeping
-    #                image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/2/2b/Sleep_Dart_Icon.png/revision/latest?cb=20170918221723
+    #                image_url: https://static.wikia.nocookie.net/allstars_gamepedia/image_2/2b/Sleep_Dart_Icon.png/revision/latest?cb=20170918221723
     #              - name: Sleeping
-    #                image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/2/2b/Sleep_Dart_Icon.png/revision/latest?cb=20170918221723
+    #                image_url: https://static.wikia.nocookie.net/allstars_gamepedia/image_2/2b/Sleep_Dart_Icon.png/revision/latest?cb=20170918221723
     #          - name: Biotic Grenade
     #            text: |-
     #              1/Battle
@@ -1284,9 +1284,9 @@ sets:
     #              Enemies in the area take ⚔2 and cannot regain health.
     #            tokens:
     #              - name: Grenade Healing Buff
-    #                image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/a/ae/Grenade_Spray.png/revision/latest/scale-to-width-down/120?cb=20170919004315
+    #                image_url: https://static.wikia.nocookie.net/allstars_gamepedia/image_a/ae/Grenade_Spray.png/revision/latest/scale-to-width-down/120?cb=20170919004315
     #              - name: Grenade Healing Debuff
-    #                image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/c/c4/Biotic_Grenade_Icon.png/revision/latest?cb=20170918221557
+    #                image_url: https://static.wikia.nocookie.net/allstars_gamepedia/image_c/c4/Biotic_Grenade_Icon.png/revision/latest?cb=20170918221557
     #          - name: Nano Boost
     #            text: |-
     #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
@@ -1294,7 +1294,7 @@ sets:
     #              Choose an ally in range 4. They deal +.5x damage and take 0.5x damage.
     #            tokens:
     #              - name: Nano Boosted
-    #                image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/9/9e/Nano_Boost_Icon.png/revision/latest?cb=20170918221647
+    #                image_url: https://static.wikia.nocookie.net/allstars_gamepedia/image_9/9e/Nano_Boost_Icon.png/revision/latest?cb=20170918221647
     maps:
       - name: Nepal Shrine
         image_path: overwatch-nepal-shrine.png
@@ -1307,12 +1307,12 @@ sets:
     description: Description TODO
     Exposed: &Exposed
       name: Exposed
-      image_url: https://tactics.toren.dev/images/tokens/Impaired_5997399677763413592.jpg
+      image_url: https://tactics.toren.dev/image_token_Impaired_5997399677763413592.jpg
       text: |-
         Take double damage from all sources.
     Impaired: &Impaired
       name: Impaired
-      image_url: https://tactics.toren.dev/images/tokens/Impaired_5997399677763413592.jpg
+      image_url: https://tactics.toren.dev/image_token_Impaired_5997399677763413592.jpg
       text: |-
         +1 Defense to all rolls.
         Cleared at the end of the turn.
@@ -1327,7 +1327,7 @@ sets:
           They gain +1 Standard action that turn, and gain 1d6+1 stress.
         tokens:
           - name: Overcharge
-            image_url: https://tactics.toren.dev/images/tokens/Overcharge_-5042384804763023491.jpg
+            image_url: https://tactics.toren.dev/image_token_Overcharge_-5042384804763023491.jpg
           - *Impaired
           - *Slow
       - name: Opportunity Attacks
@@ -1354,7 +1354,7 @@ sets:
         tokens:
           - *Exposed
           - name: Reactor Meltdown
-            image_url: https://tactics.toren.dev/images/tokens/Reactor Meltdown_-256580045921638568.jpg
+            image_url: https://tactics.toren.dev/image_token_Reactor Meltdown_-256580045921638568.jpg
             text: |-
               When you die, deal all adjacent ⚔4.
               You die at the end of your next turn.
@@ -1362,7 +1362,7 @@ sets:
       - name: Blackbeard
         health: 8
         speed: 3
-        image_url: https://tactics.toren.dev/images/tokens/Blackbeard_-3127398764168025855.jpg
+        image_url: https://tactics.toren.dev/image_token_Blackbeard_-3127398764168025855.jpg
         description: |-
           - Grappling Berserker
         default_abilities:
@@ -1387,7 +1387,7 @@ sets:
                 At the start of your turn, you may end your turn to exit SEKHMET stance.
             tokens:
               - name: SEKHMET
-                image_url: https://tactics.toren.dev/images/tokens/SEKHMET_82870056492246079.jpg
+                image_url: https://tactics.toren.dev/image_token_SEKHMET_82870056492246079.jpg
           - name: Omni-Harpoon
             text: |-
               Ultimate 5
@@ -1398,7 +1398,7 @@ sets:
         speed: 3
         description: |-
           - Bunker Turret
-        image_url: https://tactics.toren.dev/images/tokens/Drake_3131752286911180281.jpg
+        image_url: https://tactics.toren.dev/image_token_Drake_3131752286911180281.jpg
         passives:
           - name: Armor 1
             text: ""
@@ -1417,7 +1417,7 @@ sets:
               If Spun Up: 2 Standard actions. You gain 2 stress. Range 4, ⚔6
         tokens:
           - name: Spun Up
-            image_url: https://tactics.toren.dev/images/tokens/Spun Up_817474683636700342.jpg
+            image_url: https://tactics.toren.dev/image_token_Spun Up_817474683636700342.jpg
         abilities:
           - name: Concussion Missiles
             text: |-
@@ -1436,7 +1436,7 @@ sets:
       - name: Black Witch
         health: 6
         speed: 3
-        image_url: https://tactics.toren.dev/images/tokens/Black Witch_6574268103561328136.jpg
+        image_url: https://tactics.toren.dev/image_token_Black Witch_6574268103561328136.jpg
         description: |-
           - Forced movement controller
           - Anti Will attacks
@@ -1473,7 +1473,7 @@ sets:
           - name: ICEOUT Drone
             health: 4
             speed: 0
-            image_url: https://tactics.toren.dev/images/tokens/ICEOUT Drone_8440680050213633667.jpg
+            image_url: https://tactics.toren.dev/image_token_ICEOUT Drone_8440680050213633667.jpg
             passives:
               - name: You and adjacent units cannot use Will attacks and are immune to Will attacks.
                 text: ""
@@ -1481,7 +1481,7 @@ sets:
       - name: Death's Head
         description: |-
           - Sniper
-        image_url: https://tactics.toren.dev/images/tokens/Death's Head_8886430753136638717.jpg
+        image_url: https://tactics.toren.dev/image_token_Death's Head_8886430753136638717.jpg
         health: 6
         speed: 3
         passives:
@@ -1514,13 +1514,13 @@ sets:
               You may remove the mark as a free action at the start of your turn.
             tokens:
               - name: Mark for Death
-                image_url: https://tactics.toren.dev/images/tokens/Mark for Death_-5796234423840237878.jpg
+                image_url: https://tactics.toren.dev/image_token_Mark for Death_-5796234423840237878.jpg
                 text: |-
                   Owner deals +⚔4 to you, so long as you're are not in range 3.
       - name: Balor
         health: 12
         speed: 2
-        image_url: https://tactics.toren.dev/images/tokens/Balor_3797722395498223355.jpg
+        image_url: https://tactics.toren.dev/image_token_Balor_3797722395498223355.jpg
         description: |-
           - Self Healing
           - Melee AoE Tank
@@ -1554,7 +1554,7 @@ sets:
           - name: Hive Drone
             health: 4
             speed: 0
-            image_url: https://tactics.toren.dev/images/tokens/Hive Drone_4613030347791667462.jpg
+            image_url: https://tactics.toren.dev/image_token_Hive Drone_4613030347791667462.jpg
             passives:
               - name: You and allies in range 2 have Block⛨+1.
                 text: ""
@@ -1564,7 +1564,7 @@ sets:
       - name: Goblin
         health: 6
         speed: 4
-        image_url: https://tactics.toren.dev/images/tokens/Goblin_-8842697419615696448.jpg
+        image_url: https://tactics.toren.dev/image_token_Goblin_-8842697419615696448.jpg
         description: |-
           - Fragile Trickster
         passives:
@@ -1584,7 +1584,7 @@ sets:
               Units with line of sight to the idol cannot target the ally.
             tokens:
               - name: False Idol
-                image_url: https://tactics.toren.dev/images/tokens/False Idol_5315310770854887675.jpg
+                image_url: https://tactics.toren.dev/image_token_False Idol_5315310770854887675.jpg
           - name: Celestial Shackles
             text: |-
               Unlimited Range, Vs Will
@@ -1592,7 +1592,7 @@ sets:
               As a free action, you may remove the marker to teleport the target back to that space.
             tokens:
               - name: Shackle
-                image_url: https://tactics.toren.dev/images/tokens/Shackle_4846826871429583023.jpg
+                image_url: https://tactics.toren.dev/image_token_Shackle_4846826871429583023.jpg
           - name: Dimensional Emblems
             text: |-
               Unlimited Range
@@ -1600,7 +1600,7 @@ sets:
               When a unit moves through a Dimensional Emblem, they take 1 stress and the emblem is removed.
             tokens:
               - name: Dimensional Emblem
-                image_url: https://tactics.toren.dev/images/tokens/Dimensional Emblem_1944823803680669654.jpg
+                image_url: https://tactics.toren.dev/image_token_Dimensional Emblem_1944823803680669654.jpg
           - name: Hurl into The Duat
             text: |-
               Unlimited Range, Vs Will
@@ -1612,7 +1612,7 @@ sets:
               - If they have 4 tokens, remove them, and until the end of their next turn, they are on your team (swap ally/hostile). You control their next activation, during which you cannot use any x/Game actions.
             tokens:
               - name: Duat
-                image_url: https://tactics.toren.dev/images/tokens/Duat_1343849940116765351.jpg
+                image_url: https://tactics.toren.dev/image_token_Duat_1343849940116765351.jpg
               - *Slow
               - *Impaired
           - name: Symbiosis
@@ -1626,7 +1626,7 @@ sets:
       - name: Barbarosa
         description: |-
           - Huge artillery tank
-        image_url: https://tactics.toren.dev/images/tokens/Barbarosa_-8861773581727907330.jpg
+        image_url: https://tactics.toren.dev/image_token_Barbarosa_-8861773581727907330.jpg
         health: 10
         speed: 2
         passives:
@@ -1644,7 +1644,7 @@ sets:
             text: Lose all Apocalypse Charges
         tokens:
           - name: Barbarosa
-            image_url: https://tactics.toren.dev/images/tokens/Barbarosa_-8861773581727907330.jpg
+            image_url: https://tactics.toren.dev/image_token_Barbarosa_-8861773581727907330.jpg
             description: Barbarosa is considered to be in all spaces with this token.
         default_abilities:
           - name: Heavy Machine Gun
@@ -1672,7 +1672,7 @@ sets:
         description: |-
           - Ongoing fire damage
           - Stress management
-        image_url: https://tactics.toren.dev/images/tokens/Genghis_2391287260120509939.jpg
+        image_url: https://tactics.toren.dev/image_token_Genghis_2391287260120509939.jpg
         health: 6
         speed: 3
         passives:
@@ -1825,7 +1825,7 @@ sets:
   #              All Viktorias in range 4 of the target pull 4 towards it.
   #        units:
   #          - name: Viktoria (Copy)
-  #            image_url: https://www.puttyandpaint.com/images/uploads/artistworks/6442/cache/vik3-3__sized_l.jpg
+  #            image_url: https://www.puttyandpaint.com/image_uploads/artistworks/6442/cache/vik3-3__sized_l.jpg
   #            health: 6
   #            speed: 3
   #      - name: Rasputina
@@ -1952,7 +1952,7 @@ sets:
   #          - name: Voodoo Doll
   #            health: 2
   #            speed: 2
-  #            image_url: https://static.wikia.nocookie.net/monster/images/f/fe/C0E23278-277F-4773-9F96-A1D4031BEDC4.png
+  #            image_url: https://static.wikia.nocookie.net/monster/image_f/fe/C0E23278-277F-4773-9F96-A1D4031BEDC4.png
   #            passives:
   #              - name: Summoned
   #                text: Give a Voodoo attachment to an enemy in range 4
@@ -2042,7 +2042,7 @@ sets:
   #          - name: Zombie Chihuahua
   #            health: 2
   #            speed: 3
-  #            image_url: https://static.wikia.nocookie.net/monster/images/e/e9/ZombieChihuahuaimage.jpg/revision/latest/scale-to-width-down/384?cb=20170506224224
+  #            image_url: https://static.wikia.nocookie.net/monster/image_e/e9/ZombieChihuahuaimage.jpg/revision/latest/scale-to-width-down/384?cb=20170506224224
   #            #                passives:
   #            #                  - name: End
   #            #                    text: All adjacent units get Poison +1
@@ -2090,7 +2090,7 @@ sets:
   #          - name: Hollow Waif
   #            health: 3
   #            speed: 2
-  #            image_url: https://static.wikia.nocookie.net/monster/images/9/9b/24FC90CD-48B6-40AD-AF9D-6D7D193E47CF.jpeg/revision/latest?cb=20180824202915
+  #            image_url: https://static.wikia.nocookie.net/monster/image_9/9b/24FC90CD-48B6-40AD-AF9D-6D7D193E47CF.jpeg/revision/latest?cb=20180824202915
   #            passives:
   #              - name: Insignificant
   #                text: ''
@@ -2403,7 +2403,7 @@ sets:
   #          - name: Bayou Gremlin
   #            health: 1
   #            speed: 3
-  #            image_url: https://static.wikia.nocookie.net/monster/images/2/28/78BA677E-3FAB-4B1B-B634-6F957678BFFE.jpeg/revision/latest/scale-to-width-down/384?cb=20180814214132
+  #            image_url: https://static.wikia.nocookie.net/monster/image_2/28/78BA677E-3FAB-4B1B-B634-6F957678BFFE.jpeg/revision/latest/scale-to-width-down/384?cb=20180814214132
   #            passives:
   #              - name: +1 Dodge per adjacent ally
   #                text: ''
@@ -2619,7 +2619,7 @@ sets:
         description: |-
           - Stealth makes difficult to hit
           - Instantly kills nearby enemies that don't target this.
-        image_url: https://tactics.toren.dev/images/tokens/Spy_-5617552459855719900.jpg
+        image_url: https://tactics.toren.dev/image_token_Spy_-5617552459855719900.jpg
         health: 6
         speed: 3
 
@@ -2658,7 +2658,7 @@ sets:
           - high health and damage
           - slow, close range
           - Stance changing
-        image_url: https://tactics.toren.dev/images/tokens/Heavy_-4854316773559141811.jpg
+        image_url: https://tactics.toren.dev/image_token_Heavy_-4854316773559141811.jpg
         health: 12
         speed: 2
 
@@ -2673,7 +2673,7 @@ sets:
             text: Range 1 ⚔2 +2crit
         tokens:
           - name: Spun Up
-            image_url: https://tactics.toren.dev/images/tokens/Spun Up_1477848996508512357.jpg
+            image_url: https://tactics.toren.dev/image_token_Spun Up_1477848996508512357.jpg
             text: You are slowed, but your minigun is more powerful.
         abilities:
           - name: Sandvich
@@ -2693,7 +2693,7 @@ sets:
                 Or Standard action, Range 2, other ally heals 4.
             tokens:
               - name: Buffalo Steak Rage
-                image_url: https://tactics.toren.dev/images/tokens/Buffalo Steak Rage_8581238716479321113.jpg
+                image_url: https://tactics.toren.dev/image_token_Buffalo Steak Rage_8581238716479321113.jpg
                 text: +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
 
           - name: Swap Gloves
@@ -2709,10 +2709,10 @@ sets:
                   Or remove your glove stance.
             tokens:
               - name: GRU
-                image_url: https://tactics.toren.dev/images/tokens/GRU_-4461647217034725085.jpg
+                image_url: https://tactics.toren.dev/image_token_GRU_-4461647217034725085.jpg
                 text: +2 Speed, receive +.5x damage.
               - name: Fists of Steel
-                image_url: https://tactics.toren.dev/images/tokens/Fists of Steel_1277847066511706523.jpg
+                image_url: https://tactics.toren.dev/image_token_Fists of Steel_1277847066511706523.jpg
                 text: Receive -1 damage from ranges 2+, and +1x damage from range 1.
 
 
@@ -2722,7 +2722,7 @@ sets:
           - Permanent damage dealt buffs
         health: 6
         speed: 3
-        image_url: https://tactics.toren.dev/images/tokens/Sniper_-4399437231898759529.jpg
+        image_url: https://tactics.toren.dev/image_token_Sniper_-4399437231898759529.jpg
         passives:
           - name: Immune to Burning
             text: ''
@@ -2743,13 +2743,13 @@ sets:
             text: Range 2, 2⚔. Gain Crikey counters equal to damage dealt, max 4. While this has 4 Crikey counters, you deal +.5x damage.
             tokens:
               - name: Crikey
-                image_url: https://tactics.toren.dev/images/tokens/Crikey_9086728348551584567.jpg
+                image_url: https://tactics.toren.dev/image_token_Crikey_9086728348551584567.jpg
                 text: While you have 4 of these, +.5x damage
           - name: Jarate
             text: Range 2, 2x2, targets receive +.5x damage
             tokens:
               - name: Jarate
-                image_url: https://tactics.toren.dev/images/tokens/Jarate_-2397770930367722030.jpg
+                image_url: https://tactics.toren.dev/image_token_Jarate_-2397770930367722030.jpg
                 text: Receive +.5x damage
 
       - name: Medic
@@ -2758,7 +2758,7 @@ sets:
           - Powerful support ultimates
         health: 8
         speed: 3
-        image_url: https://tactics.toren.dev/images/tokens/Medic_8600829047325073678.jpg
+        image_url: https://tactics.toren.dev/image_token_Medic_8600829047325073678.jpg
         passives:
           - name: Start
             text: Heal 1
@@ -2773,7 +2773,7 @@ sets:
               Range 3, +2 dodge, 2⚔, heal equal to damage dealt.
         tokens:
           - name: Healing Target
-            image_url: https://tactics.toren.dev/images/tokens/Healing Target_-4590313136682746411.jpg
+            image_url: https://tactics.toren.dev/image_token_Healing Target_-4590313136682746411.jpg
             text: ''
         abilities:
           - name: Crossbow
@@ -2798,7 +2798,7 @@ sets:
       - name: Engineer
         description: |-
           - Build and maintain stationary support summons
-        image_url: https://tactics.toren.dev/images/tokens/Engineer_6463287448594563119.jpg
+        image_url: https://tactics.toren.dev/image_token_Engineer_6463287448594563119.jpg
         health: 8
         speed: 3
         passives:
@@ -2810,7 +2810,7 @@ sets:
         tokens:
           - *Silence
           - name: Upgrade
-            image_url: https://tactics.toren.dev/images/tokens/Upgrade_-3689796516494199437.jpg
+            image_url: https://tactics.toren.dev/image_token_Upgrade_-3689796516494199437.jpg
             text: ''
         default_abilities:
           - name: Rescue Ranger
@@ -2836,7 +2836,7 @@ sets:
               Teleport to any space in your deployment zone.
         units:
           - name: Sentry
-            image_url: https://tactics.toren.dev/images/tokens/Sentry_44672986020609256.jpg
+            image_url: https://tactics.toren.dev/image_token_Sentry_44672986020609256.jpg
             health: 4
             speed: 0
             passives:
@@ -2848,7 +2848,7 @@ sets:
                   Mandatory Interrupt, nearest enemy in range 5, ⚔3
                   or if upgraded, nearest enemy in range 5, ⚔6, ⚔1 to others in burst 1, push 1.
           - name: Dispenser
-            image_url: https://tactics.toren.dev/images/tokens/Dispenser_-2621754456094467019.jpg
+            image_url: https://tactics.toren.dev/image_token_Dispenser_-2621754456094467019.jpg
             health: 4
             speed: 0
             passives:

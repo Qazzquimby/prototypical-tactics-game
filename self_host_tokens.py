@@ -1,8 +1,9 @@
+from pathlib import Path
+
 import requests
 
 from schema import yaml_parsing
-from src.paths import data_dir, site_tokens_dir, site_tokens_url
-
+from src.paths import data_dir, site_public_dir
 
 # iterate through entire nested dict. When find an "image_url" key
 # save the image to site_tokens_dir / name.jpg
@@ -30,17 +31,17 @@ def localize_image_urls(data: dict):
 
 
 def save_image(url: str, data: dict):
-    name = f"{data['name']}_{str(hash(url))}"
+    name = f"image_token_{data['name']}_{str(hash(url))}"
     print(f"Saving {name}")
     # if not exists
-    dest_path = site_tokens_dir / f"{name}.jpg"
+    dest_path = site_public_dir / f"{name}.jpg"
     if not dest_path.exists():
-        with open(site_tokens_dir / f"{name}.jpg", "wb") as f:
+        with open(dest_path, "wb+") as f:
             f.write(requests.get(url).content)
-    url_replacements[url] = site_tokens_url + f"/{name}.jpg"
+    url_replacements[url] = dest_path.relative_to(site_public_dir).as_posix()
 
 
-if __name__ == "__main__":
+def main():
     yaml_path = data_dir / "input.yaml"
     yaml_content = yaml_parsing.read_yaml_file(yaml_path)
 
@@ -56,3 +57,17 @@ if __name__ == "__main__":
         yaml_file.write(yaml_string)
 
     print("done")
+
+
+# def oops_fix_naming():
+#     public_dir = Path("tactics-site").absolute() / "public"
+#     tokens_dir = public_dir / "images" / "tokens"
+#     for file in tokens_dir.iterdir():
+#         # file.copy
+#         content = file.read_bytes()
+#         new_path = public_dir / f"image_token_{file.stem}.jpg"
+#         new_path.write_bytes(content)
+
+
+if __name__ == "__main__":
+    main()

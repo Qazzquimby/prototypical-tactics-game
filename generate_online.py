@@ -8,7 +8,7 @@ from src.orchestration import build
 
 def build_online():
     image_builder = OnlineImagesBuilder(
-        pygame=pygame, base_path=Path("tactics-site/public/images")
+        pygame=pygame, base_path=Path("tactics-site/public/")
     )
     build(image_builder)
 
