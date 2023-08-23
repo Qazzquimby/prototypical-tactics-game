@@ -65,9 +65,9 @@ rules:
       Eg a Persistent debuff would continue into later battles.
 conditions:
   DoT: &DoT
-    name: Damage over Time
-    image_url: https://tactics.toren.dev/image_token_Burning_-3293685330274957657.jpg
-    text: At the start of your turn, take 1 damage for each Damage over Time you have.
+    name: DoT
+    image_url:  https://tactics.toren.dev/image_token_Burning_-3293685330274957657.jpg
+    text: At the start of your turn, take 1 damage for each DoT you have.
   Slow: &Slow
     name: Slow
     image_url: https://tactics.toren.dev/image_token_Slow_1902566325755039578.jpg
@@ -153,10 +153,10 @@ sets:
           Some units may be able to escape by flying or teleporting.
       - name: Cover
         text: |-
-          Green lines indicate cover.
-          Cover can be moved through.
-          When at attack draws LoS through cover, the attack has +2 block.
-          Line of Sight only travels one space past cover.
+          Green lines indicate cover. Cover can be moved through.
+          Cover makes it harder to attack if you're not adjacent to it. 
+          If a unit isn't next to the cover, their Line of Sight only travels one space past it.
+#          If an attacker who's not next to the cover shoots through it, the attack has +2 block.
     heroes:
       - name: Widowmaker
         description: |-
@@ -183,13 +183,13 @@ sets:
             text: |-
               1/battle
               Empty space in range 3, Summon a Venom Mine with 1hp.
-              When an enemy enters this or an adjacent space, destroy this. When destroyed, burst 1, give Poison 1.
+              When an enemy enters this or an adjacent space, destroy this. When destroyed, burst 1, give DoT 1.
             tokens:
               - name: Venom Mine
                 image_url: https://tactics.toren.dev/image_token_Venom Mine_-7291147640817522652.jpg
                 size: 1
                 text: |-
-                  When an enemy enters this or an adjacent space, destroy this. When destroyed, burst 1, give Poison 1.
+                  When an enemy enters this or an adjacent space, destroy this. When destroyed, burst 1, give DoT 1.
               - *DoT
           - name: Grappling Hook
             text: |-
@@ -530,7 +530,7 @@ sets:
     #        speed: 3
     #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
     #        passives:
-    #          - name: -2 Dodge, +1 Crit received
+    #          - name: Cannot dodge, +1 Crit received
     #            text: ""
     #          - name: Eject
     #            text: |-
@@ -1314,16 +1314,14 @@ sets:
         Cleared at the end of your turn.
     rules:
       - name: Actions
-        text: |-
-          For two Standard actions, a unit may clear all stress and lose the Exposed condition.
-          
-          For 1 Standard action, range 4, vs Will, target gets 1 stress, Impaired and Slow
+        text: |-          
+          For 1 Standard action, range 4, vs Will, target gets 2 stress, and Impaired or Slow
           
           Once per turn, the active hero can "Overcharge".
-          They gain +1 Standard action that turn, and gain 1d6+1 stress.
+          They gain +1 Standard action that turn, and gain 1d6 stress.
         tokens:
-          - name: Overcharge
-            image_url: https://tactics.toren.dev/image_token_Overcharge_-5042384804763023491.jpg
+#          - name: Overcharge
+#            image_url: https://tactics.toren.dev/image_token_Overcharge_-5042384804763023491.jpg
           - *Impaired
           - *Slow
       - name: Opportunity Attacks
@@ -1337,23 +1335,19 @@ sets:
       - name: Stress
         text: |-
           Heroes can gain stress, which persists between battles.
-          When a Hero would gain their 7th stress, they "Overheat". 
-          Reset to 0 stress, and then take any remaining stress gain. 6 stress + 1 -> 1 stress. 
-          
-          When a Hero Overheats, they gain Exposed (take double damage).
-          If they were already Exposed, or if they have half health or less, the get Reactor Meltdown.
-            When they die they deal all adjacent ⚔4, and they automatically die at the end of their next turn.
+          When a hero gains their second stress die, they take ⚔2 and receive +1x damage.
+          When a hero gains their third stress die, they automatically die at the end of their turn, and when they deal burst 1 ⚔3.
         dice:
           - name: Stress
             color: gray
-            values: [ 1, 1, 1, 1, 1, 1 ]
-        tokens:
-          - *Exposed
-          - name: Reactor Meltdown
-            image_url: https://tactics.toren.dev/image_token_Reactor Meltdown_-256580045921638568.jpg
-            text: |-
-              When you die, deal all adjacent ⚔4.
-              You die at the end of your next turn.
+            values: [ 1 ]
+#        tokens:
+#          - *Exposed
+#          - name: Reactor Meltdown
+#            image_url: https://tactics.toren.dev/image_token_Reactor Meltdown_-256580045921638568.jpg
+#            text: |-
+#              When you die, deal all adjacent ⚔4.
+#              You die at the end of your next turn.
     heroes:
       - name: Blackbeard
         health: 8
@@ -1389,6 +1383,9 @@ sets:
               Ultimate 5
               All enemies in range 4, 
               ⚔4, Pull as close to you as possible, stun and immobilize until the end of your next turn.
+            tokens:
+              - *Stun
+              - *Immobile
       - name: Drake
         health: 8
         speed: 3
@@ -1410,7 +1407,7 @@ sets:
               If not Spun Up: either Range 4, ⚔2
                 or enter Spun Up stance:
                   You are continually slowed. You can exit as a free action at the start of your turn.
-              If Spun Up: 2 Standard actions. You gain 2 stress. Range 4, ⚔6
+              If Spun Up: Move+Standard action. You gain 3 stress. Range 4, ⚔6
         tokens:
           - name: Spun Up
             image_url: https://tactics.toren.dev/image_token_Spun Up_817474683636700342.jpg
@@ -1488,7 +1485,7 @@ sets:
         default_abilities:
           - name: Vulture DMR
             text: |-
-              Take 1 stress, Range 3+, ⚔3
+              Take 2 stress, Range 3+, ⚔3
         abilities:
           - name: Climb Wall
             text: |-
@@ -1500,10 +1497,10 @@ sets:
           - name: Railgun
             text: |-
               If there is no enemy in range 2,
-              Take 2 stress, All in line infinite, ⚔4 irreducible
+              Take 3 stress, All in line infinite, ⚔4 irreducible
           - name: Mark for Death
             text: |-
-              2 Standard Actions,
+              Move+Standard Action,
               Give a unit your Marked for Death Mark.
               You deal +⚔4 to the unit with the mark.
               While a unit has the mark, you are immobilized.
@@ -1523,17 +1520,26 @@ sets:
         passives:
           - name: End
             text: You heal 3, ⚔1 to all adjacent enemies.
+          - name: Cannot dodge.
+            text: ""
         default_abilities:
           - name: Nanobot Whip
             text: |-
               1 target in Path 3, ⚔2, +2 crit.
-              On crit, pull the target to you.
+              On crit, pull the target to you along the path.
         abilities:
           - name: Swarm Body
             text: |-
+              Move action
               Enter Swarm Body stance and put a charge on this:
                 At the start of your turn, ⚔2*charges to all adjacent enemies, then put a charge on this.
                 This ends if you move for any reason.
+            tokens:
+              - name: Swarm Body Stance
+                image_url: https://static.wikia.nocookie.net/narutofanon/images/9/9c/PKH_NaniteCloneTechnique.jpg/revision/latest?cb=20171230034122
+                text: |-
+                  At the start of your turn, ⚔2*charges to all adjacent enemies, then put a charge on this.
+                  This ends if you move for any reason.
           - name: Summon Hive Drone
             text: |-
               1/Battle
@@ -1593,14 +1599,14 @@ sets:
             text: |-
               Unlimited Range
               Create 3 Dimensional Emblem markers adjacent to the target, but not orthogonally adjacent to any other Dimensional Emblem.
-              When a unit moves through a Dimensional Emblem, they take 1 stress and the emblem is removed.
+              When a unit moves through a Dimensional Emblem, they take 2 stress and the emblem is removed.
             tokens:
               - name: Dimensional Emblem
                 image_url: https://tactics.toren.dev/image_token_Dimensional Emblem_1944823803680669654.jpg
           - name: Hurl into The Duat
             text: |-
               Unlimited Range, Vs Will
-              Give the target a Duat token and +1 stress.
+              Give the target a Duat token and +2 stress.
               The effect depends on the number of Duat tokens the target has.
               - If they have 1 token, force them to move up to their speed under you control. It counts as voluntary movement.
               - If they have 2 tokens, they are Slowed and Impaired.
@@ -1626,7 +1632,7 @@ sets:
         health: 10
         speed: 2
         passives:
-          - name: Armor 1
+          - name: Armor 1, cannot dodge
             text: ""
           - name: Size 3
             text: |-
@@ -1642,27 +1648,31 @@ sets:
           - name: Barbarosa
             image_url: https://tactics.toren.dev/image_token_Barbarosa_-8861773581727907330.jpg
             description: Barbarosa is considered to be in all spaces with this token.
+        dice:
+          - name: Apocalypse Charge
+            color: orange
+            values: [ 1 ]
         default_abilities:
           - name: Heavy Machine Gun
             text: |-
               +2 Dodge, Range 4, ⚔4
         abilities:
           - name: Direct Fire
-            text: 2 standard actions, Take 2 stress, Unlimited range, ⚔4
+            text: Move+Standard action, Take 2 stress, Unlimited range, ⚔4
           - name: Siege Cannon
             text: |-
               CD 1
-              2 standard actions, Must be no enemy in range 2 
+              Move+Standard action, Must be no enemy in range 2 
               Take 4 stress, Unlimited range, Ignores walls, 3x3 area, ⚔4
           - name: Roller Grenade
             text: |-
               Grenade rolls along Line 5. 
               When it becomes adjacent to another unit, it explodes:
-                All in range 1, ⚔3, push 3 spaces.
+                All in range 1, ⚔2, push 2 spaces.
           - name: Apocalypse Rail
             text: |-
-              2 Standard actions, 1/Battle           
-              Range 4+, 3x3 area, ⚔3+3*Apocalypse Charges. 
+              Move+Standard action, 1/Battle           
+              Range 4+, 3x3 area, ⚔3*Apocalypse Charges. 
               Destroy all walls and terrain in the area.
       - name: Genghis
         description: |-
@@ -1674,38 +1684,41 @@ sets:
         passives:
           - name: Armor 1
             text: ""
-          - name: Immune to Burning
+          - name: Immune to DoT
             text: ""
+          - name: The first time you would gain a second stress die
+            text: Cancel the stress gain. Clear all stress. Enemies in range 2 get +2 stress DoT 1, and are pushed 2.
         tokens:
           - *DoT
         default_abilities:
           - name: Flamethrower
             text: |-
-              Range 1, 2x2 area, give Burning 1
+              Range 1, 2x2 area, give DoT 1
             tokens:
               - *DoT
         abilities:
           - name: Plasma Thrower
             text: |-
-              2 Standard actions
+              Move+Standard action
               Take 4 stress,
-              Range 1 3x3 area, ⚔4, give Burning 2
+              Range 1 3x3 area, ⚔4, give DoT 2
               The affected spaces gain Hazard: ⚔2
+            tokens:
+              - name: Plasma Hazard
+                image_url: https://static.vecteezy.com/system/resources/thumbnails/006/457/294/small_2x/falling-fiery-pixel-comet-flaming-asteroid-rushing-towards-planet-burning-fire-with-glowing-yellow-core-red-flame-after-powerful-explosion-with-sparks-vector.jpg
+                text: |-
+                  Units the start in or enter this space take ⚔2.
+                  A unit can only take damage from Plasma Hazard once per round.
           - name: Havok Mine
             text: |-
+              1/Battle
               Empty space in range 2, place a Havok Mine marker.
               When any character moves into an orthogonally adjacent space, it is destroyed and does
-                All in line 4, give Burning 2
+                All in line 4, give DoT 2
               where the line must include the triggering character.
             tokens:
               - name: Havok Mine
                 image_url: https://media.discordapp.net/attachments/999104692233711676/1143274582996942998/qazzquimby_Fire_landmine_3a6c1c19-e7db-4b09-a40c-01e0d115b4f7.png?width=577&height=577
-          - name: Expose Power Cells
-            text: |-
-              1/Battle
-              Interrupt when you would exceed your stress limit.
-              Clear all stress.
-              Enemies in range 2 get +2 stress Burning 1, and are pushed 2.
     maps:
       - name: Rickety Station
         image_path: lancer-rickety_station.png
@@ -2014,26 +2027,26 @@ sets:
   #          - name: Armor +1
   #            text: ''
   #          - name: End
-  #            text: Enemies with Poison in range 2 take 1 damage.
+  #            text: Enemies with DoT in range 2 take 1 damage.
   #          - name: Perverse Metabolism
-  #            text: This and allies heal from Poison instead of taking damage.
+  #            text: This and allies heal from DoT instead of taking damage.
   #        #            - name: Deploy
-  #        #              text: All allies get Poison +2.
+  #        #              text: All allies get DoT +2.
   #        default_abilities:
   #          - name: Skull Saw
   #            text: |-
   #              Range 1,
   #              ⚔2 Irreducible, ignore overshield.
-  #              Heal 2, Target gets Poison +1.
+  #              Heal 2, Target gets DoT +1.
   #        abilities:
   #          - name: Rancid Transplant
   #            text: |-
   #              Two targets in Range 3
-  #              Both targets get Poison +1. You may move a condition from one target to the other.
-  #          - name: Blood Poisoning
+  #              Both targets get DoT +1. You may move a condition from one target to the other.
+  #          - name: Blood DoTing
   #            text: |-
   #              Free, VS Will
-  #              Target takes Poison damage equal to their Poison value, then remove all Poison from them.
+  #              Target takes DoT damage equal to their DoT value, then remove all DoT from them.
   #        units:
   #          - name: Zombie Chihuahua
   #            health: 2
@@ -2041,11 +2054,11 @@ sets:
   #            image_url: https://static.wikia.nocookie.net/monster/image_e/e9/ZombieChihuahuaimage.jpg/revision/latest/scale-to-width-down/384?cb=20170506224224
   #            #                passives:
   #            #                  - name: End
-  #            #                    text: All adjacent units get Poison +1
+  #            #                    text: All adjacent units get DoT +1
   #            default_abilities:
   #              - name: Bite
   #                text: |-
-  #                  Range 1, ⚔1, Poison +1
+  #                  Range 1, ⚔1, DoT +1
   #      - name: Leveticus
   #        description: |-
   #          - Extra lives
@@ -2623,7 +2636,7 @@ sets:
           - name: Revolver
             text: |-
               If this has a Kill counter, remove one and deal a crit on hit.
-              Unlimited range, ⚔1, +⚔1 on crit.
+              Unlimited range, ⚔1 irreducible, +1 crit, +⚔1 on crit.
           - name: Knife
             text: |-
               Interrupt when an enemy leave's an adjacent space from you, or ends their turn in path range 3 and did not target you or your space that turn.
@@ -2635,7 +2648,7 @@ sets:
             text: |-
               You have +1 speed, Dodge⛨+3.
               You don't provoke reactions. You cannot be targeted beyond range 2.
-              Enemies consider you an ally rather than an enemy. When an enemy targets one of their allies while you're a valid target, you can force them to target you as well.
+              Enemies consider you an ally rather than an enemy. When an enemy targets one of their allies while you're a valid target, they also target you.
               
               Effect ends when you deal damage or receive damage.
             tokens:
@@ -2644,9 +2657,12 @@ sets:
 
           - name: Sapper
             text: |-
-              Free action, range 1, target a summon with speed 0.
+              Range 1, 
+              Either target a summon with speed 0.
               It is silenced and paralyzed. At the start of your turn, destroy any summons Silenced this way.
               The summoner can use Standard action, Range 1, remove these conditions from target summon.
+
+              Or target a marker. Remove it.
             # consider just destroying it
             tokens:
               - *Silence
@@ -2654,8 +2670,7 @@ sets:
           - name: Deadringer
             text: |-
               1/game, interrupt when you would take damage while Stealth is not active.
-              Take no damage, clear any number of contions, move 2, use Stealth.
-
+              Take no damage, clear any number of conditions, move 2, use Stealth.
 
       - name: Heavy
         description: |-
@@ -2674,7 +2689,7 @@ sets:
               
               If spun up: ⚔6 -⚔2 per space between.
           - name: Punch
-            text: Range 1 ⚔2 +2crit
+            text: Range 1 ⚔2 +2crit. On kill, gain a Kill counter. If you have a kill counter, you deal +1x damage.
         tokens:
           - name: Spun Up
             image_url: https://tactics.toren.dev/image_token_Spun Up_1477848996508512357.jpg
@@ -2686,7 +2701,12 @@ sets:
               Either:
                 Move+Standard, Heal to full health.
               
-                Or Standard action, Range 2, other ally heals 4.
+                Or Standard action, space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
+            tokens:
+              - name: Sandvich
+                image_url: https://wiki.teamfortress.com/w/images/thumb/9/95/Sandvich.png/250px-Sandvich.png
+                text: |- 
+                  Units that enter this space heal 4 and destroy this.
           - name: Buffalo Steak
             text: |-
               1/Battle
@@ -2694,11 +2714,13 @@ sets:
                 Move+Standard. Gain Buffalo Steak Rage: 
                   +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
               
-                Or Standard action, Range 2, other ally heals 4.
+                Or Standard action, space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
             tokens:
               - name: Buffalo Steak Rage
                 image_url: https://tactics.toren.dev/image_token_Buffalo Steak Rage_8581238716479321113.jpg
-                text: +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
+                text: |- 
+                  On the map: units that enter this space heal 4 and destroy this.
+                  As status: +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
 
           - name: Swap Gloves
             text: |-
@@ -2728,7 +2750,7 @@ sets:
         speed: 3
         image_url: https://tactics.toren.dev/image_token_Sniper_-4399437231898759529.jpg
         passives:
-          - name: Immune to Burning
+          - name: Immune to DoT
             text: ''
         default_abilities:
           - name: Sniper Rifle
@@ -2769,9 +2791,13 @@ sets:
         default_abilities:
           - name: Medigun
             text: |-
-              Range 3, heal 2, target becomes your Healing Target until the start of your next turn, or if they stop being within range 4.
-              At start of your turn, heal them 4, with excess healing as overshield. Move up to their speed-3.
+              Path range 3, heal 2, target becomes your Healing Target until the start of your next turn, or if they stop being within path range 4.
               When they move other than in a standard move, you may copy that movement effect.
+              At start of your turn, heal them 4, with excess healing as overshield. Move up to their speed-3.
+            dice:
+              - name: Overshield
+                color: blue
+                values: [1]
           - name: Blutsauger
             text: |-
               Range 3, +2 dodge, 2⚔, heal equal to damage dealt.
@@ -2781,7 +2807,8 @@ sets:
             text: ''
         abilities:
           - name: Crossbow
-            text: +1dodge/2 spaces, 3dmg, or heal 3
+            text: ⛨1/2 distance, 3dmg, or heal 3
+
           - name: Ubersaw
             text: Range 1, 2dmg, +2crit. On hit, lower your ultimate costs by 2.
           - name: Amputator Song
@@ -2833,11 +2860,15 @@ sets:
               Range 1, Summon a Sentry or Dispenser (max 1 each) and Silence it.
           - name: Short Circuit
             text: |-
-              Enemy attacks passing through spaces adjacent to you have Block⛨+2.
+              Until the start of your next turn, enemy attacks passing through spaces adjacent to you have Block⛨+3.
+            tokens:
+              - name: Short Circuit
+                image_url: https://wiki.teamfortress.com/w/images/thumb/c/c3/Short_circuit.png/250px-Short_circuit.png
+                text: Until the start of your next turn, enemy attacks passing through spaces adjacent to you have Block⛨+3.
           - name: Eureka Effect
             text: |-
               Move+Standard
-              Teleport to any space in your deployment zone.
+              Teleport to any space in your deployment zone or adjacent to your Dispenser.
         units:
           - name: Sentry
             image_url: https://tactics.toren.dev/image_token_Sentry_44672986020609256.jpg
@@ -2851,6 +2882,8 @@ sets:
                   Recharge at start of turn.
                   Mandatory Interrupt, nearest enemy in range 5, ⚔3
                   or if upgraded, nearest enemy in range 5, ⚔6, ⚔1 to others in burst 1, push 1.
+                  
+                  If this attack passes through an ally, it hits that ally instead.
           - name: Dispenser
             image_url: https://tactics.toren.dev/image_token_Dispenser_-2621754456094467019.jpg
             health: 4
@@ -2862,12 +2895,6 @@ sets:
                 text: |-
                   Allies in range 1, heal 2.
                   or if upgraded, Allies in range 1 heal 4.
-                
-                
-                
-
-  #
-
 
   # demo, 10hp, speed 3
   #
@@ -2882,12 +2909,12 @@ sets:
 
   #  pyro 10hp, speed 3
   #
-  # Flamethrower, line 2, 3dmg, If they don't have burning, they get burning 1. If they have burning, +1dmg.
+  # Flamethrower, line 2, 3dmg, If they don't have DoT, they get DoT 1. If they have DoT, +1dmg.
   # airblast: interrupt def+2 1/round, line 2, push 2. If this interrupted an attack with range 3+, passing through the line, cancel and recast the attack.
-  # flare gun: +1dodge/3 spaces, 2dmg. If they don't have burning, they get burning 1. If they have burning, +2dmg.
-  # Mmmph: When you deal damage, or an enemy takes damage from burning, gain that many Charge counters. discard 8 charges Move+standard: You deal 2x damage.
+  # flare gun: +1dodge/3 spaces, 2dmg. If they don't have DoT, they get DoT 1. If they have DoT, +2dmg.
+  # Mmmph: When you deal damage, or an enemy takes damage from DoT, gain that many Charge counters. discard 8 charges Move+standard: You deal 2x damage.
   # Axe: Range 1 plus anyone who they healed or healed them since the start of your last turn.
-  # 1dmg, +2crit. Remove burning from the target, +2dmg per burning removed. On kill move 2.
+  # 1dmg, +2crit. Remove DoT from the target, +2dmg per DoT removed. On kill move 2.
 # Thermal Thruster: 2/game, move action, fly 5. All in burst 1, 1dmg, push 1.
 #
 #
