@@ -64,14 +64,10 @@ rules:
       Lasts between Battles, until end of game.
       Eg a Persistent debuff would continue into later battles.
 conditions:
-  Poison: &Poison
-    name: Poison
-    image_url: https://tactics.toren.dev/image_token_Poison_5647933699778309315.jpg
-    text: At the start of your turn, take 1 damage for each Poison you have.
-  Burning: &Burning
-    name: Burning
+  DoT: &DoT
+    name: Damage over Time
     image_url: https://tactics.toren.dev/image_token_Burning_-3293685330274957657.jpg
-    text: At the start of your turn, take 1 damage for each Burning you have.
+    text: At the start of your turn, take 1 damage for each Damage over Time you have.
   Slow: &Slow
     name: Slow
     image_url: https://tactics.toren.dev/image_token_Slow_1902566325755039578.jpg
@@ -194,7 +190,7 @@ sets:
                 size: 1
                 text: |-
                   When an enemy enters this or an adjacent space, destroy this. When destroyed, burst 1, give Poison 1.
-              - *Poison
+              - *DoT
           - name: Grappling Hook
             text: |-
               1/battle
@@ -1681,13 +1677,13 @@ sets:
           - name: Immune to Burning
             text: ""
         tokens:
-          - *Burning
+          - *DoT
         default_abilities:
           - name: Flamethrower
             text: |-
               Range 1, 2x2 area, give Burning 1
             tokens:
-              - *Burning
+              - *DoT
         abilities:
           - name: Plasma Thrower
             text: |-
