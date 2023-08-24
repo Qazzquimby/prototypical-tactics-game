@@ -99,7 +99,7 @@ sets:
       - Projectiles less accurate at long ranges
       - Instant speed reactions
       - Tanks, Healers, Dps
-      - Many 1/battle effects
+      - Many 1/Battle effects
     rules:
       - name: Instant
         text: |-
@@ -181,7 +181,7 @@ sets:
         abilities:
           - name: Venom Mine
             text: |-
-              1/battle
+              1/Battle
               Empty space in range 3, Summon a Venom Mine with 1hp.
               When an enemy enters this or an adjacent space, destroy this. When destroyed, burst 1, give DoT 1.
             tokens:
@@ -193,7 +193,7 @@ sets:
               - *DoT
           - name: Grappling Hook
             text: |-
-              1/battle
+              1/Battle
               Move Action, Fly directly to any point in range 5.
           - name: Infra-Sight
             text: |-
@@ -223,7 +223,7 @@ sets:
                 values: [ 3 ]
           - name: Recall
             text: |-
-              1/battle
+              1/Battle
               Instant ⛨+3
               Reset your health to what it was at the end of your last turn.
               Teleport as close as possible to where you were at the end of your last turn.
@@ -289,7 +289,7 @@ sets:
               Fly to any space adjacent to an ally or friendly Corpse Marker, as directly as possible.
           - name: Resurrect
             text: |-
-              1/battle
+              1/Battle
               Channel:
                 At the start of your next turn, you may resurrect target corpse in range 1.
           - name: Valkyrie
@@ -332,7 +332,7 @@ sets:
               - *HighAltitude
           - name: Jump Jet
             text: |-
-              1/battle, Instant ⛨+2
+              1/Battle, Instant ⛨+2
               Move up to 2. Gain High Altitude until the start of your next turn.
             tokens:
               - *HighAltitude
@@ -364,7 +364,7 @@ sets:
         abilities:
           - name: Wraith Form
             text: |-
-              1/battle
+              1/Battle
               Instant ⛨+2
               Until the beginning of your next turn, nothing affects you.
               Move up to 2. Clear any number of conditions.
@@ -423,7 +423,7 @@ sets:
               - *Barrier
           - name: Charge
             text: |-
-              Move + Standard Action, 1/battle
+              Move + Standard Action, 1/Battle
               Move as far as possible in a line.
               When you contact an enemy, roll attack with ⛨2 + 1/2 distance from your start position.
               The first enemy hit this way is pushed with you, interrupted, and takes ⚔7.
@@ -761,7 +761,7 @@ sets:
     #        abilities:
     #          - name: Amp It Up
     #            text: |-
-    #              Free Action, 1/battle
+    #              Free Action, 1/Battle
     #              Repeat your last Crossfade effect, twice.
     #          - name: Sound Barrier
     #            text: |-
@@ -834,13 +834,13 @@ sets:
     #              Allies Heal 3.
     #          - name: Fade
     #            text: |-
-    #              1/battle
+    #              1/Battle
     #              Reaction⛨3.
     #              Teleport up to 4 spaces.
     #              You may purge any number of effects from yourself.
     #          - name: Summon Biotic Orb
     #            text: |-
-    #              1/battle
+    #              1/Battle
     #              Choose Damage or Healing.
     #              Summon a Biotic Orb in range 1.
     #              Biotic Orb is a size 1 field with facing.
@@ -883,13 +883,13 @@ sets:
     #              Interrupt
     #          - name: Javelin Spin
     #            text: |-
-    #              1/battle
+    #              1/Battle
     #              Reaction Block +2
     #              You have facing. Turn and move 2 spaces forwards, pushing.
     #              Until the beginning of your next turn, you are immune to damage from your front.
     #          #            - name: Protective Barrier
     #          #              text: |-
-    #          #                1/battle
+    #          #                1/Battle
     #          #                Reaction ⛨2
     #          #                Create a 2x1 barrier in range 2.
     #          #                The barrier has 6 health.
@@ -906,7 +906,7 @@ sets:
     #          #                Empty space in range 3. Pull a unit in range 1 of the space into the empty space. They are slowed until the beginning of your next turn.
     #          - name: Fortify
     #            text: |-
-    #              1/battle
+    #              1/Battle
     #              Reaction Block⛨+2
     #              Until the beginning of your next turn
     #                you take 0.5x damage from all sources
@@ -950,13 +950,13 @@ sets:
     #        abilities:
     #          - name: Take a Breather
     #            text: |-
-    #              1/battle
+    #              1/Battle
     #              Channel:
     #                Until the start of your next turn, you take 0.5x damage.
     #                At the start of your next turn, Heal 6.
     #          - name: Chain Hook
     #            text: |-
-    #              1/battle
+    #              1/Battle
     #              Move Action
     #              Range 5, ⛨1/2 distance,
     #              ⚔1, interrupt
@@ -986,11 +986,11 @@ sets:
     #        abilities:
     #          - name: Helix Rockets
     #            text: |-
-    #              1/battle
+    #              1/Battle
     #              ⛨1/2 distance, ⚔5 and ⚔1 to others in burst 1 of target
     #          - name: Biotic Field
     #            text: |-
-    #              1/battle
+    #              1/Battle
     #              Place a size 2 Biotic Field, overlapping your space.
     #              Now, and at the beginning of each your turns, all allies in the field Heal 2.
     #            tokens:
@@ -1028,7 +1028,7 @@ sets:
     #          - name: Sentry Turret
     #            text: |-
     #              Quick Action
-    #              1/battle
+    #              1/Battle
     #              Place three Sentry Turrets in line of sight.
     #              1 hp, speed 0, cannot dodge.
     #              At the start of your turn, each sentry turret deals ⚔1 to the nearest enemy in range 3.
@@ -1045,7 +1045,7 @@ sets:
     #                size: 0.5
     #          - name: Teleporter
     #            text: |-
-    #              1/battle
+    #              1/Battle
     #              Move + Standard Action
     #              Place a size 1 in an emtpy space in range 1, and another in an empty space in range 6.
     #              Teleporters have 8hp.
@@ -1087,7 +1087,7 @@ sets:
     #        abilities:
     #          - name: Deploy Turret
     #            text: |-
-    #              1/battle
+    #              1/Battle
     #              Summon a size 1 turret in an empty space in range 4.
     #            tokens:
     #              - name: Turret
@@ -1095,7 +1095,7 @@ sets:
     #                size: 1
     #          - name: Overload
     #            text: |-
-    #              1/battle
+    #              1/Battle
     #              Free Action
     #              Gain 4 overshield
     #              This turn and next turn you have +2 move speed and can make two default attacks
@@ -1153,7 +1153,7 @@ sets:
     #              Burst 1, ⚔1.
     #          - name: Barrier Projector
     #            text: |-
-    #              1/battle
+    #              1/Battle
     #              Reaction Block⛨+2
     #              Range 1, Summon a size 3 Barrier. The barrier has 8hp, and blocks enemy non-piercing attacks through its borders.
     #            tokens:
@@ -1453,7 +1453,7 @@ sets:
               Attacks that pass through the shield do 0.5x damage.
           - name: Summon ICEOUT Drone
             text: |-
-              1/Games
+              1/Battle
               Summon an ICEOUT Drone in range 4.
               As a Standard Action, you may teleport an ICEOUT Drone to any location in range 4.
           - name: Mag Field
@@ -1749,13 +1749,13 @@ sets:
   ##              Range 1, ⚔2
   ##          - name: Berserker's Call
   ##            text: |-
-  ##              1/battle
+  ##              1/Battle
   ##              Until the beginning of your next turn,
   ##                you have +1 armor,
   ##                and when an enemy starts their turn in range 1 of you, they must use a default attack targeting you, if possible.
   ##          - name: Battle Hunger
   ##            text: |-
-  ##              1/battle
+  ##              1/Battle
   ##              Range 3
   ##              Until end of battle,
   ##                at the start of each of the target's turns, they take damage equal to your current armor.
@@ -1767,11 +1767,11 @@ sets:
   ##                Burst 1, ⚔1
   ##          - name: Culling Blade
   ##            text: |-
-  ##              1/battle
+  ##              1/Battle
   ##              Range 1, ⚔3, if the target is below half health, they are killed.
   ##          - name: Culling Blade
   ##            text: |-
-  ##              1/game
+  ##              1/Battle
   ##              Range 1
   ##              on hit, if the target has 3 or less health:
   ##               The target dies, but does not trigger any on-death reactions.
@@ -2669,7 +2669,7 @@ sets:
               - *Paralyze
           - name: Deadringer
             text: |-
-              1/game, interrupt when you would take damage while Stealth is not active.
+              1/Battle, interrupt when you would take damage.
               Take no damage, clear any number of conditions, move 2, use Stealth.
 
       - name: Heavy
