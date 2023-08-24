@@ -153,10 +153,10 @@ sets:
           Some units may be able to escape by flying or teleporting.
       - name: Cover
         text: |-
-          Green lines indicate cover.
-          Cover can be moved through.
-          When at attack draws LoS through cover, the attack has +2 block.
-          Line of Sight only travels one space past cover.
+          Green lines indicate cover. Cover can be moved through.
+          Cover makes it harder to attack if you're not adjacent to it. 
+          If a unit isn't next to the cover, their Line of Sight only travels one space past it.
+#          If an attacker who's not next to the cover shoots through it, the attack has +2 block.
     heroes:
       - name: Widowmaker
         description: |-
@@ -401,13 +401,13 @@ sets:
           - name: Barrier Field
             text: |-
               Instant ⛨+2
-              This ability has 10 hp.
               Enter shield stance.
               In shield stance:
                 You have facing and can freely set your facing at the end of your turn.
                 You're continually Slow (-2 speed, min 1) and can't take standard actions.
                 There is a 3 space long line on the edge in front of you, which moves with you.
                 The barrier acts as blocking for enemy's attacks (but not movement of summons or markers)
+                The barrier has 10hp which cannot be healed.
               You can dismiss the barrier as a free action if you have ended a turn with it active.
             dice:
               - name: Barrier health
@@ -530,7 +530,7 @@ sets:
     #        speed: 3
     #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
     #        passives:
-    #          - name: -2 Dodge, +1 Crit received
+    #          - name: Cannot dodge, +1 Crit received
     #            text: ""
     #          - name: Eject
     #            text: |-
@@ -1318,7 +1318,7 @@ sets:
           For 1 Standard action, range 4, vs Will, target gets 2 stress, and Impaired or Slow
           
           Once per turn, the active hero can "Overcharge".
-          They gain +1 Standard action that turn, and gain 1d6+1 stress.
+          They gain +1 Standard action that turn, and gain 1d6 stress.
         tokens:
 #          - name: Overcharge
 #            image_url: https://tactics.toren.dev/image_token_Overcharge_-5042384804763023491.jpg
@@ -1520,6 +1520,8 @@ sets:
         passives:
           - name: End
             text: You heal 3, ⚔1 to all adjacent enemies.
+          - name: Cannot dodge.
+            text: ""
         default_abilities:
           - name: Nanobot Whip
             text: |-
@@ -1528,6 +1530,7 @@ sets:
         abilities:
           - name: Swarm Body
             text: |-
+              Move action
               Enter Swarm Body stance and put a charge on this:
                 At the start of your turn, ⚔2*charges to all adjacent enemies, then put a charge on this.
                 This ends if you move for any reason.
@@ -1629,7 +1632,7 @@ sets:
         health: 10
         speed: 2
         passives:
-          - name: Armor 1
+          - name: Armor 1, cannot dodge
             text: ""
           - name: Size 3
             text: |-
@@ -1647,7 +1650,7 @@ sets:
             description: Barbarosa is considered to be in all spaces with this token.
         dice:
           - name: Apocalypse Charge
-            color: red
+            color: orange
             values: [ 1 ]
         default_abilities:
           - name: Heavy Machine Gun
@@ -1665,11 +1668,11 @@ sets:
             text: |-
               Grenade rolls along Line 5. 
               When it becomes adjacent to another unit, it explodes:
-                All in range 1, ⚔3, push 3 spaces.
+                All in range 1, ⚔2, push 2 spaces.
           - name: Apocalypse Rail
             text: |-
               Move+Standard action, 1/Battle           
-              Range 4+, 3x3 area, ⚔3+3*Apocalypse Charges. 
+              Range 4+, 3x3 area, ⚔3*Apocalypse Charges. 
               Destroy all walls and terrain in the area.
       - name: Genghis
         description: |-
@@ -2633,7 +2636,7 @@ sets:
           - name: Revolver
             text: |-
               If this has a Kill counter, remove one and deal a crit on hit.
-              Unlimited range, ⚔1, +1 crit, +⚔1 on crit.
+              Unlimited range, ⚔1 irreducible, +1 crit, +⚔1 on crit.
           - name: Knife
             text: |-
               Interrupt when an enemy leave's an adjacent space from you, or ends their turn in path range 3 and did not target you or your space that turn.
@@ -2645,7 +2648,7 @@ sets:
             text: |-
               You have +1 speed, Dodge⛨+3.
               You don't provoke reactions. You cannot be targeted beyond range 2.
-              Enemies consider you an ally rather than an enemy. When an enemy targets one of their allies while you're a valid target, you can force them to target you as well.
+              Enemies consider you an ally rather than an enemy. When an enemy targets one of their allies while you're a valid target, they also target you.
               
               Effect ends when you deal damage or receive damage.
             tokens:
@@ -2754,7 +2757,7 @@ sets:
             text: |-
               Move+Standard. Move 1. Note your facing.
               At the start of your next turn, range 3+, undogeable ⚔5, +2 crit per kill counter.
-              After this attack the target takes +.5x dmg.
+              After this attack the target takes +.5x ⚔.
               
               On kill, gain a Kill counter.
           - name: Bushwacka
@@ -2788,9 +2791,9 @@ sets:
         default_abilities:
           - name: Medigun
             text: |-
-              Range 3, heal 2, target becomes your Healing Target until the start of your next turn, or if they stop being within range 4.
-              At start of your turn, heal them 4, with excess healing as overshield. Move up to their speed-3.
+              Path range 3, heal 2, target becomes your Healing Target until the start of your next turn, or if they stop being within path range 4.
               When they move other than in a standard move, you may copy that movement effect.
+              At start of your turn, heal them 4, with excess healing as overshield. Move up to their speed-3.
             dice:
               - name: Overshield
                 color: blue
@@ -2804,9 +2807,10 @@ sets:
             text: ''
         abilities:
           - name: Crossbow
-            text: +1dodge/2 spaces, 3dmg, or heal 3
+            text: ⛨1/2 distance, 3⚔, or heal 3
+
           - name: Ubersaw
-            text: Range 1, 2dmg, +2crit. On hit, lower your ultimate costs by 2.
+            text: Range 1, 2⚔, +2crit. On hit, lower your ultimate costs by 2.
           - name: Amputator Song
             text:
               Move+Standard
@@ -2842,7 +2846,7 @@ sets:
         default_abilities:
           - name: Rescue Ranger
             text: |-
-              ⛨1/3 distance, 2dmg 
+              ⛨1/3 distance, 2⚔ 
               Or if summon, heal 2.
               Or if one of your summons, remove and carry.
           - name: Wrench
@@ -2891,51 +2895,223 @@ sets:
                 text: |-
                   Allies in range 1, heal 2.
                   or if upgraded, Allies in range 1 heal 4.
+      - name: Demoman
+        description: |-
+          - High damage, low accuracy
+          - AoE area control
+          - Mobility tools
+        image_url: https://static.tvtropes.org/pmwiki/pub/images/main_menu_demoman.png
+        health: 10
+        speed: 3
+        passives:
+          - name: When you're damaged by an ability that can affect multiple targets.
+            text: Take -.5x damage. If you're the attacker, you may fly up to the unreduced damage value.
+        default_abilities:
+          - name: Grenade Launcher
+            text: |-
+              ⛨1/2 distance, 4⚔, push 2, 1⚔ to others in burst 1 of target. 
+              On miss places grenade marker in the nearest empty space.
+              At the start of your turn, destroy it and repeat the attack on its space, automatically hitting.
+          - name: Eyelander
+            text: |-
+              Range 2, 2⚔ +2 crit.
+              On kill gain a Kill counter and heal 2. If the target had Kill counters, gain them. 
+              
+              You have +1 speed per Kill counter.
+        tokens:
+          - name: Grenade
+            image_url: https://wiki.teamfortress.com/w/images/thumb/0/09/RED_Iron_Bomber_Projectile.png/114px-RED_Iron_Bomber_Projectile.png
+            text: Explodes at start of next turn.
+          - *Kill
+        abilities:
+          - name: Sticky Bomb Launcher
+            text: |-
+              Empty space in range 4, place a Sticky Bomb marker (1hp).
+              As a free action at start of turn, you may remove all your Sticky Bombs, and each deals burst 1, ⚔4.
+          - name: Chargin' Target
+            text: |-
+              1/Battle, Move action
+              Move any distance in a straight line and clear any number of conditions.
+              If you moved at least 4, your next attack this turn with range 2 or less deals +1x damage.
 
-  # demo, 10hp, speed 3
-  #
-  # take half damage from aoe
-  # Grenade, dodge+1/2, 4dmg, 1dmg to others in burst 1 of target, push 2. On miss places grenade marker detonates start of next turn.
-  # Sticky bomb, range 4 place 2 Sticky Bomb markers (1hp). Free at start of turn or Interrupt when an enemy in LoS is adjacent to a marker. For each bomb, remove it and deal burst 1, 2dmg. If this hits you, fly 4.
-  # chargin' targe: 1/battle move action, move any distance in a straight line and clean any number of conditions.
-  # If you moved at least 4, your next attack this turn with range 2 or less deals 2x damage.
-  # Eyelander: Range 2, 2 dmg +2crit. On kill gain a Kill counter and heal 2. If the target had Kill counters, gain them. +1 speed per Kill counter.
-  # ullapool Caber: 1/game Range 1, 2dmg, 4dmg to all in burst 1 of target (including target).
-  # pain train stance: Enter or exit as free action at start of turn. You count twice for objectives. You take +.5x damage.
+          - name: Ullapool Caber
+            text: |-
+              1/Battle
+              Range 1, 2⚔, 4⚔ to all in burst 1 of target (including target).
+          - name: Pain Train
+            text: |-
+              Enter or exit Pain Train stance as free action at start of turn.
+              Stance:
+                You count twice for objectives. You take +.5x damage.
+            tokens:
+              - name: Pain Train stance
+                image_url: https://static.wikia.nocookie.net/real-tetragon-fortress/images/3/3d/Pain_Train.png/revision/latest?cb=20200729194702
+                text: https://static.wikia.nocookie.net/real-tetragon-fortress/images/3/3d/Pain_Train.png/revision/latest?cb=20200729194702
 
-  #  pyro 10hp, speed 3
-  #
-  # Flamethrower, line 2, 3dmg, If they don't have DoT, they get DoT 1. If they have DoT, +1dmg.
-  # airblast: interrupt def+2 1/round, line 2, push 2. If this interrupted an attack with range 3+, passing through the line, cancel and recast the attack.
-  # flare gun: +1dodge/3 spaces, 2dmg. If they don't have DoT, they get DoT 1. If they have DoT, +2dmg.
-  # Mmmph: When you deal damage, or an enemy takes damage from DoT, gain that many Charge counters. discard 8 charges Move+standard: You deal 2x damage.
-  # Axe: Range 1 plus anyone who they healed or healed them since the start of your last turn.
-  # 1dmg, +2crit. Remove DoT from the target, +2dmg per DoT removed. On kill move 2.
-# Thermal Thruster: 2/game, move action, fly 5. All in burst 1, 1dmg, push 1.
-#
-#
-# Soldier 10hp, speed 3
-# Rocket Launcher: +1dodge/2, 3dmg, 1dmg to others in burst 1 of target, push 1.
-# Rocket Jump: move action, take 2dmg, fly 4.
-# When you deal damage, gain that many charge counters. Spend 8 charges: move+standard: choose one:
-# Your team deals +.5x damage. / Your team do not receive crits and have armor 1. / Your team has +1 speed and heals 1 when they deal damage.
-# Pickaxe: Move 2 if bloodied. 1 dmg +2 dmg if bloodied, +2 crit. You take 2x damage until the start of your next turn.
-# Disciplinary Action: You and ally in range 2 move 2.
-# pain train stance: Enter or exit as free action at start of turn. You count twice for objectives. You take +.5x damage.
-#
-#
-# scout 6hp, speed 5
-# scattergun range 1, 4dmg, may deal push 2
-# all movement is flying. When you make a standard move action, can use unspent movement at end of turn.
-# you count twice for objectives
-# bonk atomic punch: move+standard, You are immune to damage. You can't use standard actions. Remove as a move action.
-# crit a cola: move+standard. After the start of your next turn, you deal and receive +.5x damage.
-# mad milk: 1/game range 3 2x2. Enemies in the area are Covered in Milk. When an ally damages a unit Covered in Milk, they heal 1/2 the damage dealt.
-# guillotine: 1/game +1dodge/2, 1 damage and target gets Bleed(1 damage at the start of their turn)
-# sandman: 1/game range 4+ dodge+3. Target is stunned.
-# Fan O'War: Range 1, Target takes +.5x damage
-#
-#
-#
+      - name: Pyro
+        description: |-
+          - Damage over time
+          - Spike damge
+          - Close range
+        image_url: https://wiki.teamfortress.com/w/images/thumb/c/c8/Pyro.png/250px-Pyro.png
+        health: 10
+        speed: 4
+        passives:
+          - name: Immune to DoT
+            text: ''
+          - name: When you deal damage, or an enemy takes damage from DoT
+            text: gain that many Mmmph Charges.
+        tokens:
+          - *DoT
+        dice:
+          - name: Mmmph
+            color: orange
+            values: [1]
 
-#
+        default_abilities:
+          - name: Flamethrower
+            text: |-
+              All in Line 2, 3⚔. 
+              If they have DoT, +1⚔.
+              If they don't have DoT, they get DoT 1.
+          - name: Airblast
+            text: |-
+              Recharges at start of your turn.
+              Instant ⛨+2, all in Line 2, Push 2.
+              If this interrupted an attack with Range 3+, which passes into the Line, cancel and recast the interrupted attack.
+        abilities:
+          - name: Flare Gun
+            text: |- 
+              ⛨1/3 distance, 2⚔. 
+              If they have DoT, +2⚔.
+              If they don't have DoT, they get DoT 1.
+          - name: Axe
+            text: |-
+              Range 1. Also targets anyone who any of your targets healed or was healed by since the start of your last turn.
+              2⚔, +2crit.
+              If they have DoT, +2⚔, and remove a DoT from the target.
+              On kill move 2 and heal 3.
+          - name: Mmmph
+            text: |-
+              Discard 8 charges Move+Standard action
+              You deal +1x damage.
+          - name: Thermal Thruster
+            text: |-
+              Fly 5. All in burst 1, 1⚔, push 1.
+      - name: Soldier
+        description: |-
+          - Splash damage
+          - Team buffs
+        image_url: https://wiki.teamfortress.com/w/images/thumb/4/42/Community_Soldier_Strategy_Header.png/280px-Community_Soldier_Strategy_Header.png
+        health: 10
+        speed: 3
+        passives:
+          - name: When you deal damage
+            text: Gain that many Banner charges.
+        dice:
+          - name: Banner
+            color: orange
+            values: [1]
+        default_abilities:
+          - name: Rocket Launcher
+            text: |-
+              ⛨1/2 distance, 3⚔, 1⚔ to others in burst 1 of target, push 1.
+          - name: Rocket Jump
+            text: |-
+              Move action, take 2⚔, fly 4.
+        abilities:
+          - name: Banner
+            text: |-
+              Spend 8 charges, Move+Standard action, Choose one:
+                Your team deals +.5x damage.
+                Or your team have armor 1 and do not receive extra damage from crits.
+                Or your team has +1 speed and heals 1 when they deal damage.
+          - name: Pickaxe
+            text: |-
+              If bloodied, either:
+                Move 5.
+                Or Move 2, 3⚔, +2 crit.
+              You take +1x damage until the start of your next turn.
+            tokens:
+              - name: Pickaxe Vulnerability
+                image_url: https://wiki.teamfortress.com/w/images/thumb/9/96/Equalizer.png/250px-Equalizer.png
+                text: You take +1x damage until the start of your next turn.
+          - name: Disciplinary Action
+            text: Range 2. You may move up to 2. The target may move up to 2.
+          - name: Pain Train
+            text: |-
+              Enter or exit Pain Train stance as free action at start of turn.
+              Stance:
+                You count twice for objectives. You take +.5x damage.
+            tokens:
+              - name: Pain Train stance
+                image_url: https://static.wikia.nocookie.net/real-tetragon-fortress/images/3/3d/Pain_Train.png/revision/latest?cb=20200729194702
+                text: https://static.wikia.nocookie.net/real-tetragon-fortress/images/3/3d/Pain_Train.png/revision/latest?cb=20200729194702
+
+
+
+      - name: Scout
+        description: |-
+          - High mobility
+          - Low health
+          - High melee damage
+        image_url: https://static.wikia.nocookie.net/teamfortress/images/4/48/Scout_Full_Body.png/revision/latest?cb=20170716194653
+        health: 6
+        speed: 5
+        passive:
+          - name: All your movement is Flying.
+            text: ''
+          - name: When you make a standard move action
+            text: You may use any unspent movement at the end of your turn.
+          - name: You count twice for objectives.
+            text: ''
+        default_abilities:
+          - name: Scattergun
+            text: Range 1, 4⚔, may deal push 2
+        abilities:
+          - name: Bonk Atomic Punch
+            text: |- 
+              Move+Standard action
+              You are immune to damage.
+              You can't use standard actions.
+              End as a move action.
+            tokens:
+              - name: Bonk Atomic Punch
+                image_url: https://static.wikia.nocookie.net/teamfortress/images/d/d8/Bonk%21_Atomic_Punch_item_icon_TF2.png/revision/latest?cb=20130704005718
+                text: You are immune to damage. You can't use standard actions.
+          - name: Crit-a-Cola
+            text: |-
+              Move+Standard action.
+              Starting at the beginning of your next turn, you deal and receive +.5x damage.
+            tokens:
+              - name: Crit-a-Cola
+                image_url: https://wiki.teamfortress.com/w/images/thumb/d/db/Crit-a-Cola.png/250px-Crit-a-Cola.png
+                text: You deal and receive +.5x damage.
+          - name: Mad Milk
+            text: |-
+              1/Battle
+              Range 3 2x2. Enemies in the area are Covered in Milk. 
+              When a unit damages a unit Covered in Milk, they heal 1/2 the damage dealt.
+            tokens:
+              - name: Covered in Milk
+                image_url: https://wiki.teamfortress.com/w/images/thumb/b/bd/Mad_Milk.png/250px-Mad_Milk.png
+                text: When a unit damages a unit Covered in Milk, they heal 1/2 the damage dealt.
+          - name: Flying Guillotine
+            text: |-
+              1/Battle
+              ⛨1/2 distance, 1⚔, give target DoT
+            tokens:
+              - *DoT
+          - name: The Sandman
+            text: |-
+              1/Battle
+              Range 4+, ⛨+3, Target is stunned.
+            tokens:
+              - *Stun
+          - name: Fan O'War
+            text: |-
+              Range 1, Target takes +.5x damage
+            tokens:
+              - name: Fan O'War
+                image_url: https://static.wikia.nocookie.net/teamfortress/images/3/39/Fan_O%27War_item_icon_TF2.png/revision/latest?cb=20130708190337
+                text: Target takes +.5x damage

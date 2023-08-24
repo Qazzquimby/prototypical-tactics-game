@@ -38,9 +38,28 @@ def copy_yaml_to_site():
         f.write(input_yaml)
 
 
+def get_all_text_fields(game):
+    # used to stylecheck
+    heroes = []
+    for set_ in game.sets:
+        heroes += set_.heroes
+
+    abilities = []
+    for hero in heroes:
+        abilities += hero.passives
+        abilities += hero.default_abilities
+        abilities += hero.abilities
+
+    texts = [ability.text for ability in abilities]
+
+    return texts
+
+
 def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder: ImageBuilder):
     game = load_game_from_yaml_path(yaml_path)
     library = game_to_library(game)
+
+    # all_text_fields = get_all_text_fields(game)
 
     tts_dict = asyncio.run(
         library_to_tts_dict(
