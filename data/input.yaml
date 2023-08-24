@@ -277,10 +277,9 @@ sets:
         default_abilities:
           - name: Caduceus Staff
             text: |-
-              Range 3
-              Choose one:
-                - Target Heals 4.
-                - Until end of target's next turn, they deal +0.5x damage.
+              Range 3, choose one --
+              - Target Heals 4.
+              - Until end of target's next turn, they deal +0.5x damage.
           - name: Caduceus Blaster
             text: |-
               ⛨1/3 distance, ⚔2.
@@ -1404,10 +1403,12 @@ sets:
         default_abilities:
           - name: Leviathan Heavy Assault Cannon
             text: |-
-              If not Spun Up: either Range 4, ⚔2
-                or enter Spun Up stance:
+              If not Spun Up, chose one:
+               - Range 4, ⚔2
+               - Enter Spun Up stance:
                   You are continually slowed. You can exit as a free Action at the start of your turn.
-              If Spun Up: Move + Standard Action. You gain 3 stress. Range 4, ⚔6
+              
+              If Spun Up: Move + Standard Action, You gain 3 stress, Range 4, ⚔6
         tokens:
           - name: Spun Up
             image_url: https://tactics.toren.dev/image_token_Spun Up_817474683636700342.jpg
@@ -2657,12 +2658,11 @@ sets:
 
           - name: Sapper
             text: |-
-              Range 1, 
-              Either target a summon with speed 0.
-              It is silenced and paralyzed. At the start of your turn, destroy any summons Silenced this way.
-              The summoner can use Standard Action, Range 1, remove these conditions from target summon.
-
-              Or target a marker. Remove it.
+              Range 1, Choose one --
+              - Target a summon with speed 0.
+                It is silenced and paralyzed. At the start of your turn, destroy any summons Silenced this way.
+                The summoner can use Standard Action, Range 1, remove these conditions from target summon.
+              - Target a marker. Remove it.
             # consider just destroying it
             tokens:
               - *Silence
@@ -2697,11 +2697,9 @@ sets:
         abilities:
           - name: Sandvich
             text: |-
-              1/Battle
-              Either:
-                Move + Standard, Heal to full health.
-              
-                Or Standard Action, space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
+              1/Battle, choose one --
+              - Place your Sandvich Marker in a space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
+              - Move + Standard, Heal to full health.
             tokens:
               - name: Sandvich
                 image_url: https://wiki.teamfortress.com/w/images/thumb/9/95/Sandvich.png/250px-Sandvich.png
@@ -2709,14 +2707,12 @@ sets:
                   Units that enter this space heal 4 and destroy this.
           - name: Buffalo Steak
             text: |-
-              1/Battle
-              Either:
-                Move + Standard Action. Gain Buffalo Steak Rage: 
+              1/Battle, choose one --
+              - Place your Buffalo Steak Marker in a space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
+              - Move + Standard Action. Gain Buffalo Steak Rage: 
                   +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
-              
-                Or Standard Action, space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
             tokens:
-              - name: Buffalo Steak Rage
+              - name: Buffalo Steak
                 image_url: https://tactics.toren.dev/image_token_Buffalo Steak Rage_8581238716479321113.jpg
                 text: |- 
                   On the map: units that enter this space heal 4 and destroy this.
@@ -2724,15 +2720,12 @@ sets:
 
           - name: Swap Gloves
             text: |-
-              Free Action at start of turn.
-              Either:
-                  Enter GRU stance: 
+              Free Action at start of turn: choose one --
+              - Enter GRU stance: 
                   +2 Speed, receive +.5x damage.
-              
-                  Or enter Fists of Steel stance: 
+              - Enter Fists of Steel stance: 
                   Receive -1 damage from ranges 2+, and +1x damage from range 1.
-              
-                  Or remove your glove stance.
+              - Remove your glove stance.
             tokens:
               - name: GRU
                 image_url: https://tactics.toren.dev/image_token_GRU_-4461647217034725085.jpg
@@ -2740,7 +2733,6 @@ sets:
               - name: Fists of Steel
                 image_url: https://tactics.toren.dev/image_token_Fists of Steel_1277847066511706523.jpg
                 text: Receive -1 damage from ranges 2+, and +1x damage from range 1.
-
 
       - name: Sniper
         description: |-
@@ -2817,10 +2809,9 @@ sets:
               You and Allies in range 3 heal 3.
           - name: Ubercharge
             text: |-
-              Instant ⛨+3, Ultimate 5: 
-              Either: 
-                You and your Healing Target are immune to damage but are ignored by objectives.
-                Or, your Healing target always crits.
+              Instant ⛨+3, Ultimate 5: choose one --
+              - You and your Healing Target are immune to damage but are ignored by objectives.
+              - Your Healing target always crits when they hit.
             dice:
               - name: Required Ultimate
                 color: white
@@ -3022,15 +3013,26 @@ sets:
         abilities:
           - name: Banner
             text: |-
-              Spend 8 charges, Move + Standard Action, Choose one:
-                Your team deals +.5x damage.
-                Or your team have armor 1 and do not receive extra damage from crits.
-                Or your team has +1 speed and heals 1 when they deal damage.
+              Spend 8 charges, Move + Standard Action: choose one --
+                - Allies deal +.5x damage.
+                - Allies have armor 1 and do not receive extra damage from crits.
+                - Allies have +1 speed and heal 1 when they deal damage.
+            tokens:
+              - name: Buff Banner
+                image_url: https://wiki.teamfortress.com/w/images/thumb/0/08/Buff_Banner_Buffpack.png/116px-Buff_Banner_Buffpack.png
+                text: Allies deal +.5x damage.
+              - name: Batallion's Backup
+                image_url: https://www.giantbomb.com/a/uploads/scale_medium/1/13692/1753915-filesoldier_battalion_s_backup.png
+                text: Allies have armor 1 and do not receive extra damage from crits.
+              - name: Concherer
+                image_url: https://community.cloudflare.steamstatic.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEIUxQZUhz3tgdUidr2DPGHN-wBid0wq8EC22dqwFkpYLXmZGY0JVGRU6NaDaM-p1HoUSNj6ZM6BdLl9u4FLQXx9NyRxZKK_8Q/360fx360f
+                text: Allies have +1 speed and heal 1 when they deal damage.
+
           - name: Pickaxe
             text: |-
-              If bloodied, either:
-                Move 5.
-                Or Move 2, 3⚔, +2 crit.
+              If bloodied, choose one --
+              - Move 5.
+              - Move 2, 3⚔, +2 crit.
               You take +1x damage until the start of your next turn.
             tokens:
               - name: Pickaxe Vulnerability
