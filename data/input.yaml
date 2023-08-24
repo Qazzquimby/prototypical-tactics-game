@@ -118,7 +118,7 @@ sets:
           Can be used 1/Battle, and only on turn X or later.
       - name: Critical Moment
         text: |-
-          Once per battle, you may reroll a die.
+          1/Battle, you may reroll a die.
         tokens:
           - name: Critical Moment
             image_url: https://tactics.toren.dev/image_token_Critical Moment_5737535895777788509.jpg
@@ -214,7 +214,7 @@ sets:
         abilities:
           - name: Blink
             text: |-
-              3/battle
+              3/Battle
               Instant ⛨+2
               Teleport up to 3.
             dice:
@@ -621,7 +621,7 @@ sets:
     #            text: |-
     #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
     #              Spend 5 charges:
-    #                For the rest of the battle, you have +1 speed, and replace your default attacks with:
+    #                For the rest of the Battle, you have +1 speed, and replace your default attacks with:
     #                  default
     #                  range 1, ⚔5
     #      - name: Hanzo
@@ -965,7 +965,7 @@ sets:
     #            text: |-
     #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
     #              Spend 5 charges:
-    #                Until end of battle, you can only use default actions, and scrap gun changes to:
+    #                Until end of Battle, you can only use default actions, and scrap gun changes to:
     #                Range 1, 6 damage, kb 5
     #                or Range 2, ⚔4, kb 3
     #                or Range 3, ⚔2, kb 1
@@ -1224,7 +1224,7 @@ sets:
     #        abilities:
     #          - name: Particle Barrier
     #            text: |-
-    #              2/battle
+    #              2/Battle
     #              Reaction Block⛨+2 on attack on target in range 3
     #              The target purges unwanted conditions
     #              Until the start of your next turn,
