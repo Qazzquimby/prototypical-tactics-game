@@ -258,7 +258,7 @@ sets:
         image_url: https://tactics.toren.dev/image_token_Mercy_8373339493272516722.jpg
         passives:
           - name: Start
-            text: If you did not take damage since the start of your last turn, ✚3.
+            text: If you did not take damage since the start of your last turn, Heal 3.
           - name: Ally dies
             text: |-
               Place a Corpse Marker in their space and note which ally it corresponds to.
@@ -279,7 +279,7 @@ sets:
             text: |-
               Range 3
               Choose one:
-                - Target heals ✚4.
+                - Target Heals 4.
                 - Until end of target's next turn, they deal +0.5x damage.
           - name: Caduceus Blaster
             text: |-
@@ -296,7 +296,7 @@ sets:
           - name: Valkyrie
             text: |-
               Free Action, Ultimate 4:
-                At the beginning of each your turns, ✚2.
+                At the beginning of each your turns, Heal 2.
                 Your Caduceus Staff has range 5, and may affect a second target in range 2 of the first.
                 You can use Guardian Angel as a Move Action.
                 You are always Flying.
@@ -745,7 +745,7 @@ sets:
     #          - name: Crossfade
     #            text: |-
     #              At the start of your turn, choose one:
-    #              You and allies in burst 1 ✚2.
+    #              You and allies in burst 1 Heal 2.
     #              You and allies in burst 1 can move 1.
     #          - name: Wall Ride
     #            text: |-
@@ -790,7 +790,7 @@ sets:
     #            text: |-
     #              1/Battle
     #              Reaction Block +2
-    #              ✚4
+    #              Heal 4
     #              Remove any unwanted conditions.
     #              Until the beginning of your next turn:
     #                You are immune to damage, involuntary movement, and unwanted conditions.
@@ -827,12 +827,12 @@ sets:
     #          - name: Damage Biotic Grasp
     #            text: |-
     #              Range 4, ⚔2.
-    #              ✚1.
+    #              Heal 1.
     #        abilities:
     #          - name: Healing Biotic Grasp
     #            text: |-
     #              Piercing cone 3.
-    #              Allies get ✚3.
+    #              Allies Heal 3.
     #          - name: Fade
     #            text: |-
     #              1/battle
@@ -846,8 +846,8 @@ sets:
     #              Summon a Biotic Orb in range 1.
     #              Biotic Orb is a size 1 field with facing.
     #              Now, and at the beginning of each your turns, it performs:
-    #                Healing: Burst 1, ✚2 to all allies
-    #                Damage: Burst 1, ⚔2 to all enemies
+    #                Healing: Burst 1, all allies Heal 2.
+    #                Damage: Burst 1, ⚔2 to all enemies.
     #                Then move 2 spaces forwards, reversing direction when blocked by a wall.
     #            tokens:
     #              - name: Healing Biotic Orb
@@ -861,9 +861,9 @@ sets:
     #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
     #              Spend 5 charges:
     #                Move + Standard Action
-    #                ✚2.
+    #                Heal 2.
     #                Move up to 2.
-    #                Piercing line, ⚔2 to enemies, ✚4 to allies.
+    #                Piercing line, ⚔2 to enemies, allies Heal 4.
     #      - name: Orisa
     #        description: |-
     #          - Tank, Damage mitigation
@@ -954,7 +954,7 @@ sets:
     #              1/battle
     #              Channel:
     #                Until the start of your next turn, you take 0.5x damage.
-    #                At the start of your next turn, ✚6.
+    #                At the start of your next turn, Heal 6.
     #          - name: Chain Hook
     #            text: |-
     #              1/battle
@@ -993,7 +993,7 @@ sets:
     #            text: |-
     #              1/battle
     #              Place a size 2 Biotic Field, overlapping your space.
-    #              Now, and at the beginning of each your turns, all allies in the field ✚2.
+    #              Now, and at the beginning of each your turns, all allies in the field Heal 2.
     #            tokens:
     #              - name: Biotic Field
     #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_5/50/Icon-ability.bioticfield.png/revision/latest/scale-to-width-down/100?cb=20150708110158
@@ -1084,7 +1084,7 @@ sets:
     #            text: |-
     #              ⛨1/2 distance, ⚔2
     #              or range 1, ⚔3
-    #              or Turret in range 3, ✚3
+    #              or Turret in range 3, Heal 3
     #        abilities:
     #          - name: Deploy Turret
     #            text: |-
@@ -1194,7 +1194,7 @@ sets:
     #              Range 1, ⚔2, kb 2
     #          - name: Orb of Harmony
     #            text: |-
-    #              Mark an ally. Now and at the start of your turn, they get ✚2. When you use this again, it removes the original mark.
+    #              Mark an ally. Now and at the start of your turn, they Heal 2. When you use this again, it removes the original mark.
     #            tokens:
     #              - name: Orb of Harmony
     #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_0/0c/Ability-zenyatta2.png/revision/latest/scale-to-width-down/100?cb=20141112192735
@@ -1209,7 +1209,7 @@ sets:
     #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
     #              Spend 5 charges, Reaction +2:
     #                  Heal to full. Purge all conditions you don't want.
-    #                  All allies in burst 1 get ✚5.
+    #                  All allies in burst 1 Heal 5.
     #                  Until the start of your next turn, you are immune to damage and don't take conditions you don't want.
     #      - name: Zarya
     #        description: |-
@@ -1259,7 +1259,7 @@ sets:
     #            text: |-
     #              Move + Standard Action
     #              You may move up to 1.
-    #              Unlimited range, choose ✚3 or ⚔2.
+    #              Unlimited range, either Heal 3 or ⚔2.
     #        abilities:
     #          - name: Sleep Dart
     #            text: |-
