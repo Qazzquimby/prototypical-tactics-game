@@ -167,9 +167,9 @@ sets:
         default_abilities:
           - name: Widow's Kiss
             text: |-
-              Range 2, ⚔2
-              or
-              Note your facing. At the start of your next turn: 
+              Choose one -- 
+              - Range 2, ⚔2
+              - Note your facing. At the start of your next turn: 
                 Range 2+, ⚔6, undodgeable, +2 crit.
         tokens:
           - name: Widow's Kiss Charged
@@ -177,7 +177,7 @@ sets:
         abilities:
           - name: Venom Mine
             text: |-
-              1/Battle
+              1/Battle:
               Empty space in range 3, Summon a Venom Mine with 1hp.
               When an enemy enters this or an adjacent space, destroy this. When destroyed, burst 1, give DoT 1.
             tokens:
@@ -189,14 +189,14 @@ sets:
               - *DoT
           - name: Grappling Hook
             text: |-
-              1/Battle, Move Action
+              1/Battle, Move Action:
               Fly directly to any point in range 5.
           - name: Infra-Sight
             text: |-
-              Free Action, Ultimate 3:
-                Enemies cannot dodge or be untargetable.
-                All allies have +2 crit
-                This doesn't gain charge while active.
+              Ultimate 3, Free Action:
+              Enemies cannot dodge or be untargetable.
+              All allies have +2 crit
+              This doesn't gain charge while active.
       - name: Tracer
         description: |-
           - Fast, fragile, instant speed dodges
@@ -287,7 +287,7 @@ sets:
               At the start of your next turn, you may resurrect target corpse in range 1.
           - name: Valkyrie
             text: |-
-              Free Action, Ultimate 4:
+              Ultimate 4, Free Action:
                 At the beginning of each your turns, Heal 2.
                 Your Caduceus Staff has range 5, and may affect a second target in range 2 of the first.
                 You can use Guardian Angel as a Move Action.
@@ -335,7 +335,7 @@ sets:
               Push target 2 spaces in any direction.
           - name: Barrage
             text: |-
-              Move + Standard Action, Ultimate 5:
+              Ultimate 5, Move + Standard Action:
               ⛨1/2 distance, ⚔8, ⚔3 to all others in burst 1.
       - name: Reaper
         description: |-
@@ -395,7 +395,7 @@ sets:
                 You have facing and can freely set your facing at the end of your turn.
                 You're continually Slow (-2 speed, min 1) and can't take standard actions.
                 There is a 3 space long line on the edge in front of you, which moves with you.
-                The barrier acts as blocking for enemy's attacks (but not movement of summons or markers)
+                The barrier acts as blocking for enemy's attacks (but not movement of summons or markers).
                 The barrier has 10hp which cannot be healed.
               You can dismiss the stance as a Free Action if you have ended a turn with it active.
             dice:
@@ -413,19 +413,19 @@ sets:
               - *Barrier
           - name: Charge
             text: |-
-              Move + Standard Action, 1/Battle
+              1/Battle, Move + Standard Action:
               Move as far as possible in a line.
               When you contact an enemy, roll attack with ⛨2 + 1/2 distance from your start position.
               The first enemy hit this way is pushed with you, interrupted, and takes ⚔7.
               Other enemies in the line are pushed to the side and take ⚔1.
           - name: Fire Strike
-            text:
-              CD 1
+            text: |-
+              CD 1:
               All in line, ⛨1/3 distance, ⚔3
           - name: Earthshatter
             text: |-
-              Ultimate 5:
-                Range 2 burst 1, ⚔1 and Paralyze
+              Ultimate 4:
+              Range 2, 3x3, ⚔1 and Paralyze
             tokens:
               - *Paralyze
     #      - name: Bastion
@@ -1347,18 +1347,17 @@ sets:
         default_abilities:
           - name: Grapple
             text: |-
-              Range 4
-              Move directly to the target and grapple them.
+              Range 4, move directly to the target and grapple them.
           - name: Chain Axe
             text: Range 1, ⚔3 irreducible
         abilities:
           - name: Grapple Swing
             text: |-
-              Move Action
+              Move Action:
               Fly up to 4 in an orthogonal line
           - name: SEKHMET-Class NHP
             text: |-
-              Free Action at start of turn.
+              Free Action at start of turn:
               Enter SEKHMET stance:
                 You deal +⚔1, and can use Chain Axe as a Free Action once per turn.
                 While you are not adjacent to a unit, you must use all resources to move towards the nearest unit, allied or hostile.
@@ -1369,7 +1368,7 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_SEKHMET_82870056492246079.jpg
           - name: Omni-Harpoon
             text: |-
-              Ultimate 5
+              Ultimate 5:
               All enemies in range 4, 
               ⚔4, Pull as close to you as possible, stun and immobilize until the end of your next turn.
             tokens:
@@ -1393,10 +1392,10 @@ sets:
         default_abilities:
           - name: Leviathan Heavy Assault Cannon
             text: |-
-              If not Spun Up, chose one:
-               - Range 4, ⚔2
-               - Enter Spun Up stance:
-                  You are continually slowed. You can exit as a Free Action at the start of your turn.
+              If not Spun Up, choose one --
+              - Range 4, ⚔2.
+              - Enter Spun Up stance:
+                You are continually slowed. You can exit as a Free Action at the start of your turn.
               
               If Spun Up: Move + Standard Action, You gain 3 stress, Range 4, ⚔6
         tokens:
@@ -1410,7 +1409,7 @@ sets:
               - *Impaired
           - name: Fortress Protocol
             text: |-
-              1/Battle
+              1/Battle:
               Enter Fortress Stance:
                 Block⛨+2
                 You are immobilized.
@@ -1443,8 +1442,9 @@ sets:
               Attacks that pass through the shield do 0.5x damage.
           - name: Summon ICEOUT Drone
             text: |-
-              1/Battle
+              1/Battle:
               Summon an ICEOUT Drone in range 4.
+              ---
               As a Standard Action, you may teleport an ICEOUT Drone to any location in range 4.
           - name: Mag Field
             text: |-
@@ -1480,18 +1480,18 @@ sets:
         abilities:
           - name: Climb Wall
             text: |-
-              Move Action
+              Move + Standard Action:
               If you're adjacent to a wall, gain High Altitude (You count as being 2 spaces further).
-              This ends if you move away from the wall, though you may still move along the wall.
+              This ends if you move.
             tokens:
               - *HighAltitude
           - name: Railgun
             text: |-
-              If there is no enemy in range 2,
+              If there is no enemy in range 2:
               Take 3 stress, All in line infinite, ⚔4 irreducible
           - name: Mark for Death
             text: |-
-              Move + Standard Action,
+              Move + Standard Action:
               Give a unit your Marked for Death Mark.
               You deal +⚔4 to the unit with the mark.
               While a unit has the mark, you are immobilized.
@@ -1521,7 +1521,7 @@ sets:
         abilities:
           - name: Swarm Body
             text: |-
-              Move Action
+              Move Action:
               Enter Swarm Body stance and put a charge on this:
                 At the start of your turn, ⚔2*charges to all adjacent enemies, then put a charge on this.
                 This ends if you move for any reason.
@@ -1533,12 +1533,12 @@ sets:
                   This ends if you move for any reason.
           - name: Summon Hive Drone
             text: |-
-              1/Battle
+              1/Battle:
               Summon a Hive Drone in range 2.
               As a Standard Action, you may teleport a Hive Drone to any location in range 2.
           - name: Hive Frenzy
             text: |-
-              Free, ultimate 4:
+              Ultimate 4, Free Action:
               You and adjacent allies have Block⛨+1.
               Trigger your end of turn effects twice.
               While you have more than 1hp, you cannot be reduced below 1hp.
@@ -1572,31 +1572,32 @@ sets:
           #              Force target to move up to their speed under you control. It counts as voluntary movement.
           - name: False Idol
             text: |-
-              Unlimited Range, Summon a False Idol corresponding to an ally. (max 1, replace old)
-              1hp.
+              Unlimited Range, Summon a False Idol corresponding to an ally (max 1, replace old) with 1hp.
               Units with line of sight to the idol cannot target the ally.
             tokens:
               - name: False Idol
                 image_url: https://tactics.toren.dev/image_token_False Idol_5315310770854887675.jpg
           - name: Celestial Shackles
             text: |-
-              Unlimited Range, Vs Will
+              Unlimited Range, Vs Will:
               Place a Shackle marker on the target's space.
-              As a Free Action, you may remove the marker to teleport the target back to that space.
+              ---
+              Free Action: Remove the marker to teleport the target back to that space.
             tokens:
               - name: Shackle
                 image_url: https://tactics.toren.dev/image_token_Shackle_4846826871429583023.jpg
           - name: Dimensional Emblems
             text: |-
-              Unlimited Range
+              Unlimited Range, Vs Will:
               Create 3 Dimensional Emblem markers adjacent to the target, but not orthogonally adjacent to any other Dimensional Emblem.
               When a unit moves through a Dimensional Emblem, they take 2 stress and the emblem is removed.
             tokens:
               - name: Dimensional Emblem
                 image_url: https://tactics.toren.dev/image_token_Dimensional Emblem_1944823803680669654.jpg
+                text: When a unit moves through this, they take 2 stress and this is removed.
           - name: Hurl into The Duat
             text: |-
-              Unlimited Range, Vs Will
+              Unlimited Range, Vs Will:
               Give the target a Duat token and +2 stress.
               The effect depends on the number of Duat tokens the target has.
               - If they have 1 token, force them to move up to their speed under you control. It counts as voluntary movement.
@@ -1610,11 +1611,12 @@ sets:
               - *Impaired
           - name: Symbiosis
             text: |-
-              1/Battle
-              Ally in range 1. 
+              1/Battle:
+              Target ally in range 1. 
               Remove your marker from the board. You share the ally's location and cannot move away. 
               You have Block⛨+4. You also take any stress or conditions the ally takes.
-              You can end the effect as a Standard Action.
+              ---
+              Standard Action: End this effect
 
       - name: Barbarosa
         description: |-
@@ -1627,13 +1629,13 @@ sets:
             text: ""
           - name: Size 3
             text: |-
-              Whenever you're moved, remove all Barbarosa Markers, then fill all free adjacent spaces with Barbarosa markers.
+              Whenever you change location, remove all Barbarosa Markers, then fill all free adjacent spaces with Barbarosa markers.
               You are considered to occupy all marked spaces. You can draw range to and from any marked space.
           - name: Immune to forced movement
             text: ""
           - name: Start
             text: Gain an Apocalypse Charge
-          - name: Change location or lose  actions
+          - name: Change location or lose actions
             text: Lose all Apocalypse Charges
         tokens:
           - name: Barbarosa
@@ -1652,8 +1654,7 @@ sets:
             text: Move + Standard Action, Take 2 stress, Unlimited range, ⚔4
           - name: Siege Cannon
             text: |-
-              CD 1
-              Move + Standard Action, Must be no enemy in range 2 
+              CD 1, Move + Standard Action, Must be no enemy in range 2: 
               Take 4 stress, Unlimited range, Ignores walls, 3x3 area, ⚔4
           - name: Roller Grenade
             text: |-
@@ -1662,7 +1663,7 @@ sets:
                 All in range 1, ⚔2, push 2 spaces.
           - name: Apocalypse Rail
             text: |-
-              Move + Standard Action, 1/Battle           
+              1/Battle, Move + Standard Action:           
               Range 4+, 3x3 area, ⚔3*Apocalypse Charges. 
               Destroy all walls and terrain in the area.
       - name: Genghis
@@ -1690,7 +1691,7 @@ sets:
         abilities:
           - name: Plasma Thrower
             text: |-
-              Move + Standard Action
+              Move + Standard Action:
               Take 4 stress,
               Range 1 3x3 area, ⚔4, give DoT 2
               The affected spaces gain Hazard: ⚔2
@@ -1702,7 +1703,7 @@ sets:
                   A unit can only take damage from Plasma Hazard once per round.
           - name: Havok Mine
             text: |-
-              1/Battle
+              1/Battle:
               Empty space in range 2, place a Havok Mine marker.
               When any character moves into an orthogonally adjacent space, it is destroyed and does
                 All in line 4, give DoT 2
@@ -2659,7 +2660,7 @@ sets:
               - *Paralyze
           - name: Deadringer
             text: |-
-              1/Battle, interrupt when you would take damage.
+              1/Battle, interrupt when you would take damage:
               Take no damage, clear any number of conditions, move 2, use Stealth.
 
       - name: Heavy
@@ -2689,7 +2690,7 @@ sets:
             text: |-
               1/Battle, choose one --
               - Place your Sandvich Marker in a space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
-              - Move + Standard, Heal to full health.
+              - Move + Standard, Heal 12.
             tokens:
               - name: Sandvich
                 image_url: https://wiki.teamfortress.com/w/images/thumb/9/95/Sandvich.png/250px-Sandvich.png
@@ -2737,18 +2738,23 @@ sets:
         default_abilities:
           - name: Sniper Rifle
             text: |-
-              Move + Standard Action. Move 1. Note your facing.
-              At the start of your next turn, range 3+, undogeable ⚔5, +2 crit per kill counter.
-              After this attack the target takes +.5x ⚔.
+              Move + Standard Action:
+              Move 1. Note your facing.
+              At the start of your next turn:
+                Range 3+, undogeable ⚔5, +2 crit per kill counter.
+                After this attack the target receives +.5x damage.
               
               On kill, gain a Kill counter.
           - name: Bushwacka
-            text: Range 1, 2⚔, +2 crit, doubles damage bonuses
+            text: Range 1, 2⚔, +2 crit, this attack doubles applied damage bonuses
         tokens:
           - *Kill
         abilities:
           - name: Cleaner's Carbine
-            text: Range 2, 2⚔. Gain Crikey counters equal to damage dealt, max 4. While this has 4 Crikey counters, you deal +.5x damage.
+            text: |-
+              Range 2, 2⚔.
+              Gain Crikey counters equal to damage dealt, max 4.
+              While this has 4 Crikey counters, you deal +.5x damage.
             tokens:
               - name: Crikey
                 image_url: https://tactics.toren.dev/image_token_Crikey_9086728348551584567.jpg
@@ -2773,7 +2779,7 @@ sets:
         default_abilities:
           - name: Medigun
             text: |-
-              Path range 3, heal 2, target becomes your Healing Target until the start of your next turn, or if they stop being within path range 4.
+              Path range 3, Heal 2, target becomes your Healing Target until the start of your next turn, or if they stop being within path range 4.
               When they move other than in a standard move, you may copy that movement effect.
               At start of your turn, heal them 4, with excess healing as overshield. Move up to their speed-3.
             dice:
@@ -2792,14 +2798,17 @@ sets:
             text: ⛨1/2 distance, 3⚔, or heal 3
 
           - name: Ubersaw
-            text: Range 1, 2⚔, +2crit. On hit, lower your ultimate costs by 2.
+            text: |-
+              Range 1, 2⚔, +2crit.
+              On hit, lower your ultimate costs by 2.
           - name: Amputator Song
-            text:
-              Move + Standard Action
-              You and Allies in range 3 heal 3.
+            text: |-
+              Move + Standard Action:
+              Allies in range 3 heal 3. (This includes you)
           - name: Ubercharge
             text: |-
-              Instant ⛨+3, Ultimate 5: choose one --
+              Ultimate 5, Instant ⛨+3: 
+              Choose one --
               - You and your Healing Target are immune to damage but are ignored by objectives.
               - Your Healing target always crits when they hit.
             dice:
@@ -2816,9 +2825,10 @@ sets:
         passives:
           - name: Heavy Load
             text: |-
-              You can carry one of your summons. Remove it from the board and place it on your card.
-              Free Action, range 1, place your carried summon and Silence it.
+              You can carry a summon. Remove it from the board and place it on your card.
               You have -1 speed while carrying a summon.
+              ---
+              Free Action, range 1, place your carried summon and Silence it.
         tokens:
           - *Silence
           - name: Upgrade
@@ -2827,14 +2837,16 @@ sets:
         default_abilities:
           - name: Rescue Ranger
             text: |-
-              ⛨1/3 distance, 2⚔ 
-              Or if summon, heal 2.
-              Or if one of your summons, remove and carry.
+              Choose one --
+              - ⛨1/3 distance, 2⚔ 
+              - If target is a summon, heal 2.
+              - If target is a summon, remove and carry.
           - name: Wrench
             text: |-
-              Range 1, ⚔2, +2crit
-              Or if summon, heal 4.
-              Or if one of your summons, give it an Upgrade token and Silence it.
+              Choose one --
+              - Range 1, ⚔2, +2crit
+              - If target is a summon, heal 4.
+              - If target is a summon, give it an Upgrade token and Silence it.
         abilities:
           - name: Build
             text: |-
@@ -2848,7 +2860,7 @@ sets:
                 text: Until the start of your next turn, enemy attacks passing through spaces adjacent to you have Block⛨+3.
           - name: Eureka Effect
             text: |-
-              Move + Standard Action
+              Move + Standard Action:
               Teleport to any space in your deployment zone or adjacent to your Dispenser.
         units:
           - name: Sentry
@@ -2860,9 +2872,9 @@ sets:
                 text: ''
               - name: There is an enemy in range 5
                 text: |-
-                  Recharge at start of turn.
-                  Mandatory Interrupt, nearest enemy in range 5, ⚔3
-                  or if upgraded, nearest enemy in range 5, ⚔6, ⚔1 to others in burst 1, push 1.
+                  Recharge at start of turn, Mandatory Interrupt:
+                  If upgraded: Nearest enemy in range 5, ⚔6, ⚔1 to others in burst 1, push 1.
+                  Else: Nearest enemy in range 5, ⚔3
                   
                   If this attack passes through an ally, it hits that ally instead.
           - name: Dispenser
@@ -2874,8 +2886,9 @@ sets:
                 text: ''
               - name: End
                 text: |-
-                  Allies in range 1, heal 2.
-                  or if upgraded, Allies in range 1 heal 4.
+                  If upgraded: Allies in range 1 heal 4.
+                  Else: Allies in range 1, heal 2.
+
       - name: Demoman
         description: |-
           - High damage, low accuracy
@@ -2908,16 +2921,17 @@ sets:
           - name: Sticky Bomb Launcher
             text: |-
               Empty space in range 4, place a Sticky Bomb marker (1hp).
-              As a Free Action at start of turn, you may remove all your Sticky Bombs, and each deals burst 1, ⚔4.
+              ---
+              Free Action at start of turn: Remove all your Sticky Bombs, and each deals burst 1, ⚔4.
           - name: Chargin' Target
             text: |-
-              1/Battle, Move Action
+              1/Battle, Move Action:
               Move any distance in a straight line and clear any number of conditions.
               If you moved at least 4, your next attack this turn with range 2 or less deals +1x damage.
 
           - name: Ullapool Caber
             text: |-
-              1/Battle
+              1/Battle:
               Range 1, 2⚔, 4⚔ to all in burst 1 of target (including target).
           - name: Pain Train
             text: |-
@@ -2953,28 +2967,28 @@ sets:
           - name: Flamethrower
             text: |-
               All in Line 2, 3⚔. 
-              If they have DoT, +1⚔.
-              If they don't have DoT, they get DoT 1.
+              If they have DoT: +1⚔.
+              Else: They get DoT 1.
           - name: Airblast
             text: |-
-              Recharges at start of your turn.
-              Instant ⛨+2, all in Line 2, Push 2.
-              If this interrupted an attack with Range 3+, which passes into the Line, cancel and recast the interrupted attack.
+              Recharge at start of your turn, Instant ⛨+2:
+              All in Line 2, Push 2.
+              If this interrupted an attack with Range 3+ which passes into the Line, cancel and recast the interrupted attack.
         abilities:
           - name: Flare Gun
             text: |- 
               ⛨1/3 distance, 2⚔. 
-              If they have DoT, +2⚔.
-              If they don't have DoT, they get DoT 1.
+              If they have DoT: +2⚔.
+              Else: They get DoT 1.
           - name: Axe
             text: |-
               Range 1. Also targets anyone who any of your targets healed or was healed by since the start of your last turn.
               2⚔, +2crit.
-              If they have DoT, +2⚔, and remove a DoT from the target.
-              On kill move 2 and heal 3.
+              If they have DoT: +2⚔, and remove a DoT from the target.
+              On kill, move 2 and heal 3.
           - name: Mmmph
             text: |-
-              Discard 8 charges. Move + Standard Action
+              Discard 8 charges, Move + Standard Action:
               You deal +1x damage.
           - name: Thermal Thruster
             text: |-
@@ -3029,7 +3043,10 @@ sets:
                 image_url: https://wiki.teamfortress.com/w/images/thumb/9/96/Equalizer.png/250px-Equalizer.png
                 text: You take +1x damage until the start of your next turn.
           - name: Disciplinary Action
-            text: Range 2. You may move up to 2. The target may move up to 2.
+            text: |-
+              Range 2,
+              You may move up to 2.
+              The target may move up to 2.
           - name: Pain Train
             text: |-
               Enter or exit Pain Train stance as Free Action at start of turn.
@@ -3039,8 +3056,6 @@ sets:
               - name: Pain Train stance
                 image_url: https://static.wikia.nocookie.net/real-tetragon-fortress/images/3/3d/Pain_Train.png/revision/latest?cb=20200729194702
                 text: https://static.wikia.nocookie.net/real-tetragon-fortress/images/3/3d/Pain_Train.png/revision/latest?cb=20200729194702
-
-
 
       - name: Scout
         description: |-
@@ -3063,17 +3078,18 @@ sets:
         abilities:
           - name: Bonk Atomic Punch
             text: |- 
-              Move + Standard Action
+              Move + Standard Action:
               You are immune to damage.
               You can't use standard actions.
-              You may end this effect as a Move Action.
+              ---
+              Move Action: End this effect.
             tokens:
               - name: Bonk Atomic Punch
                 image_url: https://static.wikia.nocookie.net/teamfortress/images/d/d8/Bonk%21_Atomic_Punch_item_icon_TF2.png/revision/latest?cb=20130704005718
                 text: You are immune to damage. You can't use standard actions.
           - name: Crit-a-Cola
             text: |-
-              Move + Standard Action
+              Move + Standard Action:
               Starting at the beginning of your next turn, you deal and receive +.5x damage.
             tokens:
               - name: Crit-a-Cola
@@ -3081,8 +3097,8 @@ sets:
                 text: You deal and receive +.5x damage.
           - name: Mad Milk
             text: |-
-              1/Battle
-              Range 3 2x2. Enemies in the area are Covered in Milk. 
+              1/Battle:
+              Range 3 2x2. Allies clear DoT. Enemies get Covered in Milk.  
               When a unit damages a unit Covered in Milk, they heal 1/2 the damage dealt.
             tokens:
               - name: Covered in Milk
@@ -3090,19 +3106,19 @@ sets:
                 text: When a unit damages a unit Covered in Milk, they heal 1/2 the damage dealt.
           - name: Flying Guillotine
             text: |-
-              1/Battle
+              1/Battle:
               ⛨1/2 distance, 1⚔, give target DoT
             tokens:
               - *DoT
           - name: The Sandman
             text: |-
-              1/Battle
-              Range 4+, ⛨+3, Target is stunned.
+              1/Battle:
+              Range 4+, ⛨+3, target is stunned.
             tokens:
               - *Stun
           - name: Fan O'War
             text: |-
-              Range 1, Target takes +.5x damage
+              Range 1, target takes +.5x damage
             tokens:
               - name: Fan O'War
                 image_url: https://static.wikia.nocookie.net/teamfortress/images/3/39/Fan_O%27War_item_icon_TF2.png/revision/latest?cb=20130708190337
