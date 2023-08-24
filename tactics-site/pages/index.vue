@@ -40,7 +40,7 @@ function get_image_path(names: string[]): string {
             <h3 text-secondary-700 font-bold>
               {{ rule.name }}
             </h3>
-            <p>{{ rule.text }}</p>
+            <p v-html="rule.text"></p>
           </div>
         </div>
       </div>
