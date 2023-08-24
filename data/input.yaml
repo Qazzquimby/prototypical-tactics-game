@@ -401,13 +401,13 @@ sets:
           - name: Barrier Field
             text: |-
               Instant ⛨+2
-              This ability has 10 hp.
               Enter shield stance.
               In shield stance:
                 You have facing and can freely set your facing at the end of your turn.
                 You're continually Slow (-2 speed, min 1) and can't take standard actions.
                 There is a 3 space long line on the edge in front of you, which moves with you.
                 The barrier acts as blocking for enemy's attacks (but not movement of summons or markers)
+                The barrier has 10hp which cannot be healed.
               You can dismiss the barrier as a free action if you have ended a turn with it active.
             dice:
               - name: Barrier health
