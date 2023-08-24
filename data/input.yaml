@@ -33,11 +33,11 @@ rules:
       P1's first character, P2's first character, P1's second character, P2's second character, etc.
   - name: Actions
     text: |-
-      Units (such as heroes) have a move action and standard action, in that order, plus a quick action.
+      Units (such as heroes) have a move Action and standard Action, in that order, plus a quick Action.
       Move moves up to speed (see range)
       Character's active abilities are standard actions by default.
       Quick actions are marked with quick.
-      An action being "Default" makes no difference by default, but is treated differently by some rules.
+      An Action being "Default" makes no difference by default, but is treated differently by some rules.
   - name: Range
     text: |-
       Range is counting squares. One square can be diagonally adjacent, the rest must be orthogonal.
@@ -106,10 +106,10 @@ sets:
           May list a reaction speed target, like "Instant ⛨+2" or "Instant ⛨+1"
           An ability marked as Instant can be used for free at the start of any turn, or when a unit is targeted.
           
-          When reacting to to a targeting action, declare before the roll is made.
-          If the roll is higher than the target's defense + the Instant's bonus (if any), the Instant occurs after the action.
-          Otherwise, the Instant occurs before the action.
-          If the actor is an ally, you may choose whether the Instant triggers before or after the action.
+          When reacting to to a targeting Action, declare before the roll is made.
+          If the roll is higher than the target's defense + the Instant's bonus (if any), the Instant occurs after the Action.
+          Otherwise, the Instant occurs before the Action.
+          If the actor is an ally, you may choose whether the Instant triggers before or after the Action.
 
           Note that the Instant's defense bonus does not modify the target's defense - it only changes how easy it is to act first.
           Reminder that units can choose to be hit even when an attack roll fails.
@@ -128,7 +128,7 @@ sets:
           Flying movement ignores terrain and does not provoke reactions.
       - name: Facing
         text: |-
-          When a unit specifically states it has facing, when it acts, indicate that it faces an orthogonal direction most closely facing the direction or target of the action.
+          When a unit specifically states it has facing, when it acts, indicate that it faces an orthogonal direction most closely facing the direction or target of the Action.
           You can have the character partly overhang that edge of the square to indicate facing.
           Spaces to its front and the orthogonal line at its left and right are in front of it. Other spaces are behind it.
           F F F F F
@@ -177,7 +177,7 @@ sets:
             image_url: https://tactics.toren.dev/image_token_Widow's Kiss Charged_-7763573326957670311.jpg
             text: |-
               Widow's Kiss has unlimited range, ⚔7, undodgeable, +2 crit.
-              Remove when you take any action.
+              Remove when you take any Action.
         abilities:
           - name: Venom Mine
             text: |-
@@ -194,10 +194,10 @@ sets:
           - name: Grappling Hook
             text: |-
               1/battle
-              Move action, Fly directly to any point in range 5.
+              Move Action, Fly directly to any point in range 5.
           - name: Infra-Sight
             text: |-
-              Free action, Ultimate 3:
+              Free Action, Ultimate 3:
                 Enemies cannot dodge or be untargetable.
                 All allies have +2 crit
                 This doesn't gain charge while active.
@@ -295,10 +295,10 @@ sets:
                 At the start of your next turn, you may resurrect target corpse in range 1.
           - name: Valkyrie
             text: |-
-              Free action, Ultimate 4:
+              Free Action, Ultimate 4:
                 At the beginning of each your turns, ✚2.
                 Your Caduceus Staff has range 5, and may affect a second target in range 2 of the first.
-                You can use Guardian Angel as a move action.
+                You can use Guardian Angel as a move Action.
                 You are always Flying.
               This doesn't gain charge while active.
       - name: Pharah
@@ -326,7 +326,7 @@ sets:
         abilities:
           - name: Deplete Hover Jets
             text: |-
-              Move action
+              Move Action
               CD 1
               Move up to 2. Gain High Altitude until the start of your next turn.
             tokens:
@@ -344,7 +344,7 @@ sets:
               Push target 2 spaces in any direction.
           - name: Barrage
             text: |-
-              Move + Standard action, Ultimate 5:
+              Move + Standard Action, Ultimate 5:
                 ⛨1/2 distance, ⚔8, ⚔3 to all others in burst 1
       - name: Reaper
         description: |-
@@ -375,7 +375,7 @@ sets:
                 text: Nothing affects you. Clear at the beginning of your next turn.
           - name: Shadow Step
             text: |-
-              Move + Standard action
+              Move + Standard Action
               Teleport up to 8.
           - name: Death Blossom
             text: |-
@@ -408,7 +408,7 @@ sets:
                 There is a 3 space long line on the edge in front of you, which moves with you.
                 The barrier acts as blocking for enemy's attacks (but not movement of summons or markers)
                 The barrier has 10hp which cannot be healed.
-              You can dismiss the barrier as a free action if you have ended a turn with it active.
+              You can dismiss the barrier as a free Action if you have ended a turn with it active.
             dice:
               - name: Barrier health
                 color: red
@@ -424,7 +424,7 @@ sets:
               - *Barrier
           - name: Charge
             text: |-
-              Move + Standard action, 1/battle
+              Move + Standard Action, 1/battle
               Move as far as possible in a line.
               When you contact an enemy, roll attack with ⛨2 + 1/2 distance from your start position.
               The first enemy hit this way is pushed with you, interrupted, and takes ⚔7.
@@ -510,7 +510,7 @@ sets:
     #          - name: Combat Roll
     #            text: |-
     #              1/Battle
-    #              Free action
+    #              Free Action
     #              Move 1 space and switch to ammo-loaded.
     #          - name: Magnetic Grenade
     #            text: |-
@@ -540,7 +540,7 @@ sets:
     #          - name: Fusion Cannons
     #            text: |-
     #              Range 2, ⚔2
-    #              Can't be used on the same turn as your standard move action.
+    #              Can't be used on the same turn as your standard move Action.
     #        abilities:
     #          - name: Defense Matrix
     #            text: |-
@@ -555,13 +555,13 @@ sets:
     #          - name: Boosters
     #            text: |-
     #              CD 2
-    #              Move action
+    #              Move Action
     #              Fly up to 6 spaces, ignoring enemies.
     #              Each enemy you move through takes ⚔1, and 1 knockback to the side.
     #          - name: Micro Missiles
     #            text: |-
     #              1/Battle
-    #              Free action
+    #              Free Action
     #              ⛨ 1/2 distance, ⚔3
     #          - name: Self-Destruct
     #            text: |-
@@ -614,7 +614,7 @@ sets:
     #          - name: Swift Strike
     #            text: |-
     #              1/Battle
-    #              Free action
+    #              Free Action
     #              Move 4 spaces in a straight line, ignoring enemies.
     #              ⚔2 to each enemy you move through.
     #              When an enemy dies, refresh this ability.
@@ -640,14 +640,14 @@ sets:
     #        default_abilities:
     #          - name: Storm Bow
     #            text: |-
-    #              Move + Standard action
+    #              Move + Standard Action
     #              Move up to 1
     #              ⛨ 1/3 distance, ⚔5, +1crit
     #        abilities:
     #          - name: Sonic Arrow
     #            text: |-
     #              1/Battle
-    #              Free action
+    #              Free Action
     #              The next time you make a ranged attack
     #                On hit, attach a sonic arrow to the target.
     #                On miss, place a sonic arrow at the end of the attack's range.
@@ -659,12 +659,12 @@ sets:
     #          - name: Storm Arrows
     #            text: |-
     #              1/Battle
-    #              Free action
-    #              Until the end of your next turn, you can make two default attacks as a single standard action, but they do ⚔3.
+    #              Free Action
+    #              Until the end of your next turn, you can make two default attacks as a single standard Action, but they do ⚔3.
     #          - name: Lunge
     #            text: |-
     #              1/Battle
-    #              Free action
+    #              Free Action
     #              Teleport 2 spaces away.
     #          - name: Dragonstrike
     #            text: |-
@@ -715,7 +715,7 @@ sets:
     #          - name: Steel Trap
     #            text: |-
     #              1/Battle
-    #              Free action
+    #              Free Action
     #              Place a Steel Trap in range 2, with size 1, and 3hp.
     #              When an enemy enters the trap's space, they end their movement get rooted until the end of their next turn.
     #            tokens:
@@ -762,7 +762,7 @@ sets:
     #        abilities:
     #          - name: Amp It Up
     #            text: |-
-    #              Free action, 1/battle
+    #              Free Action, 1/battle
     #              Repeat your last Crossfade effect, twice.
     #          - name: Sound Barrier
     #            text: |-
@@ -860,7 +860,7 @@ sets:
     #            text: |-
     #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
     #              Spend 5 charges:
-    #                Move + Standard action
+    #                Move + Standard Action
     #                ✚2.
     #                Move up to 2.
     #                Piercing line, ⚔2 to enemies, ✚4 to allies.
@@ -958,7 +958,7 @@ sets:
     #          - name: Chain Hook
     #            text: |-
     #              1/battle
-    #              Move action
+    #              Move Action
     #              Range 5, ⛨1/2 distance,
     #              ⚔1, interrupt
     #              Pull target as close as possible.
@@ -980,7 +980,7 @@ sets:
     #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/e0/Soldier76-portrait.png/revision/latest/scale-to-width-down/224?cb=20160620014955
     #        passives:
     #          - name: Sprint
-    #            text: You may spend a standard action to move.
+    #            text: You may spend a standard Action to move.
     #        default_abilities:
     #          - name: Heavy Pulse Rifle
     #            text: Range 4, ⚔3
@@ -1004,7 +1004,7 @@ sets:
     #              Spend 5 charges:
     #                Heavy Pulse Rifle range becomes 6
     #                Your attacks are undodgeable and can't take penalties.
-    #                Now and at the start of each your turns, you can make a default attack as a free action.
+    #                Now and at the start of each your turns, you can make a default attack as a free Action.
     #      - name: Symmetra
     #        description: |-
     #          - Summon utilities
@@ -1021,14 +1021,14 @@ sets:
     #          - name: Photon Orb
     #            text: |-
     #              ⛨1/distance, ⚔2
-    #              or: Next standard action you must use Photon Orb, and it has: ⛨1/3 distance, ⚔6.
+    #              or: Next standard Action you must use Photon Orb, and it has: ⛨1/3 distance, ⚔6.
     #            tokens:
     #              - name: Photon Orb Charged
     #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_7/7e/Ability-symmetra1.png/revision/latest/scale-to-width-down/100?cb=20181119051026
     #        abilities:
     #          - name: Sentry Turret
     #            text: |-
-    #              Quick action
+    #              Quick Action
     #              1/battle
     #              Place three Sentry Turrets in line of sight.
     #              1 hp, speed 0, cannot dodge.
@@ -1047,10 +1047,10 @@ sets:
     #          - name: Teleporter
     #            text: |-
     #              1/battle
-    #              Move + Standard action
+    #              Move + Standard Action
     #              Place a size 1 in an emtpy space in range 1, and another in an empty space in range 6.
     #              Teleporters have 8hp.
-    #              Allied units can freely move between the two teleporter spaces on their turn, even partway through another action, and even if they could not normally move.
+    #              Allied units can freely move between the two teleporter spaces on their turn, even partway through another Action, and even if they could not normally move.
     #            tokens:
     #              - name: Teleporter
     #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/e0/Ability-symmetra4.png/revision/latest/scale-to-width-down/100?cb=20141112192203
@@ -1097,7 +1097,7 @@ sets:
     #          - name: Overload
     #            text: |-
     #              1/battle
-    #              Free action
+    #              Free Action
     #              Gain 4 overshield
     #              This turn and next turn you have +2 move speed and can make two default attacks
     #              At end of your next turn, lose overshield gained with this ability
@@ -1149,7 +1149,7 @@ sets:
     #          - name: Jump Pack
     #            text: |-
     #              CD 2
-    #              Move action
+    #              Move Action
     #              Fly up to 6, ending on the ground.
     #              Burst 1, ⚔1.
     #          - name: Barrier Projector
@@ -1257,7 +1257,7 @@ sets:
     #        default_abilities:
     #          - name: Biotic Rifle
     #            text: |-
-    #              Move + Standard action
+    #              Move + Standard Action
     #              You may move up to 1.
     #              Unlimited range, choose ✚3 or ⚔2.
     #        abilities:
@@ -1265,7 +1265,7 @@ sets:
     #            text: |-
     #              1/Battle
     #              ⛨ 1 + 1/2 distance
-    #              Move + Standard action
+    #              Move + Standard Action
     #              Target does not act for their next two activations. If they take damage from another source, end this condition.
     #            tokens:
     #              - name: Sleeping
@@ -1315,10 +1315,10 @@ sets:
     rules:
       - name: Actions
         text: |-          
-          For 1 Standard action, range 4, vs Will, target gets 2 stress, and Impaired or Slow
+          For 1 Standard Action, range 4, vs Will, target gets 2 stress, and Impaired or Slow
           
           Once per turn, the active hero can "Overcharge".
-          They gain +1 Standard action that turn, and gain 1d6 stress.
+          They gain +1 Standard Action that turn, and gain 1d6 stress.
         tokens:
 #          - name: Overcharge
 #            image_url: https://tactics.toren.dev/image_token_Overcharge_-5042384804763023491.jpg
@@ -1331,7 +1331,7 @@ sets:
         text: |-
           Affects a pair of adjacent units.
           The member of the grapple with less health is immobilized, but is pulled with the other member.
-          Cleared if they become nonadjacent, or as a free action by the member with more health.
+          Cleared if they become nonadjacent, or as a free Action by the member with more health.
       - name: Stress
         text: |-
           Heroes can gain stress, which persists between battles.
@@ -1365,13 +1365,13 @@ sets:
         abilities:
           - name: Grapple Swing
             text: |-
-              Move action
+              Move Action
               Fly up to 4 in an orthogonal line
           - name: SEKHMET-Class NHP
             text: |-
-              Free action at start of turn.
+              Free Action at start of turn.
               Enter SEKHMET stance:
-                You deal +⚔1, and can use Chain Axe as a free action once per turn.
+                You deal +⚔1, and can use Chain Axe as a free Action once per turn.
                 While you are not adjacent to a unit, you must use all resources to move towards the nearest unit, allied or hostile.
                 While you are adjacent to a unit, you must use Chain Axe on an adjacent unit as many times as possible.
                 At the start of your turn, you may end your turn to exit SEKHMET stance.
@@ -1406,8 +1406,8 @@ sets:
             text: |-
               If not Spun Up: either Range 4, ⚔2
                 or enter Spun Up stance:
-                  You are continually slowed. You can exit as a free action at the start of your turn.
-              If Spun Up: Move+Standard action. You gain 3 stress. Range 4, ⚔6
+                  You are continually slowed. You can exit as a free Action at the start of your turn.
+              If Spun Up: Move+Standard Action. You gain 3 stress. Range 4, ⚔6
         tokens:
           - name: Spun Up
             image_url: https://tactics.toren.dev/image_token_Spun Up_817474683636700342.jpg
@@ -1425,7 +1425,7 @@ sets:
                 You are immobilized.
                 1/round you may take half damage from an attack.
                 Adjacent allies gain your passives.
-              At the start of your turn you may exit Fortress Stance as a free action.
+              At the start of your turn you may exit Fortress Stance as a free Action.
       - name: Black Witch
         health: 6
         speed: 3
@@ -1454,7 +1454,7 @@ sets:
             text: |-
               1/Games
               Summon an ICEOUT Drone in range 4.
-              As a Standard action, you may teleport an ICEOUT Drone to any location in range 4.
+              As a Standard Action, you may teleport an ICEOUT Drone to any location in range 4.
           - name: Mag Field
             text: |-
               Ultimate 4:
@@ -1489,7 +1489,7 @@ sets:
         abilities:
           - name: Climb Wall
             text: |-
-              Move action
+              Move Action
               If you're adjacent to a wall, gain High Altitude (You count as being 2 spaces further).
               This ends if you move away from the wall, though you may still move along the wall.
             tokens:
@@ -1504,7 +1504,7 @@ sets:
               Give a unit your Marked for Death Mark.
               You deal +⚔4 to the unit with the mark.
               While a unit has the mark, you are immobilized.
-              You may remove the mark as a free action at the start of your turn.
+              You may remove the mark as a free Action at the start of your turn.
             tokens:
               - name: Mark for Death
                 image_url: https://tactics.toren.dev/image_token_Mark for Death_-5796234423840237878.jpg
@@ -1530,7 +1530,7 @@ sets:
         abilities:
           - name: Swarm Body
             text: |-
-              Move action
+              Move Action
               Enter Swarm Body stance and put a charge on this:
                 At the start of your turn, ⚔2*charges to all adjacent enemies, then put a charge on this.
                 This ends if you move for any reason.
@@ -1544,7 +1544,7 @@ sets:
             text: |-
               1/Battle
               Summon a Hive Drone in range 2.
-              As a standard action, you may teleport a Hive Drone to any location in range 2.
+              As a standard Action, you may teleport a Hive Drone to any location in range 2.
           - name: Hive Frenzy
             text: |-
               Free, ultimate 4:
@@ -1591,7 +1591,7 @@ sets:
             text: |-
               Unlimited Range, Vs Will
               Place a Shackle marker on the target's space.
-              As a free action, you may remove the marker to teleport the target back to that space.
+              As a free Action, you may remove the marker to teleport the target back to that space.
             tokens:
               - name: Shackle
                 image_url: https://tactics.toren.dev/image_token_Shackle_4846826871429583023.jpg
@@ -1623,7 +1623,7 @@ sets:
               Ally in range 1. 
               Remove your marker from the board. You share the ally's location and cannot move away. 
               You have Block⛨+4. You also take any stress or conditions the ally takes.
-              You can end the effect as a standard action.
+              You can end the effect as a standard Action.
 
       - name: Barbarosa
         description: |-
@@ -1658,11 +1658,11 @@ sets:
               +2 Dodge, Range 4, ⚔4
         abilities:
           - name: Direct Fire
-            text: Move+Standard action, Take 2 stress, Unlimited range, ⚔4
+            text: Move+Standard Action, Take 2 stress, Unlimited range, ⚔4
           - name: Siege Cannon
             text: |-
               CD 1
-              Move+Standard action, Must be no enemy in range 2 
+              Move+Standard Action, Must be no enemy in range 2 
               Take 4 stress, Unlimited range, Ignores walls, 3x3 area, ⚔4
           - name: Roller Grenade
             text: |-
@@ -1671,7 +1671,7 @@ sets:
                 All in range 1, ⚔2, push 2 spaces.
           - name: Apocalypse Rail
             text: |-
-              Move+Standard action, 1/Battle           
+              Move+Standard Action, 1/Battle           
               Range 4+, 3x3 area, ⚔3*Apocalypse Charges. 
               Destroy all walls and terrain in the area.
       - name: Genghis
@@ -1699,7 +1699,7 @@ sets:
         abilities:
           - name: Plasma Thrower
             text: |-
-              Move+Standard action
+              Move+Standard Action
               Take 4 stress,
               Range 1 3x3 area, ⚔4, give DoT 2
               The affected spaces gain Hazard: ⚔2
@@ -1847,7 +1847,7 @@ sets:
   #        passives:
   #          - name: End
   #            text: |-
-  #              Enemies adjacent to an ice pillar are stunned (-1 action).
+  #              Enemies adjacent to an ice pillar are stunned (-1 Action).
   #          - name: Damaged
   #            text: |-
   #              You may remove an adjacent ice pillar to reduce the damage to 0.
@@ -1952,7 +1952,7 @@ sets:
   #          - name: Obey
   #            text: |-
   #              Vs Will, 4+
-  #              Range 4, target takes an action, chosen and controlled by this.
+  #              Range 4, target takes an Action, chosen and controlled by this.
   #          - name: Thread of Fate
   #            text: |-
   #              Free
@@ -2016,7 +2016,7 @@ sets:
   #            text: |-
   #              Free
   #              Remove a corpse on the opponent's table half in range 1.
-  #              If you did, take an action.
+  #              If you did, take an Action.
   #      - name: McMourning
   #        description: |-
   #          - Damage/healing over time
@@ -2282,7 +2282,7 @@ sets:
   #            text: |-
   #              Vs Will
   #              Range 4. Teleport the target up to 3.
-  #              5-6: You may give the target Stunned(-1 action)
+  #              5-6: You may give the target Stunned(-1 Action)
   #          - name: Presto Chango
   #            text: |-
   #              Vs Will
@@ -2465,7 +2465,7 @@ sets:
   #        abilities:
   #          - name: Trick Shot
   #            text: |-
-  #              Your next action with range has -2 dodge and can draw range from an ally in its range.
+  #              Your next Action with range has -2 dodge and can draw range from an ally in its range.
   #              Gain Stealth (can only be targeted from range 1) until the start of your next turn.
   #          - name: Paradiso
   #            text: |-
@@ -2660,7 +2660,7 @@ sets:
               Range 1, 
               Either target a summon with speed 0.
               It is silenced and paralyzed. At the start of your turn, destroy any summons Silenced this way.
-              The summoner can use Standard action, Range 1, remove these conditions from target summon.
+              The summoner can use Standard Action, Range 1, remove these conditions from target summon.
 
               Or target a marker. Remove it.
             # consider just destroying it
@@ -2685,7 +2685,7 @@ sets:
           - name: Minigun
             text: |-
               If not spun up: ⚔2 -⚔1 per space between.
-                Enter spun up stance: You are slowed and can only use minigun. You can exit the stance as a free action at start of turn.
+                Enter spun up stance: You are slowed and can only use minigun. You can exit the stance as a free Action at start of turn.
               
               If spun up: ⚔6 -⚔2 per space between.
           - name: Punch
@@ -2701,7 +2701,7 @@ sets:
               Either:
                 Move+Standard, Heal to full health.
               
-                Or Standard action, space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
+                Or Standard Action, space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
             tokens:
               - name: Sandvich
                 image_url: https://wiki.teamfortress.com/w/images/thumb/9/95/Sandvich.png/250px-Sandvich.png
@@ -2714,7 +2714,7 @@ sets:
                 Move+Standard. Gain Buffalo Steak Rage: 
                   +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
               
-                Or Standard action, space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
+                Or Standard Action, space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
             tokens:
               - name: Buffalo Steak Rage
                 image_url: https://tactics.toren.dev/image_token_Buffalo Steak Rage_8581238716479321113.jpg
@@ -2724,7 +2724,7 @@ sets:
 
           - name: Swap Gloves
             text: |-
-              Free action at start of turn.
+              Free Action at start of turn.
               Either:
                   Enter GRU stance: 
                   +2 Speed, receive +.5x damage.
@@ -2836,7 +2836,7 @@ sets:
           - name: Heavy Load
             text: |-
               You can carry one of your summons. Remove it from the board and place it on your card.
-              Free action, range 1, place your carried summon and Silence it.
+              Free Action, range 1, place your carried summon and Silence it.
               You have -1 speed while carrying a summon.
         tokens:
           - *Silence
@@ -2927,10 +2927,10 @@ sets:
           - name: Sticky Bomb Launcher
             text: |-
               Empty space in range 4, place a Sticky Bomb marker (1hp).
-              As a free action at start of turn, you may remove all your Sticky Bombs, and each deals burst 1, ⚔4.
+              As a free Action at start of turn, you may remove all your Sticky Bombs, and each deals burst 1, ⚔4.
           - name: Chargin' Target
             text: |-
-              1/Battle, Move action
+              1/Battle, Move Action
               Move any distance in a straight line and clear any number of conditions.
               If you moved at least 4, your next attack this turn with range 2 or less deals +1x damage.
 
@@ -2940,7 +2940,7 @@ sets:
               Range 1, 2⚔, 4⚔ to all in burst 1 of target (including target).
           - name: Pain Train
             text: |-
-              Enter or exit Pain Train stance as free action at start of turn.
+              Enter or exit Pain Train stance as free Action at start of turn.
               Stance:
                 You count twice for objectives. You take +.5x damage.
             tokens:
@@ -2993,7 +2993,7 @@ sets:
               On kill move 2 and heal 3.
           - name: Mmmph
             text: |-
-              Discard 8 charges Move+Standard action
+              Discard 8 charges Move+Standard Action
               You deal +1x damage.
           - name: Thermal Thruster
             text: |-
@@ -3018,11 +3018,11 @@ sets:
               ⛨1/2 distance, 3⚔, 1⚔ to others in burst 1 of target, push 1.
           - name: Rocket Jump
             text: |-
-              Move action, take 2⚔, fly 4.
+              Move Action, take 2⚔, fly 4.
         abilities:
           - name: Banner
             text: |-
-              Spend 8 charges, Move+Standard action, Choose one:
+              Spend 8 charges, Move+Standard Action, Choose one:
                 Your team deals +.5x damage.
                 Or your team have armor 1 and do not receive extra damage from crits.
                 Or your team has +1 speed and heals 1 when they deal damage.
@@ -3040,7 +3040,7 @@ sets:
             text: Range 2. You may move up to 2. The target may move up to 2.
           - name: Pain Train
             text: |-
-              Enter or exit Pain Train stance as free action at start of turn.
+              Enter or exit Pain Train stance as free Action at start of turn.
               Stance:
                 You count twice for objectives. You take +.5x damage.
             tokens:
@@ -3061,7 +3061,7 @@ sets:
         passive:
           - name: All your movement is Flying.
             text: ''
-          - name: When you make a standard move action
+          - name: When you make a standard move Action
             text: You may use any unspent movement at the end of your turn.
           - name: You count twice for objectives.
             text: ''
@@ -3071,17 +3071,17 @@ sets:
         abilities:
           - name: Bonk Atomic Punch
             text: |- 
-              Move+Standard action
+              Move+Standard Action
               You are immune to damage.
               You can't use standard actions.
-              End as a move action.
+              End as a move Action.
             tokens:
               - name: Bonk Atomic Punch
                 image_url: https://static.wikia.nocookie.net/teamfortress/images/d/d8/Bonk%21_Atomic_Punch_item_icon_TF2.png/revision/latest?cb=20130704005718
                 text: You are immune to damage. You can't use standard actions.
           - name: Crit-a-Cola
             text: |-
-              Move+Standard action.
+              Move+Standard Action.
               Starting at the beginning of your next turn, you deal and receive +.5x damage.
             tokens:
               - name: Crit-a-Cola
