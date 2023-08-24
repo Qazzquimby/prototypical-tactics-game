@@ -3047,19 +3047,71 @@ sets:
               - name: Pain Train stance
                 image_url: https://static.wikia.nocookie.net/real-tetragon-fortress/images/3/3d/Pain_Train.png/revision/latest?cb=20200729194702
                 text: https://static.wikia.nocookie.net/real-tetragon-fortress/images/3/3d/Pain_Train.png/revision/latest?cb=20200729194702
-#
-# scout 6hp, speed 5
-# scattergun range 1, 4⚔, may deal push 2
-# all movement is flying. When you make a standard move action, can use unspent movement at end of turn.
-# you count twice for objectives
-# bonk atomic punch: move+standard, You are immune to damage. You can't use standard actions. Remove as a move action.
-# crit a cola: move+standard. After the start of your next turn, you deal and receive +.5x damage.
-# mad milk: 1/game range 3 2x2. Enemies in the area are Covered in Milk. When an ally damages a unit Covered in Milk, they heal 1/2 the damage dealt.
-# guillotine: 1/game +1dodge/2, 1 damage and target gets Bleed(1 damage at the start of their turn)
-# sandman: 1/game range 4+ dodge+3. Target is stunned.
-# Fan O'War: Range 1, Target takes +.5x damage
-#
-#
-#
 
-#
+
+
+      - name: Scout
+        description: |-
+          - High mobility
+          - Low health
+          - High melee damage
+        image_url: https://static.wikia.nocookie.net/teamfortress/images/4/48/Scout_Full_Body.png/revision/latest?cb=20170716194653
+        health: 6
+        speed: 5
+        passive:
+          - name: All your movement is Flying.
+            text: ''
+          - name: When you make a standard move action
+            text: You may use any unspent movement at the end of your turn.
+          - name: You count twice for objectives.
+            text: ''
+        default_abilities:
+          - name: Scattergun
+            text: Range 1, 4⚔, may deal push 2
+        abilities:
+          - name: Bonk Atomic Punch
+            text: |- 
+              Move+Standard action
+              You are immune to damage.
+              You can't use standard actions.
+              End as a move action.
+            tokens:
+              - name: Bonk Atomic Punch
+                image_url: https://static.wikia.nocookie.net/teamfortress/images/d/d8/Bonk%21_Atomic_Punch_item_icon_TF2.png/revision/latest?cb=20130704005718
+                text: You are immune to damage. You can't use standard actions.
+          - name: Crit-a-Cola
+            text: |-
+              Move+Standard action.
+              Starting at the beginning of your next turn, you deal and receive +.5x damage.
+            tokens:
+              - name: Crit-a-Cola
+                image_url: https://wiki.teamfortress.com/w/images/thumb/d/db/Crit-a-Cola.png/250px-Crit-a-Cola.png
+                text: You deal and receive +.5x damage.
+          - name: Mad Milk
+            text: |-
+              1/Battle
+              Range 3 2x2. Enemies in the area are Covered in Milk. 
+              When a unit damages a unit Covered in Milk, they heal 1/2 the damage dealt.
+            tokens:
+              - name: Covered in Milk
+                image_url: https://wiki.teamfortress.com/w/images/thumb/b/bd/Mad_Milk.png/250px-Mad_Milk.png
+                text: When a unit damages a unit Covered in Milk, they heal 1/2 the damage dealt.
+          - name: Flying Guillotine
+            text: |-
+              1/Battle
+              ⛨1/2 distance, 1⚔, give target DoT
+            tokens:
+              - *DoT
+          - name: The Sandman
+            text: |-
+              1/Battle
+              Range 4+, ⛨+3, Target is stunned.
+            tokens:
+              - *Stun
+          - name: Fan O'War
+            text: |-
+              Range 1, Target takes +.5x damage
+            tokens:
+              - name: Fan O'War
+                image_url: https://static.wikia.nocookie.net/teamfortress/images/3/39/Fan_O%27War_item_icon_TF2.png/revision/latest?cb=20130708190337
+                text: Target takes +.5x damage
