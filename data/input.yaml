@@ -33,7 +33,7 @@ rules:
       P1's first character, P2's first character, P1's second character, P2's second character, etc.
   - name: Actions
     text: |-
-      Units (such as heroes) have a move Action and standard Action, in that order, plus a quick Action.
+      Units (such as heroes) have a Move Action and standard Action, in that order, plus a quick Action.
       Move moves up to speed (see range)
       Character's active abilities are standard actions by default.
       Quick actions are marked with quick.
@@ -298,7 +298,7 @@ sets:
               Free Action, Ultimate 4:
                 At the beginning of each your turns, ✚2.
                 Your Caduceus Staff has range 5, and may affect a second target in range 2 of the first.
-                You can use Guardian Angel as a move Action.
+                You can use Guardian Angel as a Move Action.
                 You are always Flying.
               This doesn't gain charge while active.
       - name: Pharah
@@ -540,7 +540,7 @@ sets:
     #          - name: Fusion Cannons
     #            text: |-
     #              Range 2, ⚔2
-    #              Can't be used on the same turn as your standard move Action.
+    #              Can't be used on the same turn as your standard Move Action.
     #        abilities:
     #          - name: Defense Matrix
     #            text: |-
@@ -660,7 +660,7 @@ sets:
     #            text: |-
     #              1/Battle
     #              Free Action
-    #              Until the end of your next turn, you can make two default attacks as a single standard Action, but they do ⚔3.
+    #              Until the end of your next turn, you can make two default attacks as a single Standard Action, but they do ⚔3.
     #          - name: Lunge
     #            text: |-
     #              1/Battle
@@ -980,7 +980,7 @@ sets:
     #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/e0/Soldier76-portrait.png/revision/latest/scale-to-width-down/224?cb=20160620014955
     #        passives:
     #          - name: Sprint
-    #            text: You may spend a standard Action to move.
+    #            text: You may spend a Standard Action to move.
     #        default_abilities:
     #          - name: Heavy Pulse Rifle
     #            text: Range 4, ⚔3
@@ -1021,7 +1021,7 @@ sets:
     #          - name: Photon Orb
     #            text: |-
     #              ⛨1/distance, ⚔2
-    #              or: Next standard Action you must use Photon Orb, and it has: ⛨1/3 distance, ⚔6.
+    #              or: Next Standard Action you must use Photon Orb, and it has: ⛨1/3 distance, ⚔6.
     #            tokens:
     #              - name: Photon Orb Charged
     #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_7/7e/Ability-symmetra1.png/revision/latest/scale-to-width-down/100?cb=20181119051026
@@ -1407,7 +1407,7 @@ sets:
               If not Spun Up: either Range 4, ⚔2
                 or enter Spun Up stance:
                   You are continually slowed. You can exit as a free Action at the start of your turn.
-              If Spun Up: Move+Standard Action. You gain 3 stress. Range 4, ⚔6
+              If Spun Up: Move + Standard Action. You gain 3 stress. Range 4, ⚔6
         tokens:
           - name: Spun Up
             image_url: https://tactics.toren.dev/image_token_Spun Up_817474683636700342.jpg
@@ -1500,7 +1500,7 @@ sets:
               Take 3 stress, All in line infinite, ⚔4 irreducible
           - name: Mark for Death
             text: |-
-              Move+Standard Action,
+              Move + Standard Action,
               Give a unit your Marked for Death Mark.
               You deal +⚔4 to the unit with the mark.
               While a unit has the mark, you are immobilized.
@@ -1544,7 +1544,7 @@ sets:
             text: |-
               1/Battle
               Summon a Hive Drone in range 2.
-              As a standard Action, you may teleport a Hive Drone to any location in range 2.
+              As a Standard Action, you may teleport a Hive Drone to any location in range 2.
           - name: Hive Frenzy
             text: |-
               Free, ultimate 4:
@@ -1623,7 +1623,7 @@ sets:
               Ally in range 1. 
               Remove your marker from the board. You share the ally's location and cannot move away. 
               You have Block⛨+4. You also take any stress or conditions the ally takes.
-              You can end the effect as a standard Action.
+              You can end the effect as a Standard Action.
 
       - name: Barbarosa
         description: |-
@@ -1658,11 +1658,11 @@ sets:
               +2 Dodge, Range 4, ⚔4
         abilities:
           - name: Direct Fire
-            text: Move+Standard Action, Take 2 stress, Unlimited range, ⚔4
+            text: Move + Standard Action, Take 2 stress, Unlimited range, ⚔4
           - name: Siege Cannon
             text: |-
               CD 1
-              Move+Standard Action, Must be no enemy in range 2 
+              Move + Standard Action, Must be no enemy in range 2 
               Take 4 stress, Unlimited range, Ignores walls, 3x3 area, ⚔4
           - name: Roller Grenade
             text: |-
@@ -1671,7 +1671,7 @@ sets:
                 All in range 1, ⚔2, push 2 spaces.
           - name: Apocalypse Rail
             text: |-
-              Move+Standard Action, 1/Battle           
+              Move + Standard Action, 1/Battle           
               Range 4+, 3x3 area, ⚔3*Apocalypse Charges. 
               Destroy all walls and terrain in the area.
       - name: Genghis
@@ -1699,7 +1699,7 @@ sets:
         abilities:
           - name: Plasma Thrower
             text: |-
-              Move+Standard Action
+              Move + Standard Action
               Take 4 stress,
               Range 1 3x3 area, ⚔4, give DoT 2
               The affected spaces gain Hazard: ⚔2
@@ -2699,7 +2699,7 @@ sets:
             text: |-
               1/Battle
               Either:
-                Move+Standard, Heal to full health.
+                Move + Standard, Heal to full health.
               
                 Or Standard Action, space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
             tokens:
@@ -2711,7 +2711,7 @@ sets:
             text: |-
               1/Battle
               Either:
-                Move+Standard. Gain Buffalo Steak Rage: 
+                Move + Standard Action. Gain Buffalo Steak Rage: 
                   +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
               
                 Or Standard Action, space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
@@ -2755,7 +2755,7 @@ sets:
         default_abilities:
           - name: Sniper Rifle
             text: |-
-              Move+Standard. Move 1. Note your facing.
+              Move + Standard Action. Move 1. Note your facing.
               At the start of your next turn, range 3+, undogeable ⚔5, +2 crit per kill counter.
               After this attack the target takes +.5x ⚔.
               
@@ -2813,7 +2813,7 @@ sets:
             text: Range 1, 2⚔, +2crit. On hit, lower your ultimate costs by 2.
           - name: Amputator Song
             text:
-              Move+Standard
+              Move + Standard Action
               You and Allies in range 3 heal 3.
           - name: Ubercharge
             text: |-
@@ -2867,7 +2867,7 @@ sets:
                 text: Until the start of your next turn, enemy attacks passing through spaces adjacent to you have Block⛨+3.
           - name: Eureka Effect
             text: |-
-              Move+Standard
+              Move + Standard Action
               Teleport to any space in your deployment zone or adjacent to your Dispenser.
         units:
           - name: Sentry
@@ -2993,7 +2993,7 @@ sets:
               On kill move 2 and heal 3.
           - name: Mmmph
             text: |-
-              Discard 8 charges Move+Standard Action
+              Discard 8 charges. Move + Standard Action
               You deal +1x damage.
           - name: Thermal Thruster
             text: |-
@@ -3022,7 +3022,7 @@ sets:
         abilities:
           - name: Banner
             text: |-
-              Spend 8 charges, Move+Standard Action, Choose one:
+              Spend 8 charges, Move + Standard Action, Choose one:
                 Your team deals +.5x damage.
                 Or your team have armor 1 and do not receive extra damage from crits.
                 Or your team has +1 speed and heals 1 when they deal damage.
@@ -3061,7 +3061,7 @@ sets:
         passive:
           - name: All your movement is Flying.
             text: ''
-          - name: When you make a standard move Action
+          - name: When you make a Basic Move Action
             text: You may use any unspent movement at the end of your turn.
           - name: You count twice for objectives.
             text: ''
@@ -3071,17 +3071,17 @@ sets:
         abilities:
           - name: Bonk Atomic Punch
             text: |- 
-              Move+Standard Action
+              Move + Standard Action
               You are immune to damage.
               You can't use standard actions.
-              End as a move Action.
+              You may end this effect as a Move Action.
             tokens:
               - name: Bonk Atomic Punch
                 image_url: https://static.wikia.nocookie.net/teamfortress/images/d/d8/Bonk%21_Atomic_Punch_item_icon_TF2.png/revision/latest?cb=20130704005718
                 text: You are immune to damage. You can't use standard actions.
           - name: Crit-a-Cola
             text: |-
-              Move+Standard Action.
+              Move + Standard Action
               Starting at the beginning of your next turn, you deal and receive +.5x damage.
             tokens:
               - name: Crit-a-Cola
