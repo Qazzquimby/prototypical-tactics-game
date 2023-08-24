@@ -169,15 +169,11 @@ sets:
             text: |-
               Range 2, ⚔2
               or
-              Channel:
-                Note your facing. At the start of your next turn: 
+              Note your facing. At the start of your next turn: 
                 Range 2+, ⚔6, undodgeable, +2 crit.
         tokens:
           - name: Widow's Kiss Charged
             image_url: https://tactics.toren.dev/image_token_Widow's Kiss Charged_-7763573326957670311.jpg
-            text: |-
-              Widow's Kiss has unlimited range, ⚔7, undodgeable, +2 crit.
-              Remove when you take any Action.
         abilities:
           - name: Venom Mine
             text: |-
@@ -193,8 +189,8 @@ sets:
               - *DoT
           - name: Grappling Hook
             text: |-
-              1/Battle
-              Move Action, Fly directly to any point in range 5.
+              1/Battle, Move Action
+              Fly directly to any point in range 5.
           - name: Infra-Sight
             text: |-
               Free Action, Ultimate 3:
@@ -214,8 +210,7 @@ sets:
         abilities:
           - name: Blink
             text: |-
-              3/Battle
-              Instant ⛨+2
+              3/Battle, Instant ⛨+2:
               Teleport up to 3.
             dice:
               - name: Uses Remaining
@@ -223,8 +218,7 @@ sets:
                 values: [ 3 ]
           - name: Recall
             text: |-
-              1/Battle
-              Instant ⛨+3
+              1/Battle, Instant ⛨+3:
               Reset your health to what it was at the end of your last turn.
               Teleport as close as possible to where you were at the end of your last turn.
             tokens:
@@ -239,7 +233,7 @@ sets:
           - name: Pulse Bomb
             text: |-
               Ultimate 5:
-                Pick a space in range 1. If there's a character in the space, attach the pulse bomb to them with ⛨2.
+                Target a space in range 1. If there's a character in the space, attach the pulse bomb to them with ⛨2.
                 If it doesn't attach to someone, it drops in that space.
                 At the start of your next turn, destroy the pulse bomb. It deals ⚔9 to anyone in its space and ⚔3 to anyone else in burst 1.
             tokens:
@@ -289,9 +283,8 @@ sets:
               Fly to any space adjacent to an ally or friendly Corpse Marker, as directly as possible.
           - name: Resurrect
             text: |-
-              1/Battle
-              Channel:
-                At the start of your next turn, you may resurrect target corpse in range 1.
+              1/Battle:
+              At the start of your next turn, you may resurrect target corpse in range 1.
           - name: Valkyrie
             text: |-
               Free Action, Ultimate 4:
@@ -325,26 +318,25 @@ sets:
         abilities:
           - name: Deplete Hover Jets
             text: |-
-              Move Action
-              CD 1
+              CD 1, Move Action:
               Move up to 2. Gain High Altitude until the start of your next turn.
             tokens:
               - *HighAltitude
           - name: Jump Jet
             text: |-
-              1/Battle, Instant ⛨+2
+              1/Battle, Instant ⛨+2:
               Move up to 2. Gain High Altitude until the start of your next turn.
             tokens:
               - *HighAltitude
           - name: Concussive Blast
             text: |-
               Range 4,
-              Others in burst 1, push 1 space away from target.
+              Others in burst 1 of target, push 1 space away from target.
               Push target 2 spaces in any direction.
           - name: Barrage
             text: |-
               Move + Standard Action, Ultimate 5:
-                ⛨1/2 distance, ⚔8, ⚔3 to all others in burst 1
+              ⛨1/2 distance, ⚔8, ⚔3 to all others in burst 1.
       - name: Reaper
         description: |-
           - High close range damage
@@ -364,22 +356,21 @@ sets:
         abilities:
           - name: Wraith Form
             text: |-
-              1/Battle
-              Instant ⛨+2
-              Until the beginning of your next turn, nothing affects you.
+              1/Battle, Instant ⛨+2:
               Move up to 2. Clear any number of conditions.
+              Until the beginning of your next turn, nothing affects you.
             tokens:
               - name: Invulnerable
                 image_url: https://tactics.toren.dev/image_token_Invulnerable_-1798483898600871358.jpg
                 text: Nothing affects you. Clear at the beginning of your next turn.
           - name: Shadow Step
             text: |-
-              Move + Standard Action
+              Move + Standard Action:
               Teleport up to 8.
           - name: Death Blossom
             text: |-
               Ultimate 5:
-                Burst 1, ⚔7
+              Burst 1, ⚔7
       - name: Reinhardt
         description: |-
           - Melee cleave tank
@@ -399,15 +390,14 @@ sets:
         abilities:
           - name: Barrier Field
             text: |-
-              Instant ⛨+2
-              Enter shield stance.
-              In shield stance:
+              Instant ⛨+2:
+              Enter shield stance:
                 You have facing and can freely set your facing at the end of your turn.
                 You're continually Slow (-2 speed, min 1) and can't take standard actions.
                 There is a 3 space long line on the edge in front of you, which moves with you.
                 The barrier acts as blocking for enemy's attacks (but not movement of summons or markers)
                 The barrier has 10hp which cannot be healed.
-              You can dismiss the barrier as a free Action if you have ended a turn with it active.
+              You can dismiss the stance as a Free Action if you have ended a turn with it active.
             dice:
               - name: Barrier health
                 color: red
@@ -1003,7 +993,7 @@ sets:
     #              Spend 5 charges:
     #                Heavy Pulse Rifle range becomes 6
     #                Your attacks are undodgeable and can't take penalties.
-    #                Now and at the start of each your turns, you can make a default attack as a free Action.
+    #                Now and at the start of each your turns, you can make a default attack as a Free Action.
     #      - name: Symmetra
     #        description: |-
     #          - Summon utilities
@@ -1330,7 +1320,7 @@ sets:
         text: |-
           Affects a pair of adjacent units.
           The member of the grapple with less health is immobilized, but is pulled with the other member.
-          Cleared if they become nonadjacent, or as a free Action by the member with more health.
+          Cleared if they become nonadjacent, or as a Free Action by the member with more health.
       - name: Stress
         text: |-
           Heroes can gain stress, which persists between battles.
@@ -1370,7 +1360,7 @@ sets:
             text: |-
               Free Action at start of turn.
               Enter SEKHMET stance:
-                You deal +⚔1, and can use Chain Axe as a free Action once per turn.
+                You deal +⚔1, and can use Chain Axe as a Free Action once per turn.
                 While you are not adjacent to a unit, you must use all resources to move towards the nearest unit, allied or hostile.
                 While you are adjacent to a unit, you must use Chain Axe on an adjacent unit as many times as possible.
                 At the start of your turn, you may end your turn to exit SEKHMET stance.
@@ -1406,7 +1396,7 @@ sets:
               If not Spun Up, chose one:
                - Range 4, ⚔2
                - Enter Spun Up stance:
-                  You are continually slowed. You can exit as a free Action at the start of your turn.
+                  You are continually slowed. You can exit as a Free Action at the start of your turn.
               
               If Spun Up: Move + Standard Action, You gain 3 stress, Range 4, ⚔6
         tokens:
@@ -1426,7 +1416,7 @@ sets:
                 You are immobilized.
                 1/round you may take half damage from an attack.
                 Adjacent allies gain your passives.
-              At the start of your turn you may exit Fortress Stance as a free Action.
+              At the start of your turn you may exit Fortress Stance as a Free Action.
       - name: Black Witch
         health: 6
         speed: 3
@@ -1505,7 +1495,7 @@ sets:
               Give a unit your Marked for Death Mark.
               You deal +⚔4 to the unit with the mark.
               While a unit has the mark, you are immobilized.
-              You may remove the mark as a free Action at the start of your turn.
+              You may remove the mark as a Free Action at the start of your turn.
             tokens:
               - name: Mark for Death
                 image_url: https://tactics.toren.dev/image_token_Mark for Death_-5796234423840237878.jpg
@@ -1592,7 +1582,7 @@ sets:
             text: |-
               Unlimited Range, Vs Will
               Place a Shackle marker on the target's space.
-              As a free Action, you may remove the marker to teleport the target back to that space.
+              As a Free Action, you may remove the marker to teleport the target back to that space.
             tokens:
               - name: Shackle
                 image_url: https://tactics.toren.dev/image_token_Shackle_4846826871429583023.jpg
@@ -2207,7 +2197,7 @@ sets:
   #          - name: Armor +1, Dodge +2
   #            text: ''
   #          - name: Diversion
-  #            text: Enemies in range 2 cannot use free actions.
+  #            text: Enemies in range 2 cannot use Free Actions.
   #          - name: Attacked
   #            text: You may discard a card to change the target to an adjacent Lord Chompy Bits or Alp.
   #          - name: Deploy
@@ -2685,7 +2675,7 @@ sets:
           - name: Minigun
             text: |-
               If not spun up: ⚔2 -⚔1 per space between.
-                Enter spun up stance: You are slowed and can only use minigun. You can exit the stance as a free Action at start of turn.
+                Enter spun up stance: You are slowed and can only use minigun. You can exit the stance as a Free Action at start of turn.
               
               If spun up: ⚔6 -⚔2 per space between.
           - name: Punch
@@ -2918,7 +2908,7 @@ sets:
           - name: Sticky Bomb Launcher
             text: |-
               Empty space in range 4, place a Sticky Bomb marker (1hp).
-              As a free Action at start of turn, you may remove all your Sticky Bombs, and each deals burst 1, ⚔4.
+              As a Free Action at start of turn, you may remove all your Sticky Bombs, and each deals burst 1, ⚔4.
           - name: Chargin' Target
             text: |-
               1/Battle, Move Action
@@ -2931,7 +2921,7 @@ sets:
               Range 1, 2⚔, 4⚔ to all in burst 1 of target (including target).
           - name: Pain Train
             text: |-
-              Enter or exit Pain Train stance as free Action at start of turn.
+              Enter or exit Pain Train stance as Free Action at start of turn.
               Stance:
                 You count twice for objectives. You take +.5x damage.
             tokens:
@@ -3042,7 +3032,7 @@ sets:
             text: Range 2. You may move up to 2. The target may move up to 2.
           - name: Pain Train
             text: |-
-              Enter or exit Pain Train stance as free Action at start of turn.
+              Enter or exit Pain Train stance as Free Action at start of turn.
               Stance:
                 You count twice for objectives. You take +.5x damage.
             tokens:
