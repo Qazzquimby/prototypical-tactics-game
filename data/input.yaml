@@ -2998,17 +2998,55 @@ sets:
           - name: Thermal Thruster
             text: |-
               Fly 5. All in burst 1, 1⚔, push 1.
-#
-#
-# Soldier 10hp, speed 3
-# Rocket Launcher: +1dodge/2, 3⚔, 1⚔ to others in burst 1 of target, push 1.
-# Rocket Jump: move action, take 2⚔, fly 4.
-# When you deal damage, gain that many charge counters. Spend 8 charges: move+standard: choose one:
-# Your team deals +.5x damage. / Your team do not receive crits and have armor 1. / Your team has +1 speed and heals 1 when they deal damage.
-# Pickaxe: Move 2 if bloodied. 1 ⚔ +2 ⚔ if bloodied, +2 crit. You take 2x damage until the start of your next turn.
-# Disciplinary Action: You and ally in range 2 move 2.
-# pain train stance: Enter or exit as free action at start of turn. You count twice for objectives. You take +.5x damage.
-#
+      - name: Soldier
+        description: |-
+          - Splash damage
+          - Team buffs
+        image_url: https://wiki.teamfortress.com/w/images/thumb/4/42/Community_Soldier_Strategy_Header.png/280px-Community_Soldier_Strategy_Header.png
+        health: 10
+        speed: 3
+        passives:
+          - name: When you deal damage
+            text: Gain that many Banner charges.
+        dice:
+          - name: Banner
+            color: orange
+            values: [1]
+        default_abilities:
+          - name: Rocket Launcher
+            text: |-
+              ⛨1/2 distance, 3⚔, 1⚔ to others in burst 1 of target, push 1.
+          - name: Rocket Jump
+            text: |-
+              Move action, take 2⚔, fly 4.
+        abilities:
+          - name: Banner
+            text: |-
+              Spend 8 charges, Move+Standard action, Choose one:
+                Your team deals +.5x damage.
+                Or your team have armor 1 and do not receive extra damage from crits.
+                Or your team has +1 speed and heals 1 when they deal damage.
+          - name: Pickaxe
+            text: |-
+              If bloodied, either:
+                Move 5.
+                Or Move 2, 3⚔, +2 crit.
+              You take +1x damage until the start of your next turn.
+            tokens:
+              - name: Pickaxe Vulnerability
+                image_url: https://wiki.teamfortress.com/w/images/thumb/9/96/Equalizer.png/250px-Equalizer.png
+                text: You take +1x damage until the start of your next turn.
+          - name: Disciplinary Action
+            text: Range 2. You may move up to 2. The target may move up to 2.
+          - name: Pain Train
+            text: |-
+              Enter or exit Pain Train stance as free action at start of turn.
+              Stance:
+                You count twice for objectives. You take +.5x damage.
+            tokens:
+              - name: Pain Train stance
+                image_url: https://static.wikia.nocookie.net/real-tetragon-fortress/images/3/3d/Pain_Train.png/revision/latest?cb=20200729194702
+                text: https://static.wikia.nocookie.net/real-tetragon-fortress/images/3/3d/Pain_Train.png/revision/latest?cb=20200729194702
 #
 # scout 6hp, speed 5
 # scattergun range 1, 4⚔, may deal push 2
