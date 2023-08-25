@@ -33,7 +33,7 @@ export interface UnitCard extends Card, Figurine {
   speed: number
   health: number
   passives?: Passive[]
-  defaultAbilities?: Active[]
+  default_abilities?: Active[]
 }
 
 export interface Hero extends UnitCard {
