@@ -45,8 +45,10 @@ defineProps<{
       </div>
     </div>
 
-
-    <div v-for="ability of hero.abilities" :key="ability.name" my-2 rounded bg-blue-100 p-2>
+    <div
+      v-for="ability of hero.abilities" :key="ability.name"
+      my-2 border border-gray rounded p-2
+    >
       <div class="flex items-start">
         <img
           :src="get_image_path([set.name, hero.name, ability.name])" :alt="ability.name"
