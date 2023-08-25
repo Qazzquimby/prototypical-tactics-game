@@ -17,6 +17,22 @@ onMounted(async () => {
 <template>
   <div v-if="yamlContent" m-4 font-sans md:m-6>
     <ICollapsible>
+      <ICollapsibleItem title="Core Rules">
+        <div v-for="rule of yamlContent.rules" :key="rule.name" my-2 border border-gray rounded p-2>
+          <div flex items-start>
+            <img
+              :src="get_image_path(['core',`core_rules`, rule.name])" :alt="rule.name"
+              mx-2 h-32 rounded object-contain
+            >
+            <div>
+              <h3 text-secondary-700 font-bold>
+                {{ rule.name }}
+              </h3>
+              <pre>{{ rule.text }}</pre>
+            </div>
+          </div>
+        </div>
+      </ICollapsibleItem>
       <ICollapsibleItem v-for="set of yamlContent.sets" :key="set.name" :title="set.name" accordion rounded bg-gray shadow-md>
         <div>
           <pre>{{ set.description }}</pre>
