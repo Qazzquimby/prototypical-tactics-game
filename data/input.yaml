@@ -1,73 +1,73 @@
 rules:
   - name: Overview
     text: |-
-      A quick skirmish game played over 3 battles of 6 rounds.
-      Focuses on discovering synergies and counters.
-      Often attacking has no rolls. Some depth is traded for speed of play.
+      A quick skirmish game played over 6 rounds, focused on discovering synergies and counters.
+      It trades some depth of simulation for speed of play.
   - name: Setup Game
     text: |-
-      Pick up to 3 sets.
-      Draw 3 maps and 12 heroes evenly from those sets.
-      Shuffle and reveal the maps and their order.
-      Draft the heroes according the draft card.
-      Each time you play on a map is a battle. Some things last between battles.
-      Game is playing best of 3 battles.
-  - name: Draft
-    text: |-
-      P1 ------- P2
-      Ban
-      ---------- Pick
-      Pick
-      Pick
-      ---------- Pick
-      
-      ---------- Ban
-      Pick
-      ---------- Pick
+      Pick 3ish sets.
+      Draw a map from among the sets and reveal it.
+      Draw 10ish heroes from among the sets and reveal them.
+      Player 1 makes two groups of 5. Player 2 picks a group, and Player 1 gets the other.
+      Players alternate picking one of their 5 heroes and putting it on the map in their deploy zone, until each player has placed 3.
+      The remaining heroes are unused.
   - name: Battle
     text: |-
-      Take turns deploying a hero in your deploy zone and placing their cards on the table.
-      Maybe track health and other resources with dice.
-      Battle lasts 6 rounds (or until concede).
+      Dice can be used to track health and other resources.
+      Battle lasts 6 rounds (or until concession).
       Heroes activate in order from left to right.
       P1's first character, P2's first character, P1's second character, P2's second character, etc.
   - name: Actions
     text: |-
-      Units (such as heroes) have a Move Action and standard Action, in that order, plus a quick Action.
-      Move moves up to speed (see range)
-      Character's active abilities are standard actions by default.
-      Quick actions are marked with quick.
-      An Action being "Default" makes no difference by default, but is treated differently by some rules.
+      Units (such as heroes) have a Move Action and Standard Action, which they can use in any order.
+      A Standard action can be used to take a Move action.
+      A "Basic Move" Move Action moves orthogonally up to the unit's speed.
+      
+      All active abilities are Standard Actions by default.
+      
+      Actions listed on a unit's card are called "Default Actions".
   - name: Range
     text: |-
       Range is counting squares. One square can be diagonally adjacent, the rest must be orthogonal.
       Burst n means all squares within n range of the target square.
+      Adjacent is range 1.
       Line n means all squares in an orthogonal line of n squares from the target square.
       Path n means all squares in a path of n squares from the target square.
   - name: Attacking
     text: |-
-      By default attacks hit with no roll. Only roll when a roll could affect the result somehow.
-      ⛨ can be applied to the attack. A die must be rolled over the ⛨ to hit.
-      ⚔ is damage.
-      Crit can be applied to the attack. If the die is rolled at least 7-crit, the attack deals double damage.
-      
-      The target may also choose to be hit when an attack would miss them.
-      By default effects have friendly fire, and will specify otherwise.
-      
-      Attacks typically target spaces rather than characters. E.g. If the target swapped places with your healer, you'd hit your healer.
+      - By default attacks hit with no roll. Only roll when a roll could affect the result somehow.
+      - Different target units get different rolls.
+      - ⛨ can be applied to the attack. A die must be rolled over the ⛨ to hit. On miss the attack continues but cannot affect that target.
+      - Crit can be applied to the attack. If the attack hits and the die landed on one of the [Crit] highest values, the attack is a crit.
+      - Crits deal +1x damage.
+      - ⚔ indicates damage dealt.
+  - name: Targeting
+    text: |-
+      - If an ability targets an area (burst, 2x2, etc), by default it targets all spaces in that area.
+      - A target may choose to be hit, even if an attack would miss them.
+      - By default everything can affect both allies and enemies, and will specify otherwise.
+      - Technically spaces are targeted, not units. "The unit is targeted" means "the unit's space is targeted".
+        - E.g. If, after you declared your attack, the target swapped places with your healer, you'd hit your healer.
+        - Targeting empty spaces can be useful, like shooting a rocket to hit that deals splash damage to an enemy around a corner.
+      - If a unit is "untargetable", its space cannot be targeted except things that target all in an area.
+      - If something would block line of sight to your target after you declare the attack, the attack hits the blocker instead.
   - name: Line of Sight
     text: |-
-      Effects nearly always need line of Sight to their target. Line of sight is drawn from the center of the source square to the center of the target square.
-      Enemies characters and some terrain blocks line of sight.
-  - name: Persistent
+      Effects nearly always need line of Sight to their target.
+      To have Line of sight to a square, you must be able to draw a line from any corner of your square to any corner of the target square, 
+      without touching any blocking terrain, including their corners.
+      
+      All units block line of sight, even allies.
+  - name: Rounding
     text: |-
-      Lasts between Battles, until end of game.
-      Eg a Persistent debuff would continue into later battles.
+      All division is rounded up.
+      X per Y is rounded down, such as "take 1 damage per 2 spaces moved".
+
 conditions:
   DoT: &DoT
     name: DoT
     image_url:  https://tactics.toren.dev/image_token_Burning_-3293685330274957657.jpg
-    text: At the start of your turn, take 1 damage for each DoT you have.
+    text: At the start of your turn, take 1 damage. Stacks with itself.
   Slow: &Slow
     name: Slow
     image_url: https://tactics.toren.dev/image_token_Slow_1902566325755039578.jpg
@@ -88,6 +88,70 @@ conditions:
     name: Silence
     image_url: https://tactics.toren.dev/image_token_Silence_4233379504253462650.jpg
     text: You do not have Passives. You cannot use non-default abilities. Clear at the end of your next turn.
+shared_rules:
+  Instant: &RuleInstant
+    name: Instant
+    text: |-
+      May list a reaction speed target, like "Instant ⛨+2" or "Instant ⛨+1"
+      An ability marked as Instant can be used for free at the start of any turn, or when a unit is targeted.
+
+      When reacting to to a targeting Action, declare before the roll is made.
+      If the roll is higher than the target's defense + the Instant's bonus (if any), the Instant occurs after the triggering Action.
+      Otherwise, the Instant occurs before the triggering Action.
+      If the triggering actor is an ally, you may choose whether the Instant triggers before or after the Action.
+
+      Note that the Instant's defense bonus does not modify the target's defense - it only changes how easy it is to act first.
+      Reminder that units can choose to be hit even when an attack roll fails.
+      
+
+  Ultimate: &RuleUltimate
+    name: Ultimate X
+    text: |-
+      Can be used 1/Battle, and only on turn X or later.
+  Flying: &RuleFlying
+    name: Flying
+    text: |-
+      Flying movement ignores terrain and does not provoke reactions.
+  Facing: &RuleFacing
+    name: Facing
+    text: |-
+      When a unit specifically states it has facing, when it acts, indicate that it faces an orthogonal direction most closely facing the direction or target of the Action.
+      You can have the character partly overhang that edge of the square to indicate facing.
+      Spaces to its front and the orthogonal line at its left and right are in front of it. Other spaces are behind it.
+      F F F F F
+      F F F F F
+      F F 😀 F F
+      B B B B B
+      B B B B B
+  HeightDifference: &RuleHeightDifference
+    name: Height Difference
+    text: |-
+      Double yellow line indicates the square with the second line is higher than the square bordering it.
+      Units can move from freely from high to low, but the line is impassible from low to high.
+      When counting range, the Height Difference counts as 2 extra spaces.
+      A height difference is also Cover.
+  FallingHazard: &RuleFallingHazard
+    name: Falling Hazard
+    text: |-
+      Purple area indicates a pit. 
+      Units standing on a pit cannot move. 
+      Units that end their turn on a pit are destroyed.
+
+      Some units may be able to escape by flying or teleporting.
+  Cover: &RuleCover
+    name: Cover
+    text: |-
+      Green lines indicate cover. Cover can be moved through.
+      Cover makes it harder to attack if you're not adjacent to it. 
+      If a unit isn't next to the cover, their Line of Sight only travels one space past it.
+  CriticalMoment: &RuleCriticalMoment
+    name: Critical Moment
+    text: |-
+      1/Battle, you may reroll a die.
+    tokens:
+      - name: Critical Moment
+        image_url: https://tactics.toren.dev/image_token_Critical Moment_5737535895777788509.jpg
+        text: You may reroll one die.
 counters:
   Kill: &Kill
     name: Kill counter
@@ -101,62 +165,14 @@ sets:
       - Tanks, Healers, Dps
       - Many 1/Battle effects
     rules:
-      - name: Instant
-        text: |-
-          May list a reaction speed target, like "Instant ⛨+2" or "Instant ⛨+1"
-          An ability marked as Instant can be used for free at the start of any turn, or when a unit is targeted.
-          
-          When reacting to to a targeting Action, declare before the roll is made.
-          If the roll is higher than the target's defense + the Instant's bonus (if any), the Instant occurs after the Action.
-          Otherwise, the Instant occurs before the Action.
-          If the actor is an ally, you may choose whether the Instant triggers before or after the Action.
-
-          Note that the Instant's defense bonus does not modify the target's defense - it only changes how easy it is to act first.
-          Reminder that units can choose to be hit even when an attack roll fails.
-      - name: Ultimate X
-        text: |-
-          Can be used 1/Battle, and only on turn X or later.
-      - name: Critical Moment
-        text: |-
-          1/Battle, you may reroll a die.
-        tokens:
-          - name: Critical Moment
-            image_url: https://tactics.toren.dev/image_token_Critical Moment_5737535895777788509.jpg
-            text: You may reroll one die.
-      - name: Flying
-        text: |-
-          Flying movement ignores terrain and does not provoke reactions.
-      - name: Facing
-        text: |-
-          When a unit specifically states it has facing, when it acts, indicate that it faces an orthogonal direction most closely facing the direction or target of the Action.
-          You can have the character partly overhang that edge of the square to indicate facing.
-          Spaces to its front and the orthogonal line at its left and right are in front of it. Other spaces are behind it.
-          F F F F F
-          F F F F F
-          F F 😀 F F
-          B B B B B
-          B B B B B
-      - name: Channel
-        text: |-
-          An effect in marked as Channel is cancelled if the unit loses actions or is affected by an "interrupt" affect.
-      - name: Height Difference
-        text: |-
-          Double yellow line indicates the square with the second line is higher than the square bordering it.
-          Units can move from freely from high to low, but the line is impassible from low to high.
-          A height difference is also Cover.
-      - name: Falling Hazard
-        text: |-
-          Purple area indicates a pit. 
-          Units standing on a pit cannot move. 
-          Units that end their turn on a pit are destroyed.
-
-          Some units may be able to escape by flying or teleporting.
-      - name: Cover
-        text: |-
-          Green lines indicate cover. Cover can be moved through.
-          Cover makes it harder to attack if you're not adjacent to it. 
-          If a unit isn't next to the cover, their Line of Sight only travels one space past it.
-#          If an attacker who's not next to the cover shoots through it, the attack has +2 block.
+      - *RuleInstant
+      - *RuleUltimate
+      - *RuleFlying
+      - *RuleFacing
+      - *RuleHeightDifference
+      - *RuleFallingHazard
+      - *RuleCover
+      - *RuleCriticalMoment
     heroes:
       - name: Widowmaker
         description: |-
@@ -1290,11 +1306,6 @@ sets:
 
   - name: Lancer
     description: Description TODO
-    Exposed: &Exposed
-      name: Exposed
-      image_url: https://tactics.toren.dev/image_token_Impaired_5997399677763413592.jpg
-      text: |-
-        Take double damage from all sources.
     Impaired: &Impaired
       name: Impaired
       image_url: https://tactics.toren.dev/image_token_Impaired_5997399677763413592.jpg
@@ -1306,11 +1317,8 @@ sets:
         text: |-          
           For 1 Standard Action, range 4, vs Will, target gets 2 stress, and Impaired or Slow
           
-          Once per turn, the active hero can "Overcharge".
-          They gain +1 Standard Action that turn, and gain 1d6 stress.
+          Once per turn, the active hero can "Overcharge". They gain +1 Standard Action that turn, and gain 1d6 stress.
         tokens:
-#          - name: Overcharge
-#            image_url: https://tactics.toren.dev/image_token_Overcharge_-5042384804763023491.jpg
           - *Impaired
           - *Slow
       - name: Opportunity Attacks
@@ -1330,13 +1338,6 @@ sets:
           - name: Stress
             color: gray
             values: [ 1 ]
-#        tokens:
-#          - *Exposed
-#          - name: Reactor Meltdown
-#            image_url: https://tactics.toren.dev/image_token_Reactor Meltdown_-256580045921638568.jpg
-#            text: |-
-#              When you die, deal all adjacent ⚔4.
-#              You die at the end of your next turn.
     heroes:
       - name: Blackbeard
         health: 8
@@ -2616,6 +2617,13 @@ sets:
       - high mobility and potential damage
       - permanent buffs and debuffs
 
+    rules:
+      - *RuleInstant
+      - *RuleUltimate
+      - *RuleFlying
+      - *RuleFacing
+      - *RuleCriticalMoment
+
     heroes:
       - name: Spy
         description: |-
@@ -2761,7 +2769,7 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_Crikey_9086728348551584567.jpg
                 text: While you have 4 of these, +.5x damage
           - name: Jarate
-            text: Range 2, 2x2, targets receive +.5x damage
+            text: Range 3, 2x2, targets receive +.5x damage
             tokens:
               - name: Jarate
                 image_url: https://tactics.toren.dev/image_token_Jarate_-2397770930367722030.jpg
@@ -2823,12 +2831,6 @@ sets:
         image_url: https://tactics.toren.dev/image_token_Engineer_6463287448594563119.jpg
         health: 8
         speed: 3
-        passives:
-          - name: Heavy Load
-            text: |-
-              You can carry a summon. Remove it from the board and place it on your card.
-              You have -1 speed while carrying a summon. On death, place the summon in your space if it's an enemy.
-              Free Action: Range 1, place your carried summon and Silence it.
         tokens:
           - *Silence
           - name: Upgrade
@@ -2839,7 +2841,7 @@ sets:
             text: |-
               Choose one --
               - ⛨1/3 distance, 2⚔ 
-              - If target is a summon, heal 2, and you may carry it with Heavy Load.
+              - If target is a summon, you may teleport it adjacent to you and Silence it. Heal it 2.
           - name: Wrench
             text: |-
               Choose one --
@@ -2901,11 +2903,11 @@ sets:
         speed: 3
         passives:
           - name: When you're damaged by an ability that can affect multiple targets.
-            text: Take -.5x damage. If you're the attacker, you may fly up to the unreduced damage value.
+            text: Take -.5x damage. If you're the attacker, you may fly up to the damage value before appling reduction.
         default_abilities:
           - name: Grenade Launcher
             text: |-
-              ⛨1/2 distance, 4⚔, push 2, 1⚔ to others in burst 1 of target. 
+              ⛨1+1 per spaces between, 4⚔, push 2, 1⚔ to others in burst 1 of target. 
               On miss places grenade marker in the nearest empty space.
               At the start of your turn, destroy it and repeat the attack on its space, automatically hitting.
           - name: Eyelander
@@ -2934,7 +2936,7 @@ sets:
           - name: Ullapool Caber
             text: |-
               1/Battle:
-              Range 1, 2⚔, 4⚔ to all in burst 1 of target (including target).
+              Range 1, 2⚔. On hit, 4⚔ to all in burst 1 of target (including target).
           - name: Pain Train
             text: |-
               Enter or exit Pain Train stance as Free Action at start of turn.
@@ -3012,7 +3014,7 @@ sets:
         default_abilities:
           - name: Rocket Launcher
             text: |-
-              ⛨1/2 distance, 3⚔, 1⚔ to others in burst 1 of target, push 1.
+              ⛨1+1 per 2 spaces between, 3⚔, 1⚔ to others in burst 1 of target, push 1.
           - name: Rocket Jump
             text: |-
               Move Action, take 2⚔, fly 4.
@@ -3067,8 +3069,10 @@ sets:
         image_url: https://static.wikia.nocookie.net/teamfortress/images/4/48/Scout_Full_Body.png/revision/latest?cb=20170716194653
         health: 6
         speed: 5
-        passive:
+        passives:
           - name: All your movement is Flying.
+            text: ''
+          - name: Dodge⛨+2
             text: ''
           - name: When you make a Basic Move Action
             text: You may use any unspent movement at the end of your turn.

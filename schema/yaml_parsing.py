@@ -80,8 +80,8 @@ class Figurine(BaseModel, Spawnable):
 
     def get_spawning_lua(self):
         return f"""\
-    local front='{self.image_url}'
-    local name='{clean_string_for_lua(self.name)}'
+    local front="{self.image_url}"
+    local name="{clean_string_for_lua(self.name)}"
     local s={scale_size(self.size)}
     local my_position = self.getPosition()
 

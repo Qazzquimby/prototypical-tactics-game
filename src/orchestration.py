@@ -85,6 +85,6 @@ def load_game_from_yaml_path(yaml_path: str):
 
 
 def save_tts(tts_json: dict, save_dir: Path, file_name: str):
-    path = save_dir / f"TS_{file_name.replace(' ', '_')}.json"
+    path = save_dir / f"Crossover_Tactics.json"
     with open(path, "w") as outfile:
         json.dump(tts_json, outfile)
