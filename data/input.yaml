@@ -1425,7 +1425,7 @@ sets:
           - Forced movement controller
           - Anti Will attacks
         passives:
-          - name: Take half damage from all sources
+          - name: Take -.5x damage from all sources
             text: ""
           - name: You and adjacent allies have ⛨+2 against Will attacks.
             text: ""
@@ -1440,7 +1440,11 @@ sets:
             text: |-
               Place or Move your Magnetic Shield into range 1.
               Magnetic Shield is 3x1, blocks movement, but does not block line of sight.
-              Attacks that pass through the shield do 0.5x damage.
+              Attacks that pass through the shield do -.5x damage.
+            tokens:
+              - name: Magnetic Shield
+                image_url: https://www.researchgate.net/publication/285512554/figure/fig6/AS:668583189286922@1536414062407/Magnetic-field-for-a-ferromagnetic-cylindrical-shield-placed-in-a-homogeneous-external.png
+                text: Attacks that pass through the shield do -.5x damage.
           - name: Summon ICEOUT Drone
             text: |-
               1/Battle:
@@ -1454,6 +1458,9 @@ sets:
               Units in the area are immediately pulled to the center and immobilized.
               When an attack would pass into or out of the area, it is blocked, and put a charge on this.
               At the end of your next turn, deal ⚔2 for each charge to each unit in the area, then end this effect.
+            tokens:
+              - name: Mag Field
+                image_url: https://cdn-icons-png.flaticon.com/512/3382/3382610.png
         units:
           - name: ICEOUT Drone
             health: 4
@@ -2819,11 +2826,20 @@ sets:
               Ultimate 5, Instant ⛨+3: 
               Choose one --
               - You and your Healing Target are immune to damage but are ignored by objectives.
-              - Your Healing target always crits when they hit.
+              - You and your Healing Target always crit when you hit.
             dice:
               - name: Required Ultimate
                 color: white
                 values: [5]
+            tokens:
+              - name: Ubercharge
+                image_url: https://static.wikia.nocookie.net/themomentswithheavy/images/a/a1/Untitled.png/revision/latest?cb=20110824174729
+                text: |-
+                  You and your Healing Target are immune to damage but are ignored by objectives.
+              - name: Krtizkrieg
+                image_url: https://pm1.aminoapps.com/6218/d3ce54fd0832212b09cabb0798b0033dfb4aa815_00.jpg
+                text: |-
+                  You and your Healing Target always crit when you hit.
 
       - name: Engineer
         description: |-
@@ -2927,6 +2943,9 @@ sets:
               Empty space in range 4, place a Sticky Bomb marker (1hp).
               ---
               Free Action at start of turn: Remove all your Sticky Bombs, and each deals burst 1, ⚔4.
+            tokens:
+              - name: Sticky Bomb
+                image_url: https://wiki.teamfortress.com/w/images/thumb/9/99/Sticky_proj_red.png/120px-Sticky_proj_red.png
           - name: Chargin' Target
             text: |-
               1/Battle, Move Action:

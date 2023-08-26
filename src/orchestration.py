@@ -65,7 +65,7 @@ def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder: ImageBu
         library_to_tts_dict(
             library=library,
             image_builder=image_builder,
-            file_name="TestGame",
+            file_name="Crossover Tactics",
         ),
     )
 
