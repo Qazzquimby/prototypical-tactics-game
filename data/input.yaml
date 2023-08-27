@@ -2776,30 +2776,36 @@ sets:
               Move + Standard Action:
               Move 1. Note your facing.
               At the start of your next turn:
-                Range 3+, undogeable ⚔5, +2 crit per kill counter.
+                Range 2+, undogeable ⚔5, +2 crit per kill counter.
                 After this attack the target receives +.5x damage.
               
               On kill, gain a Kill counter.
           - name: Bushwacka
-            text: Range 1, 2⚔, +2 crit, this attack doubles applied damage bonuses
+            text: |-
+              Range 1, 2⚔, +2 crit.
+              This attack doubles applied damage bonuses
         tokens:
           - *Kill
+          - name: Sniper Rifle Charged
+            image_url: https://image.pngaaa.com/366/330366-middle.png
         abilities:
           - name: Cleaner's Carbine
             text: |-
               Range 2, 2⚔.
-              Gain Crikey counters equal to damage dealt, max 4.
-              While this has 4 Crikey counters, you deal +.5x damage.
-            tokens:
-              - name: Crikey
-                image_url: https://tactics.toren.dev/image_token_Crikey_9086728348551584567.jpg
-                text: While you have 4 of these, +.5x damage
+              Gain charge equal to damage dealt, max 4.
+              While this has 4 charge, you deal +.5x damage.
+            dice:
+              - name: Charge
+                color: orange
+                values: [1]
           - name: Jarate
-            text: Range 3, 2x2, targets receive +.5x damage
+            text: |-
+              1/Battle
+              Range 3, 2x2, targets receive +.5x damage
             tokens:
               - name: Jarate
                 image_url: https://tactics.toren.dev/image_token_Jarate_-2397770930367722030.jpg
-                text: Receive +.5x damage
+                text: Receive +.5x damage.
 
       - name: Medic
         description: |-
