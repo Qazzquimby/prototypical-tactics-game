@@ -2,7 +2,7 @@ import abc
 import base64
 from functools import lru_cache
 from pathlib import Path
-from typing import ClassVar, Literal
+from typing import ClassVar, Literal, List
 
 import jinja2
 import yaml
@@ -283,6 +283,9 @@ def make_spawn_die_lua(
 
 class Hero(UnitCard):
     description: str
+    polish: List[
+        Literal["unplayable", "needs_assets", "needs_balance", "needs_testing"]
+    ] = []
 
     @staticmethod
     @lru_cache

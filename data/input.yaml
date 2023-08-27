@@ -458,51 +458,320 @@ sets:
               Range 2, 3x3, ⚔1 and Paralyze
             tokens:
               - *Paralyze
-    #      - name: Bastion
-    #        description: |-
-    #          - High damage slow stance
-    #        health: 8
-    #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_4/47/OW2-Bastion.png
-    #        default_abilities:
-    #          - name: Light Machine Gun
-    #            text: Range 4, ⚔1.
-    #          - name: Rotary Canon
-    #            text: |-
-    #              Only usable in Assault stance
-    #              ⚔5, Range 2
-    #              or ⚔3, Range 4
-    #              Double damage against targets size 2+.
-    #        abilities:
-    #
-    #          - name: Configuration Assault
-    #            text: |-
-    #              Enter assault stance
-    #
-    #              While in Assault stance:
-    #                At the end of your turn, you may exit assault stance.
-    #                If interrupted, exit assault stance.
-    #                You are slowed.
-    #                +1 armor
-    #                You have facing, and attacks from behind you deal double damage to you.
-    #                You may use Rotary Canon, and cannot use other abilities.
-    #            tokens:
-    #              - name: Bastion Stance
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/350?cb=20220409014728
-    #                back_image_url: https://pm1.narvii.com/6131/4b01877db14d895dac021ae4c575bcde2acb62e4_128.jpg
-    #          - name: A-36 Tactical Grenade
-    #            text: |-
-    #              Range 4, ⚔3
-    #              Then ⚔1 to all others in burst 1 of the target space
-    #          - name: Configuration Artillery
-    #            text: |-
-    #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-    #              Spend 5 charges:
-    #                Mark 3 spaces.
-    #                At the beginning of your next turn, for each marked space, deal ⚔10 to everyone inside, and ⚔2 to everyone else in burst 1.
-    #            tokens:
-    #              - name: Bastion Artillery Marker
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/ea/Artillery_Icon.png/revision/latest/scale-to-width-down/100?cb=20221015223113
+      - name: Torbjorn
+        polish: [needs_testing]
+        description: |-
+          - Summon sustained damage turret
+          - Damage brawler
+        health: 10
+        speed: 3
+        dodge: +1
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_d/db/Torbj%C3%B6rn-ow2-portrait.png/revision/latest/scale-to-width-down/272?cb=20210623082654
+        default_abilities:
+          - name: Rivet Gun
+            text: |-
+              Range 2, ⚔2
+          - name: Forge Hammer
+            text: |-
+              Summon in Range 1, Heal 3
+        abilities:
+          - name: Deploy Turret
+            text: |-
+              1/Battle:
+              Empty space in range 4, Summon a Turret.
+          - name: Overload
+            text: |-
+              1/Battle, Free Action:
+              Gain 4 overshield
+              This turn and next turn you have +2 move speed and have an additional Standard Action.
+              At end of your next turn, lose overshield gained with this ability
+            dice:
+              - name: Overshield
+                color: blue
+                values: [ 4 ]
+          - name: Molten Core
+            text: |-
+              Ultimate 4:
+                Range 5, three 2x2 areas become Hazard: ⚔2 for enemies.
+            tokens:
+              - name: Molten Core
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/ef/Ability-torbjorn5.png/revision/latest/scale-to-width-down/100?cb=20181018043327
+                size: 2
+                text: |-
+                  Hazard: ⚔2 for enemies.
+        units:
+          - name: Turret
+            health: 10
+            speed: 0
+            image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_a/a7/Ability-torbjorn3.png/revision/latest/scale-to-width-down/100?cb=20181010190250
+            passives:
+              - name: Summon
+                text: Deal 6 damage to this.
+              - name: Start
+                text: This heals 6.
+            default_abilities:
+              - name: Automatic Fire
+                text: |-
+                  Mandatory.
+                  Nearest enemy in LoS, ⚔2
+      - name: Hanzo
+        polish: [needs_testing]
+        description: |-
+          - Massive burst damage
+          - Long range with accuracy penalty
+        health: 8
+        speed: 3
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_6/66/OW2_Hanzo.png/revision/latest?cb=20221029021242
+        passives:
+          - name: Ignore terrain while moving.
+            text: ""
+        default_abilities:
+          - name: Storm Bow
+            text: |-
+              Move + Standard Action:
+              Move up to 1
+              ⛨+2, ⚔5, +2Crit
+        abilities:
+          - name: Sonic Arrow
+            text: |-
+              1/Battle, Free Action:
+              The next time you make a ranged attack
+                On hit, give the target Sonic Arrow.
+                On miss, place a Sonic Arrow in the targeted space.
+              
+              Enemies within range 2 of a sonic arrow cannot cannot defend or be untargetable, and receive +2 Crit
+            tokens:
+              - name: Sonic Arrow
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_7/76/Ability-hanzo2.png/revision/latest/scale-to-width-down/100?cb=20221128012521
+                text: Enemies within range 2 of a sonic arrow cannot cannot defend or be untargetable, and receive +2 Crit
+          - name: Storm Arrows
+            text: |-
+              1/Battle, Free Action:
+              Until the end of your next turn, you can make a Default action as a Free Action once per turn,
+              but you deal ⚔-2.
+          - name: Lunge
+            text: |-
+              1/Battle, Free Action:
+              Fly up to 2.
+          - name: Dragonstrike
+            text: |-
+              Ultimate 5:
+              Draw a straight beam 2 spaces wide, from you to the edge of the map in a direction of your choice.
+              At the start of your next turn, the beam becomes active until the start of your turn after.
+              While the beam is active, all spaces in it have Hazard: ⚔7 for enemies.
+            tokens:
+              - name: Dragonstrike
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_4/44/Ability-hanzo4.png/revision/latest/scale-to-width-down/100?cb=20141111201819
+                back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
+                size: 2
+                text: |-
+                  While the beam is active, all spaces in it have Hazard: ⚔7 for enemies.
+      - name: Winston
+        polish:
+          - needs_testing
+        description: |-
+          - Mobile tank
+          - Forcefield
+          - Large melee aoe
+        health: 10
+        speed: 3
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_7/7c/Winston-ow2-portrait.png/revision/latest/scale-to-width-down/279?cb=20191104221341
+        passives:
+          - name: Cannot Dodge
+            text: ""
+        default_abilities:
+          - name: Tesla Cannon
+            text: |-
+              Choose one --
+              - Range 1 3x3, ⚔2,
+              - Range 4, ⛨+2, ⚔2
+        abilities:
+          - name: Jump Pack
+            text: |-
+              2/Battle, Move Action:
+              Fly up to 6.
+              Burst 1, ⚔1.
+          - name: Barrier Projector
+            text: |-
+              1/Battle, Instant ⛨+2:
+              Place a size 3 Barrier centered on your space, with 8hp.
+              The barrier does not block movement or line of sight, but enemy attacks hit it rather than passing through.
+            dice:
+              - name: Barrier health
+                color: red
+                values: [ 8 ]
+            tokens:
+              - name: Barrier
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_1/13/Ability-winston3.png/revision/latest/scale-to-width-down/100?cb=20141112192620
+                size: 3
+          - name: Primal Rage
+            text: |-
+              Ultimate 4, Instant ⛨+3:
+              Set your current and maximum health to 18. Reset your uses of Jump Pack.
+              When you deal damage, also push 3.
+      - name: Zenyatta
+        polish:
+          - needs_testing
+        description: |-
+          - Slow heal
+          - Damage buff
+          - Burst damage
+        health: 8
+        speed: 3
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_9/92/Zenyatta-portrait.png/revision/latest/scale-to-width-down/269?cb=20160620015935
+        tokens:
+          - name: Orb of Destruction Charged
+            image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_d/d1/Ability-zenyatta1.png/revision/latest/scale-to-width-down/100?cb=20181119055020
+        default_abilities:
+          - name: Orb of Destruction
+            text: |-
+              Choose one --
+              - Range 4, ⛨+2, ⚔3
+              - At the beginning of your next turn: Unlimited range, ⛨+1, ⚔6, +1 crit, lose a Standard Action.
+        abilities:
+          - name: Snap Kick
+            text: |-
+              Range 1, ⚔2, push 2
+          - name: Orb of Harmony
+            text: |-
+              Free Action:
+              Unlimited range, give target your Orb of Harmony (max 1, remove oldest).
+              Now and at the start of your turn, they Heal 2.
+            tokens:
+              - name: Orb of Harmony
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_0/0c/Ability-zenyatta2.png/revision/latest/scale-to-width-down/100?cb=20141112192735
+                text: Now and at the start of your turn, they Heal 2.
+          - name: Orb of Discord
+            text: |-
+              Free Action:
+              Unlimited range, give target your Orb of Discord (max 1, remove oldest).
+              They receive +.5x damage
+            tokens:
+              - name: Orb of Discord
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_0/04/Ability-zenyatta3.png/revision/latest/scale-to-width-down/100?cb=20141112192736
+                text: Receive +.5x damage
+          - name: Transcendence
+            text: |-
+              Ultimate 3, Instant ⛨+2:
+              Heal to full. Clear any number of conditions.
+              Burst 1, allies Heal 5.
+              Until the start of your next turn, you are immune to damage conditions you don't want.
+      - name: Bastion
+        polish:
+          - needs_testing
+        description: |-
+          - High damage slow stance
+        health: 8
+        speed: 3
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_4/47/OW2-Bastion.png
+        default_abilities:
+          - name: Light Machine Gun
+            text: Range 4, ⚔2.
+          - name: Rotary Canon
+            text: |-
+              In Assault Stance:
+                Range 2, ⚔6
+                Range 4, ⚔3
+        abilities:
+          - name: Configuration Assault
+            text: |-
+              Enter Assault Stance:
+                +1 armor.
+                You are slowed (-2 speed, min 1).
+                You receive +2 crit from range 1.
+                Exit when you lose an Action, or as a Free Action at the end of your turn.
+            tokens:
+              - name: Assault Stance
+                image_url: https://pm1.narvii.com/6131/4b01877db14d895dac021ae4c575bcde2acb62e4_128.jpg
+          - name: A-36 Tactical Grenade
+            text: |-
+              Range 4, 3x3, ⚔2
+          - name: Configuration Artillery
+            text: |-
+              Ultimate 5:
+              Global, mark 3 spaces.
+              At the beginning of your next turn, targeting each marked space: ⚔10, and burst 1 ⚔2.
+            tokens:
+              - name: Bastion Artillery Marker
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/ea/Artillery_Icon.png/revision/latest/scale-to-width-down/100?cb=20221015223113
+      - name: Symmetra
+        polish:
+          - needs_testing
+        description: |-
+          - Summon utilities
+          - High damage on same target
+        health: 8
+        speed: 3
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_1/18/Symmetra-portrait.png/revision/latest/scale-to-width-down/161?cb=20160620015059
+        default_abilities:
+          - name: Photon Beam
+            text: |-
+              Range 2, ⚔2.
+              If this hit the same target last turn, it deals ⚔4 instead.
+              If this hit the same target the last two turns, it deals ⚔6 instead.
+          - name: Photon Orb
+            text: |-
+              Choose one --
+              - Range 4, ⛨+2, ⚔2
+              - At the beginning of your next turn: Range 4, ⛨+2, ⚔4.
+        tokens:
+          - name: Photon Orb charged / consecutive Photon Beam hit.
+            image_url: https://static.wikia.nocookie.net/overwatch/images/e/e1/Icon_photonprojector.png/revision/latest?cb=20160728012817
+            text: Give to yourself to charge orb. Give to enemy to track hits.
+        abilities:
+          - name: Sentry Turret
+            text: |-
+              1/Battle, Free Action:
+              Unlimited range, Summon three Sentry Turrets in empty spaces.
+              Sentry Turrets have 1hp and 0 speed.
+              At the start of your turn, each sentry turret deals ⚔1 to the nearest enemy in range 3.
+              If two turrets hit the same target, the target is slowed.
+            tokens:
+              - *Slow
+              - name: Sentry Turret
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
+                size: 0.5
+              - name: Sentry Turret
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
+                size: 0.5
+              - name: Sentry Turret
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
+                size: 0.5
+          - name: Teleporter
+            text: |-
+              1/Battle:
+              Empty space in range 1, and empty space in range 6, place two Teleporters.
+              Teleporters have 8hp and speed 0.
+              Allied units can spend a Free Action to teleport from one Teleporter's space to another Teleporter's space.
+            dice:
+              - name: Teleporter health
+                color: red
+                values: [ 8, 8 ]
+            tokens:
+              - name: Teleporter
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/e0/Ability-symmetra4.png/revision/latest/scale-to-width-down/100?cb=20141112192203
+                size: 1
+              - name: Teleporter
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/e0/Ability-symmetra4.png/revision/latest/scale-to-width-down/100?cb=20141112192203
+                size: 1
+          - name: Photon Barrier
+            text: |-
+              Ultimate 4:
+              Global, choose any edge across the map.
+              Create a barrier blocking that edge, with 12hp.
+              The barrier does not block line of sight or movement, but enemy attacks hit it rather than passing through.
+            dice:
+              - name: Barrier health
+                color: red
+                values: [ 6, 6 ]
+            tokens:
+              - name: Photon Barrier
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_d/d7/Photon_Barrier.png/revision/latest/scale-to-width-down/100?cb=20180626211607
+                size: 1
+              - name: Photon Barrier
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_d/d7/Photon_Barrier.png/revision/latest/scale-to-width-down/100?cb=20180626211607
+                size: 1
+
     #      - name: Cassidy
     #        description: |-
     #          - Ranged sustained dps
@@ -644,59 +913,7 @@ sets:
     #                For the rest of the Battle, you have +1 speed, and replace your default attacks with:
     #                  default
     #                  range 1, ⚔5
-    #      - name: Hanzo
-    #        description: |-
-    #          - Massive burst damage
-    #          - Long range with accuracy penalty
-    #        health: 8
-    #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_6/66/OW2_Hanzo.png/revision/latest?cb=20221029021242
-    #        passives:
-    #          - name: You can move up height differences.
-    #            text: ""
-    #          - name: Ignore difficult terrain.
-    #            text: ""
-    #        default_abilities:
-    #          - name: Storm Bow
-    #            text: |-
-    #              Move + Standard Action
-    #              Move up to 1
-    #              ⛨ 1/3 distance, ⚔5, +1crit
-    #        abilities:
-    #          - name: Sonic Arrow
-    #            text: |-
-    #              1/Battle
-    #              Free Action
-    #              The next time you make a ranged attack
-    #                On hit, attach a sonic arrow to the target.
-    #                On miss, place a sonic arrow at the end of the attack's range.
-    #
-    #              Enemies within burst 2 of a sonic arrow cannot benefit from invisibility or soft cover, and receive +2crit
-    #            tokens:
-    #              - name: Sonic Arrow
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_7/76/Ability-hanzo2.png/revision/latest/scale-to-width-down/100?cb=20221128012521
-    #          - name: Storm Arrows
-    #            text: |-
-    #              1/Battle
-    #              Free Action
-    #              Until the end of your next turn, you can make two default attacks as a single Standard Action, but they do ⚔3.
-    #          - name: Lunge
-    #            text: |-
-    #              1/Battle
-    #              Free Action
-    #              Teleport 2 spaces away.
-    #          - name: Dragonstrike
-    #            text: |-
-    #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-    #              Spend 5 charges:
-    #                Draw a straight beam 2 spaces wide, from you to the edge of the map in a direction of your choice.
-    #                At the start of your next turn, the beam becomes active until the start of your turn after.
-    #                While the beam is active, enemies who start their turn in the beam or move into the beam take ⚔7. They can't be damaged this way more than once.
-    #            tokens:
-    #              - name: Dragonstrike
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_4/44/Ability-hanzo4.png/revision/latest/scale-to-width-down/100?cb=20141111201819
-    #                back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
-    #                size: 2
+
     #      - name: Junkrat
     #        description: |-
     #          - Area denial
@@ -1024,212 +1241,7 @@ sets:
     #                Heavy Pulse Rifle range becomes 6
     #                Your attacks are undodgeable and can't take penalties.
     #                Now and at the start of each your turns, you can make a default attack as a Free Action.
-    #      - name: Symmetra
-    #        description: |-
-    #          - Summon utilities
-    #          - High damage on same target
-    #        health: 8
-    #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_1/18/Symmetra-portrait.png/revision/latest/scale-to-width-down/161?cb=20160620015059
-    #        default_abilities:
-    #          - name: Photon Beam
-    #            text: |-
-    #              Range 2, ⚔2.
-    #              If this hit the same target last turn, it deals ⚔4 instead.
-    #              If this hit the same target the last two turns, it deals ⚔6 instead.
-    #          - name: Photon Orb
-    #            text: |-
-    #              ⛨1/distance, ⚔2
-    #              or: Next Standard Action you must use Photon Orb, and it has: ⛨1/3 distance, ⚔6.
-    #            tokens:
-    #              - name: Photon Orb Charged
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_7/7e/Ability-symmetra1.png/revision/latest/scale-to-width-down/100?cb=20181119051026
-    #        abilities:
-    #          - name: Sentry Turret
-    #            text: |-
-    #              Quick Action
-    #              1/Battle
-    #              Place three Sentry Turrets in line of sight.
-    #              1 hp, speed 0, cannot dodge.
-    #              At the start of your turn, each sentry turret deals ⚔1 to the nearest enemy in range 3.
-    #              If two turrets hit the same target, the target is slowed.
-    #            tokens:
-    #              - name: Sentry Turret
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
-    #                size: 0.5
-    #              - name: Sentry Turret
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
-    #                size: 0.5
-    #              - name: Sentry Turret
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_f/f4/Ability-symmetra2.png/revision/latest/scale-to-width-down/100?cb=20181119050744
-    #                size: 0.5
-    #          - name: Teleporter
-    #            text: |-
-    #              1/Battle
-    #              Move + Standard Action
-    #              Place a size 1 in an emtpy space in range 1, and another in an empty space in range 6.
-    #              Teleporters have 8hp.
-    #              Allied units can freely move between the two teleporter spaces on their turn, even partway through another Action, and even if they could not normally move.
-    #            tokens:
-    #              - name: Teleporter
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/e0/Ability-symmetra4.png/revision/latest/scale-to-width-down/100?cb=20141112192203
-    #                size: 1
-    #              - name: Teleporter
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/e0/Ability-symmetra4.png/revision/latest/scale-to-width-down/100?cb=20141112192203
-    #                size: 1
-    #          - name: Photon Barrier
-    #            text: |-
-    #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-    #              Spend 5 charges:
-    #                Draw a straight line barrier across the entire map.
-    #                Enemy attacks through the line hit the barrier instead. The barrier has 16hp
-    #            tokens:
-    #              - name: Photon Barrier
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_d/d7/Photon_Barrier.png/revision/latest/scale-to-width-down/100?cb=20180626211607
-    #                size: 1
-    #              - name: Photon Barrier
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_d/d7/Photon_Barrier.png/revision/latest/scale-to-width-down/100?cb=20180626211607
-    #                size: 1
-    #      - name: Torbjorn
-    #        description: |-
-    #          - Summon sustained damage turret
-    #          - Damage brawler
-    #        health: 10
-    #        speed: 3
-    #        dodge: +1
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_d/db/Torbj%C3%B6rn-ow2-portrait.png/revision/latest/scale-to-width-down/272?cb=20210623082654
-    #        default_abilities:
-    #          - name: Rivet Gun
-    #            text: |-
-    #              ⛨1/2 distance, ⚔2
-    #              or range 1, ⚔3
-    #              or Turret in range 3, Heal 3
-    #        abilities:
-    #          - name: Deploy Turret
-    #            text: |-
-    #              1/Battle
-    #              Summon a size 1 turret in an empty space in range 4.
-    #            tokens:
-    #              - name: Turret
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_a/a7/Ability-torbjorn3.png/revision/latest/scale-to-width-down/100?cb=20181010190250
-    #                size: 1
-    #          - name: Overload
-    #            text: |-
-    #              1/Battle
-    #              Free Action
-    #              Gain 4 overshield
-    #              This turn and next turn you have +2 move speed and can make two default attacks
-    #              At end of your next turn, lose overshield gained with this ability
-    #          - name: Molten Core
-    #            text: |-
-    #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-    #              Spend 5 charges:
-    #                Pick three 2x2 areas in range 5
-    #                The first time each enemy is in one of the areas, they take ⚔3.
-    #            tokens:
-    #              - name: Molten Core
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_e/ef/Ability-torbjorn5.png/revision/latest/scale-to-width-down/100?cb=20181018043327
-    #                size: 2
-    #        units:
-    #          - name: Turret
-    #            health: 10
-    #            speed: 0
-    #            image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_a/a7/Ability-torbjorn3.png/revision/latest/scale-to-width-down/100?cb=20181010190250
-    #            passives:
-    #              - name: Summon
-    #                text: Deal 6 damage to this.
-    #              - name: Start of first activation
-    #                text: This heals 6.
-    #            default_abilities:
-    #              - name: Automatic Fire
-    #                text: |-
-    #                  Nearest enemy in LoS, ⚔2
-    #
-    #
-    #      - name: Winston
-    #        description: |-
-    #          - Mobile tank
-    #          - Forcefield
-    #          - Large melee aoe
-    #        health: 10
-    #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_7/7c/Winston-ow2-portrait.png/revision/latest/scale-to-width-down/279?cb=20191104221341
-    #        passives:
-    #          - name: Easy Target
-    #            text: |-
-    #              Dodge -2
-    #        default_abilities:
-    #          - name: Tesla Cannon
-    #            text: |-
-    #              Default
-    #              Spaces in Range 1 burst 1, ⚔2,
-    #              or ⛨1/3 distance, ⚔2
-    #        abilities:
-    #          - name: Jump Pack
-    #            text: |-
-    #              CD 2
-    #              Move Action
-    #              Fly up to 6, ending on the ground.
-    #              Burst 1, ⚔1.
-    #          - name: Barrier Projector
-    #            text: |-
-    #              1/Battle
-    #              Reaction Block⛨+2
-    #              Range 1, Summon a size 3 Barrier. The barrier has 8hp, and blocks enemy non-piercing attacks through its borders.
-    #            tokens:
-    #              - name: Barrier
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_1/13/Ability-winston3.png/revision/latest/scale-to-width-down/100?cb=20141112192620
-    #                size: 3
-    #          - name: Primal Rage
-    #            text: |-
-    #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-    #              Reaction Block⛨+2, spend 5 charges:
-    #                Set your current and maximum health to 18.
-    #                Until the end of your next turn:
-    #                  Refresh the use of Jump Pack.
-    #                  When you deal damage, also deal knock back 3.
-    #                At the end of your next turn, lower your current and maximum health to your starting health.
-    #      - name: Zenyatta
-    #        description: |-
-    #          - Slow heal
-    #          - Damage buff
-    #          - Burst damage
-    #        health: 8
-    #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_9/92/Zenyatta-portrait.png/revision/latest/scale-to-width-down/269?cb=20160620015935
-    #        tokens:
-    #          - name: Orb of Destruction Charged
-    #            image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_d/d1/Ability-zenyatta1.png/revision/latest/scale-to-width-down/100?cb=20181119055020
-    #        default_abilities:
-    #          - name: Orb of Destruction
-    #            text: |-
-    #              Default
-    #              ⛨1/4 distance, ⚔3
-    #              or end your turn, get slowed 1, and next turn you must use orb of destruction but it deals 2x damage.
-    #        abilities:
-    #          - name: Snap Kick
-    #            text: |-
-    #              Default
-    #              Range 1, ⚔2, kb 2
-    #          - name: Orb of Harmony
-    #            text: |-
-    #              Mark an ally. Now and at the start of your turn, they Heal 2. When you use this again, it removes the original mark.
-    #            tokens:
-    #              - name: Orb of Harmony
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_0/0c/Ability-zenyatta2.png/revision/latest/scale-to-width-down/100?cb=20141112192735
-    #          - name: Orb of Discord
-    #            text: |-
-    #              Mark an enemy. They take +.5x damage from all attacks. When you use this again, it removes the original mark.
-    #            tokens:
-    #              - name: Orb of Discord
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/image_0/04/Ability-zenyatta3.png/revision/latest/scale-to-width-down/100?cb=20141112192736
-    #          - name: Transcendence
-    #            text: |-
-    #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-    #              Spend 5 charges, Reaction +2:
-    #                  Heal to full. Purge all conditions you don't want.
-    #                  All allies in burst 1 Heal 5.
-    #                  Until the start of your next turn, you are immune to damage and don't take conditions you don't want.
+
     #      - name: Zarya
     #        description: |-
     #          - Reaction-Block damage to increase damage dealt
@@ -1645,6 +1657,8 @@ sets:
               Standard Action: End this effect
 
       - name: Barbarosa
+        polish:
+          - needs_balance
         description: |-
           - Huge artillery tank
         image_url: https://tactics.toren.dev/image_token_Barbarosa_-8861773581727907330.jpg
