@@ -7,9 +7,9 @@ rules:
     text: |-
       Pick 3ish sets.
       Draw a map from among the sets and reveal it.
-      Draw 10ish heroes from among the sets and reveal them.
-      Player 1 makes two groups of 5. Player 2 picks a group, and Player 1 gets the other.
-      Players alternate picking one of their 5 heroes and putting it on the map in their deploy zone, until each player has placed 3.
+      Draw 12 heroes from among the sets and reveal them.
+      Player 1 makes two groups of 6. Player 2 picks a group, and Player 1 gets the other.
+      Players alternate picking one of their heroes and putting it on the map in their deploy zone, until each player has placed 4.
       The remaining heroes are unused.
   - name: Battle
     text: |-
@@ -17,6 +17,9 @@ rules:
       Battle lasts 6 rounds (or until concession).
       Heroes activate in order from left to right.
       P1's first character, P2's first character, P1's second character, P2's second character, etc.
+      
+      A team scores 1 point when an enemy hero dies (and lose that point if the hero is somehow resurrected).
+      Many sets add additional ways to score points.
   - name: Actions
     text: |-
       Units (such as heroes) have a Move Action and Standard Action, which they can use in any order.
@@ -152,6 +155,16 @@ shared_rules:
       - name: Critical Moment
         image_url: https://tactics.toren.dev/image_token_Critical Moment_5737535895777788509.jpg
         text: You may reroll one die.
+  CapturePoint: &RuleCapturePoint
+    name: Capture Point
+    text: |-
+      An orange area is a capture point.
+      At the end of each round (after all units have acted), a team with more units in the capture point claims it. Mark it with the team's color.
+      Then if one team owns more points than the other, they score 1 point.
+      If there are multiple control points and one team controls all of them, they score 2 points instead.
+      
+      Points remain claimed until the other team claims them.
+
 counters:
   Kill: &Kill
     name: Kill counter
@@ -172,6 +185,7 @@ sets:
       - *RuleHeightDifference
       - *RuleFallingHazard
       - *RuleCover
+      - *RuleCriticalMoment
       - *RuleCriticalMoment
     heroes:
       - name: Widowmaker
@@ -1317,7 +1331,7 @@ sets:
         text: |-          
           For 1 Standard Action, range 4, vs Will, target gets 2 stress, and Impaired or Slow
           
-          Once per turn, the active hero can "Overcharge". They gain +1 Standard Action that turn, and gain 1d6 stress.
+          Once per turn, the active hero can "Overcharge". They gain +1 Standard Action that turn, and gain 1d6+2 stress.
         tokens:
           - *Impaired
           - *Slow
@@ -1338,6 +1352,9 @@ sets:
           - name: Stress
             color: gray
             values: [ 1 ]
+      - *RuleCover
+      - *RuleCapturePoint
+      - *RuleFallingHazard
     heroes:
       - name: Blackbeard
         health: 8
@@ -1360,7 +1377,7 @@ sets:
             text: |-
               Free Action at start of turn:
               Enter SEKHMET stance:
-                You deal +⚔1, and can use Chain Axe as a Free Action once per turn.
+                Your attacks have +2 crit, and can use Chain Axe as a Free Action once per turn.
                 While you are not adjacent to a unit, you must use all resources to move towards the nearest unit, allied or hostile.
                 While you are adjacent to a unit, you must use Chain Axe on an adjacent unit as many times as possible.
                 At the start of your turn, you may end your turn to exit SEKHMET stance.
@@ -2630,6 +2647,8 @@ sets:
       - *RuleFlying
       - *RuleFacing
       - *RuleCriticalMoment
+      - *RuleCriticalMoment
+
 
     heroes:
       - name: Spy
@@ -3099,7 +3118,7 @@ sets:
             text: ''
         default_abilities:
           - name: Scattergun
-            text: Range 1, 4⚔, may deal push 2
+            text: Range 1, 4⚔, push 1
         abilities:
           - name: Bonk Atomic Punch
             text: |- 
@@ -3132,13 +3151,13 @@ sets:
           - name: Flying Guillotine
             text: |-
               1/Battle:
-              ⛨1/2 distance, 1⚔, give target DoT
+              Range 4, 1⚔, give target DoT
             tokens:
               - *DoT
           - name: The Sandman
             text: |-
               1/Battle:
-              Range 4+, ⛨+3, target is stunned.
+              Range 4+, ⛨+2, target is stunned.
             tokens:
               - *Stun
           - name: Fan O'War
@@ -3147,4 +3166,6 @@ sets:
             tokens:
               - name: Fan O'War
                 image_url: https://static.wikia.nocookie.net/teamfortress/images/3/39/Fan_O%27War_item_icon_TF2.png/revision/latest?cb=20130708190337
-                text: Target takes +.5x damage
+                text: |-
+                  Range 1, 1⚔
+                  Target receives +.5x damage (permanent)
