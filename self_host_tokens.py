@@ -31,6 +31,9 @@ def localize_image_urls(data: dict):
 
 
 def save_image(url: str, data: dict):
+    if "http" in url or "tactics.toren.dev" in url:
+        return  # already saved.
+
     name = f"image_token_{data['name']}_{str(hash(url))}"
     print(f"Saving {name}")
     # if not exists
