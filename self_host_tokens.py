@@ -3,7 +3,7 @@ from pathlib import Path
 import requests
 
 from schema import yaml_parsing
-from src.paths import data_dir, site_public_dir
+from src.paths import data_dir, site_public_dir, site_url
 
 # iterate through entire nested dict. When find an "image_url" key
 # save the image to site_tokens_dir / name.jpg
@@ -31,7 +31,7 @@ def localize_image_urls(data: dict):
 
 
 def save_image(url: str, data: dict):
-    if "http" in url or "tactics.toren.dev" in url:
+    if "tactics.toren.dev" in url:
         return  # already saved.
 
     name = f"image_token_{data['name']}_{str(hash(url))}"
@@ -41,7 +41,7 @@ def save_image(url: str, data: dict):
     if not dest_path.exists():
         with open(dest_path, "wb+") as f:
             f.write(requests.get(url).content)
-    url_replacements[url] = dest_path.relative_to(site_public_dir).as_posix()
+    url_replacements[url] = site_url + dest_path.relative_to(site_public_dir).as_posix()
 
 
 def main():
