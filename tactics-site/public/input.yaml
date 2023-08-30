@@ -466,7 +466,7 @@ sets:
         health: 10
         speed: 3
         dodge: +1
-        image_url: https://tactics.toren.dev/image_tokenTorbjorn_8063686352534136156.jpg
+        image_url: https://tactics.toren.dev/image_token_Torbjorn_6046319329937446842.jpg
         default_abilities:
           - name: Rivet Gun
             text: |-
@@ -495,7 +495,7 @@ sets:
                 Range 5, three 2x2 areas become Hazard: ⚔2 for enemies.
             tokens:
               - name: Molten Core
-                image_url: https://tactics.toren.dev/image_tokenMolten Core_1802636407417144292.jpg
+                image_url: https://tactics.toren.dev/image_token_Molten Core_8358727934287747602.jpg
                 size: 2
                 text: |-
                   Hazard: ⚔2 for enemies.
@@ -503,7 +503,7 @@ sets:
           - name: Turret
             health: 10
             speed: 0
-            image_url: https://tactics.toren.dev/image_tokenTurret_2477269849955120811.jpg
+            image_url: https://tactics.toren.dev/image_token_Turret_-7591204121093145294.jpg
             passives:
               - name: Summon
                 text: Deal 6 damage to this.
@@ -521,7 +521,7 @@ sets:
           - Long range with accuracy penalty
         health: 8
         speed: 3
-        image_url: https://tactics.toren.dev/image_tokenHanzo_7575316569306560271.jpg
+        image_url: https://tactics.toren.dev/image_token_Hanzo_8220136595611513976.jpg
         passives:
           - name: Ignore terrain while moving.
             text: ""
@@ -542,7 +542,7 @@ sets:
               Enemies within range 2 of a sonic arrow cannot cannot defend or be untargetable, and receive +2 Crit
             tokens:
               - name: Sonic Arrow
-                image_url: https://tactics.toren.dev/image_tokenSonic Arrow_-4900418820938122990.jpg
+                image_url: https://tactics.toren.dev/image_token_Sonic Arrow_7239906155799197772.jpg
                 text: Enemies within range 2 of a sonic arrow cannot cannot defend or be untargetable, and receive +2 Crit
           - name: Storm Arrows
             text: |-
@@ -561,7 +561,7 @@ sets:
               While the beam is active, all spaces in it have Hazard: ⚔7 for enemies.
             tokens:
               - name: Dragonstrike
-                image_url: https://tactics.toren.dev/image_tokenDragonstrike_7330787881918005941.jpg
+                image_url: https://tactics.toren.dev/image_token_Dragonstrike_-8871348447587244983.jpg
                 back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
                 size: 2
                 text: |-
@@ -575,7 +575,7 @@ sets:
           - Large melee aoe
         health: 10
         speed: 3
-        image_url: https://tactics.toren.dev/image_tokenWinston_-3075580495217280530.jpg
+        image_url: https://tactics.toren.dev/image_token_Winston_-6851077804927343154.jpg
         passives:
           - name: Cannot Dodge
             text: ""
@@ -602,7 +602,7 @@ sets:
                 values: [ 8 ]
             tokens:
               - name: Barrier
-                image_url: https://tactics.toren.dev/image_tokenBarrier_-8994471944211800968.jpg
+                image_url: https://tactics.toren.dev/image_token_Barrier_7326628920520179890.jpg
                 size: 3
           - name: Primal Rage
             text: |-
@@ -618,10 +618,10 @@ sets:
           - Burst damage
         health: 8
         speed: 3
-        image_url: https://tactics.toren.dev/image_tokenZenyatta_5725499227194932858.jpg
+        image_url: https://tactics.toren.dev/image_token_Zenyatta_-8878849621265920776.jpg
         tokens:
           - name: Orb of Destruction Charged
-            image_url: https://tactics.toren.dev/image_tokenOrb of Destruction Charged_1519424575218755878.jpg
+            image_url: https://tactics.toren.dev/image_token_Orb of Destruction Charged_5728767326879905803.jpg
         default_abilities:
           - name: Orb of Destruction
             text: |-
@@ -639,7 +639,7 @@ sets:
               Now and at the start of your turn, they Heal 2.
             tokens:
               - name: Orb of Harmony
-                image_url: https://tactics.toren.dev/image_tokenOrb of Harmony_-5452251697467398377.jpg
+                image_url: https://tactics.toren.dev/image_token_Orb of Harmony_7662746962362914942.jpg
                 text: Now and at the start of your turn, they Heal 2.
           - name: Orb of Discord
             text: |-
@@ -648,7 +648,7 @@ sets:
               They receive +.5x damage
             tokens:
               - name: Orb of Discord
-                image_url: https://tactics.toren.dev/image_tokenOrb of Discord_156232959413673028.jpg
+                image_url: https://tactics.toren.dev/image_token_Orb of Discord_-8367435454855974225.jpg
                 text: Receive +.5x damage
           - name: Transcendence
             text: |-
@@ -663,7 +663,7 @@ sets:
           - High damage slow stance
         health: 8
         speed: 3
-        image_url: https://tactics.toren.dev/image_tokenBastion_5079235096228552517.jpg
+        image_url: https://tactics.toren.dev/image_token_Bastion_2985646658356629072.jpg
         default_abilities:
           - name: Light Machine Gun
             text: Range 4, ⚔2.
@@ -682,7 +682,7 @@ sets:
                 Exit when you lose an Action, or as a Free Action at the end of your turn.
             tokens:
               - name: Assault Stance
-                image_url: https://tactics.toren.dev/image_tokenAssault Stance_-1582943409466800822.jpg
+                image_url: https://tactics.toren.dev/image_token_Assault Stance_8059418691088752205.jpg
           - name: A-36 Tactical Grenade
             text: |-
               Range 4, 3x3, ⚔2
@@ -693,7 +693,7 @@ sets:
               At the beginning of your next turn, targeting each marked space: ⚔10, and burst 1 ⚔2.
             tokens:
               - name: Bastion Artillery Marker
-                image_url: https://tactics.toren.dev/image_tokenBastion Artillery Marker_-4613266384154654530.jpg
+                image_url: https://tactics.toren.dev/image_token_Bastion Artillery Marker_-6673338352373586730.jpg
       - name: Symmetra
         polish:
           - needs_testing
@@ -702,7 +702,7 @@ sets:
           - High damage on same target
         health: 8
         speed: 3
-        image_url: https://tactics.toren.dev/image_tokenSymmetra_7187311006314268160.jpg
+        image_url: https://tactics.toren.dev/image_token_Symmetra_348687172361558057.jpg
         default_abilities:
           - name: Photon Beam
             text: |-
@@ -716,7 +716,7 @@ sets:
               - At the beginning of your next turn: Range 4, ⛨+2, ⚔4.
         tokens:
           - name: Photon Orb charged or Consecutive Photon Beam hit
-            image_url: https://tactics.toren.dev/image_tokenPhoton Orb charged or Consecutive Photon Beam hit_-1254200950401512266.jpg
+            image_url: https://tactics.toren.dev/image_token_Photon Orb charged or Consecutive Photon Beam hit_-3608062097707791135.jpg
             text: Give to yourself to charge orb. Give to enemy to track hits.
         abilities:
           - name: Sentry Turret
@@ -729,13 +729,13 @@ sets:
             tokens:
               - *Slow
               - name: Sentry Turret
-                image_url: https://tactics.toren.dev/image_tokenSentry Turret_8314395698304089767.jpg
+                image_url: https://tactics.toren.dev/image_token_Sentry Turret_8230050588297509514.jpg
                 size: 0.5
               - name: Sentry Turret
-                image_url: https://tactics.toren.dev/image_tokenSentry Turret_8314395698304089767.jpg
+                image_url: https://tactics.toren.dev/image_token_Sentry Turret_8230050588297509514.jpg
                 size: 0.5
               - name: Sentry Turret
-                image_url: https://tactics.toren.dev/image_tokenSentry Turret_8314395698304089767.jpg
+                image_url: https://tactics.toren.dev/image_token_Sentry Turret_8230050588297509514.jpg
                 size: 0.5
           - name: Teleporter
             text: |-
@@ -749,10 +749,10 @@ sets:
                 values: [ 8, 8 ]
             tokens:
               - name: Teleporter
-                image_url: https://tactics.toren.dev/image_tokenTeleporter_-8871693780434751309.jpg
+                image_url: https://tactics.toren.dev/image_token_Teleporter_-618056859860754860.jpg
                 size: 1
               - name: Teleporter
-                image_url: https://tactics.toren.dev/image_tokenTeleporter_-8871693780434751309.jpg
+                image_url: https://tactics.toren.dev/image_token_Teleporter_-618056859860754860.jpg
                 size: 1
           - name: Photon Barrier
             text: |-
@@ -766,10 +766,10 @@ sets:
                 values: [ 6, 6 ]
             tokens:
               - name: Photon Barrier
-                image_url: https://tactics.toren.dev/image_tokenPhoton Barrier_-2632129342862165753.jpg
+                image_url: https://tactics.toren.dev/image_token_Photon Barrier_7902153069388003017.jpg
                 size: 1
               - name: Photon Barrier
-                image_url: https://tactics.toren.dev/image_tokenPhoton Barrier_-2632129342862165753.jpg
+                image_url: https://tactics.toren.dev/image_token_Photon Barrier_7902153069388003017.jpg
                 size: 1
 
     #      - name: Cassidy
@@ -1472,7 +1472,7 @@ sets:
               Attacks that pass through the shield do -.5x damage.
             tokens:
               - name: Magnetic Shield
-                image_url: https://tactics.toren.dev/image_tokenMagnetic Shield_5804445589340279695.jpg
+                image_url: https://tactics.toren.dev/image_token_Magnetic Shield_908482444968353860.jpg
                 text: Attacks that pass through the shield do -.5x damage.
           - name: Summon ICEOUT Drone
             text: |-
@@ -1489,7 +1489,7 @@ sets:
               At the end of your next turn, deal ⚔2 for each charge to each unit in the area, then end this effect.
             tokens:
               - name: Mag Field
-                image_url: https://tactics.toren.dev/image_tokenMag Field_8448630047647442626.jpg
+                image_url: https://tactics.toren.dev/image_token_Mag Field_-8219634878029312124.jpg
         units:
           - name: ICEOUT Drone
             health: 4
@@ -1564,7 +1564,7 @@ sets:
                 This ends if you move for any reason.
             tokens:
               - name: Swarm Body Stance
-                image_url: https://tactics.toren.dev/image_tokenSwarm Body Stance_6153238386131037171.jpg
+                image_url: https://tactics.toren.dev/image_token_Swarm Body Stance_-5561438090744362995.jpg
                 text: |-
                   At the start of your turn, ⚔2*charges to all adjacent enemies, then put a charge on this.
                   This ends if you move for any reason.
@@ -1737,7 +1737,7 @@ sets:
               The affected spaces gain Hazard: ⚔2
             tokens:
               - name: Plasma Hazard
-                image_url: https://tactics.toren.dev/image_tokenPlasma Hazard_-7196180102688319373.jpg
+                image_url: https://tactics.toren.dev/image_token_Plasma Hazard_1826200987002853893.jpg
                 text: |-
                   Units that start in or enter this space take ⚔2.
                   A unit can only take damage from Plasma Hazard once per round.
@@ -1750,7 +1750,7 @@ sets:
               where the line must include the triggering character.
             tokens:
               - name: Havok Mine
-                image_url: https://tactics.toren.dev/image_tokenHavok Mine_1123771184467251351.jpg
+                image_url: https://tactics.toren.dev/image_token_Havok Mine_6637140432975573967.jpg
     maps:
       - name: Rickety Station
         image_path: lancer-rickety_station.png
@@ -2694,7 +2694,7 @@ sets:
               Effect ends when you deal damage or receive damage.
             tokens:
               - name: Stealth
-                image_url: https://tactics.toren.dev/image_tokenStealth_5130599427199299548.jpg
+                image_url: https://tactics.toren.dev/image_token_Stealth_7505783149168806103.jpg
 
           - name: Sapper
             text: |-
@@ -2742,7 +2742,7 @@ sets:
               - Move + Standard, Heal 12.
             tokens:
               - name: Sandvich
-                image_url: https://tactics.toren.dev/image_tokenSandvich_-7980721496523700949.jpg
+                image_url: https://tactics.toren.dev/image_token_Sandvich_6108514798017996936.jpg
                 text: |- 
                   Units that enter this space heal 4 and destroy this.
           - name: Buffalo Steak
@@ -2801,7 +2801,7 @@ sets:
         tokens:
           - *Kill
           - name: Sniper Rifle Charged
-            image_url: https://tactics.toren.dev/image_tokenSniper Rifle Charged_-891056899908989560.jpg
+            image_url: https://tactics.toren.dev/image_token_Sniper Rifle Charged_-1799727609997937813.jpg
         abilities:
           - name: Cleaner's Carbine
             text: |-
@@ -2872,11 +2872,11 @@ sets:
                 values: [5]
             tokens:
               - name: Ubercharge
-                image_url: https://tactics.toren.dev/image_tokenUbercharge_-6200719747883835659.jpg
+                image_url: https://tactics.toren.dev/image_token_Ubercharge_8849607693161747783.jpg
                 text: |-
                   You and your Healing Target are immune to damage but are ignored by objectives.
               - name: Krtizkrieg
-                image_url: https://tactics.toren.dev/image_tokenKrtizkrieg_135812259577208405.jpg
+                image_url: https://tactics.toren.dev/image_token_Krtizkrieg_-6919431106816878520.jpg
                 text: |-
                   You and your Healing Target always crit when you hit.
 
@@ -2911,7 +2911,7 @@ sets:
               Until the start of your next turn, enemy attacks passing through spaces adjacent to you have Block⛨+3.
             tokens:
               - name: Short Circuit
-                image_url: https://tactics.toren.dev/image_tokenShort Circuit_7195190389185090131.jpg
+                image_url: https://tactics.toren.dev/image_token_Short Circuit_1483200453191248019.jpg
                 text: Until the start of your next turn, enemy attacks passing through spaces adjacent to you have Block⛨+3.
           - name: Eureka Effect
             text: |-
@@ -2953,7 +2953,7 @@ sets:
           - High damage, low accuracy
           - AoE area control
           - Mobility tools
-        image_url: https://tactics.toren.dev/image_tokenDemoman_787685164706209954.jpg
+        image_url: https://tactics.toren.dev/image_token_Demoman_6557724850596137883.jpg
         health: 10
         speed: 3
         passives:
@@ -2973,7 +2973,7 @@ sets:
               You have +1 speed per Kill counter.
         tokens:
           - name: Grenade
-            image_url: https://tactics.toren.dev/image_tokenGrenade_-2521562376236584298.jpg
+            image_url: https://tactics.toren.dev/image_token_Grenade_-6150214043676469715.jpg
             text: Explodes at start of next turn.
           - *Kill
         abilities:
@@ -2984,7 +2984,7 @@ sets:
               Free Action at start of turn: Remove all your Sticky Bombs, and each deals burst 1, ⚔4.
             tokens:
               - name: Sticky Bomb
-                image_url: https://tactics.toren.dev/image_tokenSticky Bomb_4762724339889734835.jpg
+                image_url: https://tactics.toren.dev/image_token_Sticky Bomb_4182679769259448363.jpg
           - name: Chargin' Target
             text: |-
               1/Battle, Move Action:
@@ -3002,15 +3002,15 @@ sets:
                 You count twice for objectives. You take +.5x damage.
             tokens:
               - name: Pain Train stance
-                image_url: https://tactics.toren.dev/image_tokenPain Train stance_-4671898018419076371.jpg
-                text: https://tactics.toren.dev/image_tokenPain Train stance_-4671898018419076371.jpg
+                image_url: https://tactics.toren.dev/image_token_Pain Train stance_3122338921560184280.jpg
+                text: https://tactics.toren.dev/image_token_Pain Train stance_3122338921560184280.jpg
 
       - name: Pyro
         description: |-
           - Damage over time
           - Spike damge
           - Close range
-        image_url: https://tactics.toren.dev/image_tokenPyro_6364599731446412332.jpg
+        image_url: https://tactics.toren.dev/image_token_Pyro_-1325417139378448047.jpg
         health: 10
         speed: 4
         passives:
@@ -3059,7 +3059,7 @@ sets:
         description: |-
           - Splash damage
           - Team buffs
-        image_url: https://tactics.toren.dev/image_tokenSoldier_-8088063838580270347.jpg
+        image_url: https://tactics.toren.dev/image_token_Soldier_-7639490721796558879.jpg
         health: 10
         speed: 3
         passives:
@@ -3085,13 +3085,13 @@ sets:
                 - Allies have +1 speed and heal 1 when they deal damage.
             tokens:
               - name: Buff Banner
-                image_url: https://tactics.toren.dev/image_tokenBuff Banner_7614771313726692832.jpg
+                image_url: https://tactics.toren.dev/image_token_Buff Banner_8047952643345282545.jpg
                 text: Allies deal +.5x damage.
               - name: Batallion's Backup
-                image_url: https://tactics.toren.dev/image_tokenBatallion's Backup_-3350730610258444104.jpg
+                image_url: https://tactics.toren.dev/image_token_Batallion's Backup_4094755196016986268.jpg
                 text: Allies have armor 1 and do not receive extra damage from crits.
               - name: Concherer
-                image_url: https://tactics.toren.dev/image_tokenConcherer_-8057243005228815284.jpg
+                image_url: https://tactics.toren.dev/image_token_Concherer_5115096414016923500.jpg
                 text: Allies have +1 speed and heal 1 when they deal damage.
 
           - name: Pickaxe
@@ -3102,7 +3102,7 @@ sets:
               You take +1x damage until the start of your next turn.
             tokens:
               - name: Pickaxe Vulnerability
-                image_url: https://tactics.toren.dev/image_tokenPickaxe Vulnerability_-5059151147371268384.jpg
+                image_url: https://tactics.toren.dev/image_token_Pickaxe Vulnerability_4405522936410533266.jpg
                 text: You take +1x damage until the start of your next turn.
           - name: Disciplinary Action
             text: |-
@@ -3116,15 +3116,15 @@ sets:
                 You count twice for objectives. You take +.5x damage.
             tokens:
               - name: Pain Train stance
-                image_url: https://tactics.toren.dev/image_tokenPain Train stance_-4671898018419076371.jpg
-                text: https://tactics.toren.dev/image_tokenPain Train stance_-4671898018419076371.jpg
+                image_url: https://tactics.toren.dev/image_token_Pain Train stance_3122338921560184280.jpg
+                text: https://tactics.toren.dev/image_token_Pain Train stance_3122338921560184280.jpg
 
       - name: Scout
         description: |-
           - High mobility
           - Low health
           - High melee damage
-        image_url: https://tactics.toren.dev/image_tokenScout_4019681263976269292.jpg
+        image_url: https://tactics.toren.dev/image_token_Scout_303657873241481166.jpg
         health: 6
         speed: 5
         passives:
@@ -3149,7 +3149,7 @@ sets:
               Move Action: End this effect.
             tokens:
               - name: Bonk Atomic Punch
-                image_url: https://tactics.toren.dev/image_tokenBonk Atomic Punch_4375259034615962351.jpg
+                image_url: https://tactics.toren.dev/image_token_Bonk Atomic Punch_4955952640967430092.jpg
                 text: You are immune to damage. You can't use standard actions.
           - name: Crit-a-Cola
             text: |-
@@ -3157,7 +3157,7 @@ sets:
               Starting at the beginning of your next turn, you deal and receive +.5x damage.
             tokens:
               - name: Crit-a-Cola
-                image_url: https://tactics.toren.dev/image_tokenCrit-a-Cola_-5502287790246165355.jpg
+                image_url: https://tactics.toren.dev/image_token_Crit-a-Cola_3075337597287619591.jpg
                 text: You deal and receive +.5x damage.
           - name: Mad Milk
             text: |-
@@ -3166,7 +3166,7 @@ sets:
               When a unit damages a unit Covered in Milk, they heal 1/2 the damage dealt.
             tokens:
               - name: Covered in Milk
-                image_url: https://tactics.toren.dev/image_tokenCovered in Milk_-7818909173310622494.jpg
+                image_url: https://tactics.toren.dev/image_token_Covered in Milk_8800688946105100575.jpg
                 text: When a unit damages a unit Covered in Milk, they heal 1/2 the damage dealt.
           - name: Flying Guillotine
             text: |-
@@ -3185,7 +3185,7 @@ sets:
               Range 1, target takes +.5x damage
             tokens:
               - name: Fan O'War
-                image_url: https://tactics.toren.dev/image_tokenFan O'War_-1791290495601024100.jpg
+                image_url: https://tactics.toren.dev/image_token_Fan O'War_4039095813142699765.jpg
                 text: |-
                   Range 1, 1⚔
                   Target receives +.5x damage (permanent)
