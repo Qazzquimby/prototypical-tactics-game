@@ -382,7 +382,8 @@ sets:
         default_abilities:
           - name: Hellfire Shotguns
             text: |-
-              Range 1, ⚔3, or ⚔5 against targets with 10 or more max health.
+              Range 1, ⚔n, where n is (1/2 the target's max hp)-1.
+              (6hp->⚔2, 8hp->⚔3, 10hp->⚔4, 12hp->⚔5, ...)
         abilities:
           - name: Wraith Form
             text: |-
@@ -450,8 +451,7 @@ sets:
               Other enemies in the line are pushed to the side and take ⚔1.
           - name: Fire Strike
             text: |-
-              CD 1:
-              All in line, ⛨1/3 distance, ⚔3
+              Line infinite, ⛨2, ⚔3
           - name: Earthshatter
             text: |-
               Ultimate 4:
@@ -477,8 +477,7 @@ sets:
         abilities:
           - name: Deploy Turret
             text: |-
-              1/Battle:
-              Empty space in range 4, Summon a Turret.
+              Empty space in range 4, Summon a Turret (max 1, remove oldest).
           - name: Overload
             text: |-
               1/Battle, Free Action:
@@ -546,16 +545,16 @@ sets:
                 text: Enemies within range 2 of a sonic arrow cannot cannot defend or be untargetable, and receive +2 Crit
           - name: Storm Arrows
             text: |-
-              1/Battle, Free Action:
-              Until the end of your next turn, you can make a Default action as a Free Action once per turn,
-              but you deal ⚔-2.
+              1/Battle, Free Action at start of turn:
+              Until the end of your next turn, you deal -2 damage, 
+              but you can make a Default Action as a Free Action once per turn.
           - name: Lunge
             text: |-
               1/Battle, Free Action:
               Fly up to 2.
           - name: Dragonstrike
             text: |-
-              Ultimate 5:
+              Ultimate 4:
               Draw a straight beam 2 spaces wide, from you to the edge of the map in a direction of your choice.
               At the start of your next turn, the beam becomes active until the start of your turn after.
               While the beam is active, all spaces in it have Hazard: ⚔7 for enemies.
@@ -640,7 +639,7 @@ sets:
             tokens:
               - name: Orb of Harmony
                 image_url: https://tactics.toren.dev/image_token_Orb of Harmony_7662746962362914942.jpg
-                text: Now and at the start of your turn, they Heal 2.
+                text: At the start of your turn, they Heal 3.
           - name: Orb of Discord
             text: |-
               Free Action:
@@ -669,9 +668,9 @@ sets:
             text: Range 4, ⚔2.
           - name: Rotary Canon
             text: |-
-              In Assault Stance:
-                Range 2, ⚔6
-                Range 4, ⚔3
+              Requires Assault Stance, choose one --
+              - Range 2, ⚔6
+              - Range 4, ⚔3
         abilities:
           - name: Configuration Assault
             text: |-
@@ -688,7 +687,7 @@ sets:
               Range 4, 3x3, ⚔2
           - name: Configuration Artillery
             text: |-
-              Ultimate 5:
+              Ultimate 4:
               Global, mark 3 spaces.
               At the beginning of your next turn, targeting each marked space: ⚔10, and burst 1 ⚔2.
             tokens:
@@ -740,13 +739,13 @@ sets:
           - name: Teleporter
             text: |-
               1/Battle:
-              Empty space in range 1, and empty space in range 6, place two Teleporters.
-              Teleporters have 8hp and speed 0.
-              Allied units can spend a Free Action to teleport from one Teleporter's space to another Teleporter's space.
+              Place a Teleporter Marker in range 1 and another anywhere in line of sight.
+              All Teleporter markers share 8 hp, and take damage when damage is done to their space.
+              Allied units can spend a Free Action to swap the positions of everything in the spaces of two Teleporters.
             dice:
               - name: Teleporter health
                 color: red
-                values: [ 8, 8 ]
+                values: [ 6, 2 ]
             tokens:
               - name: Teleporter
                 image_url: https://tactics.toren.dev/image_token_Teleporter_-618056859860754860.jpg
