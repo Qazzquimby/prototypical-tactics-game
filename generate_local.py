@@ -5,6 +5,9 @@ import pygame
 from src.image_builders import DirectoryImagesBuilder
 from src.orchestration import build
 from src.paths import site_public_dir
+import src.orchestration
+
+src.orchestration.PRUNE_FOR_PLAYTEST = True
 
 
 def build_local():
@@ -15,4 +18,5 @@ def build_local():
 
 
 if __name__ == "__main__":
+
     build_local()

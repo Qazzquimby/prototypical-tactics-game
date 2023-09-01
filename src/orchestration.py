@@ -1,16 +1,20 @@
 import asyncio
 import json
+import random
 from pathlib import Path
 
 import yaml.scanner
 
 from schema import yaml_parsing
+from schema.yaml_parsing import Game
 
 from src.image_builders import ImageBuilder
 from src.library import game_to_library
 from src.paths import data_dir, site_public_dir
 from src.tts_dir import try_and_find_save_games_folder
 from src.tts_objects import library_to_tts_dict
+
+PRUNE_FOR_PLAYTEST = False  # optionally set in generate_local.py
 
 
 def build(image_builder):
@@ -55,8 +59,38 @@ def get_all_text_fields(game):
     return texts
 
 
+def prune_for_playtest(game: Game):
+    heroes_needing_playtest = []
+    other_heroes = []
+    for game_set in game.sets:
+        for hero in game_set.heroes:
+            if hero.polish:
+                heroes_needing_playtest.append(hero)
+            else:
+                other_heroes.append(hero)
+
+    min_heroes = 12
+    # want 50% heroes needing playtest, 50% other heroes.
+    num_other_heroes = min(min_heroes, len(other_heroes))
+    random_other_heroes = random.sample(other_heroes, num_other_heroes)
+
+    hero_pool = heroes_needing_playtest + random_other_heroes
+
+    print("Pruning to heroes:")
+    for hero in heroes_needing_playtest:
+        print("! " + hero.name)
+    for hero in random_other_heroes:
+        print(hero.name)
+
+    for game_set in game.sets:
+        game_set.heroes = [hero for hero in game_set.heroes if hero in hero_pool]
+
+
 def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder: ImageBuilder):
     game = load_game_from_yaml_path(yaml_path)
+
+    if PRUNE_FOR_PLAYTEST:
+        prune_for_playtest(game)
     library = game_to_library(game)
 
     # all_text_fields = get_all_text_fields(game)
