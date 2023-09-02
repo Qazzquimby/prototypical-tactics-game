@@ -90,7 +90,11 @@ conditions:
   Silence: &Silence
     name: Silence
     image_url: https://tactics.toren.dev/image_token_Silence_4233379504253462650.jpg
-    text: You do not have Passives. You cannot use non-default abilities. Clear at the end of your next turn.
+    text: You do not have Passives. Your other ability cards end all ongoing effects and lose all card text. Clear at the end of your next turn.
+  Invisible: &Invisible
+    name: Invisible
+    image_url: https://tactics.toren.dev/image_token_Stealth_7505783149168806103.jpg
+    text: Dodge⛨+3. You don't provoke reactions. You cannot be targeted beyond range 2.
 shared_rules:
   Instant: &RuleInstant
     name: Instant
@@ -323,7 +327,7 @@ sets:
         abilities:
           - name: Guardian Angel
             text: |-
-              Fly to any space adjacent to an ally or friendly Corpse Marker, as directly as possible.
+              Ally or Corpse in unlimited range. Fly to any space adjacent to the target, as directly as possible.
           - name: Resurrect
             text: |-
               1/Battle:
@@ -541,7 +545,7 @@ sets:
             text: |-
               Move + Standard Action:
               Move up to 1
-              ⛨+2, ⚔5, +2Crit
+              Unlimited range, ⛨+2, ⚔4, +2Crit
         abilities:
           - name: Sonic Arrow
             text: |-
@@ -558,7 +562,8 @@ sets:
           - name: Storm Arrows
             text: |-
               1/Battle, Free Action at start of turn:
-              Until the end of your next turn, you deal -2 damage, 
+              Move up to 2.
+              Until the end of your next turn, you deal -1 damage, 
               but you can make a Default Action as a Free Action once per turn.
           - name: Lunge
             text: |-
@@ -730,8 +735,8 @@ sets:
           - name: Sentry Turret
             text: |-
               1/Battle, Free Action:
-              Unlimited range, Summon three Sentry Turrets in empty spaces.
-              Sentry Turrets have 1hp and 0 speed.
+              Three spaces in unlimited range, place a Sentry Turret marker each.
+              Sentry Turrets have 1hp and 0 speed and can be targeted like a unit.
               At the start of your turn, each sentry turret deals ⚔1 to the nearest enemy in range 3.
               If two turrets hit the same target, the target is slowed.
             tokens:
@@ -747,10 +752,9 @@ sets:
                 size: 0.5
           - name: Teleporter
             text: |-
-              1/Battle:
-              Place a Teleporter Marker in range 1 and another anywhere in line of sight.
-              All Teleporter markers share 8 hp, and take damage when damage is done to their space.
-              Allied units can spend a Free Action to swap the positions of everything in the spaces of two Teleporters.
+              Place a Teleporter Marker in range 1 and another anywhere in line of sight, neither space containing an enemy unit (max 2, remove oldest).
+              All Teleporter markers share 8 hp, and can be targeted like a unit.
+              As a Free Action, or whenever a something enters the teleporter's space, an ally may swap the positions of everything in the spaces of two Teleporters.
             dice:
               - name: Teleporter health
                 color: red
@@ -1337,7 +1341,9 @@ sets:
         image_path: overwatch-nepal-sanctum.png
 
   - name: Lancer
-    description: Description TODO
+    description: |-
+      - Adds stress causing vulnerability and self destruction
+      - Gain extra action at cost of stress
     Impaired: &Impaired
       name: Impaired
       image_url: https://tactics.toren.dev/image_token_Impaired_5997399677763413592.jpg
@@ -1406,9 +1412,9 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_SEKHMET_82870056492246079.jpg
           - name: Omni-Harpoon
             text: |-
-              Ultimate 5:
+              Ultimate 4:
               All enemies in range 4, 
-              ⚔4, Pull as close to you as possible, stun and immobilize until the end of your next turn.
+              ⚔3, Pull as close to you as possible, nd immobilize until the end of your next turn.
             tokens:
               - *Stun
               - *Immobile
@@ -1422,10 +1428,10 @@ sets:
         passives:
           - name: Armor 1
             text: ""
-          - name: Take half damage from attacks that can hit multiple targets.
+          - name: Take half damage from AoE.
             text: ""
           - name: Adjacent Ally would take damage
-            text: You may each take half that damage before, resistances are applied
+            text: You may each take half the final damage, before modifiers.
           - name: Immune to involuntary movement.
             text: ""
         default_abilities:
@@ -1433,10 +1439,8 @@ sets:
             text: |-
               If not Spun Up, choose one --
               - Range 4, ⚔2.
-              - Enter Spun Up stance:
-                You are continually slowed. You can exit as a Free Action at the start of your turn.
-              
-              If Spun Up: Move + Standard Action, You gain 3 stress, Range 4, ⚔6
+              - Enter Spun Up stance: You are continually slowed. Can exit as a Free Action at the start of your turn.
+              If Spun Up: Move + Standard Action, +3 stress, Range 4, ⚔6
         tokens:
           - name: Spun Up
             image_url: https://tactics.toren.dev/image_token_Spun Up_817474683636700342.jpg
@@ -1456,7 +1460,7 @@ sets:
                 Adjacent allies gain your passives.
               At the start of your turn you may exit Fortress Stance as a Free Action.
       - name: Lancaster
-        polish: [needs_testing]
+        polish: [needs_testing, needs_assets]
         description: |-
           - Battle wagon, carries allies
           - Healer
@@ -1474,7 +1478,7 @@ sets:
               When you move, units riding you are removed, and you place them adjacent to you at your destination. (They remain riding)
         tokens:
           - name: Riding Lancaster
-            image_url: todo
+            image_url: https://schleese.com/wp-content/uploads/2020/11/Fusion-1500px.png
             text: When the Lancaster moves, it moves you with it. Ends if you are no longer adjacent.
         default_abilities:
           - name: Latch Drone Tether
@@ -1496,7 +1500,7 @@ sets:
               Ends when you or the unit with your Cable Winch die.
             tokens:
               - name: Cable Winch System
-                image_url: todo
+                image_url: https://www.hhilifting.com/media/mageplaza/blog/post/w/i/winch-1024x768.jpg
                 text: |- 
                   You and the unit with your Cable Winch cannot move to be further than range 3.
                   When either of you are at range 3 of the other, you can spend 1 points of movement to pull the other unit 1 space.
@@ -1512,7 +1516,7 @@ sets:
                 and lose 4 stress.
             tokens:
               - name: Restock Drone
-                image_url: todo
+                image_url: https://entrackr.com/storage/2019/10/drone-1200x600.jpg
                 text: |-
                   Units have: Standard action: 
                     Destroy an adjacent Restock Drone to 
@@ -1530,7 +1534,7 @@ sets:
           - name: Cutter MkII Plasma Torch
             text: |-
               Take 2 stress.
-              Range 1, destroy all terrain.
+              Range 1, destroy all terrain in space.
             tokens:
               - *DestroyedTerrain
           - name: Supercharger
@@ -1540,11 +1544,8 @@ sets:
               Range 4, target clears and is immune to unwanted conditions, and has ⛨-1 and +1 crit on rolls.
             tokens:
               - name: Supercharger
-                image_url: todo
+                image_url: https://www.motortrend.com/uploads/sites/21/2016/10/001-blower-mafia-supercharger-turbo-brad.jpg
                 text: You are immune to unwanted conditions, and have ⛨-1 and +1 crit on rolls.
-
-
-
       - name: Black Witch
         health: 6
         speed: 3
@@ -1636,6 +1637,49 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_Mark for Death_-5796234423840237878.jpg
                 text: |-
                   Owner deals +⚔4 to you, so long as you're are not in range 3.
+      - name: Dusk Wing
+        polish: [needs_testing, needs_assets]
+        description: |-
+          - Highly mobile and hard to hit
+          - Debuff accuracy
+        image_url: https://static.wikia.nocookie.net/lancer/images/f/fd/Screen_Shot_2021-05-10_at_9.00.39_AM.png
+        health: 6
+        speed: 4
+        passives:
+          - name: +2 Dodge. All your movement is flying
+            text: ""
+          - name: Enemies cannot use Instants on your turn.
+            text: ""
+          - name: When you begin moving voluntarily,
+            text: |-
+              Leave a Hologram Marker in the space you started moving from. When an enemy enters the space, they take ⚔2 and the marker is removed.
+        tokens:
+          - name: Hologram Marker
+            image_url: https://mumcdnstorage.blob.core.windows.net/dwnews/2018/07/7.6.18-FOM.jpg
+            text: When an enemy enters the space, they take ⚔2 and the marker is removed.
+        default_abilities:
+          - name: Veil Rifle
+            text: Infinite line, Enemies take ⚔1, allies Heal 1.
+          - name: Burst Launcher
+            text: Unlimited range, ignores walls, ⚔1, +2 stress.
+        abilities:
+          - name: Neurospike
+            text: |-
+              Range 4, target becomes Invisible until the start of your next turn.
+            tokens:
+              - *Invisible
+          - name: StunCrown
+            text: |-
+              1/Battle
+              Enemies in Burst 2, Silence and Impair.
+            tokens:
+              - *Silence
+              - *Impaired
+          - name: Hall of Mirrors
+            text: |-
+              Free Action:
+              Destroy a Hologram Marker to Teleport to its space (leaving a Hologram Marker as normal).
+              Destroy all Hologram Markers. Each deals Burst 1, ⚔2.
       - name: Balor
         health: 12
         speed: 2
@@ -1746,6 +1790,7 @@ sets:
               Target ally in range 1. 
               Remove your marker from the board. You share the ally's location and cannot move away. 
               You have Block⛨+4. You also take any stress or conditions the ally takes.
+              When this effect ends, place yourself as close as possible to the target.
               ---
               Standard Action: End this effect
 
@@ -2778,14 +2823,12 @@ sets:
         abilities:
           - name: Stealth
             text: |-
-              You have +1 speed, Dodge⛨+3.
-              You don't provoke reactions. You cannot be targeted beyond range 2.
+              You have +1 speed, and Invisible.
               Enemies consider you an ally rather than an enemy. When an enemy targets one of their allies while you're a valid target, they also target you.
               
               Effect ends when you deal damage or receive damage.
             tokens:
-              - name: Stealth
-                image_url: https://tactics.toren.dev/image_token_Stealth_7505783149168806103.jpg
+              - *Invisible
 
           - name: Sapper
             text: |-
@@ -2878,11 +2921,13 @@ sets:
         default_abilities:
           - name: Sniper Rifle
             text: |-
-              Move + Standard Action:
-              Move 1. Note your facing.
-              At the start of your next turn:
-                Range 2+, undogeable ⚔5, +2 crit per kill counter.
-                After this attack the target receives +.5x damage.
+              Choose one --
+              - Range 3+, ⚔2, +2 crit per kill counter.
+              - Move + Standard Action:
+                Move 1. Note your facing.
+                At the start of your next turn:
+                  Range 2+, undogeable ⚔5, +2 crit per kill counter.
+                  After this attack the target receives +.5x damage.
               
               On kill, gain a Kill counter.
           - name: Bushwacka
@@ -2987,16 +3032,16 @@ sets:
             text: |-
               Choose one --
               - ⛨1/3 distance, 2⚔ 
-              - If target is a summon, you may teleport it adjacent to you and Silence it. Heal it 2.
+              - If target is a summon, you may teleport it adjacent to you and Tap it, and you may Heal it 2.
           - name: Wrench
             text: |-
               Choose one --
               - Range 1, ⚔2, +2crit
-              - If target is a summon, you may give it an Upgrade token and Silence it. Heal it 4.
+              - If target is an untapped summon, you may give it an Upgrade token and Tap it, and you may Heal it 4.
         abilities:
           - name: Build
             text: |-
-              Range 1, Summon a Sentry or Dispenser (max 1 each) and Silence it.
+              Range 1, Summon a Sentry or Dispenser (max 1 each) and Tap it.
           - name: Short Circuit
             text: |-
               Until the start of your next turn, enemy attacks passing through spaces adjacent to you have Block⛨+3.
@@ -3010,7 +3055,7 @@ sets:
               Teleport to any space in your deployment zone or adjacent to your Dispenser.
         units:
           - name: Sentry
-            image_url: https://tactics.toren.dev/image_token_Sentry_44672986020609256.jpg
+            image_url: https://e7.pngegg.com/pngimages/375/188/png-clipart-team-fortress-2-left-4-dead-blockland-sentry-gun-portal-portal-game-video-game-thumbnail.png
             health: 4
             speed: 0
             passives:
@@ -3018,7 +3063,7 @@ sets:
                 text: ''
               - name: There is an enemy in range 5
                 text: |-
-                  Recharge at start of turn, Mandatory Interrupt:
+                  Tap, Mandatory Interrupt:
                   If upgraded: Nearest enemy in range 5, ⚔6, ⚔1 to others in burst 1, push 1.
                   Else: Nearest enemy in range 5, ⚔3
                   
@@ -3034,6 +3079,7 @@ sets:
                 text: ''
               - name: End
                 text: |-
+                  Tap:
                   If upgraded: Other allies in range 1 heal 4.
                   Else: Other allies in range 1, heal 2.
               - name: Immune to forced movement.
@@ -3123,7 +3169,7 @@ sets:
               Else: They get DoT 1.
           - name: Airblast
             text: |-
-              Recharge at start of your turn, Instant ⛨+2:
+              Tap, Instant ⛨+2:
               All in Line 2, Push 2.
               If this interrupted an attack with Range 3+ which passes into the Line, cancel and recast the interrupted attack.
         abilities:
@@ -3162,14 +3208,14 @@ sets:
         default_abilities:
           - name: Rocket Launcher
             text: |-
-              ⛨1+1 per 2 spaces between, 3⚔, 1⚔ to others in burst 1 of target, push 1.
+              ⛨1+1 per 2 spaces between, 3⚔, 1⚔ to others in burst 1 of target, push target 1.
           - name: Rocket Jump
             text: |-
               Move Action, take 2⚔, fly 4.
         abilities:
           - name: Banner
             text: |-
-              Spend 8 charges, Move + Standard Action: choose one --
+              Spend 8 charges: choose one --
                 - Allies deal +.5x damage.
                 - Allies have armor 1 and do not receive extra damage from crits.
                 - Allies have +1 speed and heal 1 when they deal damage.
@@ -3177,7 +3223,7 @@ sets:
               - name: Buff Banner
                 image_url: https://tactics.toren.dev/image_token_Buff Banner_8047952643345282545.jpg
                 text: Allies deal +.5x damage.
-              - name: Batallion's Backup
+              - name: Battalion's Backup
                 image_url: https://tactics.toren.dev/image_token_Batallion's Backup_4094755196016986268.jpg
                 text: Allies have armor 1 and do not receive extra damage from crits.
               - name: Concherer
