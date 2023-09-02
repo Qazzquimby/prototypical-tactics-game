@@ -26,13 +26,13 @@ class CardDrawer(BaseDrawer):
         self.config = config
 
     async def draw(self, card: Card) -> pygame.Surface:
-        object_ = card.object
+        card_object = card.object
         # using browser screenshot
         try:
-            card_width = object_.type.size[0]
-            card_height = object_.type.size[1]
-            image_width = object_.type.size[0] - (2 * EDGE_MARGIN)
-            image_height = object_.type.size[1] - (2 * EDGE_MARGIN)
+            card_width = card_object.type.size[0]
+            card_height = card_object.type.size[1]
+            image_width = card_object.type.size[0] - (2 * EDGE_MARGIN)
+            image_height = card_object.type.size[1] - (2 * EDGE_MARGIN)
         except AttributeError:
             card_width = CARD_WIDTH
             card_height = CARD_HEIGHT
@@ -45,7 +45,7 @@ class CardDrawer(BaseDrawer):
         page = await browser.new_page()
         await page.set_viewport_size({"width": image_width, "height": image_height})
 
-        html = object_.content.get_html()
+        html = card_object.content.get_html()
         await page.set_content(html)
         await page.add_style_tag(content=CARD_CSS)
         image_bytes = await page.screenshot()  # path=temp_path)

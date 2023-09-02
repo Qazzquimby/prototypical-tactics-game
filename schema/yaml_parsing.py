@@ -107,8 +107,14 @@ class Ability(BaseModel):
     def __str__(self):
         lines = self.text.split("\n")
         first_line, *other_lines = lines
+
+        use_colon = bool(
+            self.text
+        )  # If there's no body text, dont put a hanging colon.
+        colon = ":" if use_colon else ""
+
         ability_line = (
-            f"<p><span class='ability-name'>{self.name}:</span> {first_line}</p>"
+            f"<p><span class='ability-name'>{self.name}{colon}</span> {first_line}</p>"
         )
         other_lines = "\n".join([f"<p>{line}</p>" for line in other_lines])
         text_html = f"{ability_line}\n{other_lines}"
@@ -186,7 +192,7 @@ class Card(BaseModel, Spawnable):
         return full_spawning_lua
 
     def get_html(self):
-        content = self._inner_html()
+        content = self._get_inner_html()
         html = f"""\
 <div class="card">
     {content}
@@ -194,7 +200,7 @@ class Card(BaseModel, Spawnable):
 
         return html
 
-    def _inner_html(self):
+    def _get_inner_html(self):
         raise NotImplementedError
 
 
@@ -204,7 +210,7 @@ class UnitCard(Card, Figurine):
     passives: list[Passive] = []
     default_abilities: list[Active] = []
 
-    def _inner_html(self):
+    def _get_inner_html(self):
         passives = "\n".join([f"<p>{str(passive)}</p>" for passive in self.passives])
         default_abilities = "\n".join(
             [f"{str(ability)}" for ability in self.default_abilities]
@@ -312,7 +318,7 @@ SIZE_LABEL = "Size"
 class RulesCard(Card):
     text: str
 
-    def _inner_html(self):
+    def _get_inner_html(self):
         text = "\n".join([f"<p>{line}</p>" for line in self.text.split("\n")])
 
         return f"""\
@@ -333,7 +339,7 @@ class RulesCard(Card):
 class AbilityCard(Card):
     text: str
 
-    def _inner_html(self):
+    def _get_inner_html(self):
         header = f'<p class ="card-title-bar"> <span class ="card-name">{self.name}</span></p>'
         ability_text = "\n".join(
             [

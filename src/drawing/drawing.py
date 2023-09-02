@@ -5,10 +5,8 @@ from playwright.async_api import Playwright
 from pygame import Surface
 
 from domain.library import Library
-from domain.token import ContentToken
 from src.drawing.base import BaseDrawer
 from src.drawing.card_drawer import CardDrawer
-from src.drawing.cardBackDrawer import CardBackDrawer
 from src.browser import create_browser, close_browser
 from src.image_builders import ImageBuilder
 
@@ -21,8 +19,6 @@ async def draw_library_assets(
     coroutines = []
 
     card_drawer = CardDrawer(config)
-
-    back_drawer = CardBackDrawer(config)
 
     deck_names = [deck.name for deck in library.decks]
     assert len(deck_names) == len(set(deck_names)), "Deck names must be unique"
