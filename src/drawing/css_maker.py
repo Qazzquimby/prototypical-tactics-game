@@ -1,4 +1,4 @@
-from drawer.size_constants import CARD_SCALE, CARD_WIDTH, CARD_HEIGHT
+from src.drawing.size_constants import CARD_SCALE, CARD_WIDTH, CARD_HEIGHT
 
 
 def make_css():

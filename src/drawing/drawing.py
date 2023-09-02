@@ -6,9 +6,9 @@ from pygame import Surface
 
 from domain.library import Library
 from domain.token import ContentToken
-from drawer.base import BaseDrawer
+from src.drawing.base import BaseDrawer
 from src.drawing.card_drawer import CardDrawer
-from drawer.cardBackDrawer import CardBackDrawer
+from src.drawing.cardBackDrawer import CardBackDrawer
 from src.browser import create_browser, close_browser
 from src.image_builders import ImageBuilder
 
@@ -50,18 +50,6 @@ async def draw_library_assets(
                 file_name=lone_card.object.name,
             )
         )
-
-    for token in library.tokens:
-        if isinstance(token, ContentToken):
-            coroutines.append(
-                save_image_and_set_attribute(
-                    image_builder=image_builder,
-                    drawer=back_drawer,  # todo why? Seems to work though.
-                    card=token,
-                    file_name="token_" + token.name,
-                    attribute_to_set="image_path",
-                )
-            )
 
     await asyncio.gather(*coroutines)
     await close_browser()

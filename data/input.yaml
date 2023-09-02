@@ -95,6 +95,10 @@ conditions:
     name: Invisible
     image_url: https://tactics.toren.dev/image_token_Stealth_7505783149168806103.jpg
     text: Dodge⛨+3. You don't provoke reactions. You cannot be targeted beyond range 2.
+  OnCooldown: &OnCooldown
+    name: On Cooldown
+    image_url: https://static.thenounproject.com/png/5536403-200.png
+    text: You cannot use this ability. Reduce by 1 at end of your next turn.
 shared_rules:
   Instant: &RuleInstant
     name: Instant
@@ -369,6 +373,7 @@ sets:
               Move up to 2. Gain High Altitude until the start of your next turn.
             tokens:
               - *HighAltitude
+              - *OnCooldown
           - name: Jump Jet
             text: |-
               1/Battle, Instant ⛨+2:
@@ -604,9 +609,11 @@ sets:
         abilities:
           - name: Jump Pack
             text: |-
-              2/Battle, Move Action:
+              CD 1, Move Action:
               Fly up to 6.
               Burst 1, ⚔1.
+            tokens:
+              - *OnCooldown
           - name: Barrier Projector
             text: |-
               1/Battle, Instant ⛨+2:

@@ -1,13 +1,12 @@
 import io
-from pathlib import Path
 import pygame
 
 from domain.card import Card
 from src.browser import get_browser
-from drawer.base import BaseDrawer
-from drawer.color import convert_tts_to_pygame
-from drawer.css_maker import make_css
-from drawer.size_constants import (
+from src.drawing.base import BaseDrawer
+from src.drawing.color import convert_tts_to_pygame
+from src.drawing.css_maker import make_css
+from src.drawing.size_constants import (
     CARD_WIDTH,
     CARD_HEIGHT,
     EDGE_MARGIN,

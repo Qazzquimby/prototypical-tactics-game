@@ -12,7 +12,7 @@ from domain.bag import Bag
 from domain.card import DomainMap
 from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
-from drawer.size_constants import CARD_SIZE, DIE_SPACING
+from src.drawing.size_constants import CARD_SIZE, DIE_SPACING
 
 from src.spawning_lua import get_full_lua, scale_size, clean_string_for_lua
 from domain.deck import Deck as DomainDeck
