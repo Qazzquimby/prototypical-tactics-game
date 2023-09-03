@@ -7,14 +7,13 @@ import yaml.scanner
 
 from schema import yaml_parsing
 from schema.yaml_parsing import Game
+from src.global_settings import global_config
 
 from src.image_builders import ImageBuilder
 from src.library import game_to_library
 from src.paths import data_dir, site_public_dir
 from src.tts_dir import try_and_find_save_games_folder
 from src.tts_objects import library_to_tts_dict
-
-PRUNE_FOR_PLAYTEST = False  # optionally set in generate_local.py
 
 
 def build(image_builder):
@@ -89,7 +88,7 @@ def prune_for_playtest(game: Game):
 def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder: ImageBuilder):
     game = load_game_from_yaml_path(yaml_path)
 
-    if PRUNE_FOR_PLAYTEST:
+    if global_config["prune_for_playtest"]:
         prune_for_playtest(game)
     library = game_to_library(game)
 

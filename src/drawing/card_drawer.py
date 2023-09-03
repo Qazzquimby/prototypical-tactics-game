@@ -1,4 +1,6 @@
 import io
+from pathlib import Path
+
 import pygame
 
 from domain.card import Card
@@ -13,6 +15,7 @@ from src.drawing.size_constants import (
     IMAGE_WIDTH,
     IMAGE_HEIGHT,
 )
+from src.global_settings import global_config
 from src.paths import data_dir
 
 TemplatesPath = data_dir / "templates"
@@ -43,11 +46,33 @@ class CardDrawer(BaseDrawer):
 
         browser = get_browser()
         page = await browser.new_page()
+
         await page.set_viewport_size({"width": image_width, "height": image_height})
 
         html = card_object.content.get_html()
         await page.set_content(html)
         await page.add_style_tag(content=CARD_CSS)
+
+        await page.evaluate(
+            """
+            () => {
+                const meta = document.createElement('meta');
+                // <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+                meta.setAttribute('http-equiv', 'content-type');
+                meta.setAttribute('content', 'text/html; charset=utf-8');
+                document.head.appendChild(meta);
+            }
+        """
+        )
+
+        if global_config["prune_for_playtest"]:
+            content = await page.content()
+            root = Path("card_html")
+            root.mkdir(exist_ok=True)
+            (root / f"{card_object.content.name}.html").write_text(
+                content, encoding="utf-8"
+            )
+
         image_bytes = await page.screenshot()  # path=temp_path)
 
         image = pygame.image.load(io.BytesIO(image_bytes), "img.png")

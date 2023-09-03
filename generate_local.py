@@ -2,12 +2,12 @@ from pathlib import Path
 
 import pygame
 
+from src.global_settings import global_config
 from src.image_builders import DirectoryImagesBuilder
 from src.orchestration import build
 from src.paths import site_public_dir
-import src.orchestration
 
-src.orchestration.PRUNE_FOR_PLAYTEST = True
+global_config["prune_for_playtest"] = True
 
 
 def build_local():

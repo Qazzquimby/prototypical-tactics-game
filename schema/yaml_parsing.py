@@ -191,18 +191,6 @@ class Card(BaseModel, Spawnable):
         full_spawning_lua = "\n\n\n".join(spawning_luas)
         return full_spawning_lua
 
-    def get_html(self):
-        content = self._get_inner_html()
-        html = f"""\
-<div class="card">
-    {content}
-</div>"""
-
-        return html
-
-    def _get_inner_html(self):
-        raise NotImplementedError
-
 
 class UnitCard(Card, Figurine):
     speed: int
@@ -210,23 +198,26 @@ class UnitCard(Card, Figurine):
     passives: list[Passive] = []
     default_abilities: list[Active] = []
 
-    def _get_inner_html(self):
+    def get_html(self):
         passives = "\n".join([f"<p>{str(passive)}</p>" for passive in self.passives])
         default_abilities = "\n".join(
             [f"{str(ability)}" for ability in self.default_abilities]
         )
 
         content = f"""\
-<p class="card-title-bar"><span class="card-name">{self.name}</span><span class="stats">🥾{self.speed} | ❤️{self.health}</span></p>
-
-<img class="image-box" src="{self.image_url}"/>
-
-<span class="card-text">
-    {passives}
-    <p>- - -</p> 
-    {default_abilities}
-</span>
-<p>{'owner todo'}</p>
+<div class="card" style="background-image: url({self.image_url})">
+    <p class="card-title-bar">
+    <span class="card-name">{self.name}</span>
+    <span class="stats">🦶🏼{self.speed} | ❤️{self.health}</span>
+    </p>
+    
+    <span class="card-text">
+        {passives}
+        <p>- - -</p> 
+        {default_abilities}
+    </span>
+    <p class="owner">owner todo</p>
+</div>
 """
 
         return content
@@ -318,13 +309,14 @@ SIZE_LABEL = "Size"
 class RulesCard(Card):
     text: str
 
-    def _get_inner_html(self):
+    def get_html(self):
         text = "\n".join([f"<p>{line}</p>" for line in self.text.split("\n")])
-
-        return f"""\
-<h1>{self.name}</h1>
-{text}
-"""
+        html = f"""\
+        <div class="card">
+            <h1>{self.name}</h1>
+            {text}
+        </div>"""
+        return html
 
     @staticmethod
     @lru_cache
@@ -339,7 +331,8 @@ class RulesCard(Card):
 class AbilityCard(Card):
     text: str
 
-    def _get_inner_html(self):
+    def get_html(self):
+
         header = f'<p class ="card-title-bar"> <span class ="card-name">{self.name}</span></p>'
         ability_text = "\n".join(
             [
@@ -349,11 +342,13 @@ class AbilityCard(Card):
         )
 
         content = f"""\
-{header}
-<span class="card-text">
-    {ability_text}
-</span>
-<p>owner todo</p>"""
+<div class="card">
+    {header}
+    <span class="card-text">
+        {ability_text}
+    </span>
+    <p class="owner">owner todo</p>
+</div>"""
         return content
 
     def make_content_dict(self, hero_name: str) -> dict:

@@ -190,6 +190,12 @@ terrain:
     image_url: https://upload.wikimedia.org/wikipedia/commons/d/d2/Solid_white.png?20060513000852
     size: 1
     text: Terrain here has been destroyed
+  Cover: &Cover
+    name: Cover
+    image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI6Vqg51fAEFt-_2pPSiHlHCSbn_VMPpOy7w&usqp=CAU
+    size: 1
+    text: |-
+      If a unit isn't next to the cover, their Line of Sight only travels one space past it.
 sets:
   - name: Overwatch
     description: |-
@@ -1801,6 +1807,38 @@ sets:
               ---
               Standard Action: End this effect
 
+      - name: Gorgon
+        polish: [needs_testing]
+        description: |-
+          - Counterattacker
+          - Block for allies
+        image_url: https://static.wikia.nocookie.net/lancer/images/c/c8/Gorgon.jpg
+        health: 12
+        speed: 3
+        passives:
+          - name: Enemy rolls 1-2 while targeting you
+            text: The ability misses. The attacker ends their turn.
+          - name: You or an adjacent ally is targeted
+            text: |-
+              You may move up to 2 towards the ally.
+              Target the triggering unit in range 4, ⚔2
+        default_abilities:
+          - name: Gorgon's Gaze
+            text: |-
+              Range 4, ⚔2, pull 1.
+        abilities:
+          - name: Deploy Sentinel Drone
+            text: |-
+              2/Battle
+              Place a Sentinel Drone in range 4.
+              The drone has 3hp and can be targeted like a unit.
+              
+              When an enemy targets you or an ally while in range 2 or the drone, 
+              the drone deals ⚔3 to the enemy.
+              ---
+              Standard Action: Teleport the drone to any location in range 4.
+        tokens:
+          - *Stun
       - name: Barbarossa
         polish: [needs_testing]
         description: |-
@@ -1897,6 +1935,68 @@ sets:
             tokens:
               - name: Havok Mine
                 image_url: https://tactics.toren.dev/image_token_Havok Mine_6637140432975573967.jpg
+      - name: Iskander
+        polish: [needs_testing, needs_assets]
+        description: |-
+          - Mines, Mines, Mines
+        image_url: https://i.redd.it/10-iskander-recolors-for-anyone-to-use-which-one-is-your-v0-73uf4wc6m8n81.png?width=1200&format=png&auto=webp&s=006df4a5b85736f9a6f6cd5a680826a8157603cc
+        health: 8
+        speed: 2
+        passives:
+          - name: Skeleton Key
+            text: Your movement and location does not trigger reactions, unless you want it to. (Includes things like "When a unit becomes adjacent")
+        default_abilities:
+          - name: Gravity Gun
+            text: Range 4, burst 2, ⚔1, pull 2 towards center
+        abilities:
+          - name: Explosive Mine
+            text: |-
+              Place an Explosive Mine in LoS, and up to two more within range 1.
+              When a unit becomes adjacent, remove the mine and it deals Burst 1, ⚔3.
+            tokens:
+              - name: Explosive Mine
+                image_url: https://i.pinimg.com/736x/d5/b3/e9/d5b3e94114a6269969f04156401a2ca3.jpg
+                text: |-
+                  When a unit becomes adjacent, remove the mine and it deals Burst 1, ⚔3.
+          - name: Smoke Mine
+            text: |-
+              Place a Smoke Mine in LoS, and up to two more within range 1.
+              When a unit becomes adjacent, remove the mine and it creates Cover in burst 1.
+            tokens:
+              - name: Smoke Mine
+                image_url: https://p.turbosquid.com/ts-thumb/WI/CKIzvf/ulFmTAwN/boundingmine1/jpg/1432752647/300x300/sharp_fit_q85/9e267f8fa8e8ce6efe7402298c00361cd749692b/boundingmine1.jpg
+                text: |-
+                  When a unit becomes adjacent, remove the mine and it creates Cover in burst 1.
+              - *Cover
+          - name: Grounding Mine
+            text: |- 
+              1/Battle:
+              Place a Grounding Mine in LoS, and up to two more within range 1.
+              ---
+              Standard action: Detonate any number of Grounding Mines.
+              Each pulls all units in range 3 to the mine's space and immobilizes them.
+            tokens:
+              - name: Grounding Mine
+                image_url: https://img1.yeggi.com/page_images_cache/2948539_gravity-mine-marvel-by-fub-artistry
+                text: Can be detonated to pull.
+              - *Immobile
+          - name: Clamp Bomb
+            text: |-
+              Unlimited Range, target gets a Clamp Bomb.
+              If they move 3 or more spaces in a turn, they lose the Clamp Bomb.
+              At the end of their turn, remove the Clamp Bomb and Burst 1, ⚔4, centered on their space.
+            tokens:
+              - name: Clamp Bomb
+                image_url: https://static.wikia.nocookie.net/supcom/images/3/37/CybranMobileBomb.jpg
+                text: |-
+                  If they move 3 or more spaces in a turn, they lose the Clamp Bomb.
+                  At the end of their turn, remove the Clamp Bomb it deals Burst 1, ⚔4.
+          - name: Death Cloud
+            text: |-
+              Ultimate 4:
+              Whenever an enemy moves or is moved, they take ⚔1.
+          
+
     maps:
       - name: Rickety Station
         image_path: lancer-rickety_station.png
