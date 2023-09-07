@@ -204,6 +204,8 @@ class UnitCard(Card, Figurine):
             [f"{str(ability)}" for ability in self.default_abilities]
         )
 
+        separator = "<p> - - -</p>" if passives and default_abilities else ""
+
         content = f"""\
 <div class="card" style="background-image: url({self.image_url})">
     <p class="card-title-bar">
@@ -213,7 +215,7 @@ class UnitCard(Card, Figurine):
     
     <span class="card-text">
         {passives}
-        <p>- - -</p> 
+        {separator}
         {default_abilities}
     </span>
     <p class="owner">owner todo</p>

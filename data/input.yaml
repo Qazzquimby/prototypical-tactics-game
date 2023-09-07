@@ -81,7 +81,7 @@ conditions:
     text: You have -1 Standard Action. Clear at the end of your turn.
   Immobile: &Immobile
     name: Immobile
-    image_url: https://tactics.toren.dev/image_token_Poison_5647933699778309315.jpg
+    image_url: https://cdn-icons-png.flaticon.com/512/1654/1654549.png
     text: You cannot move. Clear at the end of your turn.
   Paralyze: &Paralyze
     name: Paralyze
@@ -181,7 +181,7 @@ counters:
 terrain:
   DifficultTerrain: &DifficultTerrain
     name: Difficult Terrain
-    image_url: todo
+    image_url: https://img.freepik.com/free-photo/top-view-clear-ocean-water-texture_23-2149132371.jpg?w=2000
     size: 1
     text: |-
       Difficult terrain costs 2 movement to enter.
@@ -504,6 +504,7 @@ sets:
         abilities:
           - name: Deploy Turret
             text: |-
+              1/Battle:
               Empty space in range 4, Summon a Turret (max 1, remove oldest).
           - name: Overload
             text: |-
@@ -527,19 +528,14 @@ sets:
                   Hazard: ⚔2 for enemies.
         units:
           - name: Turret
-            health: 10
+            health: 8
             speed: 0
             image_url: https://tactics.toren.dev/image_token_Turret_-7591204121093145294.jpg
-            passives:
-              - name: Summon
-                text: Deal 6 damage to this.
-              - name: Start
-                text: This heals 6.
             default_abilities:
               - name: Automatic Fire
                 text: |-
                   Mandatory.
-                  Nearest enemy in LoS, ⚔2
+                  Nearest enemy in LoS, undodgeable ⚔2
       - name: Hanzo
         polish: [needs_testing]
         description: |-
@@ -1467,11 +1463,14 @@ sets:
             text: |-
               1/Battle:
               Enter Fortress Stance:
-                Block⛨+2
+                You and adjacent allies have Block⛨+2
                 You are immobilized.
-                1/round you may take half damage from an attack.
-                Adjacent allies gain your passives.
+                Instant, Tap: Take half damage from an attack.
               At the start of your turn you may exit Fortress Stance as a Free Action.
+            tokens:
+              - *Immobile
+              - name: Fortress Stance
+                image_url: https://i.redd.it/8bzdactvy6z71.png
       - name: Lancaster
         polish: [needs_testing, needs_assets]
         description: |-
@@ -1557,7 +1556,7 @@ sets:
               Range 4, target clears and is immune to unwanted conditions, and has ⛨-1 and +1 crit on rolls.
             tokens:
               - name: Supercharger
-                image_url: https://www.motortrend.com/uploads/sites/21/2016/10/001-blower-mafia-supercharger-turbo-brad.jpg
+                image_url: https://blog.way.com/wp-content/uploads/2022/04/Depositphotos_93782224_XL-min-scaled.jpg
                 text: You are immune to unwanted conditions, and have ⛨-1 and +1 crit on rolls.
       - name: Black Witch
         health: 6
@@ -1601,6 +1600,7 @@ sets:
               When an attack would pass into or out of the area, it is blocked, and put a charge on this.
               At the end of your next turn, deal ⚔2 for each charge to each unit in the area, then end this effect.
             tokens:
+              - *Immobile
               - name: Mag Field
                 image_url: https://tactics.toren.dev/image_token_Mag Field_-8219634878029312124.jpg
         units:
@@ -1661,7 +1661,7 @@ sets:
         passives:
           - name: +2 Dodge. All your movement is flying
             text: ""
-          - name: Enemies cannot use Instants on your turn.
+          - name: Enemies cannot act your turn. (No instants, no reactions, etc)
             text: ""
           - name: When you begin moving voluntarily,
             text: |-
@@ -1820,7 +1820,7 @@ sets:
             text: The ability misses. The attacker ends their turn.
           - name: You or an adjacent ally is targeted
             text: |-
-              You may move up to 2 towards the ally.
+              You may move up to 2 without going further from the ally.
               Target the triggering unit in range 4, ⚔2
         default_abilities:
           - name: Gorgon's Gaze
@@ -1835,8 +1835,31 @@ sets:
               
               When an enemy targets you or an ally while in range 2 or the drone, 
               the drone deals ⚔3 to the enemy.
-              ---
-              Standard Action: Teleport the drone to any location in range 4.
+            dice:
+              - name: Charges
+                color: white
+                values: [ 2 ]
+          - name: Deploy Turret Drone
+            text: |-
+                2/Battle
+                Place a Turret Drone in range 4.
+                The drone has 3hp and can be targeted like a unit.
+        units:
+          - name: Sentinel Drone
+            health: 3
+            speed: 0
+            image_url: https://static.wikia.nocookie.net/nomanssky_gamepedia/images/1/15/Sentinel_drone.jpg/revision/latest?cb=20190905213927
+            passives:
+              - name: When an enemy in range 2 targets you or an ally,
+                text: ⚔3 to the enemy
+          - name: Turret Drone
+            health: 5
+            speed: 0
+            image_url: https://static.wikia.nocookie.net/warhammer40k/images/a/ae/Stplasma.jpg/revision/latest/scale-to-width-down/250?cb=20120720073820
+            passives:
+              - name: When an enemy in LoS is damaged by an ally
+                text: |-
+                  Tap: ⚔1 to the enemy.
         tokens:
           - *Stun
       - name: Barbarossa
@@ -1952,25 +1975,24 @@ sets:
           - name: Explosive Mine
             text: |-
               Place an Explosive Mine in LoS, and up to two more within range 1.
-              When a unit becomes adjacent, remove the mine and it deals Burst 1, ⚔3.
+              When a unit becomes adjacent, remove the mine and it deals Burst 1, ⚔2.
             tokens:
               - name: Explosive Mine
                 image_url: https://i.pinimg.com/736x/d5/b3/e9/d5b3e94114a6269969f04156401a2ca3.jpg
                 text: |-
-                  When a unit becomes adjacent, remove the mine and it deals Burst 1, ⚔3.
+                  When a unit becomes adjacent, remove the mine and it deals Burst 1, ⚔2.
           - name: Smoke Mine
             text: |-
               Place a Smoke Mine in LoS, and up to two more within range 1.
-              When a unit becomes adjacent, remove the mine and it creates Cover in burst 1.
+              When a unit becomes adjacent, remove the mine and it creates a 2x2 area of Cover.
             tokens:
               - name: Smoke Mine
                 image_url: https://p.turbosquid.com/ts-thumb/WI/CKIzvf/ulFmTAwN/boundingmine1/jpg/1432752647/300x300/sharp_fit_q85/9e267f8fa8e8ce6efe7402298c00361cd749692b/boundingmine1.jpg
                 text: |-
-                  When a unit becomes adjacent, remove the mine and it creates Cover in burst 1.
+                  When a unit becomes adjacent, remove the mine and it creates a 2x2 area of Cover.
               - *Cover
           - name: Grounding Mine
             text: |- 
-              1/Battle:
               Place a Grounding Mine in LoS, and up to two more within range 1.
               ---
               Standard action: Detonate any number of Grounding Mines.
@@ -2006,55 +2028,144 @@ sets:
         image_path: lancer-cargo.png
 
 
-  ##      Early WIP
-  ##    rules:
-  ##      - name: Test rules card
-  ##        text: |-
-  ##          blah
-  ##    heroes:
-  ##      - name: Axe
-  ##        description: |-
-  ##          - Provoke and counterattack
-  ##        health: 6
-  ##        speed: 3
-  ##        armor: 1
-  ##        image_url: https://iili.io/yT240N.png
-  ##        abilities:
-  ##          - name: Axe
-  ##            text: |-
-  ##              Default
-  ##              Range 1, ⚔2
-  ##          - name: Berserker's Call
-  ##            text: |-
-  ##              1/Battle
-  ##              Until the beginning of your next turn,
-  ##                you have +1 armor,
-  ##                and when an enemy starts their turn in range 1 of you, they must use a default attack targeting you, if possible.
-  ##          - name: Battle Hunger
-  ##            text: |-
-  ##              1/Battle
-  ##              Range 3
-  ##              Until end of battle,
-  ##                at the start of each of the target's turns, they take damage equal to your current armor.
-  ##                Moving away from you costs twice as many move spaces.
-  ##                This effect ends as soon as the target kills anything.
-  ##          - name: Counter Helix
-  ##            text: |-
-  ##              Reaction after being hit by an attack:
-  ##                Burst 1, ⚔1
-  ##          - name: Culling Blade
-  ##            text: |-
-  ##              1/Battle
-  ##              Range 1, ⚔3, if the target is below half health, they are killed.
-  ##          - name: Culling Blade
-  ##            text: |-
-  ##              1/Battle
-  ##              Range 1
-  ##              on hit, if the target has 3 or less health:
-  ##               The target dies, but does not trigger any on-death reactions.
-  ##               You gain 1 armor until end of battle.
-  ##               This ability is refreshed.
-  ##              // Try health of 2 and keep armor for game
+  - name: Dota 2
+    description: Todo
+    heroes:
+      - name: Anti-Mage
+        polish: [needs_testing]
+        description: |- 
+          - Teleports
+          - Shut down abilities
+          - Fragile
+          - Cleave damage
+        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/antimage.png
+        health: 6
+        speed: 3
+        default_abilities:
+          - name: Mana Break
+            text: |-
+              Burst 1, ⚔2, put a CoolDown counter on one of the its non-default abilities.
+        abilities:
+          - name: Blink
+            text: |-
+              2/Battle, Free Action:
+              Teleport up to range 5.
+              Summon a Possible Anti-Mage in your previous location.
+#          - name: Counterspell
+#            text: |-
+#              1/Battle, Interrupt when an enemy targets you:
+#              Cancel the ability. Copy the ability, targeting the caster.
+#              Summon a Possible Anti-Mage in range 1 of the caster.
+          - name: Counterspell
+            text: |-
+              2/Battle, Instant +3:
+              Give target unit in LoS (can be you) your Counterspell Marker.
+              Until the start of their next turn, Interrupt when an enemy Targets them:
+              Cancel the ability. The unit with the Counterspell Marker copies the spell, targeting the caster. 
+              Summon a Possible Anti-Mage in range 1 of the caster.
+            tokens:
+              - name: Counterspell
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/d/dc/Counterspell_Ally_icon.png/revision/latest?cb=20230809010012
+          - name: Manta Style
+            text: |-
+              1/Battle, Free Action:
+              Summon two Possible Anti-Mages in empty spaces in range 2.
+          - name: Mana Void
+            text: |-
+              1/Battle,
+              Range 1, X = the number of abilities on the target that is unavailable because it is on CoolDown has been spent (eg used up x/Battle)
+              ⚔X to the target and enemies in burst 1 of it.
+        units:
+          - name: Possible Anti-Mage
+            image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/antimage.png
+            health: 1
+            speed: 3
+            passive:
+              - name: Summon
+                text: |-
+                  Replace the summoner with a Possible Anti-Mage.
+                  Each Possible Anti-Mage gets a visible Letter. 
+                  Choose a Secret letter face down (the real Anti-Mage).
+
+              - name: Copy Defaults
+                text: This has the Default Abilities of the summoner, but deals -⚔1.
+            default_abilities:
+              - name: Reveal
+                text: |-
+                  Instant, or Mandatory Interrupt when this is changed in any way other than location:
+                  
+                  If this unit's letter matches the Secret:
+                    Reveal the Secret. Replace this with the summoner. Mark all other Illusions as Fake.
+                  Else: mark this as Fake.
+              
+
+      - name: Axe
+        polish: [needs_testing]
+        description: |- 
+          - Provoke and counterattack
+          - Reflect damage back to attackers
+        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/axe.png
+        health: 10
+        speed: 3
+        passives:
+          - name: After you're attacked
+            text: |- 
+              Enemies in burst 1, ⚔1
+          - name: Receive damage from a Default Ability
+            text: The attacker takes 1/2 the damage received.
+        default_abilities:
+          - name: Axe
+            text: |-
+              Range 1, ⚔2
+        abilities:
+          - name: Berserker's Call
+            text: |-
+              1/Battle
+              Until the beginning of your next turn,
+                +1 Armor
+                When an enemy starts their turn in range 1 of you,
+                  they cannot move, and they must use a default attack targeting you, if possible.
+          - name: Battle Hunger
+            text: |-
+              1/Battle:
+              Range 3, give the 2 DoT and a Battle Hunger token.
+            
+              Moving away from you costs units with Battle Hunger tokens twice as many spaces.
+              When a unit with a Battle Hunger token kills a unit, they lose the token and clear all DoT.
+            tokens:
+              - *DoT
+              - name: Battle Hunger
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/0/0e/Battle_Hunger_icon.png/revision/latest?cb=20130812213438
+                text: |-
+                  Moving away from Axe costs you twice as many spaces.
+                  When you kill a unit, this and clear all DoT.
+          - name: Culling Blade
+            text: |-
+              1/Battle
+              Range 1, ⚔3 irreducible
+              On kill:
+                The target does not trigger any on-death reactions.
+                Refresh this.
+                If kill was a hero, you gain a Kill Counter.
+              
+              You have +1 armor per Kill Counter.
+            tokens:
+              - *Kill
+
+
+#      - name: Crystal Maiden
+#      - name: Dazzle
+#      - name: Drow Ranger
+#      - name: Earth Shaker
+#      - name: Lich
+#      - name: Lina
+#      - name: Lion
+#      - name: Mirana
+#      - name: Morphling
+#      - name: Necrophos
+
+
+
   #  - name: Malifaux
   #    description: |-
   #      - Use cards to change player's rolls
@@ -2923,7 +3034,8 @@ sets:
               Unlimited range, ⚔1 irreducible, +1 crit, +⚔1 on crit.
           - name: Knife
             text: |-
-              Interrupt when an enemy leave's an adjacent space from you, or ends their turn in path range 3 and did not target you or your space that turn.
+              Interrupt when an enemy leave's an adjacent space from you, 
+              or they end their turn with you in range 3 but they did not target you or your space that turn.
               You may move 2 towards them and range 1, ⚔50 to them.
         tokens:
           - *Kill
@@ -2931,7 +3043,8 @@ sets:
           - name: Stealth
             text: |-
               You have +1 speed, and Invisible.
-              Enemies consider you an ally rather than an enemy. When an enemy targets one of their allies while you're a valid target, they also target you.
+              Enemies consider you an ally rather than an enemy. 
+              When an enemy targets one of their allies while you're a valid target, they also target you.
               
               Effect ends when you deal damage or receive damage.
             tokens:
@@ -2940,9 +3053,7 @@ sets:
           - name: Sapper
             text: |-
               Range 1, Choose one --
-              - Target a summon with speed 0.
-                It is silenced and paralyzed. At the start of your turn, destroy any summons Silenced this way.
-                The summoner can use Standard Action, Range 1, remove these conditions from target summon.
+              - Target a summon with speed 0. Kill it.
               - Target a marker. Remove it.
             # consider just destroying it
             tokens:
@@ -3171,8 +3282,8 @@ sets:
               - name: There is an enemy in range 5
                 text: |-
                   Tap, Mandatory Interrupt:
-                  If upgraded: Nearest enemy in range 5, ⚔6, ⚔1 to others in burst 1, push 1.
-                  Else: Nearest enemy in range 5, ⚔3
+                  If upgraded: Nearest enemy in range 5, undodgeable ⚔6, ⚔1 to others in burst 1, push 1.
+                  Else: Nearest enemy in range 5, undodgeable ⚔3
                   
                   If this attack passes through an ally, it hits that ally instead.
               - name: Immune to forced movement.

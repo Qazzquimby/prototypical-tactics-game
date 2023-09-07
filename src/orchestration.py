@@ -63,7 +63,7 @@ def prune_for_playtest(game: Game):
     other_heroes = []
     for game_set in game.sets:
         for hero in game_set.heroes:
-            if hero.polish:
+            if "needs_testing" in hero.polish:
                 heroes_needing_playtest.append(hero)
             else:
                 other_heroes.append(hero)
