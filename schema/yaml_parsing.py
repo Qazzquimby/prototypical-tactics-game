@@ -206,8 +206,10 @@ class UnitCard(Card, Figurine):
 
         separator = "<p> - - -</p>" if passives and default_abilities else ""
 
+        safe_url = self.image_url.replace(" ", "%20")
+
         content = f"""\
-<div class="card" style="background-image: url({self.image_url})">
+<div class="card" style="background-image: url({safe_url})">
     <p class="card-title-bar">
     <span class="card-name">{self.name}</span>
     <span class="stats">🦶🏼{self.speed} | ❤️{self.health}</span>

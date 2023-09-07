@@ -2044,49 +2044,43 @@ sets:
         default_abilities:
           - name: Mana Break
             text: |-
-              Burst 1, ⚔2, put a CoolDown counter on one of the its non-default abilities.
+              Burst 1, ⚔2, put an On Cooldown counter on one of the its non-default abilities.
+        tokens:
+          - *OnCooldown
         abilities:
           - name: Blink
             text: |-
               2/Battle, Free Action:
-              Teleport up to range 5.
-              Summon a Possible Anti-Mage in your previous location.
-#          - name: Counterspell
-#            text: |-
-#              1/Battle, Interrupt when an enemy targets you:
-#              Cancel the ability. Copy the ability, targeting the caster.
-#              Summon a Possible Anti-Mage in range 1 of the caster.
+              Remove Anti-Mage from the board and Summon an Illusion in his space, and in an empty space in range 5.
           - name: Counterspell
             text: |-
               2/Battle, Instant +3:
               Give target unit in LoS (can be you) your Counterspell Marker.
               Until the start of their next turn, Interrupt when an enemy Targets them:
               Cancel the ability. The unit with the Counterspell Marker copies the spell, targeting the caster. 
-              Summon a Possible Anti-Mage in range 1 of the caster.
+              Remove Anti-Mage from the board and Summon an Illusion in his space, and range 1 of the caster.
             tokens:
               - name: Counterspell
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/d/dc/Counterspell_Ally_icon.png/revision/latest?cb=20230809010012
           - name: Manta Style
             text: |-
               1/Battle, Free Action:
-              Summon two Possible Anti-Mages in empty spaces in range 2.
+              Remove Anti-Mage from the board and Summon three Illusions in empty spaces in range 2.
           - name: Mana Void
             text: |-
               1/Battle,
               Range 1, X = the number of abilities on the target that is unavailable because it is on CoolDown has been spent (eg used up x/Battle)
               ⚔X to the target and enemies in burst 1 of it.
         units:
-          - name: Possible Anti-Mage
+          - name: Illusion (Anti-Mage)
             image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/antimage.png
             health: 1
             speed: 3
             passive:
               - name: Summon
                 text: |-
-                  Replace the summoner with a Possible Anti-Mage.
-                  Each Possible Anti-Mage gets a visible Letter. 
-                  Choose a Secret letter face down (the real Anti-Mage).
-
+                  This gets a visible letter, distinct from any other Illusions from its summoner. 
+                  Choose a Secret letter face down matching one of the newly created Illusions, indicating which is the summoner.
               - name: Copy Defaults
                 text: This has the Default Abilities of the summoner, but deals -⚔1.
             default_abilities:
@@ -2097,8 +2091,6 @@ sets:
                   If this unit's letter matches the Secret:
                     Reveal the Secret. Replace this with the summoner. Mark all other Illusions as Fake.
                   Else: mark this as Fake.
-              
-
       - name: Axe
         polish: [needs_testing]
         description: |- 
@@ -2108,7 +2100,7 @@ sets:
         health: 10
         speed: 3
         passives:
-          - name: After you're attacked
+          - name: Receive damage
             text: |- 
               Enemies in burst 1, ⚔1
           - name: Receive damage from a Default Ability
@@ -2128,17 +2120,15 @@ sets:
           - name: Battle Hunger
             text: |-
               1/Battle:
-              Range 3, give the 2 DoT and a Battle Hunger token.
-            
-              Moving away from you costs units with Battle Hunger tokens twice as many spaces.
-              When a unit with a Battle Hunger token kills a unit, they lose the token and clear all DoT.
+              Range 3, give the 2 DoT and a Battle Hunger token:
+                Moving away from you costs twice as many spaces. When they kill a unit, they lose the token and clear all DoT.
             tokens:
               - *DoT
               - name: Battle Hunger
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/0/0e/Battle_Hunger_icon.png/revision/latest?cb=20130812213438
                 text: |-
                   Moving away from Axe costs you twice as many spaces.
-                  When you kill a unit, this and clear all DoT.
+                  When you kill a unit, lose this and clear all DoT.
           - name: Culling Blade
             text: |-
               1/Battle
