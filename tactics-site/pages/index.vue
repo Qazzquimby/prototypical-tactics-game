@@ -34,26 +34,28 @@ onMounted(async () => {
         </div>
       </ICollapsibleItem>
       <ICollapsibleItem v-for="set of yamlContent.sets" :key="set.name" :title="set.name" accordion rounded bg-gray shadow-md>
-        <div>
+        <div m-3>
           <pre>{{ set.description }}</pre>
         </div>
 
-        <div v-for="rule of set.rules" :key="rule.name" my-2 border border-gray rounded p-2>
-          <div flex items-start>
-            <img
-              :src="get_image_path([set.name, `${set.name}_rules`, rule.name])" :alt="rule.name"
-              mx-2 h-32 rounded object-contain
-            >
-            <div>
-              <h3 text-secondary-700 font-bold>
-                {{ rule.name }}
-              </h3>
-              <pre>{{ rule.text }}</pre>
-            </div>
-          </div>
-        </div>
-
         <ICollapsible>
+          <ICollapsibleItem title="Rules" accordian rounded bg-gray-50>
+            <div v-for="rule of set.rules" :key="rule.name" my-2 border border-gray rounded p-2>
+              <div flex items-start>
+                <img
+                  :src="get_image_path([set.name, `${set.name}_rules`, rule.name])" :alt="rule.name"
+                  mx-2 h-32 rounded object-contain
+                >
+                <div>
+                  <h3 text-secondary-700 font-bold>
+                    {{ rule.name }}
+                  </h3>
+                  <pre>{{ rule.text }}</pre>
+                </div>
+              </div>
+            </div>
+          </ICollapsibleItem>
+
           <ICollapsibleItem v-for="hero of set.heroes" :key="hero.name" :title="hero.name" accordian rounded bg-gray-50>
             <Hero :hero="hero" :set="set" />
           </ICollapsibleItem>
