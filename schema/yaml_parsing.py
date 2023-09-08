@@ -182,7 +182,7 @@ class Card(BaseModel, Spawnable):
                     make_spawn_die_lua(
                         name=dice_type.name,
                         die_value=die_value,
-                        offset={"x": i * DIE_SPACING, "y": 1, "z": -1},
+                        offset={"x": i * DIE_SPACING, "y": 1, "z": -2},
                         color=color_dict[dice_type.color],
                         scale=0.5,
                     )
