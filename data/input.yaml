@@ -1372,7 +1372,7 @@ sets:
     rules:
       - name: Actions
         text: |-          
-          For 1 Standard Action, range 4, vs Will, target gets 3 stress, and your choice of Impaired or Slow
+          For 1 Standard Action, range 4, undefendable, target gets 3 stress, and your choice of Impaired or Slow
           
           Once per turn, the active hero can "Overcharge". They gain +1 Standard Action that turn, and gain 1d6+2 stress.
           
@@ -1779,8 +1779,7 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_False Idol_5315310770854887675.jpg
           - name: Celestial Shackles
             text: |-
-              Unlimited Range, Vs Will:
-              Place a Shackle marker on the target's space.
+              Unlimited Range, undefendable, place a Shackle marker on the target's space.
               ---
               Free Action: Remove the marker to teleport the target back to that space.
             tokens:
@@ -1788,8 +1787,8 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_Shackle_4846826871429583023.jpg
           - name: Dimensional Emblems
             text: |-
-              Unlimited Range, Vs Will:
-              Create 3 Dimensional Emblem markers adjacent to the target, but not orthogonally adjacent to any other Dimensional Emblem.
+              Unlimited Range, undefendable, 
+              create 3 Dimensional Emblem markers adjacent to the target, but not orthogonally adjacent to any other Dimensional Emblem.
               When a unit moves through a Dimensional Emblem, they take 2 stress and the emblem is removed.
             tokens:
               - name: Dimensional Emblem
@@ -1797,8 +1796,8 @@ sets:
                 text: When a unit moves through this, they take 2 stress and this is removed.
           - name: Hurl into The Duat
             text: |-
-              Unlimited Range, Vs Will:
-              Give the target a Duat token and +2 stress.
+              Unlimited Range, undefendable,
+              give the target a Duat token and +2 stress.
               The effect depends on the number of Duat tokens the target has.
               - If they have 1 token, force them to move up to their speed under you control. It is not forced movement.
               - If they have 2 tokens, they are Slowed and Impaired.
@@ -2470,14 +2469,14 @@ sets:
   #        default_abilities:
   #          - name: Hex
   #            text: |-
-  #              vs Will
+  #              undefendable
   #              Range 4, ⚔1
   #              If the target has a Voodoo attachment, this may move them up to 3.
   #              An ally adjacent to the target may use a default attack targeting them.
   #        abilities:
   #          - name: Obey
   #            text: |-
-  #              Vs Will, 4+
+  #              undefendable, on a roll of 4+
   #              Range 4, target takes an Action, chosen and controlled by this.
   #          - name: Thread of Fate
   #            text: |-
@@ -2533,7 +2532,7 @@ sets:
   #        abilities:
   #          - name: Terrorize
   #            text: |-
-  #              Vs will
+  #              undefendable,
   #              Range 3, Push the target its speed away from this.
   #          - name: Secret Passage
   #            text: |-
@@ -2571,8 +2570,8 @@ sets:
   #              Both targets get DoT +1. You may move a condition from one target to the other.
   #          - name: Blood DoTing
   #            text: |-
-  #              Free, VS Will
-  #              Target takes DoT damage equal to their DoT value, then remove all DoT from them.
+  #              Free Action,
+  #              Range 1, undefendable, target takes DoT damage equal to their DoT value, then remove all DoT from them.
   #        units:
   #          - name: Zombie Chihuahua
   #            health: 2
@@ -2805,18 +2804,15 @@ sets:
   #        default_abilities:
   #          - name: Distracting Illusions
   #            text: |-
-  #              Vs Will
-  #              Range 1, target discards a card, and gets Distracted +1 and Silenced.
+  #              Range 1, undefendable, target discards a card, and gets Distracted +1 and Silenced.
   #        abilities:
   #          - name: False Reality
   #            text: |-
-  #              Vs Will
-  #              Range 4. Teleport the target up to 3.
+  #              Range 4, undefendable, teleport the target up to 3.
   #              5-6: You may give the target Stunned(-1 Action)
   #          - name: Presto Chango
   #            text: |-
-  #              Vs Will
-  #              Range 4. Swap places with the target
+  #              Range 4, undefendable, swap places with the target
   #          - name: Sword Trick
   #            text: |-
   #              Free
