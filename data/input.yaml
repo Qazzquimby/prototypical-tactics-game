@@ -1574,11 +1574,11 @@ sets:
         image_url: https://tactics.toren.dev/image_token_Black Witch_6574268103561328136.jpg
         description: |-
           - Forced movement controller
-          - Anti Will attacks
+          - Counter undefendable abilities
         passives:
           - name: Take -.5x damage from all sources
             text: ""
-          - name: You and adjacent allies have +2⛨ against Will attacks.
+          - name: Non-AoE undefendable abilities targeting you or adjacent allies miss on a roll of 1-2.
             text: ""
         default_abilities:
           - name: Magnetic Cannon
@@ -1619,7 +1619,7 @@ sets:
             speed: 0
             image_url: https://tactics.toren.dev/image_token_ICEOUT Drone_8440680050213633667.jpg
             passives:
-              - name: You and adjacent units cannot use Will attacks and are immune to Will attacks.
+              - name: You and adjacent units cannot use non-AoE undefendable abilities, or be targeted by non-AoE undefendable abilities.
                 text: ""
       - name: Death's Head
         description: |-
@@ -1765,10 +1765,8 @@ sets:
         description: |-
           - Fragile Trickster
         passives:
-          - name: Targeted by Will attack
+          - name: Targeted by non-AoE undefendable ability
             text: You may give the caster 3 Stress.
-          - name: Your Will attacks are undefendable.
-            text: ""
         abilities:
           - name: False Idol
             text: |-
@@ -2592,8 +2590,6 @@ sets:
   #        speed: 3
   #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561408518996-YIVKK5LYH6WZDXOVMEWE/M3E_Leveticus.png
   #        passives:
-  #          - name: +2 Will
-  #            text: ''
   #          - name: Attacked
   #            text: The attacker takes 1 irreducible damage.
   #          - name: End
