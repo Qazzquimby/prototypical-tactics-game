@@ -50,12 +50,13 @@ class Token(BaseModel, Spawnable):
         end
         
         local my_position = self.getPosition()
+        local my_rotation = self.getRotation()
         local tint={{ r=0/255, g=0/255,  b=0/255  }}
         
         local obj = spawnObject({{
             type = "Custom_Tile",
-            position = {{x=my_position.x, y=my_position.y+1, z=my_position.z}},
-            rotation = {{x=0, y=0, z=0}},
+            position = {{x=my_position.x+2, y=my_position.y+1, z=my_position.z}},
+            rotation = {{x=my_rotation.x, y=my_rotation.y, z=my_rotation.z}},
             scale = {{x=s, y=s, z=s}},
             callback_function = function(newObj)
                 newObj.setName(name)
@@ -206,7 +207,7 @@ class UnitCard(Card, Figurine):
 
         separator = "<p> - - -</p>" if passives and default_abilities else ""
 
-        safe_url = self.image_url.replace(" ", "%20")
+        safe_url = self.image_url.replace(" ", "%20").replace("'", "%27")
 
         content = f"""\
 <div class="card" style="background-image: url({safe_url})">

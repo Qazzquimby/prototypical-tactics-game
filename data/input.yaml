@@ -82,11 +82,15 @@ conditions:
   Immobile: &Immobile
     name: Immobile
     image_url: https://cdn-icons-png.flaticon.com/512/4669/4669912.png
-    text: You cannot move. Clear at the end of your turn.
+    text: You cannot move yourself. Clear at the end of your turn.
   Paralyze: &Paralyze
     name: Paralyze
     image_url: https://tactics.toren.dev/image_token_Paralyze_-2680861371538521442.jpg
     text: You cannot take actions. Clear at the end of your next turn.
+  Disarm: &Disarm
+    name: Disarm
+    image_url: https://static.wikia.nocookie.net/hon_gamepedia/images/8/8a/Icon_Disarm.png/revision/latest?cb=20131108014248
+    text: You cannot use default abilities. Clear at the end of your turn.
   Silence: &Silence
     name: Silence
     image_url: https://tactics.toren.dev/image_token_Silence_4233379504253462650.jpg
@@ -337,7 +341,7 @@ sets:
         abilities:
           - name: Guardian Angel
             text: |-
-              Ally or Corpse in unlimited range. Fly to any space adjacent to the target, as directly as possible.
+              Ally or corpse marker in LoS. Fly to any space adjacent to the target, as directly as possible.
           - name: Resurrect
             text: |-
               1/Battle:
@@ -390,7 +394,7 @@ sets:
             text: |-
               Range 4,
               Others in burst 1 of target, push 1 space away from target.
-              Push target 2 spaces in any direction.
+              Move target 2 spaces in any direction.
           - name: Barrage
             text: |-
               Ultimate 5, Move + Standard Action:
@@ -440,7 +444,7 @@ sets:
         dodge: -2
         image_url: https://tactics.toren.dev/image_token_Reinhardt_8078956304379545605.jpg
         passives:
-          - name: Immune to involuntary movement
+          - name: Immune to forced movement
             text: ""
         default_abilities:
           - name: Rocket Hammer
@@ -699,7 +703,7 @@ sets:
             text: |-
               Enter Assault Stance:
                 +1 armor.
-                You are slowed (-2 speed, min 1, cant dodge), and immune to involuntary movement.
+                You are slowed (-2 speed, min 1, cant dodge), and immune to forced movement.
                 You receive +2 crit from range 1.
                 Exit when you lose an Action, or as a Free Action at the end of your turn.
             tokens:
@@ -963,7 +967,7 @@ sets:
     #            text: |-
     #              1/Battle
     #              Place a Concussion Mine in an empty space within range 2.
-    #              At the start of your turn, or when anyone becomes adjacent to the mine's space, you may sacrifice the mine for ⛨1, ⚔4 and push 2 in any direction.
+    #              At the start of your turn, or when anyone becomes adjacent to the mine's space, you may sacrifice the mine for ⛨1, ⚔4 and move 2 in any direction.
     #            tokens:
     #              - name: Concussion Mine
     #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/87/Ability-Junkrat2.png/revision/latest/scale-to-width-down/100?cb=20150924023319
@@ -1049,7 +1053,7 @@ sets:
     #              Heal 4
     #              Remove any unwanted conditions.
     #              Until the beginning of your next turn:
-    #                You are immune to damage, involuntary movement, and unwanted conditions.
+    #                You are immune to damage, forced movement, and unwanted conditions.
     #                You block line of sight.
     #          - name: Ice Wall
     #            text: |-
@@ -1279,7 +1283,7 @@ sets:
     #              Reaction Block⛨+2 on attack on target in range 3
     #              The target purges unwanted conditions
     #              Until the start of your next turn,
-    #                the target is immune to damage, involuntary movement, and unwanted conditions,
+    #                the target is immune to damage, forced movement, and unwanted conditions,
     #                and when the target would take damage you gain an energy counter.
     #            tokens:
     #              - name: Particle Barrier
@@ -1362,7 +1366,7 @@ sets:
     rules:
       - name: Actions
         text: |-          
-          For 1 Standard Action, range 4, vs Will, target gets 2 stress, and Impaired or Slow
+          For 1 Standard Action, range 4, vs Will, target gets 3 stress, and your choice of Impaired or Slow
           
           Once per turn, the active hero can "Overcharge". They gain +1 Standard Action that turn, and gain 1d6+2 stress.
           
@@ -1382,7 +1386,7 @@ sets:
         text: |-
           Heroes can gain stress, which persists between battles.
           When a hero gains their second stress die, they take ⚔2 and receive +1x damage.
-          When a hero gains their third stress die, they automatically die at the end of their turn, and when they deal burst 1 ⚔3.
+          When a hero ends their turn with 3 stress dice, they deal burst 1 ⚔2 and die.
         dice:
           - name: Stress
             color: gray
@@ -1441,7 +1445,7 @@ sets:
             text: ""
           - name: Adjacent Ally would take damage
             text: You may each take half the final damage, before modifiers.
-          - name: Immune to involuntary movement.
+          - name: Immune to forced movement.
             text: ""
         default_abilities:
           - name: Leviathan Heavy Assault Cannon
@@ -1576,7 +1580,7 @@ sets:
               Line 4, ⚔2, Pull 3.
         abilities:
           - name: Ferrous Lash
-            text: Range 5, Push 3 in any direction.
+            text: Range 5, Move target 3 in a line.
           - name: Magnetic Shield
             text: |-
               Place or Move your Magnetic Shield into range 1.
@@ -1716,13 +1720,13 @@ sets:
               Move Action:
               Enter Swarm Body stance and put a charge on this:
                 At the start of your turn, ⚔2*charges to all adjacent enemies, then put a charge on this.
-                This ends if you move for any reason.
-            tokens:
-              - name: Swarm Body Stance
-                image_url: https://tactics.toren.dev/image_token_Swarm Body Stance_-5561438090744362995.jpg
-                text: |-
-                  At the start of your turn, ⚔2*charges to all adjacent enemies, then put a charge on this.
-                  This ends if you move for any reason.
+                This ends and you lose all charges if you change location for any reason.
+            dice:
+              - name: Swarm Body Charge
+#                image_url: https://tactics.toren.dev/image_token_Swarm Body Stance_-5561438090744362995.jpg
+                color: white
+                values: [ 1 ]
+
           - name: Summon Hive Drone
             text: |-
               1/Battle:
@@ -1754,7 +1758,7 @@ sets:
           - Fragile Trickster
         passives:
           - name: Targeted by Will attack
-            text: Attacker takes 3 Stress.
+            text: You may give the caster 3 Stress.
           - name: Your Will attacks are undefendable.
             text: ""
         abilities:
@@ -1788,7 +1792,7 @@ sets:
               Unlimited Range, Vs Will:
               Give the target a Duat token and +2 stress.
               The effect depends on the number of Duat tokens the target has.
-              - If they have 1 token, force them to move up to their speed under you control. It counts as voluntary movement.
+              - If they have 1 token, force them to move up to their speed under you control. It is not forced movement.
               - If they have 2 tokens, they are Slowed and Impaired.
               - If they have 3 tokens, they skip their next activation.
               - If they have 4 tokens, remove them, and until the end of their next turn, they are on your team (swap ally/hostile). You control their next activation, during which you cannot use any x/Game actions.
@@ -1830,20 +1834,19 @@ sets:
           - name: Deploy Sentinel Drone
             text: |-
               2/Battle
-              Place a Sentinel Drone in range 4.
-              The drone has 3hp and can be targeted like a unit.
-              
-              When an enemy targets you or an ally while in range 2 or the drone, 
-              the drone deals ⚔3 to the enemy.
+              Summon a Sentinel Drone in range 4.
             dice:
               - name: Charges
                 color: white
                 values: [ 2 ]
           - name: Deploy Turret Drone
             text: |-
-                2/Battle
-                Place a Turret Drone in range 4.
-                The drone has 3hp and can be targeted like a unit.
+              2/Battle
+              Summon a Turret Drone in range 4.
+            dice:
+              - name: Charges
+                color: white
+                values: [ 2 ]
         units:
           - name: Sentinel Drone
             health: 3
@@ -2073,8 +2076,8 @@ sets:
           - name: Mana Void
             text: |-
               1/Battle,
-              Range 1, X = the number of abilities on the target that is unavailable because it is on CoolDown has been spent (eg used up x/Battle)
-              ⚔X to the target and enemies in burst 1 of it.
+              Range 1, ⚔2 to the target for each of its abilities that are unavailable (eg used up x/Battle, unready ultimate, tapped, etc)
+              as⚔X to the target and enemies in burst 1 of it.
         units:
           - name: Illusion (Anti-Mage)
             image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/antimage.png
@@ -2145,10 +2148,144 @@ sets:
               You have +1 armor per Kill Counter.
             tokens:
               - *Kill
+      - name: Crystal Maiden
+        polish: [needs_testing]
+        description: |- 
+          - Slow and nuke enemies
+          - Allies have an extra n/Battle use.
+          - Awful speed and health
+        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/crystal_maiden.png
+        health: 6
+        speed: 2
+        passives:
+          - name: Deploy
+            text: |-
+              You and all allies can put an extra charge on a n/Battle ability. (Ultimates are 1/Battle)
+          - name: Chilled
+            text: |-
+              Slowed enemies deal -1 damage.
+        default_abilities:
+          - name: Ice Bolt
+            text: Range 4, ⚔2
+        abilities:
+          - name: Crystal Nova
+            text: |-
+              CD 1
+              Range 3 2x2, ⚔3, slow
+            tokens:
+              - *OnCooldown
+              - *Slow
+          - name: Frostbite
+            text: |-
+              CD 1
+              Range 3, ⚔2, immobilize and disarm
+            tokens:
+              - *OnCooldown
+              - *Immobile
+              - *Disarm
+          - name: Crystal Clone
+            text: |-
+              1/Battle, Free Action
+              Move 2, and create a Crystal Clone marker in your previous space.
+              Crystal Clone marker has 1 hp and can be targeted like a unit.
+              At the beginning of your turn, destroy Crystal Clone.
+              
+              When Crystal Clone is destroyed, it deals burst 1, ⚔2 immobilize and disarm.
+            tokens:
+              - name: Crystal Clone
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/a/a1/Crystal_Clone_icon.png/revision/latest/scale-to-width-down/128?cb=20230809011951
+                text: |-
+                  When destroyed, it deals burst 1, ⚔2 immobilize and disarm.
+              - *Immobile
+              - *Disarm
+          - name: Freezing Field
+            text: |-
+              Ultimate 4, Free Action
+              Enemies in burst 3 ignoring walls, slow.
+              Enter freezing field stance:
+                At the start of your turn, you may spend Move+Standard Actions for
+                  Enemies in burst 3 ignoring walls, ⚔4, slow.
+                If you don't, end this effect.
+            tokens:
+              - name: Freezing Field Stance
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/d/de/Freezing_Field_icon.png/revision/latest/scale-to-width-down/128?cb=20111005085503
+              - *Slow
+      - name: Dazzle
+        polish: [needs_testing]
+        description: |- 
+          - Save ally from death
+          - Close range aoe damage and healing
+          - Likes long grouped up teamfights
+        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/dazzle.png
+        health: 8
+        speed: 3
+        default_abilities:
+          - name: Curse
+            text: |-
+              Range 3, ⚔2
+        abilities:
+          - name: Poison Touch
+            text: |-
+              1/Battle
+              Range 2 2x2, ⚔2, target gets Poison Touch.
+              
+              ---
+              At the end of your turn, each enemy you did not damage loses Poison Touch.
+            tokens:
+              - name: Poison Touch
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/0/0e/Poison_Touch_icon.png/revision/latest/scale-to-width-down/128?cb=20111005090004
+                text: |-
+                  You are Slowed.
+                  At start of turn, ⚔1.
+          - name: Shallow Grave
+            text: |-
+              1/Battle, Instant +3 
+              Range 3, until the start of your next turn, target's hp cannot go below 1, and they receive +0.5x healing.
+            tokens:
+              - name: Shallow Grave
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/6/69/Shallow_Grave_icon.png/revision/latest?cb=20111005090004
+                text: Hp cannot go below 1.
+          - name: Shadow Wave
+            text: |-
+              1/Battle
+              Target yourself, then up to 3 times target another unit in range 2 of an existing target.
+              Heal each targeted unit 2.
+              All enemies in burst 1 of any targeted ally, ⚔2.
+          - name: Bad Juju
+            text: |-
+              2/Battle, Free Action
+              Take 3 irreducible damage.
+              Refresh all your abilities.
+            dice:
+              - name: Charges
+                color: white
+                values: [ 2 ]
 
+      - name: Drow Ranger
+        polish: [needs_testing]
+        description: |- 
+          - Ranged dps
+          - Slow enemies
+        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/drow_ranger.png
+        health: 8
+        speed: 3
+        default_abilities:
+          - name: Frost Arrows
+            text: |-
+              Range 4, ⚔2, slow
+        abilities:
+          - name: Gust
+            text: |-
+              1/Battle
+              Range 1 2x2, push 2, silence
+              Move 2
+          - name: Multishot
+            text: |-
+              1/Battle
+              Range 1 3x3, ⚔2, slow
+          - name: Glacier
+            text: |-
 
-#      - name: Crystal Maiden
-#      - name: Dazzle
 #      - name: Drow Ranger
 #      - name: Earth Shaker
 #      - name: Lich
@@ -2386,7 +2523,7 @@ sets:
   #              When targeting enemies adjacent to another ally, -2⛨ +2⚔
   #        default_abilities:
   #          - name: .50 Flintlock
-  #            text: Range 2, ⚔3, Push the target 3.
+  #            text: Range 2, ⚔3, Push 2.
   #        abilities:
   #          - name: Terrorize
   #            text: |-
@@ -2963,7 +3100,7 @@ sets:
   #
   #              You may repeat this attack once on a different line. If you do, you can't attack next turn.
   #        passives:
-  #          - name: Immune to involuntary movement
+  #          - name: Immune to forced movement
   #            text: ''
   #          - name: Adjacent ally will be damaged
   #            text: You may take half the damage rounding up.

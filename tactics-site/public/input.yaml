@@ -81,7 +81,7 @@ conditions:
     text: You have -1 Standard Action. Clear at the end of your turn.
   Immobile: &Immobile
     name: Immobile
-    image_url: https://cdn-icons-png.flaticon.com/512/1654/1654549.png
+    image_url: https://cdn-icons-png.flaticon.com/512/4669/4669912.png
     text: You cannot move. Clear at the end of your turn.
   Paralyze: &Paralyze
     name: Paralyze
@@ -97,7 +97,7 @@ conditions:
     text: Dodge⛨+3. You don't provoke reactions. You cannot be targeted beyond range 2.
   OnCooldown: &OnCooldown
     name: On Cooldown
-    image_url: https://static.thenounproject.com/png/5536403-200.png
+    image_url: https://cdn-icons-png.flaticon.com/128/2784/2784369.png
     text: You cannot use this ability. Reduce by 1 at end of your next turn.
 shared_rules:
   Instant: &RuleInstant
@@ -619,16 +619,16 @@ sets:
           - name: Barrier Projector
             text: |-
               1/Battle, Instant ⛨+2:
-              Place a size 3 Barrier centered on your space, with 8hp.
-              The barrier does not block movement or line of sight, but enemy attacks hit it rather than passing through.
+              Place a Barrier in your space with 6hp.
+              Enemy attacks that pass enter or exit the burst 1 square around the Barrier hit it instead.
             dice:
               - name: Barrier health
                 color: red
-                values: [ 8 ]
+                values: [ 66 ]
             tokens:
               - name: Barrier
                 image_url: https://tactics.toren.dev/image_token_Barrier_7326628920520179890.jpg
-                size: 3
+                size: 1
           - name: Primal Rage
             text: |-
               Ultimate 4, Instant ⛨+3:
@@ -1449,7 +1449,7 @@ sets:
               If not Spun Up, choose one --
               - Range 4, ⚔2.
               - Enter Spun Up stance: You are continually slowed. Can exit as a Free Action at the start of your turn.
-              If Spun Up: Move + Standard Action, +3 stress, Range 4, ⚔6
+              If Spun Up: +3 stress, Range 4, ⚔6
         tokens:
           - name: Spun Up
             image_url: https://tactics.toren.dev/image_token_Spun Up_817474683636700342.jpg
@@ -1461,7 +1461,7 @@ sets:
               - *Impaired
           - name: Fortress Protocol
             text: |-
-              1/Battle:
+              1/Battle, Free Action at start of turn:
               Enter Fortress Stance:
                 You and adjacent allies have Block⛨+2
                 You are immobilized.
@@ -1851,7 +1851,7 @@ sets:
             image_url: https://static.wikia.nocookie.net/nomanssky_gamepedia/images/1/15/Sentinel_drone.jpg/revision/latest?cb=20190905213927
             passives:
               - name: When an enemy in range 2 targets you or an ally,
-                text: ⚔3 to the enemy
+                text: ⚔2 to the enemy
           - name: Turret Drone
             health: 5
             speed: 0
@@ -1882,10 +1882,6 @@ sets:
           - name: Barbarossa
             image_url: https://tactics.toren.dev/image_token_Barbarosa_-8861773581727907330.jpg
             description: Barbarosa is considered to be in all spaces with this token.
-        dice:
-          - name: Apocalypse Charge
-            color: orange
-            values: [ 1 ]
         default_abilities:
           - name: Heavy Machine Gun
             text: |-
@@ -2052,6 +2048,10 @@ sets:
             text: |-
               2/Battle, Free Action:
               Remove Anti-Mage from the board and Summon an Illusion in his space, and in an empty space in range 5.
+            dice:
+              - name: Charges
+                color: white
+                values: [ 2 ]
           - name: Counterspell
             text: |-
               2/Battle, Instant +3:
@@ -2059,6 +2059,10 @@ sets:
               Until the start of their next turn, Interrupt when an enemy Targets them:
               Cancel the ability. The unit with the Counterspell Marker copies the spell, targeting the caster. 
               Remove Anti-Mage from the board and Summon an Illusion in his space, and range 1 of the caster.
+            dice:
+              - name: Charges
+                color: white
+                values: [ 2 ]
             tokens:
               - name: Counterspell
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/d/dc/Counterspell_Ally_icon.png/revision/latest?cb=20230809010012
@@ -2104,7 +2108,7 @@ sets:
             text: |- 
               Enemies in burst 1, ⚔1
           - name: Receive damage from a Default Ability
-            text: The attacker takes 1/2 the damage received.
+            text: The attacker takes 1/2 the damage received, before armor.
         default_abilities:
           - name: Axe
             text: |-
@@ -2125,7 +2129,7 @@ sets:
             tokens:
               - *DoT
               - name: Battle Hunger
-                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/0/0e/Battle_Hunger_icon.png/revision/latest?cb=20130812213438
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/0/00/Battle_Hunger_icon.png/revision/latest?cb=20121003222330
                 text: |-
                   Moving away from Axe costs you twice as many spaces.
                   When you kill a unit, lose this and clear all DoT.
