@@ -862,7 +862,7 @@ sets:
     #          - name: Defense Matrix
     #            text: |-
     #              1/Battle
-    #              Reaction Block +2
+    #              Instant +2
     #              Create a size 2 Defense Matrix in range 1 that lasts until the beginning of your next turn.
     #              Enemy attacks that draw range through the defense matrix are cancelled without effect.
     #            tokens:
@@ -925,7 +925,7 @@ sets:
     #          - name: Deflect
     #            text: |-
     #              1/Battle
-    #              Reaction Block +2
+    #              Instant +2
     #              Until the beginning of your next turn,
     #              you have facing, and attacks targeting you from the front with max range>1 are reflected, choosing a new target with you as the attack origin.
     #          - name: Swift Strike
@@ -1053,7 +1053,7 @@ sets:
     #          - name: Cryo-Freeze
     #            text: |-
     #              1/Battle
-    #              Reaction Block +2
+    #              Instant +2
     #              Heal 4
     #              Remove any unwanted conditions.
     #              Until the beginning of your next turn:
@@ -1062,7 +1062,7 @@ sets:
     #          - name: Ice Wall
     #            text: |-
     #              1/Battle
-    #              Reaction Block +2
+    #              Instant +2
     #              Create a 3x1 Ice Wall, at least partly within range 3, that lasts until the beginning of your next turn.
     #              The Ice Wall acts like a wall, and has 6 health.
     #            tokens:
@@ -1151,7 +1151,7 @@ sets:
     #          - name: Javelin Spin
     #            text: |-
     #              1/Battle
-    #              Reaction Block +2
+    #              Instant +2
     #              You have facing. Turn and move 2 spaces forwards, pushing.
     #              Until the beginning of your next turn, you are immune to damage from your front.
     #          #            - name: Protective Barrier
@@ -1174,7 +1174,7 @@ sets:
     #          - name: Fortify
     #            text: |-
     #              1/Battle
-    #              Reaction Block+2⛨
+    #              Instant +2
     #              Until the beginning of your next turn
     #                you take 0.5x damage from all sources
     #                You cannot be moved or prevented from moving or taken actions by enemy sources.
@@ -1273,7 +1273,7 @@ sets:
     #                Now and at the start of each your turns, you can make a default attack as a Free Action.
     #      - name: Zarya
     #        description: |-
-    #          - Reaction-Block damage to increase damage dealt
+    #          - Block damage to increase damage dealt
     #        health: 10
     #        speed: 3
     #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Zarya-portrait.png/revision/latest/scale-to-width-down/350?cb=20160620015842
@@ -1286,7 +1286,7 @@ sets:
     #          - name: Particle Barrier
     #            text: |-
     #              2/Battle
-    #              Reaction Block+2⛨ on attack on target in range 3
+    #              Instant +2 on attack on target in range 3
     #              The target purges unwanted conditions
     #              Until the start of your next turn,
     #                the target is immune to damage, forced movement, and unwanted conditions,
@@ -1744,7 +1744,7 @@ sets:
           - name: Hive Frenzy
             text: |-
               Ultimate 4, Free Action:
-              You and adjacent allies have Block+1⛨.
+              Abilities targeting you or adjacent allies have +1⛨.
               Trigger your end of turn effects twice.
               While you have more than 1hp, you cannot be reduced below 1hp.
               All damage dealt to you is irreducible.
@@ -1754,7 +1754,7 @@ sets:
             speed: 0
             image_url: https://tactics.toren.dev/image_token_Hive Drone_4613030347791667462.jpg
             passives:
-              - name: You and allies in range 2 have Block+1⛨.
+              - name: Abilities targeting you or allies in burst 2 have +1⛨.
                 text: ""
               - name: End
                 text: Enemies in range 2 take ⚔1 irreducible.
