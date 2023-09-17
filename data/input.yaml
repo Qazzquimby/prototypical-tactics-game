@@ -74,7 +74,7 @@ conditions:
   Slow: &Slow
     name: Slow
     image_url: https://tactics.toren.dev/image_token_Slow_1902566325755039578.jpg
-    text: You have -2 Speed, to a minimum of 1. You can't dodge. Clear at the end of your turn.
+    text: You have -2 Speed, to a minimum of 1. Abilities targeting you are undefendable. Clear at the end of your turn.
   Stun: &Stun
     name: Stun
     image_url: https://tactics.toren.dev/image_token_Stun_-947718855703478726.jpg
@@ -98,7 +98,7 @@ conditions:
   Invisible: &Invisible
     name: Invisible
     image_url: https://tactics.toren.dev/image_token_Stealth_7505783149168806103.jpg
-    text: Dodge⛨+3. You don't provoke reactions. You cannot be targeted beyond range 2.
+    text: Abilities targeting you have ⛨+3. You don't provoke reactions. You cannot be targeted beyond range 2.
   OnCooldown: &OnCooldown
     name: On Cooldown
     image_url: https://cdn-icons-png.flaticon.com/128/2784/2784369.png
@@ -107,15 +107,15 @@ shared_rules:
   Instant: &RuleInstant
     name: Instant
     text: |-
-      May list a reaction speed target, like "Instant ⛨+2" or "Instant ⛨+1"
+      May list a reaction speed target, like "Instant ⛨+2" or "Instant +1⛨"
       An ability marked as Instant can be used for free at the start of any turn, or when a unit is targeted.
 
       When reacting to to a targeting Action, declare before the roll is made.
-      If the roll is higher than the target's defense + the Instant's bonus (if any), the Instant occurs after the triggering Action.
+      If the roll is higher than the target's ⛨ + the Instant's bonus (if any), the Instant occurs after the triggering Action.
       Otherwise, the Instant occurs before the triggering Action.
       If the triggering actor is an ally, you may choose whether the Instant triggers before or after the Action.
 
-      Note that the Instant's defense bonus does not modify the target's defense - it only changes how easy it is to act first.
+      Note that the Instant's bonus does not modify the target's ⛨ - it only changes how easy it is to act first.
       Reminder that units can choose to be hit even when an attack roll fails.
   Ultimate: &RuleUltimate
     name: Ultimate X
@@ -231,7 +231,7 @@ sets:
               Choose one -- 
               - Range 2, ⚔2
               - Note your facing. At the start of your next turn: 
-                Range 2+, ⚔6, undodgeable, +2 crit.
+                Range 2+, ⚔6, undefendable, +2 crit.
         tokens:
           - name: Widow's Kiss Charged
             image_url: https://tactics.toren.dev/image_token_Widow's Kiss Charged_-7763573326957670311.jpg
@@ -255,9 +255,9 @@ sets:
           - name: Infra-Sight
             text: |-
               Ultimate 3, Free Action:
-              Enemies cannot dodge or be untargetable.
+              Abilities targeting enemies are undefendable. 
+              Enemies cannot be untargetable.
               All allies have +2 crit
-              This doesn't gain charge while active.
       - name: Tracer
         description: |-
           - Fast, fragile, instant speed dodges
@@ -419,7 +419,7 @@ sets:
         abilities:
           - name: Wraith Form
             text: |-
-              1/Battle, Instant ⛨+2:
+              1/Battle, Instant +2⛨:
               Move up to 2. Clear any number of conditions.
               Until the beginning of your next turn, nothing affects you.
             tokens:
@@ -441,10 +441,11 @@ sets:
           - High damage rhino charge
         health: 12
         speed: 3
-        dodge: -2
         image_url: https://tactics.toren.dev/image_token_Reinhardt_8078956304379545605.jpg
         passives:
           - name: Immune to forced movement
+            text: ""
+          - name: Abilities targeting you have -2⛨.
             text: ""
         default_abilities:
           - name: Rocket Hammer
@@ -453,7 +454,7 @@ sets:
         abilities:
           - name: Barrier Field
             text: |-
-              Instant ⛨+2:
+              Instant +2⛨:
               Enter shield stance:
                 You have facing and can freely set your facing at the end of your turn.
                 You're continually Slow (-2 speed, min 1) and can't take standard actions.
@@ -496,8 +497,10 @@ sets:
           - Damage brawler
         health: 10
         speed: 3
-        dodge: +1
         image_url: https://tactics.toren.dev/image_token_Torbjorn_6046319329937446842.jpg
+        passives:
+          - name: Abilities targeting you have +1⛨.
+            text: ""
         default_abilities:
           - name: Rivet Gun
             text: |-
@@ -539,7 +542,7 @@ sets:
               - name: Automatic Fire
                 text: |-
                   Mandatory.
-                  Nearest enemy in LoS, undodgeable ⚔2
+                  Nearest enemy in LoS, undefendable, ⚔2
       - name: Hanzo
         polish: [needs_testing]
         description: |-
@@ -556,7 +559,7 @@ sets:
             text: |-
               Move + Standard Action:
               Move up to 1
-              Unlimited range, ⛨+2, ⚔4, +2Crit
+              Unlimited range, +2⛨, 4⚔, +2Crit
         abilities:
           - name: Sonic Arrow
             text: |-
@@ -604,7 +607,7 @@ sets:
         speed: 3
         image_url: https://tactics.toren.dev/image_token_Winston_-6851077804927343154.jpg
         passives:
-          - name: Cannot Dodge
+          - name: Abilities targeting you have -2⛨.
             text: ""
         default_abilities:
           - name: Tesla Cannon
@@ -654,7 +657,7 @@ sets:
             text: |-
               Choose one --
               - Range 4, ⛨+2, ⚔2 +1 crit
-              - At the beginning of your next turn: Move 1; Unlimited range, ⛨+1, ⚔6, +2 crit, lose a Standard Action.
+              - At the beginning of your next turn: Move 1; Unlimited range, +1⛨, ⚔6, +2 crit, lose a Standard Action.
         abilities:
           - name: Snap Kick
             text: |-
@@ -703,7 +706,7 @@ sets:
             text: |-
               Enter Assault Stance:
                 +1 armor.
-                You are slowed (-2 speed, min 1, cant dodge), and immune to forced movement.
+                You are slowed (-2 speed, min 1, abilities targeting you are undefendable), and immune to forced movement.
                 You receive +2 crit from range 1.
                 Exit when you lose an Action, or as a Free Action at the end of your turn.
             tokens:
@@ -834,7 +837,7 @@ sets:
     #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
     #              Spend 5 charges:
     #                At the beginning of your next turn,
-    #                deal ⚔8 undodgeable to each enemy in line of sight
+    #                deal ⚔8 undefendable to each enemy in line of sight
     #      - name: D.Va
     #        description: |-
     #          - Mobile tank
@@ -843,7 +846,7 @@ sets:
     #        speed: 3
     #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
     #        passives:
-    #          - name: Cannot dodge, +1 Crit received
+    #          - name: Abilities targeting you are undefendable, +1 Crit received
     #            text: ""
     #          - name: Eject
     #            text: |-
@@ -908,7 +911,7 @@ sets:
     #        speed: 3
     #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Genji-ow2-portrait.png/revision/latest/scale-to-width-down/149?cb=20191104043734
     #        passives:
-    #          - name: Dodge⛨ +2
+    #          - name: Abilities targeting you have ⛨ +2
     #            text: ""
     #          - name: All of your movement is flying.
     #            text: ""
@@ -1129,8 +1132,10 @@ sets:
     #          - Tank, Damage mitigation
     #        health: 12
     #        speed: 3
-    #        dodge: -2
     #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d4/Orisa_Skin_Overwatch_2.png/revision/latest?cb=20221116224621
+    #        passives:
+    #          - name: Abilities targeting you have ⛨-2
+    #            text: ""
     #        default_abilities:
     #          - name: Fusion Driver
     #            text: |-
@@ -1200,7 +1205,7 @@ sets:
     #        speed: 3
     #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/ce/Roadhog-Portrait.png/revision/latest/scale-to-width-down/345?cb=20160620014755
     #        passives:
-    #          - name: Dodge -2
+    #          - name: Abilities targeting you have ⛨-2
     #            text: ""
     #        default_abilities:
     #          - name: Scrap Gun
@@ -1263,7 +1268,7 @@ sets:
     #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
     #              Spend 5 charges:
     #                Heavy Pulse Rifle range becomes 6
-    #                Your attacks are undodgeable and can't take penalties.
+    #                Your attacks are undefendable and can't take penalties.
     #                Now and at the start of each your turns, you can make a default attack as a Free Action.
     #      - name: Zarya
     #        description: |-
@@ -1663,7 +1668,9 @@ sets:
         health: 6
         speed: 4
         passives:
-          - name: +2 Dodge. All your movement is flying
+          - name: Abilities targeting you have ⛨+2
+            text: ""
+          - name: All your movement is flying
             text: ""
           - name: Enemies cannot act your turn. (No instants, no reactions, etc)
             text: ""
@@ -1707,7 +1714,7 @@ sets:
         passives:
           - name: End
             text: You heal 3, ⚔1 to all adjacent enemies.
-          - name: Cannot dodge.
+          - name: Abilities targeting you are undefendable
             text: ""
         default_abilities:
           - name: Nanobot Whip
@@ -1736,7 +1743,7 @@ sets:
           - name: Hive Frenzy
             text: |-
               Ultimate 4, Free Action:
-              You and adjacent allies have Block⛨+1.
+              You and adjacent allies have Block+1⛨.
               Trigger your end of turn effects twice.
               While you have more than 1hp, you cannot be reduced below 1hp.
               All damage dealt to you is irreducible.
@@ -1746,7 +1753,7 @@ sets:
             speed: 0
             image_url: https://tactics.toren.dev/image_token_Hive Drone_4613030347791667462.jpg
             passives:
-              - name: You and allies in range 2 have Block⛨+1.
+              - name: You and allies in range 2 have Block+1⛨.
                 text: ""
               - name: End
                 text: Enemies in range 2 take ⚔1 irreducible.
@@ -1873,7 +1880,9 @@ sets:
         health: 10
         speed: 2
         passives:
-          - name: Armor 1, cannot dodge
+          - name: -1 Damage received
+            text: ""
+          - name: Abilities targeting you are undefendable
             text: ""
           - name: Size 3
             text: |-
@@ -1888,7 +1897,7 @@ sets:
         default_abilities:
           - name: Heavy Machine Gun
             text: |-
-              +2 Dodge, Range 4, ⚔4
+              ⛨+2, Range 4, ⚔4
         abilities:
           - name: Direct Fire
             text: Move + Standard Action, Take 2 stress, Unlimited range, ⚔4
@@ -2316,10 +2325,6 @@ sets:
   #        text: |-
   #          Summoning creates a new unit.
   #          Summoned units cannot act the turn they are summoned, and activate at the same time as their summoner.
-  #      - name: Will
-  #        text: |-
-  #          Certain attacks are "Vs Will" rather than defense. Defenses such as dodge do not apply.
-  #          Characters may have + Will defense.
   #      - name: Disengagement
   #        text: |-
   #          Moving from a space adjacent to an enemy to a space not adjacent to that enemy costs 1 additional point of movement.
@@ -2341,7 +2346,7 @@ sets:
   #          - name: Kill
   #            text: All Viktorias heal 2
   #          - name: Death
-  #            text: All other Viktorias heal 2 and permanently gain +2 Dodge, +2 Will
+  #            text: All other Viktorias heal 2 and permanently gain "Abilities targeting you have ⛨+2"
   #        default_abilities:
   #          - name: Enchanted Katana
   #            text: |-
@@ -2507,7 +2512,7 @@ sets:
   #        speed: 4
   #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679624896-DNSEY1BSLCMXCG5OT8VT/M2E_Seamus.png
   #        passives:
-  #          - name: +2 Will, +2 Dodge
+  #          - name: Abilities targeting you have +2⛨
   #            text: ''
   #          - name: Attacked
   #            text: |-
@@ -2691,7 +2696,9 @@ sets:
   #            speed: 4
   #            image_url: https://i.ytimg.com/vi/63A_tJ8wPds/maxresdefault.jpg
   #            passives:
-  #              - name: Dodge +2, Armor +1
+  #              - name: Abilities targeting you have +2⛨
+  #                text: ""
+  #              - name: -1 Damage received
   #                text: ""
   #              - name: Damaged
   #                text: Attacker takes 1 damage
@@ -2723,7 +2730,9 @@ sets:
   #        speed: 3
   #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561406454403-LXJLZQ5JOLVVC9M8WHBB/M3E_Dreamer.png
   #        passives:
-  #          - name: Armor +1, Dodge +2
+  #          - name: -1 Damage received
+  #            text: ''
+  #          - name: Abilities targeting you have +2⛨
   #            text: ''
   #          - name: Diversion
   #            text: Enemies in range 2 cannot use Free Actions.
@@ -2747,7 +2756,7 @@ sets:
   #            speed: 4
   #            image_url: https://gusladogames.files.wordpress.com/2015/04/lcbsmall.jpg
   #            passives:
-  #              - name: Dodge +2
+  #              - name: Abilities targeting you have +2⛨
   #                text: ''
   #              - name: Start
   #                text: Heal 2
@@ -2760,7 +2769,7 @@ sets:
   #            speed: 3
   #            image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc8hSzXnwyWPFUDyUoXQlrKu2m5by3oZ4y1-CLUYsD6F2J7hQ2wdwX0P4zH0Jq9lpe50U&usqp=CAU
   #            passives:
-  #              - name: Allies in range 1 have Dodge +1
+  #              - name: Abilities targeting allies in range 1 have +1⛨
   #                text: ''
   #              - name: Nightmares Made Real
   #                text: |-
@@ -2781,7 +2790,7 @@ sets:
   #        speed: 3
   #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561391468145-0KLLOT8NOW46VZKHY0NR/M3E_Colette.png
   #        passives:
-  #          - name: Dodge +2
+  #          - name: Abilities targeting you have +2⛨
   #            text: ""
   #          - name: Attacked, 1-2
   #            text: Take 1 less damage, then exile this.
@@ -2904,7 +2913,7 @@ sets:
   #        speed: 3
   #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561399760452-BICZM3YT16TN1G4EHMDT/M3E_Somer.png
   #        passives:
-  #          - name: +1 Dodge per adjacent ally
+  #          - name: Abilities targeting you have +1⛨ for each adjacent ally
   #            text: ''
   #          #            - name: After ally rolls, 1/turn
   #          #              text: |-
@@ -2934,7 +2943,7 @@ sets:
   #            speed: 3
   #            image_url: https://static.wikia.nocookie.net/monster/image_2/28/78BA677E-3FAB-4B1B-B634-6F957678BFFE.jpeg/revision/latest/scale-to-width-down/384?cb=20180814214132
   #            passives:
-  #              - name: +1 Dodge per adjacent ally
+  #              - name: Abilities targeting you have +1⛨ for each adjacent ally
   #                text: ''
   #              - name: Death
   #                text: You draw a card.
@@ -2974,7 +2983,7 @@ sets:
   #            text: |-
   #              On rounds 3 and 6, you deal +.5x damage and always roll 6s.
   #          - name: Trigrammaton
-  #            text: Against targets in exactly range 3, your attacks have +2 crit, -2 dodge.
+  #            text: Against targets in exactly range 3, your abilities have +2 crit, -2⛨.
   #        default_abilities:
   #          - name: Strafe Shot
   #            text: |-
@@ -2985,7 +2994,7 @@ sets:
   #        abilities:
   #          - name: Trick Shot
   #            text: |-
-  #              Your next Action with range has -2 dodge and can draw range from an ally in its range.
+  #              Your next Action with a range has -2⛨ and can draw range from an ally in its range.
   #              Gain Stealth (can only be targeted from range 1) until the start of your next turn.
   #          - name: Paradiso
   #            text: |-
@@ -3323,7 +3332,7 @@ sets:
               At start of your turn, heal them 4, with excess healing as overshield. Move up to their speed-3.
           - name: Blutsauger
             text: |-
-              Range 3, +2 dodge, 2⚔, heal equal to damage dealt.
+              Range 3, +2⛨, 2⚔, heal equal to damage dealt.
         tokens:
           - name: Healing Target
             image_url: https://tactics.toren.dev/image_token_Healing Target_-4590313136682746411.jpg
@@ -3413,8 +3422,8 @@ sets:
               - name: There is an enemy in range 5
                 text: |-
                   Tap, Mandatory Interrupt:
-                  If upgraded: Nearest enemy in range 5, undodgeable ⚔6, ⚔1 to others in burst 1, push 1.
-                  Else: Nearest enemy in range 5, undodgeable ⚔3
+                  If upgraded: Nearest enemy in range 5, undefendable, ⚔6, ⚔1 to others in burst 1, push 1.
+                  Else: Nearest enemy in range 5, undefendable, ⚔3
                   
                   If this attack passes through an ally, it hits that ally instead.
               - name: Immune to forced movement.
@@ -3614,7 +3623,7 @@ sets:
         passives:
           - name: All your movement is Flying.
             text: ''
-          - name: Dodge⛨+2
+          - name: Abilities targeting you have ⛨+2
             text: ''
           - name: When you make a Basic Move Action
             text: You may use any unspent movement at the end of your turn.
