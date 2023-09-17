@@ -312,7 +312,7 @@ sets:
         speed: 3
         image_url: https://tactics.toren.dev/image_token_Mercy_8373339493272516722.jpg
         passives:
-          - name: Start
+          - name: Start of turn
             text: If you did not take damage since the start of your last turn, Heal 3.
           - name: Ally dies
             text: |-
@@ -1713,7 +1713,7 @@ sets:
           - Self Healing
           - Melee AoE Tank
         passives:
-          - name: End
+          - name: End of turn
             text: You heal 3, ⚔1 to all adjacent enemies.
           - name: Abilities targeting you are undefendable
             text: ""
@@ -1756,7 +1756,7 @@ sets:
             passives:
               - name: Abilities targeting you or allies in burst 2 have +1⛨.
                 text: ""
-              - name: End
+              - name: End of turn
                 text: Enemies in range 2 take ⚔1 irreducible.
       - name: Goblin
         health: 6
@@ -2337,7 +2337,7 @@ sets:
   #        passives:
   #          - name: Deploy
   #            text: Create a copy of this in your deploy zone, without this ability.
-  #          - name: Start
+  #          - name: Start of turn
   #            text: |-
   #              Another Viktoria in range 4 may teleport adjacent to this.
   #              Teleport up to 1.
@@ -2368,7 +2368,7 @@ sets:
   #        speed: 3
   #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561056426702-ONTY0Y5Z5WVKNCXBMQ7M/M3E_Rasputina.png
   #        passives:
-  #          - name: End
+  #          - name: End of turn
   #            text: |-
   #              Enemies adjacent to an ice pillar are stunned (-1 Action).
   #          - name: Damaged
@@ -2455,10 +2455,10 @@ sets:
   #        speed: 3
   #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561403537939-XVHASDUFXUCQBA0AO133/M3E_Zoraida.jpg
   #        passives:
-  #          - name: Start
+  #          - name: Start of turn
   #            text: |-
   #              Enemies adjacent to this or an ally must discard a fate card or get Silence
-  #          - name: End
+  #          - name: End of turn
   #            text: |-
   #              This may discard a card to summon a Voodoo Doll in range 1 (limit 1).
   #          - name: Eyes in the Night
@@ -2492,7 +2492,7 @@ sets:
   #                text: Enemies with Voodoo attachments take 1 damage.
   #              - name: Gains Condition
   #                text: Enemies with Voodoo attachments get the same condition with value +1.
-  #              - name: Start
+  #              - name: Start of turn
   #                text: End all conditions on this.
   #              - name: Death
   #                text: All enemies lose all Voodoo attachments.
@@ -2518,7 +2518,7 @@ sets:
   #          - name: Damaged
   #            text: |-
   #              If this has 2 or more health, it cannot be reduced below 1 health.
-  #          - name: Start
+  #          - name: Start of turn
   #            text: |-
   #              At start of activation, this may make a default attack targeting each enemy adjacent to this.
   #          - name: Attacking
@@ -2549,7 +2549,7 @@ sets:
   #        passives:
   #          - name: Armor +1
   #            text: ''
-  #          - name: End
+  #          - name: End of turn
   #            text: Enemies with DoT in range 2 take 1 damage.
   #          - name: Perverse Metabolism
   #            text: This and allies heal from DoT instead of taking damage.
@@ -2576,7 +2576,7 @@ sets:
   #            speed: 3
   #            image_url: https://static.wikia.nocookie.net/monster/image_e/e9/ZombieChihuahuaimage.jpg/revision/latest/scale-to-width-down/384?cb=20170506224224
   #            #                passives:
-  #            #                  - name: End
+  #            #                  - name: End of turn
   #            #                    text: All adjacent units get DoT +1
   #            default_abilities:
   #              - name: Bite
@@ -2592,7 +2592,7 @@ sets:
   #        passives:
   #          - name: Attacked
   #            text: The attacker takes 1 irreducible damage.
-  #          - name: End
+  #          - name: End of turn
   #            text: |-
   #              Enemy units in range 2 take 1 damage.
   #              Heal 1
@@ -2626,7 +2626,7 @@ sets:
   #                text: ''
   #              - name: Attacked
   #                text: Attacker takes ⚔1 irreducible
-  #              - name: End
+  #              - name: End of turn
   #                text: |-
   #                  Enemy units in range 2 take ⚔1.
   #            default_abilities:
@@ -2640,7 +2640,7 @@ sets:
   #            passives:
   #              - name: Attacked
   #                text: Attacker takes ⚔1 irreducible
-  #              - name: End
+  #              - name: End of turn
   #                text: Burst 2, ⚔2 irreducible
   #              - name: Withering Away
   #                text: Enemies within range 2 cannot heal
@@ -2660,7 +2660,7 @@ sets:
   #            text: Attacker takes 1 damage
   #          - name: Attacked
   #            text: May discard a card to change the target to one of your summons.
-  #          - name: End
+  #          - name: End of turn
   #            text: |-
   #              For each enemy in range 2, deal 1 damage to them and heal 1.
   #              Take 1 damage for each of your summons.
@@ -2754,7 +2754,7 @@ sets:
   #            passives:
   #              - name: Abilities targeting you have +2⛨
   #                text: ''
-  #              - name: Start
+  #              - name: Start of turn
   #                text: Heal 2
   #            default_abilities:
   #              - name: Bite
@@ -2794,7 +2794,7 @@ sets:
   #            text: |-
   #              Place this adjacent to an ally,
   #              then give adjacent enemies Distracted +1
-  #          - name: End
+  #          - name: End of turn
   #            text: |-
   #              Distracted enemies in range 2 are Silenced.
   #        default_abilities:
@@ -2827,7 +2827,7 @@ sets:
   #        speed: 4
   #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561056384019-ABG7PJH49JLVV0FPY0JV/M3E_Marcus.png
   #        passives:
-  #          - name: Start
+  #          - name: Start of turn
   #            text: |-
   #              Discard all Mutation Upgrades on this,
   #              then this may attach a Mutation Upgrade.
@@ -2966,7 +2966,7 @@ sets:
   #          - name: Deploy
   #            text: |-
   #              Place a Seraph marker in range 1.
-  #          - name: End
+  #          - name: End of turn
   #            text: Your Seraph may move 3, then all units in range exactly 3, ⚔1.
   #          - name: Finesse
   #            text: |-
@@ -3315,7 +3315,7 @@ sets:
         speed: 3
         image_url: https://tactics.toren.dev/image_token_Medic_8600829047325073678.jpg
         passives:
-          - name: Start
+          - name: Start of turn
             text: Heal 1
         default_abilities:
           - name: Medigun
@@ -3428,7 +3428,7 @@ sets:
             passives:
               - name: When this gets an Upgrade token, it gets +4hp max hp.
                 text: ''
-              - name: End
+              - name: End of turn
                 text: |-
                   Tap:
                   If upgraded: Other allies in range 1 heal 4.
