@@ -1,2 +1,2 @@
-export const appName = 'Crossover Tactics'
-export const appDescription = 'Crossover Tactics'
+export const appName = 'Tabletop Teamfight'
+export const appDescription = 'Tabletop Teamfight'

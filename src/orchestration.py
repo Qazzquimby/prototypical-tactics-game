@@ -98,7 +98,7 @@ def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder: ImageBu
         library_to_tts_dict(
             library=library,
             image_builder=image_builder,
-            file_name="Crossover Tactics",
+            file_name="Tabletop Teamfight",
         ),
     )
 
@@ -118,6 +118,6 @@ def load_game_from_yaml_path(yaml_path: str):
 
 
 def save_tts(tts_json: dict, save_dir: Path, file_name: str):
-    path = save_dir / f"Crossover_Tactics.json"
+    path = save_dir / f"TabletopTeamfight.json"
     with open(path, "w") as outfile:
         json.dump(tts_json, outfile)
