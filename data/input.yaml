@@ -74,7 +74,7 @@ conditions:
   Slow: &Slow
     name: Slow
     image_url: https://tactics.toren.dev/image_token_Slow_1902566325755039578.jpg
-    text: You have -2 Speed, to a minimum of 1. Abilities targeting you are undefendable. Clear at the end of your turn.
+    text: You have -2 Speed, to a minimum of 1. You are undefendable. Clear at the end of your turn.
   Stun: &Stun
     name: Stun
     image_url: https://tactics.toren.dev/image_token_Stun_-947718855703478726.jpg
@@ -255,7 +255,7 @@ sets:
           - name: Infra-Sight
             text: |-
               Ultimate 3, Free Action:
-              Abilities targeting enemies are undefendable. 
+              Enemies are undefendable.
               Enemies cannot be untargetable.
               All allies have +2 crit
       - name: Tracer
@@ -707,10 +707,11 @@ sets:
             text: |-
               Enter Assault Stance:
                 +1 armor.
-                You are slowed (-2 speed, min 1, abilities targeting you are undefendable), and immune to forced movement.
+                You are continually slowed and immune to forced movement.
                 You receive +2 crit from range 1.
                 Exit when you lose an Action, or as a Free Action at the end of your turn.
             tokens:
+              - *Slow
               - name: Assault Stance
                 image_url: https://tactics.toren.dev/image_token_Assault Stance_8059418691088752205.jpg
           - name: A-36 Tactical Grenade
@@ -847,7 +848,7 @@ sets:
     #        speed: 3
     #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
     #        passives:
-    #          - name: Abilities targeting you are undefendable, +1 Crit received
+    #          - name: You are undefendable, +1 Crit received
     #            text: ""
     #          - name: Eject
     #            text: |-
@@ -1578,7 +1579,7 @@ sets:
         passives:
           - name: Take -.5x damage from all sources
             text: ""
-          - name: Non-AoE undefendable abilities targeting you or adjacent allies miss on a roll of 1-2.
+          - name: Undefendable abilities targeting you or adjacent allies miss on a roll of 1-2.
             text: ""
         default_abilities:
           - name: Magnetic Cannon
@@ -1619,7 +1620,7 @@ sets:
             speed: 0
             image_url: https://tactics.toren.dev/image_token_ICEOUT Drone_8440680050213633667.jpg
             passives:
-              - name: You and adjacent units cannot use non-AoE undefendable abilities, or be targeted by non-AoE undefendable abilities.
+              - name: You and adjacent units cannot use or be targeted by undefendable abilities.
                 text: ""
       - name: Death's Head
         description: |-
@@ -1628,7 +1629,7 @@ sets:
         health: 6
         speed: 3
         passives:
-          - name: Your first attack each turn is undefendable.
+          - name: Your first ability each turn is undefendable.
             text: ""
           - name: You ignore elevation when moving.
             text: ""
@@ -1715,7 +1716,7 @@ sets:
         passives:
           - name: End of turn
             text: You heal 3, ⚔1 to all adjacent enemies.
-          - name: Abilities targeting you are undefendable
+          - name: You are undefendable
             text: ""
         default_abilities:
           - name: Nanobot Whip
@@ -1765,7 +1766,7 @@ sets:
         description: |-
           - Fragile Trickster
         passives:
-          - name: Targeted by non-AoE undefendable ability
+          - name: Targeted by a undefendable ability
             text: You may give the caster 3 Stress.
         abilities:
           - name: False Idol
@@ -1880,7 +1881,7 @@ sets:
         passives:
           - name: -1 Damage received
             text: ""
-          - name: Abilities targeting you are undefendable
+          - name: You are undefendable
             text: ""
           - name: Size 3
             text: |-
@@ -2087,6 +2088,7 @@ sets:
               as⚔X to the target and enemies in burst 1 of it.
         units:
           - name: Illusion (Anti-Mage)
+            count: 5
             image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/antimage.png
             health: 1
             speed: 3

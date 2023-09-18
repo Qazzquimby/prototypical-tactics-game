@@ -5,8 +5,7 @@ from pathlib import Path
 
 import yaml.scanner
 
-from schema import yaml_parsing
-from schema.yaml_parsing import Game
+from src import yaml_parsing
 from src.global_settings import global_config
 
 from src.image_builders import ImageBuilder
@@ -14,6 +13,7 @@ from src.library import game_to_library
 from src.paths import data_dir, site_public_dir
 from src.tts_dir import try_and_find_save_games_folder
 from src.tts_objects import library_to_tts_dict
+from src.yaml_parsing import Game
 
 
 def build(image_builder):
@@ -29,7 +29,7 @@ def build(image_builder):
 
 
 def save_schema():
-    schema = yaml_parsing.Game.schema_json()
+    schema = Game.schema_json()
     with open(data_dir / "game_schema.json", "w") as f:
         f.write(schema)
 

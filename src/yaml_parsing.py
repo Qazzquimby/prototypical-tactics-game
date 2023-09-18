@@ -12,6 +12,7 @@ from domain.bag import Bag
 from domain.card import DomainMap
 from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
+from src.drawing.duplicate_units import duplicate_number_to_letter, make_duplicate_image
 from src.drawing.size_constants import CARD_SIZE, DIE_SPACING
 
 from src.spawning_lua import get_full_lua, scale_size, clean_string_for_lua
@@ -193,13 +194,23 @@ class Card(BaseModel, Spawnable):
         return full_spawning_lua
 
 
+@lru_cache
+def get_unit_image_url(unit_card, duplicate_number=None):
+    duplicate_image_url = unit_card.image_url
+    if duplicate_number is not None:
+        duplicate_image = make_duplicate_image(unit_card.image_url, duplicate_number)
+        duplicate_image_url = duplicate_image.url
+    return duplicate_image_url
+
+
 class UnitCard(Card, Figurine):
     speed: int
     health: int
     passives: list[Passive] = []
     default_abilities: list[Active] = []
+    count: int = 1
 
-    def get_html(self):
+    def get_html(self, duplicate_number=None):
         passives = "\n".join([f"<p>{str(passive)}</p>" for passive in self.passives])
         default_abilities = "\n".join(
             [f"{str(ability)}" for ability in self.default_abilities]
@@ -207,12 +218,19 @@ class UnitCard(Card, Figurine):
 
         separator = "<p> - - -</p>" if passives and default_abilities else ""
 
-        safe_url = self.image_url.replace(" ", "%20").replace("'", "%27")
+        image_url = get_unit_image_url(self, duplicate_number)
+        safe_url = image_url.replace(" ", "%20").replace("'", "%27")
+
+        duplicate_name = self.name
+        if duplicate_number is not None:
+            duplicate_name = (
+                f"{self.name} {duplicate_number_to_letter(duplicate_number)}"
+            )
 
         content = f"""\
 <div class="card" style="background-image: url({safe_url})">
     <p class="card-title-bar">
-    <span class="card-name">{self.name}</span>
+    <span class="card-name">{duplicate_name}</span>
     <span class="stats">🦶🏼{self.speed} | ❤️{self.health}</span>
     </p>
     

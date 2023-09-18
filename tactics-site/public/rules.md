@@ -199,9 +199,11 @@ All rolls are done with a 6-sided die.
 If an ability has a ⛨ (defense value), maximum 5, and the caster rolls *less or equal* to the ⛨,
 then each target can choose to not be affected by the ability.
 
-If an ability is "undefendable", the ⛨ is always 0.
+- If an ability is "undefendable", the ⛨ is always 0.
 
-**AoE abilities are undefendable.**
+- If a unit is "undefendable", the ⛨ or abilities targeting them is always 0. 
+
+- AoE abilities always have 0⛨, but are not considered "undefendable".
 
 ### Critical Hits
 

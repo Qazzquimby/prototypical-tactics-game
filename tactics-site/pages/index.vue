@@ -1,17 +1,12 @@
 <script setup lang="ts">
 import yaml from 'js-yaml'
 import type { Game } from 'composables/gameTypes'
-import MarkdownIt from 'markdown-it'
 import { get_image_path } from '~/composables/imagePath'
 import Hero from '~/components/Hero.vue'
+import RulesMarkdown from '~/components/RulesMarkdown.vue'
 
 const yamlText = ref('')
 const yamlContent = ref<Game>()
-
-const md = new MarkdownIt()
-const markdownFile = await fetch('/rules.md')
-const markdownText = await markdownFile.text()
-const rulesMarkdown = md.render(markdownText)
 
 onMounted(async () => {
   const response = await fetch('/input.yaml')
@@ -24,7 +19,7 @@ onMounted(async () => {
   <div v-if="yamlContent" m-4 font-sans md:m-6>
     <ICollapsible>
       <ICollapsibleItem title="Core Rules">
-        <div v-html="renderMarkdown(rulesMarkdown)" />
+        <RulesMarkdown />
       </ICollapsibleItem>
       <ICollapsibleItem
         v-for="set of yamlContent.sets" :key="set.name" :title="set.name" accordion

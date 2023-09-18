@@ -2087,6 +2087,7 @@ sets:
               as⚔X to the target and enemies in burst 1 of it.
         units:
           - name: Illusion (Anti-Mage)
+            count: 5
             image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/antimage.png
             health: 1
             speed: 3
