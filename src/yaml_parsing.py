@@ -13,6 +13,7 @@ from domain.card import DomainMap
 from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
 from src.drawing.duplicate_units import duplicate_number_to_letter, make_duplicate_image
+from src.drawing.self_host_tokens import TokenImage
 from src.drawing.size_constants import CARD_SIZE, DIE_SPACING
 
 from src.spawning_lua import get_full_lua, scale_size, clean_string_for_lua
@@ -537,6 +538,19 @@ class GameSet(BaseModel):
 class Game(BaseModel):
     rules: list[RulesCard] = []
     sets: list[GameSet]
+
+    def get_token_images(self):
+        token_images: list[TokenImage] = []
+        for game_set in self.sets:
+            for hero in game_set.heroes:
+                for card in hero.cards:
+                    if isinstance(card, UnitCard):
+                        token_image = TokenImage(url=card.image_url, name=card.name)
+                        token_images.append(token_image)
+                    for token in card.tokens:
+                        token_image = TokenImage(url=token.image_url, name=token.name)
+                        token_images.append(token_image)
+        return token_images
 
 
 def read_yaml_file(yaml_path: str) -> dict:

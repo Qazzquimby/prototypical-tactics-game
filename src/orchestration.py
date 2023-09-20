@@ -6,6 +6,7 @@ from pathlib import Path
 import yaml.scanner
 
 from src import yaml_parsing
+from src.drawing.self_host_tokens import filter_unsaved_image_urls, host_external_images
 from src.global_settings import global_config
 
 from src.image_builders import ImageBuilder
@@ -17,6 +18,18 @@ from src.yaml_parsing import Game
 
 
 def build(image_builder):
+    save_schema()
+    copy_yaml_to_site()
+
+    save_dir = Path(try_and_find_save_games_folder())
+    yaml_file_to_tts_save(
+        yaml_path=str(data_dir / "input.yaml"),
+        save_dir=save_dir,
+        image_builder=image_builder,
+    )
+
+
+def build_production(image_builder):
     save_schema()
     copy_yaml_to_site()
 
@@ -88,11 +101,12 @@ def prune_for_playtest(game: Game):
 def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder: ImageBuilder):
     game = load_game_from_yaml_path(yaml_path)
 
+    if global_config["production"]:
+        host_external_images(game)
+
     if global_config["prune_for_playtest"]:
         prune_for_playtest(game)
     library = game_to_library(game)
-
-    # all_text_fields = get_all_text_fields(game)
 
     tts_dict = asyncio.run(
         library_to_tts_dict(
