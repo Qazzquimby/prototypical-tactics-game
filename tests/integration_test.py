@@ -1,6 +1,6 @@
 import asyncio
 
-from src.paths import data_dir
+from src.paths import DATA_DIR
 from schema.yaml_parsing import (
     GameSet,
     HeroDeck,
@@ -47,7 +47,7 @@ BASIC_GAME = Game(
 def test_basic_char():
     game = BASIC_GAME
 
-    image_builder = DirectoryImagesBuilder(pygame, base_path=data_dir / "images")
+    image_builder = DirectoryImagesBuilder(pygame, base_path=DATA_DIR / "images")
     # image_builder = ImgBoxImagesBuilder(pygame, project_name="TestGame")
 
     actual_tts_dict = game_to_tts_dict(game, image_builder)
@@ -704,7 +704,7 @@ EXPECTED_TTS_JSON = r"""{
 
 def game_to_tts_dict(game: Game, image_builder=None) -> dict:
     if image_builder is None:
-        image_builder = DirectoryImagesBuilder(pygame, base_path=data_dir / "images")
+        image_builder = DirectoryImagesBuilder(pygame, base_path=DATA_DIR / "images")
     library = game_to_library(game)
     tts_dict = asyncio.run(
         library_to_tts_dict(

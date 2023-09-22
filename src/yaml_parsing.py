@@ -559,6 +559,11 @@ def read_yaml_file(yaml_path: str) -> dict:
     return yaml_content
 
 
+def write_yaml_file(path: str, content_dict: dict):
+    with open(path, "w", encoding="utf8") as yaml_file:
+        yaml.safe_dump(content_dict, yaml_file, sort_keys=False, allow_unicode=True)
+
+
 def make_deck_name(character_name: str):
     return character_name
     # return f"{character_name} deck"

@@ -11,7 +11,7 @@ from src.global_settings import global_config
 
 from src.image_builders import ImageBuilder
 from src.library import game_to_library
-from src.paths import data_dir, site_public_dir
+from src.paths import DATA_DIR, SITE_PUBLIC_DIR
 from src.tts_dir import try_and_find_save_games_folder
 from src.tts_objects import library_to_tts_dict
 from src.yaml_parsing import Game
@@ -23,7 +23,7 @@ def build(image_builder):
 
     save_dir = Path(try_and_find_save_games_folder())
     yaml_file_to_tts_save(
-        yaml_path=str(data_dir / "input.yaml"),
+        yaml_path=str(DATA_DIR / "input.yaml"),
         save_dir=save_dir,
         image_builder=image_builder,
     )
@@ -35,7 +35,7 @@ def build_production(image_builder):
 
     save_dir = Path(try_and_find_save_games_folder())
     yaml_file_to_tts_save(
-        yaml_path=str(data_dir / "input.yaml"),
+        yaml_path=str(DATA_DIR / "input.yaml"),
         save_dir=save_dir,
         image_builder=image_builder,
     )
@@ -43,14 +43,14 @@ def build_production(image_builder):
 
 def save_schema():
     schema = Game.schema_json()
-    with open(data_dir / "game_schema.json", "w") as f:
+    with open(DATA_DIR / "game_schema.json", "w") as f:
         f.write(schema)
 
 
 def copy_yaml_to_site():
-    with open(data_dir / "input.yaml", "r") as f:
+    with open(DATA_DIR / "input.yaml", "r") as f:
         input_yaml = f.read()
-    with open(site_public_dir / "input.yaml", "w+") as f:
+    with open(SITE_PUBLIC_DIR / "input.yaml", "w+") as f:
         f.write(input_yaml)
 
 

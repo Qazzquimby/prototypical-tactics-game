@@ -16,9 +16,9 @@ from src.drawing.size_constants import (
     IMAGE_HEIGHT,
 )
 from src.global_settings import global_config
-from src.paths import data_dir
+from src.paths import DATA_DIR
 
-TemplatesPath = data_dir / "templates"
+TemplatesPath = DATA_DIR / "templates"
 
 
 CARD_CSS = make_css()

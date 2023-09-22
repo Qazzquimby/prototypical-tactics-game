@@ -8,7 +8,7 @@ import pysftp
 from pygame import Surface
 from retry import retry
 
-from src.paths import site_url
+from src.paths import SITE_URL
 
 
 class ImageBuilder(abc.ABC):
@@ -80,7 +80,7 @@ class OnlineImagesBuilder(DirectoryImagesBuilder):
 
     async def build(self, image: Surface, file_name: str, file_extension: str):
         await super().build(image, file_name, file_extension)
-        return f"{site_url}/image_{file_name}.{file_extension}"
+        return f"{SITE_URL}/image_{file_name}.{file_extension}"
 
 
 class FtpDirImageBuilder(ImageBuilder):

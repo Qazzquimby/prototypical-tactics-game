@@ -1,7 +1,7 @@
 from pathlib import Path
 
-data_dir = Path("data").absolute()
+DATA_DIR = Path("data").absolute()
 
-site_public_dir = Path("tactics-site").absolute() / "public"
+SITE_PUBLIC_DIR = Path("tactics-site").absolute() / "public"
 
-site_url = "https://tactics.toren.dev/"
+SITE_URL = "https://tactics.toren.dev/"

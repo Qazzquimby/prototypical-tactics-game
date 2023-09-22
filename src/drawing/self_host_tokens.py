@@ -1,10 +1,15 @@
 import hashlib
+import subprocess
 import typing
+from datetime import time
+from pathlib import Path
+from time import sleep
 
 import requests
+import yaml
 
 from src import yaml_parsing
-from src.paths import data_dir, site_public_dir, site_url
+from src.paths import SITE_PUBLIC_DIR, SITE_URL
 
 if typing.TYPE_CHECKING:
     from src.yaml_parsing import Game
@@ -12,6 +17,8 @@ if typing.TYPE_CHECKING:
 IMAGE_URL_KEY = "image_url"
 
 url_replacements = {}
+
+VERSION_PATH = Path(SITE_PUBLIC_DIR / "version.yaml")
 
 
 class TokenImage:
@@ -44,7 +51,11 @@ def host_external_images(game: "Game"):
     for token_image in unsaved_image_urls:
         save_image(token_image)
 
-    bump_version()
+    new_version = bump_version(mode="images")
+    update_git()
+
+    wait_for_version(new_version)
+
 
 # def localize_image_urls(data: dict):
 #     old_data = data.copy()
@@ -69,30 +80,71 @@ def save_image(token_image: TokenImage):
     name = token_image.get_local_name()
     print(f"Saving {name}")
     # if not exists
-    dest_path = site_public_dir / f"{name}.jpg"
+    dest_path = SITE_PUBLIC_DIR / f"{name}.jpg"
     if not dest_path.exists():
         with open(dest_path, "wb+") as f:
             f.write(requests.get(token_image.url).content)
     url_replacements[token_image.url] = (
-        site_url + dest_path.relative_to(site_public_dir).as_posix()
+        SITE_URL + dest_path.relative_to(SITE_PUBLIC_DIR).as_posix()
     )
 
 
 def filter_unsaved_image_urls(token_images: list[TokenImage]) -> list[TokenImage]:
     unsaved_image_urls = []
     for token_image in token_images:
-        if token_image.url.startswith(site_url):
+        if token_image.url.startswith(SITE_URL):
             continue  # already live
 
         local_image_name = token_image.get_local_name()
-        local_image_path = site_public_dir / f"{local_image_name}.jpg"
+        local_image_path = SITE_PUBLIC_DIR / f"{local_image_name}.jpg"
         if not local_image_path.exists():
             unsaved_image_urls.append(token_image)
 
     return unsaved_image_urls
 
-def bump_version():
-    return
+
+def bump_version(mode: typing.Literal["images", "cards"]):
+    version_dict = yaml_parsing.read_yaml_file(str(VERSION_PATH))
+    if version_dict["mode"] == "cards":
+        version_dict["version"] += 1
+
+    version_dict["mode"] = mode
+
+    yaml_parsing.write_yaml_file(path=str(VERSION_PATH), content_dict=version_dict)
+    return version_dict
+
+
+def update_git():
+    subprocess.check_call(["git", "add", SITE_PUBLIC_DIR])
+    subprocess.check_call(["git", "commit", "-m", "update images"])
+    subprocess.check_call(["git", "push"])
+
+
+def wait_for_version(version_dict):
+    # exponential dropoff wait for new version number to be live on site (wait for netlify build)
+    max_wait_seconds = 60 * 5
+    current_wait_seconds = 20
+
+    while True:
+        current_version = fetch_current_version()
+
+        if current_version == version_dict:
+            break
+
+        if current_wait_seconds > max_wait_seconds:
+            print("Waited too long for the expected version to propagate.")
+            break
+
+        print(f"Waiting {current_wait_seconds} seconds before trying again.")
+        sleep(current_wait_seconds)
+        current_wait_seconds *= 2
+
+
+def fetch_current_version():
+    response = requests.get(SITE_URL + "version.yaml")
+    version_dict = yaml.safe_load(response.content)
+    return version_dict
+
 
 # def main():
 #     yaml_path = data_dir / "input.yaml"
