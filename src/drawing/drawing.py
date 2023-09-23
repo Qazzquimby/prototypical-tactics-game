@@ -1,9 +1,12 @@
 import asyncio
+from functools import cache
+from pathlib import Path
 from typing import Union, Coroutine
 
 from playwright.async_api import Playwright
 from pygame import Surface
 
+from domain.card import Card
 from domain.library import Library
 from src.drawing.base import BaseDrawer
 from src.drawing.card_drawer import CardDrawer
@@ -47,7 +50,14 @@ async def draw_library_assets(
             )
         )
 
-    await asyncio.gather(*coroutines)
+    batch_size = 5
+    batches = [
+        coroutines[i : i + batch_size] for i in range(0, len(coroutines), batch_size)
+    ]
+    for batch in batches:
+        await asyncio.gather(*batch)
+
+    # await asyncio.gather(*coroutines)
     await close_browser()
 
 
@@ -58,11 +68,17 @@ def make_image_name(names):
 async def save_image_and_set_attribute(
     image_builder: ImageBuilder,
     drawer: BaseDrawer,
-    card,
+    card: Card,
     file_name: str,
     file_extension: str = "jpg",
     attribute_to_set: str | list[str] = None,
 ):
+    cache_file = Path(f"cache/{card.object.name}.json")
+    if cache_file.exists():
+        cache_content = cache_file.read_text()
+        if cache_content == card.object.content.json():
+            return
+
     if attribute_to_set is None:
         attribute_to_set = ["image_path", "back_image_path"]
 
@@ -78,3 +94,8 @@ async def save_image_and_set_attribute(
 
     for attribute in attribute_to_set:
         card.__setattr__(attribute, path)
+
+    # create cache_file
+    cache_file.parent.mkdir(exist_ok=True, parents=True)
+    cache_file.touch()
+    cache_file.write_text(card.object.content.json())
