@@ -6,7 +6,12 @@ from pathlib import Path
 import yaml.scanner
 
 from src import yaml_parsing
-from src.drawing.self_host_tokens import filter_unsaved_image_urls, host_external_images
+from src.drawing.self_host_tokens import (
+    filter_unsaved_image_urls,
+    host_external_images,
+    bump_version,
+    update_git,
+)
 from src.global_settings import global_config
 
 from src.image_builders import ImageBuilder
@@ -102,7 +107,7 @@ def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder: ImageBu
     game = load_game_from_yaml_path(yaml_path)
 
     if global_config["production"]:
-        host_external_images(game)
+        host_external_images(game, wait=True)
 
     if global_config["prune_for_playtest"]:
         prune_for_playtest(game)
@@ -117,6 +122,10 @@ def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder: ImageBu
     )
 
     save_tts(tts_dict, save_dir=save_dir, file_name=Path(yaml_path).stem)
+
+    bump_version(mode="cards")
+    update_git()
+
     print("Built images")
 
 

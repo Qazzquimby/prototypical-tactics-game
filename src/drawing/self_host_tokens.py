@@ -1,7 +1,6 @@
 import hashlib
 import subprocess
 import typing
-from datetime import time
 from pathlib import Path
 from time import sleep
 
@@ -9,6 +8,7 @@ import requests
 import yaml
 
 from src import yaml_parsing
+from src.global_settings import global_config
 from src.paths import SITE_PUBLIC_DIR, SITE_URL
 
 if typing.TYPE_CHECKING:
@@ -44,33 +44,28 @@ class TokenImage:
 
         return f"image_token_{cleaned_name}_{short_hash}"
 
+    def get_hosted_address(self) -> str:
+        return SITE_URL + self.get_local_name() + ".jpg"
 
-def host_external_images(game: "Game"):
+
+def get_hosted_address(url, name):
+    if global_config["production"]:
+        return TokenImage(url=url, name=name).get_hosted_address()
+    return url
+
+
+def host_external_images(game: "Game", wait=True):
     image_urls = game.get_token_images()
     unsaved_image_urls = filter_unsaved_image_urls(image_urls)
     for token_image in unsaved_image_urls:
         save_image(token_image)
 
-    new_version = bump_version(mode="images")
-    update_git()
+    if unsaved_image_urls:
+        new_version = bump_version(mode="images")
+        update_git()
 
-    wait_for_version(new_version)
-
-
-# def localize_image_urls(data: dict):
-#     old_data = data.copy()
-#     keys = list(data.keys())
-#     for key in keys:
-#         value = data[key]
-#         if isinstance(value, dict):
-#             data[key] = localize_image_urls(data[key])
-#         if isinstance(value, list):
-#             for i, item in enumerate(value):
-#                 if isinstance(item, dict):
-#                     data[key][i] = localize_image_urls(item)
-#         elif key == IMAGE_URL_KEY:
-#             save_image(value, data)
-#     return data
+        if wait:
+            wait_for_version(new_version)
 
 
 def save_image(token_image: TokenImage):

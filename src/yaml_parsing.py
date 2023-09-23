@@ -13,7 +13,7 @@ from domain.card import DomainMap
 from domain.complexObject import ComplexObject
 from domain.complexType import ComplexType
 from src.drawing.duplicate_units import duplicate_number_to_letter, make_duplicate_image
-from src.drawing.self_host_tokens import TokenImage
+from src.drawing.self_host_tokens import TokenImage, get_hosted_address
 from src.drawing.size_constants import CARD_SIZE, DIE_SPACING
 
 from src.spawning_lua import get_full_lua, scale_size, clean_string_for_lua
@@ -41,8 +41,8 @@ class Token(BaseModel, Spawnable):
     def get_spawning_lua(self):
         back_image_url = self.back_image_url or self.image_url
         return f"""\
-        local front="{self.image_url}"
-        local back="{back_image_url}"
+        local front="{get_hosted_address(url=self.image_url, name=self.name)}"
+        local back="{get_hosted_address(url=self.back_image_url, name=self.name+'_back')}"
         local name=[[{clean_string_for_lua(self.name)}]]
         local description=[[{clean_string_for_lua(self.text)}]]
         local s={scale_size(self.size)}
@@ -83,7 +83,7 @@ class Figurine(BaseModel, Spawnable):
 
     def get_spawning_lua(self):
         return f"""\
-    local front="{self.image_url}"
+    local front="{get_hosted_address(self.image_url, name=self.name)}"
     local name="{clean_string_for_lua(self.name)}"
     local s={scale_size(self.size)}
     local my_position = self.getPosition()
@@ -195,12 +195,22 @@ class Card(BaseModel, Spawnable):
         return full_spawning_lua
 
 
-@lru_cache
+unit_image_url_cache = {}
+
+
 def get_unit_image_url(unit_card, duplicate_number=None):
-    duplicate_image_url = unit_card.image_url
-    if duplicate_number is not None:
-        duplicate_image = make_duplicate_image(unit_card.image_url, duplicate_number)
-        duplicate_image_url = duplicate_image.url
+    if duplicate_number is None:
+        return unit_card.image_url
+
+    if unit_card.image_url not in unit_image_url_cache:
+        unit_image_url_cache[unit_card.image_url] = {}
+
+    if duplicate_number in unit_image_url_cache[unit_card.image_url]:
+        return unit_image_url_cache[unit_card.image_url][duplicate_number]
+
+    duplicate_image = make_duplicate_image(unit_card.image_url, duplicate_number)
+    duplicate_image_url = duplicate_image.url
+    unit_image_url_cache[unit_card.image_url][duplicate_number] = duplicate_image_url
     return duplicate_image_url
 
 
@@ -550,6 +560,11 @@ class Game(BaseModel):
                     for token in card.tokens:
                         token_image = TokenImage(url=token.image_url, name=token.name)
                         token_images.append(token_image)
+                        if token.back_image_url:
+                            token_image = TokenImage(
+                                url=token.back_image_url, name=token.name + "_back"
+                            )
+                            token_images.append(token_image)
         return token_images
 
 
