@@ -406,7 +406,7 @@ class Deck(BaseModel):
 
     @property
     def cards(self) -> list[Card]:
-        return self.abilities + self.units
+        return self.abilities + self.units  # todo split out duplicate units
 
 
 class RulesDeck(BaseModel):
@@ -450,8 +450,7 @@ class HeroDeck(Hero, Deck):
                     count=1,
                     obj=ComplexObject(
                         name=deck_name,
-                        type_=AbilityCard.to_complex_type(),
-                        # todo make work for other card types
+                        type_=AbilityCard.to_complex_type(),  # this is used regardless of type
                         content=card,
                     ),
                 ),

@@ -7,7 +7,7 @@ from src.image_builders import DirectoryImagesBuilder
 from src.orchestration import build
 from src.paths import SITE_PUBLIC_DIR
 
-# global_config["prune_for_playtest"] = True
+global_config["prune_for_playtest"] = True
 
 
 def build_local():

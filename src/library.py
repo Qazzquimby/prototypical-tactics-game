@@ -42,9 +42,9 @@ def make_game_set_bag(game_set: GameSet):
         size=2,
         color=(0.0, 0.0, 1.0),
     )
-    for hero_box in game_set.heroes:
-        hero_box_bag = hero_box.get_tts_obj(set_name=game_set.name)
-        hero_bag.contained_objects.append(hero_box_bag)
+    for hero in game_set.heroes:
+        hero_tts_obj = hero.get_tts_obj(set_name=game_set.name)
+        hero_bag.contained_objects.append(hero_tts_obj)
     set_bag.contained_objects.append(hero_bag)
 
     # maps

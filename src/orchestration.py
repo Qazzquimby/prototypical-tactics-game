@@ -1,5 +1,6 @@
 import asyncio
 import json
+import math
 import random
 from pathlib import Path
 
@@ -86,9 +87,18 @@ def prune_for_playtest(game: Game):
             else:
                 other_heroes.append(hero)
 
+    desired_healthy_per_needing = 0.7
+
     min_heroes = 12
     # want 50% heroes needing playtest, 50% other heroes.
-    num_other_heroes = min(min_heroes, len(other_heroes))
+    min_other_heroes = min_heroes - len(heroes_needing_playtest)
+    max_other_heroes = len(other_heroes)
+    desired_other_heroes = math.ceil(
+        len(heroes_needing_playtest) * desired_healthy_per_needing
+    )
+    num_other_heroes = min(
+        max_other_heroes, max(min_other_heroes, desired_other_heroes)
+    )
     random_other_heroes = random.sample(other_heroes, num_other_heroes)
 
     hero_pool = heroes_needing_playtest + random_other_heroes
