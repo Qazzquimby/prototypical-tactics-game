@@ -50,11 +50,11 @@ async def draw_library_assets(
             )
         )
 
-    batch_size = 5
+    batch_size = 10
     batches = [
         coroutines[i : i + batch_size] for i in range(0, len(coroutines), batch_size)
     ]
-    for batch in batches:
+    for i, batch in enumerate(batches):
         await asyncio.gather(*batch)
 
     # await asyncio.gather(*coroutines)
@@ -73,7 +73,7 @@ async def save_image_and_set_attribute(
     file_extension: str = "jpg",
     attribute_to_set: str | list[str] = None,
 ):
-    cache_file = Path(f"cache/{card.object.name}.json")
+    cache_file = Path(f"cache/{file_name}.json")
     if cache_file.exists():
         cache_content = cache_file.read_text()
         if cache_content == card.object.content.json():

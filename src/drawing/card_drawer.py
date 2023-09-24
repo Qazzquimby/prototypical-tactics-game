@@ -74,6 +74,7 @@ class CardDrawer(BaseDrawer):
             )
 
         image_bytes = await page.screenshot()  # path=temp_path)
+        await page.close()
 
         image = pygame.image.load(io.BytesIO(image_bytes), "img.png")
         surf.blit(image, (0, 0))
