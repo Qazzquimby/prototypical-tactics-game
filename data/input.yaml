@@ -1391,7 +1391,8 @@ sets:
           Cleared if they become nonadjacent, or as a Free Action by the member with more health.
       - name: Stress
         text: |-
-          Heroes can gain stress, which persists between battles.
+          Stress is tracked with counter dice.
+          Heroes deploy with 1 stress.
           When a hero gains their second stress die, they take ⚔2 and receive +1x damage.
           When a hero ends their turn with 3 stress dice, they deal burst 1 ⚔2 and die.
         dice:
@@ -1455,21 +1456,20 @@ sets:
           - name: Immune to forced movement.
             text: ""
         default_abilities:
-          - name: Leviathan Heavy Assault Cannon
-            text: |-
-              If not Spun Up, choose one --
-              - Range 4, ⚔2.
-              - Enter Spun Up stance: You are continually slowed. Can exit as a Free Action at the start of your turn.
-              If Spun Up: +3 stress, Range 4, ⚔6
-        tokens:
-          - name: Spun Up
-            image_url: https://tactics.toren.dev/image_token_Spun Up_817474683636700342.jpg
-        abilities:
           - name: Concussion Missiles
             text: |-
               Range 3, ⚔1, Push 2, target gets Impaired.
             tokens:
               - *Impaired
+          - name: Leviathan Heavy Assault Cannon
+            text: |-
+              If not Spun Up, enter Spun Up stance: 
+                You are continually slowed. Can exit as a Free Action at the start of your turn.
+              If Spun Up: +3 stress, Range 4, ⚔6
+        tokens:
+          - name: Spun Up
+            image_url: https://tactics.toren.dev/image_token_Spun Up_817474683636700342.jpg
+        abilities:
           - name: Fortress Protocol
             text: |-
               1/Battle, Free Action at start of turn:
@@ -1651,8 +1651,7 @@ sets:
               Take 3 stress, All in line infinite, ⚔4 irreducible
           - name: Mark for Death
             text: |-
-              Move + Standard Action:
-              Give a unit your Marked for Death Mark.
+              Global, give a unit your Marked for Death Mark.
               You deal +⚔4 to the unit with the mark.
               While a unit has the mark, you are immobilized.
               You may remove the mark as a Free Action at the start of your turn.
@@ -1818,7 +1817,6 @@ sets:
               Standard Action: End this effect
 
       - name: Gorgon
-        polish: [needs_testing]
         description: |-
           - Counterattacker
           - Block for allies
@@ -2038,75 +2036,75 @@ sets:
   - name: Dota 2
     description: Todo
     heroes:
-      - name: Anti-Mage
-        polish: [needs_testing]
-        description: |- 
-          - Teleports
-          - Shut down abilities
-          - Fragile
-          - Cleave damage
-        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/antimage.png
-        health: 6
-        speed: 3
-        default_abilities:
-          - name: Mana Break
-            text: |-
-              Burst 1, ⚔2, put an On Cooldown counter on one of the its non-default abilities.
-        tokens:
-          - *OnCooldown
-        abilities:
-          - name: Blink
-            text: |-
-              2/Battle, Free Action:
-              Remove Anti-Mage from the board and Summon an Illusion in his space, and in an empty space in range 5.
-            dice:
-              - name: Charges
-                color: white
-                values: [ 2 ]
-          - name: Counterspell
-            text: |-
-              2/Battle, Instant +3:
-              Give target unit in LoS (can be you) your Counterspell Marker.
-              Until the start of their next turn, Interrupt when an enemy Targets them:
-              Cancel the ability. The unit with the Counterspell Marker copies the spell, targeting the caster. 
-              Remove Anti-Mage from the board and Summon an Illusion in his space, and range 1 of the caster.
-            dice:
-              - name: Charges
-                color: white
-                values: [ 2 ]
-            tokens:
-              - name: Counterspell
-                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/d/dc/Counterspell_Ally_icon.png/revision/latest?cb=20230809010012
-          - name: Manta Style
-            text: |-
-              1/Battle, Free Action:
-              Remove Anti-Mage from the board and Summon three Illusions in empty spaces in range 2.
-          - name: Mana Void
-            text: |-
-              1/Battle,
-              Range 1, ⚔2 to the target for each of its abilities that are unavailable (eg used up x/Battle, unready ultimate, tapped, etc)
-              as⚔X to the target and enemies in burst 1 of it.
-        units:
-          - name: Illusion (Anti-Mage)
-            count: 4
-            image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/antimage.png
-            health: 1
-            speed: 3
-            passive:
-              - name: Summon
-                text: |-
-                  This gets a visible letter, distinct from any other Illusions from its summoner. 
-                  Choose a Secret letter face down matching one of the newly created Illusions, indicating which is the summoner.
-              - name: Copy Defaults
-                text: This has the Default Abilities of the summoner, but deals -⚔1.
-            default_abilities:
-              - name: Reveal
-                text: |-
-                  Instant, or Mandatory Interrupt when this is changed in any way other than location:
-                  
-                  If this unit's letter matches the Secret:
-                    Reveal the Secret. Replace this with the summoner. Mark all other Illusions as Fake.
-                  Else: mark this as Fake.
+#      - name: Anti-Mage
+#        polish: [needs_testing]
+#        description: |-
+#          - Teleports
+#          - Shut down abilities
+#          - Fragile
+#          - Cleave damage
+#        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/antimage.png
+#        health: 6
+#        speed: 3
+#        default_abilities:
+#          - name: Mana Break
+#            text: |-
+#              Burst 1, ⚔2, put an On Cooldown counter on one of the its non-default abilities.
+#        tokens:
+#          - *OnCooldown
+#        abilities:
+#          - name: Blink
+#            text: |-
+#              2/Battle, Free Action:
+#              Remove Anti-Mage from the board and Summon an Illusion in his space, and in an empty space in range 5.
+#            dice:
+#              - name: Charges
+#                color: white
+#                values: [ 2 ]
+#          - name: Counterspell
+#            text: |-
+#              2/Battle, Instant +3:
+#              Give target unit in LoS (can be you) your Counterspell Marker.
+#              Until the start of their next turn, Interrupt when an enemy Targets them:
+#              Cancel the ability. The unit with the Counterspell Marker copies the spell, targeting the caster.
+#              Remove Anti-Mage from the board and Summon an Illusion in his space, and range 1 of the caster.
+#            dice:
+#              - name: Charges
+#                color: white
+#                values: [ 2 ]
+#            tokens:
+#              - name: Counterspell
+#                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/d/dc/Counterspell_Ally_icon.png/revision/latest?cb=20230809010012
+#          - name: Manta Style
+#            text: |-
+#              1/Battle, Free Action:
+#              Remove Anti-Mage from the board and Summon three Illusions in empty spaces in range 2.
+#          - name: Mana Void
+#            text: |-
+#              1/Battle,
+#              Range 1, ⚔2 to the target for each of its abilities that are unavailable (eg used up x/Battle, unready ultimate, tapped, etc)
+#              as⚔X to the target and enemies in burst 1 of it.
+#        units:
+#          - name: Illusion (Anti-Mage)
+#            count: 4
+#            image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/antimage.png
+#            health: 1
+#            speed: 3
+#            passive:
+#              - name: Summon
+#                text: |-
+#                  This gets a visible letter, distinct from any other Illusions from its summoner.
+#                  Choose a Secret letter face down matching one of the newly created Illusions, indicating which is the summoner.
+#              - name: Copy Defaults
+#                text: This has the Default Abilities of the summoner, but deals -⚔1.
+#            default_abilities:
+#              - name: Reveal
+#                text: |-
+#                  Instant, or Mandatory Interrupt when this is changed in any way other than location:
+#
+#                  If this unit's letter matches the Secret:
+#                    Reveal the Secret. Replace this with the summoner. Mark all other Illusions as Fake.
+#                  Else: mark this as Fake.
       - name: Axe
         polish: [needs_testing]
         description: |- 
@@ -2236,28 +2234,29 @@ sets:
           - name: Poison Touch
             text: |-
               1/Battle
-              Range 2 2x2, ⚔2, target gets Poison Touch.
+              Range 4 2x2, ⚔2, target gets Poison Touch (At start of turn, take 2 damage).
               
               ---
               At the end of your turn, each enemy you did not damage loses Poison Touch.
             tokens:
               - name: Poison Touch
-                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/0/0e/Poison_Touch_icon.png/revision/latest/scale-to-width-down/128?cb=20111005090004
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/0/09/Poison_Touch_icon.png/revision/latest?cb=20111005090005
                 text: |-
-                  You are Slowed.
-                  At start of turn, ⚔1.
+                  At start of turn, take 2 damage.
           - name: Shallow Grave
             text: |-
               1/Battle, Instant +3:
+              You are stunned.
               Range 3, until the start of your next turn, target's hp cannot go below 1, and they receive +0.5x healing.
             tokens:
+              - *Stun
               - name: Shallow Grave
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/6/69/Shallow_Grave_icon.png/revision/latest?cb=20111005090004
                 text: Hp cannot go below 1.
           - name: Shadow Wave
             text: |-
               1/Battle
-              Target yourself, then up to 3 times target another unit in range 2 of an existing target.
+              Target yourself, then any number of times target another unit in range 2 of an existing target.
               Heal each targeted unit 2.
               All enemies in burst 1 of any targeted ally, ⚔2.
           - name: Bad Juju
@@ -2269,34 +2268,97 @@ sets:
               - name: Charges
                 color: white
                 values: [ 2 ]
-
       - name: Drow Ranger
-        polish: [needs_testing]
         description: |- 
           - Ranged dps
           - Slow enemies
         image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/drow_ranger.png
         health: 8
         speed: 3
+        passives:
+          - name: Marksmanship
+            text: |-
+              While there is no adjacent enemy,
+              When you or an ally in LoS uses an ability with range 3+, you deal +1 damage and irreducible damage.
         default_abilities:
           - name: Frost Arrows
             text: |-
               Range 4, ⚔2, slow
+        tokens:
+          - *Slow
         abilities:
           - name: Gust
             text: |-
               1/Battle
               Range 1 2x2, push 2, silence
               Move 2
+            tokens:
+              - *Silence
           - name: Multishot
             text: |-
               1/Battle
               Range 1 3x3, ⚔2, slow
           - name: Glacier
             text: |-
+              1/Battle
+              Create a directional Glacier Wall markers on the edge in front of you, pointing away, and extend it one space to either side.
+              
+              Range drawn through the wall in the wall's direction (away from your starting position) is increased by 1.
+              LoS drawn through the wall against the wall's direction is blocked.
+              The wall blocks movement.
+              
+              The walls are destroyed at the start of your next turn.
 
-#      - name: Drow Ranger
-#      - name: Earth Shaker
+            tokens:
+              - name: Glacier Wall
+                image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPpu9N7SG3xoCnXsQgibEZPZI9LyqBkZoDySxraGRr_xrVo1BjmkX_7Sm7_wXM0qTyBs4&usqp=CAU
+                text: |-
+                  Blocks movement.
+                  Extends range by 1 in direction this points.
+                  Blocks los in opposite direction.
+
+      - name: Earth Shaker
+        polish: [needs_testing]
+        description: |-
+          - AoE stunning
+          - Create impassable barrier
+        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/earthshaker.png
+        health: 10
+        speed: 3
+        passives:
+          - name: After you use a non-default ability.
+            text: |-
+              Enemies in burst 1, 1⚔, give an ability CD 1 max 1.
+        default_abilities:
+          - name: Totem Slam
+            text: |-
+              Range 1, 1⚔ + 2⚔ per Enchant counters you have. Lose all Enchant counters.
+        abilities:
+          - name: Enchant Totem
+            text: |-
+              Fly 3.
+              Gain an Enchant counter.
+          - name: Fissure
+            text: |-
+              1/Battle
+              Infinite line, ⚔2, push to either side, give an ability CD 1 max 1.
+              Fill the line with Fissure markers which block movement but not LoS.
+              
+              Fissure Markers are destroyed at the start of your next turn.
+            tokens:
+              - name: Fissure
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/2/24/Fissure_icon.png/revision/latest?cb=20111005114408
+                text: Blocks movement but not LoS.
+          - name: Echo Slam
+            text: |-
+              Ultimate 4
+              Enemies in burst 3, ⚔2 + 1⚔ per enemy in the area, give an ability CD 1 max 1.
+
+
+
+
+
+#
 #      - name: Lich
 #      - name: Lina
 #      - name: Lion
@@ -3322,7 +3384,7 @@ sets:
         default_abilities:
           - name: Medigun
             text: |-
-              Path range 3, Heal 2, target becomes your Healing Target until the start of your next turn, or if they stop being within path range 4.
+              Path range 3, heal them 1, target becomes your Healing Target until the start of your next turn, or if they stop being within path range 4.
               When they move other than in a standard move, you may copy that movement effect.
               At start of your turn, heal them 4, with excess healing as overshield. Move up to their speed-3.
           - name: Blutsauger
@@ -3339,7 +3401,6 @@ sets:
         abilities:
           - name: Crossbow
             text: 1⛨ per 2 spaces between, 3⚔, or heal 3
-
           - name: Ubersaw
             text: |-
               Range 1, 2⚔, +2crit.
@@ -3551,27 +3612,26 @@ sets:
         image_url: https://tactics.toren.dev/image_token_Soldier_-7639490721796558879.jpg
         health: 10
         speed: 3
-        passives:
-          - name: When you deal damage
-            text: Gain that many Banner charges.
-        dice:
-          - name: Banner
-            color: orange
-            values: [1]
         default_abilities:
           - name: Rocket Launcher
             text: |-
               1⛨+1⛨ per 2 spaces between, 3⚔, 1⚔ to others in burst 1 of target, push target 1.
           - name: Rocket Jump
             text: |-
-              Move Action, take 2⚔, fly 4.
+              Move Action, 1⚔ to others in burst 1, take 3⚔, fly 5.
         abilities:
           - name: Banner
             text: |-
+              When you deal damage to an enemy, gain that many Banner charges.
+              ---
               Spend 8 charges: choose one --
                 - Allies deal +.5x damage.
                 - Allies have armor 1 and do not receive extra damage from crits.
                 - Allies have +1 speed and heal 1 when they deal damage.
+            dice:
+              - name: Banner
+                color: orange
+                values: [ 1 ]
             tokens:
               - name: Buff Banner
                 image_url: https://tactics.toren.dev/image_token_Buff Banner_8047952643345282545.jpg

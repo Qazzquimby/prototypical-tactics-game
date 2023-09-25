@@ -1391,7 +1391,8 @@ sets:
           Cleared if they become nonadjacent, or as a Free Action by the member with more health.
       - name: Stress
         text: |-
-          Heroes can gain stress, which persists between battles. Heroes deploy with 1 stress.
+          Stress is tracked with counter dice.
+          Heroes deploy with 1 stress.
           When a hero gains their second stress die, they take ⚔2 and receive +1x damage.
           When a hero ends their turn with 3 stress dice, they deal burst 1 ⚔2 and die.
         dice:

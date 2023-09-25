@@ -15,6 +15,9 @@ class ImageBuilder(abc.ABC):
     async def build(self, image: Surface, file_name: str, file_extension: str) -> str:
         raise NotImplementedError
 
+    def get_path(self, file_name: str, file_extension: str):
+        raise NotImplementedError
+
     async def initialize(self):
         pass  # by default doesnt need initializing
 
@@ -46,6 +49,9 @@ class ImgBoxImagesBuilder(ImageBuilder):
         result = await self.upload(save_path)
         return result["image_url"]
 
+    def get_path(self, file_name: str, file_extension: str):
+        raise NotImplementedError  # this builder cant get the path without uploading
+
     async def save_to_temp_dir(self, image, file_name, file_extension):
         return await self.images_dir_builder.build(image, file_name, file_extension)
 
@@ -69,8 +75,14 @@ class DirectoryImagesBuilder(ImageBuilder):
         self.base_path = base_path
 
     async def build(self, image: Surface, file_name: str, file_extension: str) -> str:
-        path = self.base_path / f"image_{file_name}.{file_extension}"
+        path = self._get_local_path(file_name, file_extension)
         self.pygame.image.save(image, path)
+
+    def get_path(self, file_name: str, file_extension: str):
+        self._get_local_path(file_name, file_extension)
+
+    def _get_local_path(self, file_name: str, file_extension: str):
+        path = self.base_path / f"image_{file_name}.{file_extension}"
         return f"file:///{path}"
 
 
@@ -80,7 +92,9 @@ class OnlineImagesBuilder(DirectoryImagesBuilder):
 
     async def build(self, image: Surface, file_name: str, file_extension: str):
         await super().build(image, file_name, file_extension)
-        return f"{SITE_URL}/image_{file_name}.{file_extension}"
+
+    def get_path(self, file_name: str, file_extension: str):
+        return f"{SITE_URL}image_{file_name}.{file_extension}"
 
 
 class FtpDirImageBuilder(ImageBuilder):

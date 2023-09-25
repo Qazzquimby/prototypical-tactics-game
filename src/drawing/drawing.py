@@ -73,29 +73,46 @@ async def save_image_and_set_attribute(
     file_extension: str = "jpg",
     attribute_to_set: str | list[str] = None,
 ):
+    set_attribute(
+        image_builder=image_builder,
+        card=card,
+        file_name=file_name,
+        file_extension=file_extension,
+        attribute_to_set=attribute_to_set,
+    )
+
     cache_file = Path(f"cache/{file_name}.json")
     if cache_file.exists():
         cache_content = cache_file.read_text()
         if cache_content == card.object.content.json():
             return
 
-    if attribute_to_set is None:
-        attribute_to_set = ["image_path", "back_image_path"]
-
     image: Union[Surface, Coroutine[Surface]] = drawer.draw(card)
     # if image is promise, resolve
     if isinstance(image, Coroutine):
         image = await image
-    path = await image_builder.build(
+    await image_builder.build(
         image=image, file_name=file_name, file_extension=file_extension
     )
-    if isinstance(attribute_to_set, str):
-        attribute_to_set = [attribute_to_set]
-
-    for attribute in attribute_to_set:
-        card.__setattr__(attribute, path)
 
     # create cache_file
     cache_file.parent.mkdir(exist_ok=True, parents=True)
     cache_file.touch()
     cache_file.write_text(card.object.content.json())
+
+
+def set_attribute(
+    image_builder: ImageBuilder,
+    card: Card,
+    file_name: str,
+    file_extension: str = "jpg",
+    attribute_to_set: str | list[str] = None,
+):
+    if attribute_to_set is None:
+        attribute_to_set = ["image_path", "back_image_path"]
+    path = image_builder.get_path(file_name, file_extension)
+    if isinstance(attribute_to_set, str):
+        attribute_to_set = [attribute_to_set]
+
+    for attribute in attribute_to_set:
+        card.__setattr__(attribute, path)

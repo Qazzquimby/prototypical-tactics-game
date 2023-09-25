@@ -53,12 +53,14 @@ class Token(BaseModel, Spawnable):
         
         local my_position = self.getPosition()
         local my_rotation = self.getRotation()
+        local relative_position = {{x=1, y=1, z=0}}
+        local world_position = self.positionToWorld(relative_position)
         local tint={{ r=0/255, g=0/255,  b=0/255  }}
         
         local obj = spawnObject({{
             type = "Custom_Tile",
-            position = {{x=my_position.x+2, y=my_position.y+1, z=my_position.z}},
-            rotation = {{x=my_rotation.x, y=my_rotation.y, z=my_rotation.z}},
+            position = world_position,
+            rotation = my_rotation,
             scale = {{x=s, y=s, z=s}},
             callback_function = function(newObj)
                 newObj.setName(name)

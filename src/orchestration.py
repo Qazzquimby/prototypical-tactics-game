@@ -35,18 +35,6 @@ def build(image_builder):
     )
 
 
-def build_production(image_builder):
-    save_schema()
-    copy_yaml_to_site()
-
-    save_dir = Path(try_and_find_save_games_folder())
-    yaml_file_to_tts_save(
-        yaml_path=str(DATA_DIR / "input.yaml"),
-        save_dir=save_dir,
-        image_builder=image_builder,
-    )
-
-
 def save_schema():
     schema = Game.schema_json()
     with open(DATA_DIR / "game_schema.json", "w") as f:
