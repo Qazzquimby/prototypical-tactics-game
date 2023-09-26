@@ -79,7 +79,7 @@ class DirectoryImagesBuilder(ImageBuilder):
         self.pygame.image.save(image, path)
 
     def get_path(self, file_name: str, file_extension: str):
-        self._get_local_path(file_name, file_extension)
+        return self._get_local_path(file_name, file_extension)
 
     def _get_local_path(self, file_name: str, file_extension: str):
         path = self.base_path / f"image_{file_name}.{file_extension}"

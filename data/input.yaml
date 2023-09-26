@@ -94,7 +94,7 @@ conditions:
   Silence: &Silence
     name: Silence
     image_url: https://tactics.toren.dev/image_token_Silence_4233379504253462650.jpg
-    text: You do not have Passives. Your other ability cards end all ongoing effects and lose all card text. Clear at the end of your next turn.
+    text: You cannot use non-default abilities. Clear at the end of your next turn.
   Invisible: &Invisible
     name: Invisible
     image_url: https://tactics.toren.dev/image_token_Stealth_7505783149168806103.jpg
@@ -199,7 +199,7 @@ terrain:
     image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI6Vqg51fAEFt-_2pPSiHlHCSbn_VMPpOy7w&usqp=CAU
     size: 1
     text: |-
-      If a unit isn't next to the cover, their Line of Sight only travels one space past it.
+      Abilities passing through cover that does not start adjacent to that cover has +2⛨.
 sets:
   - name: Overwatch
     description: |-
@@ -527,7 +527,7 @@ sets:
           - name: Molten Core
             text: |-
               Ultimate 4:
-                Range 5, three 2x2 areas become Hazard: ⚔2 for enemies.
+                Range 5, up to three 2x2 areas become Hazard: ⚔2 for enemies.
             tokens:
               - name: Molten Core
                 image_url: https://tactics.toren.dev/image_token_Molten Core_8358727934287747602.jpg
@@ -545,7 +545,6 @@ sets:
                   Mandatory.
                   Nearest enemy in LoS, undefendable, ⚔2
       - name: Hanzo
-        polish: [needs_testing]
         description: |-
           - Massive burst damage
           - Long range with accuracy penalty
@@ -598,8 +597,6 @@ sets:
                 text: |-
                   While the beam is active, all spaces in it have Hazard: ⚔7 for enemies.
       - name: Winston
-        polish:
-          - needs_testing
         description: |-
           - Mobile tank
           - Forcefield
@@ -1661,7 +1658,6 @@ sets:
                 text: |-
                   Owner deals +⚔4 to you, so long as you're are not in range 3.
       - name: Dusk Wing
-        polish: [needs_testing, needs_assets]
         description: |-
           - Highly mobile and hard to hit
           - Debuff accuracy
@@ -2000,7 +1996,7 @@ sets:
             text: |- 
               Place a Grounding Mine in LoS, and up to two more within range 1.
               ---
-              Standard action: Detonate any number of Grounding Mines.
+              Free action: Detonate any number of Grounding Mines.
               Each pulls all units in range 3 to the mine's space and immobilizes them.
             tokens:
               - name: Grounding Mine
@@ -2010,7 +2006,7 @@ sets:
           - name: Clamp Bomb
             text: |-
               Unlimited Range, target gets a Clamp Bomb.
-              If they move 3 or more spaces in a turn, they lose the Clamp Bomb.
+              If they move 4 or more spaces in a turn, they lose the Clamp Bomb.
               At the end of their turn, remove the Clamp Bomb and Burst 1, ⚔4, centered on their space.
             tokens:
               - name: Clamp Bomb
@@ -2106,7 +2102,6 @@ sets:
 #                    Reveal the Secret. Replace this with the summoner. Mark all other Illusions as Fake.
 #                  Else: mark this as Fake.
       - name: Axe
-        polish: [needs_testing]
         description: |- 
           - Provoke and counterattack
           - Reflect damage back to attackers
@@ -2218,7 +2213,6 @@ sets:
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/d/de/Freezing_Field_icon.png/revision/latest/scale-to-width-down/128?cb=20111005085503
               - *Slow
       - name: Dazzle
-        polish: [needs_testing]
         description: |- 
           - Save ally from death
           - Close range aoe damage and healing
@@ -2428,9 +2422,8 @@ sets:
       - name: Lina
         polish: [needs_testing]
         description: |-
-          - Disables
-          - Nukes
-          - Steals abilities
+          - Speed and damage increases as more abilities are used
+          - Very high midrange damage
         image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/lina.png
         health: 6
         speed: 2
@@ -2439,6 +2432,10 @@ sets:
             text: ""
           - name: You have +1 move speed per Fiery Soul charge
             text: ""
+        dice:
+          - name: Fiery Soul
+            color: orange
+            values: [ 1 ]
         default_abilities:
           - name: Fireball
             text: |-
@@ -3426,7 +3423,6 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_Fists of Steel_1277847066511706523.jpg
                 text: Receive -1 damage from ranges 2+, and +1x damage from range 1.
       - name: Sniper
-        polish: [needs_testing]
         description: |-
           - Charge up sniper
           - Permanent damage dealt buffs
@@ -3533,7 +3529,6 @@ sets:
                   You and your Healing Target always crit when you hit.
 
       - name: Engineer
-        polish: [needs_testing]
         description: |-
           - Build and maintain stationary support summons
         image_url: https://tactics.toren.dev/image_token_Engineer_6463287448594563119.jpg
@@ -3658,7 +3653,6 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_Pain Train stance_3122338921560184280.jpg
                 text: https://tactics.toren.dev/image_token_Pain Train stance_3122338921560184280.jpg
       - name: Pyro
-        polish: [needs_testing]
         description: |-
           - Damage over time
           - Burst damage
@@ -3681,7 +3675,7 @@ sets:
         default_abilities:
           - name: Flamethrower
             text: |-
-              All in Line 2, 3⚔. 
+              All in Line 2, 2⚔. 
               If they have DoT: +1⚔.
               Else: They get DoT 1.
           - name: Airblast
