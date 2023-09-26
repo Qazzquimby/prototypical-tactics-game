@@ -121,8 +121,9 @@ def yaml_file_to_tts_save(yaml_path: str, save_dir: Path, image_builder: ImageBu
 
     save_tts(tts_dict, save_dir=save_dir, file_name=Path(yaml_path).stem)
 
-    # bump_version(mode="cards")
-    # update_git()
+    if global_config["production"]:
+        bump_version(mode="cards")
+        update_git()
 
     print("Built images")
 

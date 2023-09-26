@@ -2317,7 +2317,7 @@ sets:
                   Extends range by 1 in direction this points.
                   Blocks los in opposite direction.
 
-      - name: Earth Shaker
+      - name: Earthshaker
         polish: [needs_testing]
         description: |-
           - AoE stunning
@@ -2353,14 +2353,117 @@ sets:
             text: |-
               Ultimate 4
               Enemies in burst 3, ⚔2 + 1⚔ per enemy in the area, give an ability CD 1 max 1.
-
-
-
-
-
-#
-#      - name: Lich
-#      - name: Lina
+      - name: Lich
+        polish: [needs_testing]
+        description: |-
+          - Give ally armor
+          - Punish grouped enemies
+          - Debuff mobility
+          - AoE chip damage
+        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/lich.png
+        health: 8
+        speed: 3
+        passives:
+          - name: On death
+            text: |- 
+              You may remove any number of Chain Frost markers, from units or the map. 
+              Cast Chain Frost.
+        default_abilities:
+          - name: Frost Blast
+            text: |-
+              Range 3, ⚔1
+              Burst 1 of target, ⚔1, they deal -1 damage until the end of their next turn.
+            tokens:
+              - name: -1 damage
+                image_url: https://static.thenounproject.com/png/4931042-200.png
+                text: -1 damage. Clear at end of turn.
+        abilities:
+          - name: Frost Shield
+            text: |-
+              1/Battle
+              Ally in LoS gets a Frost Shield marker:
+                +1 Armor
+                At end of turn, enemies in burst 2, ⚔1.
+            tokens:
+              - name: Frost Shield
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/1/1b/Frost_Shield_icon.png/revision/latest?cb=20181124214838
+                text: |-
+                  +1 Armor
+                  At end of turn, enemies in burst 2, ⚔1.
+          - name: Sinister Gaze
+            text: |-
+              1/Battle, Move+Standard Action:
+              Range 4, pull 2, paralyze
+            tokens:
+              - *Paralyze
+          - name: Summon Ice Spire
+            text: |-
+              1/Battle
+              Range 4, create an Ice Spire
+          - name: Chain Frost
+            text: |-
+              1/Battle
+              Enemy or Ice Spire without a Chain Frost marker in range 3, 
+              if enemy: ⚔2 + ⚔2 per Chain Frost marker on this, slow.
+              
+              Remove all Chain Frost markers not on this.
+              If this missed, remove all Chain Frost markers on this.
+              Else put a Chain Frost marker on this, on the target, and on the target's space.
+              ---
+              If there is a Chain Frost marker on the map, at the start of your turn:
+              This ability repeats, cast from the Chain Frost marker on the map.
+          - name: Sacrifice
+            text: |-
+              Destroy an allied unit in range 4.
+              Ready all your abilities.
+        units:
+          - name: Ice Spire
+            health: 4
+            speed: 0
+            image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7b/Ice_Spire_icon.png/revision/latest?cb=20201219001057
+            passives:
+              - name: End of turn
+                text: |-
+                  Enemies in burst 2, ⚔1, they deal -1 damage until the end of their next turn.
+      - name: Lina
+        polish: [needs_testing]
+        description: |-
+          - Disables
+          - Nukes
+          - Steals abilities
+        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/lina.png
+        health: 6
+        speed: 2
+        passives:
+          - name: Your movement is flying
+            text: ""
+          - name: You have +1 move speed per Fiery Soul charge
+            text: ""
+        default_abilities:
+          - name: Fireball
+            text: |-
+              Range 3, ⚔1 + 1⚔ per Fiery Soul charge.
+        abilities:
+          - name: Dragon Slave
+            text: |-
+              1/Battle
+              Line 4, ⚔1 + 1⚔ per Fiery Soul charge, 1 DoT
+              
+              Gain 1 Fiery Soul charge.
+            tokens:
+              - *DoT
+          - name: Light Strike Array
+            text: |-
+              1/Battle
+              Range 3, 2x2, ⚔2 + 1⚔ per Fiery Soul charge, give an ability CD 1 max 1.
+              
+              Gain 1 Fiery Soul charge.
+          - name: Laguna Blade
+            text: |-
+              Ultimate 4
+              Range 4, ⚔2 + 2⚔ per Fiery Soul charge
+              
+              Gain 2 Fiery Soul charges.
 #      - name: Lion
 #      - name: Mirana
 #      - name: Morphling
