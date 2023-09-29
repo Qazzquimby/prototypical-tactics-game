@@ -103,6 +103,10 @@ conditions:
     name: On Cooldown
     image_url: https://cdn-icons-png.flaticon.com/128/2784/2784369.png
     text: You cannot use this ability. Reduce by 1 at end of your next turn.
+  MinusOneDamage: &MinusOneDamage
+    name: Minus One Damage
+    image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKcxoZqKynAwp2twHNABsEkhHN8Cn2CpLW3-xyspNj27828plZUaONzA3xxaEO4cc0rGg&usqp=CAU
+    text: You deal -1 damage. Clear at the end of your turn.
 shared_rules:
   Instant: &RuleInstant
     name: Instant
@@ -1437,7 +1441,6 @@ sets:
               - *Stun
               - *Immobile
       - name: Drake
-        polish: [needs_testing]
         health: 8
         speed: 3
         description: |-
@@ -1658,6 +1661,7 @@ sets:
                 text: |-
                   Owner deals +⚔4 to you, so long as you're are not in range 3.
       - name: Dusk Wing
+        polish: [needs_testing]
         description: |-
           - Highly mobile and hard to hit
           - Debuff accuracy
@@ -1866,7 +1870,6 @@ sets:
         tokens:
           - *Stun
       - name: Barbarossa
-        polish: [needs_testing]
         description: |-
           - Huge artillery tank
         image_url: https://tactics.toren.dev/image_token_Barbarosa_-8861773581727907330.jpg
@@ -1890,7 +1893,7 @@ sets:
         default_abilities:
           - name: Heavy Machine Gun
             text: |-
-              +2⛨, Range 4, ⚔4
+              +2⛨, Range 4, ⚔3
         abilities:
           - name: Direct Fire
             text: Move + Standard Action, Take 2 stress, Unlimited range, ⚔4
@@ -1909,7 +1912,7 @@ sets:
           - name: Apocalypse Rail
             text: |-
               1/Battle, Move + Standard Action:           
-              3x3 in Range 3+, ⚔2*Current round number. 
+              Range 3+ centered 3x3, ⚔2*Current round number. 
               Destroy all walls and terrain in the area.
             tokens:
               - *DestroyedTerrain
@@ -2241,7 +2244,8 @@ sets:
             text: |-
               1/Battle, Instant +3:
               You are stunned.
-              Range 3, until the start of your next turn, target's hp cannot go below 1, and they receive +0.5x healing.
+              Range 3, until the start of your next turn:
+               Target's hp cannot go below 1, they are not considered for objectives, and they receive +0.5x healing.
             tokens:
               - *Stun
               - name: Shallow Grave
@@ -2255,13 +2259,9 @@ sets:
               All enemies in burst 1 of any targeted ally, ⚔2.
           - name: Bad Juju
             text: |-
-              2/Battle, Free Action
+              Free Action
               Take 3 irreducible damage.
               Refresh all your abilities.
-            dice:
-              - name: Charges
-                color: white
-                values: [ 2 ]
       - name: Drow Ranger
         description: |- 
           - Ranged dps
@@ -2323,6 +2323,12 @@ sets:
           - name: After you use a non-default ability.
             text: |-
               Enemies in burst 1, 1⚔, give an ability CD 1 max 1.
+        tokens:
+          - *OnCooldown
+        dice:
+          - name: Enchant
+            color: orange
+            values: [ 1 ]
         default_abilities:
           - name: Totem Slam
             text: |-
@@ -2330,13 +2336,14 @@ sets:
         abilities:
           - name: Enchant Totem
             text: |-
-              Fly 3.
+              Fly 3 in a straight line.
               Gain an Enchant counter.
           - name: Fissure
             text: |-
               1/Battle
-              Infinite line, ⚔2, push to either side, give an ability CD 1 max 1.
-              Fill the line with Fissure markers which block movement but not LoS.
+              Infinite line, to either side.
+              Fill empty spaces in the line with Fissure markers which block movement but not LoS.
+              Enemies adjacent to at least one Fissure marker: ⚔2 and give an ability CD 1 max 1. 
               
               Fissure Markers are destroyed at the start of your next turn.
             tokens:
@@ -2367,10 +2374,8 @@ sets:
             text: |-
               Range 3, ⚔1
               Burst 1 of target, ⚔1, they deal -1 damage until the end of their next turn.
-            tokens:
-              - name: -1 damage
-                image_url: https://static.thenounproject.com/png/4931042-200.png
-                text: -1 damage. Clear at end of turn.
+        tokens:
+          - *MinusOneDamage
         abilities:
           - name: Frost Shield
             text: |-
@@ -2406,6 +2411,10 @@ sets:
               ---
               If there is a Chain Frost marker on the map, at the start of your turn:
               This ability repeats, cast from the Chain Frost marker on the map.
+            tokens:
+              - name: Chain Frost
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/7/77/Chain_Frost_icon.png/revision/latest?cb=20111005120429
+              - *Slow
           - name: Sacrifice
             text: |-
               Destroy an allied unit in range 4.
@@ -2419,6 +2428,8 @@ sets:
               - name: End of turn
                 text: |-
                   Enemies in burst 2, ⚔1, they deal -1 damage until the end of their next turn.
+            tokens:
+              - *MinusOneDamage
       - name: Lina
         polish: [needs_testing]
         description: |-
@@ -2439,7 +2450,7 @@ sets:
         default_abilities:
           - name: Fireball
             text: |-
-              Range 3, ⚔1 + 1⚔ per Fiery Soul charge.
+              Range 3, 1⚔ per Fiery Soul charge.
         abilities:
           - name: Dragon Slave
             text: |-
@@ -2455,6 +2466,8 @@ sets:
               Range 3, 2x2, ⚔2 + 1⚔ per Fiery Soul charge, give an ability CD 1 max 1.
               
               Gain 1 Fiery Soul charge.
+            tokens:
+              - *OnCooldown
           - name: Laguna Blade
             text: |-
               Ultimate 4
@@ -2478,6 +2491,8 @@ sets:
             text: |-
               1/Battle
               Range range 1 4x2 pointing away from you, ⚔2, push 1 in any direction, give an ability CD 1 max 1.
+            tokens:
+              - *OnCooldown
           - name: Hex
             text: |-
               1/Battle
@@ -2506,7 +2521,7 @@ sets:
           - AoE damage
           - Team invisibility
         image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/mirana.png
-        health: 6
+        health: 8
         speed: 3
         default_abilities:
           - name: Archery
@@ -2530,7 +2545,11 @@ sets:
           - name: Leap
             text: |-
               3/Battle, Free Action
-              Fly 3 in a straight line. At end of turn, move 2.
+              Fly 2 in a straight line. At end of turn, move 1.
+            dice:
+              - name: Charges
+                color: white
+                values: [ 3 ]
           - name: Moonlight Shadow
             text: |-
               Ultimate 4
@@ -2585,7 +2604,7 @@ sets:
         polish: [needs_testing]
         description: |-
           - Large aura damage and healing
-        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/necrophos.png
+        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/necrolyte.png
         health: 8
         speed: 3
         passives:
@@ -3520,10 +3539,6 @@ sets:
               Range 1, Choose one --
               - Target a summon with speed 0. Kill it.
               - Target a marker. Remove it.
-            # consider just destroying it
-            tokens:
-              - *Silence
-              - *Paralyze
           - name: Deadringer
             text: |-
               1/Battle, interrupt when you would take damage:
