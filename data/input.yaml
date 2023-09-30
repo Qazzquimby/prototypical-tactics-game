@@ -46,8 +46,8 @@ rules:
       - ⚔ indicates damage dealt.
   - name: Targeting
     text: |-
-      - If an ability targets an area (burst, 2x2, etc), by default it targets all spaces in that area.
-      - A target may choose to be hit, even if an attack would miss them.
+      - If an ability affects an area (burst, 2x2, etc), by default it includes all spaces in that area. This is not targeting.
+      - A unit may choose to be hit, even if an attack would miss them.
       - By default everything can affect both allies and enemies, and will specify otherwise.
       - Technically spaces are targeted, not units. "The unit is targeted" means "the unit's space is targeted".
         - E.g. If, after you declared your attack, the target swapped places with your healer, you'd hit your healer.
@@ -74,23 +74,23 @@ conditions:
   Slow: &Slow
     name: Slow
     image_url: https://tactics.toren.dev/image_token_Slow_1902566325755039578.jpg
-    text: You have -2 Speed, to a minimum of 1. You are undefendable. Clear at the end of your turn.
+    text: You have -2 Speed, to a minimum of 1. You are undefendable. Clear at the end of your next turn.
   Stun: &Stun
     name: Stun
     image_url: https://tactics.toren.dev/image_token_Stun_-947718855703478726.jpg
-    text: You have -1 Standard Action. Clear at the end of your turn.
+    text: You have -1 Standard Action. Clear at the end of your next turn.
   Immobile: &Immobile
     name: Immobile
     image_url: https://cdn-icons-png.flaticon.com/512/4669/4669912.png
-    text: You cannot move yourself. Clear at the end of your turn.
+    text: You cannot move yourself. Clear at the end of your next turn.
   Paralyze: &Paralyze
     name: Paralyze
     image_url: https://tactics.toren.dev/image_token_Paralyze_-2680861371538521442.jpg
-    text: You cannot take actions. Clear at the end of your next turn.
+    text: You cannot take actions. Clear at the end of your next next turn.
   Disarm: &Disarm
     name: Disarm
     image_url: https://static.wikia.nocookie.net/hon_gamepedia/images/8/8a/Icon_Disarm.png/revision/latest?cb=20131108014248
-    text: You cannot use default abilities. Clear at the end of your turn.
+    text: You cannot use default abilities. Clear at the end of your next turn.
   Silence: &Silence
     name: Silence
     image_url: https://tactics.toren.dev/image_token_Silence_4233379504253462650.jpg
@@ -98,11 +98,18 @@ conditions:
   Invisible: &Invisible
     name: Invisible
     image_url: https://tactics.toren.dev/image_token_Stealth_7505783149168806103.jpg
-    text: Abilities targeting you have +3⛨. You don't provoke reactions. You cannot be targeted beyond range 2.
+    text: |-
+#      Abilities targeting you have +2 defense.
+#      You don't provoke reactions.
+      Enemies beyond range 1 cannot target you, and cannot draw AoE that includes you unless it also includes a non-invisible unit.
   OnCooldown: &OnCooldown
     name: On Cooldown
     image_url: https://cdn-icons-png.flaticon.com/128/2784/2784369.png
     text: You cannot use this ability. Reduce by 1 at end of your next turn.
+  MinusOneDamage: &MinusOneDamage
+    name: Minus One Damage
+    image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKcxoZqKynAwp2twHNABsEkhHN8Cn2CpLW3-xyspNj27828plZUaONzA3xxaEO4cc0rGg&usqp=CAU
+    text: You deal -1 damage. Clear at the end of your turn.
 shared_rules:
   Instant: &RuleInstant
     name: Instant
@@ -1437,7 +1444,6 @@ sets:
               - *Stun
               - *Immobile
       - name: Drake
-        polish: [needs_testing]
         health: 8
         speed: 3
         description: |-
@@ -1658,6 +1664,7 @@ sets:
                 text: |-
                   Owner deals +⚔4 to you, so long as you're are not in range 3.
       - name: Dusk Wing
+        polish: [needs_testing]
         description: |-
           - Highly mobile and hard to hit
           - Debuff accuracy
@@ -1866,7 +1873,6 @@ sets:
         tokens:
           - *Stun
       - name: Barbarossa
-        polish: [needs_testing]
         description: |-
           - Huge artillery tank
         image_url: https://tactics.toren.dev/image_token_Barbarosa_-8861773581727907330.jpg
@@ -1890,7 +1896,7 @@ sets:
         default_abilities:
           - name: Heavy Machine Gun
             text: |-
-              +2⛨, Range 4, ⚔4
+              +2⛨, Range 4, ⚔3
         abilities:
           - name: Direct Fire
             text: Move + Standard Action, Take 2 stress, Unlimited range, ⚔4
@@ -1909,7 +1915,7 @@ sets:
           - name: Apocalypse Rail
             text: |-
               1/Battle, Move + Standard Action:           
-              3x3 in Range 3+, ⚔2*Current round number. 
+              Range 3+ centered 3x3, ⚔2*Current round number. 
               Destroy all walls and terrain in the area.
             tokens:
               - *DestroyedTerrain
@@ -1933,7 +1939,7 @@ sets:
         default_abilities:
           - name: Flamethrower
             text: |-
-              Range 1, 2x2 area, ⚔1, give DoT 1
+              Range 1, 2x2 area, ⚔1, get DoT 1
             tokens:
               - *DoT
         abilities:
@@ -2228,7 +2234,7 @@ sets:
           - name: Poison Touch
             text: |-
               1/Battle
-              Range 4 2x2, ⚔2, target gets Poison Touch (At start of turn, take 2 damage).
+              Range 4 2x2, ⚔2, get Poison Touch (At start of turn, take 2 damage).
               
               ---
               At the end of your turn, each enemy you did not damage loses Poison Touch.
@@ -2241,7 +2247,8 @@ sets:
             text: |-
               1/Battle, Instant +3:
               You are stunned.
-              Range 3, until the start of your next turn, target's hp cannot go below 1, and they receive +0.5x healing.
+              Range 3, until the start of your next turn:
+               Target's hp cannot go below 1, they are not considered for objectives, and they receive +0.5x healing.
             tokens:
               - *Stun
               - name: Shallow Grave
@@ -2255,13 +2262,9 @@ sets:
               All enemies in burst 1 of any targeted ally, ⚔2.
           - name: Bad Juju
             text: |-
-              2/Battle, Free Action
+              Free Action
               Take 3 irreducible damage.
               Refresh all your abilities.
-            dice:
-              - name: Charges
-                color: white
-                values: [ 2 ]
       - name: Drow Ranger
         description: |- 
           - Ranged dps
@@ -2323,6 +2326,12 @@ sets:
           - name: After you use a non-default ability.
             text: |-
               Enemies in burst 1, 1⚔, give an ability CD 1 max 1.
+        tokens:
+          - *OnCooldown
+        dice:
+          - name: Enchant
+            color: orange
+            values: [ 1 ]
         default_abilities:
           - name: Totem Slam
             text: |-
@@ -2330,13 +2339,14 @@ sets:
         abilities:
           - name: Enchant Totem
             text: |-
-              Fly 3.
+              Fly 3 in a straight line.
               Gain an Enchant counter.
           - name: Fissure
             text: |-
               1/Battle
-              Infinite line, ⚔2, push to either side, give an ability CD 1 max 1.
-              Fill the line with Fissure markers which block movement but not LoS.
+              Infinite line, to either side.
+              Fill empty spaces in the line with Fissure markers which block movement but not LoS.
+              Enemies adjacent to at least one Fissure marker: ⚔2 and give an ability CD 1 max 1. 
               
               Fissure Markers are destroyed at the start of your next turn.
             tokens:
@@ -2367,10 +2377,8 @@ sets:
             text: |-
               Range 3, ⚔1
               Burst 1 of target, ⚔1, they deal -1 damage until the end of their next turn.
-            tokens:
-              - name: -1 damage
-                image_url: https://static.thenounproject.com/png/4931042-200.png
-                text: -1 damage. Clear at end of turn.
+        tokens:
+          - *MinusOneDamage
         abilities:
           - name: Frost Shield
             text: |-
@@ -2406,6 +2414,10 @@ sets:
               ---
               If there is a Chain Frost marker on the map, at the start of your turn:
               This ability repeats, cast from the Chain Frost marker on the map.
+            tokens:
+              - name: Chain Frost
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/7/77/Chain_Frost_icon.png/revision/latest?cb=20111005120429
+              - *Slow
           - name: Sacrifice
             text: |-
               Destroy an allied unit in range 4.
@@ -2419,6 +2431,8 @@ sets:
               - name: End of turn
                 text: |-
                   Enemies in burst 2, ⚔1, they deal -1 damage until the end of their next turn.
+            tokens:
+              - *MinusOneDamage
       - name: Lina
         polish: [needs_testing]
         description: |-
@@ -2439,7 +2453,7 @@ sets:
         default_abilities:
           - name: Fireball
             text: |-
-              Range 3, ⚔1 + 1⚔ per Fiery Soul charge.
+              Range 3, 1⚔ + 1⚔ per Fiery Soul charge.
         abilities:
           - name: Dragon Slave
             text: |-
@@ -2455,12 +2469,14 @@ sets:
               Range 3, 2x2, ⚔2 + 1⚔ per Fiery Soul charge, give an ability CD 1 max 1.
               
               Gain 1 Fiery Soul charge.
+            tokens:
+              - *OnCooldown
           - name: Laguna Blade
             text: |-
-              Ultimate 4
-              Range 4, ⚔2 + 2⚔ per Fiery Soul charge
+              1/Battle
+              Range 4, 3⚔ per Fiery Soul charge
               
-              Gain 2 Fiery Soul charges.
+              Fill your Fiery Soul charges up to 2.
       - name: Lion
         polish: [needs_testing]
         description: |-
@@ -2478,6 +2494,8 @@ sets:
             text: |-
               1/Battle
               Range range 1 4x2 pointing away from you, ⚔2, push 1 in any direction, give an ability CD 1 max 1.
+            tokens:
+              - *OnCooldown
           - name: Hex
             text: |-
               1/Battle
@@ -2506,7 +2524,7 @@ sets:
           - AoE damage
           - Team invisibility
         image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/mirana.png
-        health: 6
+        health: 8
         speed: 3
         default_abilities:
           - name: Archery
@@ -2530,7 +2548,11 @@ sets:
           - name: Leap
             text: |-
               3/Battle, Free Action
-              Fly 3 in a straight line. At end of turn, move 2.
+              Fly 2 in a straight line. At end of turn, move 1.
+            dice:
+              - name: Charges
+                color: white
+                values: [ 3 ]
           - name: Moonlight Shadow
             text: |-
               Ultimate 4
@@ -2585,7 +2607,7 @@ sets:
         polish: [needs_testing]
         description: |-
           - Large aura damage and healing
-        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/necrophos.png
+        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/necrolyte.png
         health: 8
         speed: 3
         passives:
@@ -2716,7 +2738,7 @@ sets:
   #        default_abilities:
   #          - name: Winter's Strike
   #            text: |-
-  #              Range 4 2x2, ⚔1, slow (-2 speed)
+  #              Range 4 2x2, ⚔1, Slow
   #              If an ice pillar is in the area, +⚔1
   #        abilities:
   #          - name: Freeze Over
@@ -3417,7 +3439,7 @@ sets:
   #              Rush 1,
   #              Range 2, All in 2x2, ⚔2
   #
-  #              You may again Rush 1, Range 2, All in 2x2, ⚔2. If you do, you can't attack next turn.
+  #              You may again Rush 1, Range 2 2x2, ⚔2. If you do, you can't attack next turn.
   #          - name: Wicked Sheath
   #            text: |-
   #              Range 1, ⚔1+2*X, push 1+2*X, X is the number of Hissatsu charges you have.
@@ -3520,10 +3542,6 @@ sets:
               Range 1, Choose one --
               - Target a summon with speed 0. Kill it.
               - Target a marker. Remove it.
-            # consider just destroying it
-            tokens:
-              - *Silence
-              - *Paralyze
           - name: Deadringer
             text: |-
               1/Battle, interrupt when you would take damage:
@@ -3633,7 +3651,7 @@ sets:
           - name: Jarate
             text: |-
               1/Battle
-              Range 3, 2x2, targets receive +.5x damage
+              Range 3, 2x2, get Jarate: Receive +.5x damage
             tokens:
               - name: Jarate
                 image_url: https://tactics.toren.dev/image_token_Jarate_-2397770930367722030.jpg
@@ -3975,8 +3993,8 @@ sets:
           - name: Mad Milk
             text: |-
               1/Battle:
-              Range 3 2x2. Allies clear DoT. Enemies get Covered in Milk.  
-              When a unit damages a unit Covered in Milk, they heal 1/2 the damage dealt.
+              Range 3 2x2. Allies clear DoT. Enemies get Covered in Milk:   
+                When a unit damages a unit Covered in Milk, they heal 1/2 the damage dealt.
             tokens:
               - name: Covered in Milk
                 image_url: https://tactics.toren.dev/image_token_Covered in Milk_8800688946105100575.jpg
