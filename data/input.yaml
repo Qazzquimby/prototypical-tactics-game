@@ -377,7 +377,7 @@ sets:
           - name: Rocket Launcher
             text: |-
               1⛨ per 2 spaces between, ⚔2
-              Burst 1 of target space, ⚔1
+              Burst 1 of targeted space, ⚔1
         HighAltitude: &HighAltitude
           name: High Altitude
           image_url: https://tactics.toren.dev/image_token_High Altitude_-1699182313764770594.jpg
@@ -453,7 +453,7 @@ sets:
         passives:
           - name: Immune to forced movement
             text: ""
-          - name: Abilities targeting you have -2⛨.
+          - name: You are undefendable.
             text: ""
         default_abilities:
           - name: Rocket Hammer
@@ -462,7 +462,7 @@ sets:
         abilities:
           - name: Barrier Field
             text: |-
-              Instant +2:
+              Instant +3:
               Enter shield stance:
                 You have facing and can freely set your facing at the end of your turn.
                 You're continually Slow (-2 speed, min 1) and can't take standard actions.
@@ -507,7 +507,7 @@ sets:
         speed: 3
         image_url: https://tactics.toren.dev/image_token_Torbjorn_6046319329937446842.jpg
         passives:
-          - name: Abilities targeting you have +1⛨.
+          - name: Abilities targeting you have +2⛨.
             text: ""
         default_abilities:
           - name: Rivet Gun
@@ -575,11 +575,11 @@ sets:
                 On hit, give the target Sonic Arrow.
                 On miss, place a Sonic Arrow in the targeted space.
               
-              Enemies within range 2 of a sonic arrow cannot cannot defend or be untargetable, and receive +2 Crit
+              Enemies within range 2 of a sonic arrow are undefendable, cannot be untargetable, and receive +2 Crit
             tokens:
               - name: Sonic Arrow
                 image_url: https://tactics.toren.dev/image_token_Sonic Arrow_7239906155799197772.jpg
-                text: Enemies within range 2 of a sonic arrow cannot cannot defend or be untargetable, and receive +2 Crit
+                text: Enemies within range 2 of a sonic arrow are undefendable, cannot be untargetable, and receive +2 Crit
           - name: Storm Arrows
             text: |-
               1/Battle, Free Action at start of turn:
@@ -612,7 +612,7 @@ sets:
         speed: 3
         image_url: https://tactics.toren.dev/image_token_Winston_-6851077804927343154.jpg
         passives:
-          - name: Abilities targeting you have -2⛨.
+          - name: You are undefendable.
             text: ""
         default_abilities:
           - name: Tesla Cannon
@@ -670,7 +670,7 @@ sets:
           - name: Orb of Harmony
             text: |-
               Free Action:
-              Unlimited range, give target your Orb of Harmony (max 1, remove oldest).
+              Unlimited range, give your Orb of Harmony (max 1, remove oldest).
               Now and at the start of your turn, they Heal 2.
             tokens:
               - name: Orb of Harmony
@@ -679,7 +679,7 @@ sets:
           - name: Orb of Discord
             text: |-
               Free Action:
-              Unlimited range, give target your Orb of Discord (max 1, remove oldest).
+              Unlimited range, give your Orb of Discord (max 1, remove oldest).
               They receive +.5x damage
             tokens:
               - name: Orb of Discord
@@ -725,7 +725,7 @@ sets:
             text: |-
               Ultimate 4:
               Global, mark 3 spaces.
-              At the beginning of your next turn, targeting each marked space: ⚔10, and burst 1 ⚔2.
+              At the beginning of your next turn, each marked space: ⚔10, and burst 1 ⚔2.
             tokens:
               - name: Bastion Artillery Marker
                 image_url: https://tactics.toren.dev/image_token_Bastion Artillery Marker_-6673338352373586730.jpg
@@ -733,17 +733,19 @@ sets:
         polish:
           - needs_testing
         description: |-
-          - Summon utilities
-          - High damage on same target
+          - Heckling swarm turrets
+          - Long range team repositioning
+          - High damage on repeated hits
         health: 8
         speed: 3
         image_url: https://tactics.toren.dev/image_token_Symmetra_348687172361558057.jpg
         default_abilities:
           - name: Photon Beam
             text: |-
-              Range 2, ⚔2.
-              If this hit the same target last turn, it deals ⚔4 instead.
-              If this hit the same target the last two turns, it deals ⚔6 instead.
+              Range 2, ⚔2 + ⚔2 for each Photon Orb marker on the target.
+              Give a Photon Orb marker.
+              ---
+              At the end of your turn, each unit who did not gain a Photon Beam marker this turn loses all Photon Beam markers.
           - name: Photon Orb
             text: |-
               Choose one --

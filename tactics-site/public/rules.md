@@ -104,7 +104,10 @@ As a move action, units can move up to their speed.
 
 - **Movement is done orthogonally.**
 
-- **Movement can't be broken up.** You can't use an ability partway through a movement.
+- **The default move action can be broken up.** You can move some your remaining speed on your turn
+  while you aren't taking an action.
+- **Other sources of movement cannot be broken up.** When you stop moving, the rest of that movement
+  is wasted.
 
 - **You can't move through blocking terrain (eg walls) or hostile units.**
 - **You can pass through allied units, but can't end your movement in their space.**
@@ -114,12 +117,13 @@ As a move action, units can move up to their speed.
   backtracking), and stop if it becomes impossible to move further.
 
 - **Disengaging triggers an opportunity attack.** When you voluntarily move while adjacent to an
-  enemy, they may use a basic action targeting you as a reaction before you move.
-  to use a Default Ability targeting you.
+  enemy, before you move, as a reaction they may use a basic action which includes you.
 
 Forced Movement is when a unit is moved by another unit.
-Push means the target must be moved away from the caster, Pull means the target must be moved
-towards the caster.
+Push and pull by default are straight line only.
+Push by default means the affected must be moved away from the caster, Pull means the target must be
+moved
+towards the caster. It's not uncommon to break these restrictions, like "push 1 in any direction."
 
 Flying Movement ignores terrain while moving and does not trigger reactions such as Opportunity
 Attacks.
@@ -129,6 +133,9 @@ needing to move along a path.
 
 ## Range and Targeting
 
+"Target" unit means it was chosen. "Included" means it was either chosen, or is inside an ability's
+area.
+
 ### Line of Sight
 
 To avoid line of sight ambiguity, obstacles cast "shadows".
@@ -137,7 +144,8 @@ For each visible point of an obstacle:
 - If it shares a line with your space, it casts shadow in an orthagonal line in that direction.
 - Otherwise, it casts shadow in a diagonal line pointing away from you.
 
-If a space is completely in shadow, you can't see it or target it.
+If a space is completely in shadow, you can't see it or target it. (It can still be included in
+areas)
 
 If a space is half in shadow (cut diagonally), you can see and target it, but it has +2⛨ difficulty
 to hit.
@@ -151,37 +159,40 @@ orthogonally adjacent.
 
 ### Targeting
 
-Abilities in Tabletop Teamfight target spaces, not units. When a space is targeted, every legal
-thing inside it is also targeted (usually a unit). You can even target empty spaces.
+- **"Range 3"**: Whenever an attack lists a range without an area, it targets a single thing in a
+  space within range. TODO "THING"
+- **"Enemy in range 3"**: After choosing a space in range, the attack can only target an enemy in
+  that space. An empty space can still be chosen.
 
+Abilities that affect others choose a space before choosing a target in that space.
+
+Some abilities may react to the target being named. After reactions, if the target is no longer
+legal, the caster must choose another legal target in the space if possible.
 Unless otherwise specified, abilities can target anyone, ally or enemy.
 
-By default, abilities target a single space. "Range 2, 2⚔" means "Choose a
-space within range 2. You deal 2 damage to its contents."
+Example "Range 2, 2⚔" means "Choose a space within range 2. Choose a target in that space, and deal 2 damage to them."
 
 ### Area of Effect
 
-Some abilities target multiple spaces in an area. Any ability that targets an area multiple spaces
-is an Area of Effect (AoE) ability.
+Any ability that affects all of something is an AoE (rather than having you choose individual targets), is an Area of Effect (AoE) ability.
+For example "all units", "enemies in burst 3", "units that dealt damage last turn", etc.
 
-By default, the attack targets all spaces in the area. Eg, "3x3 centered on you, 2⚔" means "For all
-spaces in a 3x3 square centered on you, you deal 2 damage to their contents."
+Since individuals are not chosen, nothing is "targeted". Instead, units in the area are "included".
+
+Often AoEs are simply written by giving an area, which implies "affects everything in that area."
+
+Eg, "3x3 centered on you, 2⚔" means "All units in a 3x3 square centered on you, you deal 2 damage to them."
 
 Common areas are:
-
-- **Line**: A 1*N rectangle of spaces moving away from the source point. If no length is given, the
+- **Line**: A 1*N rectangle of spaces moving away from the source space. If no length is given, the
   line is infinite.
 - **Path**: A sequence of N orthogonally adjacent spaces, snaking around however you like.
-- **Burst**: All spaces in range N of the source point.
+- **Burst**: All spaces in range N of the source space.
 - **NxN**: A NxN square of spaces. If it doesn't specify that it's centered, then it only needs to
-  overlap the source point.
+  overlap the source space.
 
-Usually the source point is the caster. If a range is given before the area, the area's source point
-is a targetable point in that range. Eg "range 3 2x2, all units receive +.5x damage"
-
-If something is "untargetable," its space can't be named by single target abilities, but it can
-still
-be included in AoE abilities.
+Usually the source space is the caster. If a range is given before the area, the area's source point
+is a targetable space in that range. Eg "range 3 2x2, all units receive +.5x damage"
 
 ## Attack Rolls
 
@@ -201,9 +212,9 @@ then each target can choose to not be affected by the ability.
 
 - If an ability is "undefendable", the ⛨ is always 0.
 
-- If a unit is "undefendable", the ⛨ or abilities targeting them is always 0. 
+- If a unit is "undefendable", the ⛨ or abilities targeting them is always 0.
 
-- AoE abilities always have 0⛨, but are not considered "undefendable".
+- AoE abilities also always have 0⛨, but are not considered "undefendable".
 
 ### Critical Hits
 
@@ -224,7 +235,7 @@ Damage reduces health. "⚔3" means "the caster deals 3 damage to the target."
 Damage modifiers can be additive or multiplicative. Like in math, multiply before adding.
 
 - Bob has a shield up making him take -0.5x damage, and has passive armor making him take -1 damage.
-- He gets hit for 3 damage, and the attack crits for +1x damage. 
+- He gets hit for 3 damage, and the attack crits for +1x damage.
 - The multiplier is +1-0.5 = +0.5x, so the multiplier is 1.5x.
 - The damage is 3*1.5 is 5 (Always division up)
 - 5-1 = 4 final damage.
@@ -233,7 +244,6 @@ Damage modifiers can be additive or multiplicative. Like in math, multiply befor
 
 When health reaches 0, the unit dies. If the unit is a hero, the opponent takes their figure, which
 is worth 1 point at the end of the game.
-
 
 Tapping
 Charges
