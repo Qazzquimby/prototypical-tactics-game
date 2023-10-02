@@ -177,7 +177,8 @@ Example "Range 2, 2⚔" means "Choose a space within range 2. Choose a target in
 Any ability that affects all of something is an AoE (rather than having you choose individual targets), is an Area of Effect (AoE) ability.
 For example "all units", "enemies in burst 3", "units that dealt damage last turn", etc.
 
-Since individuals are not chosen, nothing is "targeted". Instead, units in the area are "included".
+Since individuals are not chosen, nothing is "targeted". 
+Units who are either targeted or meeting an AoE's criteria are "included" in the ability.
 
 Often AoEs are simply written by giving an area, which implies "affects everything in that area."
 
@@ -196,9 +197,8 @@ is a targetable space in that range. Eg "range 3 2x2, all units receive +.5x dam
 
 ## Attack Rolls
 
-Whenever an ability targets an enemy unit, there may be an attack roll. Often abilities are
-guaranteed and
-always have the same effect - in these cases, don't bother rolling.
+Whenever a unit is included targeted, there may be an attack roll. Often abilities are
+guaranteed and always have the same effect - in these cases, don't bother rolling.
 
 If *anything* could trigger based on the result of the die roll, like some luck thief who likes it
 when people rolls 1s, then roll just for that.
@@ -214,7 +214,7 @@ then each target can choose to not be affected by the ability.
 
 - If a unit is "undefendable", the ⛨ or abilities targeting them is always 0.
 
-- AoE abilities also always have 0⛨, but are not considered "undefendable".
+- AoE abilities do not get rolls. The defense value of an aoe is considered to be 0⛨, but they are not considered "undefendable".
 
 ### Critical Hits
 
@@ -239,6 +239,9 @@ Damage modifiers can be additive or multiplicative. Like in math, multiply befor
 - The multiplier is +1-0.5 = +0.5x, so the multiplier is 1.5x.
 - The damage is 3*1.5 is 5 (Always division up)
 - 5-1 = 4 final damage.
+
+#### Resistance
+
 
 ## Death
 
