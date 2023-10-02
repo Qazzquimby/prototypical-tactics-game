@@ -332,7 +332,6 @@ sets:
             image_url: https://tactics.toren.dev/image_token_Took damage since start of last turn_-3896541016264395972.jpg
             back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
             text: Flip this face down when you take damage, and face up at the start of your turn.
-        tokens:
           - name: Corpse
             image_url: https://tactics.toren.dev/image_token_Corpse Marker_8974187535196407093.jpg
             is_marker: true
@@ -582,8 +581,8 @@ sets:
             tokens:
               - name: Sonic Arrow
                 image_url: https://tactics.toren.dev/image_token_Sonic Arrow_7239906155799197772.jpg
+                is_marker: true
                 text: Enemies within range 2 of a sonic arrow are undefendable, cannot be untargetable, and receive +2 Crit
-            tokens:
               - name: Sonic Arrow
                 image_url: https://tactics.toren.dev/image_token_Sonic Arrow_7239906155799197772.jpg
                 is_marker: true
@@ -1633,7 +1632,6 @@ sets:
               At the end of your next turn, deal ⚔2 for each charge to each unit in the area, then end this effect.
             tokens:
               - *Immobile
-            tokens:
               - name: Mag Field
                 is_marker: true
                 image_url: https://tactics.toren.dev/image_token_Mag Field_-8219634878029312124.jpg
@@ -2237,7 +2235,6 @@ sets:
                 is_marker: true
                 text: |-
                   When destroyed, it deals burst 1, ⚔2 immobilize and disarm.
-            tokens:
               - *Immobile
               - *Disarm
           - name: Freezing Field
