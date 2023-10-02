@@ -37,8 +37,14 @@ class Token(BaseModel, Spawnable):
     back_image_url: str = ""
     text: str = ""
     size: float = 0.25
+    is_marker = False
 
     def get_spawning_lua(self):
+        if self.is_marker:
+            tile_type = 3  # square
+        else:
+            tile_type = 2
+
         back_image_url = self.back_image_url or self.image_url
         return f"""\
         local front="{get_hosted_address(url=self.image_url, name=self.name)}"
@@ -46,10 +52,7 @@ class Token(BaseModel, Spawnable):
         local name=[[{clean_string_for_lua(self.name)}]]
         local description=[[{clean_string_for_lua(self.text)}]]
         local s={scale_size(self.size)}
-        local tile_type=2
-        if s > 0.25 then
-            tile_type=3
-        end
+        local tile_type={tile_type}
         
         local my_position = self.getPosition()
         local my_rotation = self.getRotation()

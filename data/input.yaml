@@ -193,18 +193,18 @@ terrain:
   DifficultTerrain: &DifficultTerrain
     name: Difficult Terrain
     image_url: https://img.freepik.com/free-photo/top-view-clear-ocean-water-texture_23-2149132371.jpg?w=2000
-    size: 1
+    is_marker: true
     text: |-
       Difficult terrain costs 2 movement to enter.
   DestroyedTerrain: &DestroyedTerrain
     name: Destroyed terrain
     image_url: https://upload.wikimedia.org/wikipedia/commons/d/d2/Solid_white.png?20060513000852
-    size: 1
+    is_marker: true
     text: Terrain here has been destroyed
   Cover: &Cover
     name: Cover
     image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI6Vqg51fAEFt-_2pPSiHlHCSbn_VMPpOy7w&usqp=CAU
-    size: 1
+    is_marker: true
     text: |-
       Abilities passing through cover that does not start adjacent to that cover has +2⛨.
 sets:
@@ -251,7 +251,7 @@ sets:
             tokens:
               - name: Venom Mine
                 image_url: https://tactics.toren.dev/image_token_Venom Mine_-7291147640817522652.jpg
-                size: 1
+                is_marker: true
                 text: |-
                   When an enemy enters this or an adjacent space, destroy this. When destroyed, burst 1, give DoT 1.
               - *DoT
@@ -292,7 +292,7 @@ sets:
             tokens:
               - name: Recall location
                 image_url: https://tactics.toren.dev/image_token_Recall location_7014843123727341894.jpg
-                size: 1
+                is_marker: true
                 text: This is the space you'll recall to.
             dice:
               - name: Previous Health
@@ -307,7 +307,7 @@ sets:
             tokens:
               - name: Pulse Bomb
                 image_url: https://tactics.toren.dev/image_token_Pulse Bomb_4672933919487507787.jpg
-                size: 1
+                is_marker: true
                 text: |-
                   At the start of your turn, destroy this. It deals ⚔9 to anyone in its space and ⚔3 to anyone else in burst 1.
       - name: Mercy
@@ -332,9 +332,10 @@ sets:
             image_url: https://tactics.toren.dev/image_token_Took damage since start of last turn_-3896541016264395972.jpg
             back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
             text: Flip this face down when you take damage, and face up at the start of your turn.
-          - name: Corpse Marker
+        tokens:
+          - name: Corpse
             image_url: https://tactics.toren.dev/image_token_Corpse Marker_8974187535196407093.jpg
-            size: 1
+            is_marker: true
             text: Place this in the space where an ally died.
         default_abilities:
           - name: Caduceus Staff
@@ -477,7 +478,8 @@ sets:
             Barrier: &Barrier
               name: Barrier Field
               image_url: https://tactics.toren.dev/image_token_Barrier Field_-8335640535662634721.jpg
-              size: 0.25
+              is_marker: true
+              size: 0.15
               text: This edge is part of the barrier.
             tokens:
               - *Barrier
@@ -538,6 +540,7 @@ sets:
             tokens:
               - name: Molten Core
                 image_url: https://tactics.toren.dev/image_token_Molten Core_8358727934287747602.jpg
+                is_marker: true
                 size: 2
                 text: |-
                   Hazard: ⚔2 for enemies.
@@ -580,6 +583,11 @@ sets:
               - name: Sonic Arrow
                 image_url: https://tactics.toren.dev/image_token_Sonic Arrow_7239906155799197772.jpg
                 text: Enemies within range 2 of a sonic arrow are undefendable, cannot be untargetable, and receive +2 Crit
+            tokens:
+              - name: Sonic Arrow
+                image_url: https://tactics.toren.dev/image_token_Sonic Arrow_7239906155799197772.jpg
+                is_marker: true
+                text: Enemies within range 2 of a sonic arrow are undefendable, cannot be untargetable, and receive +2 Crit
           - name: Storm Arrows
             text: |-
               1/Battle, Free Action at start of turn:
@@ -600,6 +608,7 @@ sets:
               - name: Dragonstrike
                 image_url: https://tactics.toren.dev/image_token_Dragonstrike_-8871348447587244983.jpg
                 back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
+                is_marker: true
                 size: 2
                 text: |-
                   While the beam is active, all spaces in it have Hazard: ⚔7 for enemies.
@@ -640,7 +649,7 @@ sets:
             tokens:
               - name: Barrier
                 image_url: https://tactics.toren.dev/image_token_Barrier_7326628920520179890.jpg
-                size: 1
+                is_marker: true
           - name: Primal Rage
             text: |-
               Ultimate 4, Instant +3:
@@ -726,8 +735,8 @@ sets:
               Ultimate 4:
               Global, mark 3 spaces.
               At the beginning of your next turn, each marked space: ⚔10, and burst 1 ⚔2.
-            tokens:
-              - name: Bastion Artillery Marker
+            marker:
+              - name: Artillery
                 image_url: https://tactics.toren.dev/image_token_Bastion Artillery Marker_-6673338352373586730.jpg
       - name: Symmetra
         polish:
@@ -745,7 +754,7 @@ sets:
               Range 2, ⚔2 + ⚔2 for each Photon Orb marker on the target.
               Give a Photon Orb marker.
               ---
-              At the end of your turn, each unit who did not gain a Photon Beam marker this turn loses all Photon Beam markers.
+              At the end of your turn, each unit who did not gain a Photon Beam token this turn loses all Photon Beam tokens.
           - name: Photon Orb
             text: |-
               Choose one --
@@ -767,12 +776,15 @@ sets:
               - *Slow
               - name: Sentry Turret
                 image_url: https://tactics.toren.dev/image_token_Sentry Turret_8230050588297509514.jpg
+                is_marker: true
                 size: 0.5
               - name: Sentry Turret
                 image_url: https://tactics.toren.dev/image_token_Sentry Turret_8230050588297509514.jpg
+                is_marker: true
                 size: 0.5
               - name: Sentry Turret
                 image_url: https://tactics.toren.dev/image_token_Sentry Turret_8230050588297509514.jpg
+                is_marker: true
                 size: 0.5
           - name: Teleporter
             text: |-
@@ -786,10 +798,10 @@ sets:
             tokens:
               - name: Teleporter
                 image_url: https://tactics.toren.dev/image_token_Teleporter_-618056859860754860.jpg
-                size: 1
+                is_marker: true
               - name: Teleporter
                 image_url: https://tactics.toren.dev/image_token_Teleporter_-618056859860754860.jpg
-                size: 1
+                is_marker: true
           - name: Photon Barrier
             text: |-
               Ultimate 4:
@@ -803,10 +815,10 @@ sets:
             tokens:
               - name: Photon Barrier
                 image_url: https://tactics.toren.dev/image_token_Photon Barrier_7902153069388003017.jpg
-                size: 1
+                is_marker: true
               - name: Photon Barrier
                 image_url: https://tactics.toren.dev/image_token_Photon Barrier_7902153069388003017.jpg
-                size: 1
+                is_marker: true
 
     #      - name: Cassidy
     #        description: |-
@@ -1120,7 +1132,7 @@ sets:
     #                Healing: Burst 1, all allies Heal 2.
     #                Damage: Burst 1, ⚔2 to all enemies.
     #                Then move 2 spaces forwards, reversing direction when blocked by a wall.
-    #            tokens:
+    #            tokens
     #              - name: Healing Biotic Orb
     #                image_url: https://pbs.twimg.com/profile_image_1332252696942956544/mRhKFbI2_400x400.jpg
     #                size: 1
@@ -1167,7 +1179,7 @@ sets:
     #          #                Reaction ⛨2
     #          #                Create a 2x1 barrier in range 2.
     #          #                The barrier has 6 health.
-    #          #              tokens:
+    #          #              tokens
     #          #                - name: Barrier
     #          #                  image_url: todo
     #          #                  size: 1
@@ -1189,7 +1201,7 @@ sets:
     #          #              text: |-
     #          #                Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
     #          #                Spend 5 charges:
-    #          #              tokens:
+    #          #              tokens
     #          #                - name: Supercharger
     #          #                  image_url: todo
     #          #                  size: 1
@@ -1267,7 +1279,7 @@ sets:
     #              1/Battle
     #              Place a size 2 Biotic Field, overlapping your space.
     #              Now, and at the beginning of each your turns, all allies in the field Heal 2.
-    #            tokens:
+    #            tokens
     #              - name: Biotic Field
     #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/50/Icon-ability.bioticfield.png/revision/latest/scale-to-width-down/100?cb=20150708110158
     #                size: 2
@@ -1298,7 +1310,7 @@ sets:
     #              Until the start of your next turn,
     #                the target is immune to damage, forced movement, and unwanted conditions,
     #                and when the target would take damage you gain an energy counter.
-    #            tokens:
+    #            tokens
     #              - name: Particle Barrier
     #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/71/Ability-zarya2.png/revision/latest/scale-to-width-down/100?cb=20150309115939
     #              - name: Particle Barrier
@@ -1309,7 +1321,7 @@ sets:
     #              Spend 5 charges:
     #                Target empty space in range 3
     #                Pull enemies in burst 2 of the space as close to the center as possible, starting with the enemies nearest the center already. They get rooted 1.
-    #            tokens:
+    #            tokens
     #              - name: Graviton Surge
     #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5d/Ability-zarya4.png/revision/latest/scale-to-width-down/100?cb=20150309115950
     #                size: 1
@@ -1545,6 +1557,7 @@ sets:
             tokens:
               - name: Restock Drone
                 image_url: https://entrackr.com/storage/2019/10/drone-1200x600.jpg
+                is_marker: true
                 text: |-
                   Units have: Standard action: 
                     Destroy an adjacent Restock Drone to 
@@ -1572,6 +1585,7 @@ sets:
               Range 4, target clears and is immune to unwanted conditions, and has -1⛨ and +1 crit on rolls.
             tokens:
               - name: Supercharger
+                is_marker: true
                 image_url: https://blog.way.com/wp-content/uploads/2022/04/Depositphotos_93782224_XL-min-scaled.jpg
                 text: You are immune to unwanted conditions, and have -1⛨ and +1 crit on rolls.
       - name: Black Witch
@@ -1600,6 +1614,8 @@ sets:
               Attacks that pass through the shield do -.5x damage.
             tokens:
               - name: Magnetic Shield
+                is_marker: true
+                size: 0.15
                 image_url: https://tactics.toren.dev/image_token_Magnetic Shield_908482444968353860.jpg
                 text: Attacks that pass through the shield do -.5x damage.
           - name: Summon ICEOUT Drone
@@ -1617,7 +1633,9 @@ sets:
               At the end of your next turn, deal ⚔2 for each charge to each unit in the area, then end this effect.
             tokens:
               - *Immobile
+            tokens:
               - name: Mag Field
+                is_marker: true
                 image_url: https://tactics.toren.dev/image_token_Mag Field_-8219634878029312124.jpg
         units:
           - name: ICEOUT Drone
@@ -1684,8 +1702,9 @@ sets:
             text: |-
               Leave a Hologram Marker in the space you started moving from. When an enemy enters the space, they take ⚔2 and the marker is removed.
         tokens:
-          - name: Hologram Marker
+          - name: Hologram
             image_url: https://mumcdnstorage.blob.core.windows.net/dwnews/2018/07/7.6.18-FOM.jpg
+            is_marker: true
             text: When an enemy enters the space, they take ⚔2 and the marker is removed.
         default_abilities:
           - name: Veil Rifle
@@ -1779,6 +1798,7 @@ sets:
               Units with line of sight to the idol cannot target the ally.
             tokens:
               - name: False Idol
+                is_marker: true
                 image_url: https://tactics.toren.dev/image_token_False Idol_5315310770854887675.jpg
           - name: Celestial Shackles
             text: |-
@@ -1787,6 +1807,9 @@ sets:
               Free Action: Remove the marker to teleport the target back to that space.
             tokens:
               - name: Shackle
+                is_marker: true
+                image_url: https://tactics.toren.dev/image_token_Shackle_4846826871429583023.jpg
+              - name: Shackled
                 image_url: https://tactics.toren.dev/image_token_Shackle_4846826871429583023.jpg
           - name: Dimensional Emblems
             text: |-
@@ -1796,6 +1819,7 @@ sets:
             tokens:
               - name: Dimensional Emblem
                 image_url: https://tactics.toren.dev/image_token_Dimensional Emblem_1944823803680669654.jpg
+                is_marker: true
                 text: When a unit moves through this, they take 2 stress and this is removed.
           - name: Hurl into The Duat
             text: |-
@@ -1894,6 +1918,7 @@ sets:
         tokens:
           - name: Barbarossa
             image_url: https://tactics.toren.dev/image_token_Barbarosa_-8861773581727907330.jpg
+            is_marker: true
             description: Barbarosa is considered to be in all spaces with this token.
         default_abilities:
           - name: Heavy Machine Gun
@@ -1954,6 +1979,7 @@ sets:
             tokens:
               - name: Plasma Hazard
                 image_url: https://tactics.toren.dev/image_token_Plasma Hazard_1826200987002853893.jpg
+                is_marker: true
                 text: |-
                   Units that start in or enter this space take ⚔2.
                   A unit can only take damage from Plasma Hazard once per round.
@@ -1967,6 +1993,7 @@ sets:
             tokens:
               - name: Havok Mine
                 image_url: https://tactics.toren.dev/image_token_Havok Mine_6637140432975573967.jpg
+                is_marker: true
       - name: Iskander
         polish: [needs_testing, needs_assets]
         description: |-
@@ -1988,6 +2015,7 @@ sets:
             tokens:
               - name: Explosive Mine
                 image_url: https://i.pinimg.com/736x/d5/b3/e9/d5b3e94114a6269969f04156401a2ca3.jpg
+                is_marker: true
                 text: |-
                   When a unit becomes adjacent, remove the mine and it deals Burst 1, ⚔2.
           - name: Smoke Mine
@@ -1997,6 +2025,7 @@ sets:
             tokens:
               - name: Smoke Mine
                 image_url: https://p.turbosquid.com/ts-thumb/WI/CKIzvf/ulFmTAwN/boundingmine1/jpg/1432752647/300x300/sharp_fit_q85/9e267f8fa8e8ce6efe7402298c00361cd749692b/boundingmine1.jpg
+                is_marker: true
                 text: |-
                   When a unit becomes adjacent, remove the mine and it creates a 2x2 area of Cover.
               - *Cover
@@ -2009,6 +2038,7 @@ sets:
             tokens:
               - name: Grounding Mine
                 image_url: https://img1.yeggi.com/page_images_cache/2948539_gravity-mine-marvel-by-fub-artistry
+                is_marker: true
                 text: Can be detonated to pull.
               - *Immobile
           - name: Clamp Bomb
@@ -2204,8 +2234,10 @@ sets:
             tokens:
               - name: Crystal Clone
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/a/a1/Crystal_Clone_icon.png/revision/latest/scale-to-width-down/128?cb=20230809011951
+                is_marker: true
                 text: |-
                   When destroyed, it deals burst 1, ⚔2 immobilize and disarm.
+            tokens:
               - *Immobile
               - *Disarm
           - name: Freezing Field
@@ -2311,6 +2343,7 @@ sets:
             tokens:
               - name: Glacier Wall
                 image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPpu9N7SG3xoCnXsQgibEZPZI9LyqBkZoDySxraGRr_xrVo1BjmkX_7Sm7_wXM0qTyBs4&usqp=CAU
+                is_marker: true
                 text: |-
                   Blocks movement.
                   Extends range by 1 in direction this points.
@@ -2354,6 +2387,7 @@ sets:
             tokens:
               - name: Fissure
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/2/24/Fissure_icon.png/revision/latest?cb=20111005114408
+                is_marker: true
                 text: Blocks movement but not LoS.
           - name: Echo Slam
             text: |-
@@ -2372,7 +2406,7 @@ sets:
         passives:
           - name: On death
             text: |- 
-              You may remove any number of Chain Frost markers, from units or the map. 
+              You may remove any number of Chain Frost tokens and markers, from units or the map. 
               Cast Chain Frost.
         default_abilities:
           - name: Frost Blast
@@ -2410,7 +2444,7 @@ sets:
               Enemy or Ice Spire without a Chain Frost marker in range 3, 
               if enemy: ⚔2 + ⚔2 per Chain Frost marker on this, slow.
               
-              Remove all Chain Frost markers not on this.
+              Remove all Chain Frost markers and tokens not on this.
               If this missed, remove all Chain Frost markers on this.
               Else put a Chain Frost marker on this, on the target, and on the target's space.
               ---
@@ -2420,6 +2454,9 @@ sets:
               - name: Chain Frost
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/7/77/Chain_Frost_icon.png/revision/latest?cb=20111005120429
               - *Slow
+              - name: Chain Frost
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/7/77/Chain_Frost_icon.png/revision/latest?cb=20111005120429
+                is_marker: true
           - name: Sacrifice
             text: |-
               Destroy an allied unit in range 4.
@@ -3580,6 +3617,7 @@ sets:
             tokens:
               - name: Sandvich
                 image_url: https://tactics.toren.dev/image_token_Sandvich_6108514798017996936.jpg
+                is_marker: true
                 text: |- 
                   Units that enter this space heal 4 and destroy this.
           - name: Buffalo Steak
@@ -3591,6 +3629,7 @@ sets:
             tokens:
               - name: Buffalo Steak
                 image_url: https://tactics.toren.dev/image_token_Buffalo Steak Rage_8581238716479321113.jpg
+                is_marker: true
                 text: |- 
                   On the map: units that enter this space heal 4 and destroy this.
                   As status: +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
@@ -3810,6 +3849,7 @@ sets:
         tokens:
           - name: Grenade
             image_url: https://tactics.toren.dev/image_token_Grenade_-6150214043676469715.jpg
+            is_marker: true
             text: Explodes at start of next turn.
           - *Kill
         abilities:
@@ -3821,6 +3861,7 @@ sets:
             tokens:
               - name: Sticky Bomb
                 image_url: https://tactics.toren.dev/image_token_Sticky Bomb_4182679769259448363.jpg
+                is_marker: true
           - name: Chargin' Target
             text: |-
               1/Battle, Move Action:
