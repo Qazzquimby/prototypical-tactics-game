@@ -99,8 +99,6 @@ conditions:
     name: Invisible
     image_url: https://tactics.toren.dev/image_token_Stealth_7505783149168806103.jpg
     text: |-
-#      Abilities targeting you have +2 defense.
-#      You don't provoke reactions.
       Enemies beyond range 1 cannot target you, and cannot draw AoE that includes you unless it also includes a non-invisible unit.
   OnCooldown: &OnCooldown
     name: On Cooldown

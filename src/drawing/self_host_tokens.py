@@ -30,6 +30,10 @@ class TokenImage:
         return f"TokenImage(url={self.url}, name={self.name})"
 
     def get_local_name(self) -> str:
+
+        if self.url.startswith(SITE_URL):
+            return self.url.replace(SITE_URL, "").replace(".jpg", "")
+
         hashed = hashlib.sha256(self.url.encode())
         short_hash = hashed.hexdigest()[:6]
 
