@@ -46,9 +46,10 @@ class Token(BaseModel, Spawnable):
             tile_type = 2
 
         back_image_url = self.back_image_url or self.image_url
+        back_image_name = self.name + "_back" if self.back_image_url else self.name
         return f"""\
         local front="{get_hosted_address(url=self.image_url, name=self.name)}"
-        local back="{get_hosted_address(url=self.back_image_url, name=self.name+'_back')}"
+        local back="{get_hosted_address(url=back_image_url, name=back_image_name)}"
         local name=[[{clean_string_for_lua(self.name)}]]
         local description=[[{clean_string_for_lua(self.text)}]]
         local s={scale_size(self.size)}

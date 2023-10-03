@@ -143,35 +143,3 @@ def fetch_current_version():
     response = requests.get(SITE_URL + "version.yaml")
     version_dict = yaml.safe_load(response.content)
     return version_dict
-
-
-# def main():
-#     yaml_path = data_dir / "input.yaml"
-#     yaml_content = yaml_parsing.read_yaml_file(yaml_path)
-#
-#     result = localize_image_urls(yaml_content)
-#
-#     with open(yaml_path, "r", encoding="utf8") as yaml_file:
-#         yaml_string = yaml_file.read()
-#
-#     for url, replacement in url_replacements.items():
-#         yaml_string = yaml_string.replace(url, replacement)
-#
-#     with open(yaml_path, "w", encoding="utf8") as yaml_file:
-#         yaml_file.write(yaml_string)
-#
-#     print("done")
-#
-#
-# # def oops_fix_naming():
-# #     public_dir = Path("tactics-site").absolute() / "public"
-# #     tokens_dir = public_dir / "images" / "tokens"
-# #     for file in tokens_dir.iterdir():
-# #         # file.copy
-# #         content = file.read_bytes()
-# #         new_path = public_dir / f"image_token_{file.stem}.jpg"
-# #         new_path.write_bytes(content)
-#
-#
-# if __name__ == "__main__":
-#     main()
