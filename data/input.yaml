@@ -1479,7 +1479,7 @@ sets:
             text: |-
               If not Spun Up, enter Spun Up stance: 
                 You are continually slowed. Can exit as a Free Action at the start of your turn.
-              If Spun Up: +3 stress, Range 4, ⚔6
+              If Spun Up: +2 stress, Range 4, ⚔5
         tokens:
           - name: Spun Up
             image_url: https://tactics.toren.dev/image_token_Spun Up_817474683636700342.jpg
@@ -1497,7 +1497,6 @@ sets:
               - name: Fortress Stance
                 image_url: https://i.redd.it/8bzdactvy6z71.png
       - name: Lancaster
-        polish: [needs_testing, needs_assets]
         description: |-
           - Battle wagon, carries allies
           - Healer
@@ -1680,7 +1679,6 @@ sets:
                 text: |-
                   Owner deals +⚔4 to you, so long as you're are not in range 3.
       - name: Dusk Wing
-        polish: [needs_testing]
         description: |-
           - Highly mobile and hard to hit
           - Debuff accuracy
@@ -1694,7 +1692,7 @@ sets:
             text: ""
           - name: Enemies cannot act your turn. (No instants, no reactions, etc)
             text: ""
-          - name: When you begin moving voluntarily,
+          - name: 1/Action, when you begin moving voluntarily,
             text: |-
               Leave a Hologram Marker in the space you started moving from. When an enemy enters the space, they take ⚔2 and the marker is removed.
         tokens:
@@ -1991,7 +1989,6 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_Havok Mine_6637140432975573967.jpg
                 is_marker: true
       - name: Iskander
-        polish: [needs_testing, needs_assets]
         description: |-
           - Mines, Mines, Mines
         image_url: https://i.redd.it/10-iskander-recolors-for-anyone-to-use-which-one-is-your-v0-73uf4wc6m8n81.png?width=1200&format=png&auto=webp&s=006df4a5b85736f9a6f6cd5a680826a8157603cc
@@ -2029,8 +2026,8 @@ sets:
             text: |- 
               Place a Grounding Mine in LoS, and up to two more within range 1.
               ---
-              Free action: Detonate any number of Grounding Mines.
-              Each pulls all units in range 3 to the mine's space and immobilizes them.
+              Free action at start of turn: Detonate any number of Grounding Mines, one at a time.
+              Mines on death: burst 3, pull 3.
             tokens:
               - name: Grounding Mine
                 image_url: https://img1.yeggi.com/page_images_cache/2948539_gravity-mine-marvel-by-fub-artistry
@@ -2345,7 +2342,6 @@ sets:
                   Blocks los in opposite direction.
 
       - name: Earthshaker
-        polish: [needs_testing]
         description: |-
           - AoE stunning
           - Create impassable barrier
@@ -2374,7 +2370,7 @@ sets:
           - name: Fissure
             text: |-
               1/Battle
-              Infinite line, to either side.
+              Infinite line, push 1 to a free space on either side if possible.
               Fill empty spaces in the line with Fissure markers which block movement but not LoS.
               Enemies adjacent to at least one Fissure marker: ⚔2 and give an ability CD 1 max 1. 
               
@@ -2389,7 +2385,6 @@ sets:
               Ultimate 4
               Enemies in burst 3, ⚔2 + 1⚔ per enemy in the area, give an ability CD 1 max 1.
       - name: Lich
-        polish: [needs_testing]
         description: |-
           - Give ally armor
           - Punish grouped enemies
@@ -2436,7 +2431,7 @@ sets:
           - name: Chain Frost
             text: |-
               1/Battle
-              Enemy or Ice Spire without a Chain Frost marker in range 3, 
+              Enemy or Ice Spire without a Chain Frost marker in range 3, not blocked by units, 
               if enemy: ⚔2 + ⚔2 per Chain Frost marker on this, slow.
               
               Remove all Chain Frost markers and tokens not on this.
@@ -2552,7 +2547,6 @@ sets:
               Ultimate 5
               Range 4 2x2, ⚔5
       - name: Mirana
-        polish: [needs_testing]
         description: |-
           - Mobile
           - AoE damage
@@ -3541,41 +3535,47 @@ sets:
       - *RuleCriticalMoment
     heroes:
       - name: Spy
+        polish: [needs_testing]
         description: |-
           - Stealth makes difficult to hit
           - Instantly kills nearby enemies that don't target this.
         image_url: https://tactics.toren.dev/image_token_Spy_-5617552459855719900.jpg
         health: 6
         speed: 3
-
         default_abilities:
           - name: Revolver
             text: |-
               If this has a Kill counter, remove one and deal a crit on hit.
-              Unlimited range, ⚔1 irreducible, +1 crit, +⚔1 on crit.
+              Unlimited range, ⚔2 irreducible.
           - name: Knife
             text: |-
               Interrupt when an enemy leave's an adjacent space from you, 
               or they end their turn with you in range 3 but they did not target you or your space that turn.
-              You may move 2 towards them and range 1, ⚔50 to them.
+              
+              You may move 2 towards them,
+              range 1, ⚔100 to them, 
+              gain a Kill Counter, move 2.
         tokens:
           - *Kill
         abilities:
           - name: Stealth
             text: |-
-              You have +1 speed, and Invisible.
-              Enemies consider you an ally rather than an enemy. 
-              When an enemy targets one of their allies while you're a valid target, they also target you.
-              
-              Effect ends when you deal damage or receive damage.
+              Free Action at start of turn:  
+              If there is no enemy in range 1, you gain Invisible.
+              While invisible:
+                You have +1 speed and +2⛨.
+                Enemies consider you an ally rather than an enemy. 
+                When an enemy targets one of their allies while you're a valid target, they also target you.
+
+              You lose invisible when you deal damage or receive damage.
             tokens:
               - *Invisible
-
           - name: Sapper
             text: |-
               Range 1, Choose one --
               - Target a summon with speed 0. Kill it.
               - Target a marker. Remove it.
+              Gain a kill counter.
           - name: Deadringer
             text: |-
               1/Battle, interrupt when you would take damage:
