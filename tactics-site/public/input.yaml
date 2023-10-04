@@ -3542,35 +3542,40 @@ sets:
         image_url: https://tactics.toren.dev/image_token_Spy_-5617552459855719900.jpg
         health: 6
         speed: 3
-
         default_abilities:
           - name: Revolver
             text: |-
               If this has a Kill counter, remove one and deal a crit on hit.
-              Unlimited range, ⚔1 irreducible, +1 crit, +⚔1 on crit.
+              Unlimited range, ⚔2 irreducible.
           - name: Knife
             text: |-
               Interrupt when an enemy leave's an adjacent space from you, 
               or they end their turn with you in range 3 but they did not target you or your space that turn.
-              You may move 2 towards them and range 1, ⚔50 to them.
+              
+              You may move 2 towards them,
+              range 1, ⚔100 to them, 
+              gain a Kill Counter, move 2.
         tokens:
           - *Kill
         abilities:
           - name: Stealth
             text: |-
-              You have +1 speed, and Invisible.
-              Enemies consider you an ally rather than an enemy. 
-              When an enemy targets one of their allies while you're a valid target, they also target you.
-              
-              Effect ends when you deal damage or receive damage.
+              Free Action at start of turn:  
+              If there is no enemy in range 1, you gain Invisible.
+              While invisible:
+                You have +1 speed and +2⛨.
+                Enemies consider you an ally rather than an enemy. 
+                When an enemy targets one of their allies while you're a valid target, they also target you.
+
+              You lose invisible when you deal damage or receive damage.
             tokens:
               - *Invisible
-
           - name: Sapper
             text: |-
               Range 1, Choose one --
               - Target a summon with speed 0. Kill it.
               - Target a marker. Remove it.
+              Gain a kill counter.
           - name: Deadringer
             text: |-
               1/Battle, interrupt when you would take damage:
