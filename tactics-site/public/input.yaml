@@ -108,6 +108,11 @@ conditions:
     name: Minus One Damage
     image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKcxoZqKynAwp2twHNABsEkhHN8Cn2CpLW3-xyspNj27828plZUaONzA3xxaEO4cc0rGg&usqp=CAU
     text: You deal -1 damage. Clear at the end of your turn.
+markers:
+  HealthPack: &HealthPack
+    name: Health Pack
+    image_url: https://wiki.teamfortress.com/w/images/thumb/7/7c/Mediumhealth.png/120px-Mediumhealth.png
+    text: When a unit enters this space, remove this, and the unit heals half their maximum health.
 shared_rules:
   Instant: &RuleInstant
     name: Instant
@@ -1372,6 +1377,10 @@ sets:
         image_path: overwatch-nepal-shrine.png
       - name: Nepal Village
         image_path: overwatch-nepal-village.png
+        tokens:
+          - *HealthPack
+          - *HealthPack
+          - *HealthPack
       - name: Nepal Sanctum
         image_path: overwatch-nepal-sanctum.png
 
@@ -3560,12 +3569,13 @@ sets:
         abilities:
           - name: Stealth
             text: |-
-              Free Action at start of turn:  
-              If there is no enemy in range 1, you gain Invisible.
-              While invisible:
+              Gain Invisible.
+              While invisible (in addition to normal benefits):
                 You have +1 speed and +2⛨.
+                You may choose to be targetable by enemies, ignoring 
                 Enemies consider you an ally rather than an enemy. 
-                When an enemy targets one of their allies while you're a valid target, they also target you.
+                When an enemy targets one of their allies while you're a valid target, 
+                  you may change the target to you (ignoring untargetability).
 
               You lose invisible when you deal damage or receive damage.
             tokens:
