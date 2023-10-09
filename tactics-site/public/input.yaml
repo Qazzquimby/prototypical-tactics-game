@@ -1374,15 +1374,26 @@ sets:
     #                image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/9/9e/Nano_Boost_Icon.png/revision/latest?cb=20170918221647
     maps:
       - name: Nepal Shrine
-        image_path: overwatch-nepal-shrine.png
+        image_path: cp_Overwatch_NepalShrine.png
+        tokens:
+          - *HealthPack
+          - *HealthPack
+          - *HealthPack
+          - *HealthPack
+          - *HealthPack
+          - *HealthPack
       - name: Nepal Village
-        image_path: overwatch-nepal-village.png
+        image_path: cp_Overwatch_NepalVillage.png
         tokens:
           - *HealthPack
           - *HealthPack
           - *HealthPack
       - name: Nepal Sanctum
-        image_path: overwatch-nepal-sanctum.png
+        image_path: cp_Overwatch_NepalSanctum.png
+        tokens:
+          - *HealthPack
+          - *HealthPack
+          - *HealthPack
 
   - name: Lancer
     description: |-
@@ -2062,12 +2073,11 @@ sets:
 
     maps:
       - name: Rickety Station
-        image_path: lancer-rickety_station.png
+        image_path: 3cp_Lancer_RicketyStation.png
       - name: City
-        image_path: lancer-city.png
+        image_path: 3cp_Lancer_City.png
       - name: Cargo
-        image_path: lancer-cargo.png
-
+        image_path: 3cp_Lancer_Cargo.png
 
   - name: Dota 2
     description: Todo
