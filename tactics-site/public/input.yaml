@@ -4078,3 +4078,24 @@ sets:
                 text: |-
                   Range 1, 1⚔
                   Target receives +.5x damage (permanent)
+
+    maps:
+      - name: Granary
+        image_path: cp_Tf2_Granary.png
+        tokens:
+          - *HealthPack
+          - *HealthPack
+      - name: Nucleus
+        image_path: cp_Tf2_Nucleus.png
+        tokens:
+          - *HealthPack
+          - *HealthPack
+          - *HealthPack
+          - *HealthPack
+      - name: Viaduct
+        image_path: cp_Tf2_Viaduct.png
+        tokens:
+          - *HealthPack
+          - *HealthPack
+          - *HealthPack
+          - *HealthPack
