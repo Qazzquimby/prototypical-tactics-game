@@ -108,11 +108,15 @@ conditions:
     name: Minus One Damage
     image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKcxoZqKynAwp2twHNABsEkhHN8Cn2CpLW3-xyspNj27828plZUaONzA3xxaEO4cc0rGg&usqp=CAU
     text: You deal -1 damage. Clear at the end of your turn.
+  Armor: &Armor
+    name: Armor
+    image_url: https://static.vecteezy.com/system/resources/previews/000/425/563/original/vector-shield-icon.jpg
+    text: (-1 damage received, doesn't stack)
 markers:
   HealthPack: &HealthPack
     name: Health Pack
     image_url: https://wiki.teamfortress.com/w/images/thumb/7/7c/Mediumhealth.png/120px-Mediumhealth.png
-    text: When a unit enters this space, remove this, and the unit heals half their maximum health.
+    text: When a damaged unit enters this space, remove this, and the unit heals half their maximum health.
 shared_rules:
   Instant: &RuleInstant
     name: Instant
@@ -354,7 +358,7 @@ sets:
               Ally or corpse marker in LoS. Fly to any space adjacent to the target, as directly as possible.
           - name: Resurrect
             text: |-
-              1/Battle:
+              1/Battle, Free Action:
               At the start of your next turn, you may resurrect target corpse in range 1.
           - name: Valkyrie
             text: |-
@@ -363,7 +367,6 @@ sets:
                 Your Caduceus Staff has range 5, and may affect a second target in range 2 of the first.
                 You can use Guardian Angel as a Move Action.
                 You are always Flying.
-              This doesn't gain charge while active.
       - name: Pharah
         description: |-
           - Rocket aoe projectiles
@@ -669,18 +672,18 @@ sets:
           - name: Orb of Destruction Charged
             image_url: https://tactics.toren.dev/image_token_Orb of Destruction Charged_5728767326879905803.jpg
         default_abilities:
+          - name: Snap Kick
+            text: |-
+              Range 1, ⚔2, push 2
           - name: Orb of Destruction
             text: |-
               Choose one --
               - Range 4, +2⛨, ⚔2 +1 crit
               - At the beginning of your next turn: Move 1; Unlimited range, +1⛨, ⚔6, +2 crit, lose a Standard Action.
         abilities:
-          - name: Snap Kick
-            text: |-
-              Range 1, ⚔2, push 2
           - name: Orb of Harmony
             text: |-
-              Free Action:
+              1/Turn, Free Action:
               Unlimited range, give your Orb of Harmony (max 1, remove oldest).
               Now and at the start of your turn, they Heal 2.
             tokens:
@@ -721,7 +724,7 @@ sets:
           - name: Configuration Assault
             text: |-
               Enter Assault Stance:
-                +1 armor.
+                You have Armor (receive -1 damage, doesn't stack).
                 You are continually slowed and immune to forced movement.
                 You receive +2 crit from range 1.
                 Exit when you lose an Action, or as a Free Action at the end of your turn.
@@ -1481,7 +1484,7 @@ sets:
           - Bunker Turret
         image_url: https://tactics.toren.dev/image_token_Drake_3131752286911180281.jpg
         passives:
-          - name: Armor 1
+          - name: Armor (-1 damage received, doesn't stack)
             text: ""
           - name: Take half damage from AoE.
             text: ""
@@ -1612,7 +1615,7 @@ sets:
           - Forced movement controller
           - Counter undefendable abilities
         passives:
-          - name: Take -.5x damage from all sources
+          - name: Resistance to all damage (receive half damage, doesn't stack)
             text: ""
           - name: Undefendable abilities targeting you or adjacent allies miss on a roll of 1-2.
             text: ""
@@ -1627,13 +1630,14 @@ sets:
             text: |-
               Place or Move your Magnetic Shield into range 1.
               Magnetic Shield is 3x1, blocks movement, but does not block line of sight.
-              Attacks that pass through the shield do -.5x damage.
+              Units have Resistance (receive half damage, doesn't stack) against attacks that pass 
+              through the shield. You receive no damage, instead.
             tokens:
               - name: Magnetic Shield
                 is_marker: true
                 size: 0.15
                 image_url: https://tactics.toren.dev/image_token_Magnetic Shield_908482444968353860.jpg
-                text: Attacks that pass through the shield do -.5x damage.
+                text: Units have resistance against attacks.
           - name: Summon ICEOUT Drone
             text: |-
               1/Battle:
@@ -1969,7 +1973,7 @@ sets:
         health: 6
         speed: 3
         passives:
-          - name: Armor 1
+          - name: Armor (-1 damage received, doesn't stack)
             text: ""
           - name: Immune to DoT
             text: ""
@@ -2163,7 +2167,7 @@ sets:
             text: |- 
               Enemies in burst 1, ⚔1
           - name: Receive damage from a Default Ability
-            text: The attacker takes 1/2 the damage received, before armor.
+            text: The attacker takes 1/2 the damage received, before Armor.
         default_abilities:
           - name: Axe
             text: |-
@@ -2173,7 +2177,7 @@ sets:
             text: |-
               1/Battle
               Until the beginning of your next turn,
-                +1 Armor
+                You have Armor (-1 damage received, doesn't stack)
                 When an enemy starts their turn in range 1 of you,
                   they cannot move, and they must use a default attack targeting you, if possible.
           - name: Battle Hunger
@@ -2195,11 +2199,9 @@ sets:
               On kill:
                 The target does not trigger any on-death reactions.
                 Refresh this.
-                If kill was a hero, you gain a Kill Counter.
-              
-              You have +1 armor per Kill Counter.
+                If the kill was a hero, for the rest of the game you have Armor (-1 damage received, doesn't stack).
             tokens:
-              - *Kill
+              - *Armor
       - name: Crystal Maiden
         polish: [needs_testing]
         description: |- 
@@ -2429,13 +2431,13 @@ sets:
             text: |-
               1/Battle
               Ally in LoS gets a Frost Shield marker:
-                +1 Armor
+                Armor (-1 damage received, doesn't stack)
                 At end of turn, enemies in burst 2, ⚔1.
             tokens:
               - name: Frost Shield
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/1/1b/Frost_Shield_icon.png/revision/latest?cb=20181124214838
                 text: |-
-                  +1 Armor
+                  You have Armor (-1 damage received, doesn't stack)
                   At end of turn, enemies in burst 2, ⚔1.
           - name: Sinister Gaze
             text: |-
@@ -2631,8 +2633,10 @@ sets:
           - name: Attribute Shift
             text: |-
               Free action at start of turn. Choose one --
-              - Enter strength stance: 
-                  Receive and deal -.5x damage. -1 speed.
+              - Enter strength stance:
+                  -1 speed.
+                  You have resistance to damage. Units have resistance to damage from you.
+                  (Resistance: receive half damage, doesn't stack)
               - Enter agility stance: 
                 Receive and deal +.5x damage. +1 speed.
               - Exit your stance.
@@ -2948,7 +2952,7 @@ sets:
   #        speed: 3
   #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561378118884-2HU7T647WEKGYR78XBHB/guild-masters-mcmourning.png
   #        passives:
-  #          - name: Armor +1
+  #          - name: Armor (-1 damage received, doesn't stack)
   #            text: ''
   #          - name: End of turn
   #            text: Enemies with DoT in range 2 take 1 damage.
@@ -3109,7 +3113,7 @@ sets:
   #            speed: 3
   #            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2015_09/large.gaki.jpg.afc89b1f23a8af53c6e322f1f434e4ea.jpg
   #            passives:
-  #              - name: Armor +1
+  #              - name: Armor (-1 damage received, doesn't stack)
   #                text: ""
   #              - name: Damaged
   #                text: Attacker takes 1 damage
@@ -3255,7 +3259,7 @@ sets:
   #          - name: Armored Plates
   #            text: |-
   #              UPGRADE
-  #              Armor +1
+  #              You have Armor
   #          - name: Feathered Wings
   #            text: |-
   #              UPGRADE
@@ -3848,7 +3852,9 @@ sets:
         speed: 3
         passives:
           - name: When you're damaged by an ability that can affect multiple targets.
-            text: Take -.5x damage. If you're the attacker, you may fly up to the damage value before appling reduction.
+            text: |- 
+              You have resistance from that damage. If you're the attacker, you may fly up to the damage value before applying reduction.
+              (Resistance: receive half damage, doesn't stack)
         default_abilities:
           - name: Grenade Launcher
             text: |-
@@ -3967,7 +3973,7 @@ sets:
               ---
               Spend 8 charges: choose one --
                 - Allies deal +.5x damage.
-                - Allies have armor 1 and do not receive extra damage from crits.
+                - Allies have Armor and do not receive extra damage from crits. (Armor is -1 damage received, doesn't stack)
                 - Allies have +1 speed and heal 1 when they deal damage.
             dice:
               - name: Banner
@@ -3979,7 +3985,7 @@ sets:
                 text: Allies deal +.5x damage.
               - name: Battalion's Backup
                 image_url: https://tactics.toren.dev/image_token_Batallion's Backup_4094755196016986268.jpg
-                text: Allies have armor 1 and do not receive extra damage from crits.
+                text: Allies have Armor and do not receive extra damage from crits. (Armor is -1 damage received, doesn't stack)
               - name: Concherer
                 image_url: https://tactics.toren.dev/image_token_Concherer_5115096414016923500.jpg
                 text: Allies have +1 speed and heal 1 when they deal damage.
