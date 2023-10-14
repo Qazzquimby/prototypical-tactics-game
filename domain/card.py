@@ -14,11 +14,14 @@ class Card(DomainEntity):
     def as_dict(self, transform=None):
         if not transform:
             transform = Transform.from_size_and_coords(1)
+        description = "\n\n".join(
+            [f"{hint.name}: {hint.text}" for hint in self.object.content.hints]
+        )
         return {
             "Name": "Card",
             "Transform": transform.as_dict(),
             "Nickname": self.object.content.name,
-            "Description": "",
+            "Description": description,
             "ColorDiffuse": {"r": 0, "g": 0, "b": 0},
             "LayoutGroupSortIndex": 0,
             "Value": 0,

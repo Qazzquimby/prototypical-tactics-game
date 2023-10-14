@@ -172,10 +172,19 @@ class Dice(BaseModel):
     values: list[int]
 
 
+class Hint(BaseModel):
+    name: str
+    text: str
+
+    def __str__(self):
+        return f"<p><span class='ability-name'>{self.name}:</span> {self.text}</p>"
+
+
 class Card(BaseModel, Spawnable):
     name: str
     tokens: list[Token] = []
     dice: list[Dice] = []
+    hints: list[Hint] = []
 
     template: ClassVar[jinja2.Template] = NotImplemented
 
@@ -484,6 +493,7 @@ class Map(Spawnable, BaseModel):
     image_path: str
 
     tokens: list[Token] = []
+    hints: list[Hint] = []
 
     size_: tuple[int, int] = None
 
@@ -557,7 +567,17 @@ class Game(BaseModel):
     def get_token_images(self):
         token_images: list[TokenImage] = []
         for game_set in self.sets:
+            for map in game_set.maps:
+                for token in map.tokens:
+                    token_image = TokenImage(url=token.image_url, name=token.name)
+                    token_images.append(token_image)
             for hero in game_set.heroes:
+                hero_image = TokenImage(url=hero.image_url, name=hero.name)
+                token_images.append(hero_image)
+
+                for token in hero.tokens:
+                    token_image = TokenImage(url=token.image_url, name=token.name)
+                    token_images.append(token_image)
                 for card in hero.cards:
                     if isinstance(card, UnitCard):
                         token_image = TokenImage(url=card.image_url, name=card.name)

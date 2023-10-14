@@ -74,7 +74,7 @@ conditions:
   Slow: &Slow
     name: Slow
     image_url: https://tactics.toren.dev/image_token_Slow_1902566325755039578.jpg
-    text: You have -2 Speed, to a minimum of 1. You are undefendable. Clear at the end of your next turn.
+    text: You have 1/2 Speed. You are undefendable. Clear at the end of your next turn.
   Stun: &Stun
     name: Stun
     image_url: https://tactics.toren.dev/image_token_Stun_-947718855703478726.jpg
@@ -82,7 +82,7 @@ conditions:
   Immobile: &Immobile
     name: Immobile
     image_url: https://cdn-icons-png.flaticon.com/512/4669/4669912.png
-    text: You cannot move yourself. Clear at the end of your next turn.
+    text: You cannot move voluntarily. You are undefendable. Clear at the end of your next turn.
   Paralyze: &Paralyze
     name: Paralyze
     image_url: https://tactics.toren.dev/image_token_Paralyze_-2680861371538521442.jpg
@@ -111,11 +111,26 @@ conditions:
   Armor: &Armor
     name: Armor
     image_url: https://static.vecteezy.com/system/resources/previews/000/425/563/original/vector-shield-icon.jpg
-    text: (-1 damage received, doesn't stack)
+    text: -1 damage received, doesn't stack
+hints:
+  ArmorHint: &ArmorHint
+    name: Armor
+    text: -1 damage received, doesn't stack
+  ImmobileHint: &ImmobileHint
+    name: Immobile
+    text: You cannot move voluntarily. You are undefendable.
+  ResistanceHint: &ResistanceHint
+    name: Resistance
+    text: Receive half damage. Cancels out with damage multipliers. Doesn't stack.
+  SlowHint: &SlowHint
+    name: Slow
+    text: You have 1/2 speed. You are undefendable.
+
 markers:
   HealthPack: &HealthPack
     name: Health Pack
     image_url: https://wiki.teamfortress.com/w/images/thumb/7/7c/Mediumhealth.png/120px-Mediumhealth.png
+    is_marker: true
     text: When a damaged unit enters this space, remove this, and the unit heals half their maximum health.
 shared_rules:
   Instant: &RuleInstant
@@ -471,11 +486,13 @@ sets:
               Instant +3:
               Enter shield stance:
                 You have facing and can freely set your facing at the end of your turn.
-                You're continually Slow (-2 speed, min 1) and can't take standard actions.
+                You're continually Slowed and can't take standard actions.
                 There is a 3 space long line on the edge in front of you, which moves with you.
                 The barrier acts as blocking for enemy's attacks (but not movement of summons or markers).
                 The barrier has 10hp which cannot be healed.
               You can dismiss the stance as a Free Action if you have ended a turn with it active.
+            hints:
+              - *SlowHint
             dice:
               - name: Barrier health
                 color: red
@@ -724,12 +741,14 @@ sets:
           - name: Configuration Assault
             text: |-
               Enter Assault Stance:
-                You have Armor (receive -1 damage, doesn't stack).
-                You are continually slowed and immune to forced movement.
+                You have Armor.
+                You are continually Slowed and immune to forced movement.
                 You receive +2 crit from range 1.
                 Exit when you lose an Action, or as a Free Action at the end of your turn.
+            hints:
+              - *SlowHint
+              - *ArmorHint
             tokens:
-              - *Slow
               - name: Assault Stance
                 image_url: https://tactics.toren.dev/image_token_Assault Stance_8059418691088752205.jpg
           - name: A-36 Tactical Grenade
@@ -1484,7 +1503,7 @@ sets:
           - Bunker Turret
         image_url: https://tactics.toren.dev/image_token_Drake_3131752286911180281.jpg
         passives:
-          - name: Armor (-1 damage received, doesn't stack)
+          - name: Armor
             text: ""
           - name: Take half damage from AoE.
             text: ""
@@ -1492,6 +1511,9 @@ sets:
             text: You may each take half the final damage, before modifiers.
           - name: Immune to forced movement.
             text: ""
+        hints:
+          - *ArmorHint
+          - *SlowHint
         default_abilities:
           - name: Concussion Missiles
             text: |-
@@ -1615,10 +1637,12 @@ sets:
           - Forced movement controller
           - Counter undefendable abilities
         passives:
-          - name: Resistance to all damage (receive half damage, doesn't stack)
+          - name: Resistance to all damage
             text: ""
           - name: Undefendable abilities targeting you or adjacent allies miss on a roll of 1-2.
             text: ""
+        hints:
+          - *ResistanceHint
         default_abilities:
           - name: Magnetic Cannon
             text: |-
@@ -1630,14 +1654,15 @@ sets:
             text: |-
               Place or Move your Magnetic Shield into range 1.
               Magnetic Shield is 3x1, blocks movement, but does not block line of sight.
-              Units have Resistance (receive half damage, doesn't stack) against attacks that pass 
-              through the shield. You receive no damage, instead.
+              Units have Resistance against attacks that pass through the shield. You receive no damage, instead.
             tokens:
               - name: Magnetic Shield
                 is_marker: true
                 size: 0.15
                 image_url: https://tactics.toren.dev/image_token_Magnetic Shield_908482444968353860.jpg
-                text: Units have resistance against attacks.
+                text: Units have resistance against attacks that pass through the shield.
+            hints:
+              - *ResistanceHint
           - name: Summon ICEOUT Drone
             text: |-
               1/Battle:
@@ -1973,12 +1998,14 @@ sets:
         health: 6
         speed: 3
         passives:
-          - name: Armor (-1 damage received, doesn't stack)
+          - name: Armor
             text: ""
           - name: Immune to DoT
             text: ""
           - name: The first time you would gain a second stress die
             text: Cancel the stress gain. Clear all stress. Enemies in range 2 get +2 stress DoT 1, and are pushed 2.
+        hints:
+          - *ArmorHint
         tokens:
           - *DoT
         default_abilities:
@@ -2078,6 +2105,18 @@ sets:
     maps:
       - name: Rickety Station
         image_path: 3cp_Lancer_RicketyStation.png
+        hints:
+          - name: Deadly Fall (pink shade)
+            text: |-
+              If a unit ends their turn on this, they die. Leaving a falling hazard space costs +1 movement.
+          - name: Capture Point Objective (orange shade)
+            text: |-
+              If a team has more units than the other team standing on an capture point, they own it.
+              If a capture point has no units from any team, it stays claimed by the last team that owned it.
+              If teams have an equal (non-0) number of units on a capture point, it is unowned.
+              
+              At end of round, if a team owns more capture points, they score 1 point.
+              If there are 3 or more capture points, and a team owns all of them, they score 1 more point.
       - name: City
         image_path: 3cp_Lancer_City.png
       - name: Cargo
@@ -2177,9 +2216,11 @@ sets:
             text: |-
               1/Battle
               Until the beginning of your next turn,
-                You have Armor (-1 damage received, doesn't stack)
+                You have Armor
                 When an enemy starts their turn in range 1 of you,
                   they cannot move, and they must use a default attack targeting you, if possible.
+            hints:
+              - *ArmorHint
           - name: Battle Hunger
             text: |-
               1/Battle:
@@ -2199,7 +2240,7 @@ sets:
               On kill:
                 The target does not trigger any on-death reactions.
                 Refresh this.
-                If the kill was a hero, for the rest of the game you have Armor (-1 damage received, doesn't stack).
+                If the kill was a hero, for the rest of the game you have Armor.
             tokens:
               - *Armor
       - name: Crystal Maiden
@@ -2225,7 +2266,7 @@ sets:
           - name: Crystal Nova
             text: |-
               CD 1
-              Range 3 2x2, ⚔3, slow
+              Range 3 2x2, ⚔3, Slow
             tokens:
               - *OnCooldown
               - *Slow
@@ -2431,13 +2472,15 @@ sets:
             text: |-
               1/Battle
               Ally in LoS gets a Frost Shield marker:
-                Armor (-1 damage received, doesn't stack)
+                Armor
                 At end of turn, enemies in burst 2, ⚔1.
+            hints:
+              - *ArmorHint
             tokens:
               - name: Frost Shield
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/1/1b/Frost_Shield_icon.png/revision/latest?cb=20181124214838
                 text: |-
-                  You have Armor (-1 damage received, doesn't stack)
+                  You have Armor
                   At end of turn, enemies in burst 2, ⚔1.
           - name: Sinister Gaze
             text: |-
@@ -2636,10 +2679,11 @@ sets:
               - Enter strength stance:
                   -1 speed.
                   You have resistance to damage. Units have resistance to damage from you.
-                  (Resistance: receive half damage, doesn't stack)
               - Enter agility stance: 
                 Receive and deal +.5x damage. +1 speed.
               - Exit your stance.
+            hints:
+              - *ResistanceHint
           - name: Adaptive Strike
             text: |-
               CD 1
@@ -2952,7 +2996,7 @@ sets:
   #        speed: 3
   #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561378118884-2HU7T647WEKGYR78XBHB/guild-masters-mcmourning.png
   #        passives:
-  #          - name: Armor (-1 damage received, doesn't stack)
+  #          - name: Armor
   #            text: ''
   #          - name: End of turn
   #            text: Enemies with DoT in range 2 take 1 damage.
@@ -3113,7 +3157,7 @@ sets:
   #            speed: 3
   #            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2015_09/large.gaki.jpg.afc89b1f23a8af53c6e322f1f434e4ea.jpg
   #            passives:
-  #              - name: Armor (-1 damage received, doesn't stack)
+  #              - name: Armor
   #                text: ""
   #              - name: Damaged
   #                text: Attacker takes 1 damage
@@ -3854,7 +3898,8 @@ sets:
           - name: When you're damaged by an ability that can affect multiple targets.
             text: |- 
               You have resistance from that damage. If you're the attacker, you may fly up to the damage value before applying reduction.
-              (Resistance: receive half damage, doesn't stack)
+        hints:
+          - *ResistanceHint
         default_abilities:
           - name: Grenade Launcher
             text: |-
@@ -3973,8 +4018,10 @@ sets:
               ---
               Spend 8 charges: choose one --
                 - Allies deal +.5x damage.
-                - Allies have Armor and do not receive extra damage from crits. (Armor is -1 damage received, doesn't stack)
+                - Allies have Armor and do not receive extra damage from crits.
                 - Allies have +1 speed and heal 1 when they deal damage.
+            hints:
+              - *ArmorHint
             dice:
               - name: Banner
                 color: orange
@@ -3985,7 +4032,7 @@ sets:
                 text: Allies deal +.5x damage.
               - name: Battalion's Backup
                 image_url: https://tactics.toren.dev/image_token_Batallion's Backup_4094755196016986268.jpg
-                text: Allies have Armor and do not receive extra damage from crits. (Armor is -1 damage received, doesn't stack)
+                text: Allies have Armor and do not receive extra damage from crits.
               - name: Concherer
                 image_url: https://tactics.toren.dev/image_token_Concherer_5115096414016923500.jpg
                 text: Allies have +1 speed and heal 1 when they deal damage.
