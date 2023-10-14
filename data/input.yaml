@@ -116,6 +116,11 @@ hints:
   ArmorHint: &ArmorHint
     name: Armor
     text: -1 damage received, doesn't stack
+  FlyingHint: &FlyingHint
+    name: Flying
+    text: |-
+      You ignore terrain and your movement does not provoke reactions.
+      Flying movement gives you flying during the movement.
   ImmobileHint: &ImmobileHint
     name: Immobile
     text: You cannot move voluntarily. You are undefendable.
@@ -125,6 +130,30 @@ hints:
   SlowHint: &SlowHint
     name: Slow
     text: You have 1/2 speed. You are undefendable.
+  ### maps
+  CapturePointHint: &CapturePointHint
+    name: Capture Point Objective (orange shade)
+    text: |-
+      If a team has more units than the other team standing on an capture point, they own it.
+      If a capture point has no units from any team, it stays claimed by the last team that owned it.
+      If teams have an equal (non-0) number of units on a capture point, it is unowned.
+      At end of round, if a team owns more capture points, they score 1 point.
+      If there are 3 or more capture points, and a team owns all of them, they score 1 more point.
+  CoverHint: &CoverHint
+    name: Cover (green line)
+    text: |-
+      If an ability draws range through cover, and doesn't start adjacent to that cover, the ability has +2⛨.
+  DeadlyFallHint: &DeadlyFallHint
+    name: Deadly Fall (pink shade)
+    text: |-
+      If a unit ends their turn on this, they die. Leaving a falling hazard space costs +1 movement.
+  HeightDifference: &HeightDifferenceHint
+    name: Height Difference (yellow line)
+    text: |-
+      The yellow line has arrows in one direction, pointing down. Units cannot move "up" the line.
+      Range 1 does not reach over the line, though other ranges are unaffected. (Melee can't reach)
+      Line of sight cannot go both up and down height difference. If LoS goes up a height difference, its blocked when it would go down. (You can't see the other side of the hill)
+  
 
 markers:
   HealthPack: &HealthPack
@@ -165,27 +194,6 @@ shared_rules:
       F F 😀 F F
       B B B B B
       B B B B B
-  HeightDifference: &RuleHeightDifference
-    name: Height Difference
-    text: |-
-      Double yellow line indicates the square with the second line is higher than the square bordering it.
-      Units can move from freely from high to low, but the line is impassible from low to high.
-      When counting range, the Height Difference counts as 2 extra spaces.
-      A height difference is also Cover.
-  FallingHazard: &RuleFallingHazard
-    name: Falling Hazard
-    text: |-
-      Purple area indicates a pit. 
-      Units standing on a pit cannot move. 
-      Units that end their turn on a pit are destroyed.
-
-      Some units may be able to escape by flying or teleporting.
-  Cover: &RuleCover
-    name: Cover
-    text: |-
-      Green lines indicate cover. Cover can be moved through.
-      Cover makes it harder to attack if you're not adjacent to it. 
-      If a unit isn't next to the cover, their Line of Sight only travels one space past it.
   CriticalMoment: &RuleCriticalMoment
     name: Critical Moment
     text: |-
@@ -194,15 +202,6 @@ shared_rules:
       - name: Critical Moment
         image_url: https://tactics.toren.dev/image_token_Critical Moment_5737535895777788509.jpg
         text: You may reroll one die.
-  CapturePoint: &RuleCapturePoint
-    name: Capture Point
-    text: |-
-      An orange area is a capture point.
-      At the end of each round (after all units have acted), a team with more units in the capture point claims it. Mark it with the team's color.
-      Then if one team owns more points than the other, they score 1 point.
-      If there are multiple control points and one team controls all of them, they score 2 points instead.
-      
-      Points remain claimed until the other team claims them.
 
 counters:
   Kill: &Kill
@@ -242,10 +241,6 @@ sets:
       - *RuleUltimate
       - *RuleFlying
       - *RuleFacing
-      - *RuleHeightDifference
-      - *RuleFallingHazard
-      - *RuleCover
-      - *RuleCriticalMoment
       - *RuleCriticalMoment
     heroes:
       - name: Widowmaker
@@ -281,6 +276,8 @@ sets:
             text: |-
               1/Battle, Move Action:
               Fly directly to any point in range 5.
+            hints:
+              - *FlyingHint
           - name: Infra-Sight
             text: |-
               Ultimate 3, Free Action:
@@ -371,6 +368,8 @@ sets:
           - name: Guardian Angel
             text: |-
               Ally or corpse marker in LoS. Fly to any space adjacent to the target, as directly as possible.
+            hints:
+              - *FlyingHint
           - name: Resurrect
             text: |-
               1/Battle, Free Action:
@@ -382,6 +381,8 @@ sets:
                 Your Caduceus Staff has range 5, and may affect a second target in range 2 of the first.
                 You can use Guardian Angel as a Move Action.
                 You are always Flying.
+            hints:
+              - *FlyingHint
       - name: Pharah
         description: |-
           - Rocket aoe projectiles
@@ -392,8 +393,10 @@ sets:
         speed: 4
         image_url: https://tactics.toren.dev/image_token_Pharah_2788900522477735691.jpg
         passives:
-          - name: All your movement is flying.
+          - name: You are always Flying
             text: ""
+        hints:
+          - *FlyingHint
         default_abilities:
           - name: Rocket Launcher
             text: |-
@@ -620,6 +623,8 @@ sets:
             text: |-
               1/Battle, Free Action:
               Fly up to 2.
+            hints:
+              - *FlyingHint
           - name: Dragonstrike
             text: |-
               Ultimate 4:
@@ -659,6 +664,8 @@ sets:
               Burst 1, ⚔1.
             tokens:
               - *OnCooldown
+            hints:
+              - *FlyingHint
           - name: Barrier Projector
             text: |-
               1/Battle, Instant +2:
@@ -1361,7 +1368,7 @@ sets:
     #          - name: Biotic Rifle
     #            text: |-
     #              Move + Standard Action
-    #              You may move up to 1.
+    #              You may move 1.
     #              Unlimited range, either Heal 3 or ⚔2.
     #        abilities:
     #          - name: Sleep Dart
@@ -1427,7 +1434,25 @@ sets:
       text: |-
         +2⛨ to all rolls.
         Cleared at the end of your turn.
+    Grappled: &Grappled
+      name: Grappled
+      image_url: https://static.thenounproject.com/png/4418721-200.png
+      text: |-
+        text: |-
+          Affects a pair of adjacent units.
+          The member of the grapple with less health is immobilized, but is pulled with the other member.
+          Cleared if they become nonadjacent, or as a Free Action by the member with more health.
     rules:
+      - name: Stress
+        text: |-
+          Stress is tracked with counter dice.
+          Heroes deploy with 1 stress.
+          When a hero gains their second stress die, they take ⚔2 and receive +1x damage.
+          When a hero ends their turn with 3 stress dice, they deal burst 1 ⚔2 and die.
+        dice:
+          - name: Stress
+            color: gray
+            values: [ 1 ]
       - name: Actions
         text: |-          
           For 1 Standard Action, range 4, undefendable, target gets 3 stress, and your choice of Impaired or Slow
@@ -1440,43 +1465,34 @@ sets:
           - *Slow
       - name: Opportunity Attacks
         text: |-
-          When a unit breaks adjacency with an enemy, the enemy may make an opportunity attack against it.
-      - name: Grappled
-        text: |-
-          Affects a pair of adjacent units.
-          The member of the grapple with less health is immobilized, but is pulled with the other member.
-          Cleared if they become nonadjacent, or as a Free Action by the member with more health.
-      - name: Stress
-        text: |-
-          Stress is tracked with counter dice.
-          Heroes deploy with 1 stress.
-          When a hero gains their second stress die, they take ⚔2 and receive +1x damage.
-          When a hero ends their turn with 3 stress dice, they deal burst 1 ⚔2 and die.
-        dice:
-          - name: Stress
-            color: gray
-            values: [ 1 ]
-      - *RuleCover
-      - *RuleCapturePoint
-      - *RuleFallingHazard
+          When a unit starts a movement while in range 1 of an enemy, the enemy may make an make a standard-action default ability targeting them.
+          They have Resistance to the ability.
+        hints:
+          - *ResistanceHint
     heroes:
       - name: Blackbeard
         health: 8
         speed: 3
         image_url: https://tactics.toren.dev/image_token_Blackbeard_-3127398764168025855.jpg
         description: |-
-          - Grappling Berserker
+          - Grappling berserker
+          - High irreducible damage
         default_abilities:
           - name: Grapple
             text: |-
-              Range 4, move directly to the target and grapple them.
+              Range 4, move directly to the target and Grapple them.
           - name: Chain Axe
             text: Range 1, ⚔3 irreducible
+        tokens:
+          - *Grappled
+          - *Grappled
         abilities:
           - name: Grapple Swing
             text: |-
               Move Action:
-              Fly up to 4 in an orthogonal line
+              Fly 4 in a straight line
+            hints:
+              - *FlyingHint
           - name: SEKHMET-Class NHP
             text: |-
               Free Action at start of turn:
@@ -1744,6 +1760,8 @@ sets:
           - name: 1/Action, when you begin moving voluntarily,
             text: |-
               Leave a Hologram Marker in the space you started moving from. When an enemy enters the space, they take ⚔2 and the marker is removed.
+        hints:
+          - *FlyingHint
         tokens:
           - name: Hologram
             image_url: https://mumcdnstorage.blob.core.windows.net/dwnews/2018/07/7.6.18-FOM.jpg
@@ -1900,7 +1918,7 @@ sets:
             text: The ability misses. The attacker ends their turn.
           - name: You or an adjacent ally is targeted
             text: |-
-              You may move up to 2 without going further from the ally.
+              You may move 2 without going further from the ally.
               Target the triggering unit in range 4, ⚔2
         default_abilities:
           - name: Gorgon's Gaze
@@ -2106,20 +2124,18 @@ sets:
       - name: Rickety Station
         image_path: 3cp_Lancer_RicketyStation.png
         hints:
-          - name: Deadly Fall (pink shade)
-            text: |-
-              If a unit ends their turn on this, they die. Leaving a falling hazard space costs +1 movement.
-          - name: Capture Point Objective (orange shade)
-            text: |-
-              If a team has more units than the other team standing on an capture point, they own it.
-              If a capture point has no units from any team, it stays claimed by the last team that owned it.
-              If teams have an equal (non-0) number of units on a capture point, it is unowned.
-              At end of round, if a team owns more capture points, they score 1 point.
-              If there are 3 or more capture points, and a team owns all of them, they score 1 more point.
+          - *DeadlyFallHint
+          - *CapturePointHint
       - name: City
         image_path: 3cp_Lancer_City.png
+        hints:
+          - *CoverHint
+          - *CapturePointHint
       - name: Cargo
         image_path: 3cp_Lancer_Cargo.png
+        hints:
+          - *CoverHint
+          - *CapturePointHint
 
   - name: Dota 2
     description: Todo
@@ -2428,6 +2444,8 @@ sets:
             text: |-
               Fly 3 in a straight line.
               Gain an Enchant counter.
+            hints:
+              - *FlyingHint
           - name: Fissure
             text: |-
               1/Battle
@@ -2534,10 +2552,12 @@ sets:
         health: 6
         speed: 2
         passives:
-          - name: Your movement is flying
+          - name: You are always Flying
             text: ""
           - name: You have +1 move speed per Fiery Soul charge
             text: ""
+        hints:
+          - *FlyingHint
         dice:
           - name: Fiery Soul
             color: orange
@@ -2640,6 +2660,8 @@ sets:
             text: |-
               3/Battle, Free Action
               Fly 2 in a straight line. At end of turn, move 1.
+            hints:
+              - *FlyingHint
             dice:
               - name: Charges
                 color: white
@@ -2647,7 +2669,9 @@ sets:
           - name: Moonlight Shadow
             text: |-
               Ultimate 4
-              At the end of each your turns, you and your allies become invisible and may fly 1.
+              At the end of each your turns, you and your allies become invisible and may Fly 1.
+            hints:
+              - *FlyingHint
             tokens:
                 - *Invisible
       - name: Morphling
@@ -2666,7 +2690,9 @@ sets:
           - name: Waveform
             text: |-
               CD 1, Instant +2
-              Fly 2x your move speed in a straight line. Units moved through take ⚔2.
+              Fly 2x your move speed in a straight line, ignoring units. Units moved through take ⚔2.
+            hints:
+              - *FlyingHint
           - name: Adaptive Strike
             text: |-
               Range 3, ⚔2
@@ -2788,7 +2814,7 @@ sets:
   #          - name: Start of turn
   #            text: |-
   #              Another Viktoria in range 4 may teleport adjacent to this.
-  #              Teleport up to 1.
+  #              Teleport 1.
   #          - name: Kill
   #            text: All Viktorias heal 2
   #          - name: Death
@@ -2850,7 +2876,7 @@ sets:
   #            text: |-
   #              Free
   #              Target an ice pillar in range 3. Choose any number of allies adjacent to it.
-  #              Teleport the ice pillar up to 2, then teleport the chosen allies adjacent to it.
+  #              Teleport the ice pillar 2, then teleport the chosen allies adjacent to it.
   #        units:
   #          - name: Wendigo
   #            health: 3
@@ -2894,7 +2920,7 @@ sets:
   #          - name: Juggernaut Leap
   #            text: |-
   #              Free
-  #              Teleport up to 3, or heal 2.
+  #              Teleport 3, or heal 2.
   #      - name: Zoraida
   #        description: |-
   #          - Mindcontrol units
@@ -2917,7 +2943,7 @@ sets:
   #            text: |-
   #              undefendable
   #              Range 4, ⚔1
-  #              If the target has a Voodoo attachment, this may move them up to 3.
+  #              If the target has a Voodoo attachment, this may move them 3.
   #              An ally adjacent to the target may use a default attack targeting them.
   #        abilities:
   #          - name: Obey
@@ -2982,7 +3008,7 @@ sets:
   #              Range 3, Push the target its speed away from this.
   #          - name: Secret Passage
   #            text: |-
-  #              If adjacent to blocking terrain, teleport up to 6, ending adjacent to blocking terrain.
+  #              If adjacent to blocking terrain, teleport 6, ending adjacent to blocking terrain.
   #          - name: Cause for Celebration
   #            text: |-
   #              Free
@@ -3252,7 +3278,7 @@ sets:
   #        abilities:
   #          - name: False Reality
   #            text: |-
-  #              Range 4, undefendable, teleport the target up to 3.
+  #              Range 4, undefendable, teleport the target  3.
   #              5-6: You may give the target Stunned(-1 Action)
   #          - name: Presto Chango
   #            text: |-
@@ -3265,7 +3291,7 @@ sets:
   #          - name: Practiced Choreography
   #            text: |-
   #              Free
-  #              Allies in range 2 may move up to 2.
+  #              Allies in range 2 may move 2.
   #
   #      - name: Marcus
   #        description: |-
@@ -3288,7 +3314,7 @@ sets:
   #          - name: Tear Apart
   #            text: |-
   #              Range 1, ⚔2
-  #              5-6, Teleport up to 3 adjacent to an enemy you haven't attacked this turn,
+  #              5-6, Teleport  3, adjacent to an enemy you haven't attacked this turn,
   #              and repeat this ability.
   #        abilities:
   #          - name: Chimerancy
@@ -3298,7 +3324,7 @@ sets:
   #          - name: Primal Roar
   #            text: |-
   #              Free
-  #              Allies in range 3 may move up to 2.
+  #              Allies in range 3 may move 2.
   #          - name: Armored Plates
   #            text: |-
   #              UPGRADE
@@ -3307,7 +3333,7 @@ sets:
   #            text: |-
   #              UPGRADE
   #              This may teleport when moving.
-  #              Attacked: After resolving, may move up to 3.
+  #              Attacked: After resolving, may move 3.
   #          - name: Formidable Horns
   #            text: |-
   #              UPGRADE
@@ -3341,12 +3367,12 @@ sets:
   #              - name: Horns
   #                text: |-
   #                  Range 1, ⚔2
-  #                  5-6, Teleport up to 3 adjacent to an enemy you haven't attacked this turn,
+  #                  5-6, Teleport 3, adjacent to an enemy you haven't attacked this turn,
   #                  and repeat this ability.
   #              - name: Leap
   #                text: |-
   #                  Free
-  #                  Teleport up to 3.
+  #                  Teleport 3.
   #      - name: Som'er Teeth Jones
   #        description: |-
   #          - Summon and synergize with weak minions
@@ -3774,7 +3800,7 @@ sets:
             text: |-
               Path range 3, heal them 1, target becomes your Healing Target until the start of your next turn, or if they stop being within path range 4.
               When they move other than in a standard move, you may copy that movement effect.
-              At start of your turn, heal them 4, with excess healing as overshield. Move up to their speed-3.
+              At start of your turn, heal them 4, with excess healing as overshield. Move their speed-3.
           - name: Blutsauger
             text: |-
               Range 3, +2⛨, 2⚔, heal equal to damage dealt.
@@ -3896,9 +3922,10 @@ sets:
         passives:
           - name: When you're damaged by an ability that can affect multiple targets.
             text: |- 
-              You have resistance from that damage. If you're the attacker, you may fly up to the damage value before applying reduction.
+              You have resistance from that damage. If you're the attacker, you may Fly equal to the damage value before applying reduction.
         hints:
           - *ResistanceHint
+          - *FlyingHint
         default_abilities:
           - name: Grenade Launcher
             text: |-
@@ -4049,8 +4076,8 @@ sets:
           - name: Disciplinary Action
             text: |-
               Range 2,
-              You may move up to 2.
-              The target may move up to 2.
+              Move 2.
+              The target may move 2.
           - name: Pain Train
             text: |-
               Enter or exit Pain Train stance as Free Action at start of turn.
@@ -4137,6 +4164,11 @@ sets:
         tokens:
           - *HealthPack
           - *HealthPack
+        hints:
+          - *HeightDifferenceHint
+          - *HealthPack
+          - *CapturePointHint
+          - *CoverHint
       - name: Nucleus
         image_path: cp_Tf2_Nucleus.png
         tokens:
@@ -4144,6 +4176,12 @@ sets:
           - *HealthPack
           - *HealthPack
           - *HealthPack
+        hints:
+          - *HeightDifferenceHint
+          - *HealthPack
+          - *CapturePointHint
+          - *DeadlyFallHint
+          - *CoverHint
       - name: Viaduct
         image_path: cp_Tf2_Viaduct.png
         tokens:
@@ -4151,3 +4189,8 @@ sets:
           - *HealthPack
           - *HealthPack
           - *HealthPack
+        hints:
+          - *HeightDifferenceHint
+          - *HealthPack
+          - *CapturePointHint
+          - *CoverHint

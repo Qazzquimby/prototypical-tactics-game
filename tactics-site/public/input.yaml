@@ -116,6 +116,11 @@ hints:
   ArmorHint: &ArmorHint
     name: Armor
     text: -1 damage received, doesn't stack
+  FlyingHint: &FlyingHint
+    name: Flying
+    text: |-
+      You ignore terrain and your movement does not provoke reactions.
+      Flying movement gives you flying during the movement.
   ImmobileHint: &ImmobileHint
     name: Immobile
     text: You cannot move voluntarily. You are undefendable.
@@ -125,6 +130,30 @@ hints:
   SlowHint: &SlowHint
     name: Slow
     text: You have 1/2 speed. You are undefendable.
+  ### maps
+  CapturePointHint: &CapturePointHint
+    name: Capture Point Objective (orange shade)
+    text: |-
+      If a team has more units than the other team standing on an capture point, they own it.
+      If a capture point has no units from any team, it stays claimed by the last team that owned it.
+      If teams have an equal (non-0) number of units on a capture point, it is unowned.
+      At end of round, if a team owns more capture points, they score 1 point.
+      If there are 3 or more capture points, and a team owns all of them, they score 1 more point.
+  CoverHint: &CoverHint
+    name: Cover (green line)
+    text: |-
+      If an ability draws range through cover, and doesn't start adjacent to that cover, the ability has +2⛨.
+  DeadlyFallHint: &DeadlyFallHint
+    name: Deadly Fall (pink shade)
+    text: |-
+      If a unit ends their turn on this, they die. Leaving a falling hazard space costs +1 movement.
+  HeightDifference: &HeightDifferenceHint
+    name: Height Difference (yellow line)
+    text: |-
+      The yellow line has arrows in one direction, pointing down. Units cannot move "up" the line.
+      Range 1 does not reach over the line, though other ranges are unaffected. (Melee can't reach)
+      Line of sight cannot go both up and down height difference. If LoS goes up a height difference, its blocked when it would go down. (You can't see the other side of the hill)
+  
 
 markers:
   HealthPack: &HealthPack
@@ -168,11 +197,10 @@ shared_rules:
   HeightDifference: &RuleHeightDifference
     name: Height Difference
     text: |-
-      Double yellow line indicates the square with the second line is higher than the square bordering it.
-      Units can move from freely from high to low, but the line is impassible from low to high.
-      When counting range, the Height Difference counts as 2 extra spaces.
-      A height difference is also Cover.
-  FallingHazard: &RuleFallingHazard
+      The yellow line has arrows in one direction, pointing down. Units cannot move "up" the line.
+      Range 1 does not reach over the line, though other ranges are unaffected. (Melee can't reach)
+      Line of sight cannot go both up and down height difference. If LoS goes up a height difference, its blocked when it would go down. (You can't see the other side of the hill)
+  FallingHazard: &RuleDeadlyFall
     name: Falling Hazard
     text: |-
       Purple area indicates a pit. 
@@ -183,9 +211,8 @@ shared_rules:
   Cover: &RuleCover
     name: Cover
     text: |-
-      Green lines indicate cover. Cover can be moved through.
-      Cover makes it harder to attack if you're not adjacent to it. 
-      If a unit isn't next to the cover, their Line of Sight only travels one space past it.
+      Green lines indicate cover.
+      If an ability draws range through cover, and doesn't start adjacent to that cover, the ability has +2⛨.
   CriticalMoment: &RuleCriticalMoment
     name: Critical Moment
     text: |-
@@ -243,7 +270,7 @@ sets:
       - *RuleFlying
       - *RuleFacing
       - *RuleHeightDifference
-      - *RuleFallingHazard
+      - *RuleDeadlyFall
       - *RuleCover
       - *RuleCriticalMoment
       - *RuleCriticalMoment
@@ -382,6 +409,8 @@ sets:
                 Your Caduceus Staff has range 5, and may affect a second target in range 2 of the first.
                 You can use Guardian Angel as a Move Action.
                 You are always Flying.
+            hints:
+              - *FlyingHint
       - name: Pharah
         description: |-
           - Rocket aoe projectiles
@@ -392,8 +421,10 @@ sets:
         speed: 4
         image_url: https://tactics.toren.dev/image_token_Pharah_2788900522477735691.jpg
         passives:
-          - name: All your movement is flying.
+          - name: You are always Flying
             text: ""
+        hints:
+          - *FlyingHint
         default_abilities:
           - name: Rocket Launcher
             text: |-
@@ -1458,7 +1489,7 @@ sets:
             values: [ 1 ]
       - *RuleCover
       - *RuleCapturePoint
-      - *RuleFallingHazard
+      - *RuleDeadlyFall
     heroes:
       - name: Blackbeard
         health: 8
@@ -2106,21 +2137,18 @@ sets:
       - name: Rickety Station
         image_path: 3cp_Lancer_RicketyStation.png
         hints:
-          - name: Deadly Fall (pink shade)
-            text: |-
-              If a unit ends their turn on this, they die. Leaving a falling hazard space costs +1 movement.
-          - name: Capture Point Objective (orange shade)
-            text: |-
-              If a team has more units than the other team standing on an capture point, they own it.
-              If a capture point has no units from any team, it stays claimed by the last team that owned it.
-              If teams have an equal (non-0) number of units on a capture point, it is unowned.
-              
-              At end of round, if a team owns more capture points, they score 1 point.
-              If there are 3 or more capture points, and a team owns all of them, they score 1 more point.
+          - *DeadlyFallHint
+          - *CapturePointHint
       - name: City
         image_path: 3cp_Lancer_City.png
+        hints:
+          - *CoverHint
+          - *CapturePointHint
       - name: Cargo
         image_path: 3cp_Lancer_Cargo.png
+        hints:
+          - *CoverHint
+          - *CapturePointHint
 
   - name: Dota 2
     description: Todo
@@ -4138,6 +4166,11 @@ sets:
         tokens:
           - *HealthPack
           - *HealthPack
+        hints:
+          - *HeightDifferenceHint
+          - *HealthPack
+          - *CapturePointHint
+          - *CoverHint
       - name: Nucleus
         image_path: cp_Tf2_Nucleus.png
         tokens:
@@ -4145,6 +4178,12 @@ sets:
           - *HealthPack
           - *HealthPack
           - *HealthPack
+        hints:
+          - *HeightDifferenceHint
+          - *HealthPack
+          - *CapturePointHint
+          - *DeadlyFallHint
+          - *CoverHint
       - name: Viaduct
         image_path: cp_Tf2_Viaduct.png
         tokens:
@@ -4152,3 +4191,8 @@ sets:
           - *HealthPack
           - *HealthPack
           - *HealthPack
+        hints:
+          - *HeightDifferenceHint
+          - *HealthPack
+          - *CapturePointHint
+          - *CoverHint
