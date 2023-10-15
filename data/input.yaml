@@ -2029,7 +2029,7 @@ sets:
         default_abilities:
           - name: Flamethrower
             text: |-
-              Range 1, 2x2 area, ⚔1, get DoT 1
+              Range 1, 2x2 area, ⚔1, give DoT 1
             tokens:
               - *DoT
         abilities:
@@ -2274,6 +2274,11 @@ sets:
           - name: Chilled
             text: |-
               Slowed enemies deal -1 damage.
+        tokens:
+          - name: Extra Ability Use
+            image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/5/5a/Arcane_Aura_icon.png/revision/latest?cb=20111005085505
+            text: |-
+              Gain an extra 1/Battle use of this ability. (Ultimates are 1/Battle)
         default_abilities:
           - name: Ice Bolt
             text: Range 4, ⚔2
@@ -2702,13 +2707,25 @@ sets:
             text: |-
               Free action at start of turn. Choose one --
               - Enter strength stance:
-                  -1 speed.
+                  You have -1 speed.
                   You have resistance to damage. Units have resistance to damage from you.
               - Enter agility stance: 
-                Receive and deal +.5x damage. +1 speed.
+                  You have +1 speed.
+                  Receive and deal +.5x damage. 
               - Exit your stance.
             hints:
               - *ResistanceHint
+            tokens:
+              - name: Strength Stance
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/2/27/Attribute_Shift_%28Strength_Gain%29_icon.png/revision/latest?cb=20120926231603
+                text: |-
+                    You have -1 speed.
+                    You have resistance to damage. Units have resistance to damage from you.
+              - name: Agility Stance
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/a/a0/Attribute_Shift_%28Agility_Gain%29_icon.png/revision/latest?cb=20120926231600
+                text: |-
+                  You have +1 speed.
+                  Receive and deal +.5x damage.
           - name: Adaptive Strike
             text: |-
               CD 1
@@ -2760,9 +2777,12 @@ sets:
           - name: Reaper's Scythe
             text: |-
               1/Battle
-              Range 3, paralyze.
-              When the paralyze ends, irreducible damage the target equal to their missing health.
+              Range 3, immobilize.
+              At the start of your next turn, deal irreducible damage the target equal to their missing health.
               On kill, gain 2 additional Kill counters.
+            tokens:
+              - *Paralyze
+              - *Immobile
 
     
 
@@ -3642,9 +3662,9 @@ sets:
           - name: Knife
             text: |-
               Interrupt when an enemy leave's an adjacent space from you, 
-              or they end their turn with you in range 3 but they did not target you or your space that turn.
+              or uses an ability which does not include you, while in range 2 of you.
               
-              You may move 2 towards them,
+              You may move 1 towards them,
               range 1, ⚔100 to them, 
               gain a Kill Counter, move 2.
         tokens:
@@ -3697,30 +3717,24 @@ sets:
             image_url: https://tactics.toren.dev/image_token_Spun Up_1477848996508512357.jpg
             text: You are slowed, but your minigun is more powerful.
         abilities:
-          - name: Sandvich
+          - name: Snack
             text: |-
               1/Battle, choose one --
-              - Place your Sandvich Marker in a space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
+              - Free Action: Place your Sandvich Marker in a space in range 2 (can be occupied). When a damaged unit is in this space, they heal half their maximum hp and destroy this.
               - Move + Standard, Heal 12.
-            tokens:
-              - name: Sandvich
-                image_url: https://tactics.toren.dev/image_token_Sandvich_6108514798017996936.jpg
-                is_marker: true
-                text: |- 
-                  Units that enter this space heal 4 and destroy this.
-          - name: Buffalo Steak
-            text: |-
-              1/Battle, choose one --
-              - Place your Buffalo Steak Marker in a space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
               - Move + Standard Action. Gain Buffalo Steak Rage: 
                   +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
             tokens:
-              - name: Buffalo Steak
+              - name: Snack Pickup
+                image_url: https://tactics.toren.dev/image_token_Sandvich_6108514798017996936.jpg
+                is_marker: true
+                text: |- 
+                  When a damaged unit is in this space, they heal half their maximum hp and destroy this.
+              - name: Buffalo Steak Rage
                 image_url: https://tactics.toren.dev/image_token_Buffalo Steak Rage_8581238716479321113.jpg
                 is_marker: true
                 text: |- 
-                  On the map: units that enter this space heal 4 and destroy this.
-                  As status: +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
+                  +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
 
           - name: Swap Gloves
             text: |-
