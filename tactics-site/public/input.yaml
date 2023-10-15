@@ -194,25 +194,6 @@ shared_rules:
       F F 😀 F F
       B B B B B
       B B B B B
-  HeightDifference: &RuleHeightDifference
-    name: Height Difference
-    text: |-
-      The yellow line has arrows in one direction, pointing down. Units cannot move "up" the line.
-      Range 1 does not reach over the line, though other ranges are unaffected. (Melee can't reach)
-      Line of sight cannot go both up and down height difference. If LoS goes up a height difference, its blocked when it would go down. (You can't see the other side of the hill)
-  FallingHazard: &RuleDeadlyFall
-    name: Falling Hazard
-    text: |-
-      Purple area indicates a pit. 
-      Units standing on a pit cannot move. 
-      Units that end their turn on a pit are destroyed.
-
-      Some units may be able to escape by flying or teleporting.
-  Cover: &RuleCover
-    name: Cover
-    text: |-
-      Green lines indicate cover.
-      If an ability draws range through cover, and doesn't start adjacent to that cover, the ability has +2⛨.
   CriticalMoment: &RuleCriticalMoment
     name: Critical Moment
     text: |-
@@ -221,15 +202,6 @@ shared_rules:
       - name: Critical Moment
         image_url: https://tactics.toren.dev/image_token_Critical Moment_5737535895777788509.jpg
         text: You may reroll one die.
-  CapturePoint: &RuleCapturePoint
-    name: Capture Point
-    text: |-
-      An orange area is a capture point.
-      At the end of each round (after all units have acted), a team with more units in the capture point claims it. Mark it with the team's color.
-      Then if one team owns more points than the other, they score 1 point.
-      If there are multiple control points and one team controls all of them, they score 2 points instead.
-      
-      Points remain claimed until the other team claims them.
 
 counters:
   Kill: &Kill
@@ -269,10 +241,6 @@ sets:
       - *RuleUltimate
       - *RuleFlying
       - *RuleFacing
-      - *RuleHeightDifference
-      - *RuleDeadlyFall
-      - *RuleCover
-      - *RuleCriticalMoment
       - *RuleCriticalMoment
     heroes:
       - name: Widowmaker
@@ -308,6 +276,8 @@ sets:
             text: |-
               1/Battle, Move Action:
               Fly directly to any point in range 5.
+            hints:
+              - *FlyingHint
           - name: Infra-Sight
             text: |-
               Ultimate 3, Free Action:
@@ -398,6 +368,8 @@ sets:
           - name: Guardian Angel
             text: |-
               Ally or corpse marker in LoS. Fly to any space adjacent to the target, as directly as possible.
+            hints:
+              - *FlyingHint
           - name: Resurrect
             text: |-
               1/Battle, Free Action:
@@ -651,6 +623,8 @@ sets:
             text: |-
               1/Battle, Free Action:
               Fly up to 2.
+            hints:
+              - *FlyingHint
           - name: Dragonstrike
             text: |-
               Ultimate 4:
@@ -690,6 +664,8 @@ sets:
               Burst 1, ⚔1.
             tokens:
               - *OnCooldown
+            hints:
+              - *FlyingHint
           - name: Barrier Projector
             text: |-
               1/Battle, Instant +2:
@@ -1392,7 +1368,7 @@ sets:
     #          - name: Biotic Rifle
     #            text: |-
     #              Move + Standard Action
-    #              You may move up to 1.
+    #              You may move 1.
     #              Unlimited range, either Heal 3 or ⚔2.
     #        abilities:
     #          - name: Sleep Dart
@@ -1458,7 +1434,25 @@ sets:
       text: |-
         +2⛨ to all rolls.
         Cleared at the end of your turn.
+    Grappled: &Grappled
+      name: Grappled
+      image_url: https://static.thenounproject.com/png/4418721-200.png
+      text: |-
+        text: |-
+          Affects a pair of adjacent units.
+          The member of the grapple with less health is immobilized, but is pulled with the other member.
+          Cleared if they become nonadjacent, or as a Free Action by the member with more health.
     rules:
+      - name: Stress
+        text: |-
+          Stress is tracked with counter dice.
+          Heroes deploy with 1 stress.
+          When a hero gains their second stress die, they take ⚔2 and receive +1x damage.
+          When a hero ends their turn with 3 stress dice, they deal burst 1 ⚔2 and die.
+        dice:
+          - name: Stress
+            color: gray
+            values: [ 1 ]
       - name: Actions
         text: |-          
           For 1 Standard Action, range 4, undefendable, target gets 3 stress, and your choice of Impaired or Slow
@@ -1471,43 +1465,34 @@ sets:
           - *Slow
       - name: Opportunity Attacks
         text: |-
-          When a unit breaks adjacency with an enemy, the enemy may make an opportunity attack against it.
-      - name: Grappled
-        text: |-
-          Affects a pair of adjacent units.
-          The member of the grapple with less health is immobilized, but is pulled with the other member.
-          Cleared if they become nonadjacent, or as a Free Action by the member with more health.
-      - name: Stress
-        text: |-
-          Stress is tracked with counter dice.
-          Heroes deploy with 1 stress.
-          When a hero gains their second stress die, they take ⚔2 and receive +1x damage.
-          When a hero ends their turn with 3 stress dice, they deal burst 1 ⚔2 and die.
-        dice:
-          - name: Stress
-            color: gray
-            values: [ 1 ]
-      - *RuleCover
-      - *RuleCapturePoint
-      - *RuleDeadlyFall
+          When a unit starts a movement while in range 1 of an enemy, the enemy may make an make a standard-action default ability targeting them.
+          They have Resistance to the ability.
+        hints:
+          - *ResistanceHint
     heroes:
       - name: Blackbeard
         health: 8
         speed: 3
         image_url: https://tactics.toren.dev/image_token_Blackbeard_-3127398764168025855.jpg
         description: |-
-          - Grappling Berserker
+          - Grappling berserker
+          - High irreducible damage
         default_abilities:
           - name: Grapple
             text: |-
-              Range 4, move directly to the target and grapple them.
+              Range 4, move directly to the target and Grapple them.
           - name: Chain Axe
             text: Range 1, ⚔3 irreducible
+        tokens:
+          - *Grappled
+          - *Grappled
         abilities:
           - name: Grapple Swing
             text: |-
               Move Action:
-              Fly up to 4 in an orthogonal line
+              Fly 4 in a straight line
+            hints:
+              - *FlyingHint
           - name: SEKHMET-Class NHP
             text: |-
               Free Action at start of turn:
@@ -1775,6 +1760,8 @@ sets:
           - name: 1/Action, when you begin moving voluntarily,
             text: |-
               Leave a Hologram Marker in the space you started moving from. When an enemy enters the space, they take ⚔2 and the marker is removed.
+        hints:
+          - *FlyingHint
         tokens:
           - name: Hologram
             image_url: https://mumcdnstorage.blob.core.windows.net/dwnews/2018/07/7.6.18-FOM.jpg
@@ -1931,7 +1918,7 @@ sets:
             text: The ability misses. The attacker ends their turn.
           - name: You or an adjacent ally is targeted
             text: |-
-              You may move up to 2 without going further from the ally.
+              You may move 2 without going further from the ally.
               Target the triggering unit in range 4, ⚔2
         default_abilities:
           - name: Gorgon's Gaze
@@ -2042,7 +2029,7 @@ sets:
         default_abilities:
           - name: Flamethrower
             text: |-
-              Range 1, 2x2 area, ⚔1, get DoT 1
+              Range 1, 2x2 area, ⚔1, give DoT 1
             tokens:
               - *DoT
         abilities:
@@ -2287,6 +2274,11 @@ sets:
           - name: Chilled
             text: |-
               Slowed enemies deal -1 damage.
+        tokens:
+          - name: Extra Ability Use
+            image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/5/5a/Arcane_Aura_icon.png/revision/latest?cb=20111005085505
+            text: |-
+              Gain an extra 1/Battle use of this ability. (Ultimates are 1/Battle)
         default_abilities:
           - name: Ice Bolt
             text: Range 4, ⚔2
@@ -2457,6 +2449,8 @@ sets:
             text: |-
               Fly 3 in a straight line.
               Gain an Enchant counter.
+            hints:
+              - *FlyingHint
           - name: Fissure
             text: |-
               1/Battle
@@ -2563,10 +2557,12 @@ sets:
         health: 6
         speed: 2
         passives:
-          - name: Your movement is flying
+          - name: You are always Flying
             text: ""
           - name: You have +1 move speed per Fiery Soul charge
             text: ""
+        hints:
+          - *FlyingHint
         dice:
           - name: Fiery Soul
             color: orange
@@ -2669,6 +2665,8 @@ sets:
             text: |-
               3/Battle, Free Action
               Fly 2 in a straight line. At end of turn, move 1.
+            hints:
+              - *FlyingHint
             dice:
               - name: Charges
                 color: white
@@ -2676,7 +2674,9 @@ sets:
           - name: Moonlight Shadow
             text: |-
               Ultimate 4
-              At the end of each your turns, you and your allies become invisible and may fly 1.
+              At the end of each your turns, you and your allies become invisible and may Fly 1.
+            hints:
+              - *FlyingHint
             tokens:
                 - *Invisible
       - name: Morphling
@@ -2695,7 +2695,9 @@ sets:
           - name: Waveform
             text: |-
               CD 1, Instant +2
-              Fly 2x your move speed in a straight line. Units moved through take ⚔2.
+              Fly 2x your move speed in a straight line, ignoring units. Units moved through take ⚔2.
+            hints:
+              - *FlyingHint
           - name: Adaptive Strike
             text: |-
               Range 3, ⚔2
@@ -2705,13 +2707,25 @@ sets:
             text: |-
               Free action at start of turn. Choose one --
               - Enter strength stance:
-                  -1 speed.
+                  You have -1 speed.
                   You have resistance to damage. Units have resistance to damage from you.
               - Enter agility stance: 
-                Receive and deal +.5x damage. +1 speed.
+                  You have +1 speed.
+                  Receive and deal +.5x damage. 
               - Exit your stance.
             hints:
               - *ResistanceHint
+            tokens:
+              - name: Strength Stance
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/2/27/Attribute_Shift_%28Strength_Gain%29_icon.png/revision/latest?cb=20120926231603
+                text: |-
+                    You have -1 speed.
+                    You have resistance to damage. Units have resistance to damage from you.
+              - name: Agility Stance
+                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/a/a0/Attribute_Shift_%28Agility_Gain%29_icon.png/revision/latest?cb=20120926231600
+                text: |-
+                  You have +1 speed.
+                  Receive and deal +.5x damage.
           - name: Adaptive Strike
             text: |-
               CD 1
@@ -2763,9 +2777,12 @@ sets:
           - name: Reaper's Scythe
             text: |-
               1/Battle
-              Range 3, paralyze.
-              When the paralyze ends, irreducible damage the target equal to their missing health.
+              Range 3, immobilize.
+              At the start of your next turn, deal irreducible damage the target equal to their missing health.
               On kill, gain 2 additional Kill counters.
+            tokens:
+              - *Paralyze
+              - *Immobile
 
     
 
@@ -2817,7 +2834,7 @@ sets:
   #          - name: Start of turn
   #            text: |-
   #              Another Viktoria in range 4 may teleport adjacent to this.
-  #              Teleport up to 1.
+  #              Teleport 1.
   #          - name: Kill
   #            text: All Viktorias heal 2
   #          - name: Death
@@ -2879,7 +2896,7 @@ sets:
   #            text: |-
   #              Free
   #              Target an ice pillar in range 3. Choose any number of allies adjacent to it.
-  #              Teleport the ice pillar up to 2, then teleport the chosen allies adjacent to it.
+  #              Teleport the ice pillar 2, then teleport the chosen allies adjacent to it.
   #        units:
   #          - name: Wendigo
   #            health: 3
@@ -2923,7 +2940,7 @@ sets:
   #          - name: Juggernaut Leap
   #            text: |-
   #              Free
-  #              Teleport up to 3, or heal 2.
+  #              Teleport 3, or heal 2.
   #      - name: Zoraida
   #        description: |-
   #          - Mindcontrol units
@@ -2946,7 +2963,7 @@ sets:
   #            text: |-
   #              undefendable
   #              Range 4, ⚔1
-  #              If the target has a Voodoo attachment, this may move them up to 3.
+  #              If the target has a Voodoo attachment, this may move them 3.
   #              An ally adjacent to the target may use a default attack targeting them.
   #        abilities:
   #          - name: Obey
@@ -3011,7 +3028,7 @@ sets:
   #              Range 3, Push the target its speed away from this.
   #          - name: Secret Passage
   #            text: |-
-  #              If adjacent to blocking terrain, teleport up to 6, ending adjacent to blocking terrain.
+  #              If adjacent to blocking terrain, teleport 6, ending adjacent to blocking terrain.
   #          - name: Cause for Celebration
   #            text: |-
   #              Free
@@ -3281,7 +3298,7 @@ sets:
   #        abilities:
   #          - name: False Reality
   #            text: |-
-  #              Range 4, undefendable, teleport the target up to 3.
+  #              Range 4, undefendable, teleport the target  3.
   #              5-6: You may give the target Stunned(-1 Action)
   #          - name: Presto Chango
   #            text: |-
@@ -3294,7 +3311,7 @@ sets:
   #          - name: Practiced Choreography
   #            text: |-
   #              Free
-  #              Allies in range 2 may move up to 2.
+  #              Allies in range 2 may move 2.
   #
   #      - name: Marcus
   #        description: |-
@@ -3317,7 +3334,7 @@ sets:
   #          - name: Tear Apart
   #            text: |-
   #              Range 1, ⚔2
-  #              5-6, Teleport up to 3 adjacent to an enemy you haven't attacked this turn,
+  #              5-6, Teleport  3, adjacent to an enemy you haven't attacked this turn,
   #              and repeat this ability.
   #        abilities:
   #          - name: Chimerancy
@@ -3327,7 +3344,7 @@ sets:
   #          - name: Primal Roar
   #            text: |-
   #              Free
-  #              Allies in range 3 may move up to 2.
+  #              Allies in range 3 may move 2.
   #          - name: Armored Plates
   #            text: |-
   #              UPGRADE
@@ -3336,7 +3353,7 @@ sets:
   #            text: |-
   #              UPGRADE
   #              This may teleport when moving.
-  #              Attacked: After resolving, may move up to 3.
+  #              Attacked: After resolving, may move 3.
   #          - name: Formidable Horns
   #            text: |-
   #              UPGRADE
@@ -3370,12 +3387,12 @@ sets:
   #              - name: Horns
   #                text: |-
   #                  Range 1, ⚔2
-  #                  5-6, Teleport up to 3 adjacent to an enemy you haven't attacked this turn,
+  #                  5-6, Teleport 3, adjacent to an enemy you haven't attacked this turn,
   #                  and repeat this ability.
   #              - name: Leap
   #                text: |-
   #                  Free
-  #                  Teleport up to 3.
+  #                  Teleport 3.
   #      - name: Som'er Teeth Jones
   #        description: |-
   #          - Summon and synergize with weak minions
@@ -3645,9 +3662,9 @@ sets:
           - name: Knife
             text: |-
               Interrupt when an enemy leave's an adjacent space from you, 
-              or they end their turn with you in range 3 but they did not target you or your space that turn.
+              or uses an ability which does not include you, while in range 2 of you.
               
-              You may move 2 towards them,
+              You may move 1 towards them,
               range 1, ⚔100 to them, 
               gain a Kill Counter, move 2.
         tokens:
@@ -3700,30 +3717,24 @@ sets:
             image_url: https://tactics.toren.dev/image_token_Spun Up_1477848996508512357.jpg
             text: You are slowed, but your minigun is more powerful.
         abilities:
-          - name: Sandvich
+          - name: Snack
             text: |-
               1/Battle, choose one --
-              - Place your Sandvich Marker in a space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
+              - Free Action: Place your Sandvich Marker in a space in range 2 (can be occupied). When a damaged unit is in this space, they heal half their maximum hp and destroy this.
               - Move + Standard, Heal 12.
-            tokens:
-              - name: Sandvich
-                image_url: https://tactics.toren.dev/image_token_Sandvich_6108514798017996936.jpg
-                is_marker: true
-                text: |- 
-                  Units that enter this space heal 4 and destroy this.
-          - name: Buffalo Steak
-            text: |-
-              1/Battle, choose one --
-              - Place your Buffalo Steak Marker in a space in range 2 (can be occupied). When a unit is in this space, they heal 4 and destroy this.
               - Move + Standard Action. Gain Buffalo Steak Rage: 
                   +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
             tokens:
-              - name: Buffalo Steak
+              - name: Snack Pickup
+                image_url: https://tactics.toren.dev/image_token_Sandvich_6108514798017996936.jpg
+                is_marker: true
+                text: |- 
+                  When a damaged unit is in this space, they heal half their maximum hp and destroy this.
+              - name: Buffalo Steak Rage
                 image_url: https://tactics.toren.dev/image_token_Buffalo Steak Rage_8581238716479321113.jpg
                 is_marker: true
                 text: |- 
-                  On the map: units that enter this space heal 4 and destroy this.
-                  As status: +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
+                  +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
 
           - name: Swap Gloves
             text: |-
@@ -3803,7 +3814,7 @@ sets:
             text: |-
               Path range 3, heal them 1, target becomes your Healing Target until the start of your next turn, or if they stop being within path range 4.
               When they move other than in a standard move, you may copy that movement effect.
-              At start of your turn, heal them 4, with excess healing as overshield. Move up to their speed-3.
+              At start of your turn, heal them 4, with excess healing as overshield. Move their speed-3.
           - name: Blutsauger
             text: |-
               Range 3, +2⛨, 2⚔, heal equal to damage dealt.
@@ -3925,9 +3936,10 @@ sets:
         passives:
           - name: When you're damaged by an ability that can affect multiple targets.
             text: |- 
-              You have resistance from that damage. If you're the attacker, you may fly up to the damage value before applying reduction.
+              You have resistance from that damage. If you're the attacker, you may Fly equal to the damage value before applying reduction.
         hints:
           - *ResistanceHint
+          - *FlyingHint
         default_abilities:
           - name: Grenade Launcher
             text: |-
@@ -4078,8 +4090,8 @@ sets:
           - name: Disciplinary Action
             text: |-
               Range 2,
-              You may move up to 2.
-              The target may move up to 2.
+              Move 2.
+              The target may move 2.
           - name: Pain Train
             text: |-
               Enter or exit Pain Train stance as Free Action at start of turn.
