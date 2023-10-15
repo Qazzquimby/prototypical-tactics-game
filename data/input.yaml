@@ -201,7 +201,6 @@ shared_rules:
       - name: Critical Moment
         image_url: https://tactics.toren.dev/image_token_Critical Moment_5737535895777788509.jpg
         text: You may reroll one die.
-
 counters:
   Kill: &Kill
     name: Kill counter
@@ -243,8 +242,11 @@ sets:
       - *RuleCriticalMoment
     heroes:
       - name: Widowmaker
+        complexity: 2
         description: |-
           - Charge up sniper
+          - Trap, reposition
+          - Global attack buff ultimate
         health: 8
         speed: 3
         image_url: https://tactics.toren.dev/image_token_Widowmaker_3044169082943195147.jpg
@@ -279,11 +281,12 @@ sets:
               - *FlyingHint
           - name: Infra-Sight
             text: |-
-              Ultimate 3, Free Action:
+              Ultimate 4, Free Action:
               Enemies are undefendable.
               Enemies cannot be untargetable.
               All allies have +2 crit
       - name: Tracer
+        complexity: 3
         description: |-
           - Fast, fragile, instant speed dodges
           - High close range damage
@@ -329,6 +332,7 @@ sets:
                 text: |-
                   At the start of your turn, destroy this. It deals 9dmg to anyone in its space and 3dmg to anyone else in burst 1.
       - name: Mercy
+        complexity: 2
         description: |-
           - Healing/Damage buff support
           - Resurrect ally
@@ -383,6 +387,7 @@ sets:
             hints:
               - *FlyingHint
       - name: Pharah
+        complexity: 3
         description: |-
           - Rocket aoe projectiles
           - Flying
@@ -431,6 +436,7 @@ sets:
               Ultimate 5, Move + Standard Action:
               1def per 2 spaces between, 8dmg, 3dmg to all others in burst 1.
       - name: Reaper
+        complexity: 1
         description: |-
           - High close range damage
           - Self healing
@@ -466,6 +472,7 @@ sets:
               Ultimate 5:
               Burst 1, 7dmg
       - name: Reinhardt
+        complexity: 2
         description: |-
           - Melee cleave tank
           - Block for allies
@@ -526,6 +533,7 @@ sets:
             tokens:
               - *Paralyze
       - name: Torbjorn
+        complexity: 2
         description: |-
           - Summon sustained damage turret
           - Damage brawler
@@ -579,6 +587,7 @@ sets:
                   Mandatory.
                   Nearest enemy in LoS, undefendable, 2dmg
       - name: Hanzo
+        complexity: 2
         description: |-
           - Massive burst damage
           - Long range with accuracy penalty
@@ -639,6 +648,7 @@ sets:
                 text: |-
                   While the beam is active, all spaces in it have Hazard: 7dmg for enemies.
       - name: Winston
+        complexity: 2
         description: |-
           - Mobile tank
           - Forcefield
@@ -684,6 +694,7 @@ sets:
               Set your current and maximum health to 18. Reset your uses of Jump Pack.
               When you deal damage, also push 3.
       - name: Zenyatta
+        complexity: 3
         description: |-
           - Slow heal
           - Damage buff
@@ -729,6 +740,7 @@ sets:
               Burst 1, allies Heal 5.
               Until the start of your next turn, you are immune to damage conditions you don't want.
       - name: Bastion
+        complexity: 3
         polish: [needs_testing]
         description: |-
           - High damage slow stance
@@ -769,6 +781,7 @@ sets:
               - name: Artillery
                 image_url: https://tactics.toren.dev/image_token_Bastion Artillery Marker_-6673338352373586730.jpg
       - name: Symmetra
+        complexity: 4
         polish:
           - needs_testing
         description: |-
@@ -1470,6 +1483,7 @@ sets:
           - *ResistanceHint
     heroes:
       - name: Blackbeard
+        complexity: 2
         health: 8
         speed: 3
         image_url: https://tactics.toren.dev/image_token_Blackbeard_-3127398764168025855.jpg
@@ -1512,6 +1526,7 @@ sets:
               - *Stun
               - *Immobile
       - name: Drake
+        complexity: 3
         health: 8
         speed: 3
         description: |-
@@ -1557,6 +1572,7 @@ sets:
               - name: Fortress Stance
                 image_url: https://i.redd.it/8bzdactvy6z71.png
       - name: Lancaster
+        complexity: 4
         description: |-
           - Battle wagon, carries allies
           - Healer
@@ -1645,6 +1661,7 @@ sets:
                 image_url: https://blog.way.com/wp-content/uploads/2022/04/Depositphotos_93782224_XL-min-scaled.jpg
                 text: You are immune to unwanted conditions, and have -1def and +1 crit on rolls.
       - name: Black Witch
+        complexity: 2
         health: 6
         speed: 3
         image_url: https://tactics.toren.dev/image_token_Black Witch_6574268103561328136.jpg
@@ -1705,6 +1722,7 @@ sets:
               - name: You and adjacent units cannot use or be targeted by undefendable abilities.
                 text: ""
       - name: Death's Head
+        complexity: 3
         description: |-
           - Sniper
         image_url: https://tactics.toren.dev/image_token_Death's Head_8886430753136638717.jpg
@@ -1743,6 +1761,7 @@ sets:
                 text: |-
                   Owner deals +4dmg to you, so long as you're are not in range 3.
       - name: Dusk Wing
+        complexity: 2
         description: |-
           - Highly mobile and hard to hit
           - Debuff accuracy
@@ -1790,6 +1809,7 @@ sets:
               Destroy a Hologram Marker to Teleport to its space (leaving a Hologram Marker as normal).
               Destroy all Hologram Markers. Each deals Burst 1, 2dmg.
       - name: Balor
+        complexity: 1
         health: 12
         speed: 2
         image_url: https://tactics.toren.dev/image_token_Balor_3797722395498223355.jpg
@@ -1843,6 +1863,7 @@ sets:
               - name: End of turn
                 text: Enemies in range 2 take 1dmg irreducible.
       - name: Goblin
+        complexity: 4
         health: 6
         speed: 4
         image_url: https://tactics.toren.dev/image_token_Goblin_-8842697419615696448.jpg
@@ -1906,6 +1927,7 @@ sets:
               Standard Action: End this effect
 
       - name: Gorgon
+        complexity: 3
         description: |-
           - Counterattacker
           - Block for allies
@@ -1959,6 +1981,7 @@ sets:
         tokens:
           - *Stun
       - name: Barbarossa
+        complexity: 3
         description: |-
           - Huge artillery tank
         image_url: https://tactics.toren.dev/image_token_Barbarosa_-8861773581727907330.jpg
@@ -2006,8 +2029,8 @@ sets:
               Destroy all walls and terrain in the area.
             tokens:
               - *DestroyedTerrain
-
       - name: Genghis
+        complexity: 3
         description: |-
           - Ongoing fire damage
           - Stress management
@@ -2057,6 +2080,7 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_Havok Mine_6637140432975573967.jpg
                 is_marker: true
       - name: Iskander
+        complexity: 4
         description: |-
           - Mines, Mines, Mines
         image_url: https://i.redd.it/10-iskander-recolors-for-anyone-to-use-which-one-is-your-v0-73uf4wc6m8n81.png?width=1200&format=png&auto=webp&s=006df4a5b85736f9a6f6cd5a680826a8157603cc
@@ -2209,6 +2233,7 @@ sets:
 #                    Reveal the Secret. Replace this with the summoner. Mark all other Illusions as Fake.
 #                  Else: mark this as Fake.
       - name: Axe
+        complexity: 1
         description: |- 
           - Provoke and counterattack
           - Reflect damage back to attackers
@@ -2258,6 +2283,7 @@ sets:
             tokens:
               - *Armor
       - name: Crystal Maiden
+        complexity: 3
         polish: [needs_testing]
         description: |- 
           - Slow and nuke enemies
@@ -2326,6 +2352,7 @@ sets:
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/d/de/Freezing_Field_icon.png/revision/latest/scale-to-width-down/128?cb=20111005085503
               - *Slow
       - name: Dazzle
+        complexity: 3
         description: |- 
           - Save ally from death
           - Close range aoe damage and healing
@@ -2373,6 +2400,7 @@ sets:
               Take 3 irreducible damage.
               Refresh all your abilities.
       - name: Drow Ranger
+        complexity: 2
         description: |- 
           - Ranged dps
           - Slow enemies
@@ -2423,6 +2451,7 @@ sets:
                   Blocks los in opposite direction.
 
       - name: Earthshaker
+        complexity: 3
         description: |-
           - AoE stunning
           - Create impassable barrier
@@ -2468,6 +2497,7 @@ sets:
               Ultimate 4
               Enemies in burst 3, 2dmg + 1dmg per enemy in the area, give an ability CD 1 max 1.
       - name: Lich
+        complexity: 3
         description: |-
           - Give ally armor
           - Punish grouped enemies
@@ -2548,6 +2578,7 @@ sets:
             tokens:
               - *MinusOneDamage
       - name: Lina
+        complexity: 3
         polish: [needs_testing]
         description: |-
           - Speed and damage increases as more abilities are used
@@ -2594,6 +2625,7 @@ sets:
               
               Fill your Fiery Soul charges up to 2.
       - name: Lion
+        complexity: 3
         polish: [needs_testing]
         description: |-
           - Powerful disables
@@ -2634,6 +2666,7 @@ sets:
               Ultimate 5
               Range 4 2x2, 5dmg
       - name: Mirana
+        complexity: 2
         description: |-
           - Mobile
           - AoE damage
@@ -2679,6 +2712,7 @@ sets:
             tokens:
                 - *Invisible
       - name: Morphling
+        complexity: 3
         polish: [needs_testing]
         description: |-
           - Slippery
@@ -2740,6 +2774,7 @@ sets:
               Ultimate 4
               Range 4, gain ready copies of all of the target's non-passive, non-ultimate abilities. You may use their default abilities.
       - name: Necrophos
+        complexity: 1
         polish: [needs_testing]
         description: |-
           - Large aura damage and healing
@@ -2782,20 +2817,6 @@ sets:
             tokens:
               - *Paralyze
               - *Immobile
-
-    
-
-    #
-      #
-      #
-      #
-
-      #
-      #
-      #
-      #
-
-
 
   #  name: Malifaux
   #    description: |-
@@ -3632,7 +3653,6 @@ sets:
   #                  Range 1-2, 100% of their max hp,
   #                  Range 3+, 50% of their max hp
 
-
   - name: Team Fortress 2
     description: |-
       - high mobility and potential damage
@@ -3646,6 +3666,7 @@ sets:
       - *RuleCriticalMoment
     heroes:
       - name: Spy
+        complexity: 4
         polish: [needs_testing]
         description: |-
           - Stealth makes difficult to hit
@@ -3694,6 +3715,7 @@ sets:
               Take no damage, clear any number of conditions, move 2, use Stealth.
 
       - name: Heavy
+        complexity: 3
         description: |-
           - high health and damage
           - slow, close range
@@ -3751,6 +3773,7 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_Fists of Steel_1277847066511706523.jpg
                 text: Receive -1 damage from ranges 2+, and +1x damage from range 1.
       - name: Sniper
+        complexity: 2
         description: |-
           - Charge up sniper
           - Permanent damage dealt buffs
@@ -3799,6 +3822,7 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_Jarate_-2397770930367722030.jpg
                 text: Receive +.5x damage.
       - name: Medic
+        complexity: 3
         description: |-
           - Heals and overshields
           - Powerful support ultimates
@@ -3857,6 +3881,7 @@ sets:
                   You and your Healing Target always crit when you hit.
 
       - name: Engineer
+        complexity: 3
         description: |-
           - Build and maintain stationary support summons
         image_url: https://tactics.toren.dev/image_token_Engineer_6463287448594563119.jpg
@@ -3925,6 +3950,7 @@ sets:
               - name: Immune to forced movement.
                 text: ''
       - name: Demoman
+        complexity: 2
         description: |-
           - High damage, low accuracy
           - AoE area control
@@ -3987,6 +4013,7 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_Pain Train stance_3122338921560184280.jpg
                 text: https://tactics.toren.dev/image_token_Pain Train stance_3122338921560184280.jpg
       - name: Pyro
+        complexity: 2
         description: |-
           - Damage over time
           - Burst damage
@@ -4037,6 +4064,7 @@ sets:
             text: |-
               Fly 5. All in burst 1, 1dmg, push 1.
       - name: Soldier
+        complexity: 3
         description: |-
           - Splash damage
           - Team buffs
@@ -4101,6 +4129,7 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_Pain Train stance_3122338921560184280.jpg
                 text: https://tactics.toren.dev/image_token_Pain Train stance_3122338921560184280.jpg
       - name: Scout
+        complexity: 3
         description: |-
           - High mobility
           - Low health
