@@ -40,7 +40,7 @@ rules:
     text: |-
       - By default attacks hit with no roll. Only roll when a roll could affect the result somehow.
       - Different target units get different rolls.
-      - ⛨ can be applied to the attack. A die must be rolled over the ⛨ to hit. On miss the attack continues but cannot affect that target.
+      - Def can be applied to the attack. A die must be rolled over the Def value to hit. On miss the attack continues but cannot affect that target.
       - Crit can be applied to the attack. If the attack hits and the die landed on one of the [Crit] highest values, the attack is a crit.
       - Crits deal +1x damage.
   - name: Targeting
@@ -141,7 +141,7 @@ hints:
   CoverHint: &CoverHint
     name: Cover (green line)
     text: |-
-      If an ability draws range through cover, and doesn't start adjacent to that cover, the ability has +2⛨.
+      If an ability draws range through cover, and doesn't start adjacent to that cover, the ability has +2def.
   DeadlyFallHint: &DeadlyFallHint
     name: Deadly Fall (pink shade)
     text: |-
@@ -168,11 +168,11 @@ shared_rules:
       An ability marked as Instant can be used for free at the start of any turn, or when a unit is targeted.
 
       When reacting to to a targeting Action, declare before the roll is made.
-      If the roll is higher than the target's ⛨ + the Instant's bonus (if any), the Instant occurs after the triggering Action.
+      If the roll is higher than the target's def + the Instant's bonus (if any), the Instant occurs after the triggering Action.
       Otherwise, the Instant occurs before the triggering Action.
       If the triggering actor is an ally, you may choose whether the Instant triggers before or after the Action.
 
-      Note that the Instant's bonus does not modify the target's ⛨ - it only changes how easy it is to act first.
+      Note that the Instant's bonus does not modify the target's def - it only changes how easy it is to act first.
       Reminder that units can choose to be hit even when an attack roll fails.
   Ultimate: &RuleUltimate
     name: Ultimate X
@@ -226,7 +226,7 @@ terrain:
     image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI6Vqg51fAEFt-_2pPSiHlHCSbn_VMPpOy7w&usqp=CAU
     is_marker: true
     text: |-
-      Abilities passing through cover that does not start adjacent to that cover has +2⛨.
+      Abilities passing through cover that does not start adjacent to that cover has +2def.
 sets:
   - name: Overwatch
     description: |-
@@ -319,7 +319,7 @@ sets:
           - name: Pulse Bomb
             text: |-
               Ultimate 5:
-                Target a space in range 1. If there's a character in the space, attach the pulse bomb to them with +2⛨.
+                Target a space in range 1. If there's a character in the space, attach the pulse bomb to them with +2def.
                 If it doesn't attach to someone, it drops in that space.
                 At the start of your next turn, destroy the pulse bomb. It deals 9dmg to anyone in its space and 3dmg to anyone else in burst 1.
             tokens:
@@ -362,7 +362,7 @@ sets:
               - Until end of target's next turn, they deal +0.5x damage.
           - name: Caduceus Blaster
             text: |-
-              1⛨ per 2 spaces between, 2dmg.
+              1def per 2 spaces between, 2dmg.
         abilities:
           - name: Guardian Angel
             text: |-
@@ -399,7 +399,7 @@ sets:
         default_abilities:
           - name: Rocket Launcher
             text: |-
-              1⛨ per 2 spaces between, 2dmg
+              1def per 2 spaces between, 2dmg
               Burst 1 of targeted space,  1dmg
         HighAltitude: &HighAltitude
           name: High Altitude
@@ -429,7 +429,7 @@ sets:
           - name: Barrage
             text: |-
               Ultimate 5, Move + Standard Action:
-              1⛨ per 2 spaces between, 8dmg, 3dmg to all others in burst 1.
+              1def per 2 spaces between, 8dmg, 3dmg to all others in burst 1.
       - name: Reaper
         description: |-
           - High close range damage
@@ -513,12 +513,12 @@ sets:
             text: |-
               1/Battle, Move + Standard Action:
               Move as far as possible in a line.
-              When you contact an enemy, roll attack with +3⛨.
+              When you contact an enemy, roll attack with +3def.
               The first enemy hit this way is pushed with you, interrupted, and takes 7dmg.
               Other enemies in the line are pushed to the side and take  1dmg.
           - name: Fire Strike
             text: |-
-              Line infinite, +2⛨, 3dmg
+              Line infinite, +2def, 3dmg
           - name: Earthshatter
             text: |-
               Ultimate 4:
@@ -533,7 +533,7 @@ sets:
         speed: 3
         image_url: https://tactics.toren.dev/image_token_Torbjorn_6046319329937446842.jpg
         passives:
-          - name: Abilities targeting you have +2⛨.
+          - name: Abilities targeting you have +2def.
             text: ""
         default_abilities:
           - name: Rivet Gun
@@ -593,7 +593,7 @@ sets:
             text: |-
               Move + Standard Action:
               Move up to 1
-              Unlimited range, +2⛨, 4dmg, +2Crit
+              Unlimited range, +2def, 4dmg, +2Crit
         abilities:
           - name: Sonic Arrow
             text: |-
@@ -654,7 +654,7 @@ sets:
             text: |-
               Choose one --
               - Range 1 3x3, 2dmg,
-              - Range 4, +2⛨, 2dmg
+              - Range 4, +2def, 2dmg
         abilities:
           - name: Jump Pack
             text: |-
@@ -701,8 +701,8 @@ sets:
           - name: Orb of Destruction
             text: |-
               Choose one --
-              - Range 4, +2⛨, 2dmg +1 crit
-              - At the beginning of your next turn: Move 1; Unlimited range, +1⛨, 6dmg, +2 crit, lose a Standard Action.
+              - Range 4, +2def, 2dmg +1 crit
+              - At the beginning of your next turn: Move 1; Unlimited range, +1def, 6dmg, +2 crit, lose a Standard Action.
         abilities:
           - name: Orb of Harmony
             text: |-
@@ -788,8 +788,8 @@ sets:
           - name: Photon Orb
             text: |-
               Choose one --
-              - Range 4, +2⛨, 2dmg
-              - At the beginning of your next turn: Range 4, +2⛨, 4dmg.
+              - Range 4, +2def, 2dmg
+              - At the beginning of your next turn: Range 4, +2def, 4dmg.
         tokens:
           - name: Photon Orb charged or Consecutive Photon Beam hit
             image_url: https://tactics.toren.dev/image_token_Photon Orb charged or Consecutive Photon Beam hit_-3608062097707791135.jpg
@@ -928,7 +928,7 @@ sets:
     #            text: |-
     #              1/Battle
     #              Free Action
-    #              ⛨ 1/2 distance, 3dmg
+    #              def 1/2 distance, 3dmg
     #          - name: Self-Destruct
     #            text: |-
     #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
@@ -961,14 +961,14 @@ sets:
     #        speed: 3
     #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Genji-ow2-portrait.png/revision/latest/scale-to-width-down/149?cb=20191104043734
     #        passives:
-    #          - name: Abilities targeting you have ⛨ +2
+    #          - name: Abilities targeting you have +2def
     #            text: ""
     #          - name: All of your movement is flying.
     #            text: ""
     #        default_abilities:
     #          - name: Shuriken
     #            text: |-
-    #              ⛨ 1/2 distance, 3dmg
+    #              1def per 2 distance, 3dmg
     #              or range 1, 4dmg
     #        abilities:
     #          - name: Deflect
@@ -1014,13 +1014,13 @@ sets:
     #          - name: Frag Launcher
     #            text: |-
     #              Default
-    #              1⛨ + 1⛨/2 distance, 4dmg, and 1dmg to others in burst 1 of the hit target.
+    #              1def + 1def/2 distance, 4dmg, and 1dmg to others in burst 1 of the hit target.
     #        abilities:
     #          - name: Concussion Mine
     #            text: |-
     #              1/Battle
     #              Place a Concussion Mine in an empty space within range 2.
-    #              At the start of your turn, or when anyone becomes adjacent to the mine's space, you may sacrifice the mine for ⛨1, 4dmg and move 2 in any direction.
+    #              At the start of your turn, or when anyone becomes adjacent to the mine's space, you may sacrifice the mine for def1, 4dmg and move 2 in any direction.
     #            tokens:
     #              - name: Concussion Mine
     #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/87/Ability-Junkrat2.png/revision/latest/scale-to-width-down/100?cb=20150924023319
@@ -1067,7 +1067,7 @@ sets:
     #          - name: Sonic Amplifier
     #            text: |-
     #              Default
-    #              ⛨1/2 distance, 2dmg.
+    #              1def/2 distance, 2dmg.
     #          - name: Soundwave
     #            text: |-
     #              Default
@@ -1097,7 +1097,7 @@ sets:
     #          - name: Icicle
     #            text: |-
     #              Default
-    #              ⛨1 + 1/2 distance, 3dmg
+    #              1def + 1def/2 distance, 3dmg
     #        abilities:
     #          - name: Cryo-Freeze
     #            text: |-
@@ -1149,7 +1149,7 @@ sets:
     #          - name: Fade
     #            text: |-
     #              1/Battle
-    #              Reaction⛨3.
+    #              Instant +3
     #              Teleport up to 4 spaces.
     #              You may purge any number of effects from yourself.
     #          - name: Summon Biotic Orb
@@ -1184,7 +1184,7 @@ sets:
     #        speed: 3
     #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d4/Orisa_Skin_Overwatch_2.png/revision/latest?cb=20221116224621
     #        passives:
-    #          - name: Abilities targeting you have ⛨-2
+    #          - name: Abilities targeting you have -2def
     #            text: ""
     #        default_abilities:
     #          - name: Fusion Driver
@@ -1194,7 +1194,7 @@ sets:
     #          - name: Energy Javelin
     #            text: |-
     #              CD 2
-    #              ⛨1/2 distance, 2dmg.
+    #              1def/2 distance, 2dmg.
     #              2dmg more if target is adjacent to a wall.
     #              Interrupt
     #          - name: Javelin Spin
@@ -1206,7 +1206,7 @@ sets:
     #          #            - name: Protective Barrier
     #          #              text: |-
     #          #                1/Battle
-    #          #                Reaction ⛨2
+    #          #                Reaction +2
     #          #                Create a 2x1 barrier in range 2.
     #          #                The barrier has 6 health.
     #          #              tokens
@@ -1255,13 +1255,13 @@ sets:
     #        speed: 3
     #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/ce/Roadhog-Portrait.png/revision/latest/scale-to-width-down/345?cb=20160620014755
     #        passives:
-    #          - name: Abilities targeting you have ⛨-2
+    #          - name: Abilities targeting you have -2def
     #            text: ""
     #        default_abilities:
     #          - name: Scrap Gun
     #            text: |-
-    #              Range 1, 3dmg, ⛨1
-    #              or Range 3, 3dmg, ⛨3
+    #              Range 1, 3dmg, 1def
+    #              or Range 3, 3dmg, 3def
     #              2x damage to size 2+
     #        abilities:
     #          - name: Take a Breather
@@ -1274,7 +1274,7 @@ sets:
     #            text: |-
     #              1/Battle
     #              Move Action
-    #              Range 5, ⛨1/2 distance,
+    #              Range 5, 1def/2 distance,
     #              1dmg, interrupt
     #              Pull target as close as possible.
     #          - name: Whole Hog
@@ -1303,7 +1303,7 @@ sets:
     #          - name: Helix Rockets
     #            text: |-
     #              1/Battle
-    #              ⛨1/2 distance, 5dmg and 1dmg to others in burst 1 of target
+    #              1def/2 distance, 5dmg and 1dmg to others in burst 1 of target
     #          - name: Biotic Field
     #            text: |-
     #              1/Battle
@@ -1373,7 +1373,7 @@ sets:
     #          - name: Sleep Dart
     #            text: |-
     #              1/Battle
-    #              ⛨ 1 + 1/2 distance
+    #              1def + 1def/2 distance
     #              Move + Standard Action
     #              Target does not act for their next two activations. If they take damage from another source, end this condition.
     #            tokens:
@@ -1384,7 +1384,7 @@ sets:
     #          - name: Biotic Grenade
     #            text: |-
     #              1/Battle
-    #              Range 4, size 2, ⛨ 1
+    #              Range 4, size 2, 1def
     #              Allies in the area, Heal 3 and then receive +.5x healing.
     #              Enemies in the area take 2dmg and cannot regain health.
     #            tokens:
@@ -1431,7 +1431,7 @@ sets:
       name: Impaired
       image_url: https://tactics.toren.dev/image_token_Impaired_5997399677763413592.jpg
       text: |-
-        +2⛨ to all rolls.
+        +2def to all rolls.
         Cleared at the end of your turn.
     Grappled: &Grappled
       name: Grappled
@@ -1548,7 +1548,7 @@ sets:
             text: |-
               1/Battle, Free Action at start of turn:
               Enter Fortress Stance:
-                Abilities targeting you or adjacent allies have +2⛨
+                Abilities targeting you or adjacent allies have +2def
                 You are immobilized.
                 Instant, Tap: Take half damage from an attack.
               At the start of your turn you may exit Fortress Stance as a Free Action.
@@ -1638,12 +1638,12 @@ sets:
             text: |-
               1/Battle:
               You cannot use Latch Drone Tether.
-              Range 4, target clears and is immune to unwanted conditions, and has -1⛨ and +1 crit on rolls.
+              Range 4, target clears and is immune to unwanted conditions, and has -1def and +1 crit on rolls.
             tokens:
               - name: Supercharger
                 is_marker: true
                 image_url: https://blog.way.com/wp-content/uploads/2022/04/Depositphotos_93782224_XL-min-scaled.jpg
-                text: You are immune to unwanted conditions, and have -1⛨ and +1 crit on rolls.
+                text: You are immune to unwanted conditions, and have -1def and +1 crit on rolls.
       - name: Black Witch
         health: 6
         speed: 3
@@ -1750,7 +1750,7 @@ sets:
         health: 6
         speed: 4
         passives:
-          - name: Abilities targeting you have +2⛨
+          - name: Abilities targeting you have +2def
             text: ""
           - name: All your movement is flying
             text: ""
@@ -1828,7 +1828,7 @@ sets:
           - name: Hive Frenzy
             text: |-
               Ultimate 4, Free Action:
-              Abilities targeting you or adjacent allies have +1⛨.
+              Abilities targeting you or adjacent allies have +1def.
               Trigger your end of turn effects twice.
               While you have more than 1hp, you cannot be reduced below 1hp.
               All damage dealt to you is irreducible.
@@ -1838,7 +1838,7 @@ sets:
             speed: 0
             image_url: https://tactics.toren.dev/image_token_Hive Drone_4613030347791667462.jpg
             passives:
-              - name: Abilities targeting you or allies in burst 2 have +1⛨.
+              - name: Abilities targeting you or allies in burst 2 have +1def.
                 text: ""
               - name: End of turn
                 text: Enemies in range 2 take 1dmg irreducible.
@@ -1900,7 +1900,7 @@ sets:
               1/Battle, Free Action:
               Target ally in range 1. 
               Remove your marker from the board. You share the ally's location and cannot move away. 
-              Abilities targeting you have +4⛨. You also take any stress or conditions the ally takes.
+              Abilities targeting you have +4def. You also take any stress or conditions the ally takes.
               When this effect ends, place yourself as close as possible to the target.
               ---
               Standard Action: End this effect
@@ -1983,7 +1983,7 @@ sets:
         default_abilities:
           - name: Heavy Machine Gun
             text: |-
-              +2⛨, Range 4, 3dmg
+              +2def, Range 4, 3dmg
         abilities:
           - name: Direct Fire
             text: Move + Standard Action, Take 2 stress, Unlimited range, 4dmg
@@ -2656,7 +2656,7 @@ sets:
           - name: Sacred Arrow
             text: |-
               CD 1
-              First enemy in unlimited line ignoring walls, +2⛨ if you are in target's Los.
+              First enemy in unlimited line ignoring walls, +2def if you are in target's Los.
               2dmg, paralyze if target at range 6 or more.
             tokens:
               - *Paralyze
@@ -2837,7 +2837,7 @@ sets:
   #          - name: Kill
   #            text: All Viktorias heal 2
   #          - name: Death
-  #            text: All other Viktorias heal 2 and permanently gain "Abilities targeting you have +2⛨"
+  #            text: All other Viktorias heal 2 and permanently gain "Abilities targeting you have +2def"
   #        default_abilities:
   #          - name: Enchanted Katana
   #            text: |-
@@ -3003,7 +3003,7 @@ sets:
   #        speed: 4
   #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679624896-DNSEY1BSLCMXCG5OT8VT/M2E_Seamus.png
   #        passives:
-  #          - name: Abilities targeting you have +2⛨
+  #          - name: Abilities targeting you have +2def
   #            text: ''
   #          - name: Attacked
   #            text: |-
@@ -3016,7 +3016,7 @@ sets:
   #              At start of activation, this may make a default attack targeting each enemy adjacent to this.
   #          - name: Attacking
   #            text: |-
-  #              When targeting enemies adjacent to another ally, -2⛨ +2dmg
+  #              When targeting enemies adjacent to another ally, -2def +2dmg
   #        default_abilities:
   #          - name: .50 Flintlock
   #            text: Range 2, 3dmg, Push 2.
@@ -3185,7 +3185,7 @@ sets:
   #            speed: 4
   #            image_url: https://i.ytimg.com/vi/63A_tJ8wPds/maxresdefault.jpg
   #            passives:
-  #              - name: Abilities targeting you have +2⛨
+  #              - name: Abilities targeting you have +2def
   #                text: ""
   #              - name: -1 Damage received
   #                text: ""
@@ -3221,7 +3221,7 @@ sets:
   #        passives:
   #          - name: -1 Damage received
   #            text: ''
-  #          - name: Abilities targeting you have +2⛨
+  #          - name: Abilities targeting you have +2def
   #            text: ''
   #          - name: Diversion
   #            text: Enemies in range 2 cannot use Free Actions.
@@ -3245,7 +3245,7 @@ sets:
   #            speed: 4
   #            image_url: https://gusladogames.files.wordpress.com/2015/04/lcbsmall.jpg
   #            passives:
-  #              - name: Abilities targeting you have +2⛨
+  #              - name: Abilities targeting you have +2def
   #                text: ''
   #              - name: Start of turn
   #                text: Heal 2
@@ -3258,7 +3258,7 @@ sets:
   #            speed: 3
   #            image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc8hSzXnwyWPFUDyUoXQlrKu2m5by3oZ4y1-CLUYsD6F2J7hQ2wdwX0P4zH0Jq9lpe50U&usqp=CAU
   #            passives:
-  #              - name: Abilities targeting allies in range 1 have +1⛨
+  #              - name: Abilities targeting allies in range 1 have +1def
   #                text: ''
   #              - name: Nightmares Made Real
   #                text: |-
@@ -3279,7 +3279,7 @@ sets:
   #        speed: 3
   #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561391468145-0KLLOT8NOW46VZKHY0NR/M3E_Colette.png
   #        passives:
-  #          - name: Abilities targeting you have +2⛨
+  #          - name: Abilities targeting you have +2def
   #            text: ""
   #          - name: Attacked, 1-2
   #            text: Take 1 less damage, then exile this.
@@ -3399,7 +3399,7 @@ sets:
   #        speed: 3
   #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561399760452-BICZM3YT16TN1G4EHMDT/M3E_Somer.png
   #        passives:
-  #          - name: Abilities targeting you have +1⛨ for each adjacent ally
+  #          - name: Abilities targeting you have +1def for each adjacent ally
   #            text: ''
   #          #            - name: After ally rolls, 1/turn
   #          #              text: |-
@@ -3429,7 +3429,7 @@ sets:
   #            speed: 3
   #            image_url: https://static.wikia.nocookie.net/monster/image_2/28/78BA677E-3FAB-4B1B-B634-6F957678BFFE.jpeg/revision/latest/scale-to-width-down/384?cb=20180814214132
   #            passives:
-  #              - name: Abilities targeting you have +1⛨ for each adjacent ally
+  #              - name: Abilities targeting you have +1def for each adjacent ally
   #                text: ''
   #              - name: Death
   #                text: You draw a card.
@@ -3469,7 +3469,7 @@ sets:
   #            text: |-
   #              On rounds 3 and 6, you deal +.5x damage and always roll 6s.
   #          - name: Trigrammaton
-  #            text: Against targets in exactly range 3, your abilities have +2 crit, -2⛨.
+  #            text: Against targets in exactly range 3, your abilities have +2 crit, -2def.
   #        default_abilities:
   #          - name: Strafe Shot
   #            text: |-
@@ -3480,7 +3480,7 @@ sets:
   #        abilities:
   #          - name: Trick Shot
   #            text: |-
-  #              Your next Action with a range has -2⛨ and can draw range from an ally in its range.
+  #              Your next Action with a range has -2def and can draw range from an ally in its range.
   #              Gain Stealth (can only be targeted from range 1) until the start of your next turn.
   #          - name: Paradiso
   #            text: |-
@@ -3673,7 +3673,7 @@ sets:
             text: |-
               Gain Invisible.
               While invisible (in addition to normal benefits):
-                You have +1 speed and +2⛨.
+                You have +1 speed and +2def.
                 You may choose to be targetable by enemies, ignoring 
                 Enemies consider you an ally rather than an enemy. 
                 When an enemy targets one of their allies while you're a valid target, 
@@ -3816,7 +3816,7 @@ sets:
               At start of your turn, heal them 4, with excess healing as overshield. Move their speed-3.
           - name: Blutsauger
             text: |-
-              Range 3, +2⛨, 2dmg, heal equal to damage dealt.
+              Range 3, +2def, 2dmg, heal equal to damage dealt.
         tokens:
           - name: Healing Target
             image_url: https://tactics.toren.dev/image_token_Healing Target_-4590313136682746411.jpg
@@ -3827,7 +3827,7 @@ sets:
             values: [ 1 ]
         abilities:
           - name: Crossbow
-            text: 1⛨ per 2 spaces between, 3dmg, or heal 3
+            text: 1def per 2 spaces between, 3dmg, or heal 3
           - name: Ubersaw
             text: |-
               Range 1, 2dmg, +2crit.
@@ -3871,7 +3871,7 @@ sets:
           - name: Rescue Ranger
             text: |-
               Choose one --
-              - 1⛨ per 2 spaces between, 2dmg 
+              - 1def per 2 spaces between, 2dmg 
               - If target is a summon, you may teleport it adjacent to you and Tap it, and you may Heal it 2.
           - name: Wrench
             text: |-
@@ -3884,11 +3884,11 @@ sets:
               Range 1, Summon a Sentry or Dispenser (max 1 each) and Tap it.
           - name: Short Circuit
             text: |-
-              Until the start of your next turn, enemy abilities passing through spaces adjacent to you have +3⛨.
+              Until the start of your next turn, enemy abilities passing through spaces adjacent to you have +3def.
             tokens:
               - name: Short Circuit
                 image_url: https://tactics.toren.dev/image_token_Short Circuit_1483200453191248019.jpg
-                text: Until the start of your next turn, enemy abilities passing through spaces adjacent to you have +3⛨.
+                text: Until the start of your next turn, enemy abilities passing through spaces adjacent to you have +3def.
           - name: Eureka Effect
             text: |-
               Move + Standard Action:
@@ -3942,7 +3942,7 @@ sets:
         default_abilities:
           - name: Grenade Launcher
             text: |-
-              1⛨+1⛨ per space between, 3dmg; burst 1 of target, 1dmg. 
+              1def+1def per space between, 3dmg; burst 1 of target, 1dmg. 
               On miss places grenade marker in the nearest empty space.
               At the start of your turn, destroy it and repeat the attack on its space, automatically hitting.
           - name: Eyelander
@@ -4020,7 +4020,7 @@ sets:
         abilities:
           - name: Flare Gun
             text: |- 
-              1⛨+1⛨ per 2 spaces between, 2dmg. 
+              1def+1def per 2 spaces between, 2dmg. 
               If they have DoT: +2dmg.
               Else: They get DoT 1.
           - name: Axe
@@ -4046,7 +4046,7 @@ sets:
         default_abilities:
           - name: Rocket Launcher
             text: |-
-              1⛨+1⛨ per 2 spaces between, 3dmg, 1dmg to others in burst 1 of target, push target 1.
+              1def+1def per 2 spaces between, 3dmg, 1dmg to others in burst 1 of target, push target 1.
           - name: Rocket Jump
             text: |-
               Move Action, 1dmg to others in burst 1, take 3dmg, fly 5.
@@ -4111,7 +4111,7 @@ sets:
         passives:
           - name: All your movement is Flying.
             text: ''
-          - name: Abilities targeting you have +2⛨
+          - name: Abilities targeting you have +2def
             text: ''
           - name: When you make a Basic Move Action
             text: You may use any unspent movement at the end of your turn.
@@ -4158,7 +4158,7 @@ sets:
           - name: The Sandman
             text: |-
               1/Battle:
-              Range 4+, +2⛨, target is stunned.
+              Range 4+, +2def, target is stunned.
             tokens:
               - *Stun
           - name: Fan O'War
