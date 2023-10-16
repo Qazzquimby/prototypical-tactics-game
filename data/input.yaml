@@ -73,7 +73,7 @@ conditions:
   Slow: &Slow
     name: Slow
     image_url: https://tactics.toren.dev/image_token_Slow_1902566325755039578.jpg
-    text: You have 1/2 Speed. You are undefendable. Clear at the end of your next turn.
+    text: You have 1/3 Speed. You are undefendable. Clear at the end of your next turn.
   Stun: &Stun
     name: Stun
     image_url: https://tactics.toren.dev/image_token_Stun_-947718855703478726.jpg
@@ -128,7 +128,7 @@ hints:
     text: Receive half damage. Cancels out with damage multipliers. Doesn't stack.
   SlowHint: &SlowHint
     name: Slow
-    text: You have 1/2 speed. You are undefendable.
+    text: You have 1/3 speed. You are undefendable.
   ### maps
   CapturePointHint: &CapturePointHint
     name: Capture Point Objective (orange shade)
@@ -1423,18 +1423,33 @@ sets:
           - *HealthPack
           - *HealthPack
           - *HealthPack
+        hints:
+          - *HealthPack
+          - *HeightDifferenceHint
+          - *CoverHint
+          - *CapturePointHint
       - name: Nepal Village
         image_path: cp_Overwatch_NepalVillage.png
         tokens:
           - *HealthPack
           - *HealthPack
           - *HealthPack
+        hints:
+          - *HealthPack
+          - *HeightDifferenceHint
+          - *CoverHint
+          - *CapturePointHint
       - name: Nepal Sanctum
         image_path: cp_Overwatch_NepalSanctum.png
         tokens:
           - *HealthPack
           - *HealthPack
           - *HealthPack
+        hints:
+          - *HealthPack
+          - *DeadlyFallHint
+          - *CoverHint
+          - *CapturePointHint
 
   - name: Lancer
     description: |-
@@ -1771,7 +1786,7 @@ sets:
         passives:
           - name: Abilities targeting you have +2def
             text: ""
-          - name: All your movement is flying
+          - name: You are always Flying
             text: ""
           - name: Enemies cannot act your turn. (No instants, no reactions, etc)
             text: ""
@@ -2731,11 +2746,8 @@ sets:
               Fly 2x your move speed in a straight line, ignoring units. Units moved through take 2dmg.
             hints:
               - *FlyingHint
-          - name: Adaptive Strike
-            text: |-
-              Range 3, 2dmg
-              +1dmg per Morph counter.
-              Remove all Morph counters.
+            tokens:
+              - *OnCooldown
           - name: Attribute Shift
             text: |-
               Free action at start of turn. Choose one --
@@ -2766,9 +2778,10 @@ sets:
               If in strength stance:
                 Push 3, immobilize
               If in agility stance:
-                3dmg
+                2dmg
             tokens:
               - *Immobile
+              - *OnCooldown
           - name: Morph
             text: |-
               Ultimate 4
