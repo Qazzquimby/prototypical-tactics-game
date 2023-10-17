@@ -1,6 +1,5 @@
 {
   "private": true,
-  "packageManager": "pnpm@8.6.11",
   "scripts": {
     "build": "nuxi build",
     "dev": "nuxi dev",
@@ -23,8 +22,8 @@
     "@nuxtjs/color-mode": "^3.3.0",
     "@pinia/nuxt": "^0.4.11",
     "@types/js-yaml": "^4.0.5",
-    "@types/node": "^20.4.9",
     "@types/markdown-it": "^13.0.1",
+    "@types/node": "^20.4.9",
     "@unocss/eslint-config": "^0.54.1",
     "@unocss/nuxt": "^0.54.3",
     "@vite-pwa/nuxt": "^0.1.0",
@@ -44,8 +43,11 @@
     "@inkline/inkline": "^4.2.1",
     "@nuxt/content": "^2.7.2",
     "@types/markdown-it": "^13.0.1",
+    "firebase": "^10.5.0",
     "js-yaml": "^4.1.0",
     "markdown-it": "^13.0.1",
-    "vite": "^4.4.9"
+    "nuxt-vuefire": "^0.4.0",
+    "vite": "^4.4.9",
+    "vuefire": "^3.1.17"
   }
 }
