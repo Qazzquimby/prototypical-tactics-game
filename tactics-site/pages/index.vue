@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import yaml from 'js-yaml'
-import type { Game } from 'composables/gameTypes'
 import { get_image_path } from '~/composables/imagePath'
 import Hero from '~/components/Hero.vue'
 import RulesMarkdown from '~/components/RulesMarkdown.vue'
+import type { Game } from '~/composables/gameTypes'
 
 const yamlText = ref('')
 const yamlContent = ref<Game>()
@@ -16,6 +16,8 @@ onMounted(async () => {
 </script>
 
 <template>
+  <GameReportForm />
+
   <div v-if="yamlContent" m-4 font-sans md:m-6>
     <ICollapsible>
       <ICollapsibleItem title="Core Rules">

@@ -80,3 +80,21 @@ export interface Game {
   rules: RulesCard[]
   sets: GameSet[]
 }
+
+export type HeroImpression = 'Terrible' | 'Great'
+
+export interface HeroReport {
+  name: string
+  version: number
+  note?: string
+  impression?: HeroImpression
+}
+
+export interface GameReport {
+  redScore: number
+  blueScore: number
+  redHeroes: HeroReport[]
+  blueHeroes: HeroReport[]
+  map: string
+  note?: string
+}
