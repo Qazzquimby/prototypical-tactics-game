@@ -33,7 +33,10 @@ export default defineNuxtConfig({
     typedPages: true,
   },
 
-  css: ['@unocss/reset/tailwind.css'],
+  css: [
+    '@unocss/reset/tailwind.css',
+    '~/styles/global.css',
+  ],
 
   colorMode: {
     classSuffix: '',

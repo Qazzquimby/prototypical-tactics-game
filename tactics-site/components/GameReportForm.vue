@@ -1,27 +1,35 @@
 <script setup lang="ts">
+import type { PropType } from 'vue'
 import { ref } from 'vue'
 import { IButton, IForm, IFormGroup, IInput } from '@inkline/inkline'
-import type { GameReport } from '~/composables/gameTypes'
+import type { GameReport, HeroReport } from '~/composables/gameTypes'
+
+const props = defineProps({
+  heroes: {
+    type: Array as PropType<Hero[]>,
+    required: true,
+  },
+})
 
 const gameReport = ref<GameReport>({
-  redScore: null,
-  blueScore: null,
-  redHeroes: [{ name: '', version: null, note: '', impression: '' }],
-  blueHeroes: [{ name: '', version: null, note: '', impression: '' }],
+  redScore: undefined,
+  blueScore: undefined,
+  redHeroes: [{ name: '', version: undefined, note: '', impression: undefined }],
+  blueHeroes: [{ name: '', version: undefined, note: '', impression: undefined }],
   note: '',
   map: '',
 })
 
 function addHero() {
-  gameReport.value.redHeroes.push({ name: '', version: null, note: '', impression: '' })
-  gameReport.value.blueHeroes.push({ name: '', version: null, note: '', impression: '' })
+  gameReport.value.redHeroes.push({ name: '', version: undefined, note: '', impression: undefined })
+  gameReport.value.blueHeroes.push({ name: '', version: undefined, note: '', impression: undefined })
 }
 
-function updateRedHeroReport(index, updatedReport) {
+function updateRedHeroReport(index: number, updatedReport: HeroReport) {
   gameReport.value.redHeroes[index] = updatedReport
 }
 
-function updateBlueHeroReport(index, updatedReport) {
+function updateBlueHeroReport(index: number, updatedReport: HeroReport) {
   gameReport.value.blueHeroes[index] = updatedReport
 }
 
@@ -72,13 +80,13 @@ function submitForm() {
     <i-row mb-1>
       <i-column sm="6">
         <div v-for="(heroReport, index) in gameReport.redHeroes" :key="index">
-          <HeroReportForm :model-value="heroReport" @update:model-value="val => updateRedHeroReport(index, val)" />
+          <HeroReportForm :model-value="heroReport" :heroes="props.heroes" @update:model-value="val => updateRedHeroReport(index, val)" />
         </div>
       </i-column>
 
       <i-column sm="6">
         <div v-for="(heroReport, index) in gameReport.blueHeroes" :key="index">
-          <HeroReportForm :model-value="heroReport" @update:model-value="val => updateBlueHeroReport(index, val)" />
+          <HeroReportForm :model-value="heroReport" :heroes="props.heroes" @update:model-value="val => updateBlueHeroReport(index, val)" />
         </div>
       </i-column>
     </i-row>

@@ -85,16 +85,16 @@ export type HeroImpression = 'Terrible' | 'Great'
 
 export interface HeroReport {
   name: string
-  version: number
+  version?: string
   note?: string
   impression?: HeroImpression
 }
 
 export interface GameReport {
-  redScore: number
-  blueScore: number
+  redScore?: number
+  blueScore?: number
   redHeroes: HeroReport[]
   blueHeroes: HeroReport[]
-  map: string
+  map?: string
   note?: string
 }

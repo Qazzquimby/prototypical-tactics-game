@@ -13,21 +13,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-html="rulesMarkdown" />
+  <div class="rules" v-html="rulesMarkdown" />
 </template>
 
-<!-- @apply text-4xl font-bold; -->
-
 <style scoped>
-h1 {
-  font-size: 2.5rem;
-}
 
-h2 {
-  @apply text-3xl font-bold;
-}
-
-h3 {
-  @apply text-2xl font-bold;
-}
 </style>

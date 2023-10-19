@@ -13,10 +13,17 @@ onMounted(async () => {
   yamlText.value = await response.text()
   yamlContent.value = yaml.load(yamlText.value)
 })
+
+const heroes = computed(() => {
+  if (!yamlContent.value) {
+    return []
+  }
+  return yamlContent.value.sets.flatMap(set => set.heroes)
+})
 </script>
 
 <template>
-  <GameReportForm />
+  <GameReportForm :heroes="heroes" />
 
   <div v-if="yamlContent" m-4 font-sans md:m-6>
     <ICollapsible>

@@ -11386,6 +11386,11 @@ vue-router@^4.2.5:
   dependencies:
     "@vue/devtools-api" "^6.5.0"
 
+vue-search-select@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/vue-search-select/-/vue-search-select-3.2.0.tgz#c05983702864fc3ee863e8bbd25a3d8addfbb7e3"
+  integrity sha512-X4FCEocMX3vJ/hJRgAcOG18GFxHHNj2umkZee0Pa4kMemBapma6RyOq7GD25kN/FWAal43IbW6GqiZ9h9y0lyA==
+
 vue-template-compiler@^2.7.14:
   version "2.7.14"
   resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.7.14.tgz#4545b7dfb88090744c1577ae5ac3f964e61634b1"
