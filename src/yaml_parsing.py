@@ -333,6 +333,8 @@ class Hero(UnitCard):
         Literal["unplayable", "needs_assets", "needs_balance", "needs_testing"]
     ] = []
 
+    version: tuple[int, int] = (0, 0)
+
     @staticmethod
     @lru_cache
     def to_complex_type():
@@ -496,6 +498,8 @@ class Map(Spawnable, BaseModel):
     hints: list[Hint] = []
 
     size_: tuple[int, int] = None
+
+    version: tuple[int, int] = (0, 0)
 
     @property
     def width_height(self):
