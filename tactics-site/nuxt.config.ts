@@ -4,6 +4,7 @@ import { appDescription } from './constants/index'
 export default defineNuxtConfig({
   modules: [
     'nuxt-vuefire',
+    'nuxt-primevue',
     '@inkline/plugin/nuxt',
     '@vueuse/nuxt',
     '@unocss/nuxt',
@@ -21,9 +22,19 @@ export default defineNuxtConfig({
       appId: '1:831358413965:web:282ff4ddbe5046839786c4',
     },
   },
-  services: {
-    firestore: true,
+  primevue: {
+    components: {
+      include: ['Dropdown'],
+    },
   },
+
+  plugins: [
+    '~/plugins/vue-select.js',
+  ],
+
+  // services: {
+  //   firestore: true,
+  // },
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
     // but missing on offline, disabling extraction it until fixed

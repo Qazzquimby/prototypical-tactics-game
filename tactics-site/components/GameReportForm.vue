@@ -2,11 +2,15 @@
 import type { PropType } from 'vue'
 import { ref } from 'vue'
 import { IButton, IForm, IFormGroup, IInput } from '@inkline/inkline'
-import type { GameReport, HeroReport } from '~/composables/gameTypes'
+import type { GameMap, GameReport, Hero, HeroReport } from '~/composables/gameTypes'
 
 const props = defineProps({
   heroes: {
     type: Array as PropType<Hero[]>,
+    required: true,
+  },
+  maps: {
+    type: Array as PropType<GameMap[]>,
     required: true,
   },
 })
@@ -19,6 +23,8 @@ const gameReport = ref<GameReport>({
   note: '',
   map: '',
 })
+
+const mapNames = computed(() => props.maps.map(gameMap => gameMap.name))
 
 function addHero() {
   gameReport.value.redHeroes.push({ name: '', version: undefined, note: '', impression: undefined })
@@ -44,18 +50,10 @@ function submitForm() {
       Report Game
     </h1>
 
-    <IFormGroup>
-      <IFormLabel for="game-note">
-        Where was it?
-      </IFormLabel>
-      <IInput id="game-note" v-model="gameReport.map" type="text" />
-    </IFormGroup>
+    <v-select v-model="gameReport.map" :options="mapNames" bg-white text-black placeholder="Map Name" />
 
     <IFormGroup>
-      <IFormLabel for="game-note">
-        How'd it go?
-      </IFormLabel>
-      <IInput id="game-note" v-model="gameReport.note" type="text" />
+      <IInput id="game-note" v-model="gameReport.note" type="text" placeholder="Game note?" />
     </IFormGroup>
 
     <i-row mt-4>

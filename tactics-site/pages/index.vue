@@ -20,10 +20,17 @@ const heroes = computed(() => {
   }
   return yamlContent.value.sets.flatMap(set => set.heroes)
 })
+
+const maps = computed(() => {
+  if (!yamlContent.value) {
+    return []
+  }
+  return yamlContent.value.sets.flatMap(set => set.maps).filter(map => map !== undefined)
+})
 </script>
 
 <template>
-  <GameReportForm :heroes="heroes" />
+  <GameReportForm :heroes="heroes" :maps="maps" />
 
   <div v-if="yamlContent" m-4 font-sans md:m-6>
     <ICollapsible>

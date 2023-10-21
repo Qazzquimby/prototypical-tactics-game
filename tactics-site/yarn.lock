@@ -8695,6 +8695,13 @@ nuxi@^3.9.0:
   optionalDependencies:
     fsevents "~2.3.3"
 
+nuxt-primevue@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/nuxt-primevue/-/nuxt-primevue-0.0.3.tgz#e23701f93d5092982afef5c5b469eb9998caebd9"
+  integrity sha512-0k9i+whs+gNNua6WOc75QTfgRaG0MUP4WHX8QjUaWHFxjUzEUiuzQlbeCmiPRnf/LG2YnxsqyPzz+mNCrOa7/A==
+  dependencies:
+    "@nuxt/kit" "^3.7.3"
+
 nuxt-vuefire@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/nuxt-vuefire/-/nuxt-vuefire-0.4.0.tgz#478594d340233f9ec5737ffd03fb68b583ea90c2"
@@ -9373,6 +9380,11 @@ pretty-bytes@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-6.1.1.tgz#38cd6bb46f47afbf667c202cfc754bffd2016a3b"
   integrity sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==
+
+primevue@^3.37.0:
+  version "3.37.0"
+  resolved "https://registry.yarnpkg.com/primevue/-/primevue-3.37.0.tgz#8788f6a4aba29613ba66d7c710445453273936d3"
+  integrity sha512-azwnnQS4+HHJHrh07P0cz+8Nvqo6C08znwvPDyiILwVPkwIrTtgNVmYQtQ9HjLgwax+lC7scMetJpdKcNQU//g==
 
 proc-log@^3.0.0:
   version "3.0.0"
@@ -11386,10 +11398,15 @@ vue-router@^4.2.5:
   dependencies:
     "@vue/devtools-api" "^6.5.0"
 
-vue-search-select@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/vue-search-select/-/vue-search-select-3.2.0.tgz#c05983702864fc3ee863e8bbd25a3d8addfbb7e3"
-  integrity sha512-X4FCEocMX3vJ/hJRgAcOG18GFxHHNj2umkZee0Pa4kMemBapma6RyOq7GD25kN/FWAal43IbW6GqiZ9h9y0lyA==
+vue-select@^4.0.0-beta.6:
+  version "4.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/vue-select/-/vue-select-4.0.0-beta.6.tgz#7c250cb7c01280b54a311cb446629801b3c8df98"
+  integrity sha512-K+zrNBSpwMPhAxYLTCl56gaMrWZGgayoWCLqe5rWwkB8aUbAUh7u6sXjIR7v4ckp2WKC7zEEUY27g6h1MRsIHw==
+
+vue-simple-search-dropdown@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vue-simple-search-dropdown/-/vue-simple-search-dropdown-1.0.1.tgz#72c6910122d09167d399653b88378e9e81098af0"
+  integrity sha512-r3LuGFB3WqMDRILx+Z/Y2S9UTLqMh3Y0nv1Oly+tt8oEzvg77r0tfYLHVqQlhsmVPy0GmSuxMMbetMkDRLOEqg==
 
 vue-template-compiler@^2.7.14:
   version "2.7.14"

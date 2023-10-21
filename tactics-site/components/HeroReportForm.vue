@@ -2,7 +2,6 @@
 import { IFormGroup, IInput } from '@inkline/inkline'
 import type { PropType } from 'vue'
 import { useVModel } from '@vueuse/core'
-import { ModelSelect } from 'vue-search-select'
 import type { Hero, HeroReport } from '~/composables/gameTypes'
 
 const props = defineProps({
@@ -68,19 +67,11 @@ const heroReport = useVModel(props, 'modelValue', emit)
 </script>
 
 <template>
-  <i-container mt-2 border-1 border-gray-6 rd>
-    <!--    <IFormGroup> -->
-    <!--    <i-form-label for="hero-name" /> -->
-    <!--      <i-dropdown -->
-    <!--        id="hero-name" v-model="heroReport.name" type="text" -->
-    <!--        :options="heroes.map(hero => hero.name)" -->
-    <!--      /> -->
-    {{ heroNames }}
-    <ModelSelect id="hero-name" v-model="heroReport.name" :options="heroNames" text-black name="name" />
-    <!--    </IFormGroup> -->
+  <i-container mt-4 border-1 border-gray-6 rd py-6>
+    <v-select v-model="heroReport.name" :options="heroNames" bg-white text-black placeholder="Hero Name" />
 
-    <IFormGroup>
-      <IInput id="hero-note" v-model="heroReport.note" type="text" placeholder="Note?" />
+    <IFormGroup mt-2>
+      <IInput id="hero-note" v-model="heroReport.note" type="text" placeholder="Hero Note?" />
     </IFormGroup>
 
     <i-checkbox-group>
@@ -100,7 +91,3 @@ const heroReport = useVModel(props, 'modelValue', emit)
     </i-checkbox-group>
   </i-container>
 </template>
-
-<style scoped>
-@import 'vue-search-select/dist/VueSearchSelect.css';
-</style>
