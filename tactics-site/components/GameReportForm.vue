@@ -50,7 +50,7 @@ function submitForm() {
       Report Game
     </h1>
 
-    <v-select v-model="gameReport.map" :options="mapNames" bg-white text-black placeholder="Map Name" />
+    <v-select v-model="gameReport.map" :options="mapNames" my-2 rd bg-white text-black placeholder="Map Name" />
 
     <IFormGroup>
       <IInput id="game-note" v-model="gameReport.note" type="text" placeholder="Game note?" />
