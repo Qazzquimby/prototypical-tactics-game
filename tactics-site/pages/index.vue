@@ -2,7 +2,6 @@
 import yaml from 'js-yaml'
 import { get_image_path } from '~/composables/imagePath'
 import Hero from '~/components/Hero.vue'
-import RulesMarkdown from '~/components/RulesMarkdown.vue'
 import type { Game } from '~/composables/gameTypes'
 
 const yamlText = ref('')
@@ -47,9 +46,6 @@ const maps = computed(() => {
 
   <div v-if="yamlContent" m-4 font-sans md:m-6>
     <ICollapsible>
-      <ICollapsibleItem title="Core Rules">
-        <RulesMarkdown />
-      </ICollapsibleItem>
       <ICollapsibleItem
         v-for="set of yamlContent.sets" :key="set.name" :title="set.name" accordion
         rounded bg-gray shadow-md
