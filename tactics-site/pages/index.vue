@@ -18,7 +18,14 @@ const heroes = computed(() => {
   if (!yamlContent.value) {
     return []
   }
-  return yamlContent.value.sets.flatMap(set => set.heroes)
+
+  const heroIds = []
+  for (const gameSet of yamlContent.value.sets) {
+    for (const hero of gameSet.heroes) {
+      heroIds.push({ nameWithSet: `${hero.name} (${gameSet.name})`, version: hero.version })
+    }
+  }
+  return heroIds
 })
 
 const maps = computed(() => {

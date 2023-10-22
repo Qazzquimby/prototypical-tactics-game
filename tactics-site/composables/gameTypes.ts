@@ -85,7 +85,7 @@ export type HeroImpression = 'Terrible' | 'Great'
 
 export interface HeroReport {
   name: string
-  version?: string
+  version: [number, number]
   note?: string
   impression?: HeroImpression
 }

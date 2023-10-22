@@ -2,7 +2,7 @@
 import { IFormGroup, IInput } from '@inkline/inkline'
 import type { PropType } from 'vue'
 import { useVModel } from '@vueuse/core'
-import type { Hero, HeroReport } from '~/composables/gameTypes'
+import type { HeroReport } from '~/composables/gameTypes'
 
 const props = defineProps({
   modelValue: {
@@ -10,14 +10,12 @@ const props = defineProps({
     required: true,
   },
   heroes: {
-    type: Array as PropType<Hero[]>,
+    type: Array as PropType<{ nameWithSet: string; version: [number, number] }[]>,
     required: true,
   },
 })
 
 const emit = defineEmits(['update:modelValue'])
-
-const heroNames = computed(() => props.heroes.map(hero => hero.name))
 
 const impression = ref<'Great' | 'Terrible' | null>(null)
 const impressionGreat = ref(false)
@@ -49,7 +47,7 @@ const heroReport = useVModel(props, 'modelValue', emit)
 
 <template>
   <i-container mt-4 border-1 border-gray-6 rd py-6>
-    <v-select v-model="heroReport.name" :options="heroNames" rd bg-white text-black placeholder="Hero Name" />
+    <v-select v-model="heroReport.name" :options="heroes" label="nameWithSet" rd bg-white text-black placeholder="Hero Name" />
 
     <IFormGroup mt-2>
       <IInput id="hero-note" v-model="heroReport.note" type="text" placeholder="Hero Note?" />
