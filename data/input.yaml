@@ -169,6 +169,11 @@ markers:
     image_url: https://wiki.teamfortress.com/w/images/thumb/7/7c/Mediumhealth.png/120px-Mediumhealth.png
     is_marker: true
     text: When a damaged unit enters this space, remove this, and the unit heals half their maximum health.
+  Corpse: &Corpse
+    name: Corpse
+    image_url: https://tactics.toren.dev/image_token_Corpse Marker_8974187535196407093.jpg
+    is_marker: true
+    text: Marks a space where a unit died.
 shared_rules:
   Instant: &RuleInstant
     name: Instant
@@ -352,7 +357,7 @@ sets:
         passives:
           - name: Start of turn
             text: If you did not take damage since the start of your last turn, Heal 3.
-          - name: Ally dies
+          - name: Ally hero dies
             text: |-
               Place a Corpse Marker in their space and note which ally it corresponds to.
         tokens:
@@ -363,10 +368,7 @@ sets:
             image_url: https://tactics.toren.dev/image_token_Took damage since start of last turn_-3896541016264395972.jpg
             back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
             text: Flip this face down when you take damage, and face up at the start of your turn.
-          - name: Corpse
-            image_url: https://tactics.toren.dev/image_token_Corpse Marker_8974187535196407093.jpg
-            is_marker: true
-            text: Place this in the space where an ally died.
+          - *Corpse
         default_abilities:
           - name: Caduceus Staff
             text: |-
@@ -2976,12 +2978,14 @@ sets:
         units:
           - name: Witchling
             health: 3
-            speed: 3
+            speed: 4
             image_url: https://static.wikia.nocookie.net/monster/images/4/47/WitchlingStalkerimage.jpg/revision/latest?cb=20170519200223
             passives:
+              - name: End of Turn
+                text: This gains Dot
               - name: Death
                 text: |-
-                  Burst 1, 1dmg, 1 DoT
+                  Burst 1, 1dmg, give DoT
               - name: Before attacked
                 text: |-
                   Move 2 towards the attacker
@@ -3042,6 +3046,124 @@ sets:
               - name: Bite
                 text: |-
                   Range 1, 1dmg, DoT +1
+      - name: Seamus
+        description: |-
+          - Teleporting slippery brawler
+        health: 6
+        speed: 4
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679624896-DNSEY1BSLCMXCG5OT8VT/M2E_Seamus.png
+        passives:
+          - name: Abilities targeting you have +2def
+            text: ''
+          - name: Attacked
+            text: |-
+              When an opponent misses this with an attack, this heals 2.
+          - name: Damaged
+            text: |-
+              If this has 2 or more health, it cannot be reduced below 1 health.
+          - name: Start of turn
+            text: |-
+              At start of activation, this may make a default attack targeting each enemy adjacent to this.
+          - name: Hero dies
+            text: |-
+              Place a Corpse Marker in their space
+        tokens:
+          - *Corpse
+        default_abilities:
+          - name: .50 Flintlock
+            text: |-
+              Range 2, 3dmg, +2 crit if target is adjacent to another ally, Push 2
+        abilities:
+          - name: Terrorize
+            text: |-
+              Move action:
+              Undefendable,
+              Range 3, Push the target its speed away from this.
+          - name: Secret Passage
+            text: |-
+              Move action:
+              If adjacent to blocking terrain, teleport 6, ending adjacent to blocking terrain.
+          - name: Cause for Celebration
+            text: |-
+              Free
+              Remove a corpse on the opponent's table half in range 1.
+              If you did, take an Action.
+      - name: Marcus
+        description: |-
+          - Give toolbox of permanent buffs to self and allies
+          - High potential damage with high rolls
+        health: 8
+        speed: 4
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561056384019-ABG7PJH49JLVV0FPY0JV/M3E_Marcus.png
+        passives:
+          - name: Start of turn
+            text: |-
+              Discard all Mutation Upgrades on this,
+              then this may attach a Mutation Upgrade.
+          - name: Attacked
+            text: |-
+              you may discard a card to change the target to an adjacent friendly Jackalope.
+          - name: Can move freely through non-blocking terrain
+            text: ""
+        default_abilities:
+          - name: Tear Apart
+            text: |-
+              Range 1, 2dmg
+              5-6, Teleport  3, adjacent to an enemy you haven't targeted this turn,
+              and repeat this ability.
+        abilities:
+          - name: Chimerancy
+            text: |-
+              Range 4
+              Attach a Mutation Upgrade to a Jackalope, or an ally without one.
+          - name: Primal Roar
+            text: |-
+              Free
+              Allies in range 3 may move 2.
+          - name: Armored Plates
+            text: |-
+              UPGRADE
+              You have Armor
+          - name: Feathered Wings
+            text: |-
+              UPGRADE
+              This is always flying
+              Targeted: After resolving, may move 3.
+          - name: Formidable Horns
+            text: |-
+              UPGRADE
+              Target a unit with a default ability: 3-4, repeat the attack on the same target.
+          - name: Natural Camouflage
+            text: |-
+              UPGRADE
+              This cannot be targeted from range 3 or more.
+          - name: Serrated Teeth and Claws
+            text: |-
+              UPGRADE
+              +1dmg
+        units:
+          - name: Jackalope
+            health: 2
+            speed: 6
+            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2016_01/large.Jackalope.jpg.69b2f6f5478acce03bf753d628b41e2b.jpg
+            passives:
+              - name: Death
+                text: |-
+                  Tap:
+                  You may discard a card to heal to full health.
+              - name: Death
+                text: |-
+                  You may lose a Mutation Upgrade to heal to full health.
+              - name: Ignored for objectives
+                text: ""
+              - name: All movement is flying
+                text: ""
+            default_abilities:
+              - name: Horns
+                text: |-
+                  Range 1, 2dmg
+                  5-6, Teleport 3, adjacent to an enemy you haven't attacked this turn,
+                  and repeat this ability.
       - name: Viktoria
         description: |-
           - Two mobile brawlers
@@ -3191,43 +3313,6 @@ sets:
               - name: Served Its Purpose
                 text: |-
                   Draws a fate card, then kill this.
-      - name: Seamus
-        description: |-
-          - Teleporting slippery brawler
-        health: 6
-        speed: 4
-        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679624896-DNSEY1BSLCMXCG5OT8VT/M2E_Seamus.png
-        passives:
-          - name: Abilities targeting you have +2def
-            text: ''
-          - name: Attacked
-            text: |-
-              When an opponent misses this with an attack, this heals 2.
-          - name: Damaged
-            text: |-
-              If this has 2 or more health, it cannot be reduced below 1 health.
-          - name: Start of turn
-            text: |-
-              At start of activation, this may make a default attack targeting each enemy adjacent to this.
-          - name: Attacking
-            text: |-
-              When targeting enemies adjacent to another ally, -2def +2dmg
-        default_abilities:
-          - name: .50 Flintlock
-            text: Range 2, 3dmg, Push 2.
-        abilities:
-          - name: Terrorize
-            text: |-
-              undefendable,
-              Range 3, Push the target its speed away from this.
-          - name: Secret Passage
-            text: |-
-              If adjacent to blocking terrain, teleport 6, ending adjacent to blocking terrain.
-          - name: Cause for Celebration
-            text: |-
-              Free
-              Remove a corpse on the opponent's table half in range 1.
-              If you did, take an Action.
       - name: Leveticus
         description: |-
           - Extra lives
@@ -3465,86 +3550,6 @@ sets:
               Free
               Allies in range 2 may move 2.
 
-      - name: Marcus
-        description: |-
-          - Give various permanent buffs
-          - Repeat attacks on high rolls
-        health: 8
-        speed: 4
-        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561056384019-ABG7PJH49JLVV0FPY0JV/M3E_Marcus.png
-        passives:
-          - name: Start of turn
-            text: |-
-              Discard all Mutation Upgrades on this,
-              then this may attach a Mutation Upgrade.
-          - name: Attacked
-            text: |-
-              you may discard a card to change the target to an adjacent friendly Jackalope.
-          - name: Ignores Severe Terrain
-            text: ""
-        default_abilities:
-          - name: Tear Apart
-            text: |-
-              Range 1, 2dmg
-              5-6, Teleport  3, adjacent to an enemy you haven't attacked this turn,
-              and repeat this ability.
-        abilities:
-          - name: Chimerancy
-            text: |-
-              Range 4
-              Attach a Mutation Upgrade to a Jackalope, or an ally without one.
-          - name: Primal Roar
-            text: |-
-              Free
-              Allies in range 3 may move 2.
-          - name: Armored Plates
-            text: |-
-              UPGRADE
-              You have Armor
-          - name: Feathered Wings
-            text: |-
-              UPGRADE
-              This may teleport when moving.
-              Attacked: After resolving, may move 3.
-          - name: Formidable Horns
-            text: |-
-              UPGRADE
-              Attack: 5-6, repeat the attack on the same target.
-          - name: Natural Camouflage
-            text: |-
-              UPGRADE
-              This cannot be targeted from range 3 or more.
-          - name: Serrated Teeth and Claws
-            text: |-
-              UPGRADE
-              +1dmg
-        units:
-          - name: Jackalope
-            health: 2
-            speed: 3
-            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2016_01/large.Jackalope.jpg.69b2f6f5478acce03bf753d628b41e2b.jpg
-            passives:
-              - name: Death
-                text: |-
-                  CD 1
-                  You may discard a card to heal to full health.
-              - name: Death
-                text: |-
-                  You may lose a Mutation Upgrade to heal to full health.
-              - name: Insignificant
-                text: ""
-              - name: Ignores Severe Terrain
-                text: ""
-            default_abilities:
-              - name: Horns
-                text: |-
-                  Range 1, 2dmg
-                  5-6, Teleport 3, adjacent to an enemy you haven't attacked this turn,
-                  and repeat this ability.
-              - name: Leap
-                text: |-
-                  Free
-                  Teleport 3.
       - name: Som'er Teeth Jones
         description: |-
           - Summon and synergize with weak minions
