@@ -2831,648 +2831,752 @@ sets:
               - *Paralyze
               - *Immobile
 
-  #  name: Malifaux
-  #    description: |-
-  #      - Use cards to change player's rolls
-  #      - No cooldowns or changes between battles
-  #      - Many summons
-  #    rules:
-  #      - name: Fate Cards
-  #        text: |-
-  #          Each player has a deck of 24 cards, 4 copies of 1-6.
-  #          At the beginning of each round, each player draws up to 3 cards.
-  #
-  #          Whenever a player would roll, they instead discard the top card of their deck face up to reveal its value.
-  #          Any number of times, either player may discard a card from their hand to either:
-  #          - replace the revealed card with the new value,
-  #          - or increase or decrease the target to hit by 1.
-  #      - name: Summoning
-  #        text: |-
-  #          Summoning creates a new unit.
-  #          Summoned units cannot act the turn they are summoned, and activate at the same time as their summoner.
-  #      - name: Disengagement
-  #        text: |-
-  #          Moving from a space adjacent to an enemy to a space not adjacent to that enemy costs 1 additional point of movement.
-  #
-  #    heroes:
-  #      - name: Viktoria
-  #        description: |-
-  #          - Two mobile brawlers
-  #        health: 6
-  #        speed: 3
-  #        image_url: https://paizo.com/image/product/catalog/WYR/WYR5003_500.jpeg
-  #        passives:
-  #          - name: Deploy
-  #            text: Create a copy of this in your deploy zone, without this ability.
-  #          - name: Start of turn
-  #            text: |-
-  #              Another Viktoria in range 4 may teleport adjacent to this.
-  #              Teleport 1.
-  #          - name: Kill
-  #            text: All Viktorias heal 2
-  #          - name: Death
-  #            text: All other Viktorias heal 2 and permanently gain "Abilities targeting you have +2def"
-  #        default_abilities:
-  #          - name: Enchanted Katana
-  #            text: |-
-  #              Range 1, 2dmg +2Crit
-  #              Other enemies in range 1 take 1dmg
-  #        abilities:
-  #          - name: Dragon's Breath
-  #            text: |-
-  #              Target enemy in range 4
-  #              All Viktorias in range 4 of the target pull 4 towards it.
-  #        units:
-  #          - name: Viktoria (Copy)
-  #            image_url: https://www.puttyandpaint.com/image_uploads/artistworks/6442/cache/vik3-3__sized_l.jpg
-  #            health: 6
-  #            speed: 3
-  #      - name: Rasputina
-  #        description: |-
-  #          - Place Ice pillars to block space, slow, extend los
-  #          - Reposition team
-  #        health: 6
-  #        speed: 3
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561056426702-ONTY0Y5Z5WVKNCXBMQ7M/M3E_Rasputina.png
-  #        passives:
-  #          - name: End of turn
-  #            text: |-
-  #              Enemies adjacent to an ice pillar are stunned (-1 Action).
-  #          - name: Damaged
-  #            text: |-
-  #              You may remove an adjacent ice pillar to reduce the damage to 0.
-  #          - name: Ice Mirror
-  #            text: |-
-  #              This may draw range and line of sight from ice pillars in range 4
-  #              Ice pillars never provide cover to enemies.
-  #          - name: Deploy
-  #            text: |-
-  #              Create a Wendingo in range 1.
-  #        default_abilities:
-  #          - name: Winter's Strike
-  #            text: |-
-  #              Range 4 2x2, 1dmg, Slow
-  #              If an ice pillar is in the area, +1dmg
-  #        abilities:
-  #          - name: Freeze Over
-  #            text: |-
-  #              Burst 2
-  #              Enemies are slowed and silenced.
-  #              Allies heal 1.
-  #          - name: Create Ice Pillar
-  #            text: |-
-  #              Create a blocking destructible ice pillar in range 4.
-  #            tokens:
-  #              - name: Ice Pillar
-  #                image_url: https://cdn-icons-png.flaticon.com/512/5906/5906790.png
-  #          - name: December's Passage
-  #            text: |-
-  #              Free
-  #              Target an ice pillar in range 3. Choose any number of allies adjacent to it.
-  #              Teleport the ice pillar 2, then teleport the chosen allies adjacent to it.
-  #        units:
-  #          - name: Wendigo
-  #            health: 3
-  #            speed: 4
-  #            image_url: https://i.pinimg.com/originals/1a/2a/88/1a2a88dd08a1d9a585a8d65487dd84f5.jpg
-  #            passives:
-  #              - name: Frozen Conduit
-  #                text: |-
-  #                  This may be treated as an Ice Pillar marker for the purposes of abilities.
-  #              - name: Death
-  #                text: |-
-  #                  Create a blocking destructible Ice Pillar marker in this space.
-  #            default_abilities:
-  #              - name: Bite
-  #                text: |-
-  #                  Range 1, 2dmg
-  #                  on kill, heal 2.
-  #      - name: Lady Justice
-  #        description: |-
-  #          - Mobile melee brawler
-  #        health: 8
-  #        speed: 3
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561397209226-NPKX6FNG8ZSYJZEJO1CZ/M3E_LadyJustice.png
-  #        passives:
-  #          - name: Attacked, from range 1, roll of 1-2
-  #            text: |-
-  #              Counterattack range 1, 3dmg
-  #          - name: Kill
-  #            text: |-
-  #              This heals 2,
-  #              this gets Focused +1
-  #              and the killed unit doesn't trigger on death effects.
-  #        default_abilities:
-  #          - name: Greatsword
-  #            text: Range 2, 3dmg, +1dmg if this hasn't moved this turn.
-  #        abilities:
-  #          - name: Restore the Natural Order
-  #            text: |-
-  #              3+
-  #              End all conditions on units in range 2.
-  #          - name: Juggernaut Leap
-  #            text: |-
-  #              Free
-  #              Teleport 3, or heal 2.
-  #      - name: Zoraida
-  #        description: |-
-  #          - Mindcontrol units
-  #          - Voodoo doll
-  #        health: 6
-  #        speed: 3
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561403537939-XVHASDUFXUCQBA0AO133/M3E_Zoraida.jpg
-  #        passives:
-  #          - name: Start of turn
-  #            text: |-
-  #              Enemies adjacent to this or an ally must discard a fate card or get Silence
-  #          - name: End of turn
-  #            text: |-
-  #              This may discard a card to summon a Voodoo Doll in range 1 (limit 1).
-  #          - name: Eyes in the Night
-  #            text: |-
-  #              This can draw range and LoS from allies in range 4 and all enemies with Voodoo attachments.
-  #        default_abilities:
-  #          - name: Hex
-  #            text: |-
-  #              undefendable
-  #              Range 4, 1dmg
-  #              If the target has a Voodoo attachment, this may move them 3.
-  #              An ally adjacent to the target may use a default attack targeting them.
-  #        abilities:
-  #          - name: Obey
-  #            text: |-
-  #              undefendable, on a roll of 4+
-  #              Range 4, target takes an Action, chosen and controlled by this.
-  #          - name: Thread of Fate
-  #            text: |-
-  #              Free
-  #              Both players discard their Fate Hand and draw 3 fate cards.
-  #        units:
-  #          - name: Voodoo Doll
-  #            health: 2
-  #            speed: 2
-  #            image_url: https://static.wikia.nocookie.net/monster/image_f/fe/C0E23278-277F-4773-9F96-A1D4031BEDC4.png
-  #            passives:
-  #              - name: Summoned
-  #                text: Give a Voodoo attachment to an enemy in range 4
-  #              - name: Damaged
-  #                text: Enemies with Voodoo attachments take 1 damage.
-  #              - name: Gains Condition
-  #                text: Enemies with Voodoo attachments get the same condition with value +1.
-  #              - name: Start of turn
-  #                text: End all conditions on this.
-  #              - name: Death
-  #                text: All enemies lose all Voodoo attachments.
-  #            default_abilities:
-  #              - name: Unexpected Connection
-  #                text: |-
-  #                  Copy the text of an ability on an enemy unit with a voodoo upgrade in range 4.
-  #              - name: Served Its Purpose
-  #                text: |-
-  #                  Draws a fate card, then kill this.
-  #      - name: Seamus
-  #        description: |-
-  #          - Teleporting slippery brawler
-  #        health: 6
-  #        speed: 4
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679624896-DNSEY1BSLCMXCG5OT8VT/M2E_Seamus.png
-  #        passives:
-  #          - name: Abilities targeting you have +2def
-  #            text: ''
-  #          - name: Attacked
-  #            text: |-
-  #              When an opponent misses this with an attack, this heals 2.
-  #          - name: Damaged
-  #            text: |-
-  #              If this has 2 or more health, it cannot be reduced below 1 health.
-  #          - name: Start of turn
-  #            text: |-
-  #              At start of activation, this may make a default attack targeting each enemy adjacent to this.
-  #          - name: Attacking
-  #            text: |-
-  #              When targeting enemies adjacent to another ally, -2def +2dmg
-  #        default_abilities:
-  #          - name: .50 Flintlock
-  #            text: Range 2, 3dmg, Push 2.
-  #        abilities:
-  #          - name: Terrorize
-  #            text: |-
-  #              undefendable,
-  #              Range 3, Push the target its speed away from this.
-  #          - name: Secret Passage
-  #            text: |-
-  #              If adjacent to blocking terrain, teleport 6, ending adjacent to blocking terrain.
-  #          - name: Cause for Celebration
-  #            text: |-
-  #              Free
-  #              Remove a corpse on the opponent's table half in range 1.
-  #              If you did, take an Action.
-  #      - name: McMourning
-  #        description: |-
-  #          - Damage/healing over time
-  #        health: 8
-  #        speed: 3
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561378118884-2HU7T647WEKGYR78XBHB/guild-masters-mcmourning.png
-  #        passives:
-  #          - name: Armor
-  #            text: ''
-  #          - name: End of turn
-  #            text: Enemies with DoT in range 2 take 1 damage.
-  #          - name: Perverse Metabolism
-  #            text: This and allies heal from DoT instead of taking damage.
-  #        #            - name: Deploy
-  #        #              text: All allies get DoT +2.
-  #        default_abilities:
-  #          - name: Skull Saw
-  #            text: |-
-  #              Range 1,
-  #              2dmg Irreducible, ignore overshield.
-  #              Heal 2, Target gets DoT +1.
-  #        abilities:
-  #          - name: Rancid Transplant
-  #            text: |-
-  #              Two targets in Range 3
-  #              Both targets get DoT +1. You may move a condition from one target to the other.
-  #          - name: Blood DoTing
-  #            text: |-
-  #              Free Action,
-  #              Range 1, undefendable, target takes DoT damage equal to their DoT value, then remove all DoT from them.
-  #        units:
-  #          - name: Zombie Chihuahua
-  #            health: 2
-  #            speed: 3
-  #            image_url: https://static.wikia.nocookie.net/monster/image_e/e9/ZombieChihuahuaimage.jpg/revision/latest/scale-to-width-down/384?cb=20170506224224
-  #            #                passives:
-  #            #                  - name: End of turn
-  #            #                    text: All adjacent units get DoT +1
-  #            default_abilities:
-  #              - name: Bite
-  #                text: |-
-  #                  Range 1, 1dmg, DoT +1
-  #      - name: Leveticus
-  #        description: |-
-  #          - Extra lives
-  #          - Irreducible chip damage
-  #        health: 8
-  #        speed: 3
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561408518996-YIVKK5LYH6WZDXOVMEWE/M3E_Leveticus.png
-  #        passives:
-  #          - name: Attacked
-  #            text: The attacker takes 1 irreducible damage.
-  #          - name: End of turn
-  #            text: |-
-  #              Enemy units in range 2 take 1 damage.
-  #              Heal 1
-  #          - name: Death
-  #            text: |-
-  #              You may sacrifice a Hollow Waif to place this in the Hollow Waif's space and heal this equal to its remaining health.
-  #          - name: Deploy
-  #            text: Create 2 Hollow Waifs in range 2.
-  #        default_abilities:
-  #          - name: Unmaking
-  #            text: |-
-  #              Range 2, 2dmg irreducible, heal 2
-  #              If this kills the target, create an Abomination in its space, limit 4.
-  #        abilities:
-  #          - name: Essence Transfer
-  #            text: |-
-  #              Range 4, Target two friendly units.
-  #              Deal up to 4dmg irreducible to one, and heal the other the amount of damage taken.
-  #          - name: Sanguine Evocations
-  #            text: |-
-  #              Free
-  #              Look at the top three cards of this unit's fate deck. Discard any number and place the rest back in any order.
-  #              This takes 1 damage for each card discarded.
-  #        units:
-  #          - name: Hollow Waif
-  #            health: 3
-  #            speed: 2
-  #            image_url: https://static.wikia.nocookie.net/monster/image_9/9b/24FC90CD-48B6-40AD-AF9D-6D7D193E47CF.jpeg/revision/latest?cb=20180824202915
-  #            passives:
-  #              - name: Insignificant
-  #                text: ''
-  #              - name: Attacked
-  #                text: Attacker takes 1dmg irreducible
-  #              - name: End of turn
-  #                text: |-
-  #                  Enemy units in range 2 take 1dmg.
-  #            default_abilities:
-  #              - name: Entropic Siphon
-  #                text: |-
-  #                  Range 4, 1dmg
-  #          - name: Abomination
-  #            health: 4
-  #            speed: 2
-  #            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/gallery/album_386/gallery_30702_386_137300.jpg
-  #            passives:
-  #              - name: Attacked
-  #                text: Attacker takes 1dmg irreducible
-  #              - name: End of turn
-  #                text: Burst 2, 2dmg irreducible
-  #              - name: Withering Away
-  #                text: Enemies within range 2 cannot heal
-  #            default_abilities:
-  #              - name: Claws
-  #                text: |-
-  #                  Range 1, 1dmg, heal 1
-  #      - name: Kirai
-  #        description: |-
-  #          - Summoner
-  #          - Heals from nearby enemies
-  #        health: 10
-  #        speed: 3
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679645918-3GIYPII25XP5RSICIVPE/M2E_Kirai.png
-  #        passives:
-  #          - name: Damaged
-  #            text: Attacker takes 1 damage
-  #          - name: Attacked
-  #            text: May discard a card to change the target to one of your summons.
-  #          - name: End of turn
-  #            text: |-
-  #              For each enemy in range 2, deal 1 damage to them and heal 1.
-  #              Take 1 damage for each of your summons.
-  #        default_abilities:
-  #          - name: Shears
-  #            text: |-
-  #              Range 1, 2dmg
-  #        abilities:
-  #          - name: Spirit Barrage
-  #            text: |-
-  #              Range 6, 1dmg
-  #              3-4: An adjacent ally can attack the target.
-  #              5-6: Summon a Gaki adjacent to the target, max 3
-  #          - name: Blood and Wind
-  #            text: |-
-  #              Range 3
-  #              Choose:
-  #                Summon a Gaki, max 3.
-  #                or roll: 5-6, summon an Ikiryo, max 1.
-  #          - name: Soothe Spirit
-  #            text: Range 3, heal 1, Overshield +1
-  #          - name: I've Got Your Back
-  #            text: |-
-  #              Free
-  #              Range 4, teleport target ally adjacent to this.
-  #        units:
-  #          - name: Ikiryo
-  #            health: 4
-  #            speed: 4
-  #            image_url: https://i.ytimg.com/vi/63A_tJ8wPds/maxresdefault.jpg
-  #            passives:
-  #              - name: Abilities targeting you have +2def
-  #                text: ""
-  #              - name: -1 Damage received
-  #                text: ""
-  #              - name: Damaged
-  #                text: Attacker takes 1 damage
-  #            default_abilities:
-  #              - name: Death Touch
-  #                text: |-
-  #                  Range 2, 3dmg irreducible.
-  #                  On kill, this and Kirai heal 2.
-  #          - name: Gaki
-  #            health: 3
-  #            speed: 3
-  #            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2015_09/large.gaki.jpg.afc89b1f23a8af53c6e322f1f434e4ea.jpg
-  #            passives:
-  #              - name: Armor
-  #                text: ""
-  #              - name: Damaged
-  #                text: Attacker takes 1 damage
-  #            default_abilities:
-  #              - name: Mighty Jaws
-  #                text: |-
-  #                  Range 2, 2dmg
-  #              - name: Grim Feast
-  #                text: Remove a Corpse Marker to heal 2.
-  #      - name: The Dreamer
-  #        description: |-
-  #          - Delayed summoner
-  #          - Deploys with a beater
-  #        health: 4
-  #        speed: 3
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561406454403-LXJLZQ5JOLVVC9M8WHBB/M3E_Dreamer.png
-  #        passives:
-  #          - name: -1 Damage received
-  #            text: ''
-  #          - name: Abilities targeting you have +2def
-  #            text: ''
-  #          - name: Diversion
-  #            text: Enemies in range 2 cannot use Free Actions.
-  #          - name: Attacked
-  #            text: You may discard a card to change the target to an adjacent Lord Chompy Bits or Alp.
-  #          - name: Deploy
-  #            text: Summon and deploy a Lord Chompy Bits.
-  #        default_abilities:
-  #          - name: Cricket Bat
-  #            text: |-
-  #              Range 1, 1dmg, +1dmg for each of your summons adjacent to the target.
-  #              Swap positions with an ally in range 3.
-  #        abilities:
-  #          - name: Manifest Nightmares
-  #            text: |-
-  #              Once per turn
-  #              Summon and Exile an Alp.
-  #        units:
-  #          - name: Lord Chompy Bits
-  #            health: 6
-  #            speed: 4
-  #            image_url: https://gusladogames.files.wordpress.com/2015/04/lcbsmall.jpg
-  #            passives:
-  #              - name: Abilities targeting you have +2def
-  #                text: ''
-  #              - name: Start of turn
-  #                text: Heal 2
-  #            default_abilities:
-  #              - name: Bite
-  #                text: |-
-  #                  Range 1, 3dmg
-  #          - name: Alp
-  #            health: 3
-  #            speed: 3
-  #            image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc8hSzXnwyWPFUDyUoXQlrKu2m5by3oZ4y1-CLUYsD6F2J7hQ2wdwX0P4zH0Jq9lpe50U&usqp=CAU
-  #            passives:
-  #              - name: Abilities targeting allies in range 1 have +1def
-  #                text: ''
-  #              - name: Nightmares Made Real
-  #                text: |-
-  #                  While this is in exile, if an enemy is damaged to below half health, if no other friendly Alp has been placed this activation:
-  #                    you may place this adjacent to it.
-  #                    This deals 1 damage to everything in range 1.
-  #                    This may make a default attack.
-  #            default_abilities:
-  #              - name: Imaginary Claws
-  #                text: |-
-  #                  Range 1, 1dmg, +1dmg per exiled Alp.
-  #      - name: Colette
-  #        description: |-
-  #          - Reposition self and team
-  #          - Exile units
-  #          - Distract and silence
-  #        health: 8
-  #        speed: 3
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561391468145-0KLLOT8NOW46VZKHY0NR/M3E_Colette.png
-  #        passives:
-  #          - name: Abilities targeting you have +2def
-  #            text: ""
-  #          - name: Attacked, 1-2
-  #            text: Take 1 less damage, then exile this.
-  #          - name: Start, if Exiled
-  #            text: |-
-  #              Place this adjacent to an ally,
-  #              then give adjacent enemies Distracted +1
-  #          - name: End of turn
-  #            text: |-
-  #              Distracted enemies in range 2 are Silenced.
-  #        default_abilities:
-  #          - name: Distracting Illusions
-  #            text: |-
-  #              Range 1, undefendable, target discards a card, and gets Distracted +1 and Silenced.
-  #        abilities:
-  #          - name: False Reality
-  #            text: |-
-  #              Range 4, undefendable, teleport the target  3.
-  #              5-6: You may give the target Stunned(-1 Action)
-  #          - name: Presto Chango
-  #            text: |-
-  #              Range 4, undefendable, swap places with the target
-  #          - name: Sword Trick
-  #            text: |-
-  #              Free
-  #              Range 1, 2dmg, Exile target.
-  #              At the start of its next activation, place it adjacent to one of its allies.
-  #          - name: Practiced Choreography
-  #            text: |-
-  #              Free
-  #              Allies in range 2 may move 2.
-  #
-  #      - name: Marcus
-  #        description: |-
-  #          - Give various permanent buffs
-  #          - Repeat attacks on high rolls
-  #        health: 8
-  #        speed: 4
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561056384019-ABG7PJH49JLVV0FPY0JV/M3E_Marcus.png
-  #        passives:
-  #          - name: Start of turn
-  #            text: |-
-  #              Discard all Mutation Upgrades on this,
-  #              then this may attach a Mutation Upgrade.
-  #          - name: Attacked
-  #            text: |-
-  #              you may discard a card to change the target to an adjacent friendly Jackalope.
-  #          - name: Ignores Severe Terrain
-  #            text: ""
-  #        default_abilities:
-  #          - name: Tear Apart
-  #            text: |-
-  #              Range 1, 2dmg
-  #              5-6, Teleport  3, adjacent to an enemy you haven't attacked this turn,
-  #              and repeat this ability.
-  #        abilities:
-  #          - name: Chimerancy
-  #            text: |-
-  #              Range 4
-  #              Attach a Mutation Upgrade to a Jackalope, or an ally without one.
-  #          - name: Primal Roar
-  #            text: |-
-  #              Free
-  #              Allies in range 3 may move 2.
-  #          - name: Armored Plates
-  #            text: |-
-  #              UPGRADE
-  #              You have Armor
-  #          - name: Feathered Wings
-  #            text: |-
-  #              UPGRADE
-  #              This may teleport when moving.
-  #              Attacked: After resolving, may move 3.
-  #          - name: Formidable Horns
-  #            text: |-
-  #              UPGRADE
-  #              Attack: 5-6, repeat the attack on the same target.
-  #          - name: Natural Camouflage
-  #            text: |-
-  #              UPGRADE
-  #              This cannot be targeted from range 3 or more.
-  #          - name: Serrated Teeth and Claws
-  #            text: |-
-  #              UPGRADE
-  #              +1dmg
-  #        units:
-  #          - name: Jackalope
-  #            health: 2
-  #            speed: 3
-  #            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2016_01/large.Jackalope.jpg.69b2f6f5478acce03bf753d628b41e2b.jpg
-  #            passives:
-  #              - name: Death
-  #                text: |-
-  #                  CD 1
-  #                  You may discard a card to heal to full health.
-  #              - name: Death
-  #                text: |-
-  #                  You may lose a Mutation Upgrade to heal to full health.
-  #              - name: Insignificant
-  #                text: ""
-  #              - name: Ignores Severe Terrain
-  #                text: ""
-  #            default_abilities:
-  #              - name: Horns
-  #                text: |-
-  #                  Range 1, 2dmg
-  #                  5-6, Teleport 3, adjacent to an enemy you haven't attacked this turn,
-  #                  and repeat this ability.
-  #              - name: Leap
-  #                text: |-
-  #                  Free
-  #                  Teleport 3.
-  #      - name: Som'er Teeth Jones
-  #        description: |-
-  #          - Summon and synergize with weak minions
-  #        health: 8
-  #        speed: 3
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561399760452-BICZM3YT16TN1G4EHMDT/M3E_Somer.png
-  #        passives:
-  #          - name: Abilities targeting you have +1def for each adjacent ally
-  #            text: ''
-  #          #            - name: After ally rolls, 1/turn
-  #          #              text: |-
-  #          #                  You may reroll the roll and take the second result.
-  #          - name: Attacked
-  #            text: This may move up to 2.
-  #        default_abilities:
-  #          - name: Boomer
-  #            text: |-
-  #              Range 3 2x2, 2dmg, push 1
-  #        abilities:
-  #          - name: Pig Eating Grin
-  #            text: |-
-  #              CD 1
-  #              Reaction after ally dies in range 3:
-  #                This may make a default attack against the killer.
-  #          - name: Extended Family
-  #            text: |-
-  #              Create 2 Bayou Gremlins in range 3, limit 4.
-  #          - name: Take One for the Team
-  #            text: |-
-  #              Target an ally in range 3.
-  #              It deals 2dmg to units in range 1, then kill it.
-  #        units:
-  #          - name: Bayou Gremlin
-  #            health: 1
-  #            speed: 3
-  #            image_url: https://static.wikia.nocookie.net/monster/image_2/28/78BA677E-3FAB-4B1B-B634-6F957678BFFE.jpeg/revision/latest/scale-to-width-down/384?cb=20180814214132
-  #            passives:
-  #              - name: Abilities targeting you have +1def for each adjacent ally
-  #                text: ''
-  #              - name: Death
-  #                text: You draw a card.
-  #              - name: Insignificant
-  #                text: ''
-  #            default_abilities:
-  #              - name: Banjo Bash
-  #                text: |-
-  #                  Range 1, 1dmg
+  - name: Malifaux (ALPHA)
+    description: |-
+      - Use cards to change player's rolls
+      - No cooldowns or changes between battles
+      - Many summons
+    rules:
+      - name: Fate Cards
+        text: |-
+          Each player has a deck of 24 cards, 4 copies of 1-6.
+          At the beginning of each round, each player draws up to 3 cards.
+
+          Whenever a player would roll, they instead discard the top card of their deck face up to reveal its value.
+          Any number of times, either player may discard a card from their hand to either:
+          - replace the revealed card with the new value,
+          - or increase or decrease the target to hit by 1.
+      - name: Summoning
+        text: |-
+          Summoning creates a new unit.
+          Summoned units cannot act the turn they are summoned, and activate at the same time as their summoner.
+      - name: Disengagement
+        text: |-
+          Moving from a space adjacent to an enemy to a space not adjacent to that enemy costs 1 additional point of movement.
+
+    heroes:
+      - name: Lady Justice
+        polish: [needs_testing]
+        description: |-
+          - Mobile melee brawler
+        health: 8
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561397209226-NPKX6FNG8ZSYJZEJO1CZ/M3E_LadyJustice.png
+        passives:
+          - name: Attacked, from range 1, roll of 1-2
+            text: |-
+              Counterattack range 1, 3dmg
+          - name: Kill
+            text: |-
+              This heals 2 and the killed unit doesn't trigger on death effects.
+        default_abilities:
+          - name: Greatsword
+            text: Range 2, 2dmg, or 4dmg if this hasn't moved this turn.
+        abilities:
+          - name: Restore the Natural Order
+            text: |-
+              3+
+              End all conditions on units in range 2.
+          - name: Juggernaut Leap
+            text: |-
+              Free, Tap
+              Teleport 3, or heal 2.
+      - name: Perdita
+        polish: [needs_testing]
+        description: |-
+          Burst medium range damage
+        health: 8
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561397209226-NPKX6FNG8ZSYJZEJO1CZ/M3E_LadyJustice.png
+        passives:
+          - name: Attacked, from range 2+, roll of 1-2
+            text: |-
+              Counterattack 2dmg
+          - name: End of turn
+            text: |-
+              You may discard a card. If you do, an allied unit in range 4 may perform a default attack and become stunned.
+        default_abilities:
+          - name: Custom Peacebringer
+            text: |-
+              Range 4, 2dmg, +1dmg against full health target, +2crit
+              3-4: You may repeat this attack on a unit you haven't targeted this turn.
+        abilities:
+          - name: Analyze Weakness
+            text: |-
+              Move action:
+              Range 4, until the start of your next turn, all damage dealt to the target is irreducible
+            tokens:
+              - name: Analyze Weakness
+                image_url: https://cdn-icons-png.flaticon.com/256/4814/4814016.png
+                text: |-
+                  All damage dealt to the target is irreducible
+          - name: Finger on the Trigger
+            text: |-
+              Until the start of your next turn, whenever an enemy ends a movement closer to you than they started,
+              you may use a default ability targeting them.
+          - name: Hero's Gamble
+            text: |-
+              Free, Tap:
+              Discard your hand of fate cards and draw that many.
+              Draw one fate card for each living hero your opponent has more than you do.
+              
+
+
+      - name: Sonnia Criid
+        polish: [needs_testing]
+        description: |-
+          - AoE damage
+          - Summon
+        health: 8
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/ae57b473-d4cc-4f1b-a523-0c9fedcdf7c0/M2E_Sonnia.jpg
+        passives:
+          - name: Start of turn
+            text: |-
+              Gain 2 overshield.
+          - name: Enemy targets you with a non-default ability
+            text: |-
+              The enemy must discard a card or the ability is cancelled.
+          - name: Attacked, roll of 1-2
+            text: Attacker gains 1 DoT
+          - name: Non-witchling unit ends movement adjacent to you
+            text: |-
+              Unit gains 1 DoT
+          - name: Enemies decrease their range by their DoT, min 1.
+            text: ""
+        tokens:
+          - *DoT
+        dice:
+          - name: Overshield
+            color: blue
+            values: [ 2 ]
+        default_abilities:
+          - name: Runic Blade
+            text: |-
+              Undefendable vs unit with DoT
+              Range 1, 1dmg, give DoT, heal 2
+          - name: Flame Burst
+            text: |-
+              Unlimited range, 2x2, give DoT
+        abilities:
+          - name: Scorch the Soul
+            text: |-
+              Enemy in range 4,
+              Damage target equal to their double their DoT. They lose all DoT.
+              If this kills a hero, summon a Witchling in their space.
+        units:
+          - name: Witchling
+            health: 3
+            speed: 3
+            image_url: https://static.wikia.nocookie.net/monster/images/4/47/WitchlingStalkerimage.jpg/revision/latest?cb=20170519200223
+            passives:
+              - name: Death
+                text: |-
+                  Burst 1, 1dmg, 1 DoT
+              - name: Before attacked
+                text: |-
+                  Move 2 towards the attacker
+            tokens:
+              - *DoT
+            default_abilities:
+              - name: Runic Blade
+                text: |-
+                    Range 1, 1dmg, give DoT, heal 2
+              - name: Dispel Magic
+                text: |-
+                  End one condition on the target.
+      - name: Viktoria
+        description: |-
+          - Two mobile brawlers
+        health: 6
+        speed: 3
+        image_url: https://paizo.com/image/product/catalog/WYR/WYR5003_500.jpeg
+        passives:
+          - name: Deploy
+            text: Create a copy of this in your deploy zone, without this ability.
+          - name: Start of turn
+            text: |-
+              Another Viktoria in range 4 may teleport adjacent to this.
+              Teleport 1.
+          - name: Kill
+            text: All Viktorias heal 2
+          - name: Death
+            text: All other Viktorias heal 2 and permanently gain "Abilities targeting you have +2def"
+        default_abilities:
+          - name: Enchanted Katana
+            text: |-
+              Range 1, 2dmg +2Crit
+              Other enemies in range 1 take 1dmg
+        abilities:
+          - name: Dragon's Breath
+            text: |-
+              Target enemy in range 4
+              All Viktorias in range 4 of the target pull 4 towards it.
+        units:
+          - name: Viktoria (Copy)
+            image_url: https://www.puttyandpaint.com/image_uploads/artistworks/6442/cache/vik3-3__sized_l.jpg
+            health: 6
+            speed: 3
+      - name: Rasputina
+        description: |-
+          - Place Ice pillars to block space, slow, extend los
+          - Reposition team
+        health: 6
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561056426702-ONTY0Y5Z5WVKNCXBMQ7M/M3E_Rasputina.png
+        passives:
+          - name: End of turn
+            text: |-
+              Enemies adjacent to an ice pillar are stunned (-1 Action).
+          - name: Damaged
+            text: |-
+              You may remove an adjacent ice pillar to reduce the damage to 0.
+          - name: Ice Mirror
+            text: |-
+              This may draw range and line of sight from ice pillars in range 4
+              Ice pillars never provide cover to enemies.
+          - name: Deploy
+            text: |-
+              Create a Wendingo in range 1.
+        default_abilities:
+          - name: Winter's Strike
+            text: |-
+              Range 4 2x2, 1dmg, Slow
+              If an ice pillar is in the area, +1dmg
+        abilities:
+          - name: Freeze Over
+            text: |-
+              Burst 2
+              Enemies are slowed and silenced.
+              Allies heal 1.
+          - name: Create Ice Pillar
+            text: |-
+              Create a blocking destructible ice pillar in range 4.
+            tokens:
+              - name: Ice Pillar
+                image_url: https://cdn-icons-png.flaticon.com/512/5906/5906790.png
+          - name: December's Passage
+            text: |-
+              Free
+              Target an ice pillar in range 3. Choose any number of allies adjacent to it.
+              Teleport the ice pillar 2, then teleport the chosen allies adjacent to it.
+        units:
+          - name: Wendigo
+            health: 3
+            speed: 4
+            image_url: https://i.pinimg.com/originals/1a/2a/88/1a2a88dd08a1d9a585a8d65487dd84f5.jpg
+            passives:
+              - name: Frozen Conduit
+                text: |-
+                  This may be treated as an Ice Pillar marker for the purposes of abilities.
+              - name: Death
+                text: |-
+                  Create a blocking destructible Ice Pillar marker in this space.
+            default_abilities:
+              - name: Bite
+                text: |-
+                  Range 1, 2dmg
+                  on kill, heal 2.
+
+      - name: Zoraida
+        description: |-
+          - Mindcontrol units
+          - Voodoo doll
+        health: 6
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561403537939-XVHASDUFXUCQBA0AO133/M3E_Zoraida.jpg
+        passives:
+          - name: Start of turn
+            text: |-
+              Enemies adjacent to this or an ally must discard a fate card or get Silence
+          - name: End of turn
+            text: |-
+              This may discard a card to summon a Voodoo Doll in range 1 (limit 1).
+          - name: Eyes in the Night
+            text: |-
+              This can draw range and LoS from allies in range 4 and all enemies with Voodoo attachments.
+        default_abilities:
+          - name: Hex
+            text: |-
+              undefendable
+              Range 4, 1dmg
+              If the target has a Voodoo attachment, this may move them 3.
+              An ally adjacent to the target may use a default attack targeting them.
+        abilities:
+          - name: Obey
+            text: |-
+              undefendable, on a roll of 4+
+              Range 4, target takes an Action, chosen and controlled by this.
+          - name: Thread of Fate
+            text: |-
+              Free
+              Both players discard their Fate Hand and draw 3 fate cards.
+        units:
+          - name: Voodoo Doll
+            health: 2
+            speed: 2
+            image_url: https://static.wikia.nocookie.net/monster/image_f/fe/C0E23278-277F-4773-9F96-A1D4031BEDC4.png
+            passives:
+              - name: Summoned
+                text: Give a Voodoo attachment to an enemy in range 4
+              - name: Damaged
+                text: Enemies with Voodoo attachments take 1 damage.
+              - name: Gains Condition
+                text: Enemies with Voodoo attachments get the same condition with value +1.
+              - name: Start of turn
+                text: End all conditions on this.
+              - name: Death
+                text: All enemies lose all Voodoo attachments.
+            default_abilities:
+              - name: Unexpected Connection
+                text: |-
+                  Copy the text of an ability on an enemy unit with a voodoo upgrade in range 4.
+              - name: Served Its Purpose
+                text: |-
+                  Draws a fate card, then kill this.
+      - name: Seamus
+        description: |-
+          - Teleporting slippery brawler
+        health: 6
+        speed: 4
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679624896-DNSEY1BSLCMXCG5OT8VT/M2E_Seamus.png
+        passives:
+          - name: Abilities targeting you have +2def
+            text: ''
+          - name: Attacked
+            text: |-
+              When an opponent misses this with an attack, this heals 2.
+          - name: Damaged
+            text: |-
+              If this has 2 or more health, it cannot be reduced below 1 health.
+          - name: Start of turn
+            text: |-
+              At start of activation, this may make a default attack targeting each enemy adjacent to this.
+          - name: Attacking
+            text: |-
+              When targeting enemies adjacent to another ally, -2def +2dmg
+        default_abilities:
+          - name: .50 Flintlock
+            text: Range 2, 3dmg, Push 2.
+        abilities:
+          - name: Terrorize
+            text: |-
+              undefendable,
+              Range 3, Push the target its speed away from this.
+          - name: Secret Passage
+            text: |-
+              If adjacent to blocking terrain, teleport 6, ending adjacent to blocking terrain.
+          - name: Cause for Celebration
+            text: |-
+              Free
+              Remove a corpse on the opponent's table half in range 1.
+              If you did, take an Action.
+      - name: McMourning
+        description: |-
+          - Damage/healing over time
+        health: 8
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561378118884-2HU7T647WEKGYR78XBHB/guild-masters-mcmourning.png
+        passives:
+          - name: Armor
+            text: ''
+          - name: End of turn
+            text: Enemies with DoT in range 2 take 1 damage.
+          - name: Perverse Metabolism
+            text: This and allies heal from DoT instead of taking damage.
+        #            - name: Deploy
+        #              text: All allies get DoT +2.
+        default_abilities:
+          - name: Skull Saw
+            text: |-
+              Range 1,
+              2dmg Irreducible, ignore overshield.
+              Heal 2, Target gets DoT +1.
+        abilities:
+          - name: Rancid Transplant
+            text: |-
+              Two targets in Range 3
+              Both targets get DoT +1. You may move a condition from one target to the other.
+          - name: Blood DoTing
+            text: |-
+              Free Action,
+              Range 1, undefendable, target takes DoT damage equal to their DoT value, then remove all DoT from them.
+        units:
+          - name: Zombie Chihuahua
+            health: 2
+            speed: 3
+            image_url: https://static.wikia.nocookie.net/monster/image_e/e9/ZombieChihuahuaimage.jpg/revision/latest/scale-to-width-down/384?cb=20170506224224
+            #                passives:
+            #                  - name: End of turn
+            #                    text: All adjacent units get DoT +1
+            default_abilities:
+              - name: Bite
+                text: |-
+                  Range 1, 1dmg, DoT +1
+      - name: Leveticus
+        description: |-
+          - Extra lives
+          - Irreducible chip damage
+        health: 8
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561408518996-YIVKK5LYH6WZDXOVMEWE/M3E_Leveticus.png
+        passives:
+          - name: Attacked
+            text: The attacker takes 1 irreducible damage.
+          - name: End of turn
+            text: |-
+              Enemy units in range 2 take 1 damage.
+              Heal 1
+          - name: Death
+            text: |-
+              You may sacrifice a Hollow Waif to place this in the Hollow Waif's space and heal this equal to its remaining health.
+          - name: Deploy
+            text: Create 2 Hollow Waifs in range 2.
+        default_abilities:
+          - name: Unmaking
+            text: |-
+              Range 2, 2dmg irreducible, heal 2
+              If this kills the target, create an Abomination in its space, limit 4.
+        abilities:
+          - name: Essence Transfer
+            text: |-
+              Range 4, Target two friendly units.
+              Deal up to 4dmg irreducible to one, and heal the other the amount of damage taken.
+          - name: Sanguine Evocations
+            text: |-
+              Free
+              Look at the top three cards of this unit's fate deck. Discard any number and place the rest back in any order.
+              This takes 1 damage for each card discarded.
+        units:
+          - name: Hollow Waif
+            health: 3
+            speed: 2
+            image_url: https://static.wikia.nocookie.net/monster/image_9/9b/24FC90CD-48B6-40AD-AF9D-6D7D193E47CF.jpeg/revision/latest?cb=20180824202915
+            passives:
+              - name: Insignificant
+                text: ''
+              - name: Attacked
+                text: Attacker takes 1dmg irreducible
+              - name: End of turn
+                text: |-
+                  Enemy units in range 2 take 1dmg.
+            default_abilities:
+              - name: Entropic Siphon
+                text: |-
+                  Range 4, 1dmg
+          - name: Abomination
+            health: 4
+            speed: 2
+            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/gallery/album_386/gallery_30702_386_137300.jpg
+            passives:
+              - name: Attacked
+                text: Attacker takes 1dmg irreducible
+              - name: End of turn
+                text: Burst 2, 2dmg irreducible
+              - name: Withering Away
+                text: Enemies within range 2 cannot heal
+            default_abilities:
+              - name: Claws
+                text: |-
+                  Range 1, 1dmg, heal 1
+      - name: Kirai
+        description: |-
+          - Summoner
+          - Heals from nearby enemies
+        health: 10
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679645918-3GIYPII25XP5RSICIVPE/M2E_Kirai.png
+        passives:
+          - name: Damaged
+            text: Attacker takes 1 damage
+          - name: Attacked
+            text: May discard a card to change the target to one of your summons.
+          - name: End of turn
+            text: |-
+              For each enemy in range 2, deal 1 damage to them and heal 1.
+              Take 1 damage for each of your summons.
+        default_abilities:
+          - name: Shears
+            text: |-
+              Range 1, 2dmg
+        abilities:
+          - name: Spirit Barrage
+            text: |-
+              Range 6, 1dmg
+              3-4: An adjacent ally can attack the target.
+              5-6: Summon a Gaki adjacent to the target, max 3
+          - name: Blood and Wind
+            text: |-
+              Range 3
+              Choose:
+                Summon a Gaki, max 3.
+                or roll: 5-6, summon an Ikiryo, max 1.
+          - name: Soothe Spirit
+            text: Range 3, heal 1, Overshield +1
+          - name: I've Got Your Back
+            text: |-
+              Free
+              Range 4, teleport target ally adjacent to this.
+        units:
+          - name: Ikiryo
+            health: 4
+            speed: 4
+            image_url: https://i.ytimg.com/vi/63A_tJ8wPds/maxresdefault.jpg
+            passives:
+              - name: Abilities targeting you have +2def
+                text: ""
+              - name: -1 Damage received
+                text: ""
+              - name: Damaged
+                text: Attacker takes 1 damage
+            default_abilities:
+              - name: Death Touch
+                text: |-
+                  Range 2, 3dmg irreducible.
+                  On kill, this and Kirai heal 2.
+          - name: Gaki
+            health: 3
+            speed: 3
+            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2015_09/large.gaki.jpg.afc89b1f23a8af53c6e322f1f434e4ea.jpg
+            passives:
+              - name: Armor
+                text: ""
+              - name: Damaged
+                text: Attacker takes 1 damage
+            default_abilities:
+              - name: Mighty Jaws
+                text: |-
+                  Range 2, 2dmg
+              - name: Grim Feast
+                text: Remove a Corpse Marker to heal 2.
+      - name: The Dreamer
+        description: |-
+          - Delayed summoner
+          - Deploys with a beater
+        health: 4
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561406454403-LXJLZQ5JOLVVC9M8WHBB/M3E_Dreamer.png
+        passives:
+          - name: -1 Damage received
+            text: ''
+          - name: Abilities targeting you have +2def
+            text: ''
+          - name: Diversion
+            text: Enemies in range 2 cannot use Free Actions.
+          - name: Attacked
+            text: You may discard a card to change the target to an adjacent Lord Chompy Bits or Alp.
+          - name: Deploy
+            text: Summon and deploy a Lord Chompy Bits.
+        default_abilities:
+          - name: Cricket Bat
+            text: |-
+              Range 1, 1dmg, +1dmg for each of your summons adjacent to the target.
+              Swap positions with an ally in range 3.
+        abilities:
+          - name: Manifest Nightmares
+            text: |-
+              Once per turn
+              Summon and Exile an Alp.
+        units:
+          - name: Lord Chompy Bits
+            health: 6
+            speed: 4
+            image_url: https://gusladogames.files.wordpress.com/2015/04/lcbsmall.jpg
+            passives:
+              - name: Abilities targeting you have +2def
+                text: ''
+              - name: Start of turn
+                text: Heal 2
+            default_abilities:
+              - name: Bite
+                text: |-
+                  Range 1, 3dmg
+          - name: Alp
+            health: 3
+            speed: 3
+            image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc8hSzXnwyWPFUDyUoXQlrKu2m5by3oZ4y1-CLUYsD6F2J7hQ2wdwX0P4zH0Jq9lpe50U&usqp=CAU
+            passives:
+              - name: Abilities targeting allies in range 1 have +1def
+                text: ''
+              - name: Nightmares Made Real
+                text: |-
+                  While this is in exile, if an enemy is damaged to below half health, if no other friendly Alp has been placed this activation:
+                    you may place this adjacent to it.
+                    This deals 1 damage to everything in range 1.
+                    This may make a default attack.
+            default_abilities:
+              - name: Imaginary Claws
+                text: |-
+                  Range 1, 1dmg, +1dmg per exiled Alp.
+      - name: Colette
+        description: |-
+          - Reposition self and team
+          - Exile units
+          - Distract and silence
+        health: 8
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561391468145-0KLLOT8NOW46VZKHY0NR/M3E_Colette.png
+        passives:
+          - name: Abilities targeting you have +2def
+            text: ""
+          - name: Attacked, 1-2
+            text: Take 1 less damage, then exile this.
+          - name: Start, if Exiled
+            text: |-
+              Place this adjacent to an ally,
+              then give adjacent enemies Distracted +1
+          - name: End of turn
+            text: |-
+              Distracted enemies in range 2 are Silenced.
+        default_abilities:
+          - name: Distracting Illusions
+            text: |-
+              Range 1, undefendable, target discards a card, and gets Distracted +1 and Silenced.
+        abilities:
+          - name: False Reality
+            text: |-
+              Range 4, undefendable, teleport the target  3.
+              5-6: You may give the target Stunned(-1 Action)
+          - name: Presto Chango
+            text: |-
+              Range 4, undefendable, swap places with the target
+          - name: Sword Trick
+            text: |-
+              Free
+              Range 1, 2dmg, Exile target.
+              At the start of its next activation, place it adjacent to one of its allies.
+          - name: Practiced Choreography
+            text: |-
+              Free
+              Allies in range 2 may move 2.
+
+      - name: Marcus
+        description: |-
+          - Give various permanent buffs
+          - Repeat attacks on high rolls
+        health: 8
+        speed: 4
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561056384019-ABG7PJH49JLVV0FPY0JV/M3E_Marcus.png
+        passives:
+          - name: Start of turn
+            text: |-
+              Discard all Mutation Upgrades on this,
+              then this may attach a Mutation Upgrade.
+          - name: Attacked
+            text: |-
+              you may discard a card to change the target to an adjacent friendly Jackalope.
+          - name: Ignores Severe Terrain
+            text: ""
+        default_abilities:
+          - name: Tear Apart
+            text: |-
+              Range 1, 2dmg
+              5-6, Teleport  3, adjacent to an enemy you haven't attacked this turn,
+              and repeat this ability.
+        abilities:
+          - name: Chimerancy
+            text: |-
+              Range 4
+              Attach a Mutation Upgrade to a Jackalope, or an ally without one.
+          - name: Primal Roar
+            text: |-
+              Free
+              Allies in range 3 may move 2.
+          - name: Armored Plates
+            text: |-
+              UPGRADE
+              You have Armor
+          - name: Feathered Wings
+            text: |-
+              UPGRADE
+              This may teleport when moving.
+              Attacked: After resolving, may move 3.
+          - name: Formidable Horns
+            text: |-
+              UPGRADE
+              Attack: 5-6, repeat the attack on the same target.
+          - name: Natural Camouflage
+            text: |-
+              UPGRADE
+              This cannot be targeted from range 3 or more.
+          - name: Serrated Teeth and Claws
+            text: |-
+              UPGRADE
+              +1dmg
+        units:
+          - name: Jackalope
+            health: 2
+            speed: 3
+            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2016_01/large.Jackalope.jpg.69b2f6f5478acce03bf753d628b41e2b.jpg
+            passives:
+              - name: Death
+                text: |-
+                  CD 1
+                  You may discard a card to heal to full health.
+              - name: Death
+                text: |-
+                  You may lose a Mutation Upgrade to heal to full health.
+              - name: Insignificant
+                text: ""
+              - name: Ignores Severe Terrain
+                text: ""
+            default_abilities:
+              - name: Horns
+                text: |-
+                  Range 1, 2dmg
+                  5-6, Teleport 3, adjacent to an enemy you haven't attacked this turn,
+                  and repeat this ability.
+              - name: Leap
+                text: |-
+                  Free
+                  Teleport 3.
+      - name: Som'er Teeth Jones
+        description: |-
+          - Summon and synergize with weak minions
+        health: 8
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561399760452-BICZM3YT16TN1G4EHMDT/M3E_Somer.png
+        passives:
+          - name: Abilities targeting you have +1def for each adjacent ally
+            text: ''
+          #            - name: After ally rolls, 1/turn
+          #              text: |-
+          #                  You may reroll the roll and take the second result.
+          - name: Attacked
+            text: This may move up to 2.
+        default_abilities:
+          - name: Boomer
+            text: |-
+              Range 3 2x2, 2dmg, push 1
+        abilities:
+          - name: Pig Eating Grin
+            text: |-
+              CD 1
+              Reaction after ally dies in range 3:
+                This may make a default attack against the killer.
+          - name: Extended Family
+            text: |-
+              Create 2 Bayou Gremlins in range 3, limit 4.
+          - name: Take One for the Team
+            text: |-
+              Target an ally in range 3.
+              It deals 2dmg to units in range 1, then kill it.
+        units:
+          - name: Bayou Gremlin
+            health: 1
+            speed: 3
+            image_url: https://static.wikia.nocookie.net/monster/image_2/28/78BA677E-3FAB-4B1B-B634-6F957678BFFE.jpeg/revision/latest/scale-to-width-down/384?cb=20180814214132
+            passives:
+              - name: Abilities targeting you have +1def for each adjacent ally
+                text: ''
+              - name: Death
+                text: You draw a card.
+              - name: Insignificant
+                text: ''
+            default_abilities:
+              - name: Banjo Bash
+                text: |-
+                  Range 1, 1dmg
   #  - name: Icon
   #    description: |-
   #      - description todo
