@@ -70,6 +70,10 @@ conditions:
     name: DoT
     image_url:  https://tactics.toren.dev/image_token_Burning_-3293685330274957657.jpg
     text: At the start of your turn, take 1 damage. Stacks with itself.
+  HealingOverTime: &HealingOverTime
+    name: Healing Over Time
+    image_url: https://www.clipartmax.com/png/middle/460-4607785_recovery-time-free-clock-icon.png
+    text: At the start of your turn, Heal 1. Stacks with itself.
   Slow: &Slow
     name: Slow
     image_url: https://tactics.toren.dev/image_token_Slow_1902566325755039578.jpg
@@ -123,6 +127,11 @@ hints:
   ImmobileHint: &ImmobileHint
     name: Immobile
     text: You cannot move voluntarily. You are undefendable.
+  IrreducibleHint: &IrreducibleHint
+    name: Irreducible
+    text: |-
+      This damage cannot be reduced by armor, resistance, or other effects.
+      The damage is dealt directly to health, ignoring things like overshield.
   ResistanceHint: &ResistanceHint
     name: Resistance
     text: Receive half damage. Cancels out with damage multipliers. Doesn't stack.
@@ -2985,6 +2994,54 @@ sets:
               - name: Dispel Magic
                 text: |-
                   End one condition on the target.
+      - name: Dr. McMourning
+        description: |-
+          - Damage/healing over time
+        health: 8
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561378118884-2HU7T647WEKGYR78XBHB/guild-masters-mcmourning.png
+        passives:
+          - name: Armor
+            text: ''
+          - name: End of turn
+            text: Enemies in burst 2 with DoT, 1dmg.
+          - name: Perverse Metabolism
+            text: |-
+              When an ally gives an ally DoT, it becomes Healing over Time.
+              When an ally gives an enemy Healing over Time, it becomes DoT.
+        hints:
+          - *ArmorHint
+          - *IrreducibleHint
+        tokens:
+          - *DoT
+          - *HealingOverTime
+        default_abilities:
+          - name: Skull Saw
+            text: |-
+              Range 1, 2dmg Irreducible, give DoT
+              Heal 2
+        abilities:
+          - name: Rancid Transplant
+            text: |-
+              Two targets in Range 3
+              Both targets get DoT +1. You may move a condition from one target to the other.
+          - name: Blood Poisoning
+            text: |-
+              Free, Tap:
+              Choose one --
+              - Range 4, undefendable, 
+                target takes damage equal to double their DoT, then lose their DoT.
+                target heals equal to double their Healing over Time, then lose their Healing over Time.
+              - Discard a card. If you did, ally in range 3 moves 3.
+        units:
+          - name: Zombie Chihuahua
+            health: 2
+            speed: 3
+            image_url: https://static.wikia.nocookie.net/monster/image_e/e9/ZombieChihuahuaimage.jpg/revision/latest/scale-to-width-down/384?cb=20170506224224
+            default_abilities:
+              - name: Bite
+                text: |-
+                  Range 1, 1dmg, DoT +1
       - name: Viktoria
         description: |-
           - Two mobile brawlers
@@ -3171,48 +3228,6 @@ sets:
               Free
               Remove a corpse on the opponent's table half in range 1.
               If you did, take an Action.
-      - name: McMourning
-        description: |-
-          - Damage/healing over time
-        health: 8
-        speed: 3
-        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561378118884-2HU7T647WEKGYR78XBHB/guild-masters-mcmourning.png
-        passives:
-          - name: Armor
-            text: ''
-          - name: End of turn
-            text: Enemies with DoT in range 2 take 1 damage.
-          - name: Perverse Metabolism
-            text: This and allies heal from DoT instead of taking damage.
-        #            - name: Deploy
-        #              text: All allies get DoT +2.
-        default_abilities:
-          - name: Skull Saw
-            text: |-
-              Range 1,
-              2dmg Irreducible, ignore overshield.
-              Heal 2, Target gets DoT +1.
-        abilities:
-          - name: Rancid Transplant
-            text: |-
-              Two targets in Range 3
-              Both targets get DoT +1. You may move a condition from one target to the other.
-          - name: Blood DoTing
-            text: |-
-              Free Action,
-              Range 1, undefendable, target takes DoT damage equal to their DoT value, then remove all DoT from them.
-        units:
-          - name: Zombie Chihuahua
-            health: 2
-            speed: 3
-            image_url: https://static.wikia.nocookie.net/monster/image_e/e9/ZombieChihuahuaimage.jpg/revision/latest/scale-to-width-down/384?cb=20170506224224
-            #                passives:
-            #                  - name: End of turn
-            #                    text: All adjacent units get DoT +1
-            default_abilities:
-              - name: Bite
-                text: |-
-                  Range 1, 1dmg, DoT +1
       - name: Leveticus
         description: |-
           - Extra lives
