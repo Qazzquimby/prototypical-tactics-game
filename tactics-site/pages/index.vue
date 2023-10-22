@@ -32,7 +32,13 @@ const maps = computed(() => {
   if (!yamlContent.value) {
     return []
   }
-  return yamlContent.value.sets.flatMap(set => set.maps).filter(map => map !== undefined)
+
+  const mapIds = []
+  for (const gameSet of yamlContent.value.sets) {
+    for (const gameMap of gameSet.maps) {
+      mapIds.push({ name: gameMap.name, version: gameMap.version })
+    }
+  }
 })
 </script>
 

@@ -2,15 +2,15 @@
 import type { PropType } from 'vue'
 import { ref } from 'vue'
 import { IButton, IForm, IFormGroup, IInput } from '@inkline/inkline'
-import type { GameMap, GameReport, Hero, HeroReport } from '~/composables/gameTypes'
+import type { GameReport, HeroReport } from '~/composables/gameTypes'
 
 const props = defineProps({
   heroes: {
-    type: Array as PropType<Hero[]>,
+    type: Array as PropType<{ nameWithSet: string; version: [number, number] }[]>,
     required: true,
   },
   maps: {
-    type: Array as PropType<GameMap[]>,
+    type: Array as PropType<{ nameWithSet: string; version: [number, number] }[]>,
     required: true,
   },
 })
@@ -18,8 +18,16 @@ const props = defineProps({
 const gameReport = ref<GameReport>({
   redScore: undefined,
   blueScore: undefined,
-  redHeroes: [{ name: '', version: undefined, note: '', impression: undefined }],
-  blueHeroes: [{ name: '', version: undefined, note: '', impression: undefined }],
+  redHeroes: [
+    { name: '', note: '', impression: undefined },
+    { name: '', note: '', impression: undefined },
+    { name: '', note: '', impression: undefined },
+  ],
+  blueHeroes: [
+    { name: '', note: '', impression: undefined },
+    { name: '', note: '', impression: undefined },
+    { name: '', note: '', impression: undefined },
+  ],
   note: '',
   map: '',
 })
@@ -27,8 +35,8 @@ const gameReport = ref<GameReport>({
 const mapNames = computed(() => props.maps.map(gameMap => gameMap.name))
 
 function addHero() {
-  gameReport.value.redHeroes.push({ name: '', version: undefined, note: '', impression: undefined })
-  gameReport.value.blueHeroes.push({ name: '', version: undefined, note: '', impression: undefined })
+  gameReport.value.redHeroes.push({ name: '', note: '', impression: undefined })
+  gameReport.value.blueHeroes.push({ name: '', note: '', impression: undefined })
 }
 
 function updateRedHeroReport(index: number, updatedReport: HeroReport) {

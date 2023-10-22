@@ -38,6 +38,7 @@ export interface UnitCard extends Card, Figurine {
 
 export interface Hero extends UnitCard {
   description: string
+  version: [number, number]
 }
 
 export interface RulesCard extends Card {
@@ -66,6 +67,7 @@ export interface GameMap {
   rules?: RulesCard[]
   tokens?: Token[]
   size_?: [number, number]
+  version: [number, number]
 }
 
 export interface GameSet {
@@ -85,7 +87,6 @@ export type HeroImpression = 'Terrible' | 'Great'
 
 export interface HeroReport {
   name: string
-  version: [number, number]
   note?: string
   impression?: HeroImpression
 }
