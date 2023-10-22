@@ -19,9 +19,6 @@ const emit = defineEmits(['update:modelValue'])
 
 const heroNames = computed(() => props.heroes.map(hero => hero.name))
 
-// const isGreat = ref(false)
-// const isTerrible = ref(true)
-
 const impression = ref<'Great' | 'Terrible' | null>(null)
 const impressionGreat = ref(false)
 const impressionTerrible = ref(false)
@@ -46,41 +43,6 @@ function updateImpression(value: ('Great' | 'Terrible')) {
     }
   }
 }
-
-// watch([isGreat, isTerrible], ([newIsGreat, newIsTerrible]) => {
-//   if (newIsGreat) {
-//     isTerrible.value = false
-//     emit('update:modelValue', {
-//       ...props.modelValue,
-//       impression: 'Great',
-//     })
-//   }
-// else if (newIsTerrible) {
-//   isGreat.value = false
-//   isTerrible.value = true
-//   emit('update:modelValue', {
-//     ...props.modelValue,
-//     impression: 'Terrible',
-//   })
-// }
-// else {
-//   isGreat.value = false
-//   isTerrible.value = false
-//   emit('update:modelValue', {
-//     ...props.modelValue,
-//     impression: undefined,
-//   })
-// }
-// })
-
-// const getImpression = computed(() => {
-//   if (isGreat.value) {
-//     return 'Great'
-//   }
-//   if (isTerrible.value) {
-//     return 'Terrible'
-//   }
-// })
 
 const heroReport = useVModel(props, 'modelValue', emit)
 </script>
