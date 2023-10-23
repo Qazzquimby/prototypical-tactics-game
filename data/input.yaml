@@ -3273,7 +3273,181 @@ sets:
               Any number of targets in range 4 3x3, 1dmg, push 2 in any direction.
         tokens:
           - *OnCooldown
-
+      - name: Zoraida
+        description: |-
+          - Mindcontrol units
+          - Voodoo doll
+        health: 6
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561403537939-XVHASDUFXUCQBA0AO133/M3E_Zoraida.jpg
+        passives:
+          - name: Targeted by enemy in burst 2
+            text: After the ability resolves,  immediately ends their turn.
+          - name: Start of turn
+            text: |-
+              Enemies adjacent to this or an ally must discard a fate card or get Silence
+          - name: End of turn
+            text: |-
+              This may discard a card to summon a Voodoo Doll in range 1 (limit 1).
+          - name: Eyes in the Night
+            text: |-
+              This can draw range and LoS from allies in range 4 and all enemies with Voodoo attachments.
+        tokens:
+          - *Silence
+        default_abilities:
+          - name: Hex
+            text: |-
+              Undefendable
+              Range 4, 1dmg
+              If the target has a Voodoo attachment, push 2 any direction.
+              An ally adjacent to the target may use a default attack targeting them.
+        abilities:
+          - name: Obey
+            text: |-
+              Undefendable,
+              Range 4, roll 4+: Target takes an Action, chosen and controlled by this.
+          - name: Thread of Fate
+            text: |-
+              Free, Tap:
+              Both players discard their Fate Hand and draw 3 fate cards.
+        units:
+          - name: Voodoo Doll
+            health: 2
+            speed: 2
+            image_url: https://static.wikia.nocookie.net/monster/image_f/fe/C0E23278-277F-4773-9F96-A1D4031BEDC4.png
+            passives:
+              - name: Summoned
+                text: Give a Voodoo attachment to an enemy in range 4
+              - name: Damaged
+                text: Enemies with Voodoo attachments take 1 damage.
+              - name: Gains Condition
+                text: Enemies with Voodoo attachments get the condition instead.
+              - name: Death
+                text: All enemies lose all Voodoo attachments.
+            default_abilities:
+              - name: Unexpected Connection
+                text: |-
+                  Copy the text of an ability on an enemy unit with a voodoo upgrade in range 4.
+              - name: Served Its Purpose
+                text: |-
+                  Draws a fate card, then kill this.
+      - name: Leveticus
+        description: |-
+          - Extra lives
+          - Irreducible chip damage
+        health: 8
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561408518996-YIVKK5LYH6WZDXOVMEWE/M3E_Leveticus.png
+        passives:
+          - name: Targeted by an enemy
+            text: The enemy takes 1 irreducible damage.
+          - name: End of turn
+            text: |-
+              Enemies in burst 2, 1dmg.
+              Heal 1
+          - name: Death
+            text: |-
+              You may sacrifice a Hollow Waif to place this in the Hollow Waif's space and heal this equal to its remaining health.
+          - name: Deploy
+            text: Create 2 Hollow Waifs in range 2.
+        default_abilities:
+          - name: Unmaking
+            text: |-
+              Range 2, 2dmg irreducible, heal 2
+              On hero kill, create a Hollow Waif in its space, limit 4.
+        abilities:
+          - name: Essence Transfer
+            text: |-
+              Move Action:
+              Range 4, Target two allied units.
+              Deal up to 4dmg irreducible to one, and heal the other that amount.
+          - name: Sanguine Evocations
+            text: |-
+              Free, Tap:
+              Look at the top three cards of this unit's fate deck. Discard any number and place the rest back in any order.
+              Take 1 damage for each card discarded.
+        units:
+          - name: Hollow Waif
+            health: 3
+            speed: 2
+            image_url: https://static.wikia.nocookie.net/monster/image_9/9b/24FC90CD-48B6-40AD-AF9D-6D7D193E47CF.jpeg/revision/latest?cb=20180824202915
+            passives:
+              - name: Insignificant
+                text: ''
+              - name: Targeted by enemy
+                text: The enemy takes 1dmg irreducible
+              - name: End of turn
+                text: |-
+                  Enemy units in range 2 take 1dmg.
+              - name: Withering Away
+                text: Enemies within range 2 cannot heal
+            default_abilities:
+              - name: Entropic Siphon
+                text: |-
+                  Range 4, 1dmg
+                #          - name: Abomination
+                #            health: 4
+                #            speed: 2
+                #            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/gallery/album_386/gallery_30702_386_137300.jpg
+                #            passives:
+                #              - name: Attacked
+                #                text: Attacker takes 1dmg irreducible
+                #              - name: End of turn
+                #                text: Burst 2, 2dmg irreducible
+                #              - name: Withering Away
+                #                text: Enemies within range 2 cannot heal
+                #            default_abilities:
+                #              - name: Claws
+                #                text: |-
+                #                  Range 1, 1dmg, heal 1
+      - name: Som'er Teeth Jones
+        description: |-
+          - Summon and synergize with weak many minions
+        health: 8
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561399760452-BICZM3YT16TN1G4EHMDT/M3E_Somer.png
+        passives:
+          - name: Abilities targeting you have +1def for each adjacent ally
+            text: ''
+          #            - name: After ally rolls, 1/turn
+          #              text: |-
+          #                  You may reroll the roll and take the second result.
+          - name: Targeted by enemy
+            text: After resolving, this may move up to 2.
+        default_abilities:
+          - name: Boomer
+            text: |-
+              Range 3 2x2, 2dmg, push 1
+        abilities:
+          - name: Pig Eating Grin
+            text: |-
+              Tap:
+              Reaction after ally dies in range 3:
+                This may make a default attack against the killer.
+          - name: Extended Family
+            text: |-
+              Create 2 Bayou Gremlins in range 3, limit 4.
+          - name: Take One for the Team
+            text: |-
+              Move action:
+              Target an ally in range 3.
+              It deals 2dmg to units in range 1, then kill it.
+        units:
+          - name: Bayou Gremlin
+            health: 1
+            speed: 3
+            image_url: https://static.wikia.nocookie.net/monster/image_2/28/78BA677E-3FAB-4B1B-B634-6F957678BFFE.jpeg/revision/latest/scale-to-width-down/384?cb=20180814214132
+            passives:
+              - name: Abilities targeting you have +1def for each adjacent ally
+                text: ''
+              - name: Death
+                text: You draw a card.
+              - name: Insignificant
+                text: ''
+            default_abilities:
+              - name: Banjo Bash
+                text: |-
+                  Range 1, 1dmg
       - name: Viktoria
         description: |-
           - Two mobile brawlers
@@ -3295,7 +3469,7 @@ sets:
           - name: Enchanted Katana
             text: |-
               Range 1, 2dmg +2Crit
-              Other enemies in range 1 take 1dmg
+              Other enemies in burst 1, 1dmg
         abilities:
           - name: Dragon's Breath
             text: |-
@@ -3306,128 +3480,8 @@ sets:
             image_url: https://www.puttyandpaint.com/image_uploads/artistworks/6442/cache/vik3-3__sized_l.jpg
             health: 6
             speed: 3
-      - name: Zoraida
-        description: |-
-          - Mindcontrol units
-          - Voodoo doll
-        health: 6
-        speed: 3
-        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561403537939-XVHASDUFXUCQBA0AO133/M3E_Zoraida.jpg
-        passives:
-          - name: Start of turn
-            text: |-
-              Enemies adjacent to this or an ally must discard a fate card or get Silence
-          - name: End of turn
-            text: |-
-              This may discard a card to summon a Voodoo Doll in range 1 (limit 1).
-          - name: Eyes in the Night
-            text: |-
-              This can draw range and LoS from allies in range 4 and all enemies with Voodoo attachments.
-        default_abilities:
-          - name: Hex
-            text: |-
-              undefendable
-              Range 4, 1dmg
-              If the target has a Voodoo attachment, this may move them 3.
-              An ally adjacent to the target may use a default attack targeting them.
-        abilities:
-          - name: Obey
-            text: |-
-              undefendable, on a roll of 4+
-              Range 4, target takes an Action, chosen and controlled by this.
-          - name: Thread of Fate
-            text: |-
-              Free
-              Both players discard their Fate Hand and draw 3 fate cards.
-        units:
-          - name: Voodoo Doll
-            health: 2
-            speed: 2
-            image_url: https://static.wikia.nocookie.net/monster/image_f/fe/C0E23278-277F-4773-9F96-A1D4031BEDC4.png
-            passives:
-              - name: Summoned
-                text: Give a Voodoo attachment to an enemy in range 4
-              - name: Damaged
-                text: Enemies with Voodoo attachments take 1 damage.
-              - name: Gains Condition
-                text: Enemies with Voodoo attachments get the same condition with value +1.
-              - name: Start of turn
-                text: End all conditions on this.
-              - name: Death
-                text: All enemies lose all Voodoo attachments.
-            default_abilities:
-              - name: Unexpected Connection
-                text: |-
-                  Copy the text of an ability on an enemy unit with a voodoo upgrade in range 4.
-              - name: Served Its Purpose
-                text: |-
-                  Draws a fate card, then kill this.
-      - name: Leveticus
-        description: |-
-          - Extra lives
-          - Irreducible chip damage
-        health: 8
-        speed: 3
-        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561408518996-YIVKK5LYH6WZDXOVMEWE/M3E_Leveticus.png
-        passives:
-          - name: Attacked
-            text: The attacker takes 1 irreducible damage.
-          - name: End of turn
-            text: |-
-              Enemy units in range 2 take 1 damage.
-              Heal 1
-          - name: Death
-            text: |-
-              You may sacrifice a Hollow Waif to place this in the Hollow Waif's space and heal this equal to its remaining health.
-          - name: Deploy
-            text: Create 2 Hollow Waifs in range 2.
-        default_abilities:
-          - name: Unmaking
-            text: |-
-              Range 2, 2dmg irreducible, heal 2
-              If this kills the target, create an Abomination in its space, limit 4.
-        abilities:
-          - name: Essence Transfer
-            text: |-
-              Range 4, Target two friendly units.
-              Deal up to 4dmg irreducible to one, and heal the other the amount of damage taken.
-          - name: Sanguine Evocations
-            text: |-
-              Free
-              Look at the top three cards of this unit's fate deck. Discard any number and place the rest back in any order.
-              This takes 1 damage for each card discarded.
-        units:
-          - name: Hollow Waif
-            health: 3
-            speed: 2
-            image_url: https://static.wikia.nocookie.net/monster/image_9/9b/24FC90CD-48B6-40AD-AF9D-6D7D193E47CF.jpeg/revision/latest?cb=20180824202915
-            passives:
-              - name: Insignificant
-                text: ''
-              - name: Attacked
-                text: Attacker takes 1dmg irreducible
-              - name: End of turn
-                text: |-
-                  Enemy units in range 2 take 1dmg.
-            default_abilities:
-              - name: Entropic Siphon
-                text: |-
-                  Range 4, 1dmg
-          - name: Abomination
-            health: 4
-            speed: 2
-            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/gallery/album_386/gallery_30702_386_137300.jpg
-            passives:
-              - name: Attacked
-                text: Attacker takes 1dmg irreducible
-              - name: End of turn
-                text: Burst 2, 2dmg irreducible
-              - name: Withering Away
-                text: Enemies within range 2 cannot heal
-            default_abilities:
-              - name: Claws
-                text: |-
-                  Range 1, 1dmg, heal 1
+
+
       - name: Kirai
         description: |-
           - Summoner
@@ -3599,53 +3653,7 @@ sets:
               Free
               Allies in range 2 may move 2.
 
-      - name: Som'er Teeth Jones
-        description: |-
-          - Summon and synergize with weak minions
-        health: 8
-        speed: 3
-        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561399760452-BICZM3YT16TN1G4EHMDT/M3E_Somer.png
-        passives:
-          - name: Abilities targeting you have +1def for each adjacent ally
-            text: ''
-          #            - name: After ally rolls, 1/turn
-          #              text: |-
-          #                  You may reroll the roll and take the second result.
-          - name: Attacked
-            text: This may move up to 2.
-        default_abilities:
-          - name: Boomer
-            text: |-
-              Range 3 2x2, 2dmg, push 1
-        abilities:
-          - name: Pig Eating Grin
-            text: |-
-              CD 1
-              Reaction after ally dies in range 3:
-                This may make a default attack against the killer.
-          - name: Extended Family
-            text: |-
-              Create 2 Bayou Gremlins in range 3, limit 4.
-          - name: Take One for the Team
-            text: |-
-              Target an ally in range 3.
-              It deals 2dmg to units in range 1, then kill it.
-        units:
-          - name: Bayou Gremlin
-            health: 1
-            speed: 3
-            image_url: https://static.wikia.nocookie.net/monster/image_2/28/78BA677E-3FAB-4B1B-B634-6F957678BFFE.jpeg/revision/latest/scale-to-width-down/384?cb=20180814214132
-            passives:
-              - name: Abilities targeting you have +1def for each adjacent ally
-                text: ''
-              - name: Death
-                text: You draw a card.
-              - name: Insignificant
-                text: ''
-            default_abilities:
-              - name: Banjo Bash
-                text: |-
-                  Range 1, 1dmg
+
   #  - name: Icon
   #    description: |-
   #      - description todo
