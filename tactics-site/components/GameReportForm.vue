@@ -2,6 +2,10 @@
 import type { PropType } from 'vue'
 import { ref } from 'vue'
 import { IButton, IForm, IFormGroup, IInput } from '@inkline/inkline'
+import { getAuth } from 'firebase/auth'
+
+import { ref as firebaseRef, getDatabase, push } from '@firebase/database'
+
 import type { GameReport, HeroReport } from '~/composables/gameTypes'
 
 const props = defineProps({
@@ -14,6 +18,8 @@ const props = defineProps({
     required: true,
   },
 })
+
+const auth = getAuth()
 
 const gameReport = ref<GameReport>({
   redScore: undefined,
@@ -32,7 +38,7 @@ const gameReport = ref<GameReport>({
   map: '',
 })
 
-const mapNames = computed(() => props.maps.map(gameMap => gameMap.name))
+const mapNames = computed(() => props.maps.map(gameMap => gameMap.nameWithSet))
 
 function addHero() {
   gameReport.value.redHeroes.push({ name: '', note: '', impression: undefined })
@@ -49,6 +55,26 @@ function updateBlueHeroReport(index: number, updatedReport: HeroReport) {
 
 function submitForm() {
   console.log(gameReport.value)
+
+  const database = getDatabase()
+  const uid = auth?.currentUser?.uid
+  if (!uid) {
+    return
+  }
+
+  const newRef = push(firebaseRef(database, 'reports'))
+  const pushId = newRef.key
+  const timestampPlaceholder = new Date().toISOString()
+
+  const updates: { [key: string]: any } = {}
+  updates[`reports/${pushId}`] = {
+    uid,
+    timestamp: timestampPlaceholder,
+    report: gameReport.value,
+  }
+  updates[`users/${uid}/rateLimit/lastMessage`] = timestampPlaceholder
+
+  push(newRef, updates)
 }
 </script>
 
