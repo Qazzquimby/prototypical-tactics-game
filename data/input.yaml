@@ -42,7 +42,7 @@ rules:
       - Different target units get different rolls.
       - Def can be applied to the attack. A die must be rolled over the Def value to hit. On miss the attack continues but cannot affect that target.
       - Crit can be applied to the attack. If the attack hits and the die landed on one of the [Crit] highest values, the attack is a crit.
-      - Crits deal +1x damage.
+      - Crits deal +100% damage.
   - name: Targeting
     text: |-
       - If an ability affects an area (burst, 2x2, etc), by default it includes all spaces in that area. This is not targeting.
@@ -363,7 +363,7 @@ sets:
         tokens:
           - name: Caduceus Staff Damage Boost
             image_url: https://tactics.toren.dev/image_token_Caduceus Staff Damage Boost_-7592169065816565248.jpg
-            text: Until end of turn, deal +0.5x damage.
+            text: Until end of turn, deal +50% damage.
           - name: Took damage since start of last turn
             image_url: https://tactics.toren.dev/image_token_Took damage since start of last turn_-3896541016264395972.jpg
             back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
@@ -374,7 +374,7 @@ sets:
             text: |-
               Range 3, choose one --
               - Target Heals 4.
-              - Until end of target's next turn, they deal +0.5x damage.
+              - Until end of target's next turn, they deal +50% damage.
           - name: Caduceus Blaster
             text: |-
               1def per 2 spaces between, 2dmg.
@@ -739,11 +739,11 @@ sets:
             text: |-
               Free Action:
               Unlimited range, give your Orb of Discord (max 1, remove oldest).
-              They receive +.5x damage
+              They receive +50% damage
             tokens:
               - name: Orb of Discord
                 image_url: https://tactics.toren.dev/image_token_Orb of Discord_-8367435454855974225.jpg
-                text: Receive +.5x damage
+                text: Receive +50% damage
           - name: Transcendence
             text: |-
               Ultimate 3, Instant +2:
@@ -1249,7 +1249,7 @@ sets:
     #              1/Battle
     #              Instant +2
     #              Until the beginning of your next turn
-    #                you take 0.5x damage from all sources
+    #                You have Resistance to damage
     #                You cannot be moved or prevented from moving or taken actions by enemy sources.
     #          #            - name: Supercharger
     #          #              text: |-
@@ -1292,7 +1292,7 @@ sets:
     #            text: |-
     #              1/Battle
     #              Channel:
-    #                Until the start of your next turn, you take 0.5x damage.
+    #                Until the start of your next turn, you have Resistance
     #                At the start of your next turn, Heal 6.
     #          - name: Chain Hook
     #            text: |-
@@ -1409,7 +1409,7 @@ sets:
     #            text: |-
     #              1/Battle
     #              Range 4, size 2, 1def
-    #              Allies in the area, Heal 3 and then receive +.5x healing.
+    #              Allies in the area, Heal 3 and then receive +50% healing.
     #              Enemies in the area take 2dmg and cannot regain health.
     #            tokens:
     #              - name: Grenade Healing Buff
@@ -1420,7 +1420,7 @@ sets:
     #            text: |-
     #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
     #              Spend 5 charges:
-    #              Choose an ally in range 4. They deal +.5x damage and take 0.5x damage.
+    #              Choose an ally in range 4. They deal +50% damage and have Resistance
     #            tokens:
     #              - name: Nano Boosted
     #                image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/9/9e/Nano_Boost_Icon.png/revision/latest?cb=20170918221647
@@ -1485,7 +1485,7 @@ sets:
         text: |-
           Stress is tracked with counter dice.
           Heroes deploy with 1 stress.
-          When a hero gains their second stress die, they take 2dmg and receive +1x damage.
+          When a hero gains their second stress die, they take 2dmg and receive +100% damage.
           When a hero ends their turn with 3 stress dice, they deal burst 1 2dmg and die.
         dice:
           - name: Stress
@@ -2408,7 +2408,7 @@ sets:
               1/Battle, Instant +3:
               You are stunned.
               Range 3, until the start of your next turn:
-               Target's hp cannot go below 1, they are not considered for objectives, and they receive +0.5x healing.
+               Target's hp cannot go below 1, they are not considered for objectives, and they receive -50% healing.
             tokens:
               - *Stun
               - name: Shallow Grave
@@ -2767,7 +2767,7 @@ sets:
                   You have resistance to damage. Units have resistance to damage from you.
               - Enter agility stance: 
                   You have +1 speed.
-                  Receive and deal +.5x damage. 
+                  Receive and deal +50% damage. 
               - Exit your stance.
             hints:
               - *ResistanceHint
@@ -2781,7 +2781,7 @@ sets:
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/a/a0/Attribute_Shift_%28Agility_Gain%29_icon.png/revision/latest?cb=20120926231600
                 text: |-
                   You have +1 speed.
-                  Receive and deal +.5x damage.
+                  Receive and deal +50% damage.
           - name: Adaptive Strike
             text: |-
               CD 1
@@ -2825,7 +2825,7 @@ sets:
               1/Battle, Instant +3
               Until the end of your next turn:
                 You cannot be affected by default abilities.
-                You deal +1x healing.
+                You deal +100% healing.
                 You receive +1 damage.
           - name: Death Seeker
             text: |-
@@ -3679,10 +3679,10 @@ sets:
   #          - name: Finesse
   #            text: |-
   #              When you target a Bloodied unit, you may dash 1.
-  #              Deal +.5x damage to Bloodied targets
+  #              Deal +50% damage to Bloodied targets
   #          - name: Aether Shot
   #            text: |-
-  #              On rounds 3 and 6, you deal +.5x damage and always roll 6s.
+  #              On rounds 3 and 6, you deal +50% damage and always roll 6s.
   #          - name: Trigrammaton
   #            text: Against targets in exactly range 3, your abilities have +2 crit, -2def.
   #        default_abilities:
@@ -3715,7 +3715,7 @@ sets:
   #        passives:
   #          - name: Aether Shot
   #            text: |-
-  #              On rounds 3 and 6, you deal +.5x damage and always roll 6s.
+  #              On rounds 3 and 6, you deal +50% damage and always roll 6s.
   #          - name: When an enemy moves out of range 3
   #            text: 2dmg to them
   #          - name: You roll a 5+
@@ -3770,8 +3770,8 @@ sets:
   #            text: |-
   #              When you end your turn without attacking, put a charge on this.
   #              When you attack, remove all charges on this.
-  #              If you remove 1 charge, your attacks cannot miss and deal +.5x damage.
-  #              If you remove 2 or more, your attacks cannot miss and deal +1x damage.
+  #              If you remove 1 charge, your attacks cannot miss and deal +50% damage.
+  #              If you remove 2 or more, your attacks cannot miss and deal +100% damage.
   #        abilities:
   #          - name: Gates of Hell
   #            text: |-
@@ -3926,7 +3926,7 @@ sets:
               
               If spun up: 6dmg -2dmg per space between.
           - name: Punch
-            text: Range 1 2dmg +2crit. On kill, gain a Kill counter. If you have a kill counter, you deal +1x damage.
+            text: Range 1 2dmg +2crit. On kill, gain a Kill counter. If you have a kill counter, you deal +100% damage.
         tokens:
           - name: Spun Up
             image_url: https://tactics.toren.dev/image_token_Spun Up_1477848996508512357.jpg
@@ -3938,7 +3938,7 @@ sets:
               - Free Action: Place your Sandvich Marker in a space in range 2 (can be occupied). When a damaged unit is in this space, they heal half their maximum hp and destroy this.
               - Move + Standard, Heal 12.
               - Move + Standard Action. Gain Buffalo Steak Rage: 
-                  +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
+                  +1 speed, deal +50% damage, receive +1 damage, cannot deal damage to targets farther than range 1.
             tokens:
               - name: Snack Pickup
                 image_url: https://tactics.toren.dev/image_token_Sandvich_6108514798017996936.jpg
@@ -3949,23 +3949,23 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_Buffalo Steak Rage_8581238716479321113.jpg
                 is_marker: true
                 text: |- 
-                  +1 speed, deal +.5x damage, receive +1 damage, cannot deal damage to targets farther than range 1.
+                  +1 speed, deal +50% damage, receive +1 damage, cannot deal damage to targets farther than range 1.
 
           - name: Swap Gloves
             text: |-
               Free Action at start of turn: choose one --
               - Enter GRU stance: 
-                  +2 Speed, receive +.5x damage.
+                  +2 Speed, receive +50% damage.
               - Enter Fists of Steel stance: 
-                  Receive -1 damage from ranges 2+, and +1x damage from range 1.
+                  Receive -1 damage from ranges 2+, and +100% damage from range 1.
               - Remove your glove stance.
             tokens:
               - name: GRU
                 image_url: https://tactics.toren.dev/image_token_GRU_-4461647217034725085.jpg
-                text: +2 Speed, receive +.5x damage.
+                text: +2 Speed, receive +50% damage.
               - name: Fists of Steel
                 image_url: https://tactics.toren.dev/image_token_Fists of Steel_1277847066511706523.jpg
-                text: Receive -1 damage from ranges 2+, and +1x damage from range 1.
+                text: Receive -1 damage from ranges 2+, and +100% damage from range 1.
       - name: Sniper
         complexity: 2
         description: |-
@@ -3986,7 +3986,7 @@ sets:
                 Move 1. Note your facing.
                 At the start of your next turn:
                   Range 2+, undogeable 5dmg, +2 crit per kill counter.
-                  After this attack the target receives +.5x damage.
+                  After this attack the target receives +50% damage.
               
               On kill, gain a Kill counter.
           - name: Bushwacka
@@ -4002,7 +4002,7 @@ sets:
             text: |-
               Range 2, 2dmg.
               Gain charge equal to damage dealt, max 4.
-              While this has 4 charge, you deal +.5x damage.
+              While this has 4 charge, you deal +50% damage.
             dice:
               - name: Charge
                 color: orange
@@ -4010,11 +4010,11 @@ sets:
           - name: Jarate
             text: |-
               1/Battle
-              Range 3, 2x2, get Jarate: Receive +.5x damage
+              Range 3, 2x2, get Jarate: Receive +50% damage
             tokens:
               - name: Jarate
                 image_url: https://tactics.toren.dev/image_token_Jarate_-2397770930367722030.jpg
-                text: Receive +.5x damage.
+                text: Receive +50% damage.
       - name: Medic
         complexity: 3
         description: |-
@@ -4191,7 +4191,7 @@ sets:
             text: |-
               1/Battle, Move Action:
               Move any distance in a straight line and clear any number of conditions.
-              If you moved at least 4, your next attack this turn with range 2 or less deals +1x damage.
+              If you moved at least 4, your next attack this turn with range 2 or less deals +100% damage.
 
           - name: Ullapool Caber
             text: |-
@@ -4201,7 +4201,7 @@ sets:
             text: |-
               Enter or exit Pain Train stance as Free Action at start of turn.
               Stance:
-                You count twice for objectives. You take +.5x damage.
+                You count twice for objectives. You take +50% damage.
             tokens:
               - name: Pain Train stance
                 image_url: https://tactics.toren.dev/image_token_Pain Train stance_3122338921560184280.jpg
@@ -4253,7 +4253,7 @@ sets:
           - name: Mmmph
             text: |-
               Discard 8 charges, Move + Standard Action:
-              You deal +1x damage.
+              You deal +100% damage.
           - name: Thermal Thruster
             text: |-
               Fly 5. All in burst 1, 1dmg, push 1.
@@ -4278,7 +4278,7 @@ sets:
               When you deal damage to an enemy, gain that many Banner charges.
               ---
               Spend 8 charges: choose one --
-                - Allies deal +.5x damage.
+                - Allies deal +50% damage.
                 - Allies have Armor and do not receive extra damage from crits.
                 - Allies have +1 speed and heal 1 when they deal damage.
             hints:
@@ -4290,7 +4290,7 @@ sets:
             tokens:
               - name: Buff Banner
                 image_url: https://tactics.toren.dev/image_token_Buff Banner_8047952643345282545.jpg
-                text: Allies deal +.5x damage.
+                text: Allies deal +50% damage.
               - name: Battalion's Backup
                 image_url: https://tactics.toren.dev/image_token_Batallion's Backup_4094755196016986268.jpg
                 text: Allies have Armor and do not receive extra damage from crits.
@@ -4303,11 +4303,11 @@ sets:
               If bloodied, choose one --
               - Move 5.
               - Move 2, 3dmg, +2 crit.
-              You take +1x damage until the start of your next turn.
+              You take +100% damage until the start of your next turn.
             tokens:
               - name: Pickaxe Vulnerability
                 image_url: https://tactics.toren.dev/image_token_Pickaxe Vulnerability_4405522936410533266.jpg
-                text: You take +1x damage until the start of your next turn.
+                text: You take +100% damage until the start of your next turn.
           - name: Disciplinary Action
             text: |-
               Range 2,
@@ -4317,7 +4317,7 @@ sets:
             text: |-
               Enter or exit Pain Train stance as Free Action at start of turn.
               Stance:
-                You count twice for objectives. You take +.5x damage.
+                You count twice for objectives. You take +50% damage.
             tokens:
               - name: Pain Train stance
                 image_url: https://tactics.toren.dev/image_token_Pain Train stance_3122338921560184280.jpg
@@ -4358,11 +4358,11 @@ sets:
           - name: Crit-a-Cola
             text: |-
               Move + Standard Action:
-              Starting at the beginning of your next turn, you deal and receive +.5x damage.
+              Starting at the beginning of your next turn, you deal and receive +50% damage.
             tokens:
               - name: Crit-a-Cola
                 image_url: https://tactics.toren.dev/image_token_Crit-a-Cola_3075337597287619591.jpg
-                text: You deal and receive +.5x damage.
+                text: You deal and receive +50% damage.
           - name: Mad Milk
             text: |-
               1/Battle:
@@ -4386,13 +4386,13 @@ sets:
               - *Stun
           - name: Fan O'War
             text: |-
-              Range 1, target takes +.5x damage
+              Range 1, target takes +50% damage
             tokens:
               - name: Fan O'War
                 image_url: https://tactics.toren.dev/image_token_Fan O'War_4039095813142699765.jpg
                 text: |-
                   Range 1, 1dmg
-                  Target receives +.5x damage (permanent)
+                  Target receives +50% damage (permanent)
 
     maps:
       - name: Granary
