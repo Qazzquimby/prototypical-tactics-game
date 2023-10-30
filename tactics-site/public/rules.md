@@ -204,11 +204,13 @@ Unless otherwise specified, abilities can target anyone, ally or enemy.
 Most attacks pick a single target, and some attacks can choose multiple targets.
 
 If an attack doesn't ask you to choose targets, and instead automatically affects all units meeting
-some criteria, then it is an AoE (Area of Effect) ability. 
+some criteria, then it is an AoE (Area of Effect) ability.
 
-AoE examples: "all units", "enemies in burst 3", "units that dealt damage last turn", or any time an area is listed alone like "burst 1, 2dmg".
+AoE examples: "all units", "enemies in burst 3", "units that dealt damage last turn", or any time an
+area is listed alone like "burst 1, 2dmg".
 
-Not Aoe examples: "Two targets in range 2", "Any number of units in burst 3", or any time a range is listed alone like "range 3, 2dmg". 
+Not Aoe examples: "Two targets in range 2", "Any number of units in burst 3", or any time a range is
+listed alone like "range 3, 2dmg".
 
 Since individuals are not chosen, nothing is "targeted" in an AoE.
 
@@ -292,12 +294,13 @@ is worth 1 point at the end of the game.
 
 ### Tapping
 
-"Tap" means to turn a card sideways indicating it's been used, preventing it from being used twice in a row.
+"Tap" means to turn a card sideways indicating it's been used, preventing it from being used twice
+in a row.
 
-If for some reason you need to tap a default ability (which doesnt have its own card) note it with a marker.
+If for some reason you need to tap a default ability (which doesnt have its own card) note it with a
+marker.
 
 At the end of your turn, untap all your cards that weren't tapped that turn.
-
 
 ### Charges
 
@@ -308,5 +311,22 @@ Flip the card or otherwise show when it has no uses remaining.
 If the ability has more than 1 charge, track the remaining charges with a die.
 
 ## Terrain
-Hazard
+
+Black lines are walls, which are blocking terrain. They prevent line of sight and movement.
+
+Other maps will have other kinds of terrain, which are defined in the map's description on hover.
+
+Flight bypasses terrain that prevents movement, so long as it doesn't say it's blocking "blocking".
+
+### Hazard
+
+If a terrain has a "Hazard" effect, it triggers when it's touched by a unit.
+
+This occurs when the unit is moved or performs an action, at most once per action. Free actions and
+reactions count.
+
+For example, a unit is pushed into a hazard, triggering it. Then they move out of the hazard,
+triggering it again.
+
+
 
