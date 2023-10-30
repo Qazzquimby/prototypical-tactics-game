@@ -119,14 +119,40 @@ hints:
   ArmorHint: &ArmorHint
     name: Armor
     text: -1 damage received, doesn't stack
+  FacingHint: &FacingHint
+    name: Facing
+    text: |-
+      Usually the direction a unit is facing isn't tracked.
+      When a unit notes its facing, choose and declare an orthogonal direction and position the unit in its square to lean in that direction.
   FlyingHint: &FlyingHint
     name: Flying
     text: |-
       You ignore terrain and your movement does not provoke reactions.
       Flying movement gives you flying during the movement.
+      
+      Spaces to its front and the orthogonal line at its left and right are in front of it. Other spaces are behind it.
+      F F F F F
+      F F F F F
+      F F 😀 F F
+      B B B B B
+      B B B B B
   ImmobileHint: &ImmobileHint
     name: Immobile
     text: You cannot move voluntarily. You are undefendable.
+  InstantHint: &InstantHint
+    name: Instant
+    text: |-
+      An Instant can be used for free at the start of any turn, or when a unit is targeted or included in an AoE, after any attack roll.
+           
+      The instant may have a modifier value, like "Instant +2". If it doesn't, the instant happens immediately before the ability resolves.
+      
+      If the instant does have a modifier, the attacker rolls against the attack roll def (0 for undefendable or aoe) + the modifier.
+      If the roll is higher, the Instant occurs after the triggering Action.
+      Else the roll is equal or lower, and the Instant occurs before the triggering Action.
+
+      If the triggering actor is an ally, you may simply choose whether the Instant triggers before or after the Action.
+
+      Reminder that units can choose to be hit even when an attack roll fails.
   IrreducibleHint: &IrreducibleHint
     name: Irreducible
     text: |-
@@ -138,6 +164,10 @@ hints:
   SlowHint: &SlowHint
     name: Slow
     text: You have 1/3 speed. You are undefendable.
+  UltimateHint: &UltimateHint
+    name: Ultimate
+    text: |-
+        Can be used 1/Game, and only on turn X or later.
   ### maps
   CapturePointHint: &CapturePointHint
     name: Capture Point Objective (orange shade)
@@ -3130,11 +3160,15 @@ sets:
             text: |-
               UPGRADE
               You have Armor
+            hints:
+              - *ArmorHint
           - name: Feathered Wings
             text: |-
               UPGRADE
               This is always flying
               Targeted: After resolving, may move 3.
+            hints:
+              - *FlyingHint
           - name: Formidable Horns
             text: |-
               UPGRADE
@@ -3547,12 +3581,14 @@ sets:
                 text: ""
               - name: Damaged
                 text: Attacker takes 1 damage
+              - name: Unit dies in burst 1
+                text: Heal 2
             default_abilities:
               - name: Mighty Jaws
                 text: |-
                   Range 2, 2dmg
-              - name: Grim Feast
-                text: Remove a Corpse Marker to heal 2.
+            hints:
+              - *ArmorHint
       - name: The Dreamer
         description: |-
           - Delayed summoner
