@@ -1,69 +1,69 @@
-rules:
-  - name: Overview
-    text: |-
-      A quick skirmish game played over 6 rounds, focused on discovering synergies and counters.
-      It trades some depth of simulation for speed of play.
-  - name: Setup Game
-    text: |-
-      Pick 3ish sets.
-      Draw a map from among the sets and reveal it.
-      Draw 12 heroes from among the sets and reveal them.
-      Player 1 makes two groups of 6. Player 2 picks a group, and Player 1 gets the other.
-      Players alternate picking one of their heroes and putting it on the map in their deploy zone, until each player has placed 4.
-      The remaining heroes are unused.
-  - name: Game
-    text: |-
-      Dice can be used to track health and other resources.
-      Game lasts 6 rounds (or until concession).
-      Heroes activate in order from left to right.
-      P1's first character, P2's first character, P1's second character, P2's second character, etc.
-      
-      A team scores 1 point when an enemy hero dies (and lose that point if the hero is somehow resurrected).
-      Many sets add additional ways to score points.
-  - name: Actions
-    text: |-
-      Units (such as heroes) have a Move Action and Standard Action, which they can use in any order.
-      A Standard action can be used to take a Move action.
-      A "Basic Move" Move Action moves orthogonally up to the unit's speed.
-      
-      All active abilities are Standard Actions by default.
-      
-      Actions listed on a unit's card are called "Default Actions".
-  - name: Range
-    text: |-
-      Range is counting squares. One square can be diagonally adjacent, the rest must be orthogonal.
-      Burst n means all squares within n range of the target square.
-      Adjacent is range 1.
-      Line n means all squares in an orthogonal line of n squares from the target square.
-      Path n means all squares in a path of n squares from the target square.
-  - name: Attacking
-    text: |-
-      - By default attacks hit with no roll. Only roll when a roll could affect the result somehow.
-      - Different target units get different rolls.
-      - Def can be applied to the attack. A die must be rolled over the Def value to hit. On miss the attack continues but cannot affect that target.
-      - Crit can be applied to the attack. If the attack hits and the die landed on one of the [Crit] highest values, the attack is a crit.
-      - Crits deal +100% damage.
-  - name: Targeting
-    text: |-
-      - If an ability affects an area (burst, 2x2, etc), by default it includes all spaces in that area. This is not targeting.
-      - A unit may choose to be hit, even if an attack would miss them.
-      - By default everything can affect both allies and enemies, and will specify otherwise.
-      - Technically spaces are targeted, not units. "The unit is targeted" means "the unit's space is targeted".
-        - E.g. If, after you declared your attack, the target swapped places with your healer, you'd hit your healer.
-        - Targeting empty spaces can be useful, like shooting a rocket to hit that deals splash damage to an enemy around a corner.
-      - If a unit is "untargetable", its space cannot be targeted except things that target all in an area.
-      - If something would block line of sight to your target after you declare the attack, the attack hits the blocker instead.
-  - name: Line of Sight
-    text: |-
-      Effects nearly always need line of Sight to their target.
-      To have Line of sight to a square, you must be able to draw a line from any corner of your square to any corner of the target square, 
-      without touching any blocking terrain, including their corners.
-      
-      All units block line of sight, even allies.
-  - name: Rounding
-    text: |-
-      All division is rounded up.
-      X per Y is rounded down, such as "take 1 damage per 2 spaces moved".
+#rules:
+#  - name: Overview
+#    text: |-
+#      A quick skirmish game played over 6 rounds, focused on discovering synergies and counters.
+#      It trades some depth of simulation for speed of play.
+#  - name: Setup Game
+#    text: |-
+#      Pick 3ish sets.
+#      Draw a map from among the sets and reveal it.
+#      Draw 12 heroes from among the sets and reveal them.
+#      Player 1 makes two groups of 6. Player 2 picks a group, and Player 1 gets the other.
+#      Players alternate picking one of their heroes and putting it on the map in their deploy zone, until each player has placed 4.
+#      The remaining heroes are unused.
+#  - name: Game
+#    text: |-
+#      Dice can be used to track health and other resources.
+#      Game lasts 6 rounds (or until concession).
+#      Heroes activate in order from left to right.
+#      P1's first character, P2's first character, P1's second character, P2's second character, etc.
+#
+#      A team scores 1 point when an enemy hero dies (and lose that point if the hero is somehow resurrected).
+#      Many sets add additional ways to score points.
+#  - name: Actions
+#    text: |-
+#      Units (such as heroes) have a Move Action and Standard Action, which they can use in any order.
+#      A Standard action can be used to take a Move action.
+#      A "Basic Move" Move Action moves orthogonally up to the unit's speed.
+#
+#      All active abilities are Standard Actions by default.
+#
+#      Actions listed on a unit's card are called "Default Actions".
+#  - name: Range
+#    text: |-
+#      Range is counting squares. One square can be diagonally adjacent, the rest must be orthogonal.
+#      Burst n means all squares within n range of the target square.
+#      Adjacent is range 1.
+#      Line n means all squares in an orthogonal line of n squares from the target square.
+#      Path n means all squares in a path of n squares from the target square.
+#  - name: Attacking
+#    text: |-
+#      - By default attacks hit with no roll. Only roll when a roll could affect the result somehow.
+#      - Different target units get different rolls.
+#      - Def can be applied to the attack. A die must be rolled over the Def value to hit. On miss the attack continues but cannot affect that target.
+#      - Crit can be applied to the attack. If the attack hits and the die landed on one of the [Crit] highest values, the attack is a crit.
+#      - Crits deal +100% damage.
+#  - name: Targeting
+#    text: |-
+#      - If an ability affects an area (burst, 2x2, etc), by default it includes all spaces in that area. This is not targeting.
+#      - A unit may choose to be hit, even if an attack would miss them.
+#      - By default everything can affect both allies and enemies, and will specify otherwise.
+#      - Technically spaces are targeted, not units. "The unit is targeted" means "the unit's space is targeted".
+#        - E.g. If, after you declared your attack, the target swapped places with your healer, you'd hit your healer.
+#        - Targeting empty spaces can be useful, like shooting a rocket to hit that deals splash damage to an enemy around a corner.
+#      - If a unit is "untargetable", its space cannot be targeted except things that target all in an area.
+#      - If something would block line of sight to your target after you declare the attack, the attack hits the blocker instead.
+#  - name: Line of Sight
+#    text: |-
+#      Effects nearly always need line of Sight to their target.
+#      To have Line of sight to a square, you must be able to draw a line from any corner of your square to any corner of the target square,
+#      without touching any blocking terrain, including their corners.
+#
+#      All units block line of sight, even allies.
+#  - name: Rounding
+#    text: |-
+#      All division is rounded up.
+#      X per Y is rounded down, such as "take 1 damage per 2 spaces moved".
 
 conditions:
   DoT: &DoT
@@ -249,11 +249,11 @@ sets:
       - Tanks, Healers, Dps
       - Many 1/Game effects
     rules:
-      - *RuleInstant
-      - *RuleUltimate
-      - *RuleFlying
-      - *RuleFacing
-      - *RuleCriticalMoment
+#      - *RuleInstant
+#      - *RuleUltimate
+#      - *RuleFlying
+#      - *RuleFacing
+#      - *RuleCriticalMoment
     heroes:
       - name: Widowmaker
         complexity: 2
@@ -1501,12 +1501,12 @@ sets:
         tokens:
           - *Impaired
           - *Slow
-      - name: Opportunity Attacks
-        text: |-
-          When a unit starts a movement while in range 1 of an enemy, the enemy may make an make a standard-action default ability targeting them.
-          They have Resistance to the ability.
-        hints:
-          - *ResistanceHint
+#      - name: Opportunity Attacks
+#        text: |-
+#          When a unit starts a movement while in range 1 of an enemy, the enemy may make an make a standard-action default ability targeting them.
+#          They have Resistance to the ability.
+#        hints:
+#          - *ResistanceHint
     heroes:
       - name: Blackbeard
         complexity: 2
@@ -2857,13 +2857,13 @@ sets:
           Any number of times, either player may discard a card from their hand to either:
           - replace the revealed card with the new value,
           - or increase or decrease the target to hit by 1.
-      - name: Summoning
-        text: |-
-          Summoning creates a new unit.
-          Summoned units cannot act the turn they are summoned, and activate at the same time as their summoner.
-      - name: Disengagement
-        text: |-
-          Moving from a space adjacent to an enemy to a space not adjacent to that enemy costs 1 additional point of movement.
+#      - name: Summoning
+#        text: |-
+#          Summoning creates a new unit.
+#          Summoned units cannot act the turn they are summoned, and activate at the same time as their summoner.
+#      - name: Disengagement
+#        text: |-
+#          Moving from a space adjacent to an enemy to a space not adjacent to that enemy costs 1 additional point of movement.
 
     heroes:
       - name: Lady Justice
@@ -3851,13 +3851,12 @@ sets:
     description: |-
       - high mobility and potential damage
       - permanent buffs and debuffs
-    rules:
-      - *RuleInstant
-      - *RuleUltimate
-      - *RuleFlying
-      - *RuleFacing
-      - *RuleCriticalMoment
-      - *RuleCriticalMoment
+#    rules:
+#      - *RuleInstant
+#      - *RuleUltimate
+#      - *RuleFlying
+#      - *RuleFacing
+#      - *RuleCriticalMoment
     heroes:
       - name: Spy
         complexity: 4
