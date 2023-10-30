@@ -3372,7 +3372,7 @@ sets:
             speed: 2
             image_url: https://static.wikia.nocookie.net/monster/image_9/9b/24FC90CD-48B6-40AD-AF9D-6D7D193E47CF.jpeg/revision/latest?cb=20180824202915
             passives:
-              - name: Insignificant
+              - name: Ignored for Objectives
                 text: ''
               - name: Targeted by enemy
                 text: The enemy takes 1dmg irreducible
@@ -3407,42 +3407,43 @@ sets:
         speed: 3
         image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561399760452-BICZM3YT16TN1G4EHMDT/M3E_Somer.png
         passives:
-          - name: Abilities targeting you have +1def for each adjacent ally
-            text: ''
-          #            - name: After ally rolls, 1/turn
-          #              text: |-
-          #                  You may reroll the roll and take the second result.
           - name: Targeted by enemy
             text: After resolving, this may move up to 2.
         default_abilities:
           - name: Boomer
             text: |-
-              Range 3 2x2, 2dmg, push 1
+              Range 3 2x2, 1dmg, +1dmg per allied unit in the area, push 1
         abilities:
-          - name: Pig Eating Grin
+#          - name: Pig Eating Grin
+#            text: |-
+#              Tap:
+#              Reaction after ally dies in range 3:
+#                This may make a default attack against the killer.
+#          - name: Extended Family
+#            text: |-
+#              Create 2 Bayou Gremlins in range 3, limit 4.
+          - name: Gang Up
             text: |-
-              Tap:
-              Reaction after ally dies in range 3:
-                This may make a default attack against the killer.
-          - name: Extended Family
-            text: |-
-              Create 2 Bayou Gremlins in range 3, limit 4.
-          - name: Take One for the Team
-            text: |-
-              Move action:
-              Target an ally in range 3.
-              It deals 2dmg to units in range 1, then kill it.
+              Enemy in Range 4,
+              Summon 2 Bayou Gremlins in burst 1 of the target, max 4.
+#          - name: Take One for the Team
+#            text: |-
+#              Move action:
+#              Target an ally in range 3.
+#              It deals 2dmg to units in range 1, then kill it.
         units:
           - name: Bayou Gremlin
             health: 1
             speed: 3
             image_url: https://static.wikia.nocookie.net/monster/image_2/28/78BA677E-3FAB-4B1B-B634-6F957678BFFE.jpeg/revision/latest/scale-to-width-down/384?cb=20180814214132
             passives:
-              - name: Abilities targeting you have +1def for each adjacent ally
-                text: ''
+              - name: May ignore AoE from allied units.
+                text: ""
+              - name: Enemy units must discard a Fate card to move away from this.
+                text: ""
               - name: Death
-                text: You draw a card.
-              - name: Insignificant
+                text: YDraw a card.
+              - name: Ignored for objectives
                 text: ''
             default_abilities:
               - name: Banjo Bash
