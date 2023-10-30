@@ -124,11 +124,6 @@ hints:
     text: |-
       Usually the direction a unit is facing isn't tracked.
       When a unit notes its facing, choose and declare an orthogonal direction and position the unit in its square to lean in that direction.
-  FlyingHint: &FlyingHint
-    name: Flying
-    text: |-
-      You ignore terrain and your movement does not provoke reactions.
-      Flying movement gives you flying during the movement.
       
       Spaces to its front and the orthogonal line at its left and right are in front of it. Other spaces are behind it.
       F F F F F
@@ -136,6 +131,11 @@ hints:
       F F 😀 F F
       B B B B B
       B B B B B
+  FlyingHint: &FlyingHint
+    name: Flying
+    text: |-
+      You ignore terrain and your movement does not provoke reactions.
+      Flying movement gives you flying during the movement.
   ImmobileHint: &ImmobileHint
     name: Immobile
     text: You cannot move voluntarily. You are undefendable.
@@ -208,16 +208,7 @@ shared_rules:
   Instant: &RuleInstant
     name: Instant
     text: |-
-      May list a reaction speed target, like "Instant +2" or "Instant +1"
-      An ability marked as Instant can be used for free at the start of any turn, or when a unit is targeted.
-
-      When reacting to to a targeting Action, declare before the roll is made.
-      If the roll is higher than the target's def + the Instant's bonus (if any), the Instant occurs after the triggering Action.
-      Otherwise, the Instant occurs before the triggering Action.
-      If the triggering actor is an ally, you may choose whether the Instant triggers before or after the Action.
-
-      Note that the Instant's bonus does not modify the target's def - it only changes how easy it is to act first.
-      Reminder that units can choose to be hit even when an attack roll fails.
+      Out of date, see the hint
   Ultimate: &RuleUltimate
     name: Ultimate X
     text: |-
@@ -349,6 +340,8 @@ sets:
               - name: Uses Remaining
                 color: white
                 values: [ 3 ]
+            hints:
+              - *InstantHint
           - name: Recall
             text: |-
               1/Game, Instant +3:
@@ -363,6 +356,8 @@ sets:
               - name: Previous Health
                 color: red
                 values: [ 6 ]
+            hints:
+              - *InstantHint
           - name: Pulse Bomb
             text: |-
               Ultimate 5:
@@ -467,6 +462,8 @@ sets:
               Move up to 2. Gain High Altitude until the start of your next turn.
             tokens:
               - *HighAltitude
+            hints:
+              - *InstantHint
           - name: Concussive Blast
             text: |-
               Range 4,
@@ -504,6 +501,8 @@ sets:
               - name: Invulnerable
                 image_url: https://tactics.toren.dev/image_token_Invulnerable_-1798483898600871358.jpg
                 text: Nothing affects you. Clear at the beginning of your next turn.
+            hints:
+              - *InstantHint
           - name: Shadow Step
             text: |-
               Move + Standard Action:
@@ -543,6 +542,7 @@ sets:
               You can dismiss the stance as a Free Action if you have ended a turn with it active.
             hints:
               - *SlowHint
+              - *InstantHint
             dice:
               - name: Barrier health
                 color: red
@@ -729,11 +729,15 @@ sets:
               - name: Barrier
                 image_url: https://tactics.toren.dev/image_token_Barrier_7326628920520179890.jpg
                 is_marker: true
+            hints:
+              - *InstantHint
           - name: Primal Rage
             text: |-
               Ultimate 4, Instant +3:
               Set your current and maximum health to 18. Reset your uses of Jump Pack.
               When you deal damage, also push 3.
+            hints:
+              - *InstantHint
       - name: Zenyatta
         complexity: 3
         description: |-
@@ -780,6 +784,8 @@ sets:
               Heal to full. Clear any number of conditions.
               Burst 1, allies Heal 5.
               Until the start of your next turn, you are immune to damage conditions you don't want.
+            hints:
+              - *InstantHint
       - name: Bastion
         complexity: 3
         polish: [needs_testing]
@@ -1627,6 +1633,8 @@ sets:
               - *Immobile
               - name: Fortress Stance
                 image_url: https://i.redd.it/8bzdactvy6z71.png
+            hints:
+              - *InstantHint
       - name: Lancaster
         complexity: 4
         description: |-
@@ -2444,6 +2452,8 @@ sets:
               - name: Shallow Grave
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/6/69/Shallow_Grave_icon.png/revision/latest?cb=20111005090004
                 text: Hp cannot go below 1.
+            hints:
+              - *InstantHint
           - name: Shadow Wave
             text: |-
               1/Game
@@ -2787,6 +2797,7 @@ sets:
               Fly 2x your move speed in a straight line, ignoring units. Units moved through take 2dmg.
             hints:
               - *FlyingHint
+              - *InstantHint
             tokens:
               - *OnCooldown
           - name: Attribute Shift
@@ -2857,6 +2868,8 @@ sets:
                 You cannot be affected by default abilities.
                 You deal +100% healing.
                 You receive +1 damage.
+            hints:
+              - *InstantHint
           - name: Death Seeker
             text: |-
               1/Game
@@ -3198,6 +3211,8 @@ sets:
                 text: ""
               - name: All movement is flying
                 text: ""
+            hints:
+              - *FlyingHint
             default_abilities:
               - name: Horns
                 text: |-
@@ -4109,6 +4124,8 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_Krtizkrieg_-6919431106816878520.jpg
                 text: |-
                   You and your Healing Target always crit when you hit.
+            hints:
+              - *InstantHint
 
       - name: Engineer
         complexity: 3
@@ -4271,9 +4288,11 @@ sets:
               Else: They get DoT 1.
           - name: Airblast
             text: |-
-              Tap, Instant +2:
+              Tap, Instant +2 or interrupt unit moving:
               All in Line 2, Push 2.
               If this interrupted an attack with Range 3+ which passes into the Line, cancel and recast the interrupted attack.
+            hints:
+              - *InstantHint
         abilities:
           - name: Flare Gun
             text: |- 
@@ -4293,6 +4312,8 @@ sets:
           - name: Thermal Thruster
             text: |-
               Fly 5. All in burst 1, 1dmg, push 1.
+            hints:
+              - *FlyingHint
       - name: Soldier
         complexity: 3
         description: |-
@@ -4308,6 +4329,8 @@ sets:
           - name: Rocket Jump
             text: |-
               Move Action, 1dmg to others in burst 1, take 3dmg, fly 5.
+            hints:
+              - *FlyingHint
         abilities:
           - name: Banner
             text: |-
@@ -4376,6 +4399,8 @@ sets:
             text: You may use any unspent movement at the end of your turn.
           - name: You count twice for objectives.
             text: ''
+        hints:
+          - *FlyingHint
         default_abilities:
           - name: Scattergun
             text: Range 1, 4dmg, push 1
