@@ -83,12 +83,12 @@ export interface Game {
   sets: GameSet[]
 }
 
-export type HeroImpression = 'Terrible' | 'Great'
+export type HeroImpression = 'Terrible' | 'Great' | null
 
 export interface HeroReport {
   name: string
   note?: string
-  impression?: HeroImpression
+  impression: HeroImpression
 }
 
 export interface GameReport {
