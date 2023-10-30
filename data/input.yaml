@@ -11,10 +11,10 @@ rules:
       Player 1 makes two groups of 6. Player 2 picks a group, and Player 1 gets the other.
       Players alternate picking one of their heroes and putting it on the map in their deploy zone, until each player has placed 4.
       The remaining heroes are unused.
-  - name: Battle
+  - name: Game
     text: |-
       Dice can be used to track health and other resources.
-      Battle lasts 6 rounds (or until concession).
+      Game lasts 6 rounds (or until concession).
       Heroes activate in order from left to right.
       P1's first character, P2's first character, P1's second character, P2's second character, etc.
       
@@ -191,7 +191,7 @@ shared_rules:
   Ultimate: &RuleUltimate
     name: Ultimate X
     text: |-
-      Can be used 1/Battle, and only on turn X or later.
+      Can be used 1/Game, and only on turn X or later.
   Flying: &RuleFlying
     name: Flying
     text: |-
@@ -210,7 +210,7 @@ shared_rules:
   CriticalMoment: &RuleCriticalMoment
     name: Critical Moment
     text: |-
-      1/Battle, you may reroll a die.
+      1/Game, you may reroll a die.
     tokens:
       - name: Critical Moment
         image_url: https://tactics.toren.dev/image_token_Critical Moment_5737535895777788509.jpg
@@ -247,7 +247,7 @@ sets:
       - Projectiles less accurate at long ranges
       - Instant speed reactions
       - Tanks, Healers, Dps
-      - Many 1/Battle effects
+      - Many 1/Game effects
     rules:
       - *RuleInstant
       - *RuleUltimate
@@ -277,7 +277,7 @@ sets:
         abilities:
           - name: Venom Mine
             text: |-
-              1/Battle:
+              1/Game:
               Empty space in range 3, Summon a Venom Mine with 1hp.
               When an enemy enters this or an adjacent space, destroy this. When destroyed, burst 1, give DoT 1.
             tokens:
@@ -289,7 +289,7 @@ sets:
               - *DoT
           - name: Grappling Hook
             text: |-
-              1/Battle, Move Action:
+              1/Game, Move Action:
               Fly directly to any point in range 5.
             hints:
               - *FlyingHint
@@ -313,7 +313,7 @@ sets:
         abilities:
           - name: Blink
             text: |-
-              3/Battle, Instant +2:
+              3/Game, Instant +2:
               Teleport up to 3.
             dice:
               - name: Uses Remaining
@@ -321,7 +321,7 @@ sets:
                 values: [ 3 ]
           - name: Recall
             text: |-
-              1/Battle, Instant +3:
+              1/Game, Instant +3:
               Reset your health to what it was at the end of your last turn.
               Teleport as close as possible to where you were at the end of your last turn.
             tokens:
@@ -386,7 +386,7 @@ sets:
               - *FlyingHint
           - name: Resurrect
             text: |-
-              1/Battle, Free Action:
+              1/Game, Free Action:
               At the start of your next turn, you may resurrect target corpse in range 1.
           - name: Valkyrie
             text: |-
@@ -433,7 +433,7 @@ sets:
               - *OnCooldown
           - name: Jump Jet
             text: |-
-              1/Battle, Instant +2:
+              1/Game, Instant +2:
               Move up to 2. Gain High Altitude until the start of your next turn.
             tokens:
               - *HighAltitude
@@ -467,7 +467,7 @@ sets:
         abilities:
           - name: Wraith Form
             text: |-
-              1/Battle, Instant +2:
+              1/Game, Instant +2:
               Move up to 2. Clear any number of conditions.
               Until the beginning of your next turn, nothing affects you.
             tokens:
@@ -529,7 +529,7 @@ sets:
               - *Barrier
           - name: Charge
             text: |-
-              1/Battle, Move + Standard Action:
+              1/Game, Move + Standard Action:
               Move as far as possible in a line.
               When you contact an enemy, roll attack with +3def.
               The first enemy hit this way is pushed with you, interrupted, and takes 7dmg.
@@ -564,11 +564,11 @@ sets:
         abilities:
           - name: Deploy Turret
             text: |-
-              1/Battle:
+              1/Game:
               Empty space in range 4, Summon a Turret (max 1, remove oldest).
           - name: Overload
             text: |-
-              1/Battle, Free Action:
+              1/Game, Free Action:
               Gain 4 overshield
               This turn and next turn you have +2 move speed and have an additional Standard Action.
               At end of your next turn, lose overshield gained with this ability
@@ -617,7 +617,7 @@ sets:
         abilities:
           - name: Sonic Arrow
             text: |-
-              1/Battle, Free Action:
+              1/Game, Free Action:
               The next time you make a ranged attack
                 On hit, give the target Sonic Arrow.
                 On miss, place a Sonic Arrow in the targeted space.
@@ -634,13 +634,13 @@ sets:
                 text: Enemies within range 2 of a sonic arrow are undefendable, cannot be untargetable, and receive +2 Crit
           - name: Storm Arrows
             text: |-
-              1/Battle, Free Action at start of turn:
+              1/Game, Free Action at start of turn:
               Move up to 2.
               Until the end of your next turn, you deal -1 damage, 
               but you can make a Default Action as a Free Action once per turn.
           - name: Lunge
             text: |-
-              1/Battle, Free Action:
+              1/Game, Free Action:
               Fly up to 2.
             hints:
               - *FlyingHint
@@ -688,7 +688,7 @@ sets:
               - *FlyingHint
           - name: Barrier Projector
             text: |-
-              1/Battle, Instant +2:
+              1/Game, Instant +2:
               Place a Barrier in your space with 6hp.
               Enemy attacks that pass enter or exit the burst 1 square around the Barrier hit it instead.
             dice:
@@ -821,7 +821,7 @@ sets:
         abilities:
           - name: Sentry Turret
             text: |-
-              1/Battle, Free Action:
+              1/Game, Free Action:
               Three spaces in unlimited range, place a Sentry Turret marker each.
               Sentry Turrets have 1hp and 0 speed and can be targeted like a unit.
               At the start of your turn, each sentry turret deals 1dmg to the nearest enemy in range 3.
@@ -899,12 +899,12 @@ sets:
     #              Switch to ammo-loaded.
     #          - name: Combat Roll
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Free Action
     #              Move 1 space and switch to ammo-loaded.
     #          - name: Magnetic Grenade
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Range 5, 2dmg, 2dmg to all in burst 1 of target.
     #          - name: Deadeye
     #            text: |-
@@ -934,7 +934,7 @@ sets:
     #        abilities:
     #          - name: Defense Matrix
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Instant +2
     #              Create a size 2 Defense Matrix in range 1 that lasts until the beginning of your next turn.
     #              Enemy attacks that draw range through the defense matrix are cancelled without effect.
@@ -950,7 +950,7 @@ sets:
     #              Each enemy you move through takes 1dmg, and 1 knockback to the side.
     #          - name: Micro Missiles
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Free Action
     #              def 1/2 distance, 3dmg
     #          - name: Self-Destruct
@@ -997,13 +997,13 @@ sets:
     #        abilities:
     #          - name: Deflect
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Instant +2
     #              Until the beginning of your next turn,
     #              you have facing, and attacks targeting you from the front with max range>1 are reflected, choosing a new target with you as the attack origin.
     #          - name: Swift Strike
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Free Action
     #              Move 4 spaces in a straight line, ignoring enemies.
     #              2dmg to each enemy you move through.
@@ -1012,7 +1012,7 @@ sets:
     #            text: |-
     #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
     #              Spend 5 charges:
-    #                For the rest of the Battle, you have +1 speed, and replace your default attacks with:
+    #                For the rest of the Game, you have +1 speed, and replace your default attacks with:
     #                  default
     #                  range 1, 5dmg
     #      - name: Junkrat
@@ -1042,7 +1042,7 @@ sets:
     #        abilities:
     #          - name: Concussion Mine
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Place a Concussion Mine in an empty space within range 2.
     #              At the start of your turn, or when anyone becomes adjacent to the mine's space, you may sacrifice the mine for def1, 4dmg and move 2 in any direction.
     #            tokens:
@@ -1051,7 +1051,7 @@ sets:
     #                size: 1
     #          - name: Steel Trap
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Free Action
     #              Place a Steel Trap in range 2, with size 1, and 3hp.
     #              When an enemy enters the trap's space, they end their movement get rooted until the end of their next turn.
@@ -1099,7 +1099,7 @@ sets:
     #        abilities:
     #          - name: Amp It Up
     #            text: |-
-    #              Free Action, 1/Battle
+    #              Free Action, 1/Game
     #              Repeat your last Crossfade effect, twice.
     #          - name: Sound Barrier
     #            text: |-
@@ -1125,7 +1125,7 @@ sets:
     #        abilities:
     #          - name: Cryo-Freeze
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Instant +2
     #              Heal 4
     #              Remove any unwanted conditions.
@@ -1134,7 +1134,7 @@ sets:
     #                You block line of sight.
     #          - name: Ice Wall
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Instant +2
     #              Create a 3x1 Ice Wall, at least partly within range 3, that lasts until the beginning of your next turn.
     #              The Ice Wall acts like a wall, and has 6 health.
@@ -1172,13 +1172,13 @@ sets:
     #              Allies Heal 3.
     #          - name: Fade
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Instant +3
     #              Teleport up to 4 spaces.
     #              You may purge any number of effects from yourself.
     #          - name: Summon Biotic Orb
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Choose Damage or Healing.
     #              Summon a Biotic Orb in range 1.
     #              Biotic Orb is a size 1 field with facing.
@@ -1223,13 +1223,13 @@ sets:
     #              Interrupt
     #          - name: Javelin Spin
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Instant +2
     #              You have facing. Turn and move 2 spaces forwards, pushing.
     #              Until the beginning of your next turn, you are immune to damage from your front.
     #          #            - name: Protective Barrier
     #          #              text: |-
-    #          #                1/Battle
+    #          #                1/Game
     #          #                Reaction +2
     #          #                Create a 2x1 barrier in range 2.
     #          #                The barrier has 6 health.
@@ -1246,7 +1246,7 @@ sets:
     #          #                Empty space in range 3. Pull a unit in range 1 of the space into the empty space. They are slowed until the beginning of your next turn.
     #          - name: Fortify
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Instant +2
     #              Until the beginning of your next turn
     #                You have Resistance to damage
@@ -1290,13 +1290,13 @@ sets:
     #        abilities:
     #          - name: Take a Breather
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Channel:
     #                Until the start of your next turn, you have Resistance
     #                At the start of your next turn, Heal 6.
     #          - name: Chain Hook
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Move Action
     #              Range 5, 1def/2 distance,
     #              1dmg, interrupt
@@ -1305,7 +1305,7 @@ sets:
     #            text: |-
     #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
     #              Spend 5 charges:
-    #                Until end of Battle, you can only use default actions, and scrap gun changes to:
+    #                Until end of Game, you can only use default actions, and scrap gun changes to:
     #                Range 1, 6 damage, kb 5
     #                or Range 2, 4dmg, kb 3
     #                or Range 3, 2dmg, kb 1
@@ -1326,11 +1326,11 @@ sets:
     #        abilities:
     #          - name: Helix Rockets
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              1def/2 distance, 5dmg and 1dmg to others in burst 1 of target
     #          - name: Biotic Field
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Place a size 2 Biotic Field, overlapping your space.
     #              Now, and at the beginning of each your turns, all allies in the field Heal 2.
     #            tokens
@@ -1358,7 +1358,7 @@ sets:
     #        abilities:
     #          - name: Particle Barrier
     #            text: |-
-    #              2/Battle
+    #              2/Game
     #              Instant +2 on attack on target in range 3
     #              The target purges unwanted conditions
     #              Until the start of your next turn,
@@ -1396,7 +1396,7 @@ sets:
     #        abilities:
     #          - name: Sleep Dart
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              1def + 1def/2 distance
     #              Move + Standard Action
     #              Target does not act for their next two activations. If they take damage from another source, end this condition.
@@ -1407,7 +1407,7 @@ sets:
     #                image_url: https://static.wikia.nocookie.net/allstars_gamepedia/images/2/2b/Sleep_Dart_Icon.png/revision/latest?cb=20170918221723
     #          - name: Biotic Grenade
     #            text: |-
-    #              1/Battle
+    #              1/Game
     #              Range 4, size 2, 1def
     #              Allies in the area, Heal 3 and then receive +50% healing.
     #              Enemies in the area take 2dmg and cannot regain health.
@@ -1587,7 +1587,7 @@ sets:
         abilities:
           - name: Fortress Protocol
             text: |-
-              1/Battle, Free Action at start of turn:
+              1/Game, Free Action at start of turn:
               Enter Fortress Stance:
                 Abilities targeting you or adjacent allies have +2def
                 You are immobilized.
@@ -1644,12 +1644,12 @@ sets:
                   When either of you are at range 3 of the other, you can spend 1 points of movement to pull the other unit 1 space.
           - name: Restock Drone
             text: |-
-              1/Battle:
+              1/Game:
               Range 1, summon a Restock Drone
               Units can use
                 Standard action: 
                 Destroy an adjacent Restock Drone to 
-                regain all 1/Battle abilities, 
+                regain all 1/Game abilities, 
                 regain spent ammo, 
                 and lose 4 stress.
             tokens:
@@ -1659,7 +1659,7 @@ sets:
                 text: |-
                   Units have: Standard action: 
                     Destroy an adjacent Restock Drone to 
-                    regain all 1/Battle abilities, 
+                    regain all 1/Game abilities, 
                     regain spent ammo, 
                     and lose 4 stress.
 
@@ -1678,7 +1678,7 @@ sets:
               - *DestroyedTerrain
           - name: Supercharger
             text: |-
-              1/Battle:
+              1/Game:
               You cannot use Latch Drone Tether.
               Range 4, target clears and is immune to unwanted conditions, and has -1def and +1 crit on rolls.
             tokens:
@@ -1723,7 +1723,7 @@ sets:
               - *ResistanceHint
           - name: Summon ICEOUT Drone
             text: |-
-              1/Battle:
+              1/Game:
               Summon an ICEOUT Drone in range 4.
               ---
               As a Standard Action, you may teleport an ICEOUT Drone to any location in range 4.
@@ -1824,7 +1824,7 @@ sets:
               - *Invisible
           - name: StunCrown
             text: |-
-              1/Battle
+              1/Game
               Enemies in Burst 2, Silence and Impair.
             tokens:
               - *Silence
@@ -1867,7 +1867,7 @@ sets:
 
           - name: Summon Hive Drone
             text: |-
-              1/Battle:
+              1/Game:
               Summon a Hive Drone in range 2 (max 1).
               ---
               Standard Action: Range 2 empty space, teleport the Hive Drone to the space.
@@ -1944,7 +1944,7 @@ sets:
               - *Impaired
           - name: Symbiosis
             text: |-
-              1/Battle, Free Action:
+              1/Game, Free Action:
               Target ally in range 1. 
               Remove your marker from the board. You share the ally's location and cannot move away. 
               Abilities targeting you have +4def. You also take any stress or conditions the ally takes.
@@ -1974,7 +1974,7 @@ sets:
         abilities:
           - name: Deploy Sentinel Drone
             text: |-
-              2/Battle
+              2/Game
               Summon a Sentinel Drone in range 4.
             dice:
               - name: Charges
@@ -1982,7 +1982,7 @@ sets:
                 values: [ 2 ]
           - name: Deploy Turret Drone
             text: |-
-              2/Battle
+              2/Game
               Summon a Turret Drone in range 4.
             dice:
               - name: Charges
@@ -2050,7 +2050,7 @@ sets:
                 All in range 1, 2dmg, push 2 spaces.
           - name: Apocalypse Rail
             text: |-
-              1/Battle, Move + Standard Action:           
+              1/Game, Move + Standard Action:           
               Range 3+ centered 3x3, 2dmg*Current round number. 
               Destroy all walls and terrain in the area.
             tokens:
@@ -2096,7 +2096,7 @@ sets:
                   A unit can only take damage from Plasma Hazard once per round.
           - name: Havok Mine
             text: |-
-              1/Battle:
+              1/Game:
               Empty space in range 2, place a Havok Mine marker.
               When any character moves into an orthogonally adjacent space, it is destroyed and does
                 All in line 4, give DoT 2
@@ -2208,7 +2208,7 @@ sets:
 #        abilities:
 #          - name: Blink
 #            text: |-
-#              2/Battle, Free Action:
+#              2/Game, Free Action:
 #              Remove Anti-Mage from the board and Summon an Illusion in his space, and in an empty space in range 5.
 #            dice:
 #              - name: Charges
@@ -2216,7 +2216,7 @@ sets:
 #                values: [ 2 ]
 #          - name: Counterspell
 #            text: |-
-#              2/Battle, Instant +3:
+#              2/Game, Instant +3:
 #              Give target unit in LoS (can be you) your Counterspell Marker.
 #              Until the start of their next turn, Interrupt when an enemy Targets them:
 #              Cancel the ability. The unit with the Counterspell Marker copies the spell, targeting the caster.
@@ -2230,12 +2230,12 @@ sets:
 #                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/d/dc/Counterspell_Ally_icon.png/revision/latest?cb=20230809010012
 #          - name: Manta Style
 #            text: |-
-#              1/Battle, Free Action:
+#              1/Game, Free Action:
 #              Remove Anti-Mage from the board and Summon three Illusions in empty spaces in range 2.
 #          - name: Mana Void
 #            text: |-
-#              1/Battle,
-#              Range 1, 2dmg to the target for each of its abilities that are unavailable (eg used up x/Battle, unready ultimate, tapped, etc)
+#              1/Game,
+#              Range 1, 2dmg to the target for each of its abilities that are unavailable (eg used up x/Game, unready ultimate, tapped, etc)
 #              as Xdmg to the target and enemies in burst 1 of it.
 #        units:
 #          - name: Illusion (Anti-Mage)
@@ -2279,7 +2279,7 @@ sets:
         abilities:
           - name: Berserker's Call
             text: |-
-              1/Battle
+              1/Game
               Until the beginning of your next turn,
                 You have Armor
                 When an enemy starts their turn in range 1 of you,
@@ -2288,7 +2288,7 @@ sets:
               - *ArmorHint
           - name: Battle Hunger
             text: |-
-              1/Battle:
+              1/Game:
               Range 3, give the 2 DoT and a Battle Hunger token:
                 Moving away from you costs twice as many spaces. When they kill a unit, they lose the token and clear all DoT.
             tokens:
@@ -2300,7 +2300,7 @@ sets:
                   When you kill a unit, lose this and clear all DoT.
           - name: Culling Blade
             text: |-
-              1/Battle
+              1/Game
               Range 1, 3dmg irreducible
               On kill:
                 The target does not trigger any on-death reactions.
@@ -2313,7 +2313,7 @@ sets:
         polish: [needs_testing]
         description: |- 
           - Slow and nuke enemies
-          - Allies have an extra n/Battle use.
+          - Allies have an extra n/Game use.
           - Awful speed and health
         image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/crystal_maiden.png
         health: 6
@@ -2321,7 +2321,7 @@ sets:
         passives:
           - name: Deploy
             text: |-
-              You and all allies can put an extra charge on a n/Battle ability. (Ultimates are 1/Battle)
+              You and all allies can put an extra charge on a n/Game ability. (Ultimates are 1/Game)
           - name: Chilled
             text: |-
               Slowed enemies deal -1 damage.
@@ -2329,7 +2329,7 @@ sets:
           - name: Extra Ability Use
             image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/5/5a/Arcane_Aura_icon.png/revision/latest?cb=20111005085505
             text: |-
-              Gain an extra 1/Battle use of this ability. (Ultimates are 1/Battle)
+              Gain an extra 1/Game use of this ability. (Ultimates are 1/Game)
         default_abilities:
           - name: Ice Bolt
             text: Range 4, 2dmg
@@ -2351,7 +2351,7 @@ sets:
               - *Disarm
           - name: Crystal Clone
             text: |-
-              1/Battle, Free Action
+              1/Game, Free Action
               Move 2, and create a Crystal Clone marker in your previous space.
               Crystal Clone marker has 1 hp and can be targeted like a unit.
               At the beginning of your turn, destroy Crystal Clone.
@@ -2393,7 +2393,7 @@ sets:
         abilities:
           - name: Poison Touch
             text: |-
-              1/Battle
+              1/Game
               Range 4 2x2, 2dmg, get Poison Touch (At start of turn, take 2 damage).
               
               ---
@@ -2405,7 +2405,7 @@ sets:
                   At start of turn, take 2 damage.
           - name: Shallow Grave
             text: |-
-              1/Battle, Instant +3:
+              1/Game, Instant +3:
               You are stunned.
               Range 3, until the start of your next turn:
                Target's hp cannot go below 1, they are not considered for objectives, and they receive -50% healing.
@@ -2416,7 +2416,7 @@ sets:
                 text: Hp cannot go below 1.
           - name: Shadow Wave
             text: |-
-              1/Battle
+              1/Game
               Target yourself, then any number of times target another unit in range 2 of an existing target.
               Heal each targeted unit 2.
               All enemies in burst 1 of any targeted ally, 2dmg.
@@ -2447,18 +2447,18 @@ sets:
         abilities:
           - name: Gust
             text: |-
-              1/Battle
+              1/Game
               Range 1 2x2, push 2, silence
               Move 2
             tokens:
               - *Silence
           - name: Multishot
             text: |-
-              1/Battle
+              1/Game
               Range 1 3x3, 2dmg, slow
           - name: Glacier
             text: |-
-              1/Battle
+              1/Game
               Create a directional Glacier Wall markers on the edge in front of you, pointing away, and extend it one space to either side.
               
               Range drawn through the wall in the wall's direction (away from your starting position) is increased by 1.
@@ -2507,7 +2507,7 @@ sets:
               - *FlyingHint
           - name: Fissure
             text: |-
-              1/Battle
+              1/Game
               Infinite line, push 1 to a free space on either side if possible.
               Fill empty spaces in the line with Fissure markers which block movement but not LoS.
               Enemies adjacent to at least one Fissure marker: 2dmg and give an ability CD 1 max 1. 
@@ -2547,7 +2547,7 @@ sets:
         abilities:
           - name: Frost Shield
             text: |-
-              1/Battle
+              1/Game
               Ally in LoS gets a Frost Shield marker:
                 Armor
                 At end of turn, enemies in burst 2, 1dmg.
@@ -2561,17 +2561,17 @@ sets:
                   At end of turn, enemies in burst 2, 1dmg.
           - name: Sinister Gaze
             text: |-
-              1/Battle, Move+Standard Action:
+              1/Game, Move+Standard Action:
               Range 4, pull 2, paralyze
             tokens:
               - *Paralyze
           - name: Summon Ice Spire
             text: |-
-              1/Battle
+              1/Game
               Range 4, create an Ice Spire
           - name: Chain Frost
             text: |-
-              1/Battle
+              1/Game
               Enemy or Ice Spire without a Chain Frost marker in range 3, not blocked by units, 
               if enemy: 2dmg + 2dmg per Chain Frost marker on this, slow.
               
@@ -2630,7 +2630,7 @@ sets:
         abilities:
           - name: Dragon Slave
             text: |-
-              1/Battle
+              1/Game
               Line 4, 1dmg + 1dmg per Fiery Soul charge, 1 DoT
               
               Gain 1 Fiery Soul charge.
@@ -2638,7 +2638,7 @@ sets:
               - *DoT
           - name: Light Strike Array
             text: |-
-              1/Battle
+              1/Game
               Range 3, 2x2, 2dmg + 1dmg per Fiery Soul charge, give an ability CD 1 max 1.
               
               Gain 1 Fiery Soul charge.
@@ -2646,7 +2646,7 @@ sets:
               - *OnCooldown
           - name: Laguna Blade
             text: |-
-              1/Battle
+              1/Game
               Range 4, 3dmg per Fiery Soul charge
               
               Fill your Fiery Soul charges up to 2.
@@ -2666,13 +2666,13 @@ sets:
         abilities:
           - name: Impale
             text: |-
-              1/Battle
+              1/Game
               Range range 1 4x2 pointing away from you, 2dmg, push 1 in any direction, give an ability CD 1 max 1.
             tokens:
               - *OnCooldown
           - name: Hex
             text: |-
-              1/Battle
+              1/Game
               Range 3, until start of your next turn, target has no abilities or passives, has base speed 1, and is not considered for objectives.
             tokens:
               - name: Hex
@@ -2721,7 +2721,7 @@ sets:
               - *Paralyze
           - name: Leap
             text: |-
-              3/Battle, Free Action
+              3/Game, Free Action
               Fly 2 in a straight line. At end of turn, move 1.
             hints:
               - *FlyingHint
@@ -2822,19 +2822,19 @@ sets:
         abilities:
           - name: Ghost Shroud
             text: |-
-              1/Battle, Instant +3
+              1/Game, Instant +3
               Until the end of your next turn:
                 You cannot be affected by default abilities.
                 You deal +100% healing.
                 You receive +1 damage.
           - name: Death Seeker
             text: |-
-              1/Battle
+              1/Game
               Teleport to a space adjacent to an enemy in range 3.
               Use a default ability.
           - name: Reaper's Scythe
             text: |-
-              1/Battle
+              1/Game
               Range 3, immobilize.
               At the start of your next turn, deal irreducible damage the target equal to their missing health.
               On kill, gain 2 additional Kill counters.
@@ -2845,7 +2845,7 @@ sets:
   - name: Malifaux (ALPHA)
     description: |-
       - Use cards to change player's rolls
-      - No cooldowns or changes between battles
+      - No cooldowns or changes between games
       - Many summons
     rules:
       - name: Fate Cards
@@ -3905,7 +3905,7 @@ sets:
               Gain a kill counter.
           - name: Deadringer
             text: |-
-              1/Battle, interrupt when you would take damage:
+              1/Game, interrupt when you would take damage:
               Take no damage, clear any number of conditions, move 2, use Stealth.
 
       - name: Heavy
@@ -3934,7 +3934,7 @@ sets:
         abilities:
           - name: Snack
             text: |-
-              1/Battle, choose one --
+              1/Game, choose one --
               - Free Action: Place your Sandvich Marker in a space in range 2 (can be occupied). When a damaged unit is in this space, they heal half their maximum hp and destroy this.
               - Move + Standard, Heal 12.
               - Move + Standard Action. Gain Buffalo Steak Rage: 
@@ -4009,7 +4009,7 @@ sets:
                 values: [1]
           - name: Jarate
             text: |-
-              1/Battle
+              1/Game
               Range 3, 2x2, get Jarate: Receive +50% damage
             tokens:
               - name: Jarate
@@ -4189,13 +4189,13 @@ sets:
                 is_marker: true
           - name: Chargin' Target
             text: |-
-              1/Battle, Move Action:
+              1/Game, Move Action:
               Move any distance in a straight line and clear any number of conditions.
               If you moved at least 4, your next attack this turn with range 2 or less deals +100% damage.
 
           - name: Ullapool Caber
             text: |-
-              1/Battle:
+              1/Game:
               Range 1, 2dmg. On hit, 4dmg to all in burst 1 of target (including target).
           - name: Pain Train
             text: |-
@@ -4365,7 +4365,7 @@ sets:
                 text: You deal and receive +50% damage.
           - name: Mad Milk
             text: |-
-              1/Battle:
+              1/Game:
               Range 3 2x2. Allies clear DoT. Enemies get Covered in Milk:   
                 When a unit damages a unit Covered in Milk, they heal 1/2 the damage dealt.
             tokens:
@@ -4374,13 +4374,13 @@ sets:
                 text: When a unit damages a unit Covered in Milk, they heal 1/2 the damage dealt.
           - name: Flying Guillotine
             text: |-
-              1/Battle:
+              1/Game:
               Range 4, 1dmg, give target DoT
             tokens:
               - *DoT
           - name: The Sandman
             text: |-
-              1/Battle:
+              1/Game:
               Range 4+, +2def, target is stunned.
             tokens:
               - *Stun
