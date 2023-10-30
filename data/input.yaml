@@ -320,6 +320,8 @@ sets:
               Enemies are undefendable.
               Enemies cannot be untargetable.
               All allies have +2 crit
+            hints:
+              - *UltimateHint
       - name: Tracer
         complexity: 3
         description: |-
@@ -370,6 +372,8 @@ sets:
                 is_marker: true
                 text: |-
                   At the start of your turn, destroy this. It deals 9dmg to anyone in its space and 3dmg to anyone else in burst 1.
+            hints:
+              - *UltimateHint
       - name: Mercy
         complexity: 2
         description: |-
@@ -422,6 +426,7 @@ sets:
                 You are always Flying.
             hints:
               - *FlyingHint
+              - *UltimateHint
       - name: Pharah
         complexity: 3
         description: |-
@@ -473,6 +478,8 @@ sets:
             text: |-
               Ultimate 5, Move + Standard Action:
               1def per 2 spaces between, 8dmg, 3dmg to all others in burst 1.
+            hints:
+              - *UltimateHint
       - name: Reaper
         complexity: 1
         description: |-
@@ -511,6 +518,8 @@ sets:
             text: |-
               Ultimate 5:
               Burst 1, 7dmg
+            hints:
+              - *UltimateHint
       - name: Reinhardt
         complexity: 2
         description: |-
@@ -573,6 +582,8 @@ sets:
               Range 2, 3x3, 1dmg and Paralyze
             tokens:
               - *Paralyze
+            hints:
+              - *UltimateHint
       - name: Torbjorn
         complexity: 2
         description: |-
@@ -617,6 +628,8 @@ sets:
                 size: 2
                 text: |-
                   Hazard: 2dmg for enemies.
+            hints:
+              - *UltimateHint
         units:
           - name: Turret
             health: 8
@@ -688,6 +701,8 @@ sets:
                 size: 2
                 text: |-
                   While the beam is active, all spaces in it have Hazard: 7dmg for enemies.
+            hints:
+              - *UltimateHint
       - name: Winston
         complexity: 2
         description: |-
@@ -738,6 +753,7 @@ sets:
               When you deal damage, also push 3.
             hints:
               - *InstantHint
+              - *UltimateHint
       - name: Zenyatta
         complexity: 3
         description: |-
@@ -786,6 +802,7 @@ sets:
               Until the start of your next turn, you are immune to damage conditions you don't want.
             hints:
               - *InstantHint
+              - *UltimateHint
       - name: Bastion
         complexity: 3
         polish: [needs_testing]
@@ -827,6 +844,8 @@ sets:
             marker:
               - name: Artillery
                 image_url: https://tactics.toren.dev/image_token_Bastion Artillery Marker_-6673338352373586730.jpg
+            hints:
+              - *UltimateHint
       - name: Symmetra
         complexity: 4
         polish:
@@ -909,6 +928,8 @@ sets:
               - name: Photon Barrier
                 image_url: https://tactics.toren.dev/image_token_Photon Barrier_7902153069388003017.jpg
                 is_marker: true
+            hints:
+              - *UltimateHint
 
     #      - name: Cassidy
     #        description: |-
@@ -1587,6 +1608,8 @@ sets:
             tokens:
               - *Stun
               - *Immobile
+            hints:
+              - *UltimateHint
       - name: Drake
         complexity: 3
         health: 8
@@ -1916,6 +1939,8 @@ sets:
               Trigger your end of turn effects twice.
               While you have more than 1hp, you cannot be reduced below 1hp.
               All damage dealt to you is irreducible.
+            hints:
+              - *UltimateHint
         units:
           - name: Hive Drone
             health: 4
@@ -2205,7 +2230,8 @@ sets:
             text: |-
               Ultimate 4:
               Whenever an enemy moves or is moved, they take 1dmg.
-          
+            hints:
+              - *UltimateHint
 
     maps:
       - name: Rickety Station
@@ -2415,6 +2441,8 @@ sets:
               - name: Freezing Field Stance
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/d/de/Freezing_Field_icon.png/revision/latest/scale-to-width-down/128?cb=20111005085503
               - *Slow
+            hints:
+              - *UltimateHint
       - name: Dazzle
         complexity: 3
         description: |- 
@@ -2562,6 +2590,8 @@ sets:
             text: |-
               Ultimate 4
               Enemies in burst 3, 2dmg + 1dmg per enemy in the area, give an ability CD 1 max 1.
+            hints:
+              - *UltimateHint
       - name: Lich
         complexity: 3
         description: |-
@@ -2731,6 +2761,8 @@ sets:
             text: |-
               Ultimate 5
               Range 4 2x2, 5dmg
+            hints:
+              - *UltimateHint
       - name: Mirana
         complexity: 2
         description: |-
@@ -2775,8 +2807,9 @@ sets:
               At the end of each your turns, you and your allies become invisible and may Fly 1.
             hints:
               - *FlyingHint
+              - *UltimateHint
             tokens:
-                - *Invisible
+              - *Invisible
       - name: Morphling
         complexity: 3
         polish: [needs_testing]
@@ -2838,6 +2871,8 @@ sets:
             text: |-
               Ultimate 4
               Range 4, gain ready copies of all of the target's non-passive, non-ultimate abilities. You may use their default abilities.
+            hints:
+              - *UltimateHint
       - name: Necrophos
         complexity: 1
         polish: [needs_testing]
@@ -4126,6 +4161,7 @@ sets:
                   You and your Healing Target always crit when you hit.
             hints:
               - *InstantHint
+              - *UltimateHint
 
       - name: Engineer
         complexity: 3
