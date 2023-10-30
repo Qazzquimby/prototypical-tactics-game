@@ -4,7 +4,7 @@ import { ref } from 'vue'
 import { IButton, IForm, IFormGroup, IInput } from '@inkline/inkline'
 import { getAuth } from 'firebase/auth'
 
-import { ref as firebaseRef, getDatabase, push } from '@firebase/database'
+import { ref as firebaseRef, getDatabase, push, set, update } from '@firebase/database'
 
 import type { GameReport, HeroReport } from '~/composables/gameTypes'
 
@@ -25,14 +25,14 @@ const gameReport = ref<GameReport>({
   redScore: undefined,
   blueScore: undefined,
   redHeroes: [
-    { name: '', note: '', impression: undefined },
-    { name: '', note: '', impression: undefined },
-    { name: '', note: '', impression: undefined },
+    { name: '', note: '', impression: null },
+    { name: '', note: '', impression: null },
+    { name: '', note: '', impression: null },
   ],
   blueHeroes: [
-    { name: '', note: '', impression: undefined },
-    { name: '', note: '', impression: undefined },
-    { name: '', note: '', impression: undefined },
+    { name: '', note: '', impression: null },
+    { name: '', note: '', impression: null },
+    { name: '', note: '', impression: null },
   ],
   note: '',
   map: '',
@@ -41,8 +41,8 @@ const gameReport = ref<GameReport>({
 const mapNames = computed(() => props.maps.map(gameMap => gameMap.nameWithSet))
 
 function addHero() {
-  gameReport.value.redHeroes.push({ name: '', note: '', impression: undefined })
-  gameReport.value.blueHeroes.push({ name: '', note: '', impression: undefined })
+  gameReport.value.redHeroes.push({ name: '', note: '', impression: null })
+  gameReport.value.blueHeroes.push({ name: '', note: '', impression: null })
 }
 
 function updateRedHeroReport(index: number, updatedReport: HeroReport) {
@@ -64,17 +64,25 @@ function submitForm() {
 
   const newRef = push(firebaseRef(database, 'reports'))
   const pushId = newRef.key
-  const timestampPlaceholder = new Date().toISOString()
-
-  const updates: { [key: string]: any } = {}
-  updates[`reports/${pushId}`] = {
-    uid,
-    timestamp: timestampPlaceholder,
-    report: gameReport.value,
+  if (!pushId) {
+    return
   }
-  updates[`users/${uid}/rateLimit/lastMessage`] = timestampPlaceholder
 
-  push(newRef, updates)
+  const timestamp = new Date().toISOString()
+  const report = gameReport.value
+  // Object.keys(report).forEach(key => (report[key] == null || report[key] === '' || report[key] === undefined) && delete report[key])
+  // console.log('pruned report', report)
+  const updates: { [key: string]: any } = {}
+  updates[pushId] = {
+    uid,
+    timestamp,
+    report,
+  }
+
+  const reportsRef = firebaseRef(database, `reports/${pushId}`)
+  const userReportsRef = firebaseRef(database, `users/${uid}/rateLimit/lastReport`)
+  set(userReportsRef, timestamp)
+  update(reportsRef, updates)
 }
 </script>
 
