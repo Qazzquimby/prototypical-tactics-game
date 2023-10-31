@@ -25,8 +25,8 @@ def make_game_set_bag(game_set: GameSet):
     set_bag = Bag(
         name=game_set.name,
         description=game_set.description,
-        size=2,
-        color=(0.0, 0.0, 0.0),
+        size=3,
+        color=game_set.color if game_set.color else (0.0, 0.0, 0.0),
     )
 
     rules_deck = RulesDeck(cards=game_set.rules)

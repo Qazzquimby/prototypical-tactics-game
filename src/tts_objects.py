@@ -5,6 +5,7 @@ from playwright.async_api import async_playwright
 from domain.library import Library
 from src.drawing.drawing import draw_library_assets
 from src.image_builders import ImageBuilder
+from tts.guid import guid
 
 
 def reposition_set_bag(tts_dict):
@@ -32,10 +33,12 @@ def reposition_set_bags(tts_dict):
         if obj["Name"] == "Bag" and obj["Nickname"] != "Randomizer"
     ]
     for i, bag in enumerate(game_set_bags):
+        z_pos = 27 - i * 6
+
         bag["Transform"] = {
             "posX": 120,
             "posY": 2,
-            "posZ": 27 - i * 6,
+            "posZ": z_pos,
             "rotX": 0,
             "rotY": 0,
             "rotZ": 0,
@@ -43,6 +46,30 @@ def reposition_set_bags(tts_dict):
             "scaleY": 1.0,
             "scaleZ": 1.0,
         }
+
+        # create floating title text
+        floating_text = {
+            "GUID": guid(),
+            "Name": "3DText",
+            "Transform": {
+                "posX": 120,
+                "posY": 8,
+                "posZ": z_pos,
+                "rotX": 0.0,
+                "rotY": 90.0,
+                "rotZ": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "scaleZ": 1.0,
+            },
+            "Locked": True,
+            "Text": {
+                "Text": "\n".join(bag["Nickname"].split(" ")),
+                "colorstate": {"r": 1.0, "g": 1.0, "b": 1.0},
+                "fontSize": 64,
+            },
+        }
+        tts_dict["ObjectStates"].append(floating_text)
 
 
 async def library_to_tts_dict(

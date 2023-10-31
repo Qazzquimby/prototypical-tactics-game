@@ -263,6 +263,7 @@ terrain:
       Abilities passing through cover that does not start adjacent to that cover has +2def.
 sets:
   - name: Overwatch
+    color: [.94, .592, .114]
     description: |-
       - Slow charging ultimate abilities
       - Projectiles less accurate at long ranges
@@ -1520,6 +1521,7 @@ sets:
           - *CapturePointHint
 
   - name: Lancer
+    color: [ 0.76, 0.12, 0.15]
     description: |-
       - Adds stress causing vulnerability and self destruction
       - Gain extra action at cost of stress
@@ -2251,6 +2253,7 @@ sets:
           - *CapturePointHint
 
   - name: Dota 2
+    color: [.67, .18, .08]
     description: Todo
     heroes:
 #      - name: Anti-Mage
@@ -3939,6 +3942,7 @@ sets:
   #                  Range 3+, 50% of their max hp
 
   - name: Team Fortress 2
+    color: [0.59, 0.31, 0.13]
     description: |-
       - high mobility and potential damage
       - permanent buffs and debuffs

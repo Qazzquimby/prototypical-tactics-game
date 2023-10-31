@@ -2,7 +2,7 @@ import abc
 import base64
 from functools import lru_cache
 from pathlib import Path
-from typing import ClassVar, Literal, List
+from typing import ClassVar, Literal, List, Optional
 
 import jinja2
 import yaml
@@ -559,6 +559,7 @@ class Map(Spawnable, BaseModel):
 class GameSet(BaseModel):
     name: str
     description: str
+    color: Optional[tuple[float, float, float]] | Color = None
     rules: list[RulesCard] = []
     heroes: list[HeroDeck] = []
     maps: list[Map] = []
