@@ -45,7 +45,9 @@ class Bag(DomainEntity):
             "MeshIndex": -1,
             "LuaScript": "",
             "LuaScriptState": "",
-            "ContainedObjects": [item.as_dict() for item in self.contained_objects],
+            "ContainedObjects": [
+                item.as_dict() for item in self.contained_objects if item
+            ],
             "GUID": guid(),
         }
 

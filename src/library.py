@@ -12,13 +12,11 @@ def game_to_library(game):
         bags=[],
     )
 
-    sets_bag = Bag(name="Sets", size=3, color=(1.0, 1.0, 1.0))
     for game_set in game.sets:
         game_set_bag = make_game_set_bag(game_set)
-        sets_bag.contained_objects.append(game_set_bag)
-    library.bags.append(sets_bag)
+        library.bags.append(game_set_bag)
 
-    add_game_rules_deck(library, game)
+    # add_game_rules_deck(library, game)
 
     return library
 

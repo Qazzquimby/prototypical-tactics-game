@@ -8,7 +8,7 @@ from src.image_builders import ImageBuilder
 
 
 def reposition_set_bag(tts_dict):
-    # todo could combine with _make_game_set_bag
+    # this is the old single bag
     sets_bag = [
         item for item in tts_dict["ObjectStates"] if item["Nickname"] == "Sets"
     ][0]
@@ -23,6 +23,26 @@ def reposition_set_bag(tts_dict):
         "scaleY": 3.0,
         "scaleZ": 3.0,
     }
+
+
+def reposition_set_bags(tts_dict):
+    game_set_bags = [
+        obj
+        for obj in tts_dict["ObjectStates"]
+        if obj["Name"] == "Bag" and obj["Nickname"] != "Randomizer"
+    ]
+    for i, bag in enumerate(game_set_bags):
+        bag["Transform"] = {
+            "posX": 120,
+            "posY": 2,
+            "posZ": 27 - i * 6,
+            "rotX": 0,
+            "rotY": 0,
+            "rotZ": 0,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "scaleZ": 1.0,
+        }
 
 
 async def library_to_tts_dict(
@@ -46,7 +66,8 @@ async def library_to_tts_dict(
 
     entities = library.bags
     tts_dict["ObjectStates"] += [entity.as_dict() for entity in entities]
-    reposition_set_bag(tts_dict)
+    # reposition_set_bag(tts_dict)
+    reposition_set_bags(tts_dict)
 
     return tts_dict
 
