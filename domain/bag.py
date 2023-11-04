@@ -1,6 +1,8 @@
 from functools import cached_property
+from typing import Optional
 
 from domain.abstract import DomainEntity
+from src.shared_types import IntroSetup
 from tts.guid import guid
 from tts.transform import Transform
 
@@ -13,6 +15,7 @@ class Bag(DomainEntity):
         self.color = color
         self.contained_objects = []
         self.is_infinite = is_infinite
+        self.lua_script = ""
 
     def add_content(self, amount, content):
         for _ in range(0, amount):
@@ -43,13 +46,134 @@ class Bag(DomainEntity):
             "Hands": False,
             "MaterialIndex": -1,
             "MeshIndex": -1,
-            "LuaScript": "",
+            "LuaScript": self.lua_script,
             "LuaScriptState": "",
             "ContainedObjects": [
                 item.as_dict() for item in self.contained_objects if item
             ],
             "GUID": guid(),
         }
+
+
+class GameSetBag(Bag):
+    def __init__(
+        self,
+        name,
+        size,
+        color,
+        intro_setup: Optional[IntroSetup] = None,
+        is_infinite=False,
+        description="",
+    ):
+        super().__init__(
+            name=name,
+            size=size,
+            color=color,
+            is_infinite=is_infinite,
+            description=description,
+        )
+        self.intro_set_setup = intro_setup
+
+    def as_dict(self, transform=None):
+        (
+            setup_intro_game_on_load,
+            setup_intro_game_deps,
+        ) = self.make_setup_intro_game_button()
+
+        self.lua_script = f"""\
+        function onLoad()
+            {setup_intro_game_on_load}
+        end
+
+        {setup_intro_game_deps}
+        """
+
+        # create floating title text
+        # floating_text = {
+        #     "GUID": guid(),
+        #     "Name": "3DText",
+        #     "Transform": {
+        #         "posX": 120,
+        #         "posY": 8,
+        #         "posZ": z_pos,
+        #         "rotX": 0.0,
+        #         "rotY": 90.0,
+        #         "rotZ": 0.0,
+        #         "scaleX": 1.0,
+        #         "scaleY": 1.0,
+        #         "scaleZ": 1.0,
+        #     },
+        #     "Locked": True,
+        #     "Text": {
+        #         "Text": "\n".join(bag["Nickname"].split(" ")),
+        #         "colorstate": {"r": 1.0, "g": 1.0, "b": 1.0},
+        #         "fontSize": 64,
+        #     },
+        # }
+        # tts_dict["ObjectStates"].append(floating_text)
+
+        bag_dict = super().as_dict(transform)
+        return bag_dict
+
+    def make_setup_intro_game_button(self):
+        if not self.intro_set_setup:
+            return f"print('No intro set setup for {self.name}')", ""
+
+        on_load = f"""\
+        local params = {{
+                click_function = 'setupIntroGame',
+                function_owner = self,
+                label = 'Intro Setup',
+                position = {{2, 0.5, 0}},
+                rotation = {{0, -90, 00}},
+                scale = {{1.2, 1, 1.2}},
+                width = 1500,
+                height = 600,
+                font_size = 250
+            }}
+            self.createButton(params)
+        """
+
+        deal_intro_hero_scripts = []
+        for index, hero in enumerate(self.intro_set_setup.blue):
+            deal_intro_hero_scripts.append(self.deal_intro_hero(hero, True, index))
+        for index, hero in enumerate(self.intro_set_setup.red):
+            deal_intro_hero_scripts.append(self.deal_intro_hero(hero, False, index))
+        deal_intro_hero_scripts_string = "\n\n".join(deal_intro_hero_scripts)
+
+        deps = f"""\
+            function setupIntroGame()
+                print('Hello {self.name}')
+    
+                local contents = self.getData().ContainedObjects
+                for _, bag in ipairs(contents) do
+                    if string.match(bag.Nickname, 'heroes') then
+                        {deal_intro_hero_scripts_string}
+                    end
+                end                
+            end"""
+        return on_load, deps
+
+    def deal_intro_hero(self, hero_name: str, is_blue: bool, index: int):
+        return f"""\
+        for _, hero in ipairs(bag.ContainedObjects) do
+            if string.match(hero.Nickname, '{hero_name}') then
+                print(hero.Nickname)
+
+                local position = {{10 + {index}*7, 0.5, -8.5}}
+                local rotation = {{0, 180, 0}}
+
+                spawnObjectData({{
+                    data=hero,
+                    position=position,
+                    rotation=rotation,
+                    callback_function = function(spawned)
+                        -- log('objToDeal ' .. logString(spawned))
+                    end
+                }})
+            end
+        end
+        """
 
 
 BOX_MESH_URL = "http://cloud-3.steamusercontent.com/ugc/1469815240708973394/DA07673D2A5C47A5544D2024B92585069B40EE91/"

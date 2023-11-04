@@ -4535,7 +4535,7 @@ sets:
           - *HealthPack
           - *CapturePointHint
           - *CoverHint
-    starter:
+    intro_setup:
       map: Granary
       blue:
         - Scout

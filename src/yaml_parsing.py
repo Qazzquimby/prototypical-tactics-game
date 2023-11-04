@@ -15,6 +15,7 @@ from domain.complexType import ComplexType
 from src.drawing.duplicate_units import duplicate_number_to_letter, make_duplicate_image
 from src.drawing.self_host_tokens import TokenImage, get_hosted_address
 from src.drawing.size_constants import CARD_SIZE, DIE_SPACING
+from src.shared_types import IntroSetup
 
 from src.spawning_lua import get_full_lua, scale_size, clean_string_for_lua
 from domain.deck import Deck as DomainDeck
@@ -563,6 +564,7 @@ class GameSet(BaseModel):
     rules: list[RulesCard] = []
     heroes: list[HeroDeck] = []
     maps: list[Map] = []
+    intro_setup: Optional[IntroSetup] = None
 
 
 class Game(BaseModel):

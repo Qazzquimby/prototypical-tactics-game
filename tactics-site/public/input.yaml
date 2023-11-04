@@ -4535,3 +4535,13 @@ sets:
           - *HealthPack
           - *CapturePointHint
           - *CoverHint
+    intro_setup:
+      map: Granary
+      blue:
+        - Scout
+        - Heavy
+        - Sniper
+      red:
+        - Medic
+        - Soldier
+        - Pyro

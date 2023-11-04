@@ -47,53 +47,6 @@ def reposition_set_bags(tts_dict):
             "scaleZ": 1.0,
         }
 
-        bag[
-            "LuaScript"
-        ] = f"""\
-function onLoad()
-  local params = {{
-    click_function = 'setupIntroGame',
-    function_owner = self,
-    label = 'Intro Setup',
-    position = {{2, 0.5, 0}},
-    rotation = {{0, -90, 00}},
-    scale = {{1, 1, 1}},
-    width = 1500,
-    height = 300,
-    font_size = 250
-  }}
-  self.createButton(params)
-end
-
-function setupIntroGame()
-    print('Hello {bag["Nickname"]}')
-end
-"""
-
-        # create floating title text
-        floating_text = {
-            "GUID": guid(),
-            "Name": "3DText",
-            "Transform": {
-                "posX": 120,
-                "posY": 8,
-                "posZ": z_pos,
-                "rotX": 0.0,
-                "rotY": 90.0,
-                "rotZ": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "scaleZ": 1.0,
-            },
-            "Locked": True,
-            "Text": {
-                "Text": "\n".join(bag["Nickname"].split(" ")),
-                "colorstate": {"r": 1.0, "g": 1.0, "b": 1.0},
-                "fontSize": 64,
-            },
-        }
-        tts_dict["ObjectStates"].append(floating_text)
-
         # setup_button = {
         #     "GUID": guid(),
         #     "Name": "Button",

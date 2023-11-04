@@ -4,6 +4,9 @@
 - 30 minutes
 - Medium complexity
 
+[//]: # (TODO TITLE IMAGE)
+
+
 Tabletop Teamfight is tactics game about finding strong synergies and counters, designed for  
 [Tabletop Simulator](https://store.steampowered.com/app/286160/Tabletop_Simulator/).
 It borrows familiar characters from other games so that players use their existing knowlege and play
@@ -19,6 +22,8 @@ pool of heroes for a fresh puzzle.
 [//]: # (When prepared, describe how to set up first game sets for each gameset.)
 
 [//]: # (## Standard Setup)
+
+[//]: # (TODO minor image for most stepls)
 
 - Choose 1-3 Sets. Each Set represents a game, and can contain heroes, maps, and additional rules.
 - Choose or randomly draw a map from among the sets. Some maps come with special rules or scoring
@@ -47,6 +52,8 @@ Each turn they activate the hero in the leftmost column which has not acted yet 
 Dead heroes still get turns, to process effects like "until the end of your next turn,"
 but mostly you just pass control right back to the opponent.
 
+[//]: # (TODO zigzaggy next turn diagram)
+
 When there are no unused hero-columns remaining, the round ends.
 
 ## Turn
@@ -56,7 +63,8 @@ any order.
 
 Anything a unit can do is an **ability**. Abilities cost **actions**.
 
-Each turn, units have 1 Move Action and 1 Standard Action to spend, in any order.
+Each turn, units have 1 Move Action and 1 Standard Action to spend, plus any number of free actions
+or reactions. They can be used in any order.
 
 ## Actions
 
@@ -76,7 +84,7 @@ A Reaction can be used once whenever its listed trigger occurs.
 When a hero dies, the opponent takes their figure and keeps it on their side of the table.
 Each killed hero is worth 1 point at the end of the game.
 
-The map's description will explain the scoring mechanism.
+There's usually an additional scoring mechanism in the map's description (hover over map).
 
 ### Control Points
 
@@ -114,6 +122,8 @@ other abilities, but some effects treat default and non-default abilities differ
 
 Abilities on a hero's extra cards are their non-default abilities.
 
+[//]: # (Tokens, markers, objects, terrain)
+
 ## Movement
 
 As a move action, units can move up to their speed.
@@ -132,7 +142,7 @@ As a move action, units can move up to their speed.
 - **Exact Movement goes as far as possible.** "Move exactly 3" means you must move 3 spaces (without
   backtracking), and you stop if it becomes impossible to move further.
 
-## Forced Movement
+### Forced Movement
 
 Forced movement is any movement caused by an enemy's effect. It's usually a push or pull.
 
@@ -142,7 +152,9 @@ moved towards the caster.
 However, it's common to break these defaults, like "push in any direction" or "push from the center
 of the blast."
 
-## Special Movement
+[//]: # (TODO example of push/pull)
+
+### Special Movement
 
 Flying Movement ignores non-blocking terrain while moving and does not trigger reactions.
 
@@ -172,10 +184,15 @@ To determine the cover behind an obstacle:
       +2def difficulty
       to hit (see [Attack Rolls](#attack-rolls)).
 
+[//]: # (TODO image)
+
 ### Range
 
 When counting distance for range, the first space may be diagonally adjacent, and all others must be
 orthogonally adjacent.
+
+[//]: # (TODO range example)
+
 
 "Adjacent" means "In Range 1." Orthogonal only adjacency will be specified when it happens.
 
@@ -227,6 +244,8 @@ Common areas are:
 - **Burst**: All spaces in range N of the source space.
 - **NxN**: A NxN square of spaces. If it doesn't specify that it's centered, then it only needs to
   overlap the source space.
+
+[//]: # (TODO aoe shape examples)
 
 Usually the source space is the caster. If a range is given before the area, the area's source point
 is a targetable space in that range. Eg "range 3 2x2, all units receive +.5x damage"

@@ -1,4 +1,4 @@
-from domain.bag import Bag
+from domain.bag import Bag, GameSetBag
 from domain.library import Library
 from src.yaml_parsing import GameSet, RulesDeck
 
@@ -22,11 +22,12 @@ def game_to_library(game):
 
 
 def make_game_set_bag(game_set: GameSet):
-    set_bag = Bag(
+    set_bag = GameSetBag(
         name=game_set.name,
         description=game_set.description,
         size=3,
         color=game_set.color if game_set.color else (0.0, 0.0, 0.0),
+        intro_setup=game_set.intro_setup,
     )
 
     rules_deck = RulesDeck(cards=game_set.rules)
