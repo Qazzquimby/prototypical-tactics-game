@@ -47,6 +47,29 @@ def reposition_set_bags(tts_dict):
             "scaleZ": 1.0,
         }
 
+        bag[
+            "LuaScript"
+        ] = f"""\
+function onLoad()
+  local params = {{
+    click_function = 'setupIntroGame',
+    function_owner = self,
+    label = 'Intro Setup',
+    position = {{2, 0.5, 0}},
+    rotation = {{0, -90, 00}},
+    scale = {{1, 1, 1}},
+    width = 1500,
+    height = 300,
+    font_size = 250
+  }}
+  self.createButton(params)
+end
+
+function setupIntroGame()
+    print('Hello {bag["Nickname"]}')
+end
+"""
+
         # create floating title text
         floating_text = {
             "GUID": guid(),
@@ -70,6 +93,26 @@ def reposition_set_bags(tts_dict):
             },
         }
         tts_dict["ObjectStates"].append(floating_text)
+
+        # setup_button = {
+        #     "GUID": guid(),
+        #     "Name": "Button",
+        #     "Transform": {
+        #         "posX": 120,
+        #         "posY": 10,
+        #         "posZ": z_pos,
+        #         "rotX": 0.0,
+        #         "rotY": 0.0,
+        #         "rotZ": 0.0,
+        #         "scaleX": 1.0,
+        #         "scaleY": 1.0,
+        #         "scaleZ": 1.0,
+        #     },
+        #     "Nickname": f"Into Setup {bag['Nickname']}",
+        #     #  print hello name
+        #     "LuaScript": f"function onLoad()\n    print('Hello {bag['Nickname']}')\nend",
+        # }
+        # tts_dict["ObjectStates"].append(setup_button)
 
 
 async def library_to_tts_dict(
