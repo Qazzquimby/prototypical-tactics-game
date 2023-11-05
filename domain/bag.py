@@ -142,38 +142,66 @@ class GameSetBag(Bag):
         deal_intro_hero_scripts_string = "\n\n".join(deal_intro_hero_scripts)
 
         deps = f"""\
-            function setupIntroGame()
-                print('Hello {self.name}')
-    
-                local contents = self.getData().ContainedObjects
-                for _, bag in ipairs(contents) do
-                    if string.match(bag.Nickname, 'heroes') then
-                        {deal_intro_hero_scripts_string}
-                    end
-                end                
-            end"""
+function setupIntroGame()
+    print('Hello {self.name}')
+
+    local contents = self.getData().ContainedObjects
+    for _, bag in ipairs(contents) do
+        if string.match(bag.Nickname, 'heroes') then
+            {deal_intro_hero_scripts_string}
+        end
+        if string.match(bag.Nickname, 'maps') then
+            for _, map in ipairs(bag.ContainedObjects) do
+                if string.match(map.Nickname, '{self.intro_set_setup.map}') then
+                    print("found map!")
+
+                    local position = {{22, 0.5, 0}}
+                    local rotation = {{0, 0, 0}}
+
+                    spawnObjectData({{
+                        data=map,
+                        position=position,
+                        rotation=rotation,
+                        callback_function = function(spawned)
+                            -- log('objToDeal ' .. logString(spawned))
+                        end
+                    }})
+                end
+            end
+        end
+    end                
+end"""
         return on_load, deps
 
     def deal_intro_hero(self, hero_name: str, is_blue: bool, index: int):
+        if is_blue:
+            x_pos = 10 + index * 7
+            z_pos = -8.5
+            rot = 180
+        else:
+            x_pos = 35 - index * 7
+            z_pos = 8.5
+            rot = 0
+
         return f"""\
-        for _, hero in ipairs(bag.ContainedObjects) do
-            if string.match(hero.Nickname, '{hero_name}') then
-                print(hero.Nickname)
+print('dealing {hero_name}')
+for _, hero in ipairs(bag.ContainedObjects) do
+    if string.match(hero.Nickname, '{hero_name}') then
+        print("found!")
 
-                local position = {{10 + {index}*7, 0.5, -8.5}}
-                local rotation = {{0, 180, 0}}
+        local position = {{{x_pos}, 0.5, {z_pos}}}
+        local rotation = {{0, {rot}, 0}}
 
-                spawnObjectData({{
-                    data=hero,
-                    position=position,
-                    rotation=rotation,
-                    callback_function = function(spawned)
-                        -- log('objToDeal ' .. logString(spawned))
-                    end
-                }})
+        spawnObjectData({{
+            data=hero,
+            position=position,
+            rotation=rotation,
+            callback_function = function(spawned)
+                -- log('objToDeal ' .. logString(spawned))
             end
-        end
-        """
+        }})
+    end
+end"""
 
 
 BOX_MESH_URL = "http://cloud-3.steamusercontent.com/ugc/1469815240708973394/DA07673D2A5C47A5544D2024B92585069B40EE91/"
