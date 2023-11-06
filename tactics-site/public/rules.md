@@ -9,7 +9,7 @@
 
 Tabletop Teamfight is tactics game about finding strong synergies and counters, designed for  
 [Tabletop Simulator](https://store.steampowered.com/app/286160/Tabletop_Simulator/).
-It borrows familiar characters from other games so that players use their existing knowlege and play
+It borrows familiar characters from other games so that players use their existing knowledge and play
 out "who would win" situations.
 
 Gameplay is quick and streamlined for playing several games in a row, each with a different
@@ -17,13 +17,19 @@ pool of heroes for a fresh puzzle.
 
 # Setup
 
-[//]: # (## First Game Setup)
+## First Game Setup
 
-[//]: # (When prepared, describe how to set up first game sets for each gameset.)
+Each Game Set has an introductory setup recommended for learning the game or that set.
 
-[//]: # (## Standard Setup)
+Just press the Intro Setup button next to the set's bag, and it will lay out the map and hero decks.
 
-[//]: # (TODO minor image for most stepls)
+You only need to lay out hero cards and place the figures.
+
+## Standard Setup
+
+[//]: # (TODO image of standard setup)
+
+[//]: # (TODO minor image for most steps)
 
 - Choose 1-3 Sets. Each Set represents a game, and can contain heroes, maps, and additional rules.
 - Choose or randomly draw a map from among the sets. Some maps come with special rules or scoring
@@ -110,6 +116,17 @@ point for each of your opponent's heroes you've killed.
 Summons are created by Heroes and take their turn consecutively with the hero that summoned them
 ("their summoner").
 
+## Tokens and Markers
+
+A Token is a round cardboard piece that goes in a unit's play area as a tracker or reminder.
+
+A Marker is a square cardboard piece that goes on the map to indicate a location.
+
+Some Markers are **Objects** and can be targeted like units. During targeting, they are treated as 
+units allied to whoever created them.
+
+Other Markers are **Terrain**.
+
 ## Abilities
 
 Abilities are listed on a unit card and a hero's extra cards.
@@ -121,8 +138,6 @@ Under the passives are the unit's default abilities. These are largely the same 
 other abilities, but some effects treat default and non-default abilities differently.
 
 Abilities on a hero's extra cards are their non-default abilities.
-
-[//]: # (Tokens, markers, objects, terrain)
 
 ## Movement
 
@@ -184,14 +199,14 @@ To determine the cover behind an obstacle:
       +2def difficulty
       to hit (see [Attack Rolls](#attack-rolls)).
 
-[//]: # (TODO image)
+![Los Demo](los_demo.png)
 
 ### Range
 
 When counting distance for range, the first space may be diagonally adjacent, and all others must be
 orthogonally adjacent.
 
-[//]: # (TODO range example)
+![Range Demo](los_demo_range.png)
 
 
 "Adjacent" means "In Range 1." Orthogonal only adjacency will be specified when it happens.
