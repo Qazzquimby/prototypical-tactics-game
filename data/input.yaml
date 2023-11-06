@@ -2974,7 +2974,7 @@ sets:
               3-Haste: Your move speed increases to 8
               4-Illusion: Create two illusion units with 1hp and your speed. When you're targeted you may swap with an illusion.
               5-Invisibility: You gain Invisible until you next target an enemy.
-              6-Shield: You gain 6 overshield
+              6-Shield: Gain overshield equal to your max health / 2.
 
     intro_setup:
       map: Mid
