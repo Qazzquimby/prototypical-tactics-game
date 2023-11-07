@@ -2145,7 +2145,7 @@
     which "^3.0.1"
     ws "^8.14.2"
 
-"@nuxt/kit@3.7.4", "@nuxt/kit@^3.0.0", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.5.3", "@nuxt/kit@^3.6.5", "@nuxt/kit@^3.7.1", "@nuxt/kit@^3.7.3", "@nuxt/kit@^3.7.4":
+"@nuxt/kit@3.7.4", "@nuxt/kit@^3.0.0", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.5.3", "@nuxt/kit@^3.6.5", "@nuxt/kit@^3.7.3", "@nuxt/kit@^3.7.4":
   version "3.7.4"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.7.4.tgz#31c0bd57397cc56a1098af5d6504353cc2e855a2"
   integrity sha512-/S5abZL62BITCvC/TY3KWA6N721U1Osln3cQdBb56XHIeafZCBVqTi92Xb0o7ovl72mMRhrKwRu7elzvz9oT/g==
@@ -2426,11 +2426,6 @@
   version "2.11.6"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
   integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
-
-"@posva/lru-cache@^10.0.1":
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/@posva/lru-cache/-/lru-cache-10.0.1.tgz#d3214d1f8d3d239730fbb73280630ce58d780779"
-  integrity sha512-8rksr4MD7zNltsgerU9sx3OfOo8l9lABXf8/tII6XijgvTqFO+e+P+cSyfSQhAPgi458LMx75kUTLX3Zxwdc+g==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -8702,15 +8697,6 @@ nuxt-primevue@^0.0.3:
   dependencies:
     "@nuxt/kit" "^3.7.3"
 
-nuxt-vuefire@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/nuxt-vuefire/-/nuxt-vuefire-0.4.0.tgz#478594d340233f9ec5737ffd03fb68b583ea90c2"
-  integrity sha512-mxiAzg51pl+BM05FQ7KW70btr/ARiIjezV9y2H39dPGxS3JcpDH3uK3gbsanyG/ebbKcIw1ZIeuvycTtCQOH/Q==
-  dependencies:
-    "@nuxt/kit" "^3.7.1"
-    "@posva/lru-cache" "^10.0.1"
-    strip-json-comments "^5.0.1"
-
 nuxt@^3.6.5, nuxt@^3.7.4:
   version "3.7.4"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.7.4.tgz#281a596f84730869e14e231de376f1ec55553f1d"
@@ -10406,11 +10392,6 @@ strip-json-comments@^3.1.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
 
-strip-json-comments@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-5.0.1.tgz#0d8b7d01b23848ed7dbdf4baaaa31a8250d8cfa0"
-  integrity sha512-0fk9zBqO67Nq5M/m45qHCJxylV/DhBlIOVExqgOMiCCrzrhU6tCibRXNqE3jwJLftzE9SNuZtYbpzcO+i9FiKw==
-
 strip-literal@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/strip-literal/-/strip-literal-1.3.0.tgz#db3942c2ec1699e6836ad230090b84bb458e3a07"
@@ -11368,7 +11349,7 @@ vue-bundle-renderer@^2.0.0:
   dependencies:
     ufo "^1.2.0"
 
-vue-demi@>=0.14.5, vue-demi@>=0.14.6, vue-demi@latest:
+vue-demi@>=0.14.5, vue-demi@>=0.14.6:
   version "0.14.6"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.14.6.tgz#dc706582851dc1cdc17a0054f4fec2eb6df74c92"
   integrity sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==
@@ -11435,13 +11416,6 @@ vue@^3.3.4:
     "@vue/runtime-dom" "3.3.4"
     "@vue/server-renderer" "3.3.4"
     "@vue/shared" "3.3.4"
-
-vuefire@^3.1.17:
-  version "3.1.17"
-  resolved "https://registry.yarnpkg.com/vuefire/-/vuefire-3.1.17.tgz#cb667f68d6ecc9884fb087ead2d9a0858c855154"
-  integrity sha512-GQIX+w94etMg2q9pJmbp8HGsJQBEQk6JdnfA++B6rRpswxW5KQLm3FwKmMKDJVrxdCg/+5zy0q//YNGBcQUr6A==
-  dependencies:
-    vue-demi latest
 
 wait-on@^7.0.1:
   version "7.0.1"

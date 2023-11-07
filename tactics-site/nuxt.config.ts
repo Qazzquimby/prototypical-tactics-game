@@ -3,7 +3,7 @@ import { appDescription } from './constants/index'
 
 export default defineNuxtConfig({
   modules: [
-    'nuxt-vuefire',
+    // 'nuxt-vuefire',
     'nuxt-primevue',
     '@inkline/plugin/nuxt',
     '@vueuse/nuxt',
