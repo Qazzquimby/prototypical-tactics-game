@@ -51,6 +51,5 @@
     "vite": "^4.4.9",
     "vue-select": "^4.0.0-beta.6",
     "vue-simple-search-dropdown": "^1.0.1",
-    "vuefire": "^3.1.17"
   }
 }
