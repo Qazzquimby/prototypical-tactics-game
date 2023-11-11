@@ -2498,7 +2498,7 @@ sets:
               1/Game, Instant +3:
               You are stunned.
               Range 3, until the start of your next turn:
-               Target's hp cannot go below 1, they are not considered for objectives, and they receive -50% healing.
+               Target's hp cannot go below 1, they are not considered for objectives, and they receive +50% healing.
             tokens:
               - *Stun
               - name: Shallow Grave
@@ -3159,6 +3159,9 @@ sets:
             text: |-
               When an ally gives an ally DoT, it becomes Healing over Time.
               When an ally gives an enemy Healing over Time, it becomes DoT.
+          - name: Deploy
+            text: |-
+              Summon your Zombie Chihuahua in range 3.
         hints:
           - *ArmorHint
           - *IrreducibleHint
@@ -3198,7 +3201,7 @@ sets:
           - Teleporting slippery brawler
         health: 6
         speed: 4
-        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679624896-DNSEY1BSLCMXCG5OT8VT/M2E_Seamus.png
+        image_url: https://static.wikia.nocookie.net/monster/images/e/e9/ZombieChihuahuaimage.jpg/revision/latest/scale-to-width-down/384?cb=20170506224224
         passives:
           - name: Abilities targeting you have +2def
             text: ''
@@ -3466,7 +3469,7 @@ sets:
           - name: Voodoo Doll
             health: 2
             speed: 2
-            image_url: https://static.wikia.nocookie.net/monster/image_f/fe/C0E23278-277F-4773-9F96-A1D4031BEDC4.png
+            image_url: https://static.wikia.nocookie.net/monster/images/f/fe/C0E23278-277F-4773-9F96-A1D4031BEDC4.png/revision/latest/scale-to-width-down/384?cb=20180730171650
             passives:
               - name: Summoned
                 text: Give a Voodoo attachment to an enemy in range 4
@@ -3633,7 +3636,7 @@ sets:
               All Viktorias in range 4 of the target pull 4 towards it.
         units:
           - name: Viktoria (Copy)
-            image_url: https://www.puttyandpaint.com/image_uploads/artistworks/6442/cache/vik3-3__sized_l.jpg
+            image_url: https://www.puttyandpaint.com/images/uploads/artistworks/6442/cache/vik3-3__sized_l.jpg
             health: 6
             speed: 3
 
