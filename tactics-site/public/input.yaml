@@ -3159,6 +3159,7 @@ sets:
         abilities:
           - name: Rancid Transplant
             text: |-
+              Move + Standard Action:
               Two targets in Range 3
               You may move all of a condition from one target to the other.
               Give both targets get DoT +1.
