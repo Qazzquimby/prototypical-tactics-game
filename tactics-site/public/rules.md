@@ -9,7 +9,8 @@
 
 Tabletop Teamfight is tactics game about finding strong synergies and counters, designed for  
 [Tabletop Simulator](https://store.steampowered.com/app/286160/Tabletop_Simulator/).
-It borrows familiar characters from other games so that players use their existing knowledge and play
+It borrows familiar characters from other games so that players use their existing knowledge and
+play
 out "who would win" situations.
 
 Gameplay is quick and streamlined for playing several games in a row, each with a different
@@ -46,6 +47,19 @@ You only need to lay out hero cards and place the figures.
   and lay out their hero cards face up on your side of the map in the leftmost column.
 
 You can now start playing, starting with the first player.
+
+# Quick Rules
+
+Players alternate taking turns. On each turn, the player activates their next unused hero from left
+to right, including dead heroes. When all heroes have acted, the round ends and often scoring
+happens.
+
+When it's a heroes turn, they and all their summons activate in any order. They each get 1 Move
+Action and 1 Standard Action to use in any order, plus any number of free actions or reactions.
+
+A move action lets a unit move up to their speed in spaces orthogonally. It can be split between actions. Some other abilities may cost a move action.
+
+All abilities cost a standard action by default
 
 # Sequence of Play
 
@@ -103,29 +117,17 @@ Control Points stay claimed until the opponent takes them.
 
 # Game Concepts
 
-## Units, Heroes, Summons
+## Units
 
-Units have health and speed. They have standing figures on the map, abilities, and usually matter
-for objectives.
-All units are divided into Heroes and Summons.
+Units have health and speed and abilities. They're represented by standing figures on the map.
 
-Heroes are the main units of the game which players choose during setup. In addition to abilities on
-their cards, they usually have extra cards with more abilities. At the end of the game, you score a
-point for each of your opponent's heroes you've killed.
+*Heroes* are the main units of the game which players choose during setup. In addition to abilities
+on their cards, they usually have extra cards with more abilities. At the end of the game, you score
+a point for each of your opponent's heroes you've killed.
 
-Summons are created by Heroes and take their turn consecutively with the hero that summoned them
-("their summoner").
-
-## Tokens and Markers
-
-A Token is a round cardboard piece that goes in a unit's play area as a tracker or reminder.
-
-A Marker is a square cardboard piece that goes on the map to indicate a location.
-
-Some Markers are **Objects** and can be targeted like units. During targeting, they are treated as 
-units allied to whoever created them.
-
-Other Markers are **Terrain**.
+*Summons* are other units, usually created by a Hero.
+Summons don't have extra ability cards, only passives and default abilities.
+Summons take their turn consecutively with the hero that summoned them ("their summoner").
 
 ## Abilities
 
@@ -207,7 +209,6 @@ When counting distance for range, the first space may be diagonally adjacent, an
 orthogonally adjacent.
 
 ![Range Demo](los_demo_range.png)
-
 
 "Adjacent" means "In Range 1." Orthogonal only adjacency will be specified when it happens.
 
@@ -343,6 +344,17 @@ Some abilities are "n/Game" such as "1/Game".
 Flip the card or otherwise show when it has no uses remaining.
 
 If the ability has more than 1 charge, track the remaining charges with a die.
+
+## Tokens and Markers
+
+A Token is a round cardboard piece that goes in a unit's play area as a tracker or reminder.
+
+A Marker is a square cardboard piece that goes on the map to indicate a location.
+
+Some Markers are **Objects** and can be targeted like units. During targeting, they are treated as
+units allied to whoever created them.
+
+Other Markers are **Terrain**.
 
 ## Terrain
 

@@ -68,7 +68,7 @@
 conditions:
   DoT: &DoT
     name: DoT
-    image_url:  https://tactics.toren.dev/image_token_Burning_-3293685330274957657.jpg
+    image_url: https://tactics.toren.dev/image_token_Burning_-3293685330274957657.jpg
     text: At the start of your turn, take 1 damage. Stacks with itself.
   HealingOverTime: &HealingOverTime
     name: Healing Over Time
@@ -143,7 +143,7 @@ hints:
     name: Instant
     text: |-
       An Instant can be used for free at the start of any turn, or when a unit is targeted or included in an AoE, after any attack roll.
-           
+      
       The instant may have a modifier value, like "Instant +2". If it doesn't, the instant happens immediately before the ability resolves.
       
       If the instant does have a modifier, the attacker rolls against the attack roll def (0 for undefendable or aoe) + the modifier.
@@ -167,7 +167,7 @@ hints:
   UltimateHint: &UltimateHint
     name: Ultimate
     text: |-
-        Can be used 1/Game, and only on turn X or later.
+      Can be used 1/Game, and only on turn X or later.
   ### maps
   CapturePointHint: &CapturePointHint
     name: Capture Point Objective (orange shade)
@@ -191,7 +191,7 @@ hints:
       The yellow line has arrows in one direction, pointing down. Units cannot move "up" the line.
       Range 1 does not reach over the line, though other ranges are unaffected. (Melee can't reach)
       Line of sight cannot go both up and down height difference. If LoS goes up a height difference, its blocked when it would go down. (You can't see the other side of the hill)
-  
+
 
 markers:
   HealthPack: &HealthPack
@@ -263,19 +263,19 @@ terrain:
       Abilities passing through cover that does not start adjacent to that cover has +2def.
 sets:
   - name: Overwatch
-    color: [.94, .592, .114]
+    color: [ .94, .592, .114 ]
     description: |-
       - Slow charging ultimate abilities
       - Projectiles less accurate at long ranges
       - Instant speed reactions
       - Tanks, Healers, Dps
       - Many 1/Game effects
-#    rules:
-#      - *RuleInstant
-#      - *RuleUltimate
-#      - *RuleFlying
-#      - *RuleFacing
-#      - *RuleCriticalMoment
+    #    rules:
+    #      - *RuleInstant
+    #      - *RuleUltimate
+    #      - *RuleFlying
+    #      - *RuleFacing
+    #      - *RuleCriticalMoment
     heroes:
       - name: Widowmaker
         complexity: 2
@@ -457,11 +457,10 @@ sets:
         abilities:
           - name: Deplete Hover Jets
             text: |-
-              CD 1, Move Action:
+              Tap, Move Action:
               Move up to 2. Gain High Altitude until the start of your next turn.
             tokens:
               - *HighAltitude
-              - *OnCooldown
           - name: Jump Jet
             text: |-
               1/Game, Instant +2:
@@ -561,7 +560,7 @@ sets:
               name: Barrier Field
               image_url: https://tactics.toren.dev/image_token_Barrier Field_-8335640535662634721.jpg
               is_marker: true
-              size: 0.15
+              size: 0.5
               text: This edge is part of the barrier.
             tokens:
               - *Barrier
@@ -725,11 +724,9 @@ sets:
         abilities:
           - name: Jump Pack
             text: |-
-              CD 1, Move Action:
+              Tap, Move Action:
               Fly up to 6.
               Burst 1, 1dmg.
-            tokens:
-              - *OnCooldown
             hints:
               - *FlyingHint
           - name: Barrier Projector
@@ -806,7 +803,7 @@ sets:
               - *UltimateHint
       - name: Bastion
         complexity: 3
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - High damage slow stance
         health: 10
@@ -1519,9 +1516,20 @@ sets:
           - *DeadlyFallHint
           - *CoverHint
           - *CapturePointHint
+    intro_setup:
+      map: Nepal Village
+      blue:
+        - Pharah
+        - Mercy
+        - Reinhardt
+      red:
+        - Winston
+        - Reaper
+        - Hanzo
+
 
   - name: Lancer
-    color: [ 0.76, 0.12, 0.15]
+    color: [ 0.76, 0.12, 0.15 ]
     description: |-
       - Adds stress causing vulnerability and self destruction
       - Gain extra action at cost of stress
@@ -1551,7 +1559,7 @@ sets:
             color: gray
             values: [ 1 ]
       - name: Actions
-        text: |-          
+        text: |-
           For 1 Standard Action, range 4, undefendable, target gets 3 stress, and your choice of Impaired or Slow
           
           Once per turn, the active hero can "Overcharge". They gain +1 Standard Action that turn, and gain 1d6+2 stress.
@@ -1560,12 +1568,12 @@ sets:
         tokens:
           - *Impaired
           - *Slow
-#      - name: Opportunity Attacks
-#        text: |-
-#          When a unit starts a movement while in range 1 of an enemy, the enemy may make an make a standard-action default ability targeting them.
-#          They have Resistance to the ability.
-#        hints:
-#          - *ResistanceHint
+    #      - name: Opportunity Attacks
+    #        text: |-
+    #          When a unit starts a movement while in range 1 of an enemy, the enemy may make an make a standard-action default ability targeting them.
+    #          They have Resistance to the ability.
+    #        hints:
+    #          - *ResistanceHint
     heroes:
       - name: Blackbeard
         complexity: 2
@@ -1702,7 +1710,7 @@ sets:
             tokens:
               - name: Cable Winch System
                 image_url: https://www.hhilifting.com/media/mageplaza/blog/post/w/i/winch-1024x768.jpg
-                text: |- 
+                text: |-
                   You and the unit with your Cable Winch cannot move to be further than range 3.
                   When either of you are at range 3 of the other, you can spend 1 points of movement to pull the other unit 1 space.
           - name: Restock Drone
@@ -1779,7 +1787,7 @@ sets:
             tokens:
               - name: Magnetic Shield
                 is_marker: true
-                size: 0.15
+                size: 0.5
                 image_url: https://tactics.toren.dev/image_token_Magnetic Shield_908482444968353860.jpg
                 text: Units have resistance against attacks that pass through the shield.
             hints:
@@ -1924,7 +1932,7 @@ sets:
                 This ends and you lose all charges if you change location for any reason.
             dice:
               - name: Swarm Body Charge
-#                image_url: https://tactics.toren.dev/image_token_Swarm Body Stance_-5561438090744362995.jpg
+                #                image_url: https://tactics.toren.dev/image_token_Swarm Body Stance_-5561438090744362995.jpg
                 color: white
                 values: [ 1 ]
 
@@ -2196,17 +2204,16 @@ sets:
                   When a unit becomes adjacent, remove the mine and it deals Burst 1, 2dmg.
           - name: Smoke Mine
             text: |-
-              Place a Smoke Mine in LoS, and up to two more within range 1.
-              When a unit becomes adjacent, remove the mine and it creates a 2x2 area of Cover.
+              Place a square of Cover in LoS, and up to two more within range 1.
             tokens:
-              - name: Smoke Mine
-                image_url: https://p.turbosquid.com/ts-thumb/WI/CKIzvf/ulFmTAwN/boundingmine1/jpg/1432752647/300x300/sharp_fit_q85/9e267f8fa8e8ce6efe7402298c00361cd749692b/boundingmine1.jpg
-                is_marker: true
-                text: |-
-                  When a unit becomes adjacent, remove the mine and it creates a 2x2 area of Cover.
+#              - name: Smoke Mine
+#                image_url: https://p.turbosquid.com/ts-thumb/WI/CKIzvf/ulFmTAwN/boundingmine1/jpg/1432752647/300x300/sharp_fit_q85/9e267f8fa8e8ce6efe7402298c00361cd749692b/boundingmine1.jpg
+#                is_marker: true
+#                text: |-
+#                  When a unit becomes adjacent, remove the mine and it creates a 2x2 area of Cover.
               - *Cover
           - name: Grounding Mine
-            text: |- 
+            text: |-
               Place a Grounding Mine in LoS, and up to two more within range 1.
               ---
               Free action at start of turn: Detonate any number of Grounding Mines, one at a time.
@@ -2251,83 +2258,93 @@ sets:
         hints:
           - *CoverHint
           - *CapturePointHint
+    intro_setup:
+      map: City
+      blue:
+        - Blackbeard
+        - Balor
+        - Genghis
+      red:
+        - Black Witch
+        - Drake
+        - Death's Head
 
   - name: Dota 2
-    color: [.67, .18, .08]
+    color: [ .67, .18, .08 ]
     description: Todo
     heroes:
-#      - name: Anti-Mage
-#        polish: [needs_testing]
-#        description: |-
-#          - Teleports
-#          - Shut down abilities
-#          - Fragile
-#          - Cleave damage
-#        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/antimage.png
-#        health: 6
-#        speed: 3
-#        default_abilities:
-#          - name: Mana Break
-#            text: |-
-#              Burst 1, 2dmg, put an On Cooldown counter on one of the its non-default abilities.
-#        tokens:
-#          - *OnCooldown
-#        abilities:
-#          - name: Blink
-#            text: |-
-#              2/Game, Free Action:
-#              Remove Anti-Mage from the board and Summon an Illusion in his space, and in an empty space in range 5.
-#            dice:
-#              - name: Charges
-#                color: white
-#                values: [ 2 ]
-#          - name: Counterspell
-#            text: |-
-#              2/Game, Instant +3:
-#              Give target unit in LoS (can be you) your Counterspell Marker.
-#              Until the start of their next turn, Interrupt when an enemy Targets them:
-#              Cancel the ability. The unit with the Counterspell Marker copies the spell, targeting the caster.
-#              Remove Anti-Mage from the board and Summon an Illusion in his space, and range 1 of the caster.
-#            dice:
-#              - name: Charges
-#                color: white
-#                values: [ 2 ]
-#            tokens:
-#              - name: Counterspell
-#                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/d/dc/Counterspell_Ally_icon.png/revision/latest?cb=20230809010012
-#          - name: Manta Style
-#            text: |-
-#              1/Game, Free Action:
-#              Remove Anti-Mage from the board and Summon three Illusions in empty spaces in range 2.
-#          - name: Mana Void
-#            text: |-
-#              1/Game,
-#              Range 1, 2dmg to the target for each of its abilities that are unavailable (eg used up x/Game, unready ultimate, tapped, etc)
-#              as Xdmg to the target and enemies in burst 1 of it.
-#        units:
-#          - name: Illusion (Anti-Mage)
-#            count: 4
-#            image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/antimage.png
-#            health: 1
-#            speed: 3
-#            passive:
-#              - name: Summon
-#                text: |-
-#                  This gets a visible letter, distinct from any other Illusions from its summoner.
-#                  Choose a Secret letter face down matching one of the newly created Illusions, indicating which is the summoner.
-#              - name: Copy Defaults
-#                text: This has the Default Abilities of the summoner, but deals -1dmg.
-#            default_abilities:
-#              - name: Reveal
-#                text: |-
-#                  Instant, or Mandatory Interrupt when this is changed in any way other than location:
-#
-#                  If this unit's letter matches the Secret:
-#                    Reveal the Secret. Replace this with the summoner. Mark all other Illusions as Fake.
-#                  Else: mark this as Fake.
+      #      - name: Anti-Mage
+      #        polish: [needs_testing]
+      #        description: |-
+      #          - Teleports
+      #          - Shut down abilities
+      #          - Fragile
+      #          - Cleave damage
+      #        image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/antimage.png
+      #        health: 6
+      #        speed: 3
+      #        default_abilities:
+      #          - name: Mana Break
+      #            text: |-
+      #              Burst 1, 2dmg, put an On Cooldown counter on one of the its non-default abilities.
+      #        tokens:
+      #          - *OnCooldown
+      #        abilities:
+      #          - name: Blink
+      #            text: |-
+      #              2/Game, Free Action:
+      #              Remove Anti-Mage from the board and Summon an Illusion in his space, and in an empty space in range 5.
+      #            dice:
+      #              - name: Charges
+      #                color: white
+      #                values: [ 2 ]
+      #          - name: Counterspell
+      #            text: |-
+      #              2/Game, Instant +3:
+      #              Give target unit in LoS (can be you) your Counterspell Marker.
+      #              Until the start of their next turn, Interrupt when an enemy Targets them:
+      #              Cancel the ability. The unit with the Counterspell Marker copies the spell, targeting the caster.
+      #              Remove Anti-Mage from the board and Summon an Illusion in his space, and range 1 of the caster.
+      #            dice:
+      #              - name: Charges
+      #                color: white
+      #                values: [ 2 ]
+      #            tokens:
+      #              - name: Counterspell
+      #                image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/d/dc/Counterspell_Ally_icon.png/revision/latest?cb=20230809010012
+      #          - name: Manta Style
+      #            text: |-
+      #              1/Game, Free Action:
+      #              Remove Anti-Mage from the board and Summon three Illusions in empty spaces in range 2.
+      #          - name: Mana Void
+      #            text: |-
+      #              1/Game,
+      #              Range 1, 2dmg to the target for each of its abilities that are unavailable (eg used up x/Game, unready ultimate, tapped, etc)
+      #              as Xdmg to the target and enemies in burst 1 of it.
+      #        units:
+      #          - name: Illusion (Anti-Mage)
+      #            count: 4
+      #            image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/antimage.png
+      #            health: 1
+      #            speed: 3
+      #            passive:
+      #              - name: Summon
+      #                text: |-
+      #                  This gets a visible letter, distinct from any other Illusions from its summoner.
+      #                  Choose a Secret letter face down matching one of the newly created Illusions, indicating which is the summoner.
+      #              - name: Copy Defaults
+      #                text: This has the Default Abilities of the summoner, but deals -1dmg.
+      #            default_abilities:
+      #              - name: Reveal
+      #                text: |-
+      #                  Instant, or Mandatory Interrupt when this is changed in any way other than location:
+      #
+      #                  If this unit's letter matches the Secret:
+      #                    Reveal the Secret. Replace this with the summoner. Mark all other Illusions as Fake.
+      #                  Else: mark this as Fake.
       - name: Axe
         complexity: 1
-        description: |- 
+        description: |-
           - Provoke and counterattack
           - Reflect damage back to attackers
         image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/axe.png
@@ -2335,7 +2352,7 @@ sets:
         speed: 3
         passives:
           - name: Receive damage
-            text: |- 
+            text: |-
               Enemies in burst 1, 1dmg
           - name: Receive damage from a Default Ability
             text: The attacker takes 1/2 the damage received, before Armor.
@@ -2377,8 +2394,8 @@ sets:
               - *Armor
       - name: Crystal Maiden
         complexity: 3
-        polish: [needs_testing]
-        description: |- 
+        polish: [ needs_testing ]
+        description: |-
           - Slow and nuke enemies
           - Allies have an extra n/Game use.
           - Awful speed and health
@@ -2403,17 +2420,15 @@ sets:
         abilities:
           - name: Crystal Nova
             text: |-
-              CD 1
+              Tap:
               Range 3 2x2, 3dmg, Slow
             tokens:
-              - *OnCooldown
               - *Slow
           - name: Frostbite
             text: |-
-              CD 1
+              Tap:
               Range 3, 2dmg, immobilize and disarm
             tokens:
-              - *OnCooldown
               - *Immobile
               - *Disarm
           - name: Crystal Clone
@@ -2448,7 +2463,7 @@ sets:
               - *UltimateHint
       - name: Dazzle
         complexity: 3
-        description: |- 
+        description: |-
           - Save ally from death
           - Close range aoe damage and healing
           - Likes long grouped up teamfights
@@ -2477,7 +2492,7 @@ sets:
               1/Game, Instant +3:
               You are stunned.
               Range 3, until the start of your next turn:
-               Target's hp cannot go below 1, they are not considered for objectives, and they receive -50% healing.
+               Target's hp cannot go below 1, they are not considered for objectives, and they receive +50% healing.
             tokens:
               - *Stun
               - name: Shallow Grave
@@ -2498,7 +2513,7 @@ sets:
               Refresh all your abilities.
       - name: Drow Ranger
         complexity: 2
-        description: |- 
+        description: |-
           - Ranged dps
           - Slow enemies
         image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/drow_ranger.png
@@ -2558,9 +2573,7 @@ sets:
         passives:
           - name: After you use a non-default ability.
             text: |-
-              Enemies in burst 1, 1dmg, give an ability CD 1 max 1.
-        tokens:
-          - *OnCooldown
+              Enemies in burst 1, 1dmg, tap one of their abilities.
         dice:
           - name: Enchant
             color: orange
@@ -2581,7 +2594,7 @@ sets:
               1/Game
               Infinite line, push 1 to a free space on either side if possible.
               Fill empty spaces in the line with Fissure markers which block movement but not LoS.
-              Enemies adjacent to at least one Fissure marker: 2dmg and give an ability CD 1 max 1. 
+              Enemies adjacent to at least one Fissure marker: 2dmg and tap one of their abilities. 
               
               Fissure Markers are destroyed at the start of your next turn.
             tokens:
@@ -2592,7 +2605,7 @@ sets:
           - name: Echo Slam
             text: |-
               Ultimate 4
-              Enemies in burst 3, 2dmg + 1dmg per enemy in the area, give an ability CD 1 max 1.
+              Enemies in burst 3, 2dmg + 1dmg per enemy in the area, tap one of their abilities.
             hints:
               - *UltimateHint
       - name: Lich
@@ -2607,7 +2620,7 @@ sets:
         speed: 3
         passives:
           - name: On death
-            text: |- 
+            text: |-
               You may remove any number of Chain Frost tokens and markers, from units or the map. 
               Cast Chain Frost.
         default_abilities:
@@ -2678,7 +2691,7 @@ sets:
               - *MinusOneDamage
       - name: Lina
         complexity: 3
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - Speed and damage increases as more abilities are used
           - Very high midrange damage
@@ -2712,11 +2725,9 @@ sets:
           - name: Light Strike Array
             text: |-
               1/Game
-              Range 3, 2x2, 2dmg + 1dmg per Fiery Soul charge, give an ability CD 1 max 1.
+              Range 3, 2x2, 2dmg + 1dmg per Fiery Soul charge, tap one of their abilities.
               
               Gain 1 Fiery Soul charge.
-            tokens:
-              - *OnCooldown
           - name: Laguna Blade
             text: |-
               1/Game
@@ -2725,7 +2736,7 @@ sets:
               Fill your Fiery Soul charges up to 2.
       - name: Lion
         complexity: 3
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - Powerful disables
           - Drain ability uses from enemies
@@ -2740,9 +2751,7 @@ sets:
           - name: Impale
             text: |-
               1/Game
-              Range range 1 4x2 pointing away from you, 2dmg, push 1 in any direction, give an ability CD 1 max 1.
-            tokens:
-              - *OnCooldown
+              Range range 1 4x2 pointing away from you, 2dmg, push 1 in any direction, tap one of their abilities.
           - name: Hex
             text: |-
               1/Game
@@ -2782,14 +2791,12 @@ sets:
         abilities:
           - name: Starstorm
             text: |-
-              CD 1
+              Tap:
               Enemies in burst 4, 1dmg 
               Nearest enemy in burst 1, 1dmg
-            tokens:
-              - *OnCooldown
           - name: Sacred Arrow
             text: |-
-              CD 1
+              Tap:
               First enemy in unlimited line ignoring walls, +2def if you are in target's Los.
               2dmg, paralyze if target at range 6 or more.
             tokens:
@@ -2815,7 +2822,7 @@ sets:
               - *Invisible
       - name: Morphling
         complexity: 3
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - Slippery
           - Can focus damage or durability
@@ -2829,13 +2836,11 @@ sets:
         abilities:
           - name: Waveform
             text: |-
-              CD 1, Instant +2
+              Tap, Instant +2:
               Fly 2x your move speed in a straight line, ignoring units. Units moved through take 2dmg.
             hints:
               - *FlyingHint
               - *InstantHint
-            tokens:
-              - *OnCooldown
           - name: Attribute Shift
             text: |-
               Free action at start of turn. Choose one --
@@ -2852,8 +2857,8 @@ sets:
               - name: Strength Stance
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/2/27/Attribute_Shift_%28Strength_Gain%29_icon.png/revision/latest?cb=20120926231603
                 text: |-
-                    You have -1 speed.
-                    You have resistance to damage. Units have resistance to damage from you.
+                  You have -1 speed.
+                  You have resistance to damage. Units have resistance to damage from you.
               - name: Agility Stance
                 image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/a/a0/Attribute_Shift_%28Agility_Gain%29_icon.png/revision/latest?cb=20120926231600
                 text: |-
@@ -2861,7 +2866,7 @@ sets:
                   Receive and deal +50% damage.
           - name: Adaptive Strike
             text: |-
-              CD 1
+              Tap:
               Range 4
               If in strength stance:
                 Push 3, immobilize
@@ -2869,7 +2874,6 @@ sets:
                 2dmg
             tokens:
               - *Immobile
-              - *OnCooldown
           - name: Morph
             text: |-
               Ultimate 4
@@ -2878,7 +2882,7 @@ sets:
               - *UltimateHint
       - name: Necrophos
         complexity: 1
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - Large aura damage and healing
         image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/necrolyte.png
@@ -2886,7 +2890,7 @@ sets:
         speed: 3
         passives:
           - name: Start of turn
-            text: |- 
+            text: |-
               Enemies in Burst 3, irreducible 1dmg + 1dmg per 2 Kill counters. 
               Heal 1 per Kill counter
           - name: On killing a unit with 4 or more health
@@ -2922,6 +2926,49 @@ sets:
             tokens:
               - *Paralyze
               - *Immobile
+    maps:
+      - name: Mid
+        image_path: lp_Dota_Mid.png
+        hints:
+          - name: Tower
+            text: |-
+              Towers are units aligned to the team with the nearest deployment zone.
+              Towers have 12 health, and Resistance to damage while there isn't a creep in range 2 of them.
+              Towers have no speed can never change location.
+              At end of round, in turn order, each tower does range 2, 4dmg, targeting a creep if possible, else the nearest other enemy.
+              
+              Towers are worth 3 victory points if killed.
+          - name: Creep
+            text: |-
+              Creeps are unaligned unit, hostile to both teams.
+              Creeps have 1 hp, but cannot lose hp or die.
+              When a creep takes 2 or more damage, or would be directly killed from an effect, 
+              instead the player who caused the damage may move the creep 2.
+              At end of round, the creep does burst 1, 2dmg.
+          - name: Rune
+            text: |-
+              At the start of each odd numbered round, randomly select a rune space and create a 
+              random rune in the space, replacing any previous rune.
+              As soon as a unit shares a space with a rune, the rune is destroyed and applies its affect on the unit.
+              
+              1-Water: Heal to full health
+              2-Arcane: Refresh all abilities
+              3-Double Damage: Your default abilities deal +100% damage
+              3-Haste: Your move speed increases to 8
+              4-Illusion: Create two illusion units with 1hp and your speed. When you're targeted you may swap with an illusion.
+              5-Invisibility: You gain Invisible until you next target an enemy.
+              6-Shield: Gain overshield equal to your max health / 2.
+
+    intro_setup:
+      map: Mid
+      blue:
+        - Mirana
+        - Axe
+        - Crystal Maiden
+      red:
+        - Earthshaker
+        - Necrophos
+        - Lina
 
   - name: Malifaux (ALPHA)
     description: |-
@@ -2938,17 +2985,17 @@ sets:
           Any number of times, either player may discard a card from their hand to either:
           - replace the revealed card with the new value,
           - or increase or decrease the target to hit by 1.
-#      - name: Summoning
-#        text: |-
-#          Summoning creates a new unit.
-#          Summoned units cannot act the turn they are summoned, and activate at the same time as their summoner.
-#      - name: Disengagement
-#        text: |-
-#          Moving from a space adjacent to an enemy to a space not adjacent to that enemy costs 1 additional point of movement.
+    #      - name: Summoning
+    #        text: |-
+    #          Summoning creates a new unit.
+    #          Summoned units cannot act the turn they are summoned, and activate at the same time as their summoner.
+    #      - name: Disengagement
+    #        text: |-
+    #          Moving from a space adjacent to an enemy to a space not adjacent to that enemy costs 1 additional point of movement.
 
     heroes:
       - name: Lady Justice
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - Mobile melee brawler
         health: 8
@@ -2974,7 +3021,7 @@ sets:
               Free, Tap
               Teleport 3, or heal 2.
       - name: Perdita
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           Burst medium range damage
         health: 8
@@ -3011,11 +3058,11 @@ sets:
               Free, Tap:
               Discard your hand of fate cards and draw that many.
               Draw one fate card for each living hero your opponent has more than you do.
-              
+
 
 
       - name: Sonnia Criid
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - AoE damage
           - Summon
@@ -3075,12 +3122,12 @@ sets:
             default_abilities:
               - name: Runic Blade
                 text: |-
-                    Range 1, 1dmg, give DoT, heal 2
+                  Range 1, 1dmg, give DoT, heal 2
               - name: Dispel Magic
                 text: |-
                   End one condition on the target.
       - name: Dr. McMourning
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - Damage/healing over time
         health: 8
@@ -3095,6 +3142,9 @@ sets:
             text: |-
               When an ally gives an ally DoT, it becomes Healing over Time.
               When an ally gives an enemy Healing over Time, it becomes DoT.
+          - name: Deploy
+            text: |-
+              Summon your Zombie Chihuahua in range 3.
         hints:
           - *ArmorHint
           - *IrreducibleHint
@@ -3110,7 +3160,8 @@ sets:
           - name: Rancid Transplant
             text: |-
               Two targets in Range 3
-              Both targets get DoT +1. You may move a condition from one target to the other.
+              You may move all of a condition from one target to the other.
+              Give both targets get DoT +1.
           - name: Blood Poisoning
             text: |-
               Free, Tap:
@@ -3129,12 +3180,12 @@ sets:
                 text: |-
                   Range 1, 1dmg, DoT +1
       - name: Seamus
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - Teleporting slippery brawler
         health: 6
         speed: 4
-        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679624896-DNSEY1BSLCMXCG5OT8VT/M2E_Seamus.png
+        image_url: https://static.wikia.nocookie.net/monster/images/e/e9/ZombieChihuahuaimage.jpg/revision/latest/scale-to-width-down/384?cb=20170506224224
         passives:
           - name: Abilities targeting you have +2def
             text: ''
@@ -3172,7 +3223,7 @@ sets:
               Remove a corpse on the opponent's table half in range 1.
               If you did, take an Action.
       - name: Marcus
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - Give toolbox of permanent buffs to self and allies
           - High potential damage with high rolls
@@ -3258,7 +3309,7 @@ sets:
                   5-6, Teleport 3, adjacent to an enemy you haven't attacked this turn,
                   and repeat this ability.
       - name: Rasputina
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - Place Ice pillars to block space, slow, extend los
           - Reposition team
@@ -3324,7 +3375,7 @@ sets:
                   Range 1, 2dmg
                   on kill, heal 2.
       - name: Pandora
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - Mass disables
           - Enemy hits themself
@@ -3338,11 +3389,11 @@ sets:
           - name: Attacks targeting you have +2def.
             text: ""
           - name: When you are missed
-            text: Give one of the attacker's abilities CD 1, max 1
+            text: Tap one of the attacker's abilities
           - name: End of turn
             text: |-
-              Enemies in burst 2, give one of their abilities CD 1, max 1
-          - name: When an enemy in burst 2 gains a condition or CD,
+              Enemies in burst 2, tap one of their abilities.
+          - name: When an enemy in burst 2 gains a condition or taps an ability,
             text: |-
               Choose one --
               - Push 1 in any direction
@@ -3358,10 +3409,8 @@ sets:
           - name: Fear given Form
             text: |-
               Any number of targets in range 4 3x3, 1dmg, push 2 in any direction.
-        tokens:
-          - *OnCooldown
       - name: Zoraida
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - Mindcontrol units
           - Voodoo doll
@@ -3402,25 +3451,28 @@ sets:
           - name: Voodoo Doll
             health: 2
             speed: 2
-            image_url: https://static.wikia.nocookie.net/monster/image_f/fe/C0E23278-277F-4773-9F96-A1D4031BEDC4.png
+            image_url: https://static.wikia.nocookie.net/monster/images/f/fe/C0E23278-277F-4773-9F96-A1D4031BEDC4.png/revision/latest/scale-to-width-down/384?cb=20180730171650
             passives:
               - name: Summoned
-                text: Give a Voodoo attachment to an enemy in range 4
+                text: Give the Voodoo token to an enemy in range 4
               - name: Damaged
-                text: Enemies with Voodoo attachments take 1 damage.
+                text: The unit with the Voodoo token take 1 damage.
               - name: Gains Condition
-                text: Enemies with Voodoo attachments get the condition instead.
+                text: The unit with the Voodoo token gains that condition instead.
               - name: Death
-                text: All enemies lose all Voodoo attachments.
+                text: The unit with The Voodoo token loses the Voodoo token.
             default_abilities:
               - name: Unexpected Connection
                 text: |-
-                  Copy the text of an ability on an enemy unit with a voodoo upgrade in range 4.
+                  Copy the text of an ability on the unit with a voodoo token in range 4.
               - name: Served Its Purpose
                 text: |-
                   Draws a fate card, then kill this.
+            tokens:
+              - name: Voodoo
+                image_url: https://d1nhio0ox7pgb.cloudfront.net/_img/i_collection_png/512x512/plain/voodoo_doll.png
       - name: Leveticus
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - Extra lives
           - Irreducible chip damage
@@ -3490,7 +3542,7 @@ sets:
                 #                text: |-
                 #                  Range 1, 1dmg, heal 1
       - name: Som'er Teeth Jones
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - Summon and synergize with weak many minions
         health: 8
@@ -3504,23 +3556,23 @@ sets:
             text: |-
               Range 3 2x2, 1dmg, +1dmg per allied unit in the area, push 1
         abilities:
-#          - name: Pig Eating Grin
-#            text: |-
-#              Tap:
-#              Reaction after ally dies in range 3:
-#                This may make a default attack against the killer.
-#          - name: Extended Family
-#            text: |-
-#              Create 2 Bayou Gremlins in range 3, limit 4.
+          #          - name: Pig Eating Grin
+          #            text: |-
+          #              Tap:
+          #              Reaction after ally dies in range 3:
+          #                This may make a default attack against the killer.
+          #          - name: Extended Family
+          #            text: |-
+          #              Create 2 Bayou Gremlins in range 3, limit 4.
           - name: Gang Up
             text: |-
               Enemy in Range 4,
               Summon 2 Bayou Gremlins in burst 1 of the target, max 4.
-#          - name: Take One for the Team
-#            text: |-
-#              Move action:
-#              Target an ally in range 3.
-#              It deals 2dmg to units in range 1, then kill it.
+        #          - name: Take One for the Team
+        #            text: |-
+        #              Move action:
+        #              Target an ally in range 3.
+        #              It deals 2dmg to units in range 1, then kill it.
         units:
           - name: Bayou Gremlin
             health: 1
@@ -3540,7 +3592,7 @@ sets:
                 text: |-
                   Range 1, 1dmg
       - name: Viktoria
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - Two mobile brawlers
         health: 6
@@ -3569,183 +3621,183 @@ sets:
               All Viktorias in range 4 of the target pull 4 towards it.
         units:
           - name: Viktoria (Copy)
-            image_url: https://www.puttyandpaint.com/image_uploads/artistworks/6442/cache/vik3-3__sized_l.jpg
+            image_url: https://www.puttyandpaint.com/images/uploads/artistworks/6442/cache/vik3-3__sized_l.jpg
             health: 6
             speed: 3
 
 
-#      - name: Kirai
-#        description: |-
-#          - Summoner
-#          - Heals from nearby enemies
-#        health: 10
-#        speed: 3
-#        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679645918-3GIYPII25XP5RSICIVPE/M2E_Kirai.png
-#        passives:
-#          - name: Damaged
-#            text: Attacker takes 1 damage
-#          - name: Attacked
-#            text: May discard a card to change the target to one of your summons.
-#          - name: End of turn
-#            text: |-
-#              For each enemy in range 2, deal 1 damage to them and heal 1.
-#              Take 1 damage for each of your summons.
-#        default_abilities:
-#          - name: Shears
-#            text: |-
-#              Range 1, 2dmg
-#        abilities:
-#          - name: Spirit Barrage
-#            text: |-
-#              Range 6, 1dmg
-#              3-4: An adjacent ally can attack the target.
-#              5-6: Summon a Gaki adjacent to the target, max 3
-#          - name: Blood and Wind
-#            text: |-
-#              Range 3
-#              Choose:
-#                Summon a Gaki, max 3.
-#                or roll: 5-6, summon an Ikiryo, max 1.
-#          - name: Soothe Spirit
-#            text: Range 3, heal 1, Overshield +1
-#          - name: I've Got Your Back
-#            text: |-
-#              Free
-#              Range 4, teleport target ally adjacent to this.
-#        units:
-#          - name: Ikiryo
-#            health: 4
-#            speed: 4
-#            image_url: https://i.ytimg.com/vi/63A_tJ8wPds/maxresdefault.jpg
-#            passives:
-#              - name: Abilities targeting you have +2def
-#                text: ""
-#              - name: -1 Damage received
-#                text: ""
-#              - name: Damaged
-#                text: Attacker takes 1 damage
-#            default_abilities:
-#              - name: Death Touch
-#                text: |-
-#                  Range 2, 3dmg irreducible.
-#                  On kill, this and Kirai heal 2.
-#          - name: Gaki
-#            health: 3
-#            speed: 3
-#            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2015_09/large.gaki.jpg.afc89b1f23a8af53c6e322f1f434e4ea.jpg
-#            passives:
-#              - name: Armor
-#                text: ""
-#              - name: Damaged
-#                text: Attacker takes 1 damage
-#              - name: Unit dies in burst 1
-#                text: Heal 2
-#            default_abilities:
-#              - name: Mighty Jaws
-#                text: |-
-#                  Range 2, 2dmg
-#            hints:
-#              - *ArmorHint
-#      - name: The Dreamer
-#        description: |-
-#          - Delayed summoner
-#          - Deploys with a beater
-#        health: 4
-#        speed: 3
-#        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561406454403-LXJLZQ5JOLVVC9M8WHBB/M3E_Dreamer.png
-#        passives:
-#          - name: -1 Damage received
-#            text: ''
-#          - name: Abilities targeting you have +2def
-#            text: ''
-#          - name: Diversion
-#            text: Enemies in range 2 cannot use Free Actions.
-#          - name: Attacked
-#            text: You may discard a card to change the target to an adjacent Lord Chompy Bits or Alp.
-#          - name: Deploy
-#            text: Summon and deploy a Lord Chompy Bits.
-#        default_abilities:
-#          - name: Cricket Bat
-#            text: |-
-#              Range 1, 1dmg, +1dmg for each of your summons adjacent to the target.
-#              Swap positions with an ally in range 3.
-#        abilities:
-#          - name: Manifest Nightmares
-#            text: |-
-#              Once per turn
-#              Summon and Exile an Alp.
-#        units:
-#          - name: Lord Chompy Bits
-#            health: 6
-#            speed: 4
-#            image_url: https://gusladogames.files.wordpress.com/2015/04/lcbsmall.jpg
-#            passives:
-#              - name: Abilities targeting you have +2def
-#                text: ''
-#              - name: Start of turn
-#                text: Heal 2
-#            default_abilities:
-#              - name: Bite
-#                text: |-
-#                  Range 1, 3dmg
-#          - name: Alp
-#            health: 3
-#            speed: 3
-#            image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc8hSzXnwyWPFUDyUoXQlrKu2m5by3oZ4y1-CLUYsD6F2J7hQ2wdwX0P4zH0Jq9lpe50U&usqp=CAU
-#            passives:
-#              - name: Abilities targeting allies in range 1 have +1def
-#                text: ''
-#              - name: Nightmares Made Real
-#                text: |-
-#                  While this is in exile, if an enemy is damaged to below half health, if no other friendly Alp has been placed this activation:
-#                    you may place this adjacent to it.
-#                    This deals 1 damage to everything in range 1.
-#                    This may make a default attack.
-#            default_abilities:
-#              - name: Imaginary Claws
-#                text: |-
-#                  Range 1, 1dmg, +1dmg per exiled Alp.
-#      - name: Colette
-#        description: |-
-#          - Reposition self and team
-#          - Exile units
-#          - Distract and silence
-#        health: 8
-#        speed: 3
-#        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561391468145-0KLLOT8NOW46VZKHY0NR/M3E_Colette.png
-#        passives:
-#          - name: Abilities targeting you have +2def
-#            text: ""
-#          - name: Attacked, 1-2
-#            text: Take 1 less damage, then exile this.
-#          - name: Start, if Exiled
-#            text: |-
-#              Place this adjacent to an ally,
-#              then give adjacent enemies Distracted +1
-#          - name: End of turn
-#            text: |-
-#              Distracted enemies in range 2 are Silenced.
-#        default_abilities:
-#          - name: Distracting Illusions
-#            text: |-
-#              Range 1, undefendable, target discards a card, and gets Distracted +1 and Silenced.
-#        abilities:
-#          - name: False Reality
-#            text: |-
-#              Range 4, undefendable, teleport the target  3.
-#              5-6: You may give the target Stunned(-1 Action)
-#          - name: Presto Chango
-#            text: |-
-#              Range 4, undefendable, swap places with the target
-#          - name: Sword Trick
-#            text: |-
-#              Free
-#              Range 1, 2dmg, Exile target.
-#              At the start of its next activation, place it adjacent to one of its allies.
-#          - name: Practiced Choreography
-#            text: |-
-#              Free
-#              Allies in range 2 may move 2.
+  #      - name: Kirai
+  #        description: |-
+  #          - Summoner
+  #          - Heals from nearby enemies
+  #        health: 10
+  #        speed: 3
+  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679645918-3GIYPII25XP5RSICIVPE/M2E_Kirai.png
+  #        passives:
+  #          - name: Damaged
+  #            text: Attacker takes 1 damage
+  #          - name: Attacked
+  #            text: May discard a card to change the target to one of your summons.
+  #          - name: End of turn
+  #            text: |-
+  #              For each enemy in range 2, deal 1 damage to them and heal 1.
+  #              Take 1 damage for each of your summons.
+  #        default_abilities:
+  #          - name: Shears
+  #            text: |-
+  #              Range 1, 2dmg
+  #        abilities:
+  #          - name: Spirit Barrage
+  #            text: |-
+  #              Range 6, 1dmg
+  #              3-4: An adjacent ally can attack the target.
+  #              5-6: Summon a Gaki adjacent to the target, max 3
+  #          - name: Blood and Wind
+  #            text: |-
+  #              Range 3
+  #              Choose:
+  #                Summon a Gaki, max 3.
+  #                or roll: 5-6, summon an Ikiryo, max 1.
+  #          - name: Soothe Spirit
+  #            text: Range 3, heal 1, Overshield +1
+  #          - name: I've Got Your Back
+  #            text: |-
+  #              Free
+  #              Range 4, teleport target ally adjacent to this.
+  #        units:
+  #          - name: Ikiryo
+  #            health: 4
+  #            speed: 4
+  #            image_url: https://i.ytimg.com/vi/63A_tJ8wPds/maxresdefault.jpg
+  #            passives:
+  #              - name: Abilities targeting you have +2def
+  #                text: ""
+  #              - name: -1 Damage received
+  #                text: ""
+  #              - name: Damaged
+  #                text: Attacker takes 1 damage
+  #            default_abilities:
+  #              - name: Death Touch
+  #                text: |-
+  #                  Range 2, 3dmg irreducible.
+  #                  On kill, this and Kirai heal 2.
+  #          - name: Gaki
+  #            health: 3
+  #            speed: 3
+  #            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2015_09/large.gaki.jpg.afc89b1f23a8af53c6e322f1f434e4ea.jpg
+  #            passives:
+  #              - name: Armor
+  #                text: ""
+  #              - name: Damaged
+  #                text: Attacker takes 1 damage
+  #              - name: Unit dies in burst 1
+  #                text: Heal 2
+  #            default_abilities:
+  #              - name: Mighty Jaws
+  #                text: |-
+  #                  Range 2, 2dmg
+  #            hints:
+  #              - *ArmorHint
+  #      - name: The Dreamer
+  #        description: |-
+  #          - Delayed summoner
+  #          - Deploys with a beater
+  #        health: 4
+  #        speed: 3
+  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561406454403-LXJLZQ5JOLVVC9M8WHBB/M3E_Dreamer.png
+  #        passives:
+  #          - name: -1 Damage received
+  #            text: ''
+  #          - name: Abilities targeting you have +2def
+  #            text: ''
+  #          - name: Diversion
+  #            text: Enemies in range 2 cannot use Free Actions.
+  #          - name: Attacked
+  #            text: You may discard a card to change the target to an adjacent Lord Chompy Bits or Alp.
+  #          - name: Deploy
+  #            text: Summon and deploy a Lord Chompy Bits.
+  #        default_abilities:
+  #          - name: Cricket Bat
+  #            text: |-
+  #              Range 1, 1dmg, +1dmg for each of your summons adjacent to the target.
+  #              Swap positions with an ally in range 3.
+  #        abilities:
+  #          - name: Manifest Nightmares
+  #            text: |-
+  #              Once per turn
+  #              Summon and Exile an Alp.
+  #        units:
+  #          - name: Lord Chompy Bits
+  #            health: 6
+  #            speed: 4
+  #            image_url: https://gusladogames.files.wordpress.com/2015/04/lcbsmall.jpg
+  #            passives:
+  #              - name: Abilities targeting you have +2def
+  #                text: ''
+  #              - name: Start of turn
+  #                text: Heal 2
+  #            default_abilities:
+  #              - name: Bite
+  #                text: |-
+  #                  Range 1, 3dmg
+  #          - name: Alp
+  #            health: 3
+  #            speed: 3
+  #            image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc8hSzXnwyWPFUDyUoXQlrKu2m5by3oZ4y1-CLUYsD6F2J7hQ2wdwX0P4zH0Jq9lpe50U&usqp=CAU
+  #            passives:
+  #              - name: Abilities targeting allies in range 1 have +1def
+  #                text: ''
+  #              - name: Nightmares Made Real
+  #                text: |-
+  #                  While this is in exile, if an enemy is damaged to below half health, if no other friendly Alp has been placed this activation:
+  #                    you may place this adjacent to it.
+  #                    This deals 1 damage to everything in range 1.
+  #                    This may make a default attack.
+  #            default_abilities:
+  #              - name: Imaginary Claws
+  #                text: |-
+  #                  Range 1, 1dmg, +1dmg per exiled Alp.
+  #      - name: Colette
+  #        description: |-
+  #          - Reposition self and team
+  #          - Exile units
+  #          - Distract and silence
+  #        health: 8
+  #        speed: 3
+  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561391468145-0KLLOT8NOW46VZKHY0NR/M3E_Colette.png
+  #        passives:
+  #          - name: Abilities targeting you have +2def
+  #            text: ""
+  #          - name: Attacked, 1-2
+  #            text: Take 1 less damage, then exile this.
+  #          - name: Start, if Exiled
+  #            text: |-
+  #              Place this adjacent to an ally,
+  #              then give adjacent enemies Distracted +1
+  #          - name: End of turn
+  #            text: |-
+  #              Distracted enemies in range 2 are Silenced.
+  #        default_abilities:
+  #          - name: Distracting Illusions
+  #            text: |-
+  #              Range 1, undefendable, target discards a card, and gets Distracted +1 and Silenced.
+  #        abilities:
+  #          - name: False Reality
+  #            text: |-
+  #              Range 4, undefendable, teleport the target  3.
+  #              5-6: You may give the target Stunned(-1 Action)
+  #          - name: Presto Chango
+  #            text: |-
+  #              Range 4, undefendable, swap places with the target
+  #          - name: Sword Trick
+  #            text: |-
+  #              Free
+  #              Range 1, 2dmg, Exile target.
+  #              At the start of its next activation, place it adjacent to one of its allies.
+  #          - name: Practiced Choreography
+  #            text: |-
+  #              Free
+  #              Allies in range 2 may move 2.
 
 
   #  - name: Icon
@@ -3942,20 +3994,20 @@ sets:
   #                  Range 3+, 50% of their max hp
 
   - name: Team Fortress 2
-    color: [0.59, 0.31, 0.13]
+    color: [ 0.59, 0.31, 0.13 ]
     description: |-
       - high mobility and potential damage
       - permanent buffs and debuffs
-#    rules:
-#      - *RuleInstant
-#      - *RuleUltimate
-#      - *RuleFlying
-#      - *RuleFacing
-#      - *RuleCriticalMoment
+    #    rules:
+    #      - *RuleInstant
+    #      - *RuleUltimate
+    #      - *RuleFlying
+    #      - *RuleFacing
+    #      - *RuleCriticalMoment
     heroes:
       - name: Spy
         complexity: 4
-        polish: [needs_testing]
+        polish: [ needs_testing ]
         description: |-
           - Stealth makes difficult to hit
           - Instantly kills nearby enemies that don't target this.
@@ -4037,12 +4089,12 @@ sets:
               - name: Snack Pickup
                 image_url: https://tactics.toren.dev/image_token_Sandvich_6108514798017996936.jpg
                 is_marker: true
-                text: |- 
+                text: |-
                   When a damaged unit is in this space, they heal half their maximum hp and destroy this.
               - name: Buffalo Steak Rage
                 image_url: https://tactics.toren.dev/image_token_Buffalo Steak Rage_8581238716479321113.jpg
                 is_marker: true
-                text: |- 
+                text: |-
                   +1 speed, deal +50% damage, receive +1 damage, cannot deal damage to targets farther than range 1.
 
           - name: Swap Gloves
@@ -4092,6 +4144,12 @@ sets:
           - name: Sniper Rifle Charged
             image_url: https://tactics.toren.dev/image_token_Sniper Rifle Charged_-1799727609997937813.jpg
         abilities:
+          - name: Huntsman
+            text: |-
+              Range 4, 3dmg, +3def, +1 crit.
+              If you have DoT, the target gets DoT.
+            tokens:
+              - *DoT
           - name: Cleaner's Carbine
             text: |-
               Range 2, 2dmg.
@@ -4100,7 +4158,7 @@ sets:
             dice:
               - name: Charge
                 color: orange
-                values: [1]
+                values: [ 1 ]
           - name: Jarate
             text: |-
               1/Game
@@ -4157,7 +4215,7 @@ sets:
             dice:
               - name: Required Ultimate
                 color: white
-                values: [5]
+                values: [ 5 ]
             tokens:
               - name: Ubercharge
                 image_url: https://tactics.toren.dev/image_token_Ubercharge_8849607693161747783.jpg
@@ -4251,7 +4309,7 @@ sets:
         speed: 3
         passives:
           - name: When you're damaged by an ability that can affect multiple targets.
-            text: |- 
+            text: |-
               You have resistance from that damage. If you're the attacker, you may Fly equal to the damage value before applying reduction.
         hints:
           - *ResistanceHint
@@ -4322,7 +4380,7 @@ sets:
         dice:
           - name: Mmmph
             color: orange
-            values: [1]
+            values: [ 1 ]
 
         default_abilities:
           - name: Flamethrower
@@ -4339,7 +4397,7 @@ sets:
               - *InstantHint
         abilities:
           - name: Flare Gun
-            text: |- 
+            text: |-
               1def+1def per 2 spaces between, 2dmg. 
               If they have DoT: +2dmg.
               Else: They get DoT 1.
@@ -4450,7 +4508,7 @@ sets:
             text: Range 1, 4dmg, push 1
         abilities:
           - name: Bonk Atomic Punch
-            text: |- 
+            text: |-
               Move + Standard Action:
               You are immune to damage.
               You can't use standard actions.
