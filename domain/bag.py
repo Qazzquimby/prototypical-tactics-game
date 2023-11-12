@@ -152,7 +152,7 @@ function setupIntroGame()
         end
         if string.match(bag.Nickname, 'maps') then
             for _, map in ipairs(bag.ContainedObjects) do
-                if string.match(map.Nickname, '{self.intro_set_setup.map}') then
+                if string.match(map.Nickname, "{self.intro_set_setup.map}") then
                     print("found map!")
 
                     local position = {{22, 0.5, 0}}

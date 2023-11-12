@@ -495,6 +495,7 @@ class Map(Spawnable, BaseModel):
     name: str
     image_path: str
 
+    units: list[UnitCard] = []
     tokens: list[Token] = []
     hints: list[Hint] = []
 
