@@ -69,11 +69,11 @@ conditions:
   DoT: &DoT
     name: DoT
     image_url: https://tactics.toren.dev/image_token_Burning_-3293685330274957657.jpg
-    text: At the start of your turn, take 1 damage. Stacks with itself.
+    text: At the end of your turn, take 1 damage. Stacks with itself.
   HealingOverTime: &HealingOverTime
     name: Healing Over Time
     image_url: https://www.clipartmax.com/png/middle/460-4607785_recovery-time-free-clock-icon.png
-    text: At the start of your turn, Heal 1. Stacks with itself.
+    text: At the end of your turn, Heal 1. Stacks with itself.
   Slow: &Slow
     name: Slow
     image_url: https://tactics.toren.dev/image_token_Slow_1902566325755039578.jpg
@@ -103,6 +103,12 @@ conditions:
     image_url: https://tactics.toren.dev/image_token_Stealth_7505783149168806103.jpg
     text: |-
       Enemies beyond range 1 cannot target you, and cannot draw AoE that includes you unless it also includes a non-invisible unit.
+  Illusion: &Illusion
+    name: Illusion
+    image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/4/41/Illusion_icon.png/revision/latest?cb=20160605210645
+    text: |-
+      This acts as a unit with 1 health, the speed of its summoner, and no abilities.
+      The summoner has "Instant: Swap places with an illusion you summoned."
   OnCooldown: &OnCooldown
     name: On Cooldown
     image_url: https://cdn-icons-png.flaticon.com/128/2784/2784369.png
@@ -396,7 +402,7 @@ sets:
             text: Until end of turn, deal +50% damage.
           - name: Took damage since start of last turn
             image_url: https://tactics.toren.dev/image_token_Took damage since start of last turn_-3896541016264395972.jpg
-            back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
+            back_image_url: https://cdn-icons-png.flaticon.com/512/105/105152.png
             text: Flip this face down when you take damage, and face up at the start of your turn.
           - *Corpse
         default_abilities:
@@ -860,7 +866,7 @@ sets:
             text: |-
               Range 2, 2dmg + 2dmg for each Photon Orb marker on the target.
               Give a Photon Orb marker.
-              ---
+              
               At the end of your turn, each unit who did not gain a Photon Beam token this turn loses all Photon Beam tokens.
           - name: Photon Orb
             text: |-
@@ -875,24 +881,24 @@ sets:
           - name: Sentry Turret
             text: |-
               1/Game, Free Action:
-              Three spaces in unlimited range, place a Sentry Turret marker each.
-              Sentry Turrets have 1hp and 0 speed and can be targeted like a unit.
-              At the start of your turn, each sentry turret deals 1dmg to the nearest enemy in range 3.
+              Three spaces in unlimited range, place a Sentry Turret object in each.
+              Sentry Turrets have 1hp.
+              At the start of your turn, each sentry turret does "nearest enemy in range 2, 1dmg".
               If two turrets hit the same target, the target is slowed.
+            SentryTurret: &SentryTurret
+              name: Sentry Turret
+              image_url: https://tactics.toren.dev/image_token_Sentry Turret_8230050588297509514.jpg
+              is_marker: true
+              size: 0.5
+              text: |-
+                1hp.
+                At the start of your turn, each sentry turret does "nearest enemy in range 2, 1dmg".
+                If two turrets hit the same target, the target is slowed.
             tokens:
               - *Slow
-              - name: Sentry Turret
-                image_url: https://tactics.toren.dev/image_token_Sentry Turret_8230050588297509514.jpg
-                is_marker: true
-                size: 0.5
-              - name: Sentry Turret
-                image_url: https://tactics.toren.dev/image_token_Sentry Turret_8230050588297509514.jpg
-                is_marker: true
-                size: 0.5
-              - name: Sentry Turret
-                image_url: https://tactics.toren.dev/image_token_Sentry Turret_8230050588297509514.jpg
-                is_marker: true
-                size: 0.5
+              - *SentryTurret
+              - *SentryTurret
+              - *SentryTurret
           - name: Teleporter
             text: |-
               Place a Teleporter Marker in range 1 and another anywhere in line of sight, neither space containing an enemy unit (max 2, remove oldest).
@@ -2616,7 +2622,7 @@ sets:
           - Debuff mobility
           - AoE chip damage
         image_url: https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/lich.png
-        health: 8
+        health: 6
         speed: 3
         passives:
           - name: On death
@@ -2876,7 +2882,7 @@ sets:
               - *Immobile
           - name: Morph
             text: |-
-              Ultimate 4
+              Ultimate 4, Free Action:
               Range 4, gain ready copies of all of the target's non-passive, non-ultimate abilities. You may use their default abilities.
             hints:
               - *UltimateHint
@@ -2933,18 +2939,16 @@ sets:
           - name: Tower
             text: |-
               Towers are units aligned to the team with the nearest deployment zone.
-              Towers have 12 health, and Resistance to damage while there isn't a creep in range 2 of them.
+              Towers have 3 health, and Resistance to damage while there isn't a creep in range 4 of them.
               Towers have no speed can never change location.
-              At end of round, in turn order, each tower does range 2, 4dmg, targeting a creep if possible, else the nearest other enemy.
+              When a tower would die, it instead resets to 3 health and the enemy team gains 1 victory point.
               
-              Towers are worth 3 victory points if killed.
+              At end of round, in turn order, each tower does range 3, 4dmg, targeting a creep if possible, else the nearest other enemy.
           - name: Creep
             text: |-
-              Creeps are unaligned unit, hostile to both teams.
-              Creeps have 1 hp, but cannot lose hp or die.
-              When a creep takes 2 or more damage, or would be directly killed from an effect, 
-              instead the player who caused the damage may move the creep 2.
-              At end of round, the creep does burst 1, 2dmg.
+              Creeps are an unaligned unit, hostile to both teams.
+              Creeps can be targeted but do not have health and cannot die.
+              When a player would cause a creep to take 2 or more damage or die, they may move the creep 2, passing through their units.
           - name: Rune
             text: |-
               At the start of each odd numbered round, randomly select a rune space and create a 
@@ -2955,9 +2959,34 @@ sets:
               2-Arcane: Refresh all abilities
               3-Double Damage: Your default abilities deal +100% damage
               3-Haste: Your move speed increases to 8
-              4-Illusion: Create two illusion units with 1hp and your speed. When you're targeted you may swap with an illusion.
+              4-Illusion: Create two illusion units with 1hp and your speed. Instant: swap with illusion.
               5-Invisibility: You gain Invisible until you next target an enemy.
               6-Shield: Gain overshield equal to your max health / 2.
+
+        tokens:
+          - name: Water
+            text: Heal to full health
+            image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/8/86/Rune_of_Water_model.png/revision/latest/scale-to-width-down/88?cb=20210411184434
+          - name: Arcane
+            text: Refresh all abilities
+            image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/c/c3/Rune_of_Arcane_model.png/revision/latest/scale-to-width-down/88?cb=20210411190734
+          - name: DoubleDamage
+            text: Your default abilities deal +100% damage
+            image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/1/1a/Rune_of_Double_Damage_model.png/revision/latest/scale-to-width-down/88?cb=20210411190738
+          - name: Haste
+            text: Your move speed increases to 8
+            image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/9/94/Rune_of_Haste_model.png/revision/latest/scale-to-width-down/88?cb=20210411190742
+          - name: Illusion
+            text: Create two illusion summons with 1hp and your speed. When you're targeted you may swap with an illusion.
+            image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/c/c2/Rune_of_Illusion_model.png/revision/latest/scale-to-width-down/88?cb=20210411190746
+          - name: Invisibility
+            text: You gain Invisible until you next target an enemy.
+            image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/b/b6/Rune_of_Invisibility_model.png/revision/latest/scale-to-width-down/88?cb=20210411190750
+          - name: Shield
+            text: Gain overshield equal to your max health / 2.
+            image_url: https://static.wikia.nocookie.net/dota2_gamepedia/images/e/e2/Rune_of_Shield_model.png/revision/latest/scale-to-width-down/88?cb=20230508224951
+          - *Illusion
+          - *Invisible
 
     intro_setup:
       map: Mid
@@ -3234,11 +3263,11 @@ sets:
         passives:
           - name: Start of turn
             text: |-
-              Discard all Mutation Upgrades on this,
-              then this may attach a Mutation Upgrade.
+              You may discard all Mutation Upgrades on this,
+              then this attach a Mutation Upgrade.
           - name: Attacked
             text: |-
-              you may discard a card to change the target to an adjacent friendly Jackalope.
+              You may discard a card to change the target to an adjacent friendly Jackalope.
           - name: Can move freely through non-blocking terrain
             text: ""
           - name: Deploy
@@ -3249,7 +3278,7 @@ sets:
             text: |-
               Range 1, 2dmg
               5-6, Teleport  3, adjacent to an enemy you haven't targeted this turn,
-              and repeat this ability.
+              and repeat this ability targeting them.
         abilities:
           - name: Chimerancy
             text: |-
@@ -3275,7 +3304,7 @@ sets:
           - name: Formidable Horns
             text: |-
               UPGRADE
-              Target a unit with a default ability: 3-4, repeat the attack on the same target.
+              When your default ability rolls a 3-4, Tap: After resolving, repeat the ability on the same target.
           - name: Natural Camouflage
             text: |-
               UPGRADE
@@ -4131,9 +4160,10 @@ sets:
               - Range 3+, 2dmg, +2 crit per kill counter.
               - Move + Standard Action:
                 Move 1. Note your facing.
-                At the start of your next turn:
-                  Range 2+, undogeable 5dmg, +2 crit per kill counter.
+                At the start of your next turn you may:
+                  Range 2+, undefendable, 6dmg, +2 crit per kill counter.
                   After this attack the target receives +50% damage.
+                  End your turn
               
               On kill, gain a Kill counter.
           - name: Bushwacka
