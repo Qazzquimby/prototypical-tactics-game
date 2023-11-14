@@ -119,7 +119,7 @@ conditions:
     text: You deal -1 damage. Clear at the end of your turn.
   Armor: &Armor
     name: Armor
-    image_url: https://static.vecteezy.com/system/resources/previews/000/425/563/original/vector-shield-icon.jpg
+    image_url: https://media.discordapp.net/attachments/999104692233711676/1173770341135417404/qazzquimby_armor_icon_symbol_game_asset_59973203-a492-4e0a-bbb4-6e9bad9bd6ac.png
     text: -1 damage received, doesn't stack
 hints:
   ArmorHint: &ArmorHint
@@ -248,7 +248,7 @@ counters:
     image_url: https://tactics.toren.dev/image_token_Kill counter_984366966312148564.jpg
   Ammo: &Ammo
     name: Ammo counter
-    image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1AHyWSG-Y056opF_lg_L1_8PGbwpSTSCMT4C4-bu98w&s
+    image_url: https://media.discordapp.net/attachments/999104692233711676/1173769325744758814/qazzquimby_bullet_ammunition_icon_symbol_game_asset_3d79c033-50d3-4f23-ae79-4ba1eee48d91.png
 terrain:
   DifficultTerrain: &DifficultTerrain
     name: Difficult Terrain
@@ -1715,7 +1715,7 @@ sets:
               Ends when you or the unit with your Cable Winch die.
             tokens:
               - name: Cable Winch System
-                image_url: https://www.hhilifting.com/media/mageplaza/blog/post/w/i/winch-1024x768.jpg
+                image_url: https://media.discordapp.net/attachments/999104692233711676/1173771348854702170/qazzquimby_cargo_hook_cable_winch_icon_symbol_game_asset_7df823aa-65b6-4ef1-b0f0-21e5a221d2cf.png
                 text: |-
                   You and the unit with your Cable Winch cannot move to be further than range 3.
                   When either of you are at range 3 of the other, you can spend 1 points of movement to pull the other unit 1 space.
@@ -2237,7 +2237,7 @@ sets:
               At the end of their turn, remove the Clamp Bomb and Burst 1, 4dmg, centered on their space.
             tokens:
               - name: Clamp Bomb
-                image_url: https://static.wikia.nocookie.net/supcom/images/3/37/CybranMobileBomb.jpg
+                image_url: https://media.discordapp.net/attachments/999104692233711676/1173770626499088546/qazzquimby_spider_clamp_bomb_scifi_icon_symbol_game_asset_9037ed5e-0671-4cbb-85d4-39e4aaa6b916.png
                 text: |-
                   If they move 3 or more spaces in a turn, they lose the Clamp Bomb.
                   At the end of their turn, remove the Clamp Bomb it deals Burst 1, 4dmg.
@@ -2664,7 +2664,7 @@ sets:
           - name: Chain Frost
             text: |-
               1/Game
-              Enemy or Ice Spire without a Chain Frost marker in range 3, not blocked by units, 
+              Enemy or Ice Spire without a Chain Frost marker in range 2, not blocked by units, 
               if enemy: 2dmg + 2dmg per Chain Frost marker on this, slow.
               
               Remove all Chain Frost markers and tokens not on this.
@@ -3607,7 +3607,7 @@ sets:
           - name: Bayou Gremlin
             health: 1
             speed: 3
-            image_url: https://static.wikia.nocookie.net/monster/image_2/28/78BA677E-3FAB-4B1B-B634-6F957678BFFE.jpeg/revision/latest/scale-to-width-down/384?cb=20180814214132
+            image_url: https://i.pinimg.com/736x/77/f9/69/77f969f0336375bb998a1cffc0472c14.jpg
             passives:
               - name: May ignore AoE from allied units.
                 text: ""
