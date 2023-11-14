@@ -48,7 +48,7 @@ You only need to lay out hero cards and place the figures.
 
 You can now start playing, starting with the first player.
 
-# Quick Rules
+# Quick Rules Summary
 
 Players alternate taking turns. On each turn, the player activates their next unused hero from left
 to right, including dead heroes. When all heroes have acted, the round ends and often scoring
@@ -59,7 +59,12 @@ Action and 1 Standard Action to use in any order, plus any number of free action
 
 A move action lets a unit move up to their speed in spaces orthogonally. It can be split between actions. Some other abilities may cost a move action.
 
-All abilities cost a standard action by default
+All abilities cost a standard action by default. A unit's character card may start with passives that are always active.
+
+When an ability targets a unit, roll to beat the attack's defense (if any) or miss.
+If the ability affects an area or is global, no targeting or rolling occurs.
+
+
 
 # Sequence of Play
 
