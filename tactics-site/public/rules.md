@@ -36,7 +36,7 @@ You only need to lay out hero cards and place the figures.
 - Choose or randomly draw a map from among the sets. Some maps come with special rules or scoring
   conditions.
 - Note the team size for the map, given at the top of the description.
-- Randomly heroes evenly from among the Sets. You need 3 times the team size.
+- Randomly draw heroes from evenly the Sets. You need 3 times the team size.
 - Choose a first player. They divide the heroes into two pools.
 - The second player chooses who gets which hero pool.
 - Starting with the first player, alternate *deploying* heroes until each player has
@@ -63,8 +63,6 @@ All abilities cost a standard action by default. A unit's character card may sta
 
 When an ability targets a unit, roll to beat the attack's defense (if any) or miss.
 If the ability affects an area or is global, no targeting or rolling occurs.
-
-
 
 # Sequence of Play
 
@@ -97,8 +95,8 @@ A Move Action allows the unit to move up to their speed in spaces orthogonally. 
 See [Movement](#movement))
 Some abilities may also cost a move action.
 
-A Standard Action is the default cost for all abilities. A Standard Action can be also be spent to
-for a move Action.
+A Standard Action is the default cost for all abilities. 
+A Standard Action can be also be spent for a move Action (a "double move").
 
 A Free Action can be used on your turn at no cost, any number of times.
 
@@ -201,8 +199,8 @@ To determine the cover behind an obstacle:
       you.
     - Otherwise, the cover line is a diagonal line pointing away from you.
 - The space between the lines is in the cover.
-    - If a space is completely in cover, you can't see it or directly target it.
-    - If a space is half in shadow (cut diagonally), then you can see and target it, but it has
+    - If a space is completely in the shadow, you can't see it or directly target it.
+    - If a space is half in the shadow (cut diagonally), then you can see and target it, but it has
       +2def difficulty
       to hit (see [Attack Rolls](#attack-rolls)).
 
@@ -254,7 +252,7 @@ Since individuals are not chosen, nothing is "targeted" in an AoE.
 
 Often AoEs are simply written by giving an area, which implies "affects everything in that area."
 
-Eg, "3x3 centered on you, 2⚔" means "All units in a 3x3 square centered on you, you deal 2 damage to
+Eg, "3x3 centered on you, 2dmg" means "All units in a 3x3 square centered on you, you deal 2 damage to
 them."
 
 Common areas are:
@@ -381,3 +379,4 @@ triggering it again.
 
 
 
+[//]: # (todo Condtions)
