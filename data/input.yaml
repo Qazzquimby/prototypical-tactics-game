@@ -72,11 +72,11 @@ conditions:
     text: At the end of your turn, take 1 damage. Stacks with itself.
   HealingOverTime: &HealingOverTime
     name: Healing Over Time
-    image_url: https://www.clipartmax.com/png/middle/460-4607785_recovery-time-free-clock-icon.png
+    image_url: https://media.discordapp.net/attachments/999104692233711676/1177528677681090610/qazzquimby_heart_healing_over_time_icon_symbol_b39b752b-0054-4c1e-827c-3867df8b4c92.png
     text: At the end of your turn, Heal 1. Stacks with itself.
   Slow: &Slow
     name: Slow
-    image_url: https://tactics.toren.dev/image_token_Slow_1902566325755039578.jpg
+    image_url: https://media.discordapp.net/attachments/999104692233711676/1177707616873488525/qazzquimby_chilled_timeslow_icon_symbol_dd873a3c-f377-4fd9-a3e1-c02b454e2b0f.png
     text: You have 1/3 Speed. You are undefendable. Clear at the end of your next turn.
   Stun: &Stun
     name: Stun
@@ -84,15 +84,15 @@ conditions:
     text: You have -1 Standard Action. Clear at the end of your next turn.
   Immobile: &Immobile
     name: Immobile
-    image_url: https://cdn-icons-png.flaticon.com/512/4669/4669912.png
+    image_url: https://media.discordapp.net/attachments/999104692233711676/1177535529898754068/qazzquimby_frozen_immobile_icon_symbol_e84336c6-fc0e-4bb1-b519-54f4cd517194.png
     text: You cannot move voluntarily. You are undefendable. Clear at the end of your next turn.
   Paralyze: &Paralyze
     name: Paralyze
-    image_url: https://tactics.toren.dev/image_token_Paralyze_-2680861371538521442.jpg
+    image_url: https://media.discordapp.net/attachments/999104692233711676/1177707353022414928/qazzquimby_tied_up_cant_move_status_effect_icon_symbol_fe1eac8a-18e0-4b65-8b42-9f38974aede4.png
     text: You cannot take actions. Clear at the end of your next next turn.
   Disarm: &Disarm
     name: Disarm
-    image_url: https://static.wikia.nocookie.net/hon_gamepedia/images/8/8a/Icon_Disarm.png/revision/latest?cb=20131108014248
+    image_url: https://media.discordapp.net/attachments/999104692233711676/1177496234055958548/qazzquimby_pieces_of_a_shattered_weapon_game_icon_1e34f314-aef8-4e95-afa6-5e80b6e99ed8.png
     text: You cannot use default abilities. Clear at the end of your next turn.
   Silence: &Silence
     name: Silence
@@ -111,7 +111,7 @@ conditions:
       The summoner has "Instant: Swap places with an illusion you summoned."
   OnCooldown: &OnCooldown
     name: On Cooldown
-    image_url: https://cdn-icons-png.flaticon.com/128/2784/2784369.png
+    image_url: https://media.discordapp.net/attachments/999104692233711676/1177536700730327061/qazzquimby_recharging_unready_waiting_on_cooldown_icon_symbol_9225b9de-2671-4881-b36b-1405333c6d38.png
     text: You cannot use this ability. Reduce by 1 at end of your next turn.
   MinusOneDamage: &MinusOneDamage
     name: Minus One Damage
@@ -252,13 +252,13 @@ counters:
 terrain:
   DifficultTerrain: &DifficultTerrain
     name: Difficult Terrain
-    image_url: https://img.freepik.com/free-photo/top-view-clear-ocean-water-texture_23-2149132371.jpg?w=2000
+    image_url: https://media.discordapp.net/attachments/999104692233711676/1177511272921702451/qazzquimby_water_from_above_ce47cc25-0ba1-4eda-805d-5308cf3b2691.png
     is_marker: true
     text: |-
       Difficult terrain costs 2 movement to enter.
   DestroyedTerrain: &DestroyedTerrain
     name: Destroyed terrain
-    image_url: https://upload.wikimedia.org/wikipedia/commons/d/d2/Solid_white.png?20060513000852
+    image_url: https://media.discordapp.net/attachments/999104692233711676/1177495087324860500/qazzquimby_1m_square_of_cracked_broken_terrain_top_down_7a651ca0-480d-4773-a34f-b19cf790b2a6.png
     is_marker: true
     text: Terrain here has been destroyed
   Cover: &Cover
@@ -483,7 +483,7 @@ sets:
           - name: Barrage
             text: |-
               Ultimate 5, Move + Standard Action:
-              1def per 2 spaces between, 8dmg, 3dmg to all others in burst 1.
+              Range 2, 2x2, 4dmg
             hints:
               - *UltimateHint
       - name: Reaper
@@ -577,11 +577,12 @@ sets:
               1/Game, Move + Standard Action:
               Move as far as possible in a line.
               When you contact an enemy, roll attack with +3def.
-              The first enemy hit this way is pushed with you, interrupted, and takes 7dmg.
+              The first enemy hit this way is pushed with you, interrupted, and takes 6dmg.
               Other enemies in the line are pushed to the side and take  1dmg.
           - name: Fire Strike
             text: |-
-              Line infinite, +2def, 3dmg
+              Tap:
+              Line infinite, 3dmg
           - name: Earthshatter
             text: |-
               Ultimate 4:
@@ -661,13 +662,13 @@ sets:
           - name: Storm Bow
             text: |-
               Move + Standard Action:
-              Move up to 1
+              Move 1
               Unlimited range, +2def, 4dmg, +2Crit
         abilities:
           - name: Sonic Arrow
             text: |-
               1/Game, Free Action:
-              The next time you make a ranged attack
+              The next time you make a attack
                 On hit, give the target Sonic Arrow.
                 On miss, place a Sonic Arrow in the targeted space.
               
@@ -679,7 +680,7 @@ sets:
                 text: Enemies within range 2 of a sonic arrow are undefendable, cannot be untargetable, and receive +2 Crit
               - name: Sonic Arrow
                 image_url: https://tactics.toren.dev/image_token_Sonic Arrow_7239906155799197772.jpg
-                is_marker: true
+                is_marker: false
                 text: Enemies within range 2 of a sonic arrow are undefendable, cannot be untargetable, and receive +2 Crit
           - name: Storm Arrows
             text: |-
@@ -725,7 +726,7 @@ sets:
           - name: Tesla Cannon
             text: |-
               Choose one --
-              - Range 1 3x3, 2dmg,
+              - Range 1 3x3, 1dmg,
               - Range 4, +2def, 2dmg
         abilities:
           - name: Jump Pack
@@ -739,11 +740,11 @@ sets:
             text: |-
               1/Game, Instant +2:
               Place a Barrier in your space with 6hp.
-              Enemy attacks that pass enter or exit the burst 1 square around the Barrier hit it instead.
+              The burst 1 square around the Barrier is blocking for enemy attacks.
             dice:
               - name: Barrier health
                 color: red
-                values: [ 66 ]
+                values: [ 6 ]
             tokens:
               - name: Barrier
                 image_url: https://tactics.toren.dev/image_token_Barrier_7326628920520179890.jpg
@@ -1547,7 +1548,7 @@ sets:
         Cleared at the end of your turn.
     Grappled: &Grappled
       name: Grappled
-      image_url: https://static.thenounproject.com/png/4418721-200.png
+      image_url: https://media.discordapp.net/attachments/999104692233711676/1177524611370459196/qazzquimby_grapple_wrestle_game_icon_16c8f610-254b-45b2-82c9-9bb4afaaa545.png
       text: |-
         text: |-
           Affects a pair of adjacent units.
@@ -1731,7 +1732,7 @@ sets:
                 and lose 4 stress.
             tokens:
               - name: Restock Drone
-                image_url: https://entrackr.com/storage/2019/10/drone-1200x600.jpg
+                image_url: https://media.discordapp.net/attachments/999104692233711676/1177709510677237840/qazzquimby_drone_carrying_very_large_crate_5faaadc6-05e5-499c-9695-ea1e0e524e04.png
                 is_marker: true
                 text: |-
                   Units have: Standard action: 
@@ -1815,7 +1816,7 @@ sets:
               - *Immobile
               - name: Mag Field
                 is_marker: true
-                image_url: https://tactics.toren.dev/image_token_Mag Field_-8219634878029312124.jpg
+                image_url: https://media.discordapp.net/attachments/999104692233711676/1177536178623365201/qazzquimby_magnetic_field_icon_symbol_62d8c85a-58b7-41b8-bb5b-ff083cc1751e.png
         units:
           - name: ICEOUT Drone
             health: 4
@@ -2071,14 +2072,14 @@ sets:
           - name: Sentinel Drone
             health: 3
             speed: 0
-            image_url: https://static.wikia.nocookie.net/nomanssky_gamepedia/images/1/15/Sentinel_drone.jpg/revision/latest?cb=20190905213927
+            image_url: https://media.discordapp.net/attachments/999104692233711676/1177709809483661454/qazzquimby_blue_forcefield_electric_defense_drone_76b56c78-6ba5-467c-81f9-2b377d2d8a2f.png
             passives:
               - name: When an enemy in range 2 targets you or an ally,
                 text: 2dmg to the enemy
           - name: Turret Drone
             health: 5
             speed: 0
-            image_url: https://static.wikia.nocookie.net/warhammer40k/images/a/ae/Stplasma.jpg/revision/latest/scale-to-width-down/250?cb=20120720073820
+            image_url: https://media.discordapp.net/attachments/999104692233711676/1177708644528300152/qazzquimby_sentrygun_turret_8aa09a23-8e99-4f55-9916-a12ab52c2cf2.png
             passives:
               - name: When an enemy in LoS is damaged by an ally
                 text: |-
@@ -2213,7 +2214,7 @@ sets:
               Place a square of Cover in LoS, and up to two more within range 1.
             tokens:
 #              - name: Smoke Mine
-#                image_url: https://p.turbosquid.com/ts-thumb/WI/CKIzvf/ulFmTAwN/boundingmine1/jpg/1432752647/300x300/sharp_fit_q85/9e267f8fa8e8ce6efe7402298c00361cd749692b/boundingmine1.jpg
+#                image_url: https://media.discordapp.net/attachments/999104692233711676/1177708468795342889/qazzquimby_smoke_landmine_013defb9-d8ba-4f91-978f-dc734092dfa0.png?ex=65737d7b&is=6561087b&hm=2819d81122464c9aad0bf9d4b9623747e35696b9170cea191cde2602a489f967&=&format=webp&width=577&height=577
 #                is_marker: true
 #                text: |-
 #                  When a unit becomes adjacent, remove the mine and it creates a 2x2 area of Cover.
@@ -2277,7 +2278,10 @@ sets:
 
   - name: Dota 2
     color: [ .67, .18, .08 ]
-    description: Todo
+    description: |-
+      - Ultimates
+      - Stun variants
+      - Lane pushing scoring
     heroes:
       #      - name: Anti-Mage
       #        polish: [needs_testing]
@@ -2373,7 +2377,7 @@ sets:
               Until the beginning of your next turn,
                 You have Armor
                 When an enemy starts their turn in range 1 of you,
-                  they cannot move, and they must use a default attack targeting you, if possible.
+                  they cannot move, and they must use a default attack targeting you, if possible, spending actions as normal.
             hints:
               - *ArmorHint
           - name: Battle Hunger
@@ -2561,7 +2565,7 @@ sets:
 
             tokens:
               - name: Glacier Wall
-                image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPpu9N7SG3xoCnXsQgibEZPZI9LyqBkZoDySxraGRr_xrVo1BjmkX_7Sm7_wXM0qTyBs4&usqp=CAU
+                image_url: https://media.discordapp.net/attachments/999104692233711676/1177524107278024804/qazzquimby_glacier_wall_top_down_df15fa65-8884-444b-84fe-45cf5ed9a819.png
                 is_marker: true
                 text: |-
                   Blocks movement.
@@ -3005,7 +3009,7 @@ sets:
       - No cooldowns or changes between games
       - Many summons
     rules:
-      - name: Fate Cards
+      - name: Malifaux_rules
         text: |-
           Each player has a deck of 24 cards, 4 copies of 1-6.
           At the beginning of each round, each player draws up to 3 cards.
@@ -3500,7 +3504,7 @@ sets:
                   Draws a fate card, then kill this.
             tokens:
               - name: Voodoo
-                image_url: https://d1nhio0ox7pgb.cloudfront.net/_img/i_collection_png/512x512/plain/voodoo_doll.png
+                image_url: https://media.discordapp.net/attachments/999104692233711676/1177708610885791934/qazzquimby_voodoo_doll_status_effect_icon_symbol_eba47a65-6cfc-4ab6-9f2e-2f0de1afcba7.png
       - name: Leveticus
         polish: [ needs_testing ]
         description: |-
@@ -3541,7 +3545,7 @@ sets:
           - name: Hollow Waif
             health: 3
             speed: 2
-            image_url: https://static.wikia.nocookie.net/monster/image_9/9b/24FC90CD-48B6-40AD-AF9D-6D7D193E47CF.jpeg/revision/latest?cb=20180824202915
+            image_url: https://static.wikia.nocookie.net/monster/images/9/9b/24FC90CD-48B6-40AD-AF9D-6D7D193E47CF.jpeg/revision/latest?cb=20180824202915
             passives:
               - name: Ignored for Objectives
                 text: ''

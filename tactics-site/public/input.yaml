@@ -2278,7 +2278,10 @@ sets:
 
   - name: Dota 2
     color: [ .67, .18, .08 ]
-    description: Todo
+    description: |-
+      - Ultimates
+      - Stun variants
+      - Lane pushing scoring
     heroes:
       #      - name: Anti-Mage
       #        polish: [needs_testing]
@@ -3006,7 +3009,7 @@ sets:
       - No cooldowns or changes between games
       - Many summons
     rules:
-      - name: Fate Cards
+      - name: Malifaux_rules
         text: |-
           Each player has a deck of 24 cards, 4 copies of 1-6.
           At the beginning of each round, each player draws up to 3 cards.

@@ -75,63 +75,60 @@ class GameSetBag(Bag):
         self.intro_set_setup = intro_setup
 
     def as_dict(self, transform=None):
-        (
-            setup_intro_game_on_load,
-            setup_intro_game_deps,
-        ) = self.make_setup_intro_game_button()
+        on_loads = []
+        deps = []
+
+        for func in [self.make_setup_intro_game_button, self.make_floating_text]:
+            on_load, dep = func()
+            on_loads.append(on_load)
+            deps.append(dep)
+
+        on_load_string = "\n\n".join(on_loads)
+        deps_string = "\n\n".join(deps)
 
         self.lua_script = f"""\
         function onLoad()
-            {setup_intro_game_on_load}
+            {on_load_string}
         end
 
-        {setup_intro_game_deps}
+        {deps_string}
         """
-
-        # create floating title text
-        # floating_text = {
-        #     "GUID": guid(),
-        #     "Name": "3DText",
-        #     "Transform": {
-        #         "posX": 120,
-        #         "posY": 8,
-        #         "posZ": z_pos,
-        #         "rotX": 0.0,
-        #         "rotY": 90.0,
-        #         "rotZ": 0.0,
-        #         "scaleX": 1.0,
-        #         "scaleY": 1.0,
-        #         "scaleZ": 1.0,
-        #     },
-        #     "Locked": True,
-        #     "Text": {
-        #         "Text": "\n".join(bag["Nickname"].split(" ")),
-        #         "colorstate": {"r": 1.0, "g": 1.0, "b": 1.0},
-        #         "fontSize": 64,
-        #     },
-        # }
-        # tts_dict["ObjectStates"].append(floating_text)
 
         bag_dict = super().as_dict(transform)
         return bag_dict
 
     def make_setup_intro_game_button(self):
         if not self.intro_set_setup:
-            return f"print('No intro set setup for {self.name}')", ""
+            return "", ""
+            # return f"print('No intro set setup for {self.name}')", ""
 
         on_load = f"""\
-        local params = {{
-                click_function = 'setupIntroGame',
-                function_owner = self,
-                label = 'Intro Setup',
-                position = {{2, 0.5, 0}},
-                rotation = {{0, -90, 00}},
-                scale = {{1.2, 1, 1.2}},
-                width = 1500,
-                height = 600,
-                font_size = 250
-            }}
-            self.createButton(params)
+        local buttonParams = {{
+            click_function = 'setupIntroGame',
+            function_owner = self,
+            label = 'Intro Setup',
+            position = {{2, 0.5, 0}},
+            rotation = {{0, -90, 00}},
+            scale = {{1.2, 1, 1.2}},
+            width = 1500,
+            height = 600,
+            font_size = 250
+        }}
+        self.createButton(buttonParams)
+            
+        -- copy rules deck onto table
+        local contents = self.getData().ContainedObjects
+        for _, content in ipairs(contents) do
+            print(content.Nickname)
+            if string.match(content.Nickname, 'rules') then
+                local rules_deck_params = {{
+                    position={{4, 0.5, 0}},
+                    rotation={{0, -90, 00}},
+                    data=content
+                }}
+                spawnObjectData(rules_deck_params)
+            end
+        end
         """
 
         deal_intro_hero_scripts = []
@@ -143,7 +140,7 @@ class GameSetBag(Bag):
 
         deps = f"""\
 function setupIntroGame()
-    print('Hello {self.name}')
+    print('Setting up {self.name} intro')
 
     local contents = self.getData().ContainedObjects
     for _, bag in ipairs(contents) do
@@ -153,8 +150,6 @@ function setupIntroGame()
         if string.match(bag.Nickname, 'maps') then
             for _, map in ipairs(bag.ContainedObjects) do
                 if string.match(map.Nickname, "{self.intro_set_setup.map}") then
-                    print("found map!")
-
                     local position = {{22, 0.5, 0}}
                     local rotation = {{0, 0, 0}}
 
@@ -173,6 +168,25 @@ function setupIntroGame()
 end"""
         return on_load, deps
 
+    def make_floating_text(self):
+        name_string = "\n".join(self.name.split(" "))
+
+        on_load = f"""\
+        local x = self.getPosition().x
+        local y = self.getPosition().y + 6
+        local z = self.getPosition().z
+        
+        local floatingTextParams = {{
+            type="3DText",
+            position = {{x, y, z}},
+            rotation = {{0, 90, 0}},
+        }}
+        local spawnedText = spawnObject(floatingTextParams)
+        spawnedText.TextTool.setValue([[{name_string}]])
+        """
+
+        return on_load, ""
+
     def deal_intro_hero(self, hero_name: str, is_blue: bool, index: int):
         if is_blue:
             x_pos = 10 + index * 7
@@ -184,9 +198,9 @@ end"""
             rot = 0
 
         return f"""\
-print('dealing {hero_name}')
+print("dealing {hero_name}")
 for _, hero in ipairs(bag.ContainedObjects) do
-    if string.match(hero.Nickname, '{hero_name}') then
+    if string.match(hero.Nickname, "{hero_name}") then
         print("found!")
 
         local position = {{{x_pos}, 0.5, {z_pos}}}
