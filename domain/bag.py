@@ -78,7 +78,11 @@ class GameSetBag(Bag):
         on_loads = []
         deps = []
 
-        for func in [self.make_setup_intro_game_button, self.make_floating_text]:
+        for func in [
+            self.make_setup_intro_game_button,
+            self.make_floating_text,
+            self.copy_rules_deck,
+        ]:
             on_load, dep = func()
             on_loads.append(on_load)
             deps.append(dep)
@@ -115,20 +119,6 @@ class GameSetBag(Bag):
             font_size = 250
         }}
         self.createButton(buttonParams)
-            
-        -- copy rules deck onto table
-        local contents = self.getData().ContainedObjects
-        for _, content in ipairs(contents) do
-            print(content.Nickname)
-            if string.match(content.Nickname, 'rules') then
-                local rules_deck_params = {{
-                    position={{4, 0.5, 0}},
-                    rotation={{0, -90, 00}},
-                    data=content
-                }}
-                spawnObjectData(rules_deck_params)
-            end
-        end
         """
 
         deal_intro_hero_scripts = []
@@ -167,6 +157,28 @@ function setupIntroGame()
     end                
 end"""
         return on_load, deps
+
+    def copy_rules_deck(self):
+        on_load = f"""\
+        -- copy rules deck onto table
+        local contents = self.getData().ContainedObjects
+        for _, content in ipairs(contents) do
+            if string.match(content.Nickname, 'rules') then
+                
+                local x = self.getPosition().x - 4
+                local y = self.getPosition().y + 0.5
+                local z = self.getPosition().z
+                
+                local rules_deck_params = {{
+                    position={{x, y, z}},
+                    rotation={{0, -90, 00}},
+                    data=content
+                }}
+                spawnObjectData(rules_deck_params)
+            end
+        end
+        """
+        return on_load, ""
 
     def make_floating_text(self):
         name_string = "\n".join(self.name.split(" "))
