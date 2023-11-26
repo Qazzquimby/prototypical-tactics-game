@@ -13,7 +13,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="rules" v-html="rulesMarkdown" />
+  <div
+    class="rules" mx-auto max-w-50rem
+    v-html="rulesMarkdown"
+  />
 </template>
 
 <style scoped>
