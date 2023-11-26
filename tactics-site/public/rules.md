@@ -5,6 +5,7 @@
 - Medium complexity
 
 [//]: # (TODO TITLE IMAGE)
+[//]: # (TODO DISCORD LINK)
 
 
 Tabletop Teamfight is tactics game about finding strong synergies and counters, designed for  
