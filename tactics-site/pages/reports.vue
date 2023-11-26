@@ -69,32 +69,33 @@ const maps = computed(() => {
 </script>
 
 <template>
-  <div mx-auto max-w-30rem border-8px border-gray-4 rd p-4>
-    <div v-if="isLoggedIn">
-      <p text-center>
-        Signed in as {{ auth.currentUser?.displayName }}
-      </p>
-      <button
-        mx-auto block border border-gray-400 rounded bg-white px-4 py-2 font-semibold text-gray-800 shadow hover:bg-gray-100
-        @click="logOut"
-      >
-        Sign out
-      </button>
-    </div>
-    <div v-else>
-      <p text-center>
-        Sign in to report your game results, which helps me fine tune.
-      </p>
-      <button
+  <div />
+<!--  <div mx-auto max-w-30rem border-8px border-gray-4 rd p-4> -->
+<!--    <div v-if="isLoggedIn"> -->
+<!--      <p text-center> -->
+<!--        Signed in as {{ auth.currentUser?.displayName }} -->
+<!--      </p> -->
+<!--      <button -->
+<!--        mx-auto block border border-gray-400 rounded bg-white px-4 py-2 font-semibold text-gray-800 shadow hover:bg-gray-100 -->
+<!--        @click="logOut" -->
+<!--      > -->
+<!--        Sign out -->
+<!--      </button> -->
+<!--    </div> -->
+<!--    <div v-else> -->
+<!--      <p text-center> -->
+<!--        Sign in to report your game results, which helps me fine tune. -->
+<!--      </p> -->
+<!--      <button -->
 
-        mx-auto block border border-gray-400 rounded bg-white px-4 py-2 font-semibold text-gray-800 shadow hover:bg-gray-100 @click="signInWithGoogle"
-      >
-        Sign in with Google
-      </button>
-    </div>
-  </div>
+<!--        mx-auto block border border-gray-400 rounded bg-white px-4 py-2 font-semibold text-gray-800 shadow hover:bg-gray-100 @click="signInWithGoogle" -->
+<!--      > -->
+<!--        Sign in with Google -->
+<!--      </button> -->
+<!--    </div> -->
+<!--  </div> -->
 
-  <div v-if="isLoggedIn">
-    <GameReportForm :heroes="heroes" :maps="maps" />
-  </div>
+<!--  <div v-if="isLoggedIn"> -->
+<!--    <GameReportForm :heroes="heroes" :maps="maps" /> -->
+<!--  </div> -->
 </template>

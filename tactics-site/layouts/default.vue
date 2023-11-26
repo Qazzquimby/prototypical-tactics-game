@@ -16,9 +16,9 @@ const titleArray = computed(() => title.split(''))
       <router-link :class="{ 'active-link': $route.path === '/compendium' }" to="/compendium" inline-block bg-gray-4 p-4>
         Compendium
       </router-link>
-      <router-link :class="{ 'active-link': $route.path === '/reports' }" to="/reports" inline-block bg-gray-4 p-4>
-        Reports
-      </router-link>
+      <!--      <router-link :class="{ 'active-link': $route.path === '/reports' }" to="/reports" inline-block bg-gray-4 p-4> -->
+      <!--        Reports -->
+      <!--      </router-link> -->
     </div>
   </div>
   <main class="px-10 py-10">

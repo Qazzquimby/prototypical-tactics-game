@@ -89,10 +89,6 @@ export default defineNuxtConfig({
     },
   },
 
-  routeRules: {
-    '/': { redirect: '/rules' },
-  },
-
   pwa,
 
   devtools: {
