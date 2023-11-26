@@ -593,6 +593,7 @@ class Map(Spawnable, BaseModel):
 class GameSet(BaseModel):
     name: str
     description: str
+    completion: str = None
     color: Optional[tuple[float, float, float]] | Color = None
     rules: list[RulesCard] = []
     heroes: list[HeroDeck] = []

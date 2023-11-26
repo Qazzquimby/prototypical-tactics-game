@@ -25,6 +25,7 @@ def make_game_set_bag(game_set: GameSet):
     set_bag = GameSetBag(
         name=game_set.name,
         description=game_set.description,
+        completion=game_set.completion,
         size=3,
         color=game_set.color if game_set.color else (0.0, 0.0, 0.0),
         intro_setup=game_set.intro_setup,

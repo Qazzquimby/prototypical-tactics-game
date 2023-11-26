@@ -64,6 +64,7 @@ class GameSetBag(Bag):
         intro_setup: Optional[IntroSetup] = None,
         is_infinite=False,
         description="",
+        completion: str = None,
     ):
         super().__init__(
             name=name,
@@ -73,6 +74,7 @@ class GameSetBag(Bag):
             description=description,
         )
         self.intro_set_setup = intro_setup
+        self.completion = completion
 
     def as_dict(self, transform=None):
         on_loads = []
@@ -182,6 +184,8 @@ end"""
 
     def make_floating_text(self):
         name_string = "\n".join(self.name.split(" "))
+        if self.completion:
+            name_string = self.completion + "\n" + name_string
 
         on_load = f"""\
         local x = self.getPosition().x
