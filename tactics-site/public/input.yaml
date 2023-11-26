@@ -2277,8 +2277,10 @@ sets:
         - Death's Head
 
   - name: Dota 2
+    completion: BETA
     color: [ .67, .18, .08 ]
     description: |-
+      - STATUS: WIP maps. Heroes are fine and could play with maps from other games.
       - Ultimates
       - Stun variants
       - Lane pushing scoring
@@ -3003,8 +3005,10 @@ sets:
         - Necrophos
         - Lina
 
-  - name: Malifaux (ALPHA)
+  - name: Malifaux
+    completion: ALPHA
     description: |-
+      - STATUS: No maps, less testing
       - Use cards to change player's rolls
       - No cooldowns or changes between games
       - Many summons

@@ -36,6 +36,11 @@
     }
 
     & img {
-        max-height: 20rem;
+        max-height: 25rem;
+    }
+
+    & a {
+        color: rgb(200, 200, 255);
+        text-decoration: underline;
     }
 }

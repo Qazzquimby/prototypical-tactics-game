@@ -4,18 +4,17 @@
 - 30 minutes
 - Medium complexity
 
-[//]: # (TODO TITLE IMAGE)
-[//]: # (TODO DISCORD LINK)
-
+![Cover](cover.png)
 
 Tabletop Teamfight is tactics game about finding strong synergies and counters, designed for  
 [Tabletop Simulator](https://store.steampowered.com/app/286160/Tabletop_Simulator/).
-It borrows familiar characters from other games so that players use their existing knowledge and
-play
-out "who would win" situations.
+It borrows familiar characters from other games so that players can strategize with their existing
+knowledge.
 
 Gameplay is quick and streamlined for playing several games in a row, each with a different
 pool of heroes for a fresh puzzle.
+
+[Discord](https://discord.gg/uYCNuM3BXr)
 
 # Setup
 
@@ -25,29 +24,29 @@ Each Game Set has an introductory setup recommended for learning the game or tha
 
 Just press the Intro Setup button next to the set's bag, and it will lay out the map and hero decks.
 
-You only need to lay out hero cards and place the figures.
+You only need to lay out hero cards and place and color the figures.
 
 ## Standard Setup
 
-[//]: # (TODO image of standard setup)
+![Finished Setup](https://i.gyazo.com/aa4114e6ad714ca250373a7371290ff1.png)
 
-[//]: # (TODO minor image for most steps)
+1. Choose 1-3 Sets. Each Set represents a game, and can contain heroes, maps, and additional rules.
+2. Drag the sets into the brown randomizer bag and press "Deal"
+3. Choose a first player. They divide the heroes into two pools.
+4. The second player chooses who gets which hero pool.
+5. Starting with the first player, alternate *deploying* heroes until each player has
+   deployed 4 heroes.
 
-- Choose 1-3 Sets. Each Set represents a game, and can contain heroes, maps, and additional rules.
+- To deploy a hero, place their figure anywhere in your team's colored deploy zone on the map (red
+  or blue region), recolor the hero standee to your player color,
+  and lay out their hero cards face up on your side of the map in the leftmost column.
+- The remaining heroes are unused. You can now start playing, starting with the first player.
+
+Alternatively, for manual setup, replace step 2 with:
+
 - Choose or randomly draw a map from among the sets. Some maps come with special rules or scoring
   conditions.
-- Note the team size for the map, given at the top of the description.
-- Randomly draw heroes from evenly the Sets. You need 3 times the team size.
-- Choose a first player. They divide the heroes into two pools.
-- The second player chooses who gets which hero pool.
-- Starting with the first player, alternate *deploying* heroes until each player has
-  deployed [Team Size] heroes.
-- The remaining heroes are unused.
-  To deploy a hero, place their figure anywhere in your team's colored deploy zone on the map (red
-  or blue region),
-  and lay out their hero cards face up on your side of the map in the leftmost column.
-
-You can now start playing, starting with the first player.
+- Randomly draw 12 heroes from evenly the Sets.
 
 # Quick Rules Summary
 
@@ -58,9 +57,11 @@ happens.
 When it's a heroes turn, they and all their summons activate in any order. They each get 1 Move
 Action and 1 Standard Action to use in any order, plus any number of free actions or reactions.
 
-A move action lets a unit move up to their speed in spaces orthogonally. It can be split between actions. Some other abilities may cost a move action.
+A move action lets a unit move up to their speed in spaces orthogonally. It can be split between
+actions. Some other abilities may cost a move action.
 
-All abilities cost a standard action by default. A unit's character card may start with passives that are always active.
+All abilities cost a standard action by default. A unit's character card may start with passives
+that are always active.
 
 When an ability targets a unit, roll to beat the attack's defense (if any) or miss.
 If the ability affects an area or is global, no targeting or rolling occurs.
@@ -96,7 +97,7 @@ A Move Action allows the unit to move up to their speed in spaces orthogonally. 
 See [Movement](#movement))
 Some abilities may also cost a move action.
 
-A Standard Action is the default cost for all abilities. 
+A Standard Action is the default cost for all abilities.
 A Standard Action can be also be spent for a move Action (a "double move").
 
 A Free Action can be used on your turn at no cost, any number of times.
@@ -253,7 +254,8 @@ Since individuals are not chosen, nothing is "targeted" in an AoE.
 
 Often AoEs are simply written by giving an area, which implies "affects everything in that area."
 
-Eg, "3x3 centered on you, 2dmg" means "All units in a 3x3 square centered on you, you deal 2 damage to
+Eg, "3x3 centered on you, 2dmg" means "All units in a 3x3 square centered on you, you deal 2 damage
+to
 them."
 
 Common areas are:
@@ -377,7 +379,6 @@ reactions count.
 
 For example, a unit is pushed into a hazard, triggering it. Then they move out of the hazard,
 triggering it again.
-
 
 
 [//]: # (todo Condtions)

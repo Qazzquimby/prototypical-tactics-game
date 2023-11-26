@@ -2,6 +2,7 @@ import { pwa } from './config/pwa'
 import { appDescription } from './constants/index'
 
 export default defineNuxtConfig({
+  ssr: true,
   modules: [
     // 'nuxt-vuefire',
     'nuxt-primevue',
