@@ -45,7 +45,7 @@ You only need to lay out hero cards and place and color the figures.
 
 Players alternate taking turns. On each turn, the player activates their next unused hero from left
 to right, including dead heroes. When all heroes have acted, the round ends and often scoring
-happens.
+happens. Game ends at the end of round 6.
 
 When it's a heroes turn, they and all their summons activate in any order. They each get 1 Move
 Action and 1 Standard Action to use in any order, plus any number of free actions or reactions.
@@ -72,7 +72,7 @@ but mostly you just pass control right back to the opponent.
 
 [//]: # (TODO zigzaggy next turn diagram)
 
-When there are no unused hero-columns remaining, the round ends.
+When each hero has had a turn this way, the round ends. Game ends at the end of round 6.
 
 ## Turn
 
