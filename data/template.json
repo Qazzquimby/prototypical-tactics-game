@@ -1,7 +1,7 @@
 {
-  "SaveName": "tf_template_3",
-  "EpochTime": 1695945108,
-  "Date": "9/28/2023 4:51:48 PM",
+  "SaveName": "ttf_template_4",
+  "EpochTime": 1701032693,
+  "Date": "11/26/2023 1:04:53 PM",
   "VersionNumber": "v13.2.2",
   "GameMode": "Tabletop Teamfight",
   "GameType": "Objects",
@@ -20,7 +20,7 @@
   "Table": "Table_None",
   "Sky": "Sky_Museum",
   "SkyURL": "https://i.imgur.com/abYzBG5.jpg",
-  "Note": "",
+  "Note": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRules can be found  at\nhttps://tactics.toren.dev\n\nHovering over things often explains them.\n\nhttps://discord.gg/uYCNuM3BXr",
   "TabStates": {
     "0": {
       "title": "Rules",
@@ -413,9 +413,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.120197915,
-        "g": 0.120197915,
-        "b": 0.120197915
+        "r": 0.120197855,
+        "g": 0.120197855,
+        "b": 0.120197855
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -677,9 +677,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.249989033,
-        "g": 0.249989033,
-        "b": 0.249989033
+        "r": 0.249988973,
+        "g": 0.249988973,
+        "b": 0.249988973
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -809,9 +809,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.249988526,
-        "g": 0.249988526,
-        "b": 0.249988526
+        "r": 0.249988467,
+        "g": 0.249988467,
+        "b": 0.249988467
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -941,9 +941,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.249989271,
-        "g": 0.249989271,
-        "b": 0.249989271
+        "r": 0.249989212,
+        "g": 0.249989212,
+        "b": 0.249989212
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -1073,9 +1073,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.24998939,
-        "g": 0.24998939,
-        "b": 0.24998939
+        "r": 0.249989331,
+        "g": 0.249989331,
+        "b": 0.249989331
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -1205,9 +1205,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.24998939,
-        "g": 0.24998939,
-        "b": 0.24998939
+        "r": 0.249989331,
+        "g": 0.249989331,
+        "b": 0.249989331
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -1337,9 +1337,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.249989212,
-        "g": 0.249989212,
-        "b": 0.249989212
+        "r": 0.249989152,
+        "g": 0.249989152,
+        "b": 0.249989152
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -1450,11 +1450,11 @@
       "GUID": "19c3b7",
       "Name": "Die_6",
       "Transform": {
-        "posX": 41.26396,
-        "posY": 2.13779068,
-        "posZ": 0.126051471,
+        "posX": 41.2639427,
+        "posY": 2.13779044,
+        "posZ": 0.125579715,
         "rotX": 270.0,
-        "rotY": 359.920319,
+        "rotY": 359.9195,
         "rotZ": 0.0,
         "scaleX": 4.199997,
         "scaleY": 4.199997,
@@ -1547,11 +1547,11 @@
       "Name": "PlayerPawn",
       "Transform": {
         "posX": 44.0314026,
-        "posY": 0.752800643,
+        "posY": 0.7528001,
         "posZ": 5.329154,
-        "rotX": -0.00077219744,
-        "rotY": 89.99035,
-        "rotZ": 0.0002480397,
+        "rotX": -0.0007645658,
+        "rotY": 89.99032,
+        "rotZ": 0.000252123835,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -1594,10 +1594,10 @@
       "Transform": {
         "posX": 43.8390732,
         "posY": 0.752840042,
-        "posZ": -4.3317976,
-        "rotX": -0.0007667094,
+        "posZ": -4.331798,
+        "rotX": -0.0007687112,
         "rotY": 89.9911957,
-        "rotZ": 0.0002469205,
+        "rotZ": 0.000249899167,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -1638,11 +1638,11 @@
       "GUID": "37a76d",
       "Name": "Die_6",
       "Transform": {
-        "posX": 15.073823,
-        "posY": 1.08080482,
-        "posZ": -0.589223742,
+        "posX": 15.0738182,
+        "posY": 1.08080459,
+        "posZ": -0.5892222,
         "rotX": 270.0,
-        "rotY": 359.917542,
+        "rotY": 359.916748,
         "rotZ": 0.0,
         "scaleX": 1.0,
         "scaleY": 1.0,
@@ -1933,7 +1933,7 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.115237974,
+        "r": 0.115237944,
         "g": 0.0,
         "b": 1.0
       },
@@ -1963,11 +1963,11 @@
       "Name": "PlayerPawn",
       "Transform": {
         "posX": 45.08541,
-        "posY": 0.75162375,
+        "posY": 0.751624,
         "posZ": 5.049273,
-        "rotX": -0.000775168,
-        "rotY": 89.99558,
-        "rotZ": 0.000288171315,
+        "rotX": -0.0007868283,
+        "rotY": 89.99557,
+        "rotZ": 0.0002542886,
         "scaleX": 0.350000441,
         "scaleY": 0.350000441,
         "scaleZ": 0.350000441
@@ -2009,11 +2009,11 @@
       "Name": "PlayerPawn",
       "Transform": {
         "posX": 45.0823936,
-        "posY": 0.75166446,
+        "posY": 0.7516645,
         "posZ": -4.266543,
-        "rotX": -0.000789869,
-        "rotY": 89.99331,
-        "rotZ": 0.000255107356,
+        "rotX": -0.0007674762,
+        "rotY": 89.9932861,
+        "rotZ": 0.000256104831,
         "scaleX": 0.350000441,
         "scaleY": 0.350000441,
         "scaleZ": 0.350000441
@@ -2055,11 +2055,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 74.2904358,
-        "posY": 1.25676036,
-        "posZ": 0.4308093,
-        "rotX": 3.4906574E-05,
-        "rotY": 270.0005,
-        "rotZ": 1.91983122E-06,
+        "posY": 1.256675,
+        "posZ": 0.4308082,
+        "rotX": -5.570145E-06,
+        "rotY": 270.000458,
+        "rotZ": -3.787354E-06,
         "scaleX": 2.449999,
         "scaleY": 2.449999,
         "scaleZ": 2.449999
@@ -2109,7 +2109,7 @@
         "posY": 5.197201,
         "posZ": -27.91122,
         "rotX": 0.0,
-        "rotY": 0.189085439,
+        "rotY": 0.189085469,
         "rotZ": 0.0,
         "scaleX": 31.4201946,
         "scaleY": 7.0,
