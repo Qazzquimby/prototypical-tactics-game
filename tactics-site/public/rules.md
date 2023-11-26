@@ -31,22 +31,15 @@ You only need to lay out hero cards and place and color the figures.
 ![Finished Setup](https://i.gyazo.com/aa4114e6ad714ca250373a7371290ff1.png)
 
 1. Choose 1-3 Sets. Each Set represents a game, and can contain heroes, maps, and additional rules.
-2. Drag the sets into the brown randomizer bag and press "Deal"
+2. Drag the sets into the brown randomizer bag and press "Deal". Alternatively, draw a map and 12 heroes evenly from the sets.
 3. Choose a first player. They divide the heroes into two pools.
 4. The second player chooses who gets which hero pool.
 5. Starting with the first player, alternate *deploying* heroes until each player has
    deployed 4 heroes.
-
-- To deploy a hero, place their figure anywhere in your team's colored deploy zone on the map (red
+6. To deploy a hero, place their figure anywhere in your team's colored deploy zone on the map (red
   or blue region), recolor the hero standee to your player color,
   and lay out their hero cards face up on your side of the map in the leftmost column.
-- The remaining heroes are unused. You can now start playing, starting with the first player.
-
-Alternatively, for manual setup, replace step 2 with:
-
-- Choose or randomly draw a map from among the sets. Some maps come with special rules or scoring
-  conditions.
-- Randomly draw 12 heroes from evenly the Sets.
+7. The remaining heroes are unused. You can now start playing, starting with the first player.
 
 # Quick Rules Summary
 
