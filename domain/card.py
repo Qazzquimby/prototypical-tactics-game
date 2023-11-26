@@ -9,7 +9,7 @@ class Card(DomainEntity):
         self.count = count
         self.object = obj
         self.image_path = ""
-        self.back_image_path = "https://gamepedia.cursecdn.com/mtgsalvation_gamepedia/f/f8/Magic_card_back.jpg?version=0ddc8d41c3b69c2c3c4bb5d72669ffd7"
+        self.back_image_path = "cardback.png"
 
     def as_dict(self, transform=None):
         if not transform:
