@@ -173,6 +173,11 @@ class Dice(BaseModel):
     values: list[int]
 
 
+class CustomSpawn(BaseModel):
+    name: str
+    object_json: str
+
+
 class Hint(BaseModel):
     name: str
     text: str
@@ -186,6 +191,7 @@ class Card(BaseModel, Spawnable):
     tokens: list[Token] = []
     dice: list[Dice] = []
     hints: list[Hint] = []
+    custom_spawns: list[CustomSpawn] = []
 
     template: ClassVar[jinja2.Template] = NotImplemented
 
@@ -193,11 +199,12 @@ class Card(BaseModel, Spawnable):
         raise NotImplementedError
 
     def get_spawning_lua(self):
-        spawning_luas = [token.get_spawning_lua() for token in self.tokens]
+        token_spawning_luas = [token.get_spawning_lua() for token in self.tokens]
 
+        die_spawning_luas = []
         for dice_type in self.dice:
             for i, die_value in enumerate(dice_type.values):
-                spawning_luas.append(
+                die_spawning_luas.append(
                     make_spawn_die_lua(
                         name=dice_type.name,
                         die_value=die_value,
@@ -207,7 +214,32 @@ class Card(BaseModel, Spawnable):
                     )
                 )
 
-        full_spawning_lua = "\n\n\n".join(spawning_luas)
+        custom_spawning_luas = []
+        for custom_spawn in self.custom_spawns:
+            lua = f"""\
+            local my_position = self.getPosition()
+            local my_rotation = self.getRotation()
+            local relative_position = {{x=1, y=1, z=0}}
+            local world_position = self.positionToWorld(relative_position)
+            
+            local text = [[{custom_spawn.object_json}]]
+            
+            local decoded = JSON.decode(text)
+            local objects = decoded["ObjectStates"]
+            for i, object in ipairs(objects) do
+                spawnObjectJSON({{
+                    json=JSON.encode(object),
+                    position = world_position,
+                    rotation = my_rotation,
+                }})
+            end
+            """
+            custom_spawning_luas.append(lua)
+
+        all_spawning_luas = (
+            token_spawning_luas + die_spawning_luas + custom_spawning_luas
+        )
+        full_spawning_lua = "\n\n\n".join(all_spawning_luas)
         return full_spawning_lua
 
 
