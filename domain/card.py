@@ -9,7 +9,7 @@ class Card(DomainEntity):
         self.count = count
         self.object = obj
         self.image_path = ""
-        self.back_image_path = "cardback.png"
+        self.back_image_path = "https://tactics.toren.dev/cardback.png"
 
     def as_dict(self, transform=None):
         if not transform:
