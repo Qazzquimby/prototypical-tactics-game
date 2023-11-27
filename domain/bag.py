@@ -214,11 +214,8 @@ end"""
             rot = 0
 
         return f"""\
-print("dealing {hero_name}")
 for _, hero in ipairs(bag.ContainedObjects) do
     if string.match(hero.Nickname, "{hero_name}") then
-        print("found!")
-
         local position = {{{x_pos}, 0.5, {z_pos}}}
         local rotation = {{0, {rot}, 0}}
 
