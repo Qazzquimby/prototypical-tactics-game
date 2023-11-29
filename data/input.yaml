@@ -302,6 +302,59 @@ sets:
           While a hero has 2 or more health, they cannot be brought below 1 health.
           When a hero reaches 1 health they gain 3 stress.
     heroes:
+      - name: Abomination
+        description: |-
+          - Stance change tank
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/6/66/Abomination.sprite.combat.png/revision/latest?cb=20230702210346
+        health: 8
+        speed: 2
+        default_abilities:
+          - name: Manacles
+            text: |-
+              Range 4, 1dmg, pull 3.
+          - name: Transform
+            text: |-
+              Free Action:
+              Transform into Beast Form.
+              Allies gain 2 stress
+        tokens:
+          - *Stun
+        abilities:
+          - name: Beast's Bile
+            text: |-
+              Line 4-5, DoT.
+              (in a straight line, effects spaces 4 and 5 away from you)
+          - name: Absolution
+            text: |-
+              Heal 3, lose 2 stress.
+        units:
+          - name: Beast Form
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/4/4d/Abom_shout.png/revision/latest?cb=20200620192519
+            health: 8
+            speed: 4
+            passives:
+              - name: Start of Turn
+                text: Gain 2 stress
+              - name: Armor
+                text: ""
+            hints:
+              - *ArmorHint
+            default_abilities:
+              - name: Rake
+                text: |-
+                  Range 1, 2x2, 3dmg
+              - name: Slam
+                text: |-
+                  Move 2
+                  Range 1, 1dmg, paralyze, push 2
+              - name: Transform
+                text: |-
+                  Free Action:
+                  Transform into Abomination.
+                  Opponent may push you 1 in any direction.
+                  You and allies lose 1 stress.
+            tokens:
+              - *Paralyze
       - name: Crusader
         description: |-
           - Simple tank
