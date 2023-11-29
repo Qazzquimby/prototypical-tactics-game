@@ -451,8 +451,8 @@ sets:
             speed: 2
             image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/a/ab/Collected_Man-at-Arms.png/revision/latest?cb=20151202192441
             passives:
-              - name: Allies in burst 1 cannot be targeted.
-                text: ""
+              - name: Ally in range 1 would take damage
+                text: This takes that damage instead.
           - name: Collected Vestal
             health: 3
             speed: 3
