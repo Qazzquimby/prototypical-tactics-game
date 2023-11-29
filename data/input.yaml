@@ -935,148 +935,208 @@ sets:
                 is_marker: true
             hints:
               - *UltimateHint
-
-    #      - name: Cassidy
-    #        description: |-
-    #          - Ranged sustained dps
-    #          - Close range burst dps
-    #        health: 8
-    #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/2e/OW2_McCree.png/revision/latest/scale-to-width-down/1000?cb=20210623082527
-    #        passives:
-    #          - name: Ammo
-    #            text: You start in ammo-loaded stance.
-    #        abilities:
-    #          - name: Peacekeeper
-    #            text: |-
-    #              If you have ammo-loaded:
-    #                Range 4, 3dmg, +1 crit
-    #                or Range 1, 5dmg. Switch to ammo-empty.
-    #            tokens:
-    #              - name: Ammo Loaded
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/08/Ability-mccree1.png/revision/latest/scale-to-width-down/100?cb=20181119023403
-    #                back_image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/Hero-ability-circle.svg/revision/latest/scale-to-width-down/128?cb=20200502165943
-    #          - name: Reload
-    #            text: |-
-    #              Switch to ammo-loaded.
-    #          - name: Combat Roll
-    #            text: |-
-    #              1/Game
-    #              Free Action
-    #              Move 1 space and switch to ammo-loaded.
-    #          - name: Magnetic Grenade
-    #            text: |-
-    #              1/Game
-    #              Range 5, 2dmg, 2dmg to all in burst 1 of target.
-    #          - name: Deadeye
-    #            text: |-
-    #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-    #              Spend 5 charges:
-    #                At the beginning of your next turn,
-    #                deal 8dmg undefendable to each enemy in line of sight
-    #      - name: D.Va
-    #        description: |-
-    #          - Mobile tank
-    #          - Extra life
-    #        health: 12
-    #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
-    #        passives:
-    #          - name: You are undefendable, +1 Crit received
-    #            text: ""
-    #          - name: Eject
-    #            text: |-
-    #              Passive
-    #              When you die, summon Pilot D.Va
-    #        default_abilities:
-    #          - name: Fusion Cannons
-    #            text: |-
-    #              Range 2, 2dmg
-    #              Can't be used on the same turn as your standard Move Action.
-    #        abilities:
-    #          - name: Defense Matrix
-    #            text: |-
-    #              1/Game
-    #              Instant +2
-    #              Create a size 2 Defense Matrix in range 1 that lasts until the beginning of your next turn.
-    #              Enemy attacks that draw range through the defense matrix are cancelled without effect.
-    #            tokens:
-    #              - name: Defense Matrix
-    #                image_url: https://static.wikia.nocookie.net/overwatch/image_9/9c/IconDefenseMatrix.png/revision/latest?cb=20151106233820
-    #                size: 2
-    #          - name: Boosters
-    #            text: |-
-    #              CD 2
-    #              Move Action
-    #              Fly up to 6 spaces, ignoring enemies.
-    #              Each enemy you move through takes 1dmg, and 1 knockback to the side.
-    #          - name: Micro Missiles
-    #            text: |-
-    #              1/Game
-    #              Free Action
-    #              def 1/2 distance, 3dmg
-    #          - name: Self-Destruct
-    #            text: |-
-    #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-    #              Spend 5 charges:
-    #                Sacrifice D.Va (triggering the Eject passive)
-    #                Pilot D.Va may move up to 3.
-    #                At the beginning of your next turn, Deal 7dmg to all enemies in burst 3 of the space you died in.
-    #            tokens:
-    #              - name: Self-Destruct
-    #                image_url: https://static.icy-veins.com/image_heroes/icons/large/storm_ui_icon_dva_selfdestruct.jpg
-    #                size: 1
-    #        units:
-    #          - name: Pilot D.Va
-    #            health: 6
-    #            speed: 3
-    #            image_url: https://farm2.staticflickr.com/1834/30377291328_4e6b7c99d0_h.jpg
-    #            default_abilities:
-    #              - name: Light Gun
-    #                text: Range 3, 2dmg, gain a Mech charge.
-    #              - name: Call Mech
-    #                text: Spend 2 Mech charges and sacrifice this to summon D.Va
-    #            tokens:
-    #              - name: Mech Charge
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f0/Ability-dva6.png/revision/latest/scale-to-width-down/100?cb=20151116085308
-    #      - name: Genji
-    #        description: |-
-    #          - Fragile assassin
-    #          - Finishes low health enemies
-    #        health: 6
-    #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Genji-ow2-portrait.png/revision/latest/scale-to-width-down/149?cb=20191104043734
-    #        passives:
-    #          - name: Abilities targeting you have +2def
-    #            text: ""
-    #          - name: All of your movement is flying.
-    #            text: ""
-    #        default_abilities:
-    #          - name: Shuriken
-    #            text: |-
-    #              1def per 2 distance, 3dmg
-    #              or range 1, 4dmg
-    #        abilities:
-    #          - name: Deflect
-    #            text: |-
-    #              1/Game
-    #              Instant +2
-    #              Until the beginning of your next turn,
-    #              you have facing, and attacks targeting you from the front with max range>1 are reflected, choosing a new target with you as the attack origin.
-    #          - name: Swift Strike
-    #            text: |-
-    #              1/Game
-    #              Free Action
-    #              Move 4 spaces in a straight line, ignoring enemies.
-    #              2dmg to each enemy you move through.
-    #              When an enemy dies, refresh this ability.
-    #          - name: Dragonblade
-    #            text: |-
-    #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-    #              Spend 5 charges:
-    #                For the rest of the Game, you have +1 speed, and replace your default attacks with:
-    #                  default
-    #                  range 1, 5dmg
+      - name: Zarya
+        description: |-
+          - Block for self and allies to increase damage dealt
+        health: 10
+        speed: 3
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Zarya-portrait.png/revision/latest/scale-to-width-down/350?cb=20160620015842
+        default_abilities:
+          - name: Particle Cannon
+            text: Range 3, push 1, 1dmg +1dmg for each energy counter you have.
+        abilities:
+          - name: Particle Barrier
+            text: |-
+              2/Game, Instant:
+              Target purges unwanted conditions.
+              Until the start of your next turn,
+                the target is immune to damage, forced movement, and unwanted conditions,
+                and when the target would take damage, instead you gain an energy counter.
+            tokens:
+              - name: Particle Barrier
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/71/Ability-zarya2.png/revision/latest/scale-to-width-down/100?cb=20150309115939
+              - name: Particle Barrier
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/71/Ability-zarya2.png/revision/latest/scale-to-width-down/100?cb=20150309115939
+          - name: Graviton Surge
+            text: |-
+              Ultimate 5:
+                Enemies in range 3 burst 2, 1dmg, pull 2 towards aoe origin, immobilize until the start of your next turn.
+            tokens:
+              - name: Graviton Surge
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5d/Ability-zarya4.png/revision/latest/scale-to-width-down/100?cb=20150309115950
+                size: 1
+              - *Immobile
+      - name: Cassidy
+        description: |-
+          - Ranged sustained dps
+          - Close range burst dps
+        health: 8
+        speed: 3
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/2e/OW2_McCree.png/revision/latest/scale-to-width-down/1000?cb=20210623082527
+        abilities:
+          - name: Peacekeeper
+            text: |-
+              You deploy with an ammo token.
+              
+              If you have ammo, choose one --
+              - Range 4, 2dmg, +1 crit
+              - Lose an ammo token. Range 1, 4dmg.
+            tokens:
+              - *Ammo
+          - name: Reload
+            text: |-
+              Gain an ammo token, max 1.
+          - name: Combat Roll
+            text: |-
+              1/Game, Free Action:
+              Move 2, ignoring units. Gain an ammo token, max 1.
+          - name: Magnetic Grenade
+            text: |-
+              1/Game:
+              Range 3 undefendable, target gets Stuck Magnetic Grenade.
+              Unit with Stuck Magnetic Grenade is slowed.
+              At the beginning of your turn, remove the Stuck Magnetic Grenade and deal enemies in burst 1 of it 3dmg.
+            hints:
+              - *SlowHint
+            tokens:
+              - name: Stuck Magnetic Grenade
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f7/Magnetic_Grenade.png/revision/latest/scale-to-width-down/100
+                text: |-
+                  You are slowed. Explodes at beginning of caster's turn.
+          - name: Deadeye
+            text: |-
+              Ultimate 4, Move + Standard Action:
+              At the beginning of your next turn,
+              All enemies in line of sight, undefendable, 8dmg.
+      - name: D.Va
+        description: |-
+          - Mobile tank
+          - Extra life
+        health: 12
+        speed: 3
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/345?cb=20220930190845
+        passives:
+          - name: You are undefendable, +1 Crit received
+            text: ""
+          - name: On Death
+            text: Transform into Pilot Dva
+        default_abilities:
+          - name: Fusion Cannons
+            text: |-
+              Range 2, 2dmg
+              Can't be used on the same turn as your standard Move Action.
+        abilities:
+          - name: Defense Matrix
+            text: |-
+              1/Game, Instant +2:
+              Create a size 2 Defense Matrix in range 1 that lasts until the beginning of your next turn.
+              Enemy attacks that draw range through the defense matrix are cancelled without effect.
+            tokens:
+              - name: Defense Matrix
+                image_url: https://static.wikia.nocookie.net/overwatch/image_9/9c/IconDefenseMatrix.png/revision/latest?cb=20151106233820
+                size: 2
+                is_marker: true
+          - name: Boosters
+            text: |-
+              Tap, Move Action:
+              Fly 6
+              Each enemy you move through takes 1dmg, and 1 knockback to the side.
+            hints:
+              - *FlyingHint
+          - name: Micro Missiles
+            text: |-
+              1/Game, Free Action:
+              Range 2, 3dmg. Burst 1 of target, 1dmg.
+          - name: Self-Destruct
+            text: |-
+              Ultimate 5:
+              Sacrifice yourself (triggering on death) and mark your location.
+              Move 3.
+              At the beginning of your next turn:
+              Enemies in burst 3 of the marked space, 7dmg.
+            tokens:
+              - name: Self-Destruct
+                image_url: https://static.icy-veins.com/image_heroes/icons/large/storm_ui_icon_dva_selfdestruct.jpg
+                is_marker: true
+        units:
+          - name: Pilot D.Va
+            health: 6
+            speed: 3
+            image_url: https://farm2.staticflickr.com/1834/30377291328_4e6b7c99d0_h.jpg
+            default_abilities:
+              - name: Light Gun
+                text: Range 3, 2dmg, gain a Mech charge.
+              - name: Call Mech
+                text: Spend 2 Mech charges and sacrifice this to summon D.Va
+            tokens:
+              - name: Mech Charge
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f0/Ability-dva6.png/revision/latest/scale-to-width-down/100?cb=20151116085308
+      - name: Soldier 76
+        description: |-
+          - Sustained dps
+          - Mobile
+          - Healing field
+        health: 8
+        speed: 4
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Soldier76-portrait.png/revision/latest/scale-to-width-down/224?cb=20160620014955
+        default_abilities:
+          - name: Heavy Pulse Rifle
+            text: Range 4, 3dmg
+        abilities:
+          - name: Helix Rockets
+            text: |-
+              1/Game:
+              Range 4, +2def, 3dmg. 
+              Others in burst 1 of target, 1dmg.
+          - name: Biotic Field
+            text: |-
+              1/Game:
+              Place a size 2 Biotic Field, overlapping your space.
+              Now, and at the beginning of each your turns, all allies in the field Heal 2.
+            tokens:
+              - name: Biotic Field
+                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/50/Icon-ability.bioticfield.png/revision/latest/scale-to-width-down/100?cb=20150708110158
+                size: 2
+                marker: true
+          - name: Tactical Visor
+            text: |-
+              Ultimate 4:
+              Your default abilities have +2 range and are undefendable.
+              Now and at the start of each your turns, you can make a default attack as a Free Action.
+      - name: Genji
+        description: |-
+          - Fragile assassin
+          - Finishes low health enemies
+        health: 6
+        speed: 3
+        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Genji-ow2-portrait.png/revision/latest/scale-to-width-down/149?cb=20191104043734
+        passives:
+          - name: +2def
+            text: ""
+          - name: All of your movement is flying.
+            text: ""
+        default_abilities:
+          - name: Shuriken
+            text: |-
+              Range 4, 2dmg
+              or range 1, 4dmg
+        abilities:
+          - name: Deflect
+            text: |-
+              1/Game, Instant +2:
+              Until the beginning of your next turn,
+              when an ability with max range greater than 1 targets you, choose a new target with you as the attack origin.
+          - name: Swift Strike
+            text: |-
+              1/Game, Instant +2:
+              Move 4 spaces in a straight line, ignoring enemies.
+              2dmg to each enemy you move through.
+              When an enemy dies, refresh this ability.
+          - name: Dragonblade
+            text: |-
+              Ultimate 5:
+              You have +1 speed, and replace your default abilities with:
+                Range 1, 5dmg
     #      - name: Junkrat
     #        description: |-
     #          - Area denial
@@ -1371,76 +1431,8 @@ sets:
     #                Range 1, 6 damage, kb 5
     #                or Range 2, 4dmg, kb 3
     #                or Range 3, 2dmg, kb 1
-    #      - name: Soldier 76
-    #        description: |-
-    #          - Sustained dps
-    #          - Mobile
-    #          - Healing field
-    #        health: 8
-    #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e0/Soldier76-portrait.png/revision/latest/scale-to-width-down/224?cb=20160620014955
-    #        passives:
-    #          - name: Sprint
-    #            text: You may spend a Standard Action to move.
-    #        default_abilities:
-    #          - name: Heavy Pulse Rifle
-    #            text: Range 4, 3dmg
-    #        abilities:
-    #          - name: Helix Rockets
-    #            text: |-
-    #              1/Game
-    #              1def/2 distance, 5dmg and 1dmg to others in burst 1 of target
-    #          - name: Biotic Field
-    #            text: |-
-    #              1/Game
-    #              Place a size 2 Biotic Field, overlapping your space.
-    #              Now, and at the beginning of each your turns, all allies in the field Heal 2.
-    #            tokens
-    #              - name: Biotic Field
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/50/Icon-ability.bioticfield.png/revision/latest/scale-to-width-down/100?cb=20150708110158
-    #                size: 2
-    #          - name: Tactical Visor
-    #            text: |-
-    #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-    #              Spend 5 charges:
-    #                Heavy Pulse Rifle range becomes 6
-    #                Your attacks are undefendable and can't take penalties.
-    #                Now and at the start of each your turns, you can make a default attack as a Free Action.
-    #      - name: Zarya
-    #        description: |-
-    #          - Block damage to increase damage dealt
-    #        health: 10
-    #        speed: 3
-    #        image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6d/Zarya-portrait.png/revision/latest/scale-to-width-down/350?cb=20160620015842
-    #        default_abilities:
-    #          - name: Particle Cannon
-    #            text: |-
-    #              Default
-    #              Range 3, Damage 1 + 1 for each energy counter you have.
-    #        abilities:
-    #          - name: Particle Barrier
-    #            text: |-
-    #              2/Game
-    #              Instant +2 on attack on target in range 3
-    #              The target purges unwanted conditions
-    #              Until the start of your next turn,
-    #                the target is immune to damage, forced movement, and unwanted conditions,
-    #                and when the target would take damage you gain an energy counter.
-    #            tokens
-    #              - name: Particle Barrier
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/71/Ability-zarya2.png/revision/latest/scale-to-width-down/100?cb=20150309115939
-    #              - name: Particle Barrier
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/71/Ability-zarya2.png/revision/latest/scale-to-width-down/100?cb=20150309115939
-    #          - name: Graviton Surge
-    #            text: |-
-    #              Ultimate 5: At the end of each round, if you activated, gain 1 persistent charge, up to 5.
-    #              Spend 5 charges:
-    #                Target empty space in range 3
-    #                Pull enemies in burst 2 of the space as close to the center as possible, starting with the enemies nearest the center already. They get rooted 1.
-    #            tokens
-    #              - name: Graviton Surge
-    #                image_url: https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5d/Ability-zarya4.png/revision/latest/scale-to-width-down/100?cb=20150309115950
-    #                size: 1
+    #
+
     #      - name: Ana
     #        description: |-
     #          - Sniper healing
@@ -2213,11 +2205,11 @@ sets:
             text: |-
               Place a square of Cover in LoS, and up to two more within range 1.
             tokens:
-#              - name: Smoke Mine
-#                image_url: https://media.discordapp.net/attachments/999104692233711676/1177708468795342889/qazzquimby_smoke_landmine_013defb9-d8ba-4f91-978f-dc734092dfa0.png?ex=65737d7b&is=6561087b&hm=2819d81122464c9aad0bf9d4b9623747e35696b9170cea191cde2602a489f967&=&format=webp&width=577&height=577
-#                is_marker: true
-#                text: |-
-#                  When a unit becomes adjacent, remove the mine and it creates a 2x2 area of Cover.
+              #              - name: Smoke Mine
+              #                image_url: https://media.discordapp.net/attachments/999104692233711676/1177708468795342889/qazzquimby_smoke_landmine_013defb9-d8ba-4f91-978f-dc734092dfa0.png?ex=65737d7b&is=6561087b&hm=2819d81122464c9aad0bf9d4b9623747e35696b9170cea191cde2602a489f967&=&format=webp&width=577&height=577
+              #                is_marker: true
+              #                text: |-
+              #                  When a unit becomes adjacent, remove the mine and it creates a 2x2 area of Cover.
               - *Cover
           - name: Grounding Mine
             text: |-
