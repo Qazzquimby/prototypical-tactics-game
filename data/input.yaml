@@ -280,7 +280,7 @@ terrain:
       Abilities passing through cover that does not start adjacent to that cover has +2def.
 sets:
   - name: Darkest Dungeon
-    color: [0.1, 0.1, 0.1]
+    color: [ 0.1, 0.1, 0.1 ]
     completion: ALPHA
     description: |-
       - STATUS: TOTALLY WIP
@@ -412,6 +412,90 @@ sets:
             tokens:
               - *Undefendable
 
+
+      - name: The Collector
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/3/37/The_Collector.png/revision/latest?cb=20151202191158
+        description: |-
+          - Boss hero, counts as 2
+          - Summon spam
+        health: 16
+        speed: 3
+        passives:
+          - name: Draft
+            text: Worth 2 heroes. Worth 2 points when killed.
+          - name: On Death
+            text: Your summons die.
+        default_abilities:
+          - name: Collect Call
+            text: |-
+              Move + Standard Action, Tap:
+              Kill your summons.
+              Summon a Collected Highwayman, Collected Man-at-Arms, and Collected Vestal in empty spaces in range 2.
+          - name: Show Collection
+            text: |-
+              Range 3 2x2, 1dmg and 2 stress.
+          - name: Lifesteal
+            text: |-
+              Range 5+, 3dmg, heal 3.
+        units:
+          - name: Collected Highwayman
+            health: 3
+            speed: 3
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/5/5a/Collected_Highwayman.png/revision/latest?cb=20151202192431
+            default_abilities:
+              - name: Headhunt
+                text: |-
+                  Range 4, Dot.
+          - name: Collected Man-at-Arms
+            health: 6
+            speed: 2
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/a/ab/Collected_Man-at-Arms.png/revision/latest?cb=20151202192441
+            passives:
+              - name: Allies in burst 1 cannot be targeted.
+                text: ""
+          - name: Collected Vestal
+            health: 3
+            speed: 3
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/f/fb/Collected_Vestal.png/revision/latest?cb=20151202192444
+            default_abilities:
+              - name: Headstrong
+                text: Range 3, heal 3.
+              - name: Head Rush
+                text: Range 3, +2 stress.
+      - name: Necromancer
+        description: |-
+          - Boss hero, counts as 2
+          - Summon spam
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/d/d5/Necromancer_attack_ranged.png/revision/latest?cb=20181118054131
+        health: 16
+        speed: 3
+        passives:
+          - name: Draft
+            text: Worth 2 heroes. Worth 2 points when killed.
+          - name: On Death
+            text: Your summons die
+        default_abilities:
+          - name: The Flesh is Willing
+            text: |-
+              Unlimited range 2x2, 2dmg.
+              Move 1 away from the origin and summon a Skeleton in your previous space
+          - name: Six Feet Under
+            text: |-
+              Enemies in burst 3, +3 stress.
+              Move 1 and summon a Skeleton in your previous space.
+        abilities:
+          - name: Generous Offering
+            text: |-
+              Kill one of your summons. Heal 4.
+        units:
+          - name: Skeleton
+            health: 4
+            speed: 2
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/f/f3/Bone_Militia.png/revision/latest?cb=20150711042302
+            default_abilities:
+              - name: Graveyard Slash
+                text: |-
+                  Range 1, 2dmg.
 
   - name: Dota 2
     completion: BETA
