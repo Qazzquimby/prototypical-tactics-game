@@ -132,6 +132,10 @@ conditions:
     text: |-
       When drawing range to or from you, ignores soft cover and you count as 2 spaces further. 
       Clear at the start of your turn.
+  Mark: &Mark
+    name: Mark
+    image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/e/ea/Mark_for_Death.png/revision/latest?cb=20160119232101
+    text: Does nothing on its own but is used by other abilities.
 hints:
   ArmorHint: &ArmorHint
     name: Armor
@@ -496,6 +500,50 @@ sets:
               - name: Graveyard Slash
                 text: |-
                   Range 1, 2dmg.
+      - name: The Prophet
+        health: 16
+        speed: 2
+        description: |-
+          - Boss hero, counts as 2
+          - Fortifications
+          - Delayed ranged nukes
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/c/c4/Prophet_Sprite.png/revision/latest?cb=20160115152713
+        passives:
+          - name: Draft
+            text: Worth 2 heroes. Worth 2 points when killed.
+          - name: Deploy
+            text: Create 3 Pews in empty spaces anywhere at least 3 spaces away from the enemy deployment zone. Pews have 5 health.
+          - name: When health falls to 4 or less
+            text: Give each enemy a mark.
+        tokens:
+          - name: Pew
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/2/28/Pew_Small.png/revision/latest?cb=20160526052255
+            text: |-
+              5 health.
+              Blocks movement but not line of sight.
+        default_abilities:
+          - name: Calamitous Prognostication
+            text: |-
+              Unlimited range, undefendable, give target a Mark.
+            tokens:
+              - *Mark
+          - name: Rubble of Ruin
+            text: |-
+              Target enemy with a mark (globally), 7dmg.
+              Enemies lose all marks.
+        abilities:
+          - name: Eye on You
+            text: |-
+              Unlimited Range, paralyze, +2 stress.
+            tokens:
+              - *Paralyze
+          - name: Fulminate
+            text: |-
+              All enemies (globally), 1dmg.
+          - name: The End
+            text: |-
+              If health is 4 or less:
+              Any number of times, target an enemy with a mark (globally) for 7dmg, then remove their mark.
 
   - name: Dota 2
     completion: BETA
