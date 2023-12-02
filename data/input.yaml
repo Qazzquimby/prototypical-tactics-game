@@ -415,6 +415,43 @@ sets:
                 image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/a/a3/Adrenaline_Rush.png/revision/latest?cb=20150208084614
                 text: |-
                   You deal +1 damage.
+      - name: Jester
+        description: |-
+          - Build up assassin
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/e/e0/Jester.png/revision/latest/scale-to-width-down/1000?cb=20140903004746
+        health: 6
+        speed: 3
+        passives:
+          - name: +2def
+            text: ""
+        default_abilities:
+          - name: Dirk Stab
+            text: |-
+              Move 1, gain 1 Suspense token.
+              Range 1, 1dmg irreducible.
+        tokens:
+          - name: Suspense
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/5/59/Finale.png/revision/latest?cb=20230920005219
+            text: |-
+              Used to empower Finale
+        abilities:
+          - name: Finale
+            text: |-
+              Range 1, 2dmg, +1dmg per Suspense token, +1crit per Suspense token.
+
+              Push yourself 3 away from the target.
+              Lose all Suspense tokens.
+          - name: Solo
+            text: |-
+              Move exactly 3 towards the nearest enemy.
+              Range 1, +2 stress.
+              Gain a Mark and 2 Suspense tokens.
+            tokens:
+              - *Mark
+          - name: Inspiring Tune
+            text: |-
+              Range 3, -3 stress.
+              Gain 1 Suspense token.
 
       - name: Highwayman
         description: |-
