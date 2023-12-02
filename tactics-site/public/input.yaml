@@ -132,6 +132,10 @@ conditions:
     text: |-
       When drawing range to or from you, ignores soft cover and you count as 2 spaces further. 
       Clear at the start of your turn.
+  Mark: &Mark
+    name: Mark
+    image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/e/ea/Mark_for_Death.png/revision/latest?cb=20160119232101
+    text: Does nothing on its own but is used by other abilities.
 hints:
   ArmorHint: &ArmorHint
     name: Armor
@@ -298,6 +302,59 @@ sets:
           While a hero has 2 or more health, they cannot be brought below 1 health.
           When a hero reaches 1 health they gain 3 stress.
     heroes:
+      - name: Abomination
+        description: |-
+          - Stance change tank
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/6/66/Abomination.sprite.combat.png/revision/latest?cb=20230702210346
+        health: 8
+        speed: 2
+        default_abilities:
+          - name: Manacles
+            text: |-
+              Range 4, 1dmg, pull 3.
+          - name: Transform
+            text: |-
+              Free Action:
+              Transform into Beast Form.
+              Allies gain 2 stress
+        tokens:
+          - *Stun
+        abilities:
+          - name: Beast's Bile
+            text: |-
+              Line 4-5, DoT.
+              (in a straight line, effects spaces 4 and 5 away from you)
+          - name: Absolution
+            text: |-
+              Heal 3, lose 2 stress.
+        units:
+          - name: Beast Form
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/4/4d/Abom_shout.png/revision/latest?cb=20200620192519
+            health: 8
+            speed: 4
+            passives:
+              - name: Start of Turn
+                text: Gain 2 stress
+              - name: Armor
+                text: ""
+            hints:
+              - *ArmorHint
+            default_abilities:
+              - name: Rake
+                text: |-
+                  Range 1, 2x2, 3dmg
+              - name: Slam
+                text: |-
+                  Move 2
+                  Range 1, 1dmg, paralyze, push 2
+              - name: Transform
+                text: |-
+                  Free Action:
+                  Transform into Abomination.
+                  Opponent may push you 1 in any direction.
+                  You and allies lose 1 stress.
+            tokens:
+              - *Paralyze
       - name: Crusader
         description: |-
           - Simple tank
@@ -321,6 +378,81 @@ sets:
           - name: Inspiring Cry
             text: |-
               Allies in burst 2, heal 1 and lose 2 stress.
+      - name: Hellion
+        description: |-
+          - Melee DPS
+          - DoT
+        health: 8
+        speed: 4
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/c/cf/Hellion.png/revision/latest/scale-to-width-down/1000?cb=20140905153645
+        default_abilities:
+          - name: Wicked Hack
+            text: |-
+              Range 1, 2dmg, +1dmg if target has DoT.
+        abilities:
+          - name: Breakthrough
+            text: |-
+              Tap:
+              Move 4 in a straight line, ignoring units.
+              Units moved through gain DoT.
+              Range 1, 1dmg.
+              
+              While this is tapped, enemies have resistance to your attacks
+            hints:
+              - *ResistanceHint
+          - name: Barbaric YAWP!
+            text: |-
+              Range line 2, stun. If they have Dot, paralyze instead..
+              Allies in burst 2, lose 2 stress.
+            tokens:
+              - *Paralyze
+          - name: Adrenaline Rush
+            text: |-
+              Lose all DoT. Heal 1.
+              You deal +1 damage.
+            tokens:
+              - name: Adrenaline Rush
+                image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/a/a3/Adrenaline_Rush.png/revision/latest?cb=20150208084614
+                text: |-
+                  You deal +1 damage.
+      - name: Jester
+        description: |-
+          - Build up assassin
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/e/e0/Jester.png/revision/latest/scale-to-width-down/1000?cb=20140903004746
+        health: 6
+        speed: 3
+        passives:
+          - name: +2def
+            text: ""
+        default_abilities:
+          - name: Dirk Stab
+            text: |-
+              Move 1, gain 1 Suspense token.
+              Range 1, 1dmg irreducible.
+        tokens:
+          - name: Suspense
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/5/59/Finale.png/revision/latest?cb=20230920005219
+            text: |-
+              Used to empower Finale
+        abilities:
+          - name: Finale
+            text: |-
+              Range 1, 2dmg, +1dmg per Suspense token, +1crit per Suspense token.
+
+              Push yourself 3 away from the target.
+              Lose all Suspense tokens.
+          - name: Solo
+            text: |-
+              Move exactly 3 towards the nearest enemy.
+              Range 1, +2 stress.
+              Gain a Mark and 2 Suspense tokens.
+            tokens:
+              - *Mark
+          - name: Inspiring Tune
+            text: |-
+              Range 3, -3 stress.
+              Gain 1 Suspense token.
+
       - name: Highwayman
         description: |-
           - Ranged dps
@@ -346,9 +478,72 @@ sets:
               Move + Standard Action:
               Range 1, 4dmg, Push 2.
               Push yourself 2 away from the target.
+      - name: Leper
+        health: 10
+        speed: 2
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/d/d9/Leper.png/revision/latest?cb=20140303215042
+        description: |-
+          - Melee tank
+          - Low accuracy, high damage
+          - Self healing
+        passives:
+          - name: Armor
+            text: ""
+          - name: Start of first turn
+            text: |-
+              Give an ally your Withstand token. When they would take damage while in range 1 of you, 
+              instead you take that damage -1.
+        tokens:
+          - name: Withstand
+            image_url: https://dd-tooltips.com/wp-content/uploads/2018/05/leper.ability.withstand.png
+            text: |-
+              While the ally with this would take damage while in range 1 of you, instead
+              you take that damage instead (apply damage reduction).
+        default_abilities:
+          - name: Chop
+            text: |-
+              Range 1, +2 def, 4dmg
+          - name: Overpower
+            text: |-
+              Move 1
+              Range 1, 1dmg, push 2
+        abilities:
+          - name: Solemnity
+            text: |-
+              Heal 3, lose 3 stress.
+          - name: Intimidate
+            text: |-
+              Unlimited range, target is undefendable and takes 3 stress.
+              Allies in burst 2 of target lose 2 stress.
+            tokens:
+              - *Undefendable
+      - name: Occultist
+        description: |-
+          - Toolkit caster
+          - Deals stress
+        health: 6
+        speed: 3
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/e/e8/Occultist.png/revision/latest/scale-to-width-down/1000?cb=20140903004326
+        default_abilities:
+          - name: Abyssal Artillery
+            text: |-
+              Range exactly 4, 2x2, 1dmg and +2 stress.
+          - name: Wyrd Reconstruction
+            text: |-
+              Range 3, heal 1d6, gain DoT.
+        abilities:
+          - name: Vulnerability Hex
+            text: |-
+              Unlimited range, target is undefendable and gets +3 stress.
+            tokens:
+              - *Undefendable
+          - name: Daemon's Pull
+            text: |-
+              Unlimited range, 1dmg, pull 3, +2 stress.
       - name: Plague Doctor
         description: |-
-          - DoT
+          - Heavy DoT artillery
+          - Utilities
         image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/1/17/Plague_Doctor.png/revision/latest?cb=20140303215058
         health: 8
         speed: 3
@@ -451,8 +646,8 @@ sets:
             speed: 2
             image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/a/ab/Collected_Man-at-Arms.png/revision/latest?cb=20151202192441
             passives:
-              - name: Allies in burst 1 cannot be targeted.
-                text: ""
+              - name: Ally in range 1 would take damage
+                text: This takes that damage instead.
           - name: Collected Vestal
             health: 3
             speed: 3
@@ -462,6 +657,132 @@ sets:
                 text: Range 3, heal 3.
               - name: Head Rush
                 text: Range 3, +2 stress.
+      - name: Necromancer
+        description: |-
+          - Boss hero, counts as 2
+          - Summon spam
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/d/d5/Necromancer_attack_ranged.png/revision/latest?cb=20181118054131
+        health: 16
+        speed: 3
+        passives:
+          - name: Draft
+            text: Worth 2 heroes. Worth 2 points when killed.
+          - name: On Death
+            text: Your summons die
+        default_abilities:
+          - name: The Flesh is Willing
+            text: |-
+              Unlimited range 2x2, 2dmg.
+              Move 1 away from the origin and summon a Skeleton in your previous space
+          - name: Six Feet Under
+            text: |-
+              Enemies in burst 3, +3 stress.
+              Move 1 and summon a Skeleton in your previous space.
+        abilities:
+          - name: Generous Offering
+            text: |-
+              Kill one of your summons. Heal 4.
+        units:
+          - name: Skeleton
+            health: 4
+            speed: 2
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/f/f3/Bone_Militia.png/revision/latest?cb=20150711042302
+            default_abilities:
+              - name: Graveyard Slash
+                text: |-
+                  Range 1, 2dmg.
+      - name: The Prophet
+        health: 16
+        speed: 2
+        description: |-
+          - Boss hero, counts as 2
+          - Fortifications
+          - Delayed ranged nukes
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/c/c4/Prophet_Sprite.png/revision/latest?cb=20160115152713
+        passives:
+          - name: Draft
+            text: Worth 2 heroes. Worth 2 points when killed.
+          - name: Deploy
+            text: Create 3 Pews in empty spaces anywhere at least 3 spaces away from the enemy deployment zone. Pews have 5 health.
+          - name: When health falls to 4 or less
+            text: Give each enemy a mark.
+        tokens:
+          - name: Pew
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/2/28/Pew_Small.png/revision/latest?cb=20160526052255
+            text: |-
+              5 health.
+              Blocks movement but not line of sight.
+        default_abilities:
+          - name: Calamitous Prognostication
+            text: |-
+              Unlimited range, undefendable, give target a Mark.
+            tokens:
+              - *Mark
+          - name: Rubble of Ruin
+            text: |-
+              Target enemy with a mark (globally), 7dmg.
+              Enemies lose all marks.
+        abilities:
+          - name: Eye on You
+            text: |-
+              Unlimited Range, paralyze, +2 stress.
+            tokens:
+              - *Paralyze
+          - name: Fulminate
+            text: |-
+              All enemies (globally), 1dmg.
+          - name: The End
+            text: |-
+              If health is 4 or less:
+              Any number of times, target an enemy with a mark (globally) for 7dmg, then remove their mark.
+
+      - name: The Hag
+        description: |-
+          - Boss hero, counts as 2
+          - Disables an enemy
+          - Tank
+        health: 20
+        speed: 2
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/7/72/Hag_Sprite.png/revision/latest/scale-to-width-down/1000?cb=20150711043203
+        passives:
+          - name: Draft
+            text: Worth 2 heroes. Worth 2 points when killed.
+          - name: Deploy
+            text: Create a Cauldron object in an empty space in range 1. The Cauldron has 5 health but cannot be destroyed.
+          - name: You change location
+            text: Teleport the Cauldron to an empty space in range 1.
+          - name: Start of your turn
+            text: If a unit is in the Cauldron, 1dmg to it.
+        dice:
+          - name: Cauldron
+            color: red
+            values: [ 5 ]
+        tokens:
+          - name: Cauldron
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/0/0a/Cauldron_Full.png/revision/latest?cb=20150713044705
+            text: |-
+              5 health. Indestructible.
+        default_abilities:
+          - name: Season to Perfection
+            text: |-
+              Range 3, +2 stress, target is undefendable.
+            tokens:
+              - *Undefendable
+          - name: Into the Pot
+            text: |-
+              Marked unit in range 4, remove from the map. While they're removed they are "in the Cauldron."
+              Heal the Cauldron to 5.
+              When the Cauldron reaches 0 hp, the unit's owner places them in range 1.
+          - name: Meat Tenderizer
+            text: |-
+              Enemies in burst 4, 1dmg, +2 stress.
+          - name: Taste the Stew
+            text: |-
+              If a unit is in the Cauldron:
+                Range 3, +2 stress, push 1.
+                Heal 4 and you may remove a condition.
+              
+
 
   - name: Dota 2
     completion: BETA
