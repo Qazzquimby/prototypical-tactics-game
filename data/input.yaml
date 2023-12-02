@@ -393,8 +393,9 @@ sets:
           - name: Breakthrough
             text: |-
               Tap:
-              Move 3 in a straight line, ignoring units.
+              Move 4 in a straight line, ignoring units.
               Units moved through gain DoT.
+              Range 1, 1dmg.
               
               While this is tapped, enemies have resistance to your attacks
             hints:
