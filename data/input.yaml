@@ -378,6 +378,43 @@ sets:
           - name: Inspiring Cry
             text: |-
               Allies in burst 2, heal 1 and lose 2 stress.
+      - name: Hellion
+        description: |-
+          - Melee DPS
+          - DoT
+        health: 8
+        speed: 4
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/c/cf/Hellion.png/revision/latest/scale-to-width-down/1000?cb=20140905153645
+        default_abilities:
+          - name: Wicked Hack
+            text: |-
+              Range 1, 2dmg, +1dmg if target has DoT.
+        abilities:
+          - name: Breakthrough
+            text: |-
+              Tap:
+              Move 3 in a straight line, ignoring units.
+              Units moved through gain DoT.
+              
+              While this is tapped, enemies have resistance to your attacks
+            hints:
+              - *ResistanceHint
+          - name: Barbaric YAWP!
+            text: |-
+              Range line 2, stun. If they have Dot, paralyze instead..
+              Allies in burst 2, lose 2 stress.
+            tokens:
+              - *Paralyze
+          - name: Adrenaline Rush
+            text: |-
+              Lose all DoT. Heal 1.
+              You deal +1 damage.
+            tokens:
+              - name: Adrenaline Rush
+                image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/a/a3/Adrenaline_Rush.png/revision/latest?cb=20150208084614
+                text: |-
+                  You deal +1 damage.
+
       - name: Highwayman
         description: |-
           - Ranged dps
@@ -412,6 +449,8 @@ sets:
           - Low accuracy, high damage
           - Self healing
         passives:
+          - name: Armor
+            text: ""
           - name: Start of first turn
             text: |-
               Give an ally your Withstand token. When they would take damage while in range 1 of you, 
@@ -421,7 +460,7 @@ sets:
             image_url: https://dd-tooltips.com/wp-content/uploads/2018/05/leper.ability.withstand.png
             text: |-
               While the ally with this would take damage while in range 1 of you, instead
-              you take that damage -1.
+              you take that damage instead (apply damage reduction).
         default_abilities:
           - name: Chop
             text: |-
@@ -436,14 +475,37 @@ sets:
               Heal 3, lose 3 stress.
           - name: Intimidate
             text: |-
-              Unlimited range, target is undefendable
+              Unlimited range, target is undefendable and takes 3 stress.
               Allies in burst 2 of target lose 2 stress.
             tokens:
               - *Undefendable
-
+      - name: Occultist
+        description: |-
+          - Toolkit caster
+          - Deals stress
+        health: 6
+        speed: 3
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/e/e8/Occultist.png/revision/latest/scale-to-width-down/1000?cb=20140903004326
+        default_abilities:
+          - name: Abyssal Artillery
+            text: |-
+              Range exactly 4, 2x2, 1dmg and +2 stress.
+          - name: Wyrd Reconstruction
+            text: |-
+              Range 3, heal 1d6, gain DoT.
+        abilities:
+          - name: Vulnerability Hex
+            text: |-
+              Unlimited range, target is undefendable and gets +3 stress.
+            tokens:
+              - *Undefendable
+          - name: Daemon's Pull
+            text: |-
+              Unlimited range, 1dmg, pull 3, +2 stress.
       - name: Plague Doctor
         description: |-
-          - DoT
+          - Heavy DoT artillery
+          - Utilities
         image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/1/17/Plague_Doctor.png/revision/latest?cb=20140303215058
         health: 8
         speed: 3
