@@ -699,6 +699,54 @@ sets:
               If health is 4 or less:
               Any number of times, target an enemy with a mark (globally) for 7dmg, then remove their mark.
 
+      - name: The Hag
+        description: |-
+          - Boss hero, counts as 2
+          - Disables an enemy
+          - Tank
+        health: 20
+        speed: 2
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/7/72/Hag_Sprite.png/revision/latest/scale-to-width-down/1000?cb=20150711043203
+        passives:
+          - name: Draft
+            text: Worth 2 heroes. Worth 2 points when killed.
+          - name: Deploy
+            text: Create a Cauldron object in an empty space in range 1. The Cauldron has 5 health but cannot be destroyed.
+          - name: You change location
+            text: Teleport the Cauldron to an empty space in range 1.
+          - name: Start of your turn
+            text: If a unit is in the Cauldron, 1dmg to it.
+        dice:
+          - name: Cauldron
+            color: red
+            values: [ 5 ]
+        tokens:
+          - name: Cauldron
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/0/0a/Cauldron_Full.png/revision/latest?cb=20150713044705
+            text: |-
+              5 health. Indestructible.
+        default_abilities:
+          - name: Season to Perfection
+            text: |-
+              Range 3, +2 stress, target is undefendable.
+            tokens:
+              - *Undefendable
+          - name: Into the Pot
+            text: |-
+              Marked unit in range 4, remove from the map. While they're removed they are "in the Cauldron."
+              Heal the Cauldron to 5.
+              When the Cauldron reaches 0 hp, the unit's owner places them in range 1.
+          - name: Meat Tenderizer
+            text: |-
+              Enemies in burst 4, 1dmg, +2 stress.
+          - name: Taste the Stew
+            text: |-
+              If a unit is in the Cauldron:
+                Range 3, +2 stress, push 1.
+                Heal 4 and you may remove a condition.
+              
+
+
   - name: Dota 2
     completion: BETA
     color: [ .67, .18, .08 ]
