@@ -4122,6 +4122,8 @@ sets:
           - name: When targeted
             text: |-
               You may discard a card to change the target to an ally in range 1.
+        hints:
+          - *ArmorHint
         tokens:
           - name: Power
             image_url: TODO
@@ -4158,11 +4160,184 @@ sets:
               You may give them one of your power tokens.
               You may push 2 towards them.
 
-#      - name: Kaitlyn
+      - name: Kirai
+        description: |-
+          - Summoner
+          - Heals from nearby enemies
+        health: 10
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679645918-3GIYPII25XP5RSICIVPE/M2E_Kirai.png
+        passives:
+          - name: Damaged
+            text: Attacker takes 1 damage
+          - name: Attacked
+            text: May discard a card to change the target to one of your summons.
+          - name: End of turn
+            text: |-
+              For each enemy in range 2, deal 1 damage to them and heal 1.
+              Take 1 damage for each of your summons.
+        default_abilities:
+          - name: Shears
+            text: |-
+              Range 1, 2dmg
+        abilities:
+          - name: Spirit Barrage
+            text: |-
+              Range 6, 1dmg
+              3-4: An adjacent ally can attack the target.
+              5-6: Summon a Gaki adjacent to the target, max 3
+          - name: Blood and Wind
+            text: |-
+              Range 3
+              Choose:
+                Summon a Gaki, max 3.
+                or roll: 5-6, summon an Ikiryo, max 1.
+          - name: Soothe Spirit
+            text: Range 3, heal 1, Overshield +1
+          - name: I've Got Your Back
+            text: |-
+              Free
+              Range 4, teleport target ally adjacent to this.
+        units:
+          - name: Ikiryo
+            health: 4
+            speed: 4
+            image_url: https://i.ytimg.com/vi/63A_tJ8wPds/maxresdefault.jpg
+            passives:
+              - name: Abilities targeting you have +2def
+                text: ""
+              - name: -1 Damage received
+                text: ""
+              - name: Damaged
+                text: Attacker takes 1 damage
+            default_abilities:
+              - name: Death Touch
+                text: |-
+                  Range 2, 3dmg irreducible.
+                  On kill, this and Kirai heal 2.
+          - name: Gaki
+            health: 3
+            speed: 3
+            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2015_09/large.gaki.jpg.afc89b1f23a8af53c6e322f1f434e4ea.jpg
+            passives:
+              - name: Armor
+                text: ""
+              - name: Damaged
+                text: Attacker takes 1 damage
+              - name: Unit dies in burst 1
+                text: Heal 2
+            default_abilities:
+              - name: Mighty Jaws
+                text: |-
+                  Range 2, 2dmg
+            hints:
+              - *ArmorHint
+      - name: Colette
+        description: |-
+          - Reposition self and team
+          - Exile units
+          - Distract and silence
+        health: 8
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561391468145-0KLLOT8NOW46VZKHY0NR/M3E_Colette.png
+        passives:
+          - name: Abilities targeting you have +2def
+            text: ""
+          - name: Attacked, 1-2
+            text: Take 1 less damage, then exile this.
+          - name: Start, if Exiled
+            text: |-
+              Place this adjacent to an ally,
+              then give adjacent enemies Distracted +1
+          - name: End of turn
+            text: |-
+              Distracted enemies in range 2 are Silenced.
+        default_abilities:
+          - name: Distracting Illusions
+            text: |-
+              Range 1, undefendable, target discards a card, and gets Distracted +1 and Silenced.
+        abilities:
+          - name: False Reality
+            text: |-
+              Range 4, undefendable, teleport the target  3.
+              5-6: You may give the target Stunned(-1 Action)
+          - name: Presto Chango
+            text: |-
+              Range 4, undefendable, swap places with the target
+          - name: Sword Trick
+            text: |-
+              Free
+              Range 1, 2dmg, Exile target.
+              At the start of its next activation, place it adjacent to one of its allies.
+          - name: Practiced Choreography
+            text: |-
+              Free
+              Allies in range 2 may move 2.
 
-#      - name: Kirai Ankoku
-#      - name: Colette Du Bois
-#      - name: The Dreamer
+
+
+      - name: The Dreamer
+        description: |-
+          - Delayed summoner
+          - Deploys with a beater
+        health: 4
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561406454403-LXJLZQ5JOLVVC9M8WHBB/M3E_Dreamer.png
+        passives:
+          - name: -1 Damage received
+            text: ''
+          - name: Abilities targeting you have +2def
+            text: ''
+          - name: Diversion
+            text: Enemies in range 2 cannot use Free Actions.
+          - name: Attacked
+            text: You may discard a card to change the target to an adjacent Lord Chompy Bits or Alp.
+          - name: Deploy
+            text: Summon and deploy a Lord Chompy Bits.
+        default_abilities:
+          - name: Cricket Bat
+            text: |-
+              Range 1, 1dmg, +1dmg for each of your summons adjacent to the target.
+              Swap positions with an ally in range 3.
+        abilities:
+          - name: Manifest Nightmares
+            text: |-
+              Once per turn
+              Summon and Exile an Alp.
+        units:
+          - name: Lord Chompy Bits
+            health: 6
+            speed: 4
+            image_url: https://gusladogames.files.wordpress.com/2015/04/lcbsmall.jpg
+            passives:
+              - name: Abilities targeting you have +2def
+                text: ''
+              - name: Start of turn
+                text: Heal 2
+            default_abilities:
+              - name: Bite
+                text: |-
+                  Range 1, 3dmg
+          - name: Alp
+            health: 3
+            speed: 3
+            image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc8hSzXnwyWPFUDyUoXQlrKu2m5by3oZ4y1-CLUYsD6F2J7hQ2wdwX0P4zH0Jq9lpe50U&usqp=CAU
+            passives:
+              - name: Abilities targeting allies in range 1 have +1def
+                text: ''
+              - name: Nightmares Made Real
+                text: |-
+                  While this is in exile, if an enemy is damaged to below half health, if no other friendly Alp has been placed this activation:
+                    you may place this adjacent to it.
+                    This deals 1 damage to everything in range 1.
+                    This may make a default attack.
+            default_abilities:
+              - name: Imaginary Claws
+                text: |-
+                  Range 1, 1dmg, +1dmg per exiled Alp.
+  
+
+
 #      - name: Hamelin
 #
 #      - name: Luccas McCabe
@@ -5450,178 +5625,6 @@ sets:
 
 
 
-  #      - name: Kirai
-  #        description: |-
-  #          - Summoner
-  #          - Heals from nearby enemies
-  #        health: 10
-  #        speed: 3
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679645918-3GIYPII25XP5RSICIVPE/M2E_Kirai.png
-  #        passives:
-  #          - name: Damaged
-  #            text: Attacker takes 1 damage
-  #          - name: Attacked
-  #            text: May discard a card to change the target to one of your summons.
-  #          - name: End of turn
-  #            text: |-
-  #              For each enemy in range 2, deal 1 damage to them and heal 1.
-  #              Take 1 damage for each of your summons.
-  #        default_abilities:
-  #          - name: Shears
-  #            text: |-
-  #              Range 1, 2dmg
-  #        abilities:
-  #          - name: Spirit Barrage
-  #            text: |-
-  #              Range 6, 1dmg
-  #              3-4: An adjacent ally can attack the target.
-  #              5-6: Summon a Gaki adjacent to the target, max 3
-  #          - name: Blood and Wind
-  #            text: |-
-  #              Range 3
-  #              Choose:
-  #                Summon a Gaki, max 3.
-  #                or roll: 5-6, summon an Ikiryo, max 1.
-  #          - name: Soothe Spirit
-  #            text: Range 3, heal 1, Overshield +1
-  #          - name: I've Got Your Back
-  #            text: |-
-  #              Free
-  #              Range 4, teleport target ally adjacent to this.
-  #        units:
-  #          - name: Ikiryo
-  #            health: 4
-  #            speed: 4
-  #            image_url: https://i.ytimg.com/vi/63A_tJ8wPds/maxresdefault.jpg
-  #            passives:
-  #              - name: Abilities targeting you have +2def
-  #                text: ""
-  #              - name: -1 Damage received
-  #                text: ""
-  #              - name: Damaged
-  #                text: Attacker takes 1 damage
-  #            default_abilities:
-  #              - name: Death Touch
-  #                text: |-
-  #                  Range 2, 3dmg irreducible.
-  #                  On kill, this and Kirai heal 2.
-  #          - name: Gaki
-  #            health: 3
-  #            speed: 3
-  #            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2015_09/large.gaki.jpg.afc89b1f23a8af53c6e322f1f434e4ea.jpg
-  #            passives:
-  #              - name: Armor
-  #                text: ""
-  #              - name: Damaged
-  #                text: Attacker takes 1 damage
-  #              - name: Unit dies in burst 1
-  #                text: Heal 2
-  #            default_abilities:
-  #              - name: Mighty Jaws
-  #                text: |-
-  #                  Range 2, 2dmg
-  #            hints:
-  #              - *ArmorHint
-  #      - name: The Dreamer
-  #        description: |-
-  #          - Delayed summoner
-  #          - Deploys with a beater
-  #        health: 4
-  #        speed: 3
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561406454403-LXJLZQ5JOLVVC9M8WHBB/M3E_Dreamer.png
-  #        passives:
-  #          - name: -1 Damage received
-  #            text: ''
-  #          - name: Abilities targeting you have +2def
-  #            text: ''
-  #          - name: Diversion
-  #            text: Enemies in range 2 cannot use Free Actions.
-  #          - name: Attacked
-  #            text: You may discard a card to change the target to an adjacent Lord Chompy Bits or Alp.
-  #          - name: Deploy
-  #            text: Summon and deploy a Lord Chompy Bits.
-  #        default_abilities:
-  #          - name: Cricket Bat
-  #            text: |-
-  #              Range 1, 1dmg, +1dmg for each of your summons adjacent to the target.
-  #              Swap positions with an ally in range 3.
-  #        abilities:
-  #          - name: Manifest Nightmares
-  #            text: |-
-  #              Once per turn
-  #              Summon and Exile an Alp.
-  #        units:
-  #          - name: Lord Chompy Bits
-  #            health: 6
-  #            speed: 4
-  #            image_url: https://gusladogames.files.wordpress.com/2015/04/lcbsmall.jpg
-  #            passives:
-  #              - name: Abilities targeting you have +2def
-  #                text: ''
-  #              - name: Start of turn
-  #                text: Heal 2
-  #            default_abilities:
-  #              - name: Bite
-  #                text: |-
-  #                  Range 1, 3dmg
-  #          - name: Alp
-  #            health: 3
-  #            speed: 3
-  #            image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc8hSzXnwyWPFUDyUoXQlrKu2m5by3oZ4y1-CLUYsD6F2J7hQ2wdwX0P4zH0Jq9lpe50U&usqp=CAU
-  #            passives:
-  #              - name: Abilities targeting allies in range 1 have +1def
-  #                text: ''
-  #              - name: Nightmares Made Real
-  #                text: |-
-  #                  While this is in exile, if an enemy is damaged to below half health, if no other friendly Alp has been placed this activation:
-  #                    you may place this adjacent to it.
-  #                    This deals 1 damage to everything in range 1.
-  #                    This may make a default attack.
-  #            default_abilities:
-  #              - name: Imaginary Claws
-  #                text: |-
-  #                  Range 1, 1dmg, +1dmg per exiled Alp.
-  #      - name: Colette
-  #        description: |-
-  #          - Reposition self and team
-  #          - Exile units
-  #          - Distract and silence
-  #        health: 8
-  #        speed: 3
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561391468145-0KLLOT8NOW46VZKHY0NR/M3E_Colette.png
-  #        passives:
-  #          - name: Abilities targeting you have +2def
-  #            text: ""
-  #          - name: Attacked, 1-2
-  #            text: Take 1 less damage, then exile this.
-  #          - name: Start, if Exiled
-  #            text: |-
-  #              Place this adjacent to an ally,
-  #              then give adjacent enemies Distracted +1
-  #          - name: End of turn
-  #            text: |-
-  #              Distracted enemies in range 2 are Silenced.
-  #        default_abilities:
-  #          - name: Distracting Illusions
-  #            text: |-
-  #              Range 1, undefendable, target discards a card, and gets Distracted +1 and Silenced.
-  #        abilities:
-  #          - name: False Reality
-  #            text: |-
-  #              Range 4, undefendable, teleport the target  3.
-  #              5-6: You may give the target Stunned(-1 Action)
-  #          - name: Presto Chango
-  #            text: |-
-  #              Range 4, undefendable, swap places with the target
-  #          - name: Sword Trick
-  #            text: |-
-  #              Free
-  #              Range 1, 2dmg, Exile target.
-  #              At the start of its next activation, place it adjacent to one of its allies.
-  #          - name: Practiced Choreography
-  #            text: |-
-  #              Free
-  #              Allies in range 2 may move 2.
 
 
   #  - name: Icon
