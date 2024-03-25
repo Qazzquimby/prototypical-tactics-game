@@ -189,6 +189,13 @@ hints:
     name: Ultimate
     text: |-
       Can be used 1/Game, and only on turn X or later.
+  MarkHint: &MarkHint
+    name: Mark
+    text: |-
+      A Mark is any token that either --
+      - contains "Mark" in its name
+      - or that is given by an enemy and causes increased damage received or undefendable.
+      For example, slow causes undefendable, so a slow caused by an enemy is a mark.
   ### maps
   CapturePointHint: &CapturePointHint
     name: Capture Point Objective (orange shade)
@@ -295,12 +302,12 @@ sets:
         text: |-
           TODO as lancer except
           You gain stress when an ally dies or when you reach 1 health.
-          At 7 stress, gain an affliction and lose all stress.
-          If you would gain a second affliction, take 999dmg.
-      - name: Death's Door
-        text: |-
-          While a hero has 2 or more health, they cannot be brought below 1 health.
-          When a hero reaches 1 health they gain 3 stress.
+          At 6 stress, gain an affliction and lose all stress.
+          If you would gain a second affliction, instead lower your health to 1.
+#      - name: Death's Door
+#        text: |-
+#          While a hero has 2 or more health, they cannot be brought below 1 health.
+#          When a hero reaches 1 health they gain 3 stress.
     heroes:
       - name: Abomination
         description: |-
@@ -370,14 +377,16 @@ sets:
         abilities:
           - name: Holy Lance
             text: |-
-              Move exactly 1 towards a unit.
-              Range exactly 2 targeting that unit, 2dmg, +1crit.
+              Unit in range exactly 3, 2dmg, +1crit.
+              Move exactly 1 towards the target.
           - name: Stunning Blow
             text: |-
               Range 1, +2def, 1dmg, paralyze
+            tokens:
+              - *Paralyze
           - name: Inspiring Cry
             text: |-
-              Allies in burst 2, heal 1 and lose 2 stress.
+              You and allies in burst 2, heal 1 and lose 2 stress.
       - name: Hellion
         description: |-
           - Melee DPS
@@ -443,14 +452,13 @@ sets:
               Lose all Suspense tokens.
           - name: Solo
             text: |-
-              Move exactly 3 towards the nearest enemy.
-              Range 1, +2 stress.
-              Gain a Mark and 2 Suspense tokens.
+              Enemy in range 4, +2 stress.
+              Teleport in range 1 of the target. Gain a Mark and 2 Suspense tokens.
             tokens:
               - *Mark
           - name: Inspiring Tune
             text: |-
-              Range 3, -3 stress.
+              Range 3, -4 stress.
               Gain 1 Suspense token.
 
       - name: Highwayman
@@ -514,7 +522,7 @@ sets:
           - name: Intimidate
             text: |-
               Unlimited range, target is undefendable and takes 3 stress.
-              Allies in burst 2 of target lose 2 stress.
+              You and allies in burst 2 of target lose 2 stress.
             tokens:
               - *Undefendable
       - name: Occultist
@@ -669,15 +677,15 @@ sets:
             text: Worth 2 heroes. Worth 2 points when killed.
           - name: On Death
             text: Your summons die
+          - name: End of Turn
+            text: Move 1 and summon a Skeleton in your previous space (max 3).
         default_abilities:
           - name: The Flesh is Willing
             text: |-
               Unlimited range 2x2, 2dmg.
-              Move 1 away from the origin and summon a Skeleton in your previous space
           - name: Six Feet Under
             text: |-
               Enemies in burst 3, +3 stress.
-              Move 1 and summon a Skeleton in your previous space.
         abilities:
           - name: Generous Offering
             text: |-
@@ -712,16 +720,27 @@ sets:
             text: |-
               5 health.
               Blocks movement but not line of sight.
+            is_marker: true
+          - name: Prophet's Mark
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/3/3b/Prophet_Trinket.png/revision/latest?cb=20170216060920
+            text: |-
+              You gain Free Action: Ally in range 1, give them this mark.
+        dice:
+          - name: Pew
+            color: red
+            values: [ 5, 5, 5]
         default_abilities:
           - name: Calamitous Prognostication
             text: |-
-              Unlimited range, undefendable, give target a Mark.
+              Unlimited range, undefendable, give target a Prophet's Mark.
             tokens:
               - *Mark
           - name: Rubble of Ruin
             text: |-
-              Target enemy with a mark (globally), 7dmg.
+              Target enemy with any mark (globally), 7dmg.
               Enemies lose all marks.
+            hints:
+              - *MarkHint
         abilities:
           - name: Eye on You
             text: |-
@@ -768,11 +787,12 @@ sets:
               Range 3, +2 stress, target is undefendable.
             tokens:
               - *Undefendable
+        abilities:
           - name: Into the Pot
             text: |-
               Marked unit in range 4, remove from the map. While they're removed they are "in the Cauldron."
               Heal the Cauldron to 5.
-              When the Cauldron reaches 0 hp, the unit's owner places them in range 1.
+              When you die or the Cauldron reaches 0 hp, the unit's owner places them in range 2 of the Cauldron.
           - name: Meat Tenderizer
             text: |-
               Enemies in burst 4, 1dmg, +2 stress.
@@ -4082,6 +4102,97 @@ sets:
             image_url: https://www.puttyandpaint.com/images/uploads/artistworks/6442/cache/vik3-3__sized_l.jpg
             health: 6
             speed: 3
+#
+      - name: Charles Hoffman
+        polish: [ needs_testing ]
+        description: |-
+          - Support tank
+          - Heal
+          - Damage boost
+        health: 8
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561390371824-LNUUZGNIW98YBA0P638N/M3E_Hoffman.png
+        passives:
+          - name: Armor
+            text: ''
+          - name: Start of turn
+            text: |-
+              You and allies in range 3 gain 1 Power Token.
+              On attack, a single power token can be discarded before rolling to set the result to any number, or gain +1dmg.
+          - name: When targeted
+            text: |-
+              You may discard a card to change the target to an ally in range 1.
+        tokens:
+          - name: Power
+            image_url: TODO
+            text: |-
+              On attack, a single power token can be discarded before rolling to set the result to any number, or gain +1dmg.
+        default_abilities:
+          - name: Enhanced Fists
+            text: |-
+              range 1, 2dmg, Choose one --
+                - Push 2
+                - Gain a power token
+        abilities:
+          - name: Welding Torch
+            text: |-
+              Range 1. Discard any number of power tokens for +2 range each.
+              If target is enemy: 2dmg, give DoT.
+              If target is ally: Heal them 3 and until your next turn, damage dealt to them cannot be irreducible.
+            tokens:
+              - *DoT
+          - name: Analyze Weakness
+            text: |-
+              Move action:
+              Range 4, until the start of your next turn, all damage dealt to the target is irreducible
+          - name: Overcharge
+            text: |-
+              Ally in range 3.
+              Deal 1dmg to enemies in range 1 of the target.
+              Give them a power token.
+              They may take a move action.
+          - name: Emergency Power Transfer
+            text: |-
+              Free Action:
+              Ally in range 3.
+              You may give them one of your power tokens.
+              You may push 2 towards them.
+
+#      - name: Kaitlyn
+
+#      - name: Kirai Ankoku
+#      - name: Colette Du Bois
+#      - name: The Dreamer
+#      - name: Hamelin
+#
+#      - name: Luccas McCabe
+#      - name: Yan Lo
+#      - name: Mei Feng
+#      - name: Jacob Lynch
+#      - name: Misaki
+#
+#      - name: Ophelia
+#      - name: Brewmaster
+#
+#      - name: Lucius
+#      - name: Molly Squidpiddge
+#      - name: Ironsides
+#      - name: Asami Tanaka
+#      - name: Jack Daw
+#      - name: Ulix
+#      - name: Mah Tucket
+#      - name: Wong
+#      - name: Shenlong
+#
+#      - name: Nellie Cochrane
+#      - name: Reva
+#      - name: Sandeep Desai
+#      - name: Titania
+#      - name: Parker Barrows
+#      - name: Zipp
+#      - name: Asami Tanaka
+#      - name: Titania
+
   - name: Overwatch
     color: [ .94, .592, .114 ]
     description: |-
@@ -5738,7 +5849,7 @@ sets:
               or uses an ability which does not include you, while in range 2 of you.
               
               You may move 1 towards them,
-              range 1, 1dmg00 to them, 
+              range 1, 100dmg to them, 
               gain a Kill Counter, move 2.
         tokens:
           - *Kill

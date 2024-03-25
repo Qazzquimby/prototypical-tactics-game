@@ -1,0 +1,7 @@
+backend:
+    name: git-gateway
+    commit_messages:
+        create: 'Create {{collection}} “{{slug}}”'
+        update: 'Update {{collection}} “{{slug}}”'
+        delete: 'Delete {{collection}} “{{slug}}”'
+media_folder: public/images
