@@ -1,3 +1,7 @@
+rules:
+  - name: Rules
+    text: |- 
+      See tactics.toren.dev/rules
 #rules:
 #  - name: Overview
 #    text: |-
@@ -189,6 +193,21 @@ hints:
     name: Ultimate
     text: |-
       Can be used 1/Game, and only on turn X or later.
+  UnprotectedHint: &UnprotectedHint
+    name: Unprotected
+    text: |-
+      Any unit with 1/2 health or less, and no Overshield, is considered "Unprotected".
+  SilenceHint: &SilenceHint
+    name: Silence
+    text: |-
+      You cannot use non-default abilities. Clear at the end of your next turn.
+  MarkHint: &MarkHint
+    name: Mark
+    text: |-
+      A Mark is any token that either --
+      - contains "Mark" in its name
+      - or that is given by an enemy and causes increased damage received or undefendable.
+      For example, slow causes undefendable, so a slow caused by an enemy is a mark.
   ### maps
   CapturePointHint: &CapturePointHint
     name: Capture Point Objective (orange shade)
@@ -294,13 +313,13 @@ sets:
       - name: Stress
         text: |-
           TODO as lancer except
-          You gain stress when an ally dies or when you reach 1 health.
-          At 7 stress, gain an affliction and lose all stress.
-          If you would gain a second affliction, take 999dmg.
-      - name: Death's Door
-        text: |-
-          While a hero has 2 or more health, they cannot be brought below 1 health.
-          When a hero reaches 1 health they gain 3 stress.
+          You gain 2 stress when an ally dies.
+          At 6 stress, gain an affliction and lose all stress.
+          If you would gain a second affliction, instead lower your health to 1.
+    #      - name: Death's Door
+    #        text: |-
+    #          While a hero has 2 or more health, they cannot be brought below 1 health.
+    #          When a hero reaches 1 health they gain 3 stress.
     heroes:
       - name: Abomination
         description: |-
@@ -370,14 +389,16 @@ sets:
         abilities:
           - name: Holy Lance
             text: |-
-              Move exactly 1 towards a unit.
-              Range exactly 2 targeting that unit, 2dmg, +1crit.
+              Unit in range exactly 3, 2dmg, +1crit.
+              Move exactly 1 towards the target.
           - name: Stunning Blow
             text: |-
               Range 1, +2def, 1dmg, paralyze
+            tokens:
+              - *Paralyze
           - name: Inspiring Cry
             text: |-
-              Allies in burst 2, heal 1 and lose 2 stress.
+              You and allies in burst 2, heal 1 and lose 2 stress.
       - name: Hellion
         description: |-
           - Melee DPS
@@ -443,14 +464,13 @@ sets:
               Lose all Suspense tokens.
           - name: Solo
             text: |-
-              Move exactly 3 towards the nearest enemy.
-              Range 1, +2 stress.
-              Gain a Mark and 2 Suspense tokens.
+              Enemy in range 4, +2 stress.
+              Teleport in range 1 of the target. Gain a Mark and 2 Suspense tokens.
             tokens:
               - *Mark
           - name: Inspiring Tune
             text: |-
-              Range 3, -3 stress.
+              Range 3, -4 stress.
               Gain 1 Suspense token.
 
       - name: Highwayman
@@ -514,7 +534,7 @@ sets:
           - name: Intimidate
             text: |-
               Unlimited range, target is undefendable and takes 3 stress.
-              Allies in burst 2 of target lose 2 stress.
+              You and allies in burst 2 of target lose 2 stress.
             tokens:
               - *Undefendable
       - name: Occultist
@@ -669,15 +689,15 @@ sets:
             text: Worth 2 heroes. Worth 2 points when killed.
           - name: On Death
             text: Your summons die
+          - name: End of Turn
+            text: Move 1 and summon a Skeleton in your previous space (max 3).
         default_abilities:
           - name: The Flesh is Willing
             text: |-
               Unlimited range 2x2, 2dmg.
-              Move 1 away from the origin and summon a Skeleton in your previous space
           - name: Six Feet Under
             text: |-
               Enemies in burst 3, +3 stress.
-              Move 1 and summon a Skeleton in your previous space.
         abilities:
           - name: Generous Offering
             text: |-
@@ -712,16 +732,27 @@ sets:
             text: |-
               5 health.
               Blocks movement but not line of sight.
+            is_marker: true
+          - name: Prophet's Mark
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/3/3b/Prophet_Trinket.png/revision/latest?cb=20170216060920
+            text: |-
+              You gain Free Action: Ally in range 1, give them this mark.
+        dice:
+          - name: Pew
+            color: red
+            values: [ 5, 5, 5 ]
         default_abilities:
           - name: Calamitous Prognostication
             text: |-
-              Unlimited range, undefendable, give target a Mark.
+              Unlimited range, undefendable, give target a Prophet's Mark.
             tokens:
               - *Mark
           - name: Rubble of Ruin
             text: |-
-              Target enemy with a mark (globally), 7dmg.
+              Target enemy with any mark (globally), 7dmg.
               Enemies lose all marks.
+            hints:
+              - *MarkHint
         abilities:
           - name: Eye on You
             text: |-
@@ -768,11 +799,12 @@ sets:
               Range 3, +2 stress, target is undefendable.
             tokens:
               - *Undefendable
+        abilities:
           - name: Into the Pot
             text: |-
               Marked unit in range 4, remove from the map. While they're removed they are "in the Cauldron."
               Heal the Cauldron to 5.
-              When the Cauldron reaches 0 hp, the unit's owner places them in range 1.
+              When you die or the Cauldron reaches 0 hp, the unit's owner places them in range 2 of the Cauldron.
           - name: Meat Tenderizer
             text: |-
               Enemies in burst 4, 1dmg, +2 stress.
@@ -781,7 +813,80 @@ sets:
               If a unit is in the Cauldron:
                 Range 3, +2 stress, push 1.
                 Heal 4 and you may remove a condition.
-              
+
+
+
+      - name: Swine Prince
+        description: |-
+          - Boss hero, counts as 2
+          - 3x3 body, plus helper
+          - Mark and punish
+        health: 24
+        speed: 2
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/4/4e/Swine_Prince_Sprite.png/revision/latest/scale-to-width-down/1000?cb=20150711042807
+        passives:
+          - name: Draft
+            text: Worth 2 heroes. Worth 2 points when killed.
+          - name: Deploy
+            text: Create a Wilbur unit in an empty space in range 1.
+          - name: You are undefendable and immune to forced movement
+            text: ""
+          - name: Size 3
+            text: |-
+              Whenever you change location, remove all Swine Prince Markers, then fill all free adjacent spaces with Swine Prince markers.
+              You are considered to occupy all marked spaces. You can draw range to and from any marked space.
+          - name: When a Wilbur is damaged by an enemy
+            text: You may move 2 and use a default ability.
+        tokens:
+          - name: Swine Prince
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/4/4e/Swine_Prince_Sprite.png/revision/latest/scale-to-width-down/1000?cb=20150711042807
+            is_marker: true
+            description: Swine Prince is considered to be in all spaces with this token.
+        default_abilities:
+          - name: Obliterate Body
+            text: |-
+              Burst 2. 3dmg, double damage against marks. All in range clear marks.
+        units:
+          - name: Wilbur
+            health: 6
+            speed: 4
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/5/52/Piglet.png/revision/latest?cb=20150711042814
+            passives:
+              - name: Must act after Swine Prince if possible
+                text: ""
+            default_abilities:
+              - name: End This One
+                text: |-
+                  Unlimited range, 2x2, mark all
+              - name: Squeal
+                text: |-
+                  Enemies in burst 2, 1dmg, slow
+            tokens:
+              - *Mark
+              - *Slow
+      - name: Siren
+        image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/8/8d/Siren_Upright.png/revision/latest?cb=20220527112838
+        description: |-
+          - Boss hero, counts as 2
+          - Mind control
+        health: 12
+        speed: 4
+        passives:
+          - name: +2 def
+            text: ""
+        default_abilities:
+          - name: Song of Desire
+            text: |-
+              Range 2, target gets Mind Controlled until the beginning of your next turn.
+          - name: Devour
+            text: |-
+              Free Action, all in burst 2 gain 2 stress and 1dmg.
+        tokens:
+          - name: Mind Controlled
+            image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/d/df/Siren_Trinket.png/revision/latest?cb=20170218214814
+            text: |-
+              This unit is controlled by the Siren's player. At the beginning of Siren's turn, lose this and push 4 away from Siren. 
+
 
 
   - name: Dota 2
@@ -4082,6 +4187,284 @@ sets:
             image_url: https://www.puttyandpaint.com/images/uploads/artistworks/6442/cache/vik3-3__sized_l.jpg
             health: 6
             speed: 3
+      #
+      - name: Charles Hoffman
+        polish: [ needs_testing ]
+        description: |-
+          - Support tank
+          - Heal
+          - Damage boost
+        health: 8
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561390371824-LNUUZGNIW98YBA0P638N/M3E_Hoffman.png
+        passives:
+          - name: Armor
+            text: ''
+          - name: Start of turn
+            text: |-
+              You and allies in range 3 gain 1 Power Token.
+              On attack, a single power token can be discarded before rolling to set the result to any number, or gain +1dmg.
+          - name: When targeted
+            text: |-
+              You may discard a card to change the target to an ally in range 1.
+        hints:
+          - *ArmorHint
+        tokens:
+          - name: Power
+            image_url: https://cdn-icons-png.flaticon.com/512/1065/1065537.png
+            text: |-
+              On attack, a single power token can be discarded before rolling to set the result to any number, or gain +1dmg.
+        default_abilities:
+          - name: Enhanced Fists
+            text: |-
+              range 1, 2dmg, Choose one --
+                - Push 2
+                - Gain a power token
+        abilities:
+          - name: Welding Torch
+            text: |-
+              Range 1. Discard any number of power tokens for +2 range each.
+              If target is enemy: 2dmg, give DoT.
+              If target is ally: Heal them 3 and until your next turn, damage dealt to them cannot be irreducible.
+            tokens:
+              - *DoT
+          - name: Analyze Weakness
+            text: |-
+              Move action:
+              Range 4, until the start of your next turn, all damage dealt to the target is irreducible
+          - name: Overcharge
+            text: |-
+              Ally in range 3.
+              Deal 1dmg to enemies in range 1 of the target.
+              Give them a power token.
+              They may take a move action.
+          - name: Emergency Power Transfer
+            text: |-
+              Free Action:
+              Ally in range 3.
+              You may give them one of your power tokens.
+              You may push 2 towards them.
+
+      - name: Kirai
+        description: |-
+          - Summoner
+          - Heals from nearby enemies
+        health: 10
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679645918-3GIYPII25XP5RSICIVPE/M2E_Kirai.png
+        passives:
+          - name: Damaged
+            text: Attacker takes 1 damage
+          - name: Attacked
+            text: May discard a card to change the target to one of your summons.
+          - name: End of turn
+            text: |-
+              For each enemy in range 2, deal 1 damage to them and heal 1.
+              Take 1 damage for each of your summons.
+        default_abilities:
+          - name: Shears
+            text: |-
+              Range 1, 2dmg
+        abilities:
+          - name: Spirit Barrage
+            text: |-
+              Range 6, 1dmg
+              3-4: An adjacent ally can attack the target.
+              5-6: Summon a Gaki adjacent to the target, max 3
+          - name: Blood and Wind
+            text: |-
+              Range 3
+              Choose:
+                Summon a Gaki, max 3.
+                or roll: 5-6, summon an Ikiryo, max 1.
+          - name: Soothe Spirit
+            text: Range 3, heal 1, Overshield +1
+          - name: I've Got Your Back
+            text: |-
+              Free
+              Range 4, teleport target ally adjacent to this.
+        units:
+          - name: Ikiryo
+            health: 4
+            speed: 4
+            image_url: https://i.ytimg.com/vi/63A_tJ8wPds/maxresdefault.jpg
+            passives:
+              - name: Abilities targeting you have +2def
+                text: ""
+              - name: -1 Damage received
+                text: ""
+              - name: Damaged
+                text: Attacker takes 1 damage
+            default_abilities:
+              - name: Death Touch
+                text: |-
+                  Range 2, 3dmg irreducible.
+                  On kill, this and Kirai heal 2.
+          - name: Gaki
+            health: 3
+            speed: 3
+            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2015_09/large.gaki.jpg.afc89b1f23a8af53c6e322f1f434e4ea.jpg
+            passives:
+              - name: Armor
+                text: ""
+              - name: Damaged
+                text: Attacker takes 1 damage
+              - name: Unit dies in burst 1
+                text: Heal 2
+            default_abilities:
+              - name: Mighty Jaws
+                text: |-
+                  Range 2, 2dmg
+            hints:
+              - *ArmorHint
+      - name: Colette
+        description: |-
+          - Reposition self and team
+          - Exile units
+          - Distract and silence
+        health: 8
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561391468145-0KLLOT8NOW46VZKHY0NR/M3E_Colette.png
+        passives:
+          - name: Abilities targeting you have +2def
+            text: ""
+          - name: Attacked, 1-2
+            text: Take 1 less damage, then exile this.
+          - name: Start, if Exiled
+            text: |-
+              Place this adjacent to an ally,
+              then give adjacent enemies Distracted +1
+          - name: End of turn
+            text: |-
+              Distracted enemies in range 2 are Silenced.
+        default_abilities:
+          - name: Distracting Illusions
+            text: |-
+              Range 1, undefendable, target discards a card, and gets Distracted +1 and Silenced.
+        abilities:
+          - name: False Reality
+            text: |-
+              Range 4, undefendable, teleport the target  3.
+              5-6: You may give the target Stunned(-1 Action)
+          - name: Presto Chango
+            text: |-
+              Range 4, undefendable, swap places with the target
+          - name: Sword Trick
+            text: |-
+              Free
+              Range 1, 2dmg, Exile target.
+              At the start of its next activation, place it adjacent to one of its allies.
+          - name: Practiced Choreography
+            text: |-
+              Free
+              Allies in range 2 may move 2.
+
+
+
+      - name: The Dreamer
+        description: |-
+          - Delayed summoner
+          - Deploys with a beater
+        health: 4
+        speed: 3
+        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561406454403-LXJLZQ5JOLVVC9M8WHBB/M3E_Dreamer.png
+        passives:
+          - name: -1 Damage received
+            text: ''
+          - name: Abilities targeting you have +2def
+            text: ''
+          - name: Diversion
+            text: Enemies in range 2 cannot use Free Actions.
+          - name: Attacked
+            text: You may discard a card to change the target to an adjacent Lord Chompy Bits or Alp.
+          - name: Deploy
+            text: Summon and deploy a Lord Chompy Bits.
+        default_abilities:
+          - name: Cricket Bat
+            text: |-
+              Range 1, 1dmg, +1dmg for each of your summons adjacent to the target.
+              Swap positions with an ally in range 3.
+        abilities:
+          - name: Manifest Nightmares
+            text: |-
+              Once per turn
+              Summon and Exile an Alp.
+        units:
+          - name: Lord Chompy Bits
+            health: 6
+            speed: 4
+            image_url: https://gusladogames.files.wordpress.com/2015/04/lcbsmall.jpg
+            passives:
+              - name: Abilities targeting you have +2def
+                text: ''
+              - name: Start of turn
+                text: Heal 2
+            default_abilities:
+              - name: Bite
+                text: |-
+                  Range 1, 3dmg
+          - name: Alp
+            health: 3
+            speed: 3
+            image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc8hSzXnwyWPFUDyUoXQlrKu2m5by3oZ4y1-CLUYsD6F2J7hQ2wdwX0P4zH0Jq9lpe50U&usqp=CAU
+            passives:
+              - name: Abilities targeting allies in range 1 have +1def
+                text: ''
+              - name: Nightmares Made Real
+                text: |-
+                  While this is in exile, if an enemy is damaged to below half health, if no other friendly Alp has been placed this activation:
+                    you may place this adjacent to it.
+                    This deals 1 damage to everything in range 1.
+                    This may make a default attack.
+            default_abilities:
+              - name: Imaginary Claws
+                text: |-
+                  Range 1, 1dmg, +1dmg per exiled Alp.
+  
+  
+
+  #      - name: Hamelin
+  # health 8, speed 3
+  # Start of turn, enemies in range 3 get blight
+  # Enemy dies in range 3, summon a rat in their space
+  # When you would gain a condition, you may instead discard a card
+  #
+  # The Black Staff:Range 1, 2 dmg, give a blight token, summon a rat adjacent to them
+  # Lure: Unlimited range, give a blight token, target moves their full speed towards you
+  # Bleeding Disease: Unlimited range, target takes damage equal to the number of blight tokens they have
+  # Pustulent Tumors: Rat unlimited range. Non-rats in range 1 of the target take 2dmg and gain a blight token. Kill the targeted rat.
+  # Unclean Influence: Rats in range 3 may move 1 and take an action.
+  # Rat, speed 3, 1hp, Range 1, give blight, 1 damage per 2 other rats in range 1
+
+
+  #      - name: Luccas McCabe
+  #      - name: Yan Lo
+  #      - name: Mei Feng
+  #      - name: Jacob Lynch
+  #      - name: Misaki
+  #
+  #      - name: Ophelia
+  #      - name: Brewmaster
+  #
+  #      - name: Lucius
+  #      - name: Molly Squidpiddge
+  #      - name: Ironsides
+  #      - name: Asami Tanaka
+  #      - name: Jack Daw
+  #      - name: Ulix
+  #      - name: Mah Tucket
+  #      - name: Wong
+  #      - name: Shenlong
+  #
+  #      - name: Nellie Cochrane
+  #      - name: Reva
+  #      - name: Sandeep Desai
+  #      - name: Titania
+  #      - name: Parker Barrows
+  #      - name: Zipp
+  #      - name: Asami Tanaka
+  #      - name: Titania
+
   - name: Overwatch
     color: [ .94, .592, .114 ]
     description: |-
@@ -5339,178 +5722,6 @@ sets:
 
 
 
-  #      - name: Kirai
-  #        description: |-
-  #          - Summoner
-  #          - Heals from nearby enemies
-  #        health: 10
-  #        speed: 3
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1562679645918-3GIYPII25XP5RSICIVPE/M2E_Kirai.png
-  #        passives:
-  #          - name: Damaged
-  #            text: Attacker takes 1 damage
-  #          - name: Attacked
-  #            text: May discard a card to change the target to one of your summons.
-  #          - name: End of turn
-  #            text: |-
-  #              For each enemy in range 2, deal 1 damage to them and heal 1.
-  #              Take 1 damage for each of your summons.
-  #        default_abilities:
-  #          - name: Shears
-  #            text: |-
-  #              Range 1, 2dmg
-  #        abilities:
-  #          - name: Spirit Barrage
-  #            text: |-
-  #              Range 6, 1dmg
-  #              3-4: An adjacent ally can attack the target.
-  #              5-6: Summon a Gaki adjacent to the target, max 3
-  #          - name: Blood and Wind
-  #            text: |-
-  #              Range 3
-  #              Choose:
-  #                Summon a Gaki, max 3.
-  #                or roll: 5-6, summon an Ikiryo, max 1.
-  #          - name: Soothe Spirit
-  #            text: Range 3, heal 1, Overshield +1
-  #          - name: I've Got Your Back
-  #            text: |-
-  #              Free
-  #              Range 4, teleport target ally adjacent to this.
-  #        units:
-  #          - name: Ikiryo
-  #            health: 4
-  #            speed: 4
-  #            image_url: https://i.ytimg.com/vi/63A_tJ8wPds/maxresdefault.jpg
-  #            passives:
-  #              - name: Abilities targeting you have +2def
-  #                text: ""
-  #              - name: -1 Damage received
-  #                text: ""
-  #              - name: Damaged
-  #                text: Attacker takes 1 damage
-  #            default_abilities:
-  #              - name: Death Touch
-  #                text: |-
-  #                  Range 2, 3dmg irreducible.
-  #                  On kill, this and Kirai heal 2.
-  #          - name: Gaki
-  #            health: 3
-  #            speed: 3
-  #            image_url: https://wyrdforumbucket.s3.us-east-2.amazonaws.com/monthly_2015_09/large.gaki.jpg.afc89b1f23a8af53c6e322f1f434e4ea.jpg
-  #            passives:
-  #              - name: Armor
-  #                text: ""
-  #              - name: Damaged
-  #                text: Attacker takes 1 damage
-  #              - name: Unit dies in burst 1
-  #                text: Heal 2
-  #            default_abilities:
-  #              - name: Mighty Jaws
-  #                text: |-
-  #                  Range 2, 2dmg
-  #            hints:
-  #              - *ArmorHint
-  #      - name: The Dreamer
-  #        description: |-
-  #          - Delayed summoner
-  #          - Deploys with a beater
-  #        health: 4
-  #        speed: 3
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561406454403-LXJLZQ5JOLVVC9M8WHBB/M3E_Dreamer.png
-  #        passives:
-  #          - name: -1 Damage received
-  #            text: ''
-  #          - name: Abilities targeting you have +2def
-  #            text: ''
-  #          - name: Diversion
-  #            text: Enemies in range 2 cannot use Free Actions.
-  #          - name: Attacked
-  #            text: You may discard a card to change the target to an adjacent Lord Chompy Bits or Alp.
-  #          - name: Deploy
-  #            text: Summon and deploy a Lord Chompy Bits.
-  #        default_abilities:
-  #          - name: Cricket Bat
-  #            text: |-
-  #              Range 1, 1dmg, +1dmg for each of your summons adjacent to the target.
-  #              Swap positions with an ally in range 3.
-  #        abilities:
-  #          - name: Manifest Nightmares
-  #            text: |-
-  #              Once per turn
-  #              Summon and Exile an Alp.
-  #        units:
-  #          - name: Lord Chompy Bits
-  #            health: 6
-  #            speed: 4
-  #            image_url: https://gusladogames.files.wordpress.com/2015/04/lcbsmall.jpg
-  #            passives:
-  #              - name: Abilities targeting you have +2def
-  #                text: ''
-  #              - name: Start of turn
-  #                text: Heal 2
-  #            default_abilities:
-  #              - name: Bite
-  #                text: |-
-  #                  Range 1, 3dmg
-  #          - name: Alp
-  #            health: 3
-  #            speed: 3
-  #            image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc8hSzXnwyWPFUDyUoXQlrKu2m5by3oZ4y1-CLUYsD6F2J7hQ2wdwX0P4zH0Jq9lpe50U&usqp=CAU
-  #            passives:
-  #              - name: Abilities targeting allies in range 1 have +1def
-  #                text: ''
-  #              - name: Nightmares Made Real
-  #                text: |-
-  #                  While this is in exile, if an enemy is damaged to below half health, if no other friendly Alp has been placed this activation:
-  #                    you may place this adjacent to it.
-  #                    This deals 1 damage to everything in range 1.
-  #                    This may make a default attack.
-  #            default_abilities:
-  #              - name: Imaginary Claws
-  #                text: |-
-  #                  Range 1, 1dmg, +1dmg per exiled Alp.
-  #      - name: Colette
-  #        description: |-
-  #          - Reposition self and team
-  #          - Exile units
-  #          - Distract and silence
-  #        health: 8
-  #        speed: 3
-  #        image_url: https://images.squarespace-cdn.com/content/v1/54fe412ce4b0c449f7369857/1561391468145-0KLLOT8NOW46VZKHY0NR/M3E_Colette.png
-  #        passives:
-  #          - name: Abilities targeting you have +2def
-  #            text: ""
-  #          - name: Attacked, 1-2
-  #            text: Take 1 less damage, then exile this.
-  #          - name: Start, if Exiled
-  #            text: |-
-  #              Place this adjacent to an ally,
-  #              then give adjacent enemies Distracted +1
-  #          - name: End of turn
-  #            text: |-
-  #              Distracted enemies in range 2 are Silenced.
-  #        default_abilities:
-  #          - name: Distracting Illusions
-  #            text: |-
-  #              Range 1, undefendable, target discards a card, and gets Distracted +1 and Silenced.
-  #        abilities:
-  #          - name: False Reality
-  #            text: |-
-  #              Range 4, undefendable, teleport the target  3.
-  #              5-6: You may give the target Stunned(-1 Action)
-  #          - name: Presto Chango
-  #            text: |-
-  #              Range 4, undefendable, swap places with the target
-  #          - name: Sword Trick
-  #            text: |-
-  #              Free
-  #              Range 1, 2dmg, Exile target.
-  #              At the start of its next activation, place it adjacent to one of its allies.
-  #          - name: Practiced Choreography
-  #            text: |-
-  #              Free
-  #              Allies in range 2 may move 2.
 
 
   #  - name: Icon
@@ -5738,7 +5949,7 @@ sets:
               or uses an ability which does not include you, while in range 2 of you.
               
               You may move 1 towards them,
-              range 1, 1dmg00 to them, 
+              range 1, 100dmg to them, 
               gain a Kill Counter, move 2.
         tokens:
           - *Kill
@@ -6317,3 +6528,68 @@ sets:
         - Medic
         - Soldier
         - Pyro
+  - name: Divinity Original Sin 2
+    description: |-
+      WIP
+    heroes:
+      - name: Aerotheurge
+        description: |-
+          - Forced teleportation
+          - Stuns
+        health: 6
+        speed: 3
+        image_url: https://tactics.toren.dev/image_token_Aerotheurge_8600829047325073678.jpg
+        default_abilities:
+          - name: Shocking Touch
+            text: |-
+              Range 1, 2dmg, stun if Unprotected
+        tokens:
+          - *Stun
+        hints:
+          - *UnprotectedHint
+          - *SilenceHint
+        passives:
+          - name: Vacuum Aura
+            text: |-
+              Enemies in range 1 are Silenced and take 1dmg at the start of your turn.
+        abilities:
+          - name: Teleport
+            text: |-
+              2/Game:
+              Target a unit in range 5 and an empty space in range 5.
+              Teleport the target to that space.
+              The target unit and enemies in burst 1 of the target space take 1dmg.
+          - name: Chain Lightning
+            text: |-
+              1/Game:
+              Range 5, 2dmg. Stun if Unprotected.
+              Repeat any of number times with range 2 from the previous target, targeting an enemy unit that hasn't bit hit by Chain Lightning this turn
+          - name: Uncanny Evasion
+            text: |-
+              1/Game:
+              Range 4. Target has +4 def until the start of your next turn.
+              Move up to 2.
+            tokens:
+              - name: Uncanny Evasion
+                image_url: https://static.wikia.nocookie.net/divinity2/images/c/c8/Uncanny_Evasion.png/revision/latest?cb=20200829090954
+                text: Target has +4 def until the start of your next turn.
+          - name: Nether Swap
+            text: |-
+              2/Game:
+              Choose units targets in range 5. Swap their positions.
+
+
+#      - name: Geomancer
+#        description: |-
+#          - Terrain control
+#          - Healing
+#        health: 8
+#        speed: 3
+#        image_url: TODO
+#        default_abilities:
+#        hints:
+#          - *UnprotectedHint
+#          - *SilenceHint
+#        passives:
+#
+#        abilities:
