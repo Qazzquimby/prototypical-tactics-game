@@ -1,3 +1,7 @@
+rules:
+  - name: Rules
+    text: |- 
+      See tactics.toren.dev/rules
 #rules:
 #  - name: Overview
 #    text: |-
@@ -297,8 +301,6 @@ terrain:
     is_marker: true
     text: |-
       Abilities passing through cover that does not start adjacent to that cover has +2def.
-rules:
-  -
 sets:
   - name: Darkest Dungeon
     color: [ 0.1, 0.1, 0.1 ]
@@ -311,7 +313,7 @@ sets:
       - name: Stress
         text: |-
           TODO as lancer except
-          You gain stress when an ally dies or when you reach 1 health.
+          You gain 2 stress when an ally dies.
           At 6 stress, gain an affliction and lose all stress.
           If you would gain a second affliction, instead lower your health to 1.
     #      - name: Death's Door
@@ -864,7 +866,7 @@ sets:
               - *Slow
       - name: Siren
         image_url: https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/8/8d/Siren_Upright.png/revision/latest?cb=20220527112838
-        description:
+        description: |-
           - Boss hero, counts as 2
           - Mind control
         health: 12
@@ -986,7 +988,7 @@ sets:
         abilities:
           - name: Berserker's Call
             text: |-
-              1/Game
+              1/Game, Free Action
               Until the beginning of your next turn,
                 You have Armor
                 When an enemy starts their turn in range 1 of you,
@@ -1015,6 +1017,40 @@ sets:
                 If the kill was a hero, for the rest of the game you have Armor.
             tokens:
               - *Armor
+        bot_cards:
+          passives:
+            - name: Receive damage
+              text: |-
+                Enemies in burst 1, 1dmg
+            - name: Receive damage from a Default Ability
+              text: The attacker takes 1/2 the damage received, before Armor.
+          default:
+            text: |-
+              Move 3 to nearest enemy
+              
+              Attack Range 1, 2dmg. +1 and irreducible if target has <=3 health. Target doesn't trigger on-death reactions.
+              Else Move 3 to nearest enemy
+          abilities:
+            - name: Default
+              text: ''
+              count: 3
+            - name: Battle Hunger
+              text: |-
+                Move 3 to nearest enemy
+                
+                Attack Range 3, give the 2 DoT and a Battle Hunger token, *Remove this*.
+                  Moving away from you costs twice as many spaces. When they kill a unit, they lose the token and clear all DoT.
+                Else Move 3 to nearest enemy
+            - name: Berserker's Call
+              text: |-
+                Do a default action.
+                If there is an enemy at range 1:
+                  Remove this
+                  Until the beginning of your next turn,
+                    You have Armor
+                    When an enemy starts their turn in range 1 of you,
+                      they cannot move, and they must use a default attack targeting you, if possible, spending actions as normal.
+
       - name: Crystal Maiden
         complexity: 3
         polish: [ needs_testing ]
@@ -1084,6 +1120,56 @@ sets:
               - *Slow
             hints:
               - *UltimateHint
+        bot_cards:
+          passives:
+            - name: Deploy
+              text: |-
+                Each ally returns the first card they would remove from their deck
+            - name: Chilled
+              text: |-
+                Slowed enemies deal -1 damage.
+          default:
+            text: |-
+              Move 2 to range 4 of nearest enemy
+              
+              Attack Range 4, 2dmg
+              Else move 2 behind nearest ally
+          abilities:
+            - name: Default
+              text: ''
+              count: 3
+            - name: Crystal Nova
+              text: |-
+                Move 2 to range 3 of nearest enemy
+                
+                Range 3 2x2, 3dmg, Slow
+                Else move 2 behind nearest ally
+            - name: Frostbite
+              text: |-
+                Move 2 to range 3 of nearest enemy
+                
+                Range 3, 2dmg, immobilize and disarm
+                Else move 2 behind nearest ally
+            - name: Crystal Clone
+              text: |-
+                Use another action card, then
+                *Remove This*
+                Move 2 away from the nearest enemy, and create a Crystal Clone marker in your previous space.
+                Crystal Clone marker has 1 hp and can be targeted like a unit.
+                At the beginning of your turn, destroy Crystal Clone.
+
+                When Crystal Clone is destroyed, it deals burst 1, 2dmg immobilize and disarm.
+            - name: Freezing Field
+              text: |-
+                If turn is 1-3, redraw and shuffle this into the deck
+                
+                *Remove this*
+                Move 2 towards the nearest enemy
+                Enemies in burst 3 ignoring walls, slow.
+                Enter freezing field stance:
+                  At the start of your turn, you may spend Move+Standard Actions for
+                    Enemies in burst 3 ignoring walls, 4dmg, slow.
+                  If you don't, end this effect.
       - name: Dazzle
         complexity: 3
         description: |-
@@ -4209,7 +4295,7 @@ sets:
           - *ArmorHint
         tokens:
           - name: Power
-            image_url: TODO
+            image_url: https://cdn-icons-png.flaticon.com/512/1065/1065537.png
             text: |-
               On attack, a single power token can be discarded before rolling to set the result to any number, or gain +1dmg.
         default_abilities:
@@ -6569,7 +6655,7 @@ sets:
               Move up to 2.
             tokens:
               - name: Uncanny Evasion
-                image_url: TODO
+                image_url: https://static.wikia.nocookie.net/divinity2/images/c/c8/Uncanny_Evasion.png/revision/latest?cb=20200829090954
                 text: Target has +4 def until the start of your next turn.
           - name: Nether Swap
             text: |-
@@ -6577,17 +6663,17 @@ sets:
               Choose units targets in range 5. Swap their positions.
 
 
-      - name: Geomancer
-        description: |-
-          - Terrain control
-          - Healing
-        health: 8
-        speed: 3
-        image_url: TODO
-        default_abilities:
-        hints:
-          - *UnprotectedHint
-          - *SilenceHint
-        passives:
-
-        abilities:
+#      - name: Geomancer
+#        description: |-
+#          - Terrain control
+#          - Healing
+#        health: 8
+#        speed: 3
+#        image_url: TODO
+#        default_abilities:
+#        hints:
+#          - *UnprotectedHint
+#          - *SilenceHint
+#        passives:
+#
+#        abilities:
