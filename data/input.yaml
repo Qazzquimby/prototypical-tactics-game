@@ -73,7 +73,7 @@ conditions:
   DoT: &DoT
     name: DoT
     image_url: https://tactics.toren.dev/image_token_Burning_-3293685330274957657.jpg
-    text: At the end of your turn, take 1 damage. Stacks with itself.
+    text: At the end of your turn, take 1 damage for each DoT token you have.
   HealingOverTime: &HealingOverTime
     name: Healing Over Time
     image_url: https://media.discordapp.net/attachments/999104692233711676/1177528677681090610/qazzquimby_heart_healing_over_time_icon_symbol_b39b752b-0054-4c1e-827c-3867df8b4c92.png
