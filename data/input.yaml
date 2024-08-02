@@ -183,6 +183,11 @@ hints:
     text: |-
       This damage cannot be reduced by armor, resistance, or other effects.
       The damage is dealt directly to health, ignoring things like overshield.
+  OvershieldHint: &OvershieldHint
+    name: Overshield
+    text: |-
+      Extra health, lost before regular health.
+      Different sources of overshield do not stack. Take the larger value.
   ResistanceHint: &ResistanceHint
     name: Resistance
     text: Receive half damage. Cancels out with damage multipliers. Doesn't stack.
@@ -1665,6 +1670,7 @@ sets:
               4-Illusion: Create two illusion units with 1hp and your speed. Instant: swap with illusion.
               5-Invisibility: You gain Invisible until you next target an enemy.
               6-Shield: Gain overshield equal to your max health / 2.
+          - *OvershieldHint
 
         tokens:
           - name: Water
@@ -1869,7 +1875,7 @@ sets:
               - Target Heals half their max hp.
               - Target gains 3 overshield.
         dice:
-          - name: Overshield
+          - name: Overshield (Bonus health, doesn't stack)
             color: blue
             values: [ 3 ]
         abilities:
@@ -3729,10 +3735,12 @@ sets:
               Unit gains 1 DoT
           - name: Enemies decrease their range by their DoT, min 1.
             text: ""
+        hints:
+          - *OvershieldHint
         tokens:
           - *DoT
         dice:
-          - name: Overshield
+          - name: Overshield (Bonus health, doesn't stack)
             color: blue
             values: [ 2 ]
         default_abilities:
@@ -4363,6 +4371,8 @@ sets:
                 or roll: 5-6, summon an Ikiryo, max 1.
           - name: Soothe Spirit
             text: Range 3, heal 1, Overshield +1
+            hints:
+              - *OvershieldHint
           - name: I've Got Your Back
             text: |-
               Free
@@ -4899,6 +4909,8 @@ sets:
               - name: Overshield
                 color: blue
                 values: [ 4 ]
+            hints:
+              - *OvershieldHint
           - name: Molten Core
             text: |-
               Ultimate 4:
@@ -6191,12 +6203,14 @@ sets:
           - name: Blutsauger
             text: |-
               Range 3, +2def, 2dmg, heal equal to damage dealt.
+        hints:
+          - *OvershieldHint
         tokens:
           - name: Healing Target
             image_url: https://tactics.toren.dev/image_token_Healing Target_-4590313136682746411.jpg
             text: ''
         dice:
-          - name: Overshield
+          - name: Overshield (Bonus health, doesn't stack)
             color: blue
             values: [ 1 ]
         abilities:
