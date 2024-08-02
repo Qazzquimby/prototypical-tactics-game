@@ -115,6 +115,13 @@ Control Points stay claimed until the opponent takes them.
 
 # Game Concepts
 
+## Math
+
+- Multiply before adding.
+- If you'd both multiply and divide, instead do neither. They cancel each other out.
+- Everything rounds up.
+
+
 ## Units
 
 Units have health and speed and abilities. They're represented by standing figures on the map.
@@ -309,7 +316,7 @@ Damage reduces health. "3dmg" means "the caster deals 3 damage to the target."
 Damage modifiers can be additive or multiplicative.
 
 - **Like in math, multiply before adding**: If a 2dmg attack has +100% damage and +1 damage, you
-  multiply before adding for 5 damage.
+  multiply before adding for 5 damage. All division rounds up.
 - **Multipliers stack additively**: If a 2dmg attack has +50% damage and +100% damage, you add the
   multipliers for a total of 5 damage.
 
