@@ -220,7 +220,7 @@ hints:
   CoverHint: &CoverHint
     name: Cover (green line)
     text: |-
-      If an ability draws range through cover, and doesn't start adjacent to that cover, the ability has +2def.
+      Provides cover to adjacent units (+2def from units in the covered direction.
   DeadlyFallHint: &DeadlyFallHint
     name: Deadly Fall (pink shade)
     text: |-
@@ -229,9 +229,9 @@ hints:
     name: Height Difference (yellow line)
     text: |-
       The yellow line has arrows in one direction, pointing down. Units cannot move "up" the line.
-      Range 1 does not reach over the line, though other ranges are unaffected. (Melee can't reach)
-      Line of sight cannot go both up and down height difference. If LoS goes up a height difference, its blocked when it would go down. (You can't see the other side of the hill)
-
+      Range 1 does not reach over the line, though other ranges are unaffected.
+      Units on the ground can see the top, but not the ground on the other side. Units on top are unaffected.
+      Provides cover to units on the ground.
 
 markers:
   HealthPack: &HealthPack
@@ -6075,12 +6075,14 @@ sets:
         default_abilities:
           - name: Minigun
             text: |-
-              If not spun up: 2dmg -1dmg per space between.
+              If not spun up:
                 Enter spun up stance: You are slowed and can only use minigun. You can exit the stance as a Free Action at start of turn.
               
               If spun up: 6dmg -2dmg per space between.
           - name: Punch
             text: Range 1 2dmg +2crit. On kill, gain a Kill counter. If you have a kill counter, you deal +100% damage.
+        hints:
+          - *SlowHint
         tokens:
           - name: Spun Up
             image_url: https://tactics.toren.dev/image_token_Spun Up_1477848996508512357.jpg
@@ -6090,9 +6092,9 @@ sets:
             text: |-
               1/Game, choose one --
               - Free Action: Place your Sandvich Marker in a space in range 2 (can be occupied). When a damaged unit is in this space, they heal half their maximum hp and destroy this.
-              - Move + Standard, Heal 12.
+              - Move + Standard, Heal 4. At the start of your next turn, heal 8.
               - Move + Standard Action. Gain Buffalo Steak Rage: 
-                  +1 speed, deal +50% damage, receive +1 damage, cannot deal damage to targets farther than range 1.
+                  +1 speed, deal +50% damage, receive +1 damage, cannot target anything farther than range 1.
             tokens:
               - name: Snack Pickup
                 image_url: https://tactics.toren.dev/image_token_Sandvich_6108514798017996936.jpg
@@ -6111,7 +6113,7 @@ sets:
               - Enter GRU stance: 
                   +2 Speed, receive +50% damage.
               - Enter Fists of Steel stance: 
-                  Receive -1 damage from ranges 2+, and +100% damage from range 1.
+                  You have armor. Receive +10% damage from range 1.
               - Remove your glove stance.
             tokens:
               - name: GRU
@@ -6128,42 +6130,35 @@ sets:
         health: 6
         speed: 3
         image_url: https://tactics.toren.dev/image_token_Sniper_-4399437231898759529.jpg
-        passives:
-          - name: Immune to DoT
-            text: ''
         default_abilities:
           - name: Sniper Rifle
             text: |-
               Choose one --
-              - Range 3+, 2dmg, +2 crit per kill counter.
-              - Move + Standard Action:
-                Move 1. Note your facing.
+              - Range 3+, 2dmg, +2 crit.
+              - Note your facing.
                 At the start of your next turn you may:
-                  Range 2+, undefendable, 6dmg, +2 crit per kill counter.
-                  After this attack the target receives +50% damage.
-                  End your turn
-              
-              On kill, gain a Kill counter.
+                  Range 2+ in facing, undefendable, 5dmg, +2 crit.
           - name: Bushwacka
             text: |-
               Range 1, 2dmg, +2 crit.
               This attack doubles applied damage bonuses
+        hints:
+          - *FacingHint
         tokens:
-          - *Kill
           - name: Sniper Rifle Charged
             image_url: https://tactics.toren.dev/image_token_Sniper Rifle Charged_-1799727609997937813.jpg
         abilities:
           - name: Huntsman
             text: |-
-              Range 4, 3dmg, +3def, +1 crit.
+              Range 4, 3dmg, +3def, +2 crit.
               If you have DoT, the target gets DoT.
             tokens:
               - *DoT
           - name: Cleaner's Carbine
             text: |-
               Range 2, 2dmg.
-              Gain charge equal to damage dealt, max 4.
-              While this has 4 charge, you deal +50% damage.
+              Gain charge equal to damage dealt, max 3.
+              While this has 3 charge, you deal +50% damage.
             dice:
               - name: Charge
                 color: orange
