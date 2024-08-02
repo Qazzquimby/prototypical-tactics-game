@@ -230,6 +230,11 @@ hints:
     name: Deadly Fall (pink shade)
     text: |-
       If a unit ends their turn on this, they die. Leaving a falling hazard space costs +1 movement.
+  HazardHint: &HazardHint
+    name: Hazard
+    text: |-
+      Once per turn per hazard space, if a unit enters the space or ends their turn on the space, they take 1dmg.
+      Some hazards may have different effects instead of 1dmg.
   HeightDifference: &HeightDifferenceHint
     name: Height Difference (yellow line)
     text: |-
@@ -2344,8 +2349,9 @@ sets:
                 image_url: https://tactics.toren.dev/image_token_Plasma Hazard_1826200987002853893.jpg
                 is_marker: true
                 text: |-
-                  Units that start in or enter this space take 2dmg.
-                  A unit can only take damage from Plasma Hazard once per round.
+                  Hazard: 2dmg.
+            hints:
+              - *HazardHint
           - name: Havok Mine
             text: |-
               1/Game:
@@ -4924,6 +4930,7 @@ sets:
                   Hazard: 2dmg for enemies.
             hints:
               - *UltimateHint
+              - *HazardHint
         units:
           - name: Turret
             health: 8
@@ -4997,6 +5004,7 @@ sets:
                   While the beam is active, all spaces in it have Hazard: 7dmg for enemies.
             hints:
               - *UltimateHint
+              - *HazardHint
       - name: Winston
         complexity: 2
         description: |-
