@@ -50,7 +50,7 @@ happens. Game ends at the end of round 6.
 When it's a heroes turn, they and all their summons activate in any order. They each get 1 Move
 Action and 1 Standard Action to use in any order, plus any number of free actions or reactions.
 
-A move action lets a unit move up to their speed in spaces orthogonally. It can be split between
+A move action lets a unit move up to their speed in spaces non-diagonally. It can be split between
 actions. Some other abilities may cost a move action.
 
 All abilities cost a standard action by default. A unit's character card may start with passives
@@ -86,7 +86,7 @@ or reactions. They can be used in any order.
 
 ## Actions
 
-A Move Action allows the unit to move up to their speed in spaces orthogonally. (
+A Move Action allows the unit to move up to their speed in spaces non-diagonally. (
 See [Movement](#movement))
 Some abilities may also cost a move action.
 
@@ -150,7 +150,7 @@ Abilities on a hero's extra cards are their non-default abilities.
 
 As a move action, units can move up to their speed.
 
-- **Movement is done orthogonally.**
+- **Movement is non-diagonal.**
 
 - **The basic move action can be broken up.** You can use free actions to move any unused distance.
   to move some of the remaining distance later in your turn.
@@ -197,7 +197,7 @@ To determine the cover behind an obstacle:
 
 - Take the two outermost corner points of the obstacle
 - For each point, draw a line moving away from you, representing the edge of the covered region.
-    - If the point is along your row or column, the cover line is orthogonally straight away from
+    - If the point is along your row or column, the cover line is non-diagonally straight away from
       you.
     - Otherwise, the cover line is a diagonal line pointing away from you.
 - The space between the lines is in the cover.
@@ -211,11 +211,11 @@ To determine the cover behind an obstacle:
 ### Range
 
 When counting distance for range, the first space may be diagonally adjacent, and all others must be
-orthogonally adjacent.
+non-diagonally adjacent.
 
 ![Range Demo](los_demo_range.png)
 
-"Adjacent" means "In Range 1." Orthogonal only adjacency will be specified when it happens.
+"Adjacent" means "In Range 1." Non-diagonal only adjacency will be specified when it happens.
 
 ### Targeting
 
@@ -262,7 +262,7 @@ Common areas are:
 
 - **Line**: A 1*N rectangle of spaces moving away from the source space. If no length is given, the
   line is infinite.
-- **Path**: A sequence of N orthogonally adjacent spaces, snaking around however you like.
+- **Path**: A sequence of N non-diagonally adjacent spaces, snaking around however you like.
 - **Burst**: All spaces in range N of the source space.
 - **NxN**: A NxN square of spaces. If it doesn't specify that it's centered, then it only needs to
   overlap the source space.

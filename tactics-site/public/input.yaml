@@ -28,17 +28,17 @@ rules:
 #    text: |-
 #      Units (such as heroes) have a Move Action and Standard Action, which they can use in any order.
 #      A Standard action can be used to take a Move action.
-#      A "Basic Move" Move Action moves orthogonally up to the unit's speed.
+#      A "Basic Move" Move Action moves non-diagonally up to the unit's speed.
 #
 #      All active abilities are Standard Actions by default.
 #
 #      Actions listed on a unit's card are called "Default Actions".
 #  - name: Range
 #    text: |-
-#      Range is counting squares. One square can be diagonally adjacent, the rest must be orthogonal.
+#      Range is counting squares. One square can be diagonally adjacent, the rest must be non-diagonal.
 #      Burst n means all squares within n range of the target square.
 #      Adjacent is range 1.
-#      Line n means all squares in an orthogonal line of n squares from the target square.
+#      Line n means all squares in an non-diagonal line of n squares from the target square.
 #      Path n means all squares in a path of n squares from the target square.
 #  - name: Attacking
 #    text: |-
@@ -148,9 +148,9 @@ hints:
     name: Facing
     text: |-
       Usually the direction a unit is facing isn't tracked.
-      When a unit notes its facing, choose and declare an orthogonal direction and position the unit in its square to lean in that direction.
+      When a unit notes its facing, choose and declare an non-diagonal direction and position the unit in its square to lean in that direction.
       
-      Spaces to its front and the orthogonal line at its left and right are in front of it. Other spaces are behind it.
+      Spaces to its front and the line at its left and right are in front of it. Other spaces are behind it.
       F F F F F
       F F F F F
       F F 😀 F F
@@ -260,9 +260,9 @@ shared_rules:
   Facing: &RuleFacing
     name: Facing
     text: |-
-      When a unit specifically states it has facing, when it acts, indicate that it faces an orthogonal direction most closely facing the direction or target of the Action.
+      When a unit specifically states it has facing, when it acts, indicate that it faces an non-diagonal direction most closely facing the direction or target of the Action.
       You can have the character partly overhang that edge of the square to indicate facing.
-      Spaces to its front and the orthogonal line at its left and right are in front of it. Other spaces are behind it.
+      Spaces to its front and the line at its left and right are in front of it. Other spaces are behind it.
       F F F F F
       F F F F F
       F F 😀 F F
@@ -2167,7 +2167,7 @@ sets:
           - name: Dimensional Emblems
             text: |-
               Unlimited Range, undefendable, 
-              create 3 Dimensional Emblem markers adjacent to the target, but not orthogonally adjacent to any other Dimensional Emblem.
+              create 3 Dimensional Emblem markers adjacent to the target, but not non-diagonally adjacent to any other Dimensional Emblem.
               When a unit moves through a Dimensional Emblem, they take 2 stress and the emblem is removed.
             tokens:
               - name: Dimensional Emblem
@@ -2344,7 +2344,7 @@ sets:
             text: |-
               1/Game:
               Empty space in range 2, place a Havok Mine marker.
-              When any character moves into an orthogonally adjacent space, it is destroyed and does
+              When any character moves into an non-diagonally adjacent space, it is destroyed and does
                 All in line 4, give DoT 2
               where the line must include the triggering character.
             tokens:
