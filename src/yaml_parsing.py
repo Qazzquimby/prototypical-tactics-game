@@ -49,7 +49,7 @@ class Token(BaseModel, Spawnable):
         back_image_url = self.back_image_url or self.image_url
         back_image_name = self.name + "_back" if self.back_image_url else self.name
         return f"""\
-        local front="{get_hosted_address(url=self.image_url, name=self.name)}"
+        local front="{get_hosted_address(url=self.image_url, name=self.name)}{{verifycache}}"
         local back="{get_hosted_address(url=back_image_url, name=back_image_name)}"
         local name=[[{clean_string_for_lua(self.name)}]]
         local description=[[{clean_string_for_lua(self.text)}]]
@@ -90,7 +90,7 @@ class Figurine(BaseModel, Spawnable):
 
     def get_spawning_lua(self):
         return f"""\
-    local front="{get_hosted_address(self.image_url, name=self.name)}"
+    local front="{get_hosted_address(self.image_url, name=self.name)}{{verifycache}}"
     local name="{clean_string_for_lua(self.name)}"
     local s={scale_size(self.size)}
     local my_position = self.getPosition()

@@ -44,7 +44,7 @@ class Card(DomainEntity):
 
     def get_custom_deck_dict(self):
         return {
-            "FaceURL": self.image_path,
+            "FaceURL": self.image_path + "{verifycache}",
             "BackURL": self.back_image_path,
             "NumWidth": 1,
             "NumHeight": 1,
