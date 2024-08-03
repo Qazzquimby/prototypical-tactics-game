@@ -175,7 +175,7 @@ hints:
       If the roll is higher, the Instant occurs after the triggering Action.
       Else the roll is equal or lower, and the Instant occurs before the triggering Action.
 
-      If the triggering actor is an ally, you may simply choose whether the Instant triggers before or after the Action.
+      If the triggering actor is an ally, you may simply choose whether the Instant triggers before or after the Action, no need to roll.
 
       Reminder that units can choose to be hit even when an attack roll fails.
   IrreducibleHint: &IrreducibleHint
@@ -4710,7 +4710,7 @@ sets:
               - Until end of target's next turn, they deal +50% damage.
           - name: Caduceus Blaster
             text: |-
-              1def per 2 spaces between, 2dmg.
+              Unlimited range, +3def beyond range 3, 2dmg.
         abilities:
           - name: Guardian Angel
             text: |-
@@ -4749,8 +4749,8 @@ sets:
         default_abilities:
           - name: Rocket Launcher
             text: |-
-              1def per 2 spaces between, 2dmg
-              Burst 1 of targeted space,  1dmg
+              Unlimited range, +3def beyond range 3, 2dmg
+              Burst 1 of target, 1dmg
         abilities:
           - name: Deplete Hover Jets
             text: |-
@@ -6205,12 +6205,12 @@ sets:
         default_abilities:
           - name: Medigun
             text: |-
-              Path range 3, heal them 1, target becomes your Healing Target until the start of your next turn, or if they stop being within path range 4.
+              Path range 3, heal them 2, target becomes your Healing Target until the start of your next turn, or when they next stop being within path range 4.
               When they move other than in a standard move, you may copy that movement effect.
               At start of your turn, heal them 4, with excess healing as overshield. Move their speed-3.
           - name: Blutsauger
             text: |-
-              Range 3, +2def, 2dmg, heal equal to damage dealt.
+              Range 3, 2dmg, heal equal to damage dealt.
         hints:
           - *OvershieldHint
         tokens:
@@ -6223,7 +6223,10 @@ sets:
             values: [ 1 ]
         abilities:
           - name: Crossbow
-            text: 1def per 2 spaces between, 3dmg, or heal 3
+            text: |-
+              Allies can't voluntarily skip the attack roll for this attack.
+              Range 3, 2def, 2dmg, or heal 4
+              or range 4+, 4def, 3dmg or heal 8
           - name: Ubersaw
             text: |-
               Range 1, 2dmg, +2crit.
@@ -6271,7 +6274,7 @@ sets:
           - name: Rescue Ranger
             text: |-
               Choose one --
-              - 1def per 2 spaces between, 2dmg 
+              - Range 3, 2dmg 
               - If target is a summon, you may teleport it adjacent to you and Tap it, and you may Heal it 2.
           - name: Wrench
             text: |-
@@ -6343,7 +6346,7 @@ sets:
         default_abilities:
           - name: Grenade Launcher
             text: |-
-              1def+1def per space between, 3dmg; burst 1 of target, 1dmg. 
+              Range 4, 3def, 3dmg; Burst 1 of target, 1dmg. 
               On miss places grenade marker in the nearest empty space.
               At the start of your turn, destroy it and repeat the attack on its space, automatically hitting.
           - name: Eyelander
@@ -6424,7 +6427,7 @@ sets:
         abilities:
           - name: Flare Gun
             text: |-
-              1def+1def per 2 spaces between, 2dmg. 
+              Unlimited range, +3def beyond range 3, 2dmg. 
               If they have DoT: +2dmg.
               Else: They get DoT 1.
           - name: Axe
@@ -6453,7 +6456,9 @@ sets:
         default_abilities:
           - name: Rocket Launcher
             text: |-
-              1def+1def per 2 spaces between, 3dmg, 1dmg to others in burst 1 of target, push target 1.
+              Unlimited range, +3def beyond range 3,
+              Burst 1 of target, 1dmg;
+              2dmg to target and push 1.
           - name: Rocket Jump
             text: |-
               Move Action, 1dmg to others in burst 1, take 3dmg, fly 5.

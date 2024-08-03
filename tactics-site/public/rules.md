@@ -282,14 +282,17 @@ when people rolls 1s, then roll just for that.
 
 All rolls are done with a 6-sided die.
 
-### Defense
+### Defense and Missing
 
 An ability may have def (defense) on the attack roll. The def may come from the ability itself like
 an inaccurate weapon, and from the target being hard to hit.
 
-Def has a maximum value of 4, so rolls of 5-6 should still hit.
-
 If the attacker rolls *less or equal* to a target's def, the attack misses.
+Def has a maximum value of 4, so rolls of 5-6 will still hit.
+
+
+When at attack misses, it may still accomplish something, because the  attack hit's the target's *space* instead.
+For example, a rocket might miss the target and still deal AoE damage in burst 1, affecting the original target and their neighbors. 
 
 - If an ability is "undefendable", the def is always 0.
 - If a unit is "undefendable", the def or abilities targeting them is always 0.
