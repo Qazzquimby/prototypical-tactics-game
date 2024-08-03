@@ -66,6 +66,19 @@ export default defineNuxtConfig({
     },
   },
 
+  hooks: {
+    'build:before': async () => {
+      const fs = require('fs')
+      const path = require('path')
+
+      const rulesPath = path.resolve(__dirname, 'public', 'rules.md')
+      if (!fs.existsSync(rulesPath)) {
+        console.warn('rules.md not found in public directory. Creating an empty file.')
+        fs.writeFileSync(rulesPath, '# Rules\n\nContent coming soon.')
+      }
+    },
+  },
+
   app: {
     head: {
       viewport: 'width=device-width,initial-scale=1',

@@ -1,24 +1,18 @@
 <script setup lang="ts">
 import MarkdownIt from 'markdown-it'
 
-const rulesMarkdown = ref('')
+const { data: markdownText } = await useFetch('/rules.md')
 
-onMounted(async () => {
-  const md = new MarkdownIt()
-  const markdownFile = await fetch('/rules.md')
-  const markdownText = await markdownFile.text()
-
-  rulesMarkdown.value = md.render(markdownText)
-})
+const md = new MarkdownIt()
+const rulesMarkdown = computed(() => md.render(markdownText.value || ''))
 </script>
 
 <template>
-  <div
-    class="rules" mx-auto max-w-50rem
-    v-html="rulesMarkdown"
-  />
+  <div class="rules" mx-auto max-w-50rem v-html="rulesMarkdown" />
 </template>
 
 <style scoped>
-
+.rules {
+  padding: 1rem;
+}
 </style>
