@@ -10,20 +10,20 @@
   /* Base styles */
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  color: #333;
+  color: #e3dddd;
 }
 
 /* Headings */
 .nuxt-content h1 {
   font-size: 2.5em;
   margin-bottom: 0.5em;
-  color: #2c3e50;
+  color: #c4c6c8;
 }
 
 .nuxt-content h2 {
   font-size: 2em;
   margin-bottom: 0.5em;
-  color: #34495e;
+  color: #a8aaac;
 }
 
 .nuxt-content h3 {
