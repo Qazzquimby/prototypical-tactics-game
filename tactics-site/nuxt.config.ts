@@ -4,6 +4,7 @@ import { appDescription } from './constants/index'
 export default defineNuxtConfig({
   ssr: true,
   modules: [
+    '@nuxt/content',
     // 'nuxt-vuefire',
     'nuxt-primevue',
     '@inkline/plugin/nuxt',
@@ -68,8 +69,8 @@ export default defineNuxtConfig({
 
   hooks: {
     'build:before': async () => {
-      const fs = require('fs')
-      const path = require('path')
+      const fs = require('node:fs')
+      const path = require('node:path')
 
       const rulesPath = path.resolve(__dirname, 'public', 'rules.md')
       if (!fs.existsSync(rulesPath)) {
