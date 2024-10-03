@@ -6699,3 +6699,124 @@ sets:
 #        passives:
 #
 #        abilities:
+
+
+
+  - name: PvE
+    description: Face off against the mechanized hordes of Hell in this PvE expansion.
+    rules: []
+    heroes:
+      - name: ULTRAKILL
+        description: ""
+        health: 0
+        speed: 0
+        image_url: https://upload.wikimedia.org/wikipedia/en/thumb/4/48/Ultrakill_cover.png/220px-Ultrakill_cover.png
+        cards: []
+        units:
+          - name: V2
+            speed: 4
+            health: 6
+            image_url: https://static.wikia.nocookie.net/ultrakill/images/f/fe/V2Icon.png
+            abilities:
+              - name: Full Arsenal
+                text: Use the default ability with the highest damage of the nearest enemy unit.
+              - name: Enrage when Ignored
+                text: At the start of turn 4, gain +1 speed and +1dmg
+          - name: Mindflayer
+            speed: 0
+            health: 4
+            image_url: https://static.wikia.nocookie.net/ultrakill/images/d/dd/FlyerHD.png
+            abilities:
+              - name: Laser
+                text: Range 4, undefendable 2dmg. Teleport adjacent to the furthest enemy.
+          - name: Swordsmachine
+            speed: 4
+            health: 4
+            image_url: https://static.wikia.nocookie.net/ultrakill/images/6/6a/Swordsmachine_12a.png
+            abilities:
+              - name: Phase 2
+                text: The first time Swordsmachine is defeated, it returns to full health and switches to phase 2.
+              - name: Sword Combo
+                text: In phase 1 Range 1, 2dmg. In phase 2, all in range 2, 2dmg.
+              - name: Sword Throw
+                text: Range 5, +2def 2dmg.
+          - name: Streetcleaner
+            speed: 2
+            health: 3
+            image_url: https://static.wikia.nocookie.net/ultrakill/images/d/d9/StreetcleanerHD.png
+            abilities:
+              - name: armor
+                text: ""
+              - name: Def +2, received crit chance +1
+                text: ""
+              - name: On death, all in range 2, 3dmg.
+              - name: Flamethrower
+                text: Line 2, 2dmg.
+          - name: Drone
+            speed: 4
+            health: 2
+            image_url: https://static.wikia.nocookie.net/ultrakill/images/6/6a/Drone-spawnmenuicon.png
+            abilities:
+              - name: Projectile Barrage
+                text: Ranged 4, 2dmg.
+              - name: On death, Range 4, 2x2, 2dmg
+                text: ""
+          - name: Cerberus
+            type: Stone Guardian
+            speed: 2
+            health: 6
+            image_url: https://static.wikia.nocookie.net/ultrakill/images/f/fa/Cerb-Trans.png/revision/latest?cb=20220826181434
+            abilities:
+              - name: Enrage when Cerberus falls
+                text: When another Cerberus dies, gain +1 speed, +1dmg
+              - name: Charge
+                text: Line 3, 3dmg, push 1. Move as far down the line as possible.
+              - name: Energy Orb
+                text: Range 3, +2def, 2dmg
+          - name: Malicious Face
+            speed: 0
+            health: 4
+            image_url: https://static.wikia.nocookie.net/ultrakill/images/3/37/MaliciousFace_12a.png
+            abilities:
+              - name: Enrage when Bloodied
+                text: When at 2 or less health, Malicious Face has +2 dmg
+              - name: Immune to AoE
+              - name: Laser
+                text: Unlimited range, +2def, 3dmg
+          - name: Idol
+            speed: 0
+            health: 1
+            image_url: https://static.wikia.nocookie.net/ultrakill/images/5/59/Screw.png/revision/latest?cb=20231229004051
+            abilities:
+              - name: Blessing
+                text: On spawn, choose the highest health ally not protected by an Idol. They are immune to damage while Idol lives.
+              - name: Immune to damage from further than range 1.
+                text: ""
+          - name: Sniper
+            speed: 4
+            health: 4
+            image_url: https://static.wikia.nocookie.net/ultrakill/images/9/99/Turret-Trans.png
+            abilities:
+              - name: Dig In
+                text: If not forcibly moved, at start of next turn, Unlimited range, 3dmg
+          - name: Virtue
+            speed: 0
+            health: 3
+            image_url: https://static.wikia.nocookie.net/ultrakill/images/2/25/Virtue-Trans.png
+            abilities:
+              - name: Divine Beam
+                text: Global range, mark the nearest enemy's space. At beginning of turn, 3x3 center on space, 3dmg, remove marks.
+          - name: Filth
+            speed: 4
+            health: 1
+            image_url: https://static.wikia.nocookie.net/ultrakill/images/2/2b/Filth-Trans.png
+            abilities:
+              - name: Bite
+                text: Range 1, 2dmg
+          - name: Stray
+            speed: 2
+            health: 2
+            image_url: https://static.wikia.nocookie.net/ultrakill/images/e/e0/Stray-Trans.png
+            abilities:
+              - name: Projectile
+                text: Range 4, 2dmg
