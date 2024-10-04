@@ -6750,6 +6750,7 @@ sets:
               - name: Def +2, received crit chance +1
                 text: ""
               - name: On death, all in range 2, 3dmg.
+                text: ""
               - name: Flamethrower
                 text: Line 2, 2dmg.
           - name: Drone
@@ -6781,6 +6782,7 @@ sets:
               - name: Enrage when Bloodied
                 text: When at 2 or less health, Malicious Face has +2 dmg
               - name: Immune to AoE
+                text: ""
               - name: Laser
                 text: Unlimited range, +2def, 3dmg
           - name: Idol
