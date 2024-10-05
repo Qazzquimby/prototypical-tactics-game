@@ -38,7 +38,7 @@ class Token(BaseModel, Spawnable):
     back_image_url: str = ""
     text: str = ""
     size: float = 0.25
-    is_marker = False
+    is_marker: bool = False
 
     def get_spawning_lua(self):
         if self.is_marker:
@@ -86,6 +86,7 @@ class Token(BaseModel, Spawnable):
 class Figurine(BaseModel, Spawnable):
     name: str
     image_url: str
+    health: int
     size: int = 3
 
     def get_spawning_lua(self):
@@ -104,9 +105,13 @@ class Figurine(BaseModel, Spawnable):
             newObj.setName(name)
         end
     }})
+    
+    local luascript = {self.get_figurine_health_counter_lua(self.health)}
+    
     obj.setCustomObject({{
         type ="Figurine_Custom",
         image = front,
+        luascript=luascript
     }})"""
 
     def get_figurine_health_counter_lua(self, health: int):
@@ -115,22 +120,21 @@ class Figurine(BaseModel, Spawnable):
 
         return f"""\
     -- Adjust the following values to customize the counter's appearance
-    MINIMUM_VALUE = 0
-    INITIAL_VALUE = {health}
-    MAXIMUM_VALUE = INITIAL_VALUE
+    local MINIMUM_VALUE = 0
+    local INITIAL_VALUE = {health}
+    local MAXIMUM_VALUE = INITIAL_VALUE
 
 
     -- Button colors (RGB values from 0.0 to 1.0)
-    BUTTON_BACKGROUND_COLOR = {{1.0, 1.0, 1.0}}
-    BUTTON_FONT_COLOR = {{0.21, 0.15, 0.09}}
+    local BUTTON_BACKGROUND_COLOR = {{1.0, 1.0, 1.0}}
+    local BUTTON_FONT_COLOR = {{0.21, 0.15, 0.09}}
 
     -- Value button parameters
-    BUTTON_HEIGHT = 300
-    BUTTON_WIDTH = 300
-    BUTTON_POSITION = {{0, 0.1, 0}}  -- Centered on the standee
-    ONE_DIGIT_FONT_SIZE = 200
-    TWO_DIGIT_FONT_SIZE = 175
-    THREE_DIGIT_FONT_SIZE = 150
+    local BUTTON_HEIGHT = 300
+    local BUTTON_WIDTH = 300
+    local BUTTON_POSITION = {{0, 0.1, 0}}  -- Centered on the standee
+    local ONE_DIGIT_FONT_SIZE = 200
+    local TWO_DIGIT_FONT_SIZE = 175
 
     -- Load save data and create button
     function onLoad(saved_data)
@@ -357,7 +361,6 @@ def get_unit_image_url(unit_card, duplicate_number=None):
 
 class UnitCard(Card, Figurine):
     speed: int
-    health: int
     passives: list[Passive] = []
     default_abilities: list[Active] = []
     count: int = 1
