@@ -17,7 +17,7 @@ from src.drawing.self_host_tokens import TokenImage, get_hosted_address
 from src.drawing.size_constants import CARD_SIZE, DIE_SPACING
 from src.shared_types import IntroSetup
 
-from src.spawning_lua import get_full_lua, scale_size, clean_string_for_lua
+from src.spawning_lua import get_full_spawning_lua, scale_size, clean_string_for_lua
 from domain.deck import Deck as DomainDeck
 from domain.card import Card as DomainCard
 
@@ -26,7 +26,7 @@ data_path = Path(r"data/")
 
 class Spawnable(abc.ABC):
     def get_lua(self) -> str:
-        return get_full_lua(self.get_spawning_lua())
+        return get_full_spawning_lua(self.get_spawning_lua())
 
     def get_spawning_lua(self):
         raise NotImplementedError
@@ -86,7 +86,7 @@ class Token(BaseModel, Spawnable):
 class Figurine(BaseModel, Spawnable):
     name: str
     image_url: str
-    size: int = 1
+    size: int = 3
 
     def get_spawning_lua(self):
         return f"""\
@@ -108,6 +108,99 @@ class Figurine(BaseModel, Spawnable):
         type ="Figurine_Custom",
         image = front,
     }})"""
+
+    def get_figurine_health_counter_lua(self, health: int):
+        if health <= 0:
+            return ""
+
+        return f"""\
+    -- Adjust the following values to customize the counter's appearance
+    MINIMUM_VALUE = 0
+    INITIAL_VALUE = {health}
+    MAXIMUM_VALUE = INITIAL_VALUE
+
+
+    -- Button colors (RGB values from 0.0 to 1.0)
+    BUTTON_BACKGROUND_COLOR = {{1.0, 1.0, 1.0}}
+    BUTTON_FONT_COLOR = {{0.21, 0.15, 0.09}}
+
+    -- Value button parameters
+    BUTTON_HEIGHT = 300
+    BUTTON_WIDTH = 300
+    BUTTON_POSITION = {{0, 0.1, 0}}  -- Centered on the standee
+    ONE_DIGIT_FONT_SIZE = 200
+    TWO_DIGIT_FONT_SIZE = 175
+    THREE_DIGIT_FONT_SIZE = 150
+
+    -- Load save data and create button
+    function onLoad(saved_data)
+        if saved_data ~= '' then
+            local loaded_data = JSON.decode(saved_data)
+            count = math.max(math.min(loaded_data.saved_count, MAXIMUM_VALUE), MINIMUM_VALUE)
+        else
+            count = INITIAL_VALUE  -- Default to max health
+        end
+
+        createButton()
+    end
+
+    -- Save count to save data
+    function onSave()
+        local data_to_save = {{saved_count = count}}
+        saved_data = JSON.encode(data_to_save)
+        return saved_data
+    end
+
+    -- Toggle health value when clicked
+    function toggleHealth()
+        if alt_click then
+            count = count - 1
+            if count < MINIMUM_VALUE then
+                count = MINIMUM_VALUE
+            end
+        else
+            count = count + 1
+            if count > MAXIMUM_VALUE then
+                count = MAXIMUM_VALUE
+            end
+        end
+        updateValue()
+    end
+
+    -- Update the button according to the current count
+    function updateValue()
+        button_parameters.font_size = getButtonFontSize()
+        button_parameters.label = tostring(count)
+        self.editButton(button_parameters)
+    end
+
+    -- Return a font size based on the number of digits in the current count
+    function getButtonFontSize()
+        if count >= 0 and count <= 9 then
+            return ONE_DIGIT_FONT_SIZE
+        elseif count >= 10 and count <= 99 then
+            return TWO_DIGIT_FONT_SIZE
+        else
+            return THREE_DIGIT_FONT_SIZE
+        end
+    end
+
+    -- Create button based on the parameters
+    function createButton()
+        button_parameters = {{
+            function_owner = self,
+            click_function = 'toggleHealth',
+            label = tostring(count),
+            position = BUTTON_POSITION,
+            width = BUTTON_WIDTH,
+            height = BUTTON_HEIGHT,
+            font_size = getButtonFontSize(),
+            color = BUTTON_BACKGROUND_COLOR,
+            font_color = BUTTON_FONT_COLOR
+        }}
+        self.createButton(button_parameters)
+    end
+    """
 
 
 class Ability(BaseModel):
